@@ -97,7 +97,7 @@ function GHI_AreaSound()
 				if GHI_MiscData["show_area_sound_sender"] then
 					GHI_Message("Area sound by " .. (sender or "nil"));    --todo: loc
 				end
-		    end
+			end
 		end
 	end
 	comm.AddRecieveFunc("AreaSound", RecieveAreaSound);

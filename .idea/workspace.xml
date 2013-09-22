@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
-    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on #443. Converting to tabs.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" />
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on re #443 while testing how git works.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
-    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885555245" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885628652" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
     <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376850627894" ignored="false" />
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
@@ -137,10 +135,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHI_AreaSound.lua" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GHI_AreaSound.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="99" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.26415095">
+            <state line="99" column="12" selection-start="2774" selection-end="2774" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHI_ExpressionHandler.lua" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="119" column="0" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.62092626">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHI_BuffHandler.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_BuffHandler.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -164,7 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.xml" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_ClassAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_ContainerAPI.lua" />
@@ -180,6 +195,7 @@
         <option value="$PROJECT_DIR$/GHI/Containers/GHI_Trade.lua" />
         <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" />
         <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" />
+        <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua" />
       </list>
     </option>
   </component>
@@ -542,7 +558,11 @@
       <created>1379452792107</created>
       <updated>1379452792107</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Progress on re #443 while testing how git works.">
+      <created>1379885639246</created>
+      <updated>1379885639246</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -569,7 +589,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25859246" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25779969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.87027913" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -577,17 +597,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12929623" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.74055827" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19772728" sideWeight="0.87070376" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19772728" sideWeight="0.7422003" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34369886" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -634,7 +654,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress on #443. Converting to tabs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress on re #443 while testing how git works." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -648,7 +668,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Fixed a minor issue where book font sizes were strings instead of numbers." />
     <MESSAGE value="Ref #410 Added a easier spotable edit buttons in the book UI." />
     <MESSAGE value="Ref #410 Fixed an issue where the slider where not being initialized correctly to a value." />
     <MESSAGE value="Ref #410 The color picker should now initialize the color text boxes correctly." />
@@ -673,6 +692,7 @@
     <MESSAGE value="Fixed several issues with sliders, due to the new patch." />
     <MESSAGE value="Update version number as part of release" />
     <MESSAGE value="Progress on #443. Converting to tabs." />
+    <MESSAGE value="Progress on re #443 while testing how git works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -682,20 +702,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_GameWorldData.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="8" selection-start="10134" selection-end="10134" vertical-scroll-proportion="0.92">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_CreateItemAPI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="276" column="12" selection-start="8702" selection-end="8702" vertical-scroll-proportion="0.9174757">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_MarySueAPI.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="186" column="7" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.38106796">
@@ -787,9 +793,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_BuffHandler.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="99" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.26415095">
+        <state line="99" column="12" selection-start="2774" selection-end="2774" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="0" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.62092626">
           <folding />
         </state>
       </provider>

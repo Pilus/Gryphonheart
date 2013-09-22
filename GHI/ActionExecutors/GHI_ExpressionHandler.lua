@@ -19,7 +19,7 @@ function GHI_ExpressionHandler()
 	local IsCommandAStdEmote, spamCounter;
 	local delayedMessages = {};
 	local miscAPI = GHI_MiscAPI().GetAPI();
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	spamCounter = 0;
 	local lastDisallowedMessage = 0;
 
@@ -74,7 +74,6 @@ function GHI_ExpressionHandler()
 		else
 			spamCounter = spamCounter + 1;
 		end
-
 		class.ExecuteSendMessage(text, chatType, language, channel, guid);
 	end
 
@@ -82,7 +81,6 @@ function GHI_ExpressionHandler()
 
 		if chatType:lower() == "emote" then
 			local isStdEmote, stdEmoteIndex = IsCommandAStdEmote(text);
-
 			if isStdEmote then
 				local d = _G["EMOTE" .. stdEmoteIndex .. "_TOKEN"];
 				DoEmote(d,channel);
@@ -119,7 +117,6 @@ function GHI_ExpressionHandler()
 		end
 		return false, 0;
 	end
-
 
 	class.InsertLinksInText = function(text, guid)
 		if guid then
