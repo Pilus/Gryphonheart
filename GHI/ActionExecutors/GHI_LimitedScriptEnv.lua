@@ -3,9 +3,9 @@
 --				GHI_LimitedScriptEnv
 --  			GHI_LimitedScriptEnv.lua
 --
---	      Extra limited scripting environment
+--		Extra limited scripting environment
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local patterns = {
@@ -39,7 +39,6 @@ end
 
 function GHI_LimitedScriptEnv(ownerGuid)
 	local class = GHClass("GHI_LimitedScriptEnv");
-
 
 	local environment = {
 		assert = assert,
@@ -106,11 +105,7 @@ function GHI_LimitedScriptEnv(ownerGuid)
 		string = string,
 
 		-- table functions
-		--foreach=foreach,
-		--foreachi=foreachi,
 		getn = getn,
-		--ipairs=ipairs,
-		--pairs=pairs,
 		sort = sort,
 		tContains = tContains,
 		tinsert = tinsert,
@@ -134,7 +129,6 @@ function GHI_LimitedScriptEnv(ownerGuid)
 		GetRealZoneText = GetRealZoneText,
 		GetSubZoneText = GetSubZoneText,
 	};
-
 
 	--- functions
 	local headers = {};

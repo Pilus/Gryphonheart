@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
-    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on re #443 while testing how git works.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua" />
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="More progress on Re #443 while testing how git works.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_LimitedScriptEnv.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_LimitedScriptEnv.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
-    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885628652" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379886315041" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
     <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376850627894" ignored="false" />
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
@@ -144,10 +143,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHI_ExpressionHandler.lua" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GHI_ExpressionHandler.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="0" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.62092626">
+            <state line="119" column="0" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHI_LimitedScriptEnv.lua" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_LimitedScriptEnv.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="8" selection-start="167" selection-end="167" vertical-scroll-proportion="0.20411664">
               <folding />
             </state>
           </provider>
@@ -180,7 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.xml" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_ClassAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_ContainerAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_CreateItemAPI.lua" />
@@ -196,6 +203,7 @@
         <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" />
         <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" />
         <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua" />
+        <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_LimitedScriptEnv.lua" />
       </list>
     </option>
   </component>
@@ -203,8 +211,7 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-13" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -562,7 +569,11 @@
       <created>1379885639246</created>
       <updated>1379885639246</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="More progress on Re #443 while testing how git works.">
+      <created>1379886343109</created>
+      <updated>1379886343109</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -586,7 +597,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-13" y="0" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25779969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -654,7 +665,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress on re #443 while testing how git works." />
+    <option name="LAST_COMMIT_MESSAGE" value="More progress on Re #443 while testing how git works." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -668,7 +679,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Ref #410 Added a easier spotable edit buttons in the book UI." />
     <MESSAGE value="Ref #410 Fixed an issue where the slider where not being initialized correctly to a value." />
     <MESSAGE value="Ref #410 The color picker should now initialize the color text boxes correctly." />
     <MESSAGE value="Ref #410 Fixed an issue with a too large label for page number in the link to page. Clarified the usage by changing the menu title." />
@@ -693,6 +703,7 @@
     <MESSAGE value="Update version number as part of release" />
     <MESSAGE value="Progress on #443. Converting to tabs." />
     <MESSAGE value="Progress on re #443 while testing how git works." />
+    <MESSAGE value="More progress on Re #443 while testing how git works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -702,13 +713,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_MarySueAPI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="186" column="7" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.38106796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_MenuAPI.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="98" column="7" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.92">
@@ -809,7 +813,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_ExpressionHandler.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="0" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.62092626">
+        <state line="119" column="0" selection-start="3076" selection-end="3076" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_LimitedScriptEnv.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="8" selection-start="167" selection-end="167" vertical-scroll-proportion="0.20411664">
           <folding />
         </state>
       </provider>
