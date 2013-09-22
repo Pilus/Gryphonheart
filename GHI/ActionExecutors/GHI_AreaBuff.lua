@@ -45,11 +45,6 @@ function GHI_AreaBuff()
 		end
 
 		local playerPos = position.GetPlayerPos();
-
-		--local players = GHI_AddOns:GetAllPlayers()
-		--for _,player in pairs(players) do
-		--	comm.Send(nil,player,"AreaBuff",playerPos,range or 0,buffData)
-		--end
 		playerPos.continent = playerPos.world;
 		comm.Send(nil, "AreaBuff", playerPos, range or 0, buffData)
 	end
@@ -66,7 +61,6 @@ function GHI_AreaBuff()
 		if not(playerPos.world) or not(playerPos.x) or not(playerPos.y) then
 			return
 		end
-
 
 		if applyBuffFunc and playerPos.continent > 0 and position.IsPosWithinRange(playerPos, min(range, MAX_RANGE)) then
 			applyBuffFunc(data.buffName, data.buffDetails, data.buffIcon, data.untilCanceled, data.filter, data.buffType, data.buffDuration, data.cancelable, data.stackable, data.count or 1, data.delay or 0)

@@ -71,30 +71,28 @@ function GHI_AreaSound()
 			--print("block sound")
 			return
 		end
-         --not(sender) or --removed from below if statment. player not declared and holding up code
+
 		if not(type(playerPos)=="table") or not(type(range)=="number")  or not(type(data)=="table") then
 			return
 		end
 		playerPos.world = playerPos.world or playerPos.continent;
 		if not(playerPos.world) or not(playerPos.x) or not(playerPos.y) then
-		--print("playerpos return")
 			return
 		end
 
 		log.Add(3, "Recieved area sound from " .. sender, { playerPos, range, data, ... });
 		playerPos.world = playerPos.world or playerPos.continent;
-		--print(position.IsPosWithinRange(playerPos, min(range, MAX_RANGE)))
+
 		if playerPos.world > 0 and position.IsPosWithinRange(playerPos, min(range, MAX_RANGE)) then
-			
 			
 			local soundPath = gsub(data.soundPath, "\\\\", "/");
 			soundPath = gsub(soundPath, "\\", "/");
 			soundPath = (string.match(soundPath, "[a-zA-z0-9\\/_.%s]*"));
-           if playSound == 2 then
+			if playSound == 2 then
 				local sconfirm = GHI_SoundConfirm()
 				sconfirm.QueueSound(soundPath,sender);
 				return;
-		   else--chatconfirm else
+		   else
 				PlaySoundFile(soundPath);
 				if GHI_MiscData["show_area_sound_sender"] then
 					GHI_Message("Area sound by " .. (sender or "nil"));    --todo: loc

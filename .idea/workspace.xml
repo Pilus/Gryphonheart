@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
-    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on #443. Converting to tabs." />
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on #443. Converting to tabs.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" afterPath="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
-    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379452741168" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885555245" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
     <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376850627894" ignored="false" />
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
@@ -47,7 +53,7 @@
     <file path="/GHI_BagMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587551197" ignored="false" />
     <file path="/GHM_Slider.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378588792084" ignored="false" />
     <file path="/GHI_ContainerUI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844368248" ignored="false" />
-    <file path="/a.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379445048184" ignored="false" />
+    <file path="/a.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885497456" ignored="false" />
     <file path="/GHI_ContainerAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378843484544" ignored="false" />
     <file path="/GHI_ItemInfo_Standard.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844695368" ignored="false" />
     <file path="/GHI_ItemInfo_Advanced.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378846032443" ignored="false" />
@@ -121,18 +127,43 @@
     <favorites_list name="AddOns" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="GHI_AreaBuff.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="0" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHI_AreaSound.lua" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="99" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.26415095">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHI/AdvancedItemMenu/GHI_UpdateSequenceMenu.lua" />
-        <option value="$PROJECT_DIR$/GHI/APIs/GHI_ActionAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.xml" />
         <option value="$PROJECT_DIR$/GHI/APIs/GHI_ClassAPI.lua" />
@@ -147,6 +178,8 @@
         <option value="$PROJECT_DIR$/GHI/Containers/GHI_ExportItem.lua" />
         <option value="$PROJECT_DIR$/GHI/Containers/GHI_Stack.lua" />
         <option value="$PROJECT_DIR$/GHI/Containers/GHI_Trade.lua" />
+        <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua" />
+        <option value="$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua" />
       </list>
     </option>
   </component>
@@ -159,7 +192,7 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -185,7 +218,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -214,66 +247,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GHQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Objects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="GHI" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -292,31 +265,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="StandardItemMenu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Containers" />
+              <option name="myItemId" value="ActionExecutors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -333,179 +288,13 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\UI\Book" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree">
-    <UpdateInfo date="Moments ago" ActionInfo="_Update">
-      <UpdatedFiles>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated from server" />
-          <option name="myStatusName" value="Changed on server" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CHANGED_ON_SERVER" />
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Updated" />
-            <option name="myStatusName" value="Changed" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="UPDATED" />
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea\ant.xml</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\AddOns.iml</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_ActionAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_AnimationAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_AnimationAPI.xml</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_ClassAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_ContainerAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_CreateItemAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_GameWorldData.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_MarySueAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_MenuAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_MiscAPI.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_AreaSound.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_BuffHandler.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_ExpressionHandler.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_ScriptEnv.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\GHI_DynamicActionInstanceSet.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\GHI_SimpleAction.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\SetLayout\GHI_HorizontalChannel.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\SetLayout\GHI_VerticalChannel.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\AdvancedItemMenu\GHI_AdvancedItemMenu.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\AdvancedItemMenu\GHI_AttributeMenu.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\AdvancedItemMenu\GHI_UpdateSequenceMenu.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Bindings.xml</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_ContainerList.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_ExportItem.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_Stack.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_Trade.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Localization\GHI_Loc.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\StandardItemMenu\GHI_ScriptMenu.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\GHM_Images.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\ghm_icons.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Image.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Slider.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Icon.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_MultiPageEditField.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Icon.xml</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_ButtonWithIcon.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_DropDown.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_EditBox.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Texture.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\GHM_Inputs.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\ghm.toc</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\ghm.xml</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Created" />
-            <option name="myStatusName" value="Created" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="CREATED" />
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\ImagePicker</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\ImagePicker\GHM_ImagePickerList.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\ImagePicker\GHM_ImagePicker.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\IconPicker</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\IconPicker\GHM_IconPicker.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\IconPicker\GHM_IconPickerList.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_ImageList.lua</PATH>
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_ImageList.xml</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Deleted" />
-            <option name="myStatusName" value="Deleted" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="true" />
-            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea\codeStyleSettings.xml</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Restored" />
-            <option name="myStatusName" value="Will be restored" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="RESTORED" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Modified" />
-          <option name="myStatusName" value="Modified" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MODIFIED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Skipped" />
-          <option name="myStatusName" value="Skipped" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SKIPPED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with conflicts" />
-          <option name="myStatusName" value="Will be merged with conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with tree conflicts" />
-          <option name="myStatusName" value="Merged with tree conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with property conflicts" />
-          <option name="myStatusName" value="Will be merged with property conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged" />
-          <option name="myStatusName" value="Will be merged" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Not in repository" />
-          <option name="myStatusName" value="Not in repository" />
-          <option name="mySupportsDeletion" value="true" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UNKNOWN" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally added" />
-          <option name="myStatusName" value="Locally added" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_ADDED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally removed" />
-          <option name="myStatusName" value="Locally removed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_REMOVED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Switched" />
-          <option name="myStatusName" value="Switched" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SWITCHED" />
-          <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns</PATH>
-        </FILE-GROUP>
-      </UpdatedFiles>
-    </UpdateInfo>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -520,6 +309,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -547,19 +349,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -633,28 +422,6 @@
     <configuration useDefault="false">C:\Users\Christian\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
     <supportedVersion>125</supportedVersion>
-  </component>
-  <component name="SvnFileUrlMappingImpl">
-    <option name="myMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
-          <option name="myCopyRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
-        </SvnCopyRootSimple>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea" />
-          <option name="myCopyRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-    <option name="myMoreRealMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
-          <option name="myCopyRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -799,8 +566,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25859246" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.87027913" order="3" side_tool="false" content_ui="tabs" />
@@ -809,12 +576,12 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12972085" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12929623" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.74055827" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19772728" sideWeight="0.87027913" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19772728" sideWeight="0.87070376" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -915,20 +682,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_ClassAPI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="11" selection-start="4110" selection-end="4110" vertical-scroll-proportion="0.9174757">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_ContainerAPI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="4" selection-start="5900" selection-end="5900" vertical-scroll-proportion="0.92">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_GameWorldData.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="193" column="8" selection-start="10134" selection-end="10134" vertical-scroll-proportion="0.92">
@@ -1023,6 +776,20 @@
     <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_Trade.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="4" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.37378642">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaBuff.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="0" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/ActionExecutors/GHI_AreaSound.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="99" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.26415095">
           <folding />
         </state>
       </provider>
