@@ -1,0 +1,370 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Button name="GHP_TabButtonTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true" hidden="true">
+        <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                GameTooltip:SetText(self.text or "", 1.0,1.0,1.0 );
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+            <OnEnable>
+                self:GetFontString():SetPoint("CENTER", 0, 3);
+            </OnEnable>
+            <OnDisable>
+                self:GetFontString():SetPoint("CENTER", 0, 5);
+            </OnDisable>
+        </Scripts>
+    </Button>
+
+    <CheckButton name="GHP_SideTabTemplate" virtual="true" hidden="true" inherits="SpellBookSkillLineTabTemplate">
+        <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                GameTooltip:SetText(self.text or "", 1.0,1.0,1.0 );
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+        </Scripts>
+    </CheckButton>
+
+    <CheckButton name="GHP_SpellButtonTemplate" virtual="true" inherits="SpellButtonTemplate">
+        <Scripts>
+            <OnLoad>
+                self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+                self:RegisterForDrag("LeftButton");
+            </OnLoad>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                --GameTooltip:SetSpellByID(self.castSpellID);
+                GameTooltip:Show();
+            </OnEnter>
+            <OnLeave>
+                GameTooltip_Hide();
+                self.showingTooltip = false;
+            </OnLeave>
+            <OnClick>
+            </OnClick>
+            <OnShow>
+
+            </OnShow>
+        </Scripts>
+    </CheckButton>
+
+
+    <Frame name="GHP_MainUIFrame" toplevel="true" movable="true" enableMouse="true" hidden="true" parent="UIParent" framestrata="HIGH" inherits="ButtonFrameTemplate">
+        <Size>
+            <AbsDimension x="550" y="525"/>
+        </Size>
+        <Layers>
+            <Layer level="BORDER" textureSubLevel="0">
+
+                <Texture name="$parentPageTexture1" file="Interface\Spellbook\Spellbook-Page-1">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="7" y="-25"/>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentPageTexture2" file="Interface\Spellbook\Spellbook-Page-2">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parentPageTexture1" relativePoint="TOPRIGHT" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="ARTWORK " textureSubLevel="1">
+                <Texture name="$parentPageTextureMark" file="Interface\AddOns\GHP\Textures\Spellbook-Page-Mark">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="7" y="-25"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentTabButton1" inherits="GHP_TabButtonTemplate" text="Profession" hidden="false">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentTabButton2" inherits="GHP_TabButtonTemplate" text="Abilities" hidden="false">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTabButton1" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-15" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentTabButton3" inherits="GHP_TabButtonTemplate" text="Custom Profession" hidden="false">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTabButton2" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-15" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Frame name="$parentSide">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <CheckButton name="$parentTab1" inherits="GHP_SideTabTemplate" id="1">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-36"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab2" inherits="GHP_SideTabTemplate" id="2">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab1" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab3" inherits="GHP_SideTabTemplate" id="3">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab2" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab4" inherits="GHP_SideTabTemplate" id="4">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab3" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab5" inherits="GHP_SideTabTemplate" id="5">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab4" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab6" inherits="GHP_SideTabTemplate" id="6">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab5" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab7" inherits="GHP_SideTabTemplate" id="7">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab6" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentTab8" inherits="GHP_SideTabTemplate" id="8">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTab7" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-17"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                </Frames>
+            </Frame>
+
+            <Frame name="$parentAbilities" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Frame name="$parentPageNavigation" setAllPoints="true">
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontBlack" justifyH="RIGHT">
+                                    <Size>
+                                        <AbsDimension x="102" y="0"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="BOTTOMRIGHT">
+                                            <Offset>
+                                                <AbsDimension x="-110" y="38"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                    <Color r="0.25" g="0.12" b="0"/>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Button name="$parentPrevPageButton">
+                        <Size>
+                            <AbsDimension x="32" y="32"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMRIGHT" relativeTo="$parent">
+                                <Offset>
+                                    <AbsDimension x="-66" y="26"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick function="SpellBookPrevPageButton_OnClick"/>
+                        </Scripts>
+                        <NormalTexture urgency="5" file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+                        <PushedTexture urgency="5" file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+                        <DisabledTexture urgency="5" file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+                        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                    </Button>
+                    <Button name="$parentNextPageButton">
+                        <Size>
+                            <AbsDimension x="32" y="32"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMRIGHT">
+                                <Offset>
+                                    <AbsDimension x="-31" y="26"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick function="SpellBookNextPageButton_OnClick"/>
+                        </Scripts>
+                        <NormalTexture urgency="5" file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+                        <PushedTexture urgency="5" file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+                        <DisabledTexture urgency="5" file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+                        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                    </Button>
+                    <CheckButton name="$parentButton1" inherits="GHP_SpellButtonTemplate" id="1">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="100" y="-72"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton2" inherits="GHP_SpellButtonTemplate" id="7">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton1">
+                                <Offset>
+                                    <AbsDimension x="225" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton3" inherits="GHP_SpellButtonTemplate" id="2">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton1" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-29"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton4" inherits="GHP_SpellButtonTemplate" id="8">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton3">
+                                <Offset>
+                                    <AbsDimension x="225" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton5" inherits="GHP_SpellButtonTemplate" id="3">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton3" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-29"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton6" inherits="GHP_SpellButtonTemplate" id="9">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton5">
+                                <Offset>
+                                    <AbsDimension x="225" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton7" inherits="GHP_SpellButtonTemplate" id="4">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton5" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-29"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton8" inherits="GHP_SpellButtonTemplate" id="10">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton7">
+                                <Offset>
+                                    <AbsDimension x="225" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton9" inherits="GHP_SpellButtonTemplate" id="5">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton7" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-29"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton10" inherits="GHP_SpellButtonTemplate" id="11">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton9">
+                                <Offset>
+                                    <AbsDimension x="225" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton11" inherits="GHP_SpellButtonTemplate" id="6">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton9" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-29"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                    <CheckButton name="$parentButton12" inherits="GHP_SpellButtonTemplate" id="12">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentButton11">
+                                <Offset>
+                                    <AbsDimension x="225" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </CheckButton>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+
+</Ui>

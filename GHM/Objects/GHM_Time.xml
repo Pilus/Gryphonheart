@@ -1,0 +1,83 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+	<Frame name="GHM_Time_Template" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="45"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentText" inherits="GHM_TextLabel_Template">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentElements">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentSlider" minValue="1" maxValue="10" defaultValue="0" valueStep="1" orientation="Horizontal" virtual="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+							<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
+						</Anchors>
+						<Size>
+							 <AbsDimension x="128" y="20"/>
+						</Size>
+						<Layers>
+							<Layer>
+								<FontString name="$parentValueLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="">
+									<Anchors>
+										<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="-5" y="0"></AbsDimension>
+											</Offset>
+										</Anchor>
+		
+									</Anchors>
+									<FontHeight>
+										<AbsValue val="10"/>
+									</FontHeight>
+									<Color r="1" g="0.8196079" b="0"/>
+								</FontString>
+							</Layer>
+						</Layers>
+		
+						<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border"
+								  tile="false">
+							<BackgroundInsets>
+								<AbsInset left="20" right="20" top="20" bottom="20"/>
+							</BackgroundInsets>
+							<TileSize>
+								<AbsValue val="8"/>
+							</TileSize>
+							<EdgeSize>
+								<AbsValue val="8"/>
+							</EdgeSize>
+						</Backdrop>
+						<HitRectInsets>
+							<AbsInset left="10" right="0" top="0" bottom="0"/>
+						</HitRectInsets>
+						<ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+						</ThumbTexture>
+					</Slider>
+					
+					<EditBox name="$parentBox" inherits="GHM_EditBox_Box_Template">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSlider"/>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="$parent"/>
+						</Anchors>
+					</EditBox>
+				</Frames>
+			</Frame>
+        </Frames>
+    </Frame>
+</Ui>

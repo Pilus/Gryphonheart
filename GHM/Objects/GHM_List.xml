@@ -1,0 +1,93 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Frame name="GHM_List_Template" virtual="true">
+        <Size>
+            <AbsDimension x="300" y="80"/>
+        </Size>
+        <Layers>
+            <Layer>
+                <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border"
+                  tile="true">
+            <BackgroundInsets>
+                <AbsInset left="4" right="4" top="4" bottom="4"/>
+            </BackgroundInsets>
+            <TileSize>
+                <AbsValue val="16"/>
+            </TileSize>
+            <EdgeSize>
+                <AbsValue val="16"/>
+            </EdgeSize>
+        </Backdrop>
+    </Frame>
+
+    <Button name="GHM_Header_Template" virtual="true">
+        <Size>
+            <AbsDimension x="155" y="24"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentLeft" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+                    <Size>
+                        <AbsDimension x="5" y="24"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.078125" top="0" bottom="0.75"/>
+                </Texture>
+                <Texture name="$parentMiddle" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+                    <Size>
+                        <AbsDimension x="148" y="24"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0.078125" right="0.90625" top="0" bottom="0.75"/>
+                </Texture>
+                <Texture name="$parentRight" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+                    <Size>
+                        <AbsDimension x="4" y="24"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0.90625" right="0.96875" top="0" bottom="0.75"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnClick>
+
+            </OnClick>
+        </Scripts>
+        <ButtonText inherits="GHM_GameFontSmall" text="">
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="8" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </ButtonText>
+    </Button>
+
+</Ui>

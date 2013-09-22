@@ -1,0 +1,132 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+    <Button name="GHI_SimpleActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="240" y="37"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="icon" name="$parentSlotTexture" urgency="5" file="Interface\Buttons\UI-EmptySlot">
+					<Size>
+						<AbsDimension x="40" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-8" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentNameFrameStart" file="Interface\QuestFrame\UI-QuestItemNameFrame">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+                    <TexCoords left="0" right="0.5" top="0" bottom="1.0"/>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="29" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                <Texture name="$parentNameFrameEnd" file="Interface\QuestFrame\UI-QuestItemNameFrame">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+                    <TexCoords left="0.5" right="1.0" top="0" bottom="1.0"/>
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="-0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                <Texture name="$parentNameFrameMiddle" file="Interface\QuestFrame\UI-QuestItemNameFrame">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+                    <TexCoords left="0.25" right="0.75" top="0" bottom="1.0"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentNameFrameStart" relativePoint="RIGHT"/>
+                        <Anchor point="RIGHT" relativeTo="$parentNameFrameEnd" relativePoint="LEFT"/>
+					</Anchors>
+				</Texture>
+                <FontString parentKey="name" inherits="GameFontNormalLarge" text="Item Name" justifyH="LEFT" name="$parentNameTest">
+					<Size>
+						<AbsDimension x="180" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentNameFrameStart" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+    
+			</Layer>
+            <Layer level="HIGHLIGHT">
+				<Texture name="$parentSlotHighTexture" urgency="5" file="Interface\Buttons\CheckButtonGlow">
+					<Size>
+						<AbsDimension x="70" y="70"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parentSlotTexture">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentNameFrameHighStart" file="Interface\Buttons\CheckButtonGlow">
+					<Size>
+						<AbsDimension x="72" y="74"/>
+					</Size>
+                    <TexCoords left="0" right="0.66" top="0" bottom="1.0"/>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT" relativeTo="$parentNameFrameStart">
+							<Offset>
+								<AbsDimension x="-14" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                <Texture name="$parentNameFrameHighEnd" file="Interface\Buttons\CheckButtonGlow">
+					<Size>
+						<AbsDimension x="72" y="74"/>
+					</Size>
+                    <TexCoords left="0.33" right="1.0" top="0" bottom="1.0"/>
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="RIGHT" relativeTo="$parentNameFrameEnd">
+							<Offset>
+								<AbsDimension x="14" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                <Texture name="$parentNameFrameHighMiddle" file="Interface\Buttons\CheckButtonGlow" tileable="true">
+					<Size>
+						<AbsDimension x="96" y="74"/>
+					</Size>
+                    <TexCoords left="0.33" right="0.66" top="0" bottom="1.0"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentNameFrameMiddle" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+            </Layer>
+        </Layers>
+        <PushedTexture setAllPoints="true" file="Interface\Buttons\CheckButtonGlow" alphaMode="ADD">
+			<Size x="70" y="70" />
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parentSlotTexture">
+                <Offset>
+                        <AbsDimension x="0" y="0" />
+                </Offset>
+                </Anchor>
+			</Anchors>
+		</PushedTexture>
+	</Button>
+</Ui>

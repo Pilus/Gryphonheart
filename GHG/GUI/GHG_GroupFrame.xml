@@ -1,0 +1,309 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Button name="GHG_TabButtonTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true" hidden="true">
+        <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                GameTooltip:SetText(self.text or "", 1.0,1.0,1.0 );
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+            <OnEnable>
+                self:GetFontString():SetPoint("CENTER", 0, 3);
+            </OnEnable>
+            <OnDisable>
+                self:GetFontString():SetPoint("CENTER", 0, 5);
+            </OnDisable>
+            <OnClick>
+                if self:GetParent().ToggleTab then
+                    self:GetParent().ToggleTab(self:GetID())
+                end
+            </OnClick>
+        </Scripts>
+    </Button>
+
+    <CheckButton name="GHG_SideTabTemplate" virtual="true" hidden="true" inherits="SpellBookSkillLineTabTemplate">
+        <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                GameTooltip:SetText(self.text or "", 1.0,1.0,1.0 );
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+        </Scripts>
+    </CheckButton>
+
+    <Frame name="GHG_GroupFrame" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+        <Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+        <Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <HitRectInsets>
+			<AbsInset left="0" right="30" top="0" bottom="45"/>
+		</HitRectInsets>
+        <Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\FriendsFrame\FriendsFrameScrollIcon">
+					<Size>
+						<AbsDimension x="60" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTopLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                <Texture name="$parentBottomRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotRight">
+                    <Size>
+                        <AbsDimension x="128" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+
+                <Texture name="$parentBarBottomLeft" file="Interface\AUCTIONFRAME\UI-AuctionFrame-FilterBg">
+                    <Size>
+                        <AbsDimension x="166" y="40"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT">
+                            <Offset>
+                                <AbsDimension x="15" y="62"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0.0" right="0.5" top="0.0" bottom="1.0"/>
+                </Texture>
+                <Texture name="$parentBarBottomRight" file="Interface\AUCTIONFRAME\UI-AuctionFrame-FilterBg">
+                    <Size>
+                        <AbsDimension x="166" y="40"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT">
+                            <Offset>
+                                <AbsDimension x="-37" y="62"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords right="0.0" left="0.5" top="0.0" bottom="1.0"/>
+                </Texture>
+				<FontString name="$parentTitleText" inherits="GameFontNormal">
+					<Size>
+						<AbsDimension x="374" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="3" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                        <Offset x="-29" y="-8"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Frame name="$parentContent">
+                <Size>
+                    <AbsDimension x="325" y="397"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="19" y="-35"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+            <Button name="$parentTab1" inherits="GHG_TabButtonTemplate" text="ROSTER" hidden="false" id="1">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentContent" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentTab2" inherits="GHG_TabButtonTemplate" text="INFO" hidden="false" id="2">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-15" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentTab3" inherits="GHG_TabButtonTemplate" text="ADMIN" hidden="false" id="3">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-15" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+
+            <Frame name="$parentSide">
+                <Anchors>
+                   <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+                   <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-34" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Frames>
+                   <CheckButton name="$parentTab1" inherits="GHG_SideTabTemplate" id="1">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-36"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab2" inherits="GHG_SideTabTemplate" id="2">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab1" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab3" inherits="GHG_SideTabTemplate" id="3">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab2" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab4" inherits="GHG_SideTabTemplate" id="4">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab3" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab5" inherits="GHG_SideTabTemplate" id="5">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab4" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab6" inherits="GHG_SideTabTemplate" id="6">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab5" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab7" inherits="GHG_SideTabTemplate" id="7">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab6" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                   <CheckButton name="$parentTab8" inherits="GHG_SideTabTemplate" id="8">
+                       <Anchors>
+                           <Anchor point="TOPLEFT" relativeTo="$parentTab7" relativePoint="BOTTOMLEFT">
+                               <Offset>
+                                   <AbsDimension x="0" y="-17"/>
+                               </Offset>
+                           </Anchor>
+                       </Anchors>
+                   </CheckButton>
+                </Frames>
+            </Frame>
+
+
+        </Frames>
+        <Scripts>
+            <OnLoad>
+
+            </OnLoad>
+            <OnShow>
+                PlaySound("igCharacterInfoOpen");
+            </OnShow>
+            <OnHide>
+                PlaySound("igCharacterInfoClose");
+            </OnHide>
+        </Scripts>
+    </Frame>
+
+</Ui>

@@ -1,0 +1,48 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\World of Warcraft\BlizzardInterfaceCode\Interface\FrameXML\UI.xsd">
+	
+	<Frame name="GHI_TextureAnimation_Template" virtual="true">
+		<Size x="32" y="32"/>
+		<Anchors>
+			<Anchor point="CENTER" x="0" y="0"/>
+		</Anchors>
+		<Animations>
+			<AnimationGroup parentKey="shimmer" looping="BOUNCE"> 
+				<Alpha change="1" duration="0.3" order="1"/>
+				<Scale duration="0.3" scaleX="0.25" scaleY="0.25" order="1"/>
+			</AnimationGroup>
+			<AnimationGroup parentKey="shield" looping="BOUNCE">
+				<Scale duration="0.3" scaleX="0.25" scaleY="0.25"/>
+				<Alpha change="-1" duration="0.3" order="2"/>
+			</AnimationGroup>
+			<AnimationGroup parentKey="buffCast">
+				<Scale duration="0.3" scaleX="2" scaleY="2" order="1"/>
+				<Alpha change="-1" duration="0.3" order="1"/>
+				<Translation offsetY="10" order="1"/>
+			</AnimationGroup>
+			<AnimationGroup parentKey="hover" looping="BOUNCE">
+				<Scale duration="0.3" scaleX="2" scaleY="2" order="1"/>
+				<Translation offsetY="10" order="1"/>
+			</AnimationGroup>
+		</Animations>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" parentKey="tex" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentLogo" parentKey="logo" inherits="GHI_LogoTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="CENTER"/>
+					<Anchor point="TOPRIGHT"/>
+					<Anchor point="BOTTOMLEFT" x="0" y="-12"/>
+					<Anchor point="BOTTOMRIGHT" x="0" y="-12"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+		</Scripts>
+	</Frame>
+</Ui>

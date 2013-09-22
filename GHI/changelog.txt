@@ -1,0 +1,336 @@
+﻿Changelog
+GHI - v.1.1.1
+    - A play button was added to the sound action, allowing the user to hear the sound to validate the sound path.
+    - It is now possible to choose when the GHI target button should be shown or if it should be completely hidden.
+    - Buffs cast by GHI are now noted as Custom GHI buffs in their tooltips.
+    - The GHI item creation menu are now again moveable
+    - Some players experienced "X is away from keyboard" or "X does not wish to be distrurbed" spam. This should no longer occur
+    - Links now show correctly in the whispers you send
+    - The icon selection menu should no longer be covered by the GHI bags for users with a low resolution or many bags open.
+    - Area sounds are now stamped in the debug log
+    - When entering the GHI options menu from the "?" key, the addon options frame change to show the GHI submenus automatically
+    - The whitelist menu now looks as intended in both low and high resolution
+    - The GHI version in the tooltip now shows correctly also if the involed other player is in a duel with you or for other reason hostile.
+    - It should now be possible to recieve links from users with GHI versions older than v.1.0.5.
+    - The EuipItem action and the related API call should now no longer trow an error if the item was not found in the bags.
+    - Fixed some errors in the book UI
+    - GHU is no longer needed and will be automatically disabled on login to avoid errors.
+    - Many never emotes did not work correctly, including map and read. These should now work correctly, in both Expressions and in scripts.
+    - The tooltip of GHI buffs should now update the duration as intended.
+    - Added GHI_AreaBuff, GHI_AreaSound and GHI_ChannelComm to the whitelist
+    - It is now possible for scripts to save data using GHI_Save(index,var) and GHI_Load(var)
+
+GHI - V.1.1
+    - The backpack button should no longer be hidden behind the action bar art.
+    
+    
+	Testversion v.1.0.1
+	- Tooltips on traded GHI items is now always shown as expected. (#66)	
+	- Equipment display data have been added for Worgens (fitting human form) and Goblins. Worgen form is not yet supported. (#67)
+	- Random values should now work correctly in the advanced produce item. (#78)
+	- Pressing the header buttons in the book editing frame should no longer give errors. (#79)
+	- Fixed various bugs in the area sound system (#81 & #83)
+	- A maximum range have been added to area sounds and area buffs (#82)
+	- It is now possible to display a message telling who sended the area sound when it plays. This can be enabled in the GHI options panel. (#82)
+	- The security on scripts executed from items have been upgraded. (#84)
+	- Fixed a bug where an area buff would loose it range information after first time it was cast. (#85)
+	
+	Testversion v.1.0.2
+	- Added a new script environment for secure script execution. The new system uses a whitelist of allowed functions instead of a blacklisting of disallowed, resulting in optimized safety.
+	
+	Testversion v.1.0.3
+	- Redesigned all communication for more optimal speed
+	- It is now possible to insert and trade bags within bags... withing bag.
+	- Added a lot of missing functions to the scripting environment
+	- Redesigned the linking mechanics. Chat addons should now also support links.
+	- 20% of GHI have been renovated and rewritten for increased stability
+	
+	Testversion v.1.0.4
+	- Added worldframe, GHI_Timer, GHI_Position and GHI_Comm to the scripting environment
+	- The link system will no longer attempt to find links in the xtensionxtooltip2 channel
+	- It is now possible to link items in party,raid,say,emote,yell,channels,guild,officer,raid and raid warnings.
+	- Import item works again
+	- Fixed a bug causing tooltips not to be shown on wow items in the trade frame
+	- Trading items will no longer cause lua errors in specific situations when try are transfered
+	- Produce item now work as intended.
+	- Implemented an automatical update of all old items to contain the new produce item script
+	- Items should no longer be shown as "item not transfered" even after they have been completely transfered.
+
+	Testversion v.1.0.5
+	- Added a personal script whitelist for whitelisting of variables on your own client
+	- The GHI version of other players can now be shown in their tooltip
+	- The relevant parts of GHU are now merged inside GHI.
+	- The create item menu are now shown in a minimizeable window
+	- Moved all options menu into the game options menu
+	- The GHI button are now more customable
+	- It is now again possible to display GHI buffs in the blizzard frames, instead of in their own frames
+	
+	- Corrected spelling mistakes in addon
+	- Changed the format of icons to .blp to save space
+	- Fixed communication to work with all older clients, including trading and linking of items
+	- Area sound and buffs are now using the xtensionxtooltip2 channel for more optimal communication, which removes the huge delays
+	- Trading of BoP items in dungeons should no longer be buggy due to GHI
+	- Linking of items which names includes -,+,? etc should now work correctly
+	- Fixed a bug that caused linking of items to stop working after a short time
+	- Added a lot of functions to the whitelist
+	- Fixed a bug that stopped transscription of letters from mailboxes
+	- Online / Offline messages should now show correctly for WIM users
+	- Consume item should no longer give lua errors
+	- A GHI_SlashCmd object can now be used to create slash commands in scripts
+	- Trade should now work as intended
+	- WorldFrame and UIParents should now work correctly as parents for frames shown in the UI
+	- Delayed buffs should no longer give a lua error
+	- The "no player named  'x' is currently playing" should no longer be spammed to the user
+	
+
+GHI - v.1.0
+- Introducing a Equipment Display system. You can use this to describe what items your character wears.
+- The Buff system have been rewritten. It should remove a lot of problems with other addons. It currently does not display GHI buffs for most Unit Frame addons
+- It is now possible to tag your items as editable by others.
+- The SimpleHTML Image tags can now be used in books to insert picures.  
+- Fixed a memory leak that occurs for FlagRSP users on high propulated realms. 
+- Fixed a bug which caused Random Expession to have a chance of repeating itself, when not intented to.  (this needs retesting)
+- "change creator to importing user" now works correctly when it is exported from another realm.
+- Fixed some bugs which caused error when exporting an item.
+- It is now possible to see the path of an icon by holding down shift while mouseover in the icon choose menu.
+- Fixed a bug that caused a few icons in the bottom of each catagory to not be shown.
+- It is now possible to scroll through the icon list.
+- A inspect option have been added. You can enable the inspect cursor and see what kind of right click actions any item includes.
+- Fixed player GUID errors
+- Included 2000 new icons from cataclysm and some submitted to pilus.info.
+- Blocked BN related functions.
+- Uptimized the filters to catch more "No player named X is currently playing" messages.
+- Added amount and delay arguments to buffs
+- Implemented Area sounds and area buffs. You can enter a range on buffs / sounds and make it effect other GHI users within the range.
+- Containers can now be moved around freely or be docked to their normal anchor
+- All menus are now moveable by dragging them at their title bar.
+
+v.0.99.7 -> 0.99.8
+- Included new icons
+- AddOns sending data in non whisper channels no longer cause lua errors.
+- Fixed various bugs caused by cataclysm
+- It is now possible to change back to no background in the Equipment display
+- The equipment display now shows correctly with different UI scales.
+- Added cataclysm icons to the icon menu
+- Buffs should no longer display as 0 sec remaining
+- Debuffs can now be cast as lasting until canceled / removed, as intented.
+- The Equipment display can now be moved around freely, or be docked to the contain anchor.
+ 	
+v.0.99.8 -> 0.99.9
+- Attack messages in the local defense channels no longer triggers lua errors
+- Opening the trade frame no longer triggers lua errors
+- Consume and produce item right click action works once again. If an older item with these right click action dosent work, edit the right click action to update it.
+- There should no longer be unexpected messages with 'no player named x is currently playing'.
+
+v.0.99.9 -> 0.99.10
+- Fixed errors with x-perl
+- Introduced advanced produce item as a right click action
+- Fixed errors in the book interface
+
+v.0.99.10 -> 0.99.11
+- Clicking on an empty bag item for editing no longer gives an error.
+- Icon alignment should now again work correctly.
+- 'No player is currently playing' messages should now accour less frequently
+- It is now again possible to tab between the input fields
+- It should no longer give errors when using brackets or sending a link in a chat with class colors. (PlayerGUID error)
+- The equipment display should now load correctly for non english client users
+- AddOn data requests are no longer send in the data channel to GM's when talking with them.
+- GHI buff tooltips should no longer be mixed with real buff tooltips at times.
+- Links in books works again
+- Exporting an item with advanced produce item no longer give an error.
+- Inserting a "remove buff" action with lacking information no longer gives a lua error.
+- The tooltip of the equipment display button now shows if the player got GHI or not.
+- When trading a GHI item it is now directly stated if the recipient havent got GHI as one message and if his client is busy as another.
+- The remove buff action should now work correctly
+
+v.0.99.11 -> 1.0.0 
+- Tooltips of GHI items in the trade frame are now shown again.
+- It no longer gives an error to put a GHI item into the 7th trade slot.
+
+
+GHI - v.0.27
+- The tooltip for an item link is now displayed correctly.
+- The bandwidth monitor is now displayed in the tooltip of the game menu shortcut, as intented.
+- Fixed a bug that caused buffs to be cast on the player instead of the target.
+- Fixed a bug that caused an error when a "produce item" right click action was made, when choosing "craft"
+- It is now possible to export items into a text string, making it possible to import it on other characters, accounts or computers.
+- Implemented the option to make right click actions trigger before the requ�rement is validated.
+- Included 2000 new icons in GHM.
+- Fully implemented german localization of GHI. GHM localization is still pending.
+
+GHI - v.0.26
+- It should now be possible to trade bags with it contenst included once again.
+- Ending an emote with three empty spaces ("   ") will cause the next standard emote, done by you, to be hidden for other GHI users.
+- Putting the text "nil" into the optional tooltip of the requirement stops the requirement from being show.
+- It is now possible to flag right click actions to run before the requirement is checked.
+- Upgraded the communication to Ace-Comm 3.0.
+- ITEM_BAG and ITEM_SLOT now gives the bag and the slot of the current item when written inside a GHI script.
+- Changed internal structure to prepare for GHP.
+- Having an item in the action bar, but with 0 of the item avaliable, the actionbutton now becomes gray, as on the original one.
+- Solved a bug that resulted in supressed chat and GetPlayerInfoByGUID error.
+- Fixed a bug that caused items to get new ID when copied, after it the item earlier have included a bag.
+- A bandwith monitor is now avaliable in the tooltip of the game menu. Mouse over the game menu button to see how much data is being transfered and how much there is in queue.
+- Fixed a bug in AceComm that had a chance of stopping larger items from being send.
+
+GHI - v.0.25
+- Creating expressions no longer results in a lua error.
+- The spam filter now correctly resets after one minute.
+- Comsume item right click now show the correct icon and name when made.
+- Fixed a bug that caused Tongues to stop emotes and say made by GHI.
+- Added delay to produce item.
+- New secondary bags no longer bugs after the user have interacted with 100 different bags.
+
+GHI - v.0.24
+- Fixed a bug that made it impossible to cancel buffs when having GHI buffs disabled.
+- Fixed a bug in and extented the print array debug function.
+- Using /chatlist no longer results in an error message.
+- Fixed a bug that caused items not to be copyable in some situations.
+- Items no longer loose their right click action when traded inside a bag.
+- Trying to consume larger number of one items than the amount in the bag no longer results in the game freezing.
+- It is no longer possible to put a bag inside itself. Some physical laws must be upheld.
+- A estimated transfer time is now shown in the tooltip of items transfering.
+- Buffs lasting until cancelled now shows correctly as so on your target.
+- A bug disabling the ability to split stacks and copy stacks have been fixed.
+- Fixed a comforbility bug with the Bagnon addon.
+- Implemented word-wrap in buff tooltips.
+
+GHI - v.0.23
+- Fixed a bug where ForgottenChat users can not split stacks.
+- Fixed a bug causing recieved or created items not to show up in bags.
+
+GHI - v.0.22
+New Features:
+- Implemented the ability to transcribe letter and books.
+- Introduced dynamic right click functions, which makes it possible to introduce new right click actions.
+- Added right click function to display time in say, text or emote, to use as pocketwatch.
+- Added 2000 new icons from WotLK.
+- Added a right click function to produce an item.
+- Added ability to consume other GHI items as right click function.
+- Added LUA statement as dynamic requirement.
+- Added the abilitiy to trade bags including its contenst.
+- It is now possible to insert links by using %l or %L in scripts aswell.
+- Added slash command to ping other players to see if they got GHI. Avaliable as /ghi ping Name
+- Added slash command to reload the ui, but safe the chat boxes. Avaliable as /ghi reload
+
+Comparability:
+- GHI buffs is now comfortible with X-perl.
+- Fixed a unitAura colision with RatingBuster.
+
+Bug fixes
+- Fixed a minor bug in buff-frame
+- Added a function to reload the user interface without clearing the chat frames.
+- Added the ability to disable buffs. This is recommanded when using vehicles to avoid the UI to lock up, if exiting in combat.
+- Fixed a bug (in GHM) which caused check boxes not to initialise correctly. This includes causing non-consumeable items to be consumable and same for copyable items.
+- It is now possible to get an item off the cursor by click on its original bag spot.
+- Fixed a bug which gave lua errors when merging two stacks.
+- Version numbers now update correctly when editing an item which include a right click function.
+- Pressing enter while editing a title of a book no longer result in an error.
+- Fixed a bug, regarding cooldown data, when adding a right click action to an item without any action.
+- Editing the title of a book inside the edit item frame no longer clears the whole book.
+- Copying a bag no longer results in having two bags with the same contenst.
+- GHR factions now show correctly in the GHR rep right click action.
+- Bag now updates right after editing an item.
+- Hyperlinks in books now changes page correctly when clicked.
+- Inserting or deleting pages in a book now updates the hyperlinks.
+- Added cursor dynamic feedback function for more dynamic cursor use.
+- Fixed a bug that caused item links not to show the creater of an item.
+- Requirements now show up in tooltip for the item, when in the backpack. These alias can eventually be written and shown instead of the precise requirement string.
+- Fixed a bug that maybe cause all items to disapear suddently (it is not yet known if it is the only reason for it).
+- Fixed a bug that causes memory use to grow a lot on busy servers.
+- Added a catche to avoid large amount of memory garbage when using the actionbars to GHI items.
+- Accepting a trade now unaccepts as intented when a GHI item is added or removed.
+- Fixed a bug causing items to disapear in bags that is larger than 24 slots.
+
+GHI - v.0.21
+- Fixed a bug that caused GHI links not to show in chats with many GHI users.
+- Fixed a wrong hook of the chat frame after 3.0.
+- Fixed hooking bugs in buff, trade, split and world frame.
+- The Right Click action list now sort types alphabeticaly on 2 letters instead of 1.
+- Added ability to make buffs non stackable.
+- The buff system have been rewritten to be more dynamic for addons.
+- Buffs is now comfortible with x-perl.
+- Editing a requirement now inserts the requirement as intented.
+- It is now possible to make 1 slot bags.
+
+GHI - v.0.20
+- Fixed a bug that caused expressions not to show when used together with some addons.
+- Fixed requirements for adding right click functions. It is no longer possible to make several letters or several bags inside one item.
+- Sending a link in whisper will now also show links for the sender as intented.
+- [] messages is no longer delayed for ForgottenChatCC and Prat users.
+- Generating links from empty slots no longer results in error.
+- It is now possible to relink an item by shift clicking a link while writing.
+
+GHI - v.0.19
+- Implemented Duration
+- Links now show as intented in all chat boxes.
+- Text that includes [ ] no longer get delayed if the sender is a GHI user.
+- Added a catche clearing to reduce the memory useage.
+- Fixed a bug regards to GHR ranks.
+- When trading an item it will now be the precise stack you trade that is traded, instead of eventual identical items.
+- Writing %l in an expression will insert the link of the item.
+- Edit scripts now insert the old script as intented.
+- The backpack icon is now resizeable.
+- Added a Help, Info and Options frame accessable by the "?" button.
+- Entering too much text and commands on a page in a book will no longer trigger the SimpleHTML code to be visible.
+- Added the ability to mark and copy text made by others.
+- Added the ability to flag a buff to always cast on self.
+- Added additional info to Sound right click action.
+- When recieving books and other large items a message in the item tooltip will show if the item is not yet transfered.
+
+GHI - v.0.18
+- Removed test messages, which was printing data when using a right click function.
+- Items without right click actions no longer have a cooldown and will no longer show a use text.
+- Icons now show correctly in books again.
+- It is now possible to cast buffs on your target, if the target is also using GHI (v.0.18 or above).
+
+GHI - v.0.17
+- You can now copy your own items, copyable or not, as intented.
+- Updated the icon list with more than 1000 new icons (mainly from TBC). Thanks for Nec for aiding with that.
+- Implemented a new Create Item system, based on GHM.
+- Introduced the ability to have several right click actions on one item.
+- Introduced right click requirements.
+- Fixed a bug that caused problems with links in whispers for ForgottenChat users.
+
+GHI - v.0.16
+Implemented Ace communication in the communication core of GHI. This should resolve the following:
+- Right click data will no longer disapear if the item is linked.
+- Item links will show correctly.
+- Users will no longer disconnect when linking items in a channel with many GHI users.
+- Users using GHD will no longer experience missing item links or "no player named X" messages.
+
+Additional fixes:
+- It is now again possible to cast debuffs without getting an error.
+- Chat links is now compatibel with Prat and ForgottenChatCC.
+- The buffs on the target should now show as intented.
+- Targeting a alliance player, as horde, will no longer give "no player named X..." error messages.
+- Targeting a player of same faction from another realm in battleground or arenas will no longer give "no player named X..." error messages.
+- Fixed a bug that caused error when clicking a buff.
+- It is now possible to link official items.
+- Editing the title of a book no longer result in an error.
+- Custom bags is now closeable with the esc key.
+- Moved the initial location for the backpack icon.
+- It is now possible trough keybindings to set a key to open the GHI main bag.
+- Right clicking an empty bag slot no longer gives lua errors.
+- Changing the stacksize of an item will now split up stacks of the item that is larger than the new stacksize.
+- Added FindItem functions to the scriping. This can be used given an item name as argument and returns it bag and slot location.
+- Choosing reputation item as right click function without having GHR no longer results in a lua error.
+- Added the ability to decide if an item is copyable by others.
+- It is now possible to use <, >, " and & in letters / books.
+- The manual should now be created for new users as intented.
+
+
+GHI - v.0.15 
+- The Manual now spawn properbly.
+- GHD is no longer required.
+- Splitting items in the original bags now work as normally again.
+- Item links now show properbly in repeatetly identical messages
+- say() now works in scripts
+- Item links now work in secoundary chat windows
+- Fixed a typo in the right click description
+- The beta tester registration index no longer show when you trade with a player.
+- Canceling a normal buff no longer dispells the first GHI buff.
+- All buffs is now cancelable
+- The helpful/harmful button and the duration slider now appear correctly when editing an item
+- Buffs now stack
+- Negative GHR reputation amounts can be awarded
+- Added some trade and money related functions to the list of functions blocked in scripts

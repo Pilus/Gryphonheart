@@ -1,0 +1,61 @@
+## Interface: 50400
+## Title: Gryphonheart Professions
+## Version: 0.0.2
+## Notes: Platform and tools for profession based RolePlaying.
+## X-CodeTool: true
+## RequiredDeps: GHI, GHM
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables:
+## SavedVariablesPerCharacter: GHP_MiscData,GHP_ProfessionSystemData,GHP_ProfessionData,GHP_AbilityData,GHP_ObjectData
+
+Localization\GHP_Loc.lua
+
+Model\GHP_AuthorInfo.lua
+Model\GHP_AbilityList.lua
+Model\GHP_Ability.lua
+Model\GHP_AbilityInstance.lua
+Model\GHP_ProfessionList.lua
+Model\GHP_Profession.lua
+Model\GHP_ProfessionInstance.lua
+Model\GHP_ProfessionSystemList.lua
+Model\GHP_ProfessionSystem.lua
+Model\GHP_ProfessionSystem_SkillSumRule.lua
+Model\GHP_Object.lua
+Model\GHP_ObjectList.lua
+Model\GHP_ObjectInstance.lua
+Model\GHP_ObjectInstanceRegister.lua
+Model\GHP_ObjectSpawner.lua
+Model\GHP_ObjectInstanceWithItem.lua
+Model\GHP_Requirement.lua
+Model\GHP_ActivePlayers.lua
+
+Modules\GHP_SegmentIntersection.lua
+Modules\GHP_FloorLevelDetermination.lua
+Modules\GHP_BuildingData.lua
+Modules\GHP_BuildingLocations.lua
+Modules\GHP_KdTree.lua
+Modules\GH_DataSharer.lua
+
+API\GHP_ProfessionSystemAPI.lua
+API\GHP_AbilityAPI.lua
+API\GHP_ObjectAPI.lua
+API\GHP_EquippedItemsAPI.lua
+
+DynamicActions\GHP_Ability.lua
+
+GHP_Main.lua
+
+
+GUI\GHP_MainUI.lua
+GUI\GHP_MainUI.xml
+GUI\GHP_QuickBar.lua
+GUI\GHP_QuickBar.xml
+GUI\GHP_PerformActionUI.lua
+GUI\GHP_PerformActionUI.xml
+
+Data\Systems.lua
+Data\Professions.lua
+Data\Objects.lua
+Data\Abilities.lua
+Data\Items.lua

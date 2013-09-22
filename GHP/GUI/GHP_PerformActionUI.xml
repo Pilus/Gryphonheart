@@ -1,0 +1,415 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+
+
+
+    <EditBox name="GHP_PerformAction_CommonTemplate" virtual="true" autoFocus="true" ignoreArrows="true" frameStrata="DIALOG" parent="UIParent" enableMouse="true" historyLines="32" letters="255">
+        <Size>
+            <AbsDimension x="300" y="32"/>
+        </Size>
+
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentLeft" file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+                    <Size>
+                        <AbsDimension x="256" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentRight" file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+                    <Size>
+                        <AbsDimension x="16" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0.9375" right="1.0" top="0" bottom="1.0"/>
+                </Texture>
+                <Texture file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+                    <Size>
+                        <AbsDimension x="1" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0" right="0.9375" top="0" bottom="1.0"/>
+                </Texture>
+            </Layer>
+            <Layer level="BORDER">
+                <Texture name="$parentFocusLeft" file="Interface\ChatFrame\UI-ChatInputBorderFocus-Left" hidden="false" parentKey="focusLeft">
+                    <Size>
+                        <AbsDimension x="32" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT"/>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentFocusRight" file="Interface\ChatFrame\UI-ChatInputBorderFocus-Right" hidden="false" parentKey="focusRight">
+                    <Size>
+                        <AbsDimension x="32" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT"/>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentFocusMid" file="Interface\ChatFrame\UI-ChatInputBorderFocus-Mid" horizTile="true" hidden="false" parentKey="focusMid">
+                    <Size>
+                        <AbsDimension x="0" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parentFocusLeft" relativePoint="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="TOPRIGHT" relativeTo="$parentFocusRight" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString name="$parentHeader" inherits="ChatFontNormal">
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="13" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentExpressionTypeButton">
+                <Size>
+                    <AbsDimension x="24" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="RIGHT" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="8" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        ToggleDropDownMenu(1, nil, _G[self:GetName().."DropDownMenu"], self, 0, 0);
+                        PlaySound("igMainMenuOptionCheckBoxOn");
+                    </OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up"/>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down"/>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled"/>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                <Frames>
+                    <Frame name="$parentDropDownMenu" inherits="UIDropDownMenuTemplate" id="1">
+                        <Scripts>
+                            <OnLoad>
+                                local editBox = self:GetParent():GetParent();
+                                UIDropDownMenu_Initialize(self,function()
+                                    info            = {};
+                                    info.text       = EMOTE;
+                                    info.value      = "EMOTE";
+                                    info.notCheckable = true;
+                                    info.func       = function() editBox:SetChatType("EMOTE");end
+                                    UIDropDownMenu_AddButton(info);
+
+                                    info            = {};
+                                    info.text       = SAY;
+                                    info.value      = "SAY";
+                                    info.notCheckable = true;
+                                    info.func       = function() editBox:SetChatType("SAY"); end
+                                    UIDropDownMenu_AddButton(info);
+                                end);
+                            </OnLoad>
+                        </Scripts>
+                    </Frame>
+                </Frames>
+            </Button>
+            <Button name="$parentAddButton">
+                <Size>
+                    <AbsDimension x="24" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="CENTER" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT");
+                        GameTooltip:AddLine(GHP_Loc().PERFORM_ADD,1,1,1,true);
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        PlaySound("igMainMenuOptionCheckBoxOn");
+                        self:GetParent():Add()
+                    </OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\MINIMAP\UI-Minimap-ZoomInButton-Up"/>
+                <PushedTexture name="$parentPushedTexture" file="Interface\MINIMAP\UI-Minimap-ZoomInButton-Down"/>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\MINIMAP\UI-Minimap-ZoomInButton-Disabled"/>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                self.GetLeft = function() return 0; end
+                self.GetRight = function() return 0; end
+                _G[self:GetName().."HeaderSuffix"] = {
+                    Hide = function() end,
+                    Show = function() end,
+                    IsShown = function() return false; end,
+                    SetTextColor = function() end,
+                };
+
+
+                self.SetChatType = function(self,chatType)
+                    self:SetAttribute("chatType",chatType);
+                    ChatEdit_UpdateHeader(self);
+                end
+
+                self.SetDelay = function(_,value)
+                    self:SetAttribute("delay",value);
+                end
+
+                self.GetExpression = function()
+                    local e = {};
+                    if self.next then
+                        e = self.next.GetExpression();
+                    end
+
+                    if string.len(self:GetText()) > 0 then
+                        table.insert(e,1,{
+                            text = self:GetText(),
+                            chatType = self:GetAttribute("chatType") or "EMOTE",
+                            delay = self:GetAttribute("delay") or "auto",
+                        })
+                    end
+
+                    return e;
+                end
+
+                self.OnEnter = function()
+                    self:Hide();
+                    if self.prev then
+                        self.prev.OnEnter();
+                    end
+                end
+
+                self.Add = function(_)
+                    if not(self.next) then
+                        self.next = CreateFrame("EditBox",self:GetName().."x",self,"GHP_PerformAction_SecondTemplate");
+                        self.next:SetPoint("TOP",self,"BOTTOM");
+                        self.next.prev = self;
+                        --self.next:SetFrameLevel(_G[self:GetName().."AddButton"]:GetFrameLevel()-1);
+                    else
+                        self.next:SetFocus();
+                    end
+                    self.next:Show();
+                end
+
+                self:SetChatType("EMOTE");
+            </OnLoad>
+            <OnShow>
+                self.cursorState = 1;
+                self:SetFocus();
+                self:SetText("");
+                self:SetDelay("auto");
+            </OnShow>
+            <OnCursorChanged>
+                if self.cursorState == 1 then
+                    self.cursorState = 2;
+                elseif self.cursorState == 2 then
+                    self:SetAutoFocus(false);
+                end
+            </OnCursorChanged>
+            <OnEscapePressed>
+                self:ClearFocus();
+            </OnEscapePressed>
+            <OnEditFocusGained>
+                self.focusLeft:Show();
+                self.focusMid:Show();
+                self.focusRight:Show();
+            </OnEditFocusGained>
+            <OnEditFocusLost>
+                self.focusLeft:Hide();
+                self.focusMid:Hide();
+                self.focusRight:Hide();
+            </OnEditFocusLost>
+            <OnTabPressed>
+                if IsShiftKeyDown() then
+                    if self.prev then
+                        self.prev:SetFocus();
+                    end
+                else
+                    self:Add();
+                end
+            </OnTabPressed>
+            <OnEnterPressed>
+                self.OnEnter();
+                self:Hide();
+            </OnEnterPressed>
+            <OnHide>
+                self:SetAutoFocus(true);
+            </OnHide>
+        </Scripts>
+        <FontString inherits="ChatFontNormal" bytes="256"/>
+    </EditBox>
+
+    <EditBox name="GHP_PerformAction_MainTemplate" inherits="GHP_PerformAction_CommonTemplate" virtual="true">
+        <Layers>
+            <Layer>
+                <FontString name="$parentPreformText" parentKey="performText" text=" " font="Fonts\FRIZQT__.TTF"  justifyH="CENTER">
+                    <FontHeight val="16"/>
+                    <Color r="0" g="0.8" b="0.8"/>
+                    <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="TOP"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+
+            <Button name="$parentInfoButton">
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentPreformText" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="4" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        local main = self:GetParent();
+                        main.SetPerformText = function(main,text)
+                            main.performText:SetText(text);
+                        end
+                        main.SetPerformTooltipFunc = function(_,func)
+                            self.tooltipFunc = func;
+                        end
+                    </OnLoad>
+                    <OnEnter>
+                        GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+                        self.tooltipFunc(GameTooltip);
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        --ToggleDropDownMenu(nil, nil, self:GetParent());
+                        PlaySound("igMainMenuOptionCheckBoxOn");
+                    </OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\AddOns\GHP\Textures\InformationIcon"/>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+            </Button>
+
+            <Button name="$parentClose" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-8" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide();
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+    </EditBox>
+
+    <EditBox name="GHP_PerformAction_SecondTemplate" inherits="GHP_PerformAction_CommonTemplate" virtual="true">
+        <Frames>
+            <Button name="$parentDelayButton">
+                <Size>
+                    <AbsDimension x="24" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-4" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        ToggleDropDownMenu(1, nil, _G[self:GetName().."DropDownMenu"], self, 0, 0);
+                        PlaySound("igMainMenuOptionCheckBoxOn");
+                    </OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up"/>
+                <PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down"/>
+                <DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled"/>
+                <HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+                <Frames>
+                    <Frame name="$parentDropDownMenu" inherits="UIDropDownMenuTemplate" id="1">
+                        <Scripts>
+                            <OnLoad>
+                                local editBox = self:GetParent():GetParent();
+                                local delays = {"auto",0,1,2,3};
+                                local loc = GHP_Loc();
+                                UIDropDownMenu_Initialize(self,function()
+                                    for i,value in pairs(delays) do
+                                        info            = {};
+                                        if value == "auto" then
+                                            info.text   = loc.DELAY_AUTO;
+                                        else
+                                            info.text   = string.format(loc.DELAY_SEC,value);
+                                        end
+                                        info.value      = value;
+                                        info.notCheckable = false;
+
+                                        if editBox:GetAttribute("delay") == value then
+                                            info.checked = true;
+                                        else
+                                            info.checked = false;
+                                        end
+
+                                        info.func       = function() editBox:SetDelay(value);end
+                                        UIDropDownMenu_AddButton(info);
+                                    end
+                                end);
+                            </OnLoad>
+                        </Scripts>
+                    </Frame>
+                </Frames>
+            </Button>
+        </Frames>
+    </EditBox>
+</Ui>

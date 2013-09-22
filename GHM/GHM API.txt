@@ -1,0 +1,99 @@
+
+
+GHM_NewFrame(table):
+	Creates a new frame out from the profile, submitted as a table.
+	
+
+=========	Frame Profile structure ==========
+Frame data:
+	profile.name = frame name
+	profile.title = title on the frame
+	profile.theme = theme of the frame (StdTheme,SpellBookTheme
+	profile.heigh = height of frame
+	profile.OnShow = OnShow script
+	profile.OnOk = OnOk script
+	profile.OnHide = OnHide script (run after OnOk)
+
+Page data:
+	profile[x].name = page name
+
+	x = page number
+	y = line number
+	z = object number
+
+	profile[x][y][z] = ObjectData (table)
+
+=========	ObjectData =========	
+Common for all object types:
+	obj.type = Type of the object
+	obj.label = Label for return of user input
+	obj.align = Alignment on the line; "c","r" or "l"
+
+common for almost all object types:
+	obj.text = Text label above or besides the object, describing the input
+
+
+Text: A normal text label
+	Label Value = text
+	obj.fontSize
+	obj.width
+	obj.singleLine = force the text to be single line
+	
+Editbox: Singleline editbox
+	Label Value = Editbox text
+	todo: size change.  Numbers only (inc negative)
+
+StackSlider: A slider going 6 steps of stack sizes. 
+	Label Value = Stack size;
+	
+TimeSlider: A slider going trough time sizes. 
+	Label Value = time in sec
+	obj.values = table with values to use. If nil then it will use standard (up to 1 day)
+	
+CheckBox:
+	Label Value = checked (boolean)
+	
+QualityDD: A dropdown menu choosing between item quality.
+	Label Value = quality index (1-7)
+	obj.initPos = initate dropdown choosen
+	
+CustomDD: A dropdown menu made from the input table
+	Label Value = index or array value chosen
+	obj.data = table of which the drop down is made. Each must be a string with continous numbering
+	obj.returnIndex = Boolean. If false then array value is returned instead of index
+	obj.initPos = initate dropdown choosen
+	
+Button: A standard button
+	Label Value = nil
+	obj.text = button text
+	obj.fontSize = fontSize of the button text
+	obj.compact = true: fits the button to the text. False: Includes space around the text
+	obj.onclick = On click script.
+	obj.width = width of button (overrules compact)
+	
+Icon: Icon button with icon choosing frame.
+	Label Value = Icon path
+	obj.text = text label above icon
+	obj.icon = predetermined icon
+	obj.framealign = Alignment of the icon choosing frame ("r" on the right side, "l" the left side, "c" (or anything else) as overlay)
+	obj.CloseOnChoosen = The icon choosing frame closes when an icon is clicked (boolean)
+	
+List: A list in of information, to be shown in a scrolling frame
+	Label Value = number selected
+	obj.lines = number of lines to show
+	obj.column[x]
+		obj.column[x].catagories = table with column catagory names
+		obj.column[x].labels = labels for each catagory
+		obj.column[x].widths = table with width of each column
+		obj.column[x].type = object type (text,button,checkbox or icon)
+	obj.data[y].label = data for object in row y for the label (not including offset).
+	
+	intern functions:
+	obj.updateAll = update all rows
+	obj.updateRow(x) = update row x
+
+Dummy: A sizeable dummy box
+	Label Value = N/A
+	obj.height = height of the box
+	obj.width = width of the box
+	

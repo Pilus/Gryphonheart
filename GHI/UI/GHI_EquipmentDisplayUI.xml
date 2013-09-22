@@ -1,0 +1,148 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <script file="ghi_display.lua"></script>
+
+    <DressUpModel name="GHDisplayTemplate" fogNear="1" virtual="true">
+        <Size>
+            <AbsDimension x="138" y="290"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+
+        <!--<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background">
+        <BackgroundInsets>
+          <AbsInset left="0" right="0" top="0" bottom="0" />
+        </BackgroundInsets>
+
+      </Backdrop>  -->
+        <Frames>
+
+            <Button name="$parentRotateLeftButton">
+                <Size>
+                    <AbsDimension x="30" y="30"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="-2" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self:RegisterForClicks("LeftButtonDown", "LeftButtonUp");
+                    </OnLoad>
+                    <OnClick>
+                        Model_RotateLeft(self:GetParent());
+                        self:GetParent().main:Update();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\Buttons\UI-RotationLeft-Button-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-RotationLeft-Button-Down"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Round" alphaMode="ADD"/>
+            </Button>
+
+            <Button name="$parentRotateRightButton" frameStrata="MEDIUM">
+                <Size>
+                    <AbsDimension x="30" y="30"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentRotateLeftButton" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self:RegisterForClicks("LeftButtonDown", "LeftButtonUp");
+                        self:SetFrameStrata("HIGH");
+                    </OnLoad>
+                    <OnClick>
+                        Model_RotateRight(self:GetParent());
+                        self:GetParent().main:Update();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\Buttons\UI-RotationRight-Button-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-RotationRight-Button-Down"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Round" alphaMode="ADD"/>
+            </Button>
+            <Button name="$parentZoomOutButton">
+                <Size>
+                    <AbsDimension x="30" y="30"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self:RegisterForClicks("LeftButtonDown", "LeftButtonUp");
+                        self:SetFrameStrata("HIGH");
+                    </OnLoad>
+                    <OnClick></OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\AddOns\GHI\texture\ZoomOutUp"/>
+                <PushedTexture file="Interface\AddOns\GHI\texture\ZoomOutDown"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Round" alphaMode="ADD"/>
+            </Button>
+            <Button name="$parentZoomInButton">
+                <Size>
+                    <AbsDimension x="30" y="30"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parentZoomOutButton" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self:RegisterForClicks("LeftButtonDown", "LeftButtonUp");
+                        self:SetFrameStrata("HIGH");
+                    </OnLoad>
+                    <OnClick></OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\AddOns\GHI\texture\ZoomInUp"/>
+                <PushedTexture file="Interface\AddOns\GHI\texture\ZoomInDown"/>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Round" alphaMode="ADD"/>
+            </Button>
+
+
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                self.rotation = 0;
+                self.x = 0;
+                self.y = 0;
+                self.z = 0;
+                self:SetFrameStrata("LOW");
+                self:RegisterForDrag("LeftButton");
+            </OnLoad>
+            <OnEvent>
+                self:RefreshUnit();
+            </OnEvent>
+            <OnUpdate>
+                Model_OnUpdate2(self, elapsed, rotationsPerSecond);
+                self.main:Update();
+            </OnUpdate>
+            <OnDragStart>
+                self.main.dragged = true;
+                self.main.lastDragPos = {GetCursorPosition()};
+            </OnDragStart>
+            <OnDragStop>
+                self.main.dragged = nil;
+            </OnDragStop>
+        </Scripts>
+    </DressUpModel>
+
+
+</Ui>

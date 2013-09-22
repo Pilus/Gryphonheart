@@ -1,0 +1,9 @@
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\bin\Debug\GH_UnitTest.exe.config
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.csprojResolveAssemblyReference.cache
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.Form1.resources
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.Properties.Resources.resources
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.csproj.GenerateResource.Cache
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\bin\Debug\GH_UnitTest.exe
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\bin\Debug\GH_UnitTest.pdb
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.exe
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.pdb

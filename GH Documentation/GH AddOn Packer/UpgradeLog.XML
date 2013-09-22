@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="GH AddOn Packer">
+</Property><Property Name="Solution File" Value="F:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer.sln">
+</Property><Property Name="Date" Value="15. juli 2011">
+</Property><Property Name="Time" Value="15:07">
+</Property></Properties><Event ErrorLevel="0" Project="GH AddOn Packer" Source="GH AddOn Packer\GH AddOn Packer.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="GH AddOn Packer" Source="GH AddOn Packer\GH AddOn Packer.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="GH AddOn Packer.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="GH AddOn Packer.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="GH AddOn Packer" Source="GH AddOn Packer\GH AddOn Packer.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

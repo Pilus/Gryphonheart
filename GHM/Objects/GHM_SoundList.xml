@@ -1,0 +1,148 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Frame name="GHM_SoundSelection_Template" virtual="true">
+        <Size>
+            <AbsDimension x="170" y="80"/>
+        </Size>
+
+        <Scripts>
+
+        </Scripts>
+        <Frames>
+            <EditBox name="$parentEditbox" letters="127" hidden="false" autoFocus="false" historyLines="1">
+                <Size>
+                    <AbsDimension x="135" y="26"></AbsDimension>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"></AbsDimension>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"></AbsDimension>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEscapePressed>
+                        self:ClearFocus();
+                    </OnEscapePressed>
+                    <OnClick>
+                        self:SetFocus();
+                    </OnClick>
+                    <OnTextChanged>
+
+                    </OnTextChanged>
+                    <OnLoad>
+                        self:SetBackdrop({
+                        bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                        edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                        tile = true, tileSize = 16, edgeSize = 16,
+                        insets = { left = 4, right = 4, top = 4, bottom = 4 }
+                        });
+                        self:SetBackdropColor(0,0,0,0.5);
+                        self:SetTextInsets(10,10,5,5);
+                    </OnLoad>
+                </Scripts>
+                <FontString inherits="ChatFontNormal"></FontString>
+                <Frames>
+                    <Frame name="$parentText">
+
+                        <Size>
+                            <AbsDimension x="120" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-5"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                GHI_Loc().LocalizeFrame(self);
+                            </OnLoad>
+                        </Scripts>
+                        <Layers>
+                            <Layer>
+                                <FontString name="$parentLabel" justifyH="LEFT" inherits="GHM_GameFontNormal"
+                                            text="SEARCH_TEXT">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                    <FontHeight>
+                                        <AbsValue val="11"/>
+                                    </FontHeight>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                </Frames>
+            </EditBox>
+            <Frame name="$parentList">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-30"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\ChatBubble-Background"
+                          edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16"/>
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="16"/>
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="5" right="5" top="5" bottom="5"/>
+                    </BackgroundInsets>
+                </Backdrop>
+                <Frames>
+                    <ScrollFrame name="$parentScroll" inherits="UIPanelScrollFrameTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="5" y="-4"/>
+                                </Offset>
+                            </Anchor>
+                            <Anchor point="BOTTOMRIGHT">
+                                <Offset>
+                                    <AbsDimension x="-28" y="5"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+
+                        </Scripts>
+
+                        <ScrollChild>
+                            <Frame name="$parentList">
+                                <Size>
+                                    <AbsDimension x="160" y="68"/>
+                                </Size>
+                                <Scripts>
+                                    <OnLoad>
+                                        --GHM_SoundSelection_OnLoad(self);
+                                    </OnLoad>
+                                </Scripts>
+                            </Frame>
+                        </ScrollChild>
+                    </ScrollFrame>
+                </Frames>
+
+            </Frame>
+        </Frames>
+
+    </Frame>
+</Ui>

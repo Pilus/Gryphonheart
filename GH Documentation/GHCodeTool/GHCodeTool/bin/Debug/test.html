@@ -1,0 +1,105 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<style type="text/css">
+
+
+
+body {
+
+	margin: 0px;
+	background-color: transparent;
+	padding: 0px;
+
+	font-size: 16px;
+	font-family: Georgia;
+
+}
+
+ 
+div.rounded-box {
+    position:relative;
+    width: 42em;
+    background-color: #343234;
+    margin: 3px;
+}
+ 
+/*********************
+GLOBAL ATTRIBUTES
+*********************/
+div.top-left-corner, div.bottom-left-corner, div.top-right-corner, div.bottom-right-corner
+{position:absolute; width:20px; height:20px; background-color:#D0C590; overflow:hidden;}
+ 
+div.top-left-inside, div.bottom-left-inside, div.top-right-inside, div.bottom-right-inside {position:relative; font-size:150px; font-family:arial; color:#343234; line-height: 40px;}
+ 
+/*********************
+SPECIFIC ATTRIBUTES
+*********************/
+
+
+div.top-left-corner { top:0px; left:0px; }
+div.bottom-left-corner {bottom:0px; left:0px;}
+
+div.top-right-corner {top:0px; right:0px;}
+
+div.bottom-right-corner {bottom: 0px; right:0px;}
+ 
+div.top-left-inside {left:-8px;}
+
+div.bottom-left-inside {left:-8px; top:-17px;}
+
+div.top-right-inside {left:-25px;}
+
+div.bottom-right-inside {left:-25px; top:-17px;}
+ 
+div.box-contents {
+
+	position: relative; padding: 8px; color:#CCC;
+
+}
+
+
+
+</style>
+
+
+<body>	
+<p>Latest public test version available:<br/></p>
+<div class="rounded-box">
+
+    <div class="top-left-corner"><div class="top-left-inside">&bull;</div></div>
+	<div class="bottom-left-corner"><div class="bottom-left-inside">&bull;</div></div>
+	<div class="top-right-corner"><div class="top-right-inside">&bull;</div></div>
+	<div class="bottom-right-corner"><div class="bottom-right-inside">&bull;</div></div>
+
+    <div class="box-contents">
+
+        <p>GHI v.<!--VERSION--></p>
+		<p><!--TIME--></p>
+		<p><a style="color: #FFB400" href="<!--LINK-->">Download</a></p>
+
+    </div> 
+</div> <br>
+Remember that the public test version is work in progress and might contain many bugs. Do not hesitate to report all bugs you find at the <a href="http://www.pilus.info/cms/phpbb/viewforum.php?f=20"  target="_blank" >Forum</a>. You can also post your suggestions or other feedback there.<br><br>
+Feel free to visit our <a href="http://www.gryphonheart.org"  target="_blank" >workspace</a> to monitor our progress on next public test version.<br>
+<br>
+<div class="rounded-box">
+
+    <div class="top-left-corner"><div class="top-left-inside">&bull;</div></div>
+	<div class="bottom-left-corner"><div class="bottom-left-inside">&bull;</div></div>
+	<div class="top-right-corner"><div class="top-right-inside">&bull;</div></div>
+	<div class="bottom-right-corner"><div class="bottom-right-inside">&bull;</div></div>
+
+    <div class="box-contents">
+
+        <!--CHANGELOG-->
+
+    </div> 
+</div> 
+
+
+</body>
+</html>

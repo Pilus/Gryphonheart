@@ -1,0 +1,189 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Frame name="GHP_QuickBarDropDownMenu" inherits="UIDropDownMenuTemplate" id="1">
+       <Scripts>
+           <OnLoad>
+
+           </OnLoad>
+       </Scripts>
+   </Frame>
+
+    <Button name="GHP_QuickBarSideButtonTemplate" virtual="true" inherits="ItemButtonTemplate">
+        <Size>
+            <AbsDimension x="18" y="52"/>
+        </Size>
+        <HighlightTexture file="Interface/Buttons/UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+
+    <Button name="GHP_QuickBarSideButtonLeftTemplate" virtual="true" inherits="GHP_QuickBarSideButtonTemplate">
+        <NormalTexture file="Interface/BUTTONS/UI-SpellbookIcon-PrevPage-Up"/>
+        <PushedTexture file="Interface/BUTTONS/UI-SpellbookIcon-PrevPage-Down"/>
+        <DisabledTexture file="Interface/BUTTONS/UI-SpellbookIcon-PrevPage-Disabled"/>
+    </Button>
+
+    <Button name="GHP_QuickBarSideButtonRightTemplate" virtual="true" inherits="GHP_QuickBarSideButtonTemplate">
+        <NormalTexture file="Interface/BUTTONS/UI-SpellbookIcon-NextPage-Up"/>
+        <PushedTexture file="Interface/BUTTONS/UI-SpellbookIcon-NextPage-Down"/>
+        <DisabledTexture file="Interface/BUTTONS/UI-SpellbookIcon-NextPage-Disabled"/>
+    </Button>
+
+    <Button name="GHP_QuickBarButtonTemplate" virtual="true" inherits="ItemButtonTemplate">
+        <Frames>
+            <Cooldown name="$parentCooldown" inherits="CooldownFrameTemplate"/>
+        </Frames>
+        <Script>
+            <OnLoad>
+                GHI_ContainerFrameItemButton_OnLoad(self);
+            </OnLoad>
+        </Script>
+    </Button>
+
+    <Frame name="GHP_QuickBarBarTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="200" y="55"/>
+        </Size>
+        <Frames>
+            <Frame name="$parentText" inherits="GHM_TextLabel_Template">
+                <Anchors>
+                    <Anchor point="LEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="27"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+            <Button name="$parentLeftButton" inherits="GHP_QuickBarSideButtonLeftTemplate">
+                <Anchors>
+                    <Anchor point="LEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton1" inherits="GHP_QuickBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentLeftButton" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton2" inherits="GHP_QuickBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton1" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton3" inherits="GHP_QuickBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton2" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton4" inherits="GHP_QuickBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton3" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentRightButton" inherits="GHP_QuickBarSideButtonRightTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentButton4" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+
+    </Frame>
+
+    <Button name="GHP_QuickBarFrame" hidden="true" parent="UIParent" framestrata="HIGH">
+        <Size>
+            <AbsDimension x="270" y="117"/>
+        </Size>
+        <Frames>
+            <Frame name="$parentBar1" inherits="GHP_QuickBarBarTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="5" y="-10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+            <Frame name="$parentBar2" inherits="GHP_QuickBarBarTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="5" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+            <Frame name="$parentText" inherits="GHM_TextLabel_Template">
+                <Size>
+                    <AbsDimension x="60" y="40"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-20" y="-15"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self.label:SetJustifyH("CENTER");
+                    </OnLoad>
+                </Scripts>
+            </Frame>
+
+            <Button name="$parentMenuButton" inherits="ItemButtonTemplate">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-25" y="20"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        _G[self:GetName().."IconTexture"]:SetTexture("Interface\\Icons\\inv_misc_book_09");
+                    </OnLoad>
+                </Scripts>
+            </Button>
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Size>
+                    <AbsDimension x="32" y="32"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="3" y="3"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide();
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Button>
+</Ui>

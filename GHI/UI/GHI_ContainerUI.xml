@@ -1,0 +1,294 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+
+    <Button name="GHI_UIPanelButtonTemplate" virtual="true">
+		<ButtonText name="$parentText"/>
+		<NormalFont style="GameFontNormal"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisabledFont style="GameFontDisable"/>
+		<NormalTexture inherits="UIPanelButtonUpTexture"/>
+		<PushedTexture inherits="UIPanelButtonDownTexture"/>
+		<DisabledTexture inherits="UIPanelButtonDisabledTexture"/>
+		<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+	</Button>
+
+    <Button name="GHI_ContainerFrameItemButtonTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+        <Anchors>
+            <Anchor point="BOTTOMRIGHT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Frames>
+            <Cooldown name="$parentCooldown" inherits="CooldownFrameTemplate"/>
+        </Frames>
+        <Scripts>
+            <OnClick>
+                if ( not ( IsModifierKeyDown() or IsShiftKeyDown() ) ) then
+                --GHI_ContainerFrameItemButton_OnClick(self,button);
+                end
+                GHI_ContainerFrameItemButton_OnClick(self,button)
+            </OnClick>
+            <PostClick>
+                --if ( IsModifierKeyDown() ) then
+                --GHI_ContainerFrameItemButton_OnModifiedClick(self,button);
+                --GHI_Message("split");
+                --end
+            </PostClick>
+            <OnLoad>
+                GHI_ContainerFrameItemButton_OnLoad(self);
+            </OnLoad>
+            <OnEnter>
+                GHI_ContainerFrameItemButton_OnEnter(self);
+            </OnEnter>
+            <OnLeave>
+                self.updateTooltip = nil;
+                GameTooltip:Hide();
+                --ResetCursor();
+            </OnLeave>
+            <OnHide>
+                if ( self.hasStackSplit and (self.hasStackSplit == 1) ) then
+                StackSplitFrame:Hide();
+                end
+
+            </OnHide>
+            <OnShow>
+
+            </OnShow>
+            <OnDragStart>
+                if ( not ( IsModifierKeyDown() or IsShiftKeyDown() ) ) then
+                GHI_ContainerFrameItemButton_OnClick(self,button)
+                end
+
+            </OnDragStart>
+            <OnReceiveDrag>
+
+            </OnReceiveDrag>
+            <OnUpdate>
+                GHI_ContainerFrameItemButton_OnUpdate(self,elapsed); --
+            </OnUpdate>
+            <OnEvent>
+                if ( GameTooltip:IsOwned(self) ) then
+                --GHI_ContainerFrameItemButton_OnEnter(self);
+                end
+            </OnEvent>
+        </Scripts>
+    </Button>
+
+
+    <Frame name="GHI_ContainerFrameTemplate" frameStrata="MEDIUM" toplevel="true" movable="true" enableMouse="true"
+           hidden="true" virtual="true">
+
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentPortrait">
+                    <Size>
+                        <AbsDimension x="40" y="40"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="7" y="-5"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parentBackgroundTop" file="Interface\ContainerFrame\UI-Bag-Components">
+                    <Size>
+                        <AbsDimension x="256" y="512"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" relativeTo="$parent">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentBackgroundMiddle1" file="Interface\ContainerFrame\UI-Bag-Components">
+                    <Size>
+                        <AbsDimension x="256" y="512"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentBackgroundTop" relativePoint="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0" right="1" top="0.3515625" bottom="0.8515625"/>
+                </Texture>
+                <Texture name="$parentBackgroundMiddle2" file="Interface\ContainerFrame\UI-Bag-Components"
+                         hidden="true">
+                    <Size>
+                        <AbsDimension x="256" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentBackgroundMiddle1" relativePoint="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0" right="1" top="0.353515625" bottom="0.8515625"/>
+                </Texture>
+                <Texture name="$parentBackgroundBottom" file="Interface\ContainerFrame\UI-Bag-Components">
+                    <Size>
+                        <AbsDimension x="256" y="10"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentBackgroundMiddle1" relativePoint="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0" right="1" top="0.330078125" bottom="0.349609375"/>
+                </Texture>
+                <FontString name="$parentName" inherits="GameFontHighlight">
+                    <Size>
+                        <AbsDimension x="112" y="12"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="47" y="-10"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <Texture name="$parentBackground1Slot" file="Interface\ContainerFrame\UI-Bag-1Slot" hidden="true">
+                    <Size>
+                        <AbsDimension x="99" y="74"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0" right="0.7734375" top="0" bottom="0.578125"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentPlate">
+                <Size>
+                    <AbsDimension x="112" y="12"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="47" y="-10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+            </Button>
+            <Frame name="$parentMoneyFrame" inherits="SmallMoneyFrameTemplate" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-2" y="-216"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+            <Button name="$parentItem1" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem2" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem3" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem4" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem5" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem6" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem7" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem8" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem9" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem10" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem11" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem12" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem13" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem14" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem15" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem16" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem17" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem18" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem19" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem20" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem21" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem22" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem23" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem24" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem25" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem26" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem27" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem28" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem29" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem30" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem31" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem32" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem33" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem34" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem35" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem36" inherits="GHI_ContainerFrameItemButtonTemplate"/>
+
+            <Button name="$parentPortraitButton">
+                <Size>
+                    <AbsDimension x="40" y="40"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="7" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+
+                        GameTooltip:AppendText(" "..NORMAL_FONT_COLOR_CODE.."( Gryphonheart Items )"..FONT_COLOR_CODE_CLOSE);
+
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="-1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide();
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnEvent>
+                --GHI_ContainerFrame_OnEvent(self);
+            </OnEvent>
+            <OnLoad>
+                --GHI_ContainerFrame_OnLoad(self);
+
+            </OnLoad>
+            <OnHide>
+                --GHI_ContainerFrame_OnHide(self);
+                if self:GetName() == "GHI_ContainerFrame1" then
+                GHI_ButtonSquared:SetChecked(false);
+                local s = GHI_ButtonRound.texCoor;
+                GHI_ButtonRound.icon:SetTexCoord(s,1-s,s,1-s)
+
+                end
+                GHI_UpdateContainerFrameAnchors()
+				GHI_Event().TriggerEvent("GHI_BAG_CLOSE",self.guid)
+            </OnHide>
+            <OnShow>
+                GHI_ContainerFrame_OnShow(self);
+                if self:GetName() == "GHI_ContainerFrame1" then
+                GHI_ButtonSquared:SetChecked(true);
+                GHI_ButtonRound.icon:SetTexCoord(0,1,0,1)
+                end
+            </OnShow>
+        </Scripts>
+    </Frame>
+
+
+</Ui>

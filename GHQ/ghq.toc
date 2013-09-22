@@ -1,0 +1,43 @@
+## Interface: 50400
+
+## Title: Gryphonheart Quests
+## Version: .01
+## Notes: Platform for creation of quests.
+## X-CodeTool: true
+## X-DevVersion: true
+## RequiredDeps: GHM,GHI
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: GHQ_SavedPublicQuestData
+## SavedVariablesPerCharacter: GHQ_QuestData,GHQ_QuestChain,GHQ_ItemData,GHQ_PlayerData,GHQ_MiscData
+
+
+##API\GHQ_QuestAPI.lua
+##API\GHQ_ObjectiveAPI.lua
+##API\GHQ_QuestAPI.lua
+
+
+Comm\GHQ_QuestComm.lua
+
+##ObjectiveInfo\GHQ_ObjectiveInfo.lua
+##ObjectiveInfo\GHQ_ObjectiveList.lua
+##ObjectiveInfo\GHQ_ObjectiveRequirement.lua
+##ObjectiveInfo\GHQ_ObjectiveTypeCollect.lua
+##ObjectiveInfo\GHQ_ObjectiveTypeKill.lua
+
+##QuestInfo\GHQ_QuestChain.lua
+##QuestInfo\GHQ_QuestExecutor.lua
+QuestInfo\GHQ_QuestInfo.lua
+##QuestInfo\GHQ_QuestInstance.lua
+QuestInfo\GHQ_QuestList.lua
+##QuestInfo\GHQ_QuestLoot.lua
+
+##UI\GHQ_AdvancedQuestMenu.lua
+UI\GHQ_SimpleQuestMenu.lua
+UI\GHQ_SimpleQuestMenuList.lua
+UI\GHQ_QuestLogUI.xml
+UI\GHQ_QuestLogUI.lua
+
+GHQ_Main.lua
+
+

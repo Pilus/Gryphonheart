@@ -1,0 +1,8 @@
+Gryphonheart Items by Pilus of Scarshield Legion
+www.pilus.info
+
+Terms of Use for GHI - Do not use GHI if you can not agree to the following terms
+You, the user, may not redistribute the addon or parts of it code without written permission from the author. 
+You may not change or modify the addon or parts of the addon without written permission from the author. 
+You may not change or modify any data related to the addon, including but not limited to its saved data, in other ways than trough the UI provided by GHI.
+

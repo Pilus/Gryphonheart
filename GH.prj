@@ -1,0 +1,90 @@
+[Project ID]
+Signature=UE Proj: v.1
+[Project Information]
+Use Relative Directory=1
+Relative to Project File=1
+Include Sub Directories=1
+Project Tagfile=
+Project Wordfile=
+Filter=
+Create Tagfile=0
+[Group]
+0=GHP
+1=GHI
+2=GHD
+3=GHM
+4=GHI - Localization
+5=GHI - Renovated classes
+[Files - GHP]
+0=GHP\ghp.lua
+1=GHP\ghp.toc
+2=GHP\ghp_ability.lua
+3=GHP\ghp_container.lua
+4=GHP\ghp_coor.lua
+5=GHP\ghp_craft.lua
+6=GHP\ghp_craftList.lua
+7=GHP\ghp_kd_tree.lua
+8=GHP\ghp_localization.lua
+9=GHP\ghp_picture.xml
+10=GHP\ghp_security.lua
+11=GHP\ghp_skill.lua
+12=GHP\ghp_skillList.lua
+13=GHP\ghp_test.lua
+14=GHP\ghp_weight.lua
+[Files - GHI]
+0=GHI\ghi.lua
+1=GHI\ghi_actionbar.lua
+2=GHI\ghi_book.lua
+3=GHI\ghi_buff.lua
+4=GHI\ghi_communication.lua
+5=GHI\ghi_compatibility.lua
+6=GHI\ghi_container.lua
+7=GHI\ghi_createitem.lua
+8=GHI\ghi_cursor.lua
+9=GHI\ghi_display.lua
+10=GHI\ghi_effect.lua
+11=GHI\ghi_ghm_menu.lua
+12=GHI\ghi_icons.lua
+13=GHI\ghi_links.lua
+14=GHI\ghi_officialitems.lua
+15=GHI\ghi_useitem.lua
+16=GHI\Bindings.xml
+17=GHI\ghi.xml
+18=GHI\ghi_actionbar.xml
+19=GHI\ghi_book.xml
+20=GHI\ghi_createitem.xml
+21=GHI\ghi_display.xml
+22=GHI\changelog.txt
+23=GHI\ghi.toc
+24=GHI\ghi_addons.lua
+[Files - GHD]
+0=GHD\GHD.lua
+1=GHD\GHD.toc
+[Files - GHM]
+0=GHM\ghm.lua
+1=GHM\ghm.toc
+2=GHM\ghm.xml
+3=GHM\ghm_icons.lua
+[Files - GHI - Localization]
+0=GHI\Localization\Localization.deDE.lua
+1=GHI\Localization\Localization.enUS.lua
+2=GHI\Localization\Localization.frFR.lua
+[Files - GHI - Renovated classes]
+0=GHI\ghi_scriptEnv.lua
+1=GHI\ghi_comm.lua
+2=GHI\ghi_main.lua
+3=GHI\ghi_ping.lua
+4=GHI\ghi_itemDataTransfer.lua
+5=GHI\ghi_slashCmd.lua
+6=GHI\ghi_trade.lua
+7=GHI\ghi_timer.lua
+8=GHI\ghi_areaBuff.lua
+9=GHI\ghi_areaSound.lua
+10=GHI\ghi_itemUpdater.lua
+11=GHI\ghi_position.lua
+12=GHI\ghi_optionsMenu.lua
+13=GHI\ghi_buffUI.lua
+14=GHI\ghclass.lua
+15=GHI\ghi_targetUI.lua
+16=GHI\ghi_log.lua
+17=GHI\ghi_buttonUI.lua

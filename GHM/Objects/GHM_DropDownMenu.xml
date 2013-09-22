@@ -1,0 +1,237 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+    <Frame name="GHM_DD_Template" inherits="UIDropDownMenuTemplate" enableMouse="true" virtual="true">
+        <Scripts>
+            <OnLoad>
+                local name = self:GetName();
+
+                _G[name.."Left"]:SetTexture("");
+                _G[name.."Middle"]:SetTexture("");
+                _G[name.."Right"]:SetTexture("");
+
+                self.displayMode = "MENU"
+                local button = _G[name.."Button"]
+                button:ClearAllPoints();
+                button:SetPoint("RIGHT",self,"RIGHT",-2,3);
+
+                local f = CreateFrame("Frame",nil,button );
+
+                f:SetPoint("TOPRIGHT",self,"TOPRIGHT",0,0);
+                f:SetPoint("BOTTOMLEFT",self,"BOTTOMLEFT",0,6);
+
+                f:SetBackdrop({
+                    bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                    tile = true, tileSize = 16, edgeSize = 16,
+                    insets = { left = 4, right = 23, top = 4, bottom = 4 },
+                });
+                f:SetBackdropColor(0,0,0,0.5);
+                f:SetFrameLevel(self:GetFrameLevel());
+            </OnLoad>
+
+            <OnClick>
+                ToggleDropDownMenu(1, nil, DropDownMenu, DropDownMenuButton, 0, 0);
+            </OnClick>
+        </Scripts>
+        <Frames>
+            <Frame name="$parentText">
+                <Size>
+                    <AbsDimension x="100" y="14"/>
+                </Size><!-- -->
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="3"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="RIGHT" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-20" y="3"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer>
+                        <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="">
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT"/>
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="10"/>
+                            </FontHeight>
+                            <Color r="1" g="1" b="1"/>
+
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+        </Frames>
+    </Frame>
+	
+    <Frame name="GHM_CustomDD_Template" virtual="true">
+        <Size>
+            <AbsDimension x="130" y="100"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentLabel" inherits="GHM_TextLabel_Template" font="GHM_GameFontSmall" text="" justifyH="LEFT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame name="$parentArea">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-17"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Frame name="$parentDD" inherits="GHM_DD_Template">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        </Anchors>
+                    </Frame>
+                </Frames>
+
+            </Frame>
+        </Frames>
+    </Frame>
+		
+	 <Frame name="GHM_DropDown_Template" virtual="true">
+        <Size>
+            <AbsDimension x="130" y="38"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+				<FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="" parentKey="label">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame name="$parentArea">
+                <Anchors>
+                    <Anchor point="TOPLEFT"  x="0" y="-11"/>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                     <Frame name="$parentDD" hidden="false">
+                        <Anchors>
+                            <Anchor point="TOPLEFT"/>
+							<Anchor point="BOTTOMRIGHT"/>
+                        </Anchors>
+						<Backdrop bgFile="Interface\Tooltips\CHATBUBBLE-BACKGROUND" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="16"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<Frame name="$parentText" hidden="false">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="10" y="0"/>
+									<Anchor point="BOTTOMRIGHT" x="-24" y="0"/>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="$parentLabel" parentKey="text" justifyV="MIDDLE" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="">
+											<Anchors>
+												<Anchor point="TOPLEFT"/>
+												<Anchor point="BOTTOMRIGHT"/>
+											</Anchors>
+											<FontHeight>
+												<AbsValue val="10"/>
+											</FontHeight>
+											<Color r="1" g="1" b="1"/>
+										</FontString>
+									</Layer>
+								</Layers>
+							</Frame>
+							<Button name="$parentButton"  motionScriptsWhileDisabled="true" hidden="false">
+								<Size>
+									<AbsDimension x="24" y="24"/>
+								</Size>
+								<Anchors>
+									<Anchor point="RIGHT">
+										<Offset>
+											<AbsDimension x="-2" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</NormalTexture>
+								<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</PushedTexture>
+								<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</DisabledTexture>
+								<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</HighlightTexture>
+							</Button>
+						</Frames>
+                    </Frame>
+                </Frames>
+
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

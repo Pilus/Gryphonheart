@@ -1,0 +1,176 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <EditBox name="GHM_EditBox_Box_Template" virtual="true" letters="127" hidden="false" autoFocus="false"
+             historyLines="10">
+        <Size>
+            <AbsDimension x="10" y="26"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="-16"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentLeft" file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+                    <Size>
+                        <AbsDimension x="190" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="-15" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentRight" file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+                    <Size>
+                        <AbsDimension x="14" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="10" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0.9375" right="1.0" top="0" bottom="1.0"/>
+                </Texture>
+                <Texture name="$parentCenter" file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+                    <Size>
+                        <AbsDimension x="1" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0" right="0.9375" top="0" bottom="1.0"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <FontString inherits="ChatFontNormal"/>
+        <Scripts>
+            <OnLoad>
+                self.SetTextureTheme = function(self,theme)
+                if theme == "Tooltip" then
+                _G[self:GetName().."Left"]:Hide();
+                _G[self:GetName().."Right"]:Hide();
+                _G[self:GetName().."Center"]:Hide();
+
+
+                self:SetBackdrop({
+                bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                tile = true, tileSize = 16, edgeSize = 16,
+                insets = { left = 4, right = 4, top = 4, bottom = 4 }
+                });
+                self:SetBackdropColor(0,0,0,0.5);
+                self:SetTextInsets(10,10,5,5);
+                end
+                end
+                self.t = "";
+            </OnLoad>
+            <OnChar>
+                if self.variablesOnly then
+                    local text = self:GetText();
+                    if not(string.match(text,"^%a[%w_]*$") == text) then
+                        self:SetText(self.t);
+                    else
+                        self.t = self:GetText();
+                    end
+                end
+            </OnChar>
+        </Scripts>
+    </EditBox>
+
+    <Frame name="GHM_EditBox_Template" virtual="true">
+        <Size>
+            <AbsDimension x="10" y="40"/>
+        </Size>
+        <Frames>
+            <EditBox name="$parentBox" inherits="GHM_EditBox_Box_Template">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </EditBox>
+
+            <Frame name="$parentText" inherits="GHM_TextLabel_Template">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+
+
+        </Frames>
+    </Frame>
+
+    <Frame name="GHM_TextLabel_Template" virtual="true">
+        <Size>
+            <AbsDimension x="120" y="20"/>
+        </Size>
+        <Layers>
+            <Layer>
+                <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="" parentKey="label">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnEnter>
+                if self.tooltip then
+                    GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+                    GameTooltip:ClearLines()
+                    GameTooltip:AddLine(self.tooltip, 1, 0.8196079, 0);
+                    GameTooltip:Show()
+                end
+            </OnEnter>
+            <OnLeave>
+                if self.tooltip then
+                    GameTooltip:Hide();
+                end
+            </OnLeave>
+            <OnLoad>
+                local label = _G[self:GetName().."Label"];
+                self.UpdateTheme = function()
+				    label:SetTextColor(GHM_GetHeadTextColor())
+				end
+				GHM_AddThemedObject(self)
+                self.UpdateTheme();
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+</Ui>

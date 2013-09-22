@@ -1,0 +1,317 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Frame name="GHQ_QuestLogFrame" inherits="ButtonFrameTemplate" parent="UIParent" hidden="true" enableMouse="true" movable="true" clampedToScreen="true">
+		<Script file="GHQ_QuestLogUI.lua"/>
+		<Size x="667" y="496"/>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				self:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnDragStart>
+				if not self.isLocked then
+				self:StartMoving();
+				end
+			</OnDragStart>
+			<OnDragStop>
+				self:StopMovingOrSizing();
+			</OnDragStop>
+			<OnHide>
+				self:StopMovingOrSizing();
+			</OnHide>
+			<OnShow>
+				GHQ_UpdateQuestList()
+			</OnShow>
+		 </Scripts>
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="-1">
+				<Texture parentKey="icon" file="Interface\QuestFrame\UI-QuestLog-BookIcon">
+					<Size x="64" y="64"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="-9" y="9"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="100">
+				<FontString name="$parentTitleText" inherits="GameFontNormal" text="GHQ Quest Log">
+					<Size x="300" y="14"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-3"/>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDetailTopLeftCorner" inherits="UI-Frame-InnerTopLeft" parentKey="InsetBorderTopLeft">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="GHQ_QuestLogFrame" relativePoint="TOPRIGHT" x="-334" y="-60"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentDetailBotLeftCorner" inherits="UI-Frame-InnerBotLeftCorner">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="GHQ_QuestLogFrame" relativePoint="BOTTOMRIGHT" x="-334" y="25"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentDetailLeftBorder" inherits="!UI-Frame-InnerLeftTile" parentKey="InsetBorderLeft">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentDetailTopLeftCorner" relativePoint="BOTTOMLEFT" x="0" y="0" />
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentDetailBotLeftCorner" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+				<ScrollFrame name="$parentDetailScrollFrame" inherits="UIPanelScrollFrameTemplate">
+					<Size x="298" y="403"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" x="-32" y="-64n"/>
+					</Anchors>
+					<Layers>
+						<Layer level="ARTWORK">
+							<Texture name="$parentTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+								<Size x="31" y="102"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="-2" y="6"/>
+								</Anchors>
+								<TexCoords left="0" right="0.484375" top="0" bottom="0.4"/>
+							</Texture>
+							<Texture name="$parentBottom" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+								<Size x="31" y="106"/>
+								<Anchors>
+									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="-2" y="-2"/>
+								</Anchors>
+								<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+							</Texture>
+							<Texture name="$parentMiddle" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+								<Size x="31" y="1"/>
+								<Anchors>
+									<Anchor point="TOP" relativeTo="$parentTop" relativePoint="BOTTOM"/>
+									<Anchor point="BOTTOM" relativeTo="$parentBottom" relativePoint="TOP"/>
+								</Anchors>
+								<TexCoords left="0" right="0.484375" top=".75" bottom="1.0"/>
+							</Texture>
+						</Layer>
+						<Layer level="BACKGROUND">
+							<Texture name="$parentPageBg" file="Interface\QuestFrame\QuestBG">
+								<TexCoords top="0" left="0" bottom="0.65" right="0.58" />
+								<Anchors>
+									<Anchor point="TOPLEFT"/>
+									<Anchor point="BOTTOMRIGHT"/>
+								</Anchors>
+							</Texture>
+						</Layer>
+						<Layer level="ARTWORK">
+							<Texture name="$parentMaterialTopLeft" file="Interface\ItemTextFrame\ItemText-Bronze-TopLeft" hidden="true">
+								<Size x="248" y="284"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentPageBg"/>
+								</Anchors>
+							</Texture>
+							<Texture name="$parentMaterialTopRight" file="Interface\ItemTextFrame\ItemText-Bronze-TopRight" hidden="true">
+								<Size x="56" y="284"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="TOPRIGHT"/>
+								</Anchors>
+							</Texture>
+							<Texture name="$parentMaterialBotLeft"  file="Interface\ItemTextFrame\ItemText-Bronze-BotLeft" hidden="true">
+								<Size x="248" y="154"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="BOTTOMLEFT"/>
+								</Anchors>
+							</Texture>
+							<Texture name="$parentMaterialBotRight" file="Interface\ItemTextFrame\ItemText-Bronze-BotRight" hidden="true">
+								<Size x="56" y="154"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="BOTTOMRIGHT"/>
+								</Anchors>
+							</Texture>
+						</Layer>
+					</Layers>
+					<ScrollChild>
+						<Frame name="$parentDetailScrollChildFrame">
+							<Size x="298" y="403"/>
+						</Frame>
+					</ScrollChild>
+				</ScrollFrame>
+				<Frame name="$parentEmptyQuestLogFrame" hidden="true" parentKey="emptyFrame">
+					<Size x="302" y="396"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="5" y="-63"/>
+					</Anchors>
+					<Layers>
+						<Layer level="BACKGROUND">
+							<Texture name="$parentBackgroundTopLeft" file="Interface\QuestFrame\UI-QuestLog-Empty-TopLeft">
+								<Size x="256" y="256"/>
+								<Anchors>
+									<Anchor point="TOPLEFT"/>
+								</Anchors>
+								<TexCoords left="0.0" right="1.0" top="0.0" bottom="1.0"/>
+							</Texture>
+							<Texture name="$parentBackgroundBottomLeft" file="Interface\QuestFrame\UI-QuestLog-Empty-BotLeft">
+								<Size x="256" y="190"/>
+								<Anchors>
+									<Anchor point="TOPRIGHT" relativeTo="$parentBackgroundTopLeft" relativePoint="BOTTOMRIGHT"/>
+								</Anchors>
+								<TexCoords left="0.0" right="1.0" top="0.0" bottom="0.828125"/>
+							</Texture>
+							<Texture name="$parentBackgroundTopRight" file="Interface\QuestFrame\UI-QuestLog-Empty-TopRight">
+								<Size x="46" y="256"/>
+								<Anchors>
+									<Anchor point="TOPRIGHT"/>
+									<Anchor point="BOTTOMLEFT" relativeTo="$parentBackgroundTopLeft" relativePoint="BOTTOMRIGHT"/>
+								</Anchors>
+								<TexCoords left="0.0" right="0.71875" top="0.0" bottom="1.0"/>
+							</Texture>
+							<Texture name="$parentBackgroundBottomRight" file="Interface\QuestFrame\UI-QuestLog-Empty-BotRight">
+								<Size x="46" y="190"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentBackgroundTopLeft" relativePoint="BOTTOMRIGHT"/>
+								</Anchors>
+								<TexCoords left="0.0" right="0.71875" top="0.0" bottom="0.828125"/>
+							</Texture>
+						</Layer>
+						<Layer level="ARTWORK">
+							<FontString name="QuestLogNoQuestsText" inherits="GameFontHighlight" text="QUESTLOG_NO_QUESTS_TEXT">
+								<Size x="200" y="0"/>
+								<Anchors>
+									<Anchor point="CENTER" x="-6" y="16"/>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+				</Frame>
+				<Frame name="$parentLogButtonPanel" hidden="false">
+					<Size x="667" y="24"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="BOTTOMLEFT"/>
+					</Anchors>
+					<Frames>
+						<Button name="$parentAbandonButton" inherits="UIPanelButtonTemplate" text="Abandon">
+							<Size x="80" y="22"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="GHQ_QuestLogFrame" x="4" y="4"/>
+							</Anchors>
+						</Button>
+						<Button name="$parentTrackButton" inherits="UIPanelButtonTemplate" text="Track">
+							<Size x="80" y="22"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parentAbandonButton" relativePoint="RIGHT" x="160" y="0"/>
+							</Anchors>
+						</Button>
+					</Frames>
+				</Frame>
+				<Frame name="$parentMyButtonPanel" hidden="true">
+					<Size x="667" y="24"/>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="BOTTOMLEFT"/>
+					</Anchors>
+					<Frames>
+						<Button name="$parentCreateQuestButton" inherits="MagicButtonTemplate" text="Create">
+							<Size x="80" y="22"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="GHQ_QuestLogFrame" x="4" y="4"/>
+							</Anchors>							
+							<Scripts>
+								<OnClick>
+									GHQ_CreateSimpleQuest()
+								</OnClick>
+							</Scripts>
+						</Button>
+						<Button name="$parentEditQuestButton" inherits="MagicButtonTemplate" text="Edit">
+							<Size x="80" y="22"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentCreateQuestButton" x="80" y="0"/>
+							</Anchors>
+							<Scripts>
+								<OnClick>
+									GHQ_EditMarkedQuest()
+								</OnClick>
+							</Scripts>
+						</Button>
+						<Button name="$parentDeleteQuestButton" inherits="UIPanelSquareButton" text="Delete">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentEditQuestButton" x="128" y="0"/>
+							</Anchors>
+							<Scripts>
+								<OnLoad>
+									SquareButton_SetIcon(self, "DELETE")
+								</OnLoad>
+							</Scripts>
+						</Button>
+						<Button name="$parentOfferButton" inherits="MagicButtonTemplate" text="Offer Quest">
+							<Size x="100" y="22"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="GHQ_QuestLogFrame" relativePoint="BOTTOMRIGHT" x="-4" y="4"/>
+							</Anchors>
+							<Scripts>
+								<OnClick>
+								
+								</OnClick>
+							</Scripts>
+						</Button>
+					</Frames>
+				</Frame>
+				<Button name="$parentActiveTabButton" inherits="TabButtonTemplate" text="Active">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" x="64" y="-62n"/>
+					</Anchors>
+					<Scripts>
+						<OnClick>
+							_G[self:GetParent():GetName().."LogButtonPanel"]:Show()
+							_G[self:GetParent():GetName().."MyButtonPanel"]:Hide()
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentCompleteTabButton" inherits="TabButtonTemplate" text="Completed">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" relativeTo="$parentActiveTabButton" x="0" y="0"/>
+					</Anchors>
+					<Scripts>
+						<OnClick>
+							_G[self:GetParent():GetName().."LogButtonPanel"]:Show()
+							_G[self:GetParent():GetName().."MyButtonPanel"]:Hide()
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentMyTabButton" inherits="TabButtonTemplate" text="My Quests">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" relativeTo="$parentCompleteTabButton" x="20" y="0"/>
+					</Anchors>
+					<Scripts>
+						<OnClick>
+							_G[self:GetParent():GetName().."LogButtonPanel"]:Hide()
+							_G[self:GetParent():GetName().."MyButtonPanel"]:Show()
+						</OnClick>
+					</Scripts>
+				</Button>
+		</Frames>
+	</Frame>
+	
+	
+	<Button name="GHQ_QuestLogButtonTemplate" virtual="true">
+		<Size x="298" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentCheck" file="Interface\Buttons\UI-CheckBox-Check" hidden="true" parentKey="check">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors> 
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				PlaySound("igMainMenuOptionCheckBoxOn");	
+			</OnClick>
+		</Scripts>
+		<ButtonText name="$parentNormalText" nonspacewrap="true" parentKey="normalText">
+			<Size x="0" y="20"/>
+			<Anchors>
+				<Anchor point="LEFT" x="8" y="0"/>
+			</Anchors> 
+		</ButtonText>
+		<NormalFont style="GameFontNormalLeft"/>
+		<HighlightFont style="GameFontHighlightLeft"/>
+		<DisabledFont style="GameFontHighlightLeft"/>
+	</Button>
+	
+</Ui>

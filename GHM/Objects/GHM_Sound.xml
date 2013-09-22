@@ -1,0 +1,115 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+    <Frame name="GHM_Sound_Template" virtual="true">
+        <Size>
+            <AbsDimension x="130" y="60"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="" justifyH="RIGHT">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame name="$parentArea">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\ChatBubble-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16"/>
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="16"/>
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="5" right="5" top="5" bottom="5"/>
+                    </BackgroundInsets>
+                </Backdrop>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <FontString name="$parentPath" inherits="GameFontHighlightSmall" text="" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="5" y="-5"/>
+                                    </Offset>
+                                </Anchor>
+                                <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                                    <Offset>
+                                        <AbsDimension x="-5" y="-5"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="11"/>
+                            </FontHeight>
+                        </FontString>
+                    </Layer>
+                    <Layer level="BACKGROUND">
+                        <FontString name="$parentDuration" inherits="GameFontHighlightSmall" text="" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="5" y="-20"/>
+                                    </Offset>
+                                </Anchor>
+                                <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                                    <Offset>
+                                        <AbsDimension x="-5" y="-20"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="11"/>
+                            </FontHeight>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+
+                    <Button name="$parentSelectButton" inherits="GHM_Button_Template">
+                        <Size>
+                            <AbsDimension x="100" y="25"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+                                <Offset>
+                                    <AbsDimension x="5" y="5"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </Button>
+
+                    <Button name="$parentPlayButton">
+                        <Size>
+                            <AbsDimension x="25" y="25"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+                                <Offset>
+                                    <AbsDimension x="-3" y="5"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <NormalTexture file="Interface\BUTTONS\UI-SpellbookIcon-NextPage-Up"/>
+		                <PushedTexture file="Interface\BUTTONS\UI-SpellbookIcon-NextPage-Down"/>
+
+                    </Button>
+                </Frames>
+
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

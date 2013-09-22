@@ -1,0 +1,823 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+
+    <Frame name="GHM_IconFrame_Template" virtual="true" hidden="true">
+        <Size>
+            <AbsDimension x="220" y="435"/>
+        </Size>
+        <Layers>
+            <Layer>
+
+                <FontString name="$parentPathHelp" hidden="false" font="Fonts\FRIZQT__.TTF"
+                            text= "ICON_SHIFT_TIP">
+                    <Size>
+                        <AbsDimension x="180" y="0"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="BOTTOM">
+                            <Offset>
+                                <AbsDimension x="0" y="45"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="12"/>
+                    </FontHeight>
+                    <Color r="1" g="1" b="1"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </FontString>
+
+            </Layer>
+        </Layers>
+        <Frames>
+
+            <Frame name="$parentPlate" hidden="false">
+                <Size>
+                    <AbsDimension x="220" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOP">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer>
+                        <FontString name="$parentTitleString" hidden="false" font="Fonts\FRIZQT__.TTF"
+                                    text= "ICON_CHOOSE">
+                            <Size>
+                                <AbsDimension x="180" y="0"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="CENTER">
+                                    <Offset>
+                                        <AbsDimension x="0" y="0"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="12"/>
+                            </FontHeight>
+                            <Color r="1" g="1" b="1"/>
+                            <Shadow>
+                                <Color r="0" g="0" b="0"/>
+                                <Offset>
+                                    <AbsDimension x="1" y="-1"/>
+                                </Offset>
+                            </Shadow>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        self:SetBackdrop({
+                            edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                            tile = false, tileSize = 16, edgeSize = 16,
+                            insets = { left = 4, right = 4, top = 4, bottom = 0 }}
+                        );
+                        self.bg = self:CreateTexture("BACKGROUND");
+                        self.bg:SetWidth(self:GetWidth()-10);
+                        self.bg:SetHeight(self:GetHeight()-10);
+                        self.bg:SetPoint("CENTER")
+
+                        self.UpdateTheme = function()
+                            _G[self:GetName().."TitleString"]:SetTextColor(GHM_GetTitleBarTextColor());
+                            self.bg:SetTexture(GHM_GetTitleBarColor());
+                        end
+                        GHM_AddThemedObject(self);
+                    </OnLoad>
+                </Scripts>
+            </Frame>
+
+            <Frame name="$parentCatagory" inherits="UIDropDownMenuTemplate" enableMouse="true" hidden="false">
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="30" y="-35"></AbsDimension>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <FontString name="$parentLabel" inherits="GHM_GameFontSmall" text="ICON_CATAGORY"
+                                    justifyH="RIGHT">
+                            <Anchors>
+                                <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="20" y="0"/>
+                                    </Offset>
+                                </Anchor>
+
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="11"/>
+                            </FontHeight>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        UIDropDownMenu_Initialize(self, function(self)
+                        GHM_LoadIconList()
+                        owner = self:GetParent();
+                        owner.iconCategory = 1;
+                        for i = 1,table.getn(GHM_IconCategories) do
+                        info = {};
+                        info.text = GHM_IconCategories[i];
+                        info.value = i;
+                        info.owner = self; --:GetParent():GetParent();
+                        info.notCheckable = true;
+                        info.func = function(self)
+                        local f = self.owner:GetParent();
+                        _G[f:GetName().."CatagoryTextLabel"]:SetText(GHM_IconCategories[self.value]);
+                        _G[f:GetName().."SubcatagoryTextLabel"]:SetText(GHM_IconSubcategories[GHM_IconCategories[self.value]][1]);
+                        GHM_SetCategory(f, self.value);
+                        owner.iconCategory = self.value;
+                        end;
+                        UIDropDownMenu_AddButton(info);
+                        end
+                        DropDownList1.maxWidth = max(DropDownList1.maxWidth, 125)
+
+                        end);
+                        self.displayMode = "MENU"
+                        _G[self:GetName().."TextLabel"]:SetText(GHM_IconCategories[1]);
+                        local name = self:GetName();
+
+                        _G[name.."Left"]:SetTexture("");
+                        _G[name.."Middle"]:SetTexture("");
+                        _G[name.."Right"]:SetTexture("");
+
+                        self.displayMode = "MENU"
+
+                        local f = CreateFrame("Frame",nil, _G[name.."Button"]);
+                        f:SetPoint("RIGHT",2,0);
+
+                        f:SetWidth(134);
+                        f:SetHeight(25);
+                        f:SetBackdrop({
+                        bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                        edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                        tile = true, tileSize = 16, edgeSize = 16,
+                        insets = { left = 4, right = 23, top = 4, bottom = 4 }
+                        });
+                        f:SetBackdropColor(0,0,0,1);
+                        f:Show();
+                        f:SetFrameLevel(self:GetFrameLevel());
+                    </OnLoad>
+
+                    <OnClick>
+                        -- ToggleDropDownMenu(1, nil, DropDownMenu, DropDownMenuButton, 0, 0);
+                    </OnClick>
+                </Scripts>
+                <Frames>
+                    <Frame name="$parentText">
+                        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                        <Size>
+                            <AbsDimension x="100" y="14"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="LEFT" relativePoint="LEFT">
+                                <Offset>
+                                    <AbsDimension x="25" y="3"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                            </OnClick>
+                        </Scripts>
+                        <Layers>
+                            <Layer>
+                                <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF"
+                                            text="|CFFFFFFFF Common|r">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                    <FontHeight>
+                                        <AbsValue val="10"/>
+                                    </FontHeight>
+                                    <Color r="1" g="1" b="1"/>
+
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                </Frames>
+            </Frame>
+
+            <Frame name="$parentSubcatagory" inherits="UIDropDownMenuTemplate" enableMouse="true" hidden="false">
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="30" y="-80"></AbsDimension>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <FontString name="$parentLabel" inherits="GHM_GameFontSmall" text="ICON_SUBCAT"
+                                    justifyH="RIGHT">
+                            <Anchors>
+                                <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="20" y="0"/>
+                                    </Offset>
+                                </Anchor>
+
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="11"/>
+                            </FontHeight>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        UIDropDownMenu_Initialize(self, function(self)
+                        GHM_LoadIconList() --Should be done somewhere better
+                        GHM_UpdateIconList(self:GetParent()) --Should be done somewhere better
+                        local owner = self:GetParent();
+                        for i = 1,table.getn(GHM_IconSubcategories[GHM_IconCategories[owner.iconCategory]]) do
+                        info = {};
+                        info.text = GHM_IconSubcategories[GHM_IconCategories[owner.iconCategory]][i];
+                        info.value = i;
+                        info.owner = self;
+                        info.notCheckable = true;
+                        info.func = function(self)
+                        local f = self.owner:GetParent();
+                        GHM_SetSubCategory(f, self.value);
+                        _G[f:GetName().."SubcatagoryTextLabel"]:SetText(GHM_IconSubcategories[GHM_IconCategories[owner.iconCategory]][self.value]);
+                        end;
+                        UIDropDownMenu_AddButton(info);
+                        end
+                        DropDownList1.maxWidth = max(DropDownList1.maxWidth, 125)
+                        end);
+                        self.displayMode = "MENU"
+                        _G[self:GetName().."TextLabel"]:SetText(GHM_IconSubcategories[GHM_IconCategories[1]][1]);
+                        local name = self:GetName();
+
+                        _G[name.."Left"]:SetTexture("");
+                        _G[name.."Middle"]:SetTexture("");
+                        _G[name.."Right"]:SetTexture("");
+
+                        self.displayMode = "MENU"
+
+                        local f = CreateFrame("Frame",nil, _G[name.."Button"]);
+                        f:SetPoint("RIGHT",2,0);
+
+                        f:SetWidth(134);
+                        f:SetHeight(25);
+                        f:SetBackdrop({
+                        bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                        edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                        tile = true, tileSize = 16, edgeSize = 16,
+                        insets = { left = 4, right = 23, top = 4, bottom = 4 }
+                        });
+                        f:SetBackdropColor(0,0,0,1);
+                        f:Show();
+                        f:SetFrameLevel(self:GetFrameLevel());
+                    </OnLoad>
+
+                    <OnClick>
+                        --ToggleDropDownMenu(1, nil, DropDownMenu, DropDownMenuButton, 0, 0);
+                    </OnClick>
+                </Scripts>
+                <Frames>
+                    <Frame name="$parentText">
+                        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                        <Size>
+                            <AbsDimension x="100" y="14"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="LEFT" relativePoint="LEFT">
+                                <Offset>
+                                    <AbsDimension x="25" y="3"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                            </OnClick>
+                        </Scripts>
+                        <Layers>
+                            <Layer>
+                                <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="2">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                    <FontHeight>
+                                        <AbsValue val="10"/>
+                                    </FontHeight>
+                                    <Color r="1" g="1" b="1"/>
+
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                </Frames>
+            </Frame>
+
+            <Frame name="$parentOrText">
+                <Size>
+                    <AbsDimension x="100" y="10"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOP" relativePoint="Top">
+                        <Offset>
+                            <AbsDimension x="0" y="-120"></AbsDimension>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer>
+                        <FontString name="$parentLabel" justifyH="CENTER" font="Fonts\FRIZQT__.TTF" text="ICON_OR">
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                                <Anchor point="BOTTOMRIGHT"/>
+                            </Anchors>
+                            <FontHeight>
+                                <AbsValue val="11"/>
+                            </FontHeight>
+                            <Color r="1" g="1" b="1"/>
+                            <Shadow>
+                                <Color r="0" g="0" b="0"/>
+                                <Offset>
+                                    <AbsDimension x="1" y="-1"/>
+                                </Offset>
+                            </Shadow>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <EditBox name="$parentEditbox" letters="127" hidden="false" autoFocus="false" historyLines="1">
+                <Size>
+                    <AbsDimension x="135" y="26"></AbsDimension>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOP" relativePoint="Top">
+                        <Offset>
+                            <AbsDimension x="4" y="-150"></AbsDimension>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEscapePressed>
+                        self:ClearFocus();
+                    </OnEscapePressed>
+                    <OnClick>
+                        self:SetFocus();
+                    </OnClick>
+                    <OnTextChanged>
+                        local f = self:GetParent();
+                        GHM_SetSearchString(f, self:GetText());
+                    </OnTextChanged>
+                    <OnLoad>
+                        self:SetBackdrop({
+                        bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+                        edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                        tile = true, tileSize = 16, edgeSize = 16,
+                        insets = { left = 4, right = 4, top = 4, bottom = 4 }
+                        });
+                        self:SetBackdropColor(0,0,0,0.5);
+                        self:SetTextInsets(10,10,5,5);
+                    </OnLoad>
+                </Scripts>
+                <FontString inherits="ChatFontNormal"></FontString>
+                <Frames>
+                    <Frame name="$parentText">
+
+                        <Size>
+                            <AbsDimension x="120" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="0" y="-5"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                            </OnClick>
+                        </Scripts>
+                        <Layers>
+                            <Layer>
+                                <FontString name="$parentLabel" inherits="GHM_GameFontSmall"
+                                            text="ICON_SEARCH" justifyH="LEFT">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT"/>
+                                    </Anchors>
+
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                </Frames>
+            </EditBox>
+
+
+
+            <ScrollFrame name="$parentScrollBar" inherits="FauxScrollFrameTemplate">
+                <Size>
+                    <AbsDimension x="10" y="154"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-45" y="-200"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnVerticalScroll>
+                        FauxScrollFrame_OnVerticalScroll(self,offset,16, self:GetScript("OnShow"));
+                    </OnVerticalScroll>
+                    <OnShow>
+                        GHM_IconScrollbarOnShow(self)
+
+                    </OnShow>
+                </Scripts>
+            </ScrollFrame>
+
+            <CheckButton name="$parent_PopupButton1" inherits="GHM_ChooseIconMenuButtonTemplate" id="1">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="25" y="-200"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton2" inherits="GHM_ChooseIconMenuButtonTemplate" id="2">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton1" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton3" inherits="GHM_ChooseIconMenuButtonTemplate" id="3">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton2" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton4" inherits="GHM_ChooseIconMenuButtonTemplate" id="4">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton3" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton5" inherits="GHM_ChooseIconMenuButtonTemplate" id="5">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent_PopupButton1" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton6" inherits="GHM_ChooseIconMenuButtonTemplate" id="6">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton5" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton7" inherits="GHM_ChooseIconMenuButtonTemplate" id="7">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton6" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton8" inherits="GHM_ChooseIconMenuButtonTemplate" id="8">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton7" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton9" inherits="GHM_ChooseIconMenuButtonTemplate" id="9">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent_PopupButton5" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton10" inherits="GHM_ChooseIconMenuButtonTemplate" id="10">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton9" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton11" inherits="GHM_ChooseIconMenuButtonTemplate" id="11">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton10" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton12" inherits="GHM_ChooseIconMenuButtonTemplate" id="12">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton11" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton13" inherits="GHM_ChooseIconMenuButtonTemplate" id="13">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent_PopupButton9" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton14" inherits="GHM_ChooseIconMenuButtonTemplate" id="14">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton13" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton15" inherits="GHM_ChooseIconMenuButtonTemplate" id="15">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton14" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="$parent_PopupButton16" inherits="GHM_ChooseIconMenuButtonTemplate" id="16">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_PopupButton15" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>self:GetParent().from.IconChoosen(self:GetParent().from,self)</OnClick>
+                </Scripts>
+            </CheckButton>
+
+
+            <Button name="$parentClose" inherits="GHM_Button_Template" hidden="false" text="ICON_CLOSE">
+                <Size>
+                    <AbsDimension x="60" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="15"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide();
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+                    <TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+                </NormalTexture>
+                <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+                    <TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+                </PushedTexture>
+                <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Down">
+                    <TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+                </DisabledTexture>
+                <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+                    <TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+                </HighlightTexture>
+                <ButtonText name="$parentText">
+                    <FontHeight>
+                        <AbsValue val="10"/>
+                    </FontHeight>
+                </ButtonText>
+                <NormalFont inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+                    <FontHeight>
+                        <AbsValue val="12"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </NormalFont>
+                <HighlightFont inherits="GameFontHighlight" font="Fonts\FRIZQT__.TTF">
+                    <FontHeight>
+                        <AbsValue val="12"/>
+                    </FontHeight>
+                    <Color r="1" g="1" b="1"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </HighlightFont>
+                <DisabledFont inherits="GameFontDisable" font="Fonts\FRIZQT__.TTF">
+                    <FontHeight>
+                        <AbsValue val="12"/>
+                    </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
+                </DisabledFont>
+            </Button>
+
+
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                GHM_LoadIconList();
+                GH_Localize(self);
+                local bgFrame = CreateFrame("Frame", "$parentBgFrame", self);
+                bgFrame:SetAllPoints(self);
+                local bgFrame2 = CreateFrame("Frame", "$parentBgFrame2", self);
+                bgFrame2:SetAllPoints(self);
+                bgFrame2:SetBackdrop({
+                    bgFile = "Interface\\AddOns\\GHI\\texture\\white.tga",
+                    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                    tile = false,
+                    tileSize = 16,
+                    edgeSize = 16,
+                    insets = { left = 4, right = 4, top = 4, bottom = 4 },
+                });
+                bgFrame:SetFrameLevel(bgFrame:GetFrameLevel() + 1);
+                for _,c in pairs({self:GetChildren()}) do
+                    if not(c == bgFrame2 or c == bgFrame) then
+                        c:SetFrameLevel(c:GetFrameLevel() + 2);
+                    end
+                end
+
+
+                self.UpdateTheme = function()
+
+                    bgFrame:SetBackdrop({
+                        bgFile = GHM_GetBackground(),
+                        edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+                        tile = false,
+                        tileSize = 16,
+                        edgeSize = 16,
+                        insets = { left = 4, right = 4, top = 4, bottom = 4 }
+                    });
+                    bgFrame2:SetBackdropColor(GHM_GetBackgroundColor());
+                end
+                GHM_AddThemedObject(self);
+                self.UpdateTheme(); -- avoiding a blink in the background texture
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+    <Frame name="GHM_Icon_Template" virtual="true">
+        <Frames>
+            <Button name="$parentButton" inherits="ItemButtonTemplate" >
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        local main = self.main;
+                        if not(main.iconFrame) then
+                        main.iconFrame = CreateFrame("Frame",main:GetName().."_IconFrame",self,"GHM_IconFrame_Template");
+                        end
+                        local frame = main.iconFrame;
+                        frame.from = self;
+
+                        local parent = main;
+                        if self.iconFrameParent then
+                            parent = self.iconFrameParent;
+                        elseif main.window then
+                            parent = main.window;
+                        end
+
+                        frame:SetParent(parent);
+                        frame:SetFrameStrata(self:GetFrameStrata());
+
+                        if self.framealign == "l" then
+                        frame:SetPoint("RIGHT", parent, "LEFT", 0, 0);
+                        elseif self.framealign == "r" then
+                        frame:SetPoint("LEFT", parent, "RIGHT", 0, 0);
+                        else
+                        frame:SetPoint("CENTER", parent, "CENTER", 0, 0);
+                        frame:SetFrameLevel(self:GetFrameLevel()+10);
+                        end
+                        frame:Show();
+                    </OnClick>
+
+                </Scripts>
+            </Button>
+            <Frame name="$parentText" inherits="GHM_TextLabel_Template">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-7"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+        </Frames>
+
+    </Frame>
+
+</Ui>

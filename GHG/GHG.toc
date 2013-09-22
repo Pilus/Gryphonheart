@@ -1,0 +1,47 @@
+## Interface: 50400
+## Title: Gryphonheart Groups
+## Version: 0.0.1
+## Notes: Support for guild like groups, which are invisible to other players. E.g. a secret lodge, a tradesman guild or a subguild to an existing guild.
+## X-CodeTool: true
+## RequiredDeps: GHI,GHM
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: GHG_GroupData,GHG_GroupKeys,GHG_SavedPlayerData
+## SavedVariablesPerCharacter: GHG_MiscData
+
+Localization\GHG_Loc.lua
+
+Modules\GH_Comm.lua
+Modules\GH_DataSharer.lua
+Modules\GHG_Crypt.lua
+Modules\GHG_ChatDisplayer.lua
+
+Model\GHG_Group.lua
+Model\GHG_GroupList.lua
+Model\GHG_Emblem.lua
+Model\GHG_PlayerData.lua
+Model\GHG_PlayerDataList.lua
+Model\GHG_GroupMember.lua
+Model\GHG_GroupRank.lua
+
+Comm\GHG_GroupChat.lua
+Comm\GHG_GroupInvite.lua
+Comm\GHG_GroupToasts.lua
+
+API\GHG_GroupAPI.lua
+API\GHG_AdminAPI.lua
+
+GUI\GHG_GroupFrame.xml
+GUI\GHG_GroupFrame.lua
+GUI\GHG_GroupRoster.lua
+GUI\GHG_GroupRoster.xml
+GUI\GHG_GroupAdmin.lua
+GUI\GHG_GroupAdmin.xml
+GUI\GHG_GroupAdmin_RankMenu.lua
+
+GUI\GHG_ChatEvents.lua
+GUI\GHG_ChatConfig.lua
+GUI\GHG_ChatConfig.xml
+GUI\GHG_GroupInfoFrame.lua
+GUI\GHG_GroupInfoFrame.xml
+

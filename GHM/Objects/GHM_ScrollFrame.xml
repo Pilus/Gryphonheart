@@ -1,0 +1,123 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Slider name="GHM_HorizontalScrollBarTemplate" orientation="Horizontal" virtual="true">
+        <Size>
+            <AbsDimension x="0" y="16"/>
+        </Size>
+        <Frames>
+            <Button name="$parentScrollLeftButton" inherits="UIPanelScrollUpButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativePoint="LEFT"/>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        local t = self:GetNormalTexture();
+                        t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75 );
+                        local t = self:GetPushedTexture();
+                        t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75 );
+                    </OnLoad>
+                    <OnClick>
+                        local parent = self:GetParent();
+                        local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
+                        parent:SetValue(parent:GetValue() - scrollStep);
+                        PlaySound("UChatScrollButton");
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parentScrollRightButton" inherits="UIPanelScrollDownButtonTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT"/>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        local t = self:GetNormalTexture();
+                        t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75);
+                        local t = self:GetPushedTexture();
+                        t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75);
+                    </OnLoad>
+                    <OnClick>
+                        local parent = self:GetParent();
+                        local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
+                        parent:SetValue(parent:GetValue() + scrollStep);
+                        PlaySound("UChatScrollButton");
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnValueChanged>
+                self:GetParent():SetHorizontalScroll(value);
+            </OnValueChanged>
+        </Scripts>
+        <ThumbTexture name="$parentThumbTexture" inherits="UIPanelScrollBarButton" urgency="5"
+                      file="Interface\Buttons\UI-ScrollBar-Knob">
+            <Size>
+                <AbsDimension x="18" y="24"/>
+            </Size>
+            <TexCoords left="0.20" right="0.80" top="0.125" bottom="0.875"/>
+        </ThumbTexture>
+    </Slider>
+
+    <ScrollFrame name="GHM_ScrollFrameTemplate" virtual="true">
+        <Scripts>
+            <OnLoad>
+                GHM_ScrollFrame_OnLoad(self);
+            </OnLoad>
+            <OnScrollRangeChanged>
+                GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange);
+            </OnScrollRangeChanged>
+            <!--  The code to disable the ScrollDownButton is pretty hacked, but it works -->
+            <OnVerticalScroll>
+                local scrollbar = _G[self:GetName().."ScrollBar"];
+                scrollbar:SetValue(offset);
+                local min;
+                local max;
+                min, max = scrollbar:GetMinMaxValues();
+                if ( offset == 0 ) then
+                _G[scrollbar:GetName().."ScrollUpButton"]:Disable();
+                else
+                _G[scrollbar:GetName().."ScrollUpButton"]:Enable();
+                end
+                if ((scrollbar:GetValue() - max) == 0) then
+                _G[scrollbar:GetName().."ScrollDownButton"]:Disable();
+                else
+                _G[scrollbar:GetName().."ScrollDownButton"]:Enable();
+                end
+            </OnVerticalScroll>
+            <OnMouseWheel>
+                ScrollFrameTemplate_OnMouseWheel(self, delta);
+            </OnMouseWheel>
+        </Scripts>
+        <Frames>
+            <Slider name="$parentScrollBar" inherits="UIPanelScrollBarTemplate" parentKey="ScrollBar">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="-16"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="16"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Slider>
+            <Slider name="$parentScrollBar2" inherits="GHM_HorizontalScrollBarTemplate" parentKey="ScrollBar2">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="16" y="0"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-16" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Slider>
+        </Frames>
+    </ScrollFrame>
+</Ui>

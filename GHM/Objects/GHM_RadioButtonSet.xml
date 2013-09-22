@@ -1,0 +1,94 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Frame name="GHM_RadioButton_Template" virtual="true">
+        <Size>
+            <AbsDimension x="130" y="16"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="" justifyH="RIGHT">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="16" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                    <Color r="1.0" g="1.0" b="1.0"/>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <CheckButton name="$parentButton">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+					</OnClick>
+					<OnLeave function="GameTooltip_Hide"/>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-RadioButton">
+					<TexCoords left="0" right="0.25" top="0" bottom="1"/>
+				</NormalTexture>
+				<HighlightTexture file="Interface\Buttons\UI-RadioButton" alphaMode="ADD">
+					<TexCoords left="0.5" right="0.75" top="0" bottom="1"/>
+				</HighlightTexture>
+				<CheckedTexture file="Interface\Buttons\UI-RadioButton">
+					<TexCoords left="0.25" right="0.5" top="0" bottom="1"/>
+				</CheckedTexture>
+			</CheckButton>
+        </Frames>
+    </Frame>
+
+
+    <Frame name="GHM_RadioButtonSet_Template" virtual="true">
+        <Size>
+            <AbsDimension x="140" y="88"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentLabel" inherits="GHM_GameFontSmall" text="" justifyH="RIGHT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="11"/>
+                    </FontHeight>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame name="$parentArea">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-15"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+
+</Ui>

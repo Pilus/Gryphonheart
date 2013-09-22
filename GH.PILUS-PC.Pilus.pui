@@ -1,0 +1,58 @@
+[Open Files]
+Active File Display Mode=3
+Active File Index=8
+Open File Line0=21001
+Open File Line1=0
+Open File Line2=96011
+Open File Line3=4641
+Open File Line4=2855
+Open File Line5=11980
+Open File Line6=2668
+Open File Line7=776
+Open File Line8=11346
+Open File Pos0=22713
+Open File Pos1=195
+Open File Pos2=92045
+Open File Pos3=628
+Open File Pos4=3349
+Open File Pos5=1301
+Open File Pos6=3680
+Open File Pos7=2437
+Open File Pos8=11579
+Open File Window Pos0=0,1,-1,-1,-8,-30,9,0,721,882
+Open File Window Pos1=0,1,-1,-1,-8,-30,75,75,1501,682
+Open File Window Pos2=0,1,-1,-1,-8,-30,100,100,1526,707
+Open File Window Pos3=0,1,-1,-1,-8,-30,125,125,1551,732
+Open File Window Pos4=0,1,-1,-1,-8,-30,150,150,1576,757
+Open File Window Pos5=0,1,-1,-1,-8,-30,175,175,1601,782
+Open File Window Pos6=0,1,-1,-1,-8,-30,200,200,1626,807
+Open File Window Pos7=0,1,-1,-1,-8,-30,175,175,1601,782
+Open File Window Pos8=2,3,-1,-1,-8,-30,225,225,1651,832
+Open File0=.\GHI\ghi_scriptEnv.lua
+Open File1=.\GHI\ghi_effect.lua
+Open File2=C:\Games\World of Warcraft\BlizzardUI\FrameXML\ChatFrame.lua
+Open File3=.\GHI\ghi_comm.lua
+Open File4=.\GHI\ghi_buttonUI.lua
+Open File5=C:\Games\World of Warcraft\Interface\addons\GHI\Libs\AceComm-3.0\AceComm-3.0.lua
+Open File6=.\GHI\ghi_trade.lua
+Open File7=C:\Games\World of Warcraft\Interface\addons\GHI\ghi_channelComm.lua
+Open File8=C:\Games\World of Warcraft\Interface\addons\GHI\Libs\AceComm-3.0\ChatThrottleLib.lua
+Open File9=
+Remember Files=1
+
+[Project Information]
+Project Start=DB07060003000F0010000200120000001E
+Working Time=2553779
+
+[Folders]
+GHD=1
+GHI=1
+GHI - Localization=1
+GHI - Renovated classes=1
+GHM=1
+GHP=1
+GHP - Document=1
+GHU=1
+GHU - Document=1
+GHU - Test=1
+

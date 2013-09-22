@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on #443. Converting to tabs." />
+    <ignored path="AddOns.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379452741168" ignored="false" />
+    <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
+    <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376850627894" ignored="false" />
+    <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
+    <file path="/GHI_BookObj_Signature.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079378777" ignored="false" />
+    <file path="/GHI_SimpleAction.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338314117" ignored="false" />
+    <file path="/a.dummy" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1378234208249" ignored="false" />
+    <file path="/GHI_BookMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376151893409" ignored="false" />
+    <file path="/GHI_ScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108571829" ignored="false" />
+    <file path="/GHI_ActionAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447100441" ignored="false" />
+    <file path="/GHM_DropDown.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376147460379" ignored="false" />
+    <file path="/GHI_BuffMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338643231" ignored="false" />
+    <file path="/GHM_Slider.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378633463853" ignored="false" />
+    <file path="/GHM_Color2.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376512274108" ignored="false" />
+    <file path="/GHM_MultiPageEditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377717826108" ignored="false" />
+    <file path="/GHI_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930411277" ignored="false" />
+    <file path="/GHM_Image.xml" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376514722165" ignored="false" />
+    <file path="/GHM_Image.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376515360466" ignored="false" />
+    <file path="/ghm.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378933043687" ignored="false" />
+    <file path="/GHI_Map.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376859661016" ignored="false" />
+    <file path="/GHI_MapData.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376861151172" ignored="false" />
+    <file path="/GHI_MapDisplayer.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376848893712" ignored="false" />
+    <file path="/GHI_MapMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376860873636" ignored="false" />
+    <file path="/GHI_MapMaker.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376857483632" ignored="false" />
+    <file path="/GHI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376944673017" ignored="false" />
+    <file path="/GHI_Timer.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377109439951" ignored="false" />
+    <file path="/GHI_Stack.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378845660299" ignored="false" />
+    <file path="/GHI_ExpressionHandler.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108496303" ignored="false" />
+    <file path="/GHI_LimitedScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108537950" ignored="false" />
+    <file path="/GHI_ItemInfoList.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377109926735" ignored="false" />
+    <file path="/GHI_Position.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108819485" ignored="false" />
+    <file path="/GHI_VersionInfo.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108872094" ignored="false" />
+    <file path="/GHI_BuffUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377723969308" ignored="false" />
+    <file path="/GHI_StandardItemMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930261951" ignored="false" />
+    <file path="/GHI_ItemandContainer.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587119433" ignored="false" />
+    <file path="/GHI_Trade.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378758799711" ignored="false" />
+    <file path="/GHI_ContainerList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378649844213" ignored="false" />
+    <file path="/GHI_ContainerInfo.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378650789197" ignored="false" />
+    <file path="/GHI_BagMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587551197" ignored="false" />
+    <file path="/GHM_Slider.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378588792084" ignored="false" />
+    <file path="/GHI_ContainerUI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844368248" ignored="false" />
+    <file path="/a.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379445048184" ignored="false" />
+    <file path="/GHI_ContainerAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378843484544" ignored="false" />
+    <file path="/GHI_ItemInfo_Standard.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844695368" ignored="false" />
+    <file path="/GHI_ItemInfo_Advanced.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378846032443" ignored="false" />
+    <file path="/GHI_ItemInfo_Basic.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378845530881" ignored="false" />
+    <file path="/GHI_MiscAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379449553968" ignored="false" />
+    <file path="/a.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379444952801" ignored="false" />
+    <file path="/GHM_Time.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378932171377" ignored="false" />
+    <file path="/ghm.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378932766822" ignored="false" />
+    <file path="/GHI_ClassAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447910656" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <breakpoint_rules />
+    <ui_properties />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="AddOns" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/GHI/AdvancedItemMenu/GHI_UpdateSequenceMenu.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_ActionAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_AnimationAPI.xml" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_ClassAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_ContainerAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_CreateItemAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_GameWorldData.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_MarySueAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_MenuAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/APIs/GHI_MiscAPI.lua" />
+        <option value="$PROJECT_DIR$/GHI/Bindings.xml" />
+        <option value="$PROJECT_DIR$/GHI/Containers/GHI_ContainerList.lua" />
+        <option value="$PROJECT_DIR$/GHI/Containers/GHI_ExportItem.lua" />
+        <option value="$PROJECT_DIR$/GHI/Containers/GHI_Stack.lua" />
+        <option value="$PROJECT_DIR$/GHI/Containers/GHI_Trade.lua" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHQ" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StandardItemMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Containers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Lua" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WTF/Account/PINGUCHRESTEN/Argent Dawn/Pilus/SavedVariables/GHI.lua" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\UI\Book" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree">
+    <UpdateInfo date="Moments ago" ActionInfo="_Update">
+      <UpdatedFiles>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated from server" />
+          <option name="myStatusName" value="Changed on server" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CHANGED_ON_SERVER" />
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Updated" />
+            <option name="myStatusName" value="Changed" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="UPDATED" />
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea\ant.xml</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\AddOns.iml</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_ActionAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_AnimationAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_AnimationAPI.xml</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_ClassAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_ContainerAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_CreateItemAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_GameWorldData.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_MarySueAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_MenuAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\APIs\GHI_MiscAPI.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_AreaSound.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_BuffHandler.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_ExpressionHandler.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionExecutors\GHI_ScriptEnv.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\GHI_DynamicActionInstanceSet.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\GHI_SimpleAction.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\SetLayout\GHI_HorizontalChannel.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\ActionHandlers\SetLayout\GHI_VerticalChannel.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\AdvancedItemMenu\GHI_AdvancedItemMenu.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\AdvancedItemMenu\GHI_AttributeMenu.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\AdvancedItemMenu\GHI_UpdateSequenceMenu.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Bindings.xml</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_ContainerList.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_ExportItem.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_Stack.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Containers\GHI_Trade.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\Localization\GHI_Loc.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHI\StandardItemMenu\GHI_ScriptMenu.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\GHM_Images.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\ghm_icons.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Image.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Slider.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Icon.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_MultiPageEditField.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Icon.xml</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_ButtonWithIcon.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_DropDown.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_EditBox.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_Texture.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\GHM_Inputs.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\ghm.toc</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\ghm.xml</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Created" />
+            <option name="myStatusName" value="Created" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="CREATED" />
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\ImagePicker</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\ImagePicker\GHM_ImagePickerList.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\ImagePicker\GHM_ImagePicker.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\IconPicker</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\IconPicker\GHM_IconPicker.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Menus\IconPicker\GHM_IconPickerList.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_ImageList.lua</PATH>
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\GHM\Objects\GHM_ImageList.xml</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Deleted" />
+            <option name="myStatusName" value="Deleted" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="true" />
+            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+            <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea\codeStyleSettings.xml</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Restored" />
+            <option name="myStatusName" value="Will be restored" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="RESTORED" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Modified" />
+          <option name="myStatusName" value="Modified" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MODIFIED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Skipped" />
+          <option name="myStatusName" value="Skipped" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SKIPPED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with conflicts" />
+          <option name="myStatusName" value="Will be merged with conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with tree conflicts" />
+          <option name="myStatusName" value="Merged with tree conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with property conflicts" />
+          <option name="myStatusName" value="Will be merged with property conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged" />
+          <option name="myStatusName" value="Will be merged" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Not in repository" />
+          <option name="myStatusName" value="Not in repository" />
+          <option name="mySupportsDeletion" value="true" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UNKNOWN" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally added" />
+          <option name="myStatusName" value="Locally added" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_ADDED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally removed" />
+          <option name="myStatusName" value="Locally removed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_REMOVED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Switched" />
+          <option name="myStatusName" value="Switched" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SWITCHED" />
+          <PATH vcs="svn" revision="1694">C:\Program Files (x86)\World of Warcraft\Interface\AddOns</PATH>
+        </FILE-GROUP>
+      </UpdatedFiles>
+    </UpdateInfo>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="#com.sylvanaar.idea.Lua.run.LuaConfigurationType" factoryName="Lua Script">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="ALTERNATE_INTERPRETER" value="false" />
+      <envs />
+      <module name="AddOns" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="true" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="false">C:\Users\Christian\AppData\Roaming\Subversion</configuration>
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
+          <option name="myCopyRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea" />
+          <option name="myCopyRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns\.idea" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
+          <option name="myCopyRoot" value="C:\Program Files (x86)\World of Warcraft\Interface\AddOns" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="" />
+      <changelist id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Locked / unlocked whole containers when needed.&#10;Removed item if any of its parent bags are being traded." />
+      <created>1375299444526</created>
+      <updated>1375299444526</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Progression on the text position calculator. Untested code.">
+      <created>1375481359108</created>
+      <updated>1375481359108</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Progress on dynamic book objects. Moved all book related files into a Book directory.">
+      <created>1376059155133</created>
+      <updated>1376059155133</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Re #407 Implemented a standard book object.">
+      <created>1376072936106</created>
+      <updated>1376072936106</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Re #407 Fixed some issues in the code. Started on an implementation example: Signature. Also changed edit of books in simple items so that it opens the edit book action directly.">
+      <created>1376128727105</created>
+      <updated>1376128727105</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed a minor issue where book font sizes were strings instead of numbers.">
+      <created>1376164678107</created>
+      <updated>1376164678107</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ref #410 Added a easier spotable edit buttons in the book UI.">
+      <created>1376508884106</created>
+      <updated>1376508884106</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Ref #410 Fixed an issue where the slider where not being initialized correctly to a value.">
+      <created>1376511732105</created>
+      <updated>1376511732105</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Ref #410 The color picker should now initialize the color text boxes correctly.">
+      <created>1376512453105</created>
+      <updated>1376512453105</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Ref #410 Fixed an issue with a too large label for page number in the link to page. Clarified the usage by changing the menu title.">
+      <created>1376514031117</created>
+      <updated>1376514031117</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Re #410 Fixed an issue where the empty scroll frame were shown in the image chosing menu when it did not contain images.">
+      <created>1376515964105</created>
+      <updated>1376515964105</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Measured map data for lower eastern kingdoms.">
+      <created>1376848775120</created>
+      <updated>1376848775120</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Map progress">
+      <created>1376861348103</created>
+      <updated>1376861348103</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added a lot of timer identifiers as part of debugging. Commiting them, as they can be useful for debugging in the future. Also a minor improvement in stacks, so they do not load timers for item update sequences not being there.">
+      <created>1377109863108</created>
+      <updated>1377109863108</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Re #376. Found the bugger. Get all depending items were looping infinitely in the special case where an item A depends on item B, which depends on item C, wich then in return also depends on item B and both item B and item C are not currently existing in any containers.">
+      <created>1377110329105</created>
+      <updated>1377110329105</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Re #376. This time in the right branch :s. Get all depending items were looping infinitely in the special case where an item A depends on item B, which depends on item C, wich then in return also depends on item B and both item B and item C are not currently existing in any containers.">
+      <created>1377111492104</created>
+      <updated>1377111492104</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Re #410. Enable and disable of next and prev buttons in the multi page edit field.">
+      <created>1377717985137</created>
+      <updated>1377717985137</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Re #392. Consilidate buff UI should no longer overlap the GHI buffs.">
+      <created>1377724130103</created>
+      <updated>1377724130103</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed an issue with the slider that blocked item creation.">
+      <created>1378227291147</created>
+      <updated>1378227291147</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Dynamic action for tradeable bag.">
+      <created>1378235135105</created>
+      <updated>1378235135105</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other.">
+      <created>1378472835103</created>
+      <updated>1378472835103</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Re #96. Almost everything is done with trade.">
+      <created>1378659180102</created>
+      <updated>1378659180102</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Re #96. Implemented a &quot;Waiting for item data&quot; sign, when trade item data takes longer than expected to transfer.">
+      <created>1378757692125</created>
+      <updated>1378757692125</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Re #96. Implemented an error message when trying to trade bags to a player with GHI version lower than 2.1.2.">
+      <created>1378758986103</created>
+      <updated>1378758986103</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Re #297. Implemented cooldown information from attributes. Also fixed an issue where the &quot;on click&quot; dynamic actions would be given the same stack for all instances of the item.">
+      <created>1378846156110</created>
+      <updated>1378846156110</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Updated all toc numbers. Adjusted the action node to be a bit less dominant.">
+      <created>1378930537137</created>
+      <updated>1378930537137</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fixed several issues with sliders, due to the new patch.">
+      <created>1378933552103</created>
+      <updated>1378933552103</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Update version number as part of release">
+      <created>1378933906105</created>
+      <updated>1378933906105</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Progress on #443. Converting to tabs.">
+      <created>1379452792107</created>
+      <updated>1379452792107</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25859246" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.87027913" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12972085" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.74055827" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19772728" sideWeight="0.87027913" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34369886" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress on #443. Converting to tabs." />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="Fixed a minor issue where book font sizes were strings instead of numbers." />
+    <MESSAGE value="Ref #410 Added a easier spotable edit buttons in the book UI." />
+    <MESSAGE value="Ref #410 Fixed an issue where the slider where not being initialized correctly to a value." />
+    <MESSAGE value="Ref #410 The color picker should now initialize the color text boxes correctly." />
+    <MESSAGE value="Ref #410 Fixed an issue with a too large label for page number in the link to page. Clarified the usage by changing the menu title." />
+    <MESSAGE value="Re #410 Fixed an issue where the empty scroll frame were shown in the image chosing menu when it did not contain images." />
+    <MESSAGE value="Measured map data for lower eastern kingdoms." />
+    <MESSAGE value="Map progress" />
+    <MESSAGE value="Added a lot of timer identifiers as part of debugging. Commiting them, as they can be useful for debugging in the future. Also a minor improvement in stacks, so they do not load timers for item update sequences not being there." />
+    <MESSAGE value="Re #376. Found the bugger. Get all depending items were looping infinitely in the special case where an item A depends on item B, which depends on item C, wich then in return also depends on item B and both item B and item C are not currently existing in any containers." />
+    <MESSAGE value="Re #376. This time in the right branch :s. Get all depending items were looping infinitely in the special case where an item A depends on item B, which depends on item C, wich then in return also depends on item B and both item B and item C are not currently existing in any containers." />
+    <MESSAGE value="Re #410. Enable and disable of next and prev buttons in the multi page edit field." />
+    <MESSAGE value="Re #392. Consilidate buff UI should no longer overlap the GHI buffs." />
+    <MESSAGE value="Fixed an issue with the slider that blocked item creation." />
+    <MESSAGE value="Dynamic action for tradeable bag." />
+    <MESSAGE value="Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
+    <MESSAGE value="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
+    <MESSAGE value="Re #96. Almost everything is done with trade." />
+    <MESSAGE value="Re #96. Implemented a &quot;Waiting for item data&quot; sign, when trade item data takes longer than expected to transfer." />
+    <MESSAGE value="Re #96. Implemented an error message when trying to trade bags to a player with GHI version lower than 2.1.2." />
+    <MESSAGE value="Re #297. Implemented cooldown information from attributes. Also fixed an issue where the &quot;on click&quot; dynamic actions would be given the same stack for all instances of the item." />
+    <MESSAGE value="Updated all toc numbers. Adjusted the action node to be a bit less dominant." />
+    <MESSAGE value="Fixed several issues with sliders, due to the new patch." />
+    <MESSAGE value="Update version number as part of release" />
+    <MESSAGE value="Progress on #443. Converting to tabs." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_ClassAPI.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="177" column="11" selection-start="4110" selection-end="4110" vertical-scroll-proportion="0.9174757">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_ContainerAPI.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="213" column="4" selection-start="5900" selection-end="5900" vertical-scroll-proportion="0.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_GameWorldData.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="193" column="8" selection-start="10134" selection-end="10134" vertical-scroll-proportion="0.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_CreateItemAPI.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="276" column="12" selection-start="8702" selection-end="8702" vertical-scroll-proportion="0.9174757">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_MarySueAPI.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="186" column="7" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.38106796">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_MenuAPI.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="7" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/AttributeMenu/GHI_InstanceMenu.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.36">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_MiscAPI.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="423" column="4" selection-start="12216" selection-end="12216" vertical-scroll-proportion="0.7936893">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/AttributeMenu/GHI_ModifyAttributeMenu.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-4.6235294">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/AttributeMenu/GHI_ViewAttributeMenu.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-6.08">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Bindings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="4" selection-start="98" selection-end="98" vertical-scroll-proportion="0.16">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_ContainerInfo.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="0" selection-start="2535" selection-end="2535" vertical-scroll-proportion="0.041262135">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_ContainerList.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="353" column="0" selection-start="11710" selection-end="11710" vertical-scroll-proportion="0.041262135">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_ExportItem.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="8" selection-start="3473" selection-end="3473" vertical-scroll-proportion="0.4117647">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_Stack.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="675" column="59" selection-start="18445" selection-end="18447" vertical-scroll-proportion="-5.32">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_Trade.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="4" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.37378642">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>LuaJ</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>AddOns</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+

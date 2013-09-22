@@ -1,0 +1,23 @@
+C:\Users\Christian\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\bin\Debug\GH AddOn Packer.exe
+C:\Users\Christian\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\bin\Debug\GH AddOn Packer.pdb
+C:\Users\Christian\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Christian\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.exe
+C:\Users\Christian\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.pdb
+C:\Users\Christian\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.exe
+F:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.pdb
+E:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.exe
+E:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.pdb
+E:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\bin\Debug\GH AddOn Packer.exe
+E:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\bin\Debug\GH AddOn Packer.pdb
+E:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\Documents\Visual Studio 2008\Projects\GH AddOn Packer\GH AddOn Packer\obj\Debug\ResolveAssemblyReference.cache
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns_\GH Documentation\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.exe
+C:\Games\World of Warcraft 3.3.0\Interface\AddOns_\GH Documentation\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.pdb
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.exe
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.pdb
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\bin\Debug\GH AddOn Packer.exe
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\bin\Debug\GH AddOn Packer.pdb
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\bin\Debug\ftplib.dll
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Games\World of Warcraft\Interface\AddOns\GH Documentation\GH AddOn Packer\GH AddOn Packer\obj\Debug\GH AddOn Packer.csprojResolveAssemblyReference.cache

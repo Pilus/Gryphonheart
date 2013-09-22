@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yFiles for Java 2.7-->
+  <key for="graphml" id="d0" yfiles.type="resources"/>
+  <key attr.name="url" attr.type="string" for="node" id="d1"/>
+  <key attr.name="description" attr.type="string" for="node" id="d2"/>
+  <key for="node" id="d3" yfiles.type="nodegraphics"/>
+  <key attr.name="Description" attr.type="string" for="graph" id="d4">
+    <default/>
+  </key>
+  <key attr.name="url" attr.type="string" for="edge" id="d5"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d6"/>
+  <key for="edge" id="d7" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <node id="n0">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="100" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Log</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+Add(degree,message,details)
++ToText()</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n1">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="92" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">ghi_scriptEnv</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+ExecuteScript(code)
++SetValue(name,val)
++GetValue(name)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n2">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="100" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Comm</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+AddRecieveFunc(_prefix,_recieveFunc)
++GetQueueSize()</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n3">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="115" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_ItemDataTransfer</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+SyncItemLinkData(player,ID)
++SyncItemActionData(player,ID)
++AddRecieveDataItemFeedbackFunction(func)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n4">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="100" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Ping</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+SendPing(player,silent)
++RegisterRecievePingFunc(func)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n5">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="92" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_SlashCmd</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>#GHI_SlashCmd(mainSlashPrefix)
++SetDefaultFunc(func)
++RegisterSubPrefix(subPrefix,func)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n6">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="62" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Timer</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>#GHI_Timer(func,interval,onceOnly)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n7">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="100" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Position</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+GetPlayerPos()
++IsPosWithinRange(position,range)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n8">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="85" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_AreaBuff</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+Send(buffName,buffDetails,buffIcon,untillCanceled,filter,buffType,buffDuration,cancelable,stackable,count,delay,range)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n9">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="85" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_AreaSound</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+Send(soundPath,range,delay)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n10">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="100" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_ItemUpdater</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+UpdateAllItems()
++UpdateItem(ID)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n11">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="85" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_OptionsMenu</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+Show()</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n12">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="85" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_ChannelComm</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+AddRecieveFunc(_prefix,_recieveFunc)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n13">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="100" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Trade</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+GetEmptySlot()
++GetDurationInfo(fromRecipient,slot)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n14">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="47" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_UnitTooltip</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel></y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n15">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="137" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_LinksUI</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>#GHI_LinksUI(prefix,syncDataFunc,linkClickFunc)
++TriggerRecieveLink(sender,name,ID,color)
++RegisterSyncDataFunc(prefix,func)
++RegisterLinkClickFunc(prefix,func)
++GenerateLink(prefix,text,ID,color)
++TriggerRecieveLink(sender,name,prefix,ID,color)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n16">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="152" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Button</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+UseSquared()
++UseRound()
++ResetPosition()
++SetPosition(x,y)
++SetChangePositionCallbackFunction(func)
++SetScale(scale)
++SetTexture(texture)</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n17">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="70" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_Main</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel></y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n18">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="62" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_ItemInfo</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+ReturnItemData()</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n<node id="n19">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="85" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">GHI_GUID</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+        <y:AttributeLabel></y:AttributeLabel>
+        <y:MethodLabel>+MakeGUID()</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>
+\n
+    \n\n<edge id="e0" source="n2" target="n0">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n<edge id="e1" source="n3" target="n2">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e2" source="n3" target="n10">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n<edge id="e3" source="n4" target="n2">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n\n\n\n<edge id="e4" source="n8" target="n7">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e5" source="n8" target="n12">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n<edge id="e6" source="n9" target="n7">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e7" source="n9" target="n12">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e8" source="n9" target="n0">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n\n<edge id="e9" source="n11" target="n0">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e10" source="n11" target="n16">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n<edge id="e11" source="n12" target="n0">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e12" source="n12" target="n6">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n<edge id="e13" source="n13" target="n2">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e14" source="n13" target="n4">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e15" source="n13" target="n3">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e16" source="n13" target="n6">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n\n<edge id="e17" source="n15" target="n2">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e18" source="n15" target="n0">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e19" source="n15" target="n6">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n\n<edge id="e20" source="n17" target="n5">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e21" source="n17" target="n4">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e22" source="n17" target="n0">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e23" source="n17" target="n13">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e24" source="n17" target="n10">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e25" source="n17" target="n11">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n<edge id="e26" source="n17" target="n14">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+
+\n\n\n\n
+  </graph>
+  <data key="d0">
+    <y:Resources/>
+  </data>
+</graphml>

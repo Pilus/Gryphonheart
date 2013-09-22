@@ -1,0 +1,90 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Frame name="GHG_ChatConfigCheckBoxWithSwatchTemplate" inherits="ChatConfigCheckBoxTemplate" virtual="true">
+        <Frames>
+            <Button name="$parentColorSwatch" hidden="false">
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT">
+                        <Offset>
+                            <AbsDimension x="178" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture name="$parentSwatchBg">
+                            <Size>
+                                <AbsDimension x="14" y="14"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="CENTER">
+                                    <Offset>
+                                        <AbsDimension x="0" y="0"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <Color r="1.0" g="1.0" b="1.0"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick>
+                        GHG_MessageTypeColor_OpenColorPicker(self, button, down);
+                    </OnClick>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\ChatFrameColorSwatch"/>
+            </Button>
+        </Frames>
+    </Frame>
+
+    <Frame name="GHG_ChatConfigSettings" parent="ChatConfigFrame" hidden="true">
+        <Size x="10" y="10"/>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="ChatConfigBackgroundFrame"/>
+        </Anchors>
+        <Frames>
+            <Frame name="$parentGeneral" inherits="ChatConfigBoxWithHeaderTemplate">
+                <Size x="10" y="10"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="13" y="-25"/>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+            <Frame name="$parentGroupChats" inherits="ChatConfigBoxWithHeaderTemplate">
+                <Size x="10" y="10"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentGeneral" relativePoint="BOTTOMLEFT">
+                        <Offset x="0" y="-25"/>
+                    </Anchor>
+                </Anchors>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+
+                table.insert(CHAT_CONFIG_CATEGORIES,self:GetName())
+            </OnLoad>
+            <OnShow>
+                ChatConfig_UpdateCheckboxes(GHG_ChatConfigSettingsGeneral);
+                ChatConfig_UpdateCheckboxes(GHG_ChatConfigSettingsGroupChats);
+                ChatConfigFrameDefaultButton:Show();
+                CombatLogDefaultButton:Hide();
+            </OnShow>
+        </Scripts>
+    </Frame>
+    <Button name="$parentButton5" parent="ChatConfigCategoryFrame" inherits="ConfigCategoryButtonTemplate" text="GHG" id="5">
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="$parentButton4" relativePoint="BOTTOMLEFT">
+                <Offset x="0" y="-1"/>
+            </Anchor>
+            <Anchor point="TOPRIGHT" relativeTo="$parentButton4" relativePoint="BOTTOMRIGHT">
+                <Offset x="0" y="-1"/>
+            </Anchor>
+        </Anchors>
+    </Button>
+</Ui>

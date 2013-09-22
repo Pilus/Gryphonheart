@@ -1,0 +1,79 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+	<Frame name="GHM_Image_Template" virtual="true">
+			<Frames>
+				<Frame name="$parentArea">
+					<Backdrop bgFile="Interface\Tooltips\ChatBubble-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+						<EdgeSize>
+							<AbsValue val="16"/>
+						</EdgeSize>
+						<TileSize>
+							<AbsValue val="16"/>
+						</TileSize>
+						<BackgroundInsets>
+							<AbsInset left="5" right="5" top="5" bottom="5"/>
+						</BackgroundInsets>
+					</Backdrop>
+					<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+					 </Anchors>
+					 <Size>
+						<AbsDimension x="128" y="144"/>
+					 </Size>
+					<Frames>
+						<Button name="$parentButton" inherits="GHM_Button_Template" hidden="false" text="Choose Image">
+						<Anchors>
+								<Anchor point="TOP" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-8"/>
+									</Offset>
+								</Anchor>
+						 </Anchors>
+						 <Size>
+							<AbsDimension x="96" y="25"/>
+						</Size>
+						</Button>
+						<Frame name="$parentPreview">
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentButton">
+									<Offset>
+										<AbsDimension x="0" y="-8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							 <Size>
+								<AbsDimension x="96" y="96"/>
+							 </Size>
+						 <Layers>
+							<Layer>
+								<Texture name="$parentTexture">
+								<Anchors>
+									<Anchor point="CENTER" relativePoint="CENTER">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								</Texture>
+							</Layer>
+						 </Layers>
+						 </Frame>
+					 </Frames>
+				</Frame>			
+				<Frame name="$parentText" inherits="GHM_TextLabel_Template">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Frame>
+			</Frames>
+	
+		</Frame>
+</Ui>

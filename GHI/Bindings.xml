@@ -1,0 +1,6 @@
+
+<Bindings>
+  <Binding name="Toggle GHI bag" header="Gryphonheart Items">
+    GHI_ToggleBackpack();
+  </Binding>
+</Bindings>

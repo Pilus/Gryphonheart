@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+r50 | galmok | 2011-01-04 12:12:14 +0000 (Tue, 04 Jan 2011) | 1 line
+Changed paths:
+   A /tags/r49-release (from /trunk:49)
+
+Tagging as r49-release
+------------------------------------------------------------------------
+r49 | galmok | 2011-01-04 12:09:56 +0000 (Tue, 04 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/LibCompress.toc
+
+Update: toc file updated to match current game version.
+------------------------------------------------------------------------

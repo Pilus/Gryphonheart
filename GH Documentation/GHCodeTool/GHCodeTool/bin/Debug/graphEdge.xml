@@ -1,0 +1,10 @@
+﻿<edge id="eEDGE_INDEX" source="nSOURCE_NODE" target="nTARGET_NODE">
+  <data key="d7">
+    <y:PolyLineEdge>
+      <y:LineStyle color="#000000" type="line" width="1.0"/>
+      <y:Arrows source="none" target="plain"/>
+      <y:BendStyle smoothed="false"/>
+    </y:PolyLineEdge>
+  </data>
+</edge>
+

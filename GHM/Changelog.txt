@@ -1,0 +1,17 @@
+GHM change log
+v 0.7
+- Sliders now correctly show the slider text.
+
+v 0.6
+- Fixed various bug regarding check boxes
+- Force now correctly safe data for data that is not filled into frames
+- Added the ability to make on show functions for a frame and for each object.
+- Able to define size for edit boxes
+
+v 0.5
+- Added the ability to change a main frames width.
+- Implemented Custom Slider.
+- Made it possible to place a on ok function on std frames.
+
+v 0.4
+- Removed test messages from force function for checkboxes.

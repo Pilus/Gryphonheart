@@ -1,0 +1,25 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+    <ScrollFrame name="GHI_TextPositionCalculatorTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="1000" y="0.000001"/>
+        </Size>
+        <ScrollChild>
+            <Frame name="$parentChild">
+                <Size>
+                    <AbsDimension x="0.1" y="0.1"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT"/>
+                </Anchors>
+                <Frames>
+                    <SimpleHTML name="$parentPage">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" x="0" y="-15"/>
+                        </Anchors>
+                    </SimpleHTML>
+                </Frames>
+            </Frame>
+        </ScrollChild>
+    </ScrollFrame>
+</Ui>

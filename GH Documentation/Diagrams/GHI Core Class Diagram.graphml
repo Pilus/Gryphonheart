@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yFiles for Java 2.8-->
+  <key for="graphml" id="d0" yfiles.type="resources"/>
+  <key for="port" id="d1" yfiles.type="portgraphics"/>
+  <key for="port" id="d2" yfiles.type="portgeometry"/>
+  <key for="port" id="d3" yfiles.type="portuserdata"/>
+  <key attr.name="url" attr.type="string" for="node" id="d4"/>
+  <key attr.name="description" attr.type="string" for="node" id="d5"/>
+  <key for="node" id="d6" yfiles.type="nodegraphics"/>
+  <key attr.name="Description" attr.type="string" for="graph" id="d7">
+    <default/>
+  </key>
+  <key attr.name="url" attr.type="string" for="edge" id="d8"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d9"/>
+  <key for="edge" id="d10" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <node id="n0">
+      <data key="d4"/>
+      <data key="d5"><![CDATA[UMLClass]]></data>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="145.0" width="265.2763776270824" x="289.9348383764383" y="0.0"/>
+          <y:Fill color="#00CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="145.578125" x="59.849126313541205" y="26.701171875">Items\GHI_ItemInfoList</y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+            <y:AttributeLabel/>
+            <y:MethodLabel>+AddItem(item)
++GetItemInfo(guid)
++LoadFromSaved()
++GetGuidsWithItemInfo()
++UpdateItem(newItem)</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n1">
+      <data key="d4"/>
+      <data key="d5"><![CDATA[UMLClass]]></data>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="557.0" width="265.2763776270824" x="289.9348383764383" y="201.14682044887758"/>
+          <y:Fill color="#00CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="122.46630859375" x="71.4050345166662" y="3.0">Items\GHI_ItemInfo</y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel/>
+            <y:MethodLabel>+GetItemData(includeSimpleActions)
++GetTooltipLines()
++GenerateStack(amount)
++AddSimpleAction(_action)
++RemoveSimpleAction(_action)
++UseItem(stack)
++GetVersions()
++IncreaseVersion(alsoIncreaseActionVersion)
++IsNewest(otherItem)
++GetCooldown()
++IsOnCooldown()
++IsCreatedByPlayer()
++GetItemInfo()
++GetFlavorText()
++GetCreatorInfo()
++IsCopyable()
++IsEditable()
++IsConsumed()
++GetGUID()
++SetName(_name)
++SetWhite1(_white1)
++SetWhite2(_white2)
++SetComment(_comment)
++SetQuality(_quality)
++SetUseText(_use)
++SetIcon(_icon)
++SetStackSize(_stackSize)
++SetCopyable(copy)
++SetEditable(edit)
++SetConsumed(_consume)
++SetCooldown(_cd)
++SetLastCastTime(lastCast)
++GetSimpleActionCount()
++GetSimpleAction(index)</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n2">
+      <data key="d4"/>
+      <data key="d5"><![CDATA[UMLClass]]></data>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="302.0" width="396.3225122904239" x="627.2081609778566" y="767.9239401496259"/>
+          <y:Fill color="#00CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="140.54443359375" x="127.88903934833695" y="3.0">Containers\GHI_Stack</y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel/>
+            <y:MethodLabel>+GetParentContainer()
++SetParantContainer(_parentContainer)
++GetContainerItemInfo()
++GetItemInfo()
++DisplayItemTooltip(tooltipFrame,anchorFrame)
++IsLocked()
++SetLocked(newLocked)
++CompleteSplitStack(amount)
++IsSameItem(otherStack)
++MergeStacks(otherStack)
++GetAllItemInstances()
++UseItem()
++GetItemInstanceCount()
++GetItemInstanceAmount(itemInstanceIndex)
++GetAttribute(itemInstanceIndex,attributeName)
++SetAttribute(itemInstanceIndex,attributeName,value)
++DeleteItem(itemInstanceIndex,amount)</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n3">
+      <data key="d4"/>
+      <data key="d5"><![CDATA[UMLClass]]></data>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="302.0" width="396.3225122904238" x="627.2081609778566" y="0.0"/>
+          <y:Fill color="#00CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="189.63720703125" x="103.3426526295869" y="26.701171875">Containers\GHI_ContainerList</y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="Singleton" use3DEffect="true">
+            <y:AttributeLabel/>
+            <y:MethodLabel>+GetCurrentMainBagGUID()
++GetContainerItemInfo(containerGuid,slotID)
++LoadFromSaved()
++DisplayItemTooltip(containerGuid,slotID,tooltipFrame,anchorFrame)
++GotNextMainBagPage()
++NextMainBagPage()
++GotPrevMainBagPage()
++PrevMainBagPage()
++UseItem(containerGuid,slotID)
++PickupContainerItem(containerGuid,slotID)
++SplitContainerItem(containerGuid,slotID,amount)
++OpenBag(containerGuid,openedByStack,size,texture,name,icon)
++InsertItemInMainBag(guid,amount)
++InsertItemInBag(guid,amount,containerGuid)
++GetContainerInfo(containerGuid)</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d4"/>
+      <data key="d5"><![CDATA[UMLClass]]></data>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="347.0" width="396.3225122904237" x="627.2081609778566" y="357.96197007481294"/>
+          <y:Fill color="#00CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="190.34814453125" x="102.98718387958684" y="3.0">Containers\GHI_ContainerInfo</y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel/>
+            <y:MethodLabel>+GetNumFreeSlots()
++GetGUID()
++IsSlotLocked(slotID)
++UpdateSize(_size)
++InsertItem(stack)
++SetTexture(_texture)
++SetIcon(_icon)
++SetName(_name)
++Open()
++GetContainerInfo()
++GetContainerItemInfo(slotID)
++DisplayItemTooltip(slotID,tooltipFrame,anchorFrame)
++PickupContainerItem(slotID,amount)
++DeleteItemFromBag(slotID,amount)
++ReplaceStack(slotID,newStack)
++CompleteSplitStack(slotID,amount)
++IsSameItem(slotID,otherStack)
++MergeStacks(slotID,otherStack)
++IsContainerAccessible()
++UseItem(slotID)</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d4"/>
+      <data key="d5"><![CDATA[UMLClass]]></data>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="152.0" width="265.2763776270824" x="289.9348383764383" y="814.2936408977553"/>
+          <y:Fill color="#00CCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="217.0908203125" x="24.092778657291205" y="3.0">ActionHandlers\GHI_SimpleAction</y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel/>
+            <y:MethodLabel>+GetActionData(format)
++GetRequiredItems()
++Execute(scriptingEnv)
++GetType()
++GetInfo()
++UpdateInfo(_info)
++GetActionInfo()</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <edge id="e0" source="n0" target="n1">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="n3" target="n4">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="n4" target="n2">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="n1" target="n5">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+  <data key="d0">
+    <y:Resources/>
+  </data>
+</graphml>

@@ -1,0 +1,16 @@
+﻿<node id="nNODE_INDEX">
+  <data key="d1"/>
+  <data key="d2"><![CDATA[UMLClass]]></data>
+  <data key="d3">
+    <y:UMLClassNode>
+      <y:Geometry height="HEIGHT" width="132.993958674464" x="0.0" y="-5097.512786131996"/>
+      <y:Fill color="#00CCFF" transparent="false"/>
+      <y:BorderStyle color="#000000" type="line" width="1.0"/>
+      <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="93.5654296875" x="19.714264493482005" y="26.701171875">CLASS_NAME</y:NodeLabel>
+      <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="STEREOTYPE" use3DEffect="true">
+        <y:AttributeLabel>VARIABLES</y:AttributeLabel>
+        <y:MethodLabel>FUNCTIONS</y:MethodLabel>
+      </y:UML>
+    </y:UMLClassNode>
+  </data>
+</node>

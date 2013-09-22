@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram>
+<source><![CDATA[UI:Actor
+doc:Document[a]
+page:Page[a]
+area:Area[a]
+line:Line[a]
+obj:Object[a]
+
+UI:doc.Click(btn,x,y)
+doc:areaI,lineI,objI,pos=page.currentPage:GetPos(x,y)
+page:lineI,objI,pos=area.area:GetPos(x,y)
+area:offset=line.line:GetOffset()
+area:objI,pos=line.line:GetPos(x,y-offset)
+line:obj,offset=line.GetObjectAt(x)
+line:offset=obj.obj:GetOffset()
+[c:if type(obj.GetPos)=="function"]
+	line[1]:pos,...=obj.obj:GetPos(x-offset,y)
+--[else]
+	line:pos=obj.obj:GetWidthPos(x-offset)
+[/c]
+line:pos=obj.obj:GetWidthPos(x-offset)
+doc:clickPos = {areaI,lineI,objI,pos}
+[c:if btn == left and shiftKeyDown == false] -- Focus change]
+	doc:x,y,font=page.currentPage:SetFocus(areaI,lineI,objI,pos)
+	page:x,y,font=area.areas[areaI]:SetFocus(lineI,objI,pos)
+	area:x,y,font=line.lines[lineI]:SetFocus(objI,pos)
+	line:x,font=obj.obj[objI]:SetFocus(pos)
+--[btn == left and shitKeyDown == true] -- selection of text
+	doc:areaI,lineI,objI,pos=page.focusPage:GetFocus()
+	page:lineI,objI,pos=area.focusArea:GetFocus()
+	area:objI,pos=line.focusLine:GetFocus()
+	line:pos=obj.fcusObj:GetFocus()
+	doc:focusPos = {areaI,lineI,objI,pos}
+	doc:todo- swap focusPos and clickPos if clickpos is before focus
+	[c:if focusPage == currentPage] -- only one page]
+
+		doc:page.currentPage.SetSelection(focusPos,clickPos)
+		page:-- Select all within the coors etc
+	--
+		doc:page.focusPage.SetSelection(focusPos,{})
+		[c:loop from currentPage to focusPage]
+			doc:page.SetSelection({},{})
+			page:-- Select all within the coors etc
+		[/c]
+		doc:page.currentPage.SetSelection({},clickedPos)
+	[/c]
+[/c]
+doc:UI.
+doc:stop
+UI:
+UI: -- Keyboard input
+UI:doc.InputText(str)
+
+[c:if got selected] -- Delete Selected     ]]
+	doc:doc.DeleteAllSelected()
+	[c:loop all selected pages]
+	doc:page.DeleteAllSelected()
+	page:-- etc
+	[/c]
+	
+[/c]
+doc[1]:page.focusPage:InsertText(str)
+page:area.focusArea:InsertText(str)
+area:line.focusLine:InsertText(str)
+line:type=obj.focusObj:GetType()
+[c:If type ~= "GHU_Text"]
+	line:index=line.GetIndexOf(focusObj)
+	line[1]: 
+		
+	[c:if obj[index+1] and obj:GetType() == "GHU_Text"]
+		line:focusObj = objs[newFocus]
+	--[else] -- no text obj after this obj
+		line: -- Create a new text object and append it
+		line: -- Problem= How does it know the needed font?
+	[/c]
+	line:obj.focusObj:SetFocus(0)	
+[/c]
+line:obj.focusObj:InsertText(str)
+doc:page.focusPage:Update()
+page:area.focusArea:Update()
+area:line.focusLine:Update()
+
+doc:UI.
+doc:stop]]></source>
+<configuration>
+<property name="actorWidth" value="25"/>
+<property name="allowMessageProperties" value="false"/>
+<property name="arrowSize" value="6"/>
+<property name="colorizeThreads" value="true"/>
+<property name="destructorWidth" value="30"/>
+<property family="Dialog" name="font" size="12" style="0"/>
+<property name="fragmentMargin" value="8"/>
+<property name="fragmentPadding" value="10"/>
+<property name="fragmentTextPadding" value="3"/>
+<property name="glue" value="10"/>
+<property name="headHeight" value="35"/>
+<property name="headLabelPadding" value="5"/>
+<property name="headWidth" value="100"/>
+<property name="initialSpace" value="10"/>
+<property name="leftMargin" value="5"/>
+<property name="lineWrap" value="false"/>
+<property name="lowerMargin" value="5"/>
+<property name="mainLifelineWidth" value="8"/>
+<property name="messageLabelSpace" value="3"/>
+<property name="messagePadding" value="6"/>
+<property name="noteMargin" value="6"/>
+<property name="notePadding" value="6"/>
+<property name="opaqueMessageText" value="false"/>
+<property name="returnArrowVisible" value="true"/>
+<property name="rightMargin" value="5"/>
+<property name="selfMessageHorizontalSpace" value="15"/>
+<property name="separatorBottomMargin" value="8"/>
+<property name="separatorTopMargin" value="15"/>
+<property name="shouldShadowParticipants" value="true"/>
+<property name="spaceBeforeActivation" value="2"/>
+<property name="spaceBeforeAnswerToSelf" value="10"/>
+<property name="spaceBeforeConstruction" value="6"/>
+<property name="spaceBeforeSelfMessage" value="7"/>
+<property name="subLifelineWidth" value="6"/>
+<property name="tc0" value="-1118482"/>
+<property name="tc1" value="-256"/>
+<property name="tc2" value="-65536"/>
+<property name="tc3" value="-16776961"/>
+<property name="tc4" value="-16711936"/>
+<property name="tc5" value="-4144960"/>
+<property name="tc6" value="-65281"/>
+<property name="tc7" value="-14336"/>
+<property name="tc8" value="-20561"/>
+<property name="tc9" value="-12566464"/>
+<property name="threadNumbersVisible" value="false"/>
+<property name="threaded" value="true"/>
+<property name="upperMargin" value="5"/>
+<property name="verticallySplit" value="false"/>
+</configuration>
+</diagram>

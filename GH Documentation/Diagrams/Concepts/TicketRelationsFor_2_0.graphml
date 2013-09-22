@@ -1,0 +1,2431 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yFiles for Java 2.7-->
+  <key for="graphml" id="d0" yfiles.type="resources"/>
+  <key attr.name="url" attr.type="string" for="node" id="d1"/>
+  <key attr.name="description" attr.type="string" for="node" id="d2"/>
+  <key for="node" id="d3" yfiles.type="nodegraphics"/>
+  <key attr.name="Description" attr.type="string" for="graph" id="d4"/>
+  <key attr.name="url" attr.type="string" for="edge" id="d5"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d6"/>
+  <key for="edge" id="d7" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <data key="d4"/>
+    <node id="n0" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1400.6407984524994" width="662.0988095238095" x="886.9964285714286" y="2990.903283441664"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="662.0988095238095" x="0.0" y="0.0">Advanced Item Creation Menu</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.000230386277508" right="16" rightF="16.000224718484333" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n0:">
+        <node id="n0::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="297.16576664774175" width="245.29078938689918" x="1172.7887322906774" y="3031.955041254164"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="248.87353515625" x="-1.7913728846754111" y="3.0">#90 - Design of Adv Item Creation Menu</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>A layout design for the advanced item 
+creation menu should be created. This
+includes concideration of how and 
+where the different information 
+should be entered.
+
+Some of the tricker things to 
+consider are additional tooltip texts 
+and constraints.
+
+The advanced actions can be
+considered a blank area for now
+as the design of that area is
+a ticket by itself</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n0::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="399.3451005935485" width="277.26106580645137" x="911.4266099539173" y="3436.891924578035"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="277.26106580645137" x="0.0" y="3.0">#91 - Design of Dynamic Action menu area</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The design of the area of which 
+the advanced actions are put
+together should be considered.
+
+The concepts that shall be clear
+to the user is that each action
+got one or more input triggers
+and one or more output triggers.
+It should be easy for the user to
+see which action tigger another
+action etc. 
+
+It could also be relevant to display
+which actions uses the same 
+variables and thus effects 
+eachother. That could including
+scanning of the lua code actions
+to see what parts are effected
+by the actions of that piece of code.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n0::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="122.69354425806432" width="216.13773153032253" x="1248.6878802665847" y="3575.217702745777"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="216.13773153032253" x="0.0" y="3.0">#90 - Implementation of Adv Menu</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>Implementation of the advanced item 
+menu, based on the designs.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n0::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="156.1870912000004" width="214.60748707096764" x="1181.1835580518177" y="4220.356990694163"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="214.60748707096764" x="0.0" y="3.0">Advanced Item Creation API</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The Item Creation API should be 
+expanded to supports the needs
+for creation and editing of advanced
+items.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n0::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="122.69354425806432" width="340.4908090687145" x="902.9966589577061" y="3981.950235803842"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="340.4908090687145" x="0.0" y="3.0">#92 - Implementation of Dynamic Action Menu Area</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 12 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>The menu area for advanced actions 
+should be implemented as it is designed.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n0::n5">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="156.1870912000004" width="214.60748707096764" x="1303.487526305786" y="3965.203462332874"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="214.60748707096764" x="0.0" y="3.0">Attrbute Templates</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>Some attribute templates should
+be created. This could be usefull stuff
+like temperature that changes 
+depending of the temperature of 
+the container.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n1" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1136.8926862545359" width="596.1309523809523" x="2348.934523809524" y="-41.0517578125"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="596.1309523809523" x="0.0" y="0.0">GHM Window</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0002864775019589" right="1" rightF="1.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n1:">
+        <node id="n1::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="261.16278324989236" width="251.00260164817053" x="2364.934810287026" y="0.0"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="251.00260164817053" x="0.0" y="4.0">#46 - Horizontal scrolling of Windows</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 5 hours
+Diffuculty: hard</y:AttributeLabel>
+                <y:MethodLabel>A horizontal scroll bar should be
+applied to the content of a GHM
+Window in the same fashion as
+the vertical scroll bar. This task
+is particular hard because the 
+horizontal scrollbar provided by
+blizzard does not seem to work. 
+It might be needed for us to make
+our own horizontal scroll bar 
+template including functions for
+moving the content of the scroll
+child.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n1::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="196.75879225633435" width="209.3157298924716" x="2375.3564207680497" y="884.0821361857016"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="209.3157298924716" x="0.0" y="4.0">Resizing using mouse</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>It should be posible to change the size
+of the GHM window by dragging
+at the borders of the window.
+When the cursor are at a position
+where it is possible to drag, the
+cursor should change texture to
+the according drag cursor.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n1::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="165.08081968172064" width="209.12991067526946" x="2442.685441487762" y="465.8967479410203"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="209.12991067526946" x="0.0" y="4.0">Resizing mouse textures</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>Drag cursors should be implemented
+in GHM as textures. It would be best
+to find some cursors that fits in the
+same style as the wow cursor.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n1::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="171.92559683440868" width="195.5625845333334" x="2722.6591839238095" y="44.61859320774184"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="195.5625845333334" x="0.0" y="4.0">#47 - Window Theme system</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>A system should be created to
+make it possible to apply skin
+modificaitons of the GHM window.
+This includes different borders, 
+headers and backgrounds.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n1::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="190.49999999999977" width="217.25" x="2711.815476190476" y="453.1871577818807"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="217.25" x="0.0" y="4.0">Textures for window skins</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>A set of textures should be created
+and added so they can be applied to
+the GHM windows as skins.
+
+Examples of such is a parchment 
+background or other medieval
+related materials.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n2" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1476.8889013763974" width="544.5777777777777" x="1004.5174603174604" y="1346.8365323138687"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="544.5777777777777" x="0.0" y="0.0">Sound Selection Menu</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="0.9999999999998863" right="1" rightF="1.0000664888884785" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n2:">
+        <node id="n2::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="252.25" width="217.25" x="1163.6619047619047" y="1387.8882901263687"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="217.25" x="0.0" y="3.0">#65 - List of wow sounds</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>A list of all wow sounds should be 
+extracted from the game using MPQ
+Viewer or a similar program.
+
+The list should then be converted
+into a lua table where each folder
+is translated into a lua table, 
+containing a string for each
+sound and a sub table for each 
+sub folder.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n2::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="261.94932800000004" width="235.3276448000006" x="1297.767526806349" y="1840.2261261263684"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="235.3276448000006" x="0.0" y="3.0">#66 - Sounds selection treeview</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>A normal GHM frame should be created
+containing a treeview showing the
+list of sounds. This can be done 
+using GHM_TreeView.
+
+Each node in the treeView should
+have a button, which plays the
+sound. Maybe using PlayMusic so
+the user can stop it again.
+
+The menu will later be used as
+a standard sound selection menu.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n2::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="270.2611531767743" width="217.25" x="1020.5174603174603" y="1836.0702135379813"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="217.25" x="0.0" y="3.0">Lenght of sounds</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 5 hours
+Diffuculty: medium
+Priority: low</y:AttributeLabel>
+                <y:MethodLabel>If possible within resonable time the
+play lenght of each sound file should
+be added to the list of wow sounds.
+
+It could be added so each sound,
+instead of being a string, is a table
+containing a string and a number.
+
+The lenght of the sounds can maybe
+be efficiently ripped by some other
+program.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n2::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="217.67952000000014" width="220.0420727537512" x="1305.4103128294737" y="2174.6382901263687"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="220.0420727537512" x="0.0" y="3.0">Custom sound path and preview</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>The sound selection menu should 
+have an input box in which a custom 
+path for the sound can be defined. 
+A preview button should be placed 
+next to it, playing the sound on 
+click, so the user can validate if the 
+path is correct.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n2::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="206.7677759999999" width="217.25" x="1306.8063492063493" y="2601.9576576902664"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="217.25" x="0.0" y="3.0">GHM Widget for sound menu</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>A GHM XML widget should be added. 
+This widget contains only one button
+with the text "Select Sound". When 
+clicked the button should open a
+sound selection menu and place
+the menu on the right side of the
+menu. This is the same way as
+the icon selection menu works.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n3" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="713.6507143006173" width="800.2436507936509" x="1488.690873015873" y="-10.470366187553822"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="800.2436507936509" x="0.0" y="0.0">Homepage and Forum</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0003164444447066" right="1" rightF="1.0001607619046808" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n3:">
+        <node id="n3::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="200.0" width="198.5" x="1794.1107142857143" y="30.58139162494618"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="198.5" x="0.0" y="4.0">#50 - New forum catagories</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>To achieve better feedback and 
+experience the forums should have 
+more fitting catagories.
+
+Requires admit forum access
+
+(todo: catagories from goggle 
+docs document)</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n3::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="189.79395200000005" width="220.323488" x="2052.610875047619" y="35.684415624946155"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="220.323488" x="0.0" y="4.0">#51 - Updating Team Member List</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>The forum group for Gryphonheart 
+Team members should be updated so
+it reflects the current team members.
+
+Requires forum admin access.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n3::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="235.86576000000014" width="220.323488" x="1917.9049226666666" y="430.50427778188055"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="220.323488" x="0.0" y="4.0">#52 - Forum thread cleanup</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 10 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>The threads on the whole forum 
+should be cleaned. They should either
+be moved into one of the new 
+catagories or into the locked old
+threads forum.
+
+If a thread does not fit in any of the 
+new catagories and is fairly new,
+contact Pilus regarding those.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n3::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="163.12516906666667" width="229.41920838095223" x="1504.6911894603177" y="49.01880709161284"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="229.41920838095223" x="0.0" y="4.0">#49 - Public test page</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>A module for joomla should be created
+to provide a html page for showing
+information about the latest public
+test version on the homepage.
+
+(note: Pilus currently got files for this)</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n3::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="279.4863806623657" width="220.323488" x="1509.2390496507937" y="408.69396745069776"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="220.323488" x="0.0" y="4.0">Automatic upload of versions</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>The GH addon packer program should
+be merged into the GH Code Tool
+program, so the GH Code Tool can
+initialize packing of a new addon 
+release on request.
+
+The GH Code Tool should also be
+able to upload the file to the home
+page and update the content of the
+public test page with new version
+number, date and new changelog
+
+Note: Pilus got the programs atm
+</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n4" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1591.5420306873648" width="826.9964285714286" x="0.0" y="2583.814960006798"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="826.9964285714286" x="0.0" y="0.0">Dynamic Action</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0001912544801712" right="1" rightF="1.00022471848456" top="0" topF="4.547473508864641E-13"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n4:">
+        <node id="n4::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="234.11996552258051" width="214.60748707096764" x="596.3887167819765" y="3926.237025171583"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="214.60748707096764" x="0.0" y="3.0">Modifying of attributes</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>It should be possible for the dynamic 
+actions and all other scripts to modify
+the attributes of an item. 
+
+It might be relevant to define a 
+set of rules defining when an attribute
+can be modified. This is to ensure 
+that e.g. value or heat attributes
+for GHP can not be modfied by 
+custom created items.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n4::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="160.94965574193543" width="220.97260741969512" x="339.57956930602546" y="2624.8667178192986"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="220.97260741969512" x="0.0" y="3.0">#85 - Dynamic Actions</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>Creation of dynamic action object.
+The object holds information about a
+dynamic action, what input it takes,
+what trigger ports it got and various
+other information (see ItemDataUML)</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n4::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="156.18709120000017" width="230.19406193548411" x="334.96884204813097" y="3558.470929274809"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="230.19406193548411" x="0.0" y="3.0">#87 - Dynamic Action Instance</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The dynamic action instance is an object
+that is mainly a reference to one of the
+dynamic actions, along with a set of
+paramters for this given instance of the
+dynamic action.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n4::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="168.30998276129026" width="230.19406193548411" x="306.1946356989246" y="3959.142016552229"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="230.19406193548411" x="0.0" y="3.0">#88 - Transfer of Depending Actions</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>When an item and its information is
+transfered to another player, the 
+dynamic action information for the
+actions in that item should also be
+transfered.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n4::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="116.35473321290328" width="165.25" x="367.440873015873" y="3122.360557971583"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="165.25" x="0.0" y="3.0">#86 - Dynamic Action List</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>A object being a list of all the 
+dynamic actions available</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n4::n5">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="186.75344831999928" width="230.19406193548411" x="16.00019125448017" y="3949.9202837728735"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="230.19406193548411" x="0.0" y="3.0">#89 - Creation of Dynamic Actions</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 20 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>The current actions should be created 
+in a dynamic action version and more 
+others should be added. This includes
+logical switches, delays, 
+eventshandlers, communication
+handlers, slash command handlers
+and cast bar handler.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n5" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="861.7448082598389" width="1036.70753968254" x="1609.0952380952378" y="2468.7280501263685"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="1036.70753968254" x="0.0" y="0.0">Simple Item Creation Menu</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0002347777574414" right="1" rightF="1.0000628571428933" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n5:">
+        <node id="n5::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="391.1234755027954" width="216.80008203698935" x="1882.969006600553" y="2509.7798079388685"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="216.80008203698935" x="0.0" y="3.0">Item Creation Menu Layout</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>It should be considered how the
+basic information and input boxes
+are best shown to make the simple
+item creation menu simple enough 
+to use.
+
+The content of a simple item could be:
+name
+icon
+quality
+white1
+white2
+comment
+stacksize
+a list of actions
+use text
+
+It could be an idea to always
+initially create a full stack of the 
+items.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n5::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="269.86986761634444" width="193.90476332731168" x="1894.4166659553919" y="3045.602990769863"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="193.90476332731168" x="0.0" y="3.0">Live tooltip preview</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>To make the item creation menu 
+easier to use, a live tooltip 
+preview can be created. It shows
+a prediction of how the tooltip will 
+look.
+
+It will require some modification in 
+GHM to implement this. The most
+efficient implementation method
+might be an OnUpdate script,
+which transfers changes from
+the input boxes to the preview
+tooltip.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n5::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="138.1149402150536" width="204.6808266666667" x="2425.1218882539683" y="3111.4804544705084"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="204.6808266666667" x="0.0" y="3.0">Item Creation API</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>An API mainly including functions
+for creation and editing of simple
+items, by the simple item menu.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n5::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="138.1149402150536" width="216.80008203698935" x="2148.3217843783304" y="3111.4804544705084"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="216.80008203698935" x="0.0" y="3.0">Help in GHM input</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>Append a "?" button to the left side of 
+an input box etc. The button shows a 
+helpfull tooltip on mouse over.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n5::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="232.62046660817168" width="209.320959015914" x="1625.0954728729953" y="3064.227691273949"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="209.320959015914" x="0.0" y="3.0">Actions for simple items</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>The actions selected to be available
+for simple items should have their
+layout, tooltips and content reviewed
+and possibly simplified.
+
+The menus should be updated to
+be within the GHM_Window type.
+
+The sound action should have the
+new sound selection menu applied.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n6" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1578.4432756249998" width="305.0353174603174" x="336.71785714285716" y="815.2847745013687"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="305.0353174603174" x="0.0" y="0.0">Renovated Item Action</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0" right="1" rightF="1.0" top="0" topF="1.1368683772161603E-13"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n6:">
+        <node id="n6::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="252.25" width="198.5" x="352.71785714285716" y="856.3365323138688"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="198.5" x="0.0" y="4.0">#62 - Action API</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>An API with functions relevant to 
+execution of actions, including 
+produce item, sound, emotes, etc.
+Basically a function for each 
+current right click action, except 
+adv produce item.
+
+The action API will also have 
+references to many GHI objects
+to create these functions.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n6::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="270.2611531767743" width="226.64200000000005" x="395.3071746031746" y="1378.8827135379815"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="226.64200000000005" x="0.0" y="3.0">#63 - Item Updater</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The current ItemUpdater should be
+changes so it updates all items actions 
+to use the Action API.
+
+It should also clean away outdated 
+info. This includes requirements,
+as they will be removed.
+
+The Item Creation menu should not 
+yet be updated, as the menu is 
+soon redesigned.
+
+Note: Book actions might give a problem</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n6::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="219.0037886889395" width="217.25000000000006" x="400.00317460317456" y="1861.6988957818987"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="217.25000000000006" x="0.0" y="3.0">Use Item</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>A function for use item should be
+added to the container API. 
+This use item function should 
+execute the script for the actions.
+
+It can be expected that all actions
+contains one and only one script,
+as they are updated to this format
+by the Item updater</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n6::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="190.49999999999977" width="234.24999999999994" x="391.50317460317467" y="2188.2280501263685"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="234.24999999999994" x="0.0" y="3.0">Depending Items</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>Each itemData should have a list of
+depending items (e.g. items the
+item produces). 
+The item info on this list should be 
+transfered when the itemData for 
+the item is transfered. Infinete
+loops can be avoided with version check.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n7" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1183.5225557126764" width="531.092063492064" x="4745.214682539682" y="2580.50032136914"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="531.092063492064" x="0.0" y="0.0">Item Instance</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0000317460326187" right="1" rightF="1.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 3</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n7:">
+        <node id="n7::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="144.9000000000001" width="212.44999999999982" x="5047.856746031746" y="3108.087924578035"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="212.44999999999982" x="0.0" y="3.0">Stack Rules</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>In stacks with several item instances it 
+might be nessesary to have rules for
+what itemInstance got priority to be 
+effect the item.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n7::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="167.5789330172529" width="217.25" x="4820.223412698413" y="2621.55207918164"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="217.25" x="0.0" y="3.0">Extra Tooltip lines</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>If a set of extra tooltip lines are 
+defined in the item instance, these 
+should be included in the item tooltip.
+It should also be possible to define 
+them as alternative tooltip, which
+then replaces other tooltips.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n7::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="224.91680441401377" width="194.93920110126055" x="5056.6121454811155" y="3524.1060726678024"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="194.93920110126055" x="0.0" y="3.0">Merge rules</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The different items instances in the 
+same stack should be merged 
+together if possible. A set of rules
+for merging should be defined.
+It should only be merged if all
+parts of the item instance can
+be merged.
+
+This might be done by having a
+merge rule for each attribute</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n7::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="332.7080000000001" width="226.64200000000005" x="4761.214714285715" y="3014.1839245780347"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="226.64200000000005" x="0.0" y="3.0">Attributes</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 6 hours
+Diffuculty: Medium</y:AttributeLabel>
+                <y:MethodLabel>A attribute system should be 
+implemented. An attribute is a variable
+for the item instance that changes
+depending on time and other variables.
+
+Examples of these are duration,
+which changes over time, and
+durability that changes after each
+use.
+
+This system is a dynamic 
+implementation of such variables.
+
+A factor that could be interesting
+to influence could be the attributes
+of other items in the same bag, or
+attributes of the item which the bag is
+</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n8" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="1609.5675133763975" width="814.3757936507936" x="2978.2527777777777" y="1219.2115323138687"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="814.3757936507936" x="0.0" y="0.0">Renovated Containers</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="1.0003968253968196" right="1" rightF="1.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 2</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n8:">
+        <node id="n8::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="507.4999999999998" width="236.91666666666674" x="3352.899603174603" y="1260.2632901263687"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="236.91666666666674" x="0.0" y="4.0">#61 - Container Class Layout</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>The task involves creation of 4 objects.
+None of the objects are created with
+constructors.
+
+ItemInstance: A class with amount 
+as a public variable.
+
+Stack: A class which holds two 
+variables. item (a reference to an 
+ItemData object) and itemInstance
+which is an refrerence to an
+ItemInstance object.
+
+Container: a class with the following
+variables:
+- guid
+- name
+- size
+- icon
+- stacks (being a table of stack 
+references)
+
+ContainerList: A class with the 
+following variables:
+- containers (a table of container 
+references)
+- itemDataList (a reference to the 
+ItemDataList singleton)
+</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n8::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="286.8749999999999" width="203.0" x="3573.6285714285714" y="1827.7632901263685"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="203.0" x="0.0" y="3.0">#60 - Cleaning of Container.lua</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The container.lua should be cleaned 
+and renamed to ContainerUI.lua
+
+The code should not old any data, 
+but get its information trough the 
+Container API.
+
+The cleanup of the code should 
+also result in a list of desired
+API functions for the Container API
+
+The cleaned code should handle 
+anchoring of the container.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n8::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="158.75" width="223.375" x="3418.8998015873017" y="2204.1030501263685"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="223.375" x="0.0" y="3.0">Container API</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 5 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The desired container API (see XX) 
+should be implemented. This involves
+implementation of needed functions 
+in ContainerList and its subclasses.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n8::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="180.4999999999999" width="203.0" x="3310.6285714285714" y="1880.9507901263685"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="203.0" x="0.0" y="3.0">Upgrade of Cursor</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>The old cursor functions should be 
+upgraded to a cursor class.
+
+In addition to current functionality,
+the cursor class should also allow
+stacks to be picket up.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n8::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="186.10000000000014" width="192.75" x="3583.8785714285714" y="2612.291545690266"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="192.75" x="0.0" y="3.0">Container Buttons API</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>An API for the functionality used
+with containers buttons (the n, e,
+c, &lt;, &gt;  etc buttons).
+
+This can either be created as its 
+own object or as part of the
+Container API</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n8::n5">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="216.875" width="223.375" x="3300.503373015873" y="2596.9040456902662"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="223.375" x="0.0" y="3.0">Trade of items</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 3 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>Item stacks picked up with the cursor 
+should be placeable in the trade frame.
+
+ItemInstance should be transfered 
+correct.
+
+Items should be removed and 
+inserted correct after trade</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n8::n6">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="182.66096040326875" width="246.25000000000023" x="2994.2531746031746" y="2614.011065488632"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="246.25000000000023" x="0.0" y="3.0">Loading and Saving of Container Data</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>A Load and a Save function should be 
+implemented in the ContainerList, for 
+saving and loading of the container data. 
+This should be done using the 
+GHI_SavedVariables object.
+
+The same should be done to cooldown data
+</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n9" yfiles.foldertype="group">
+      <data key="d3">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="3754.8490407010727" width="832.5861111111112" x="3852.628571428572" y="-10.470366187553822"/>
+              <y:Fill color="#CCFFCC" transparent="false"/>
+              <y:BorderStyle color="#339966" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#99CC00" borderDistance="0.0" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasLineColor="false" height="26.0517578125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="832.5861111111112" x="0.0" y="0.0">Renovated Item Data</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="1" leftF="0.9999999999995453" right="1" rightF="1.0000317460326187" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="80.0" width="100.0" x="-50.0" y="-30.0"/>
+              <y:Fill color="#CAECFF84" transparent="false"/>
+              <y:BorderStyle color="#666699" type="dotted" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#99CCFF" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="100.0" x="0.0" y="0.0">Folder 1</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n9:">
+        <node id="n9::n0">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="200.0" width="203.0" x="4165.344444444445" y="30.58139162494618"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="203.0" x="0.0" y="4.0">#53 - Layout of Item Data Class</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>Creation of the basic version of the
+ItemData class. This includes
+constructor aswell as initialization of 
+the variables guid (new name for 
+ID), name, itemType, quality, white1, 
+white2, comment, icon, useText, 
+stackSize, version, creatorName,
+creatorGuid and rawData</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n1">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="200.0" width="267.31561100387125" x="4401.898940529811" y="448.4371577818806"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="267.31561100387125" x="0.0" y="4.0">#55 - GetTooltipLines function in ItemData</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>A function in ItemData that returns
+a table with lines for the item tooltip of 
+the item. Each line is expressed as 
+{t="",r=1,g=1,b=1}, where t is the
+text, r is red color (between 0 and 1),
+g is green color and b is blue color.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n2">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="263.4999999999998" width="223.375" x="4086.9537698412696" y="850.7115323138689"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="223.375" x="0.0" y="4.0">#54 - Layout of Item Data List Class</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>A singleton class with no arguments in 
+the constructor and only one variable, 
+being items.
+Items is a list of ItemData. And no 
+itemData classes in items may have 
+same guid.
+The class got the following public 
+functions:
++ AddItem(item). Adds an itemData 
+object to the items list.
++ GetItemData(guid), which returns 
+the itemData for a given guid.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n3">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="241.47124031397857" width="254.21031873140203" x="4415.003967618426" y="1393.2776699693795"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="254.21031873140203" x="0.0" y="4.0">#56 - DisplayBasicItemTooltip function</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>A DisplayBasicItemTooltip function for 
+ItemDataList, which displays the item 
+link for the item.
+Parts of the function can be created with
+elements from GHI_ItemRefTooltip 
+in ghi_links.lua line 17.
+The function should call the 
+GetTooltipLines function on the
+ItemData object for the desired item
+to retrieve information of the
+link contenst.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n4">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="210.3124999999999" width="203.0" x="3868.6285714285714" y="1408.8570401263687"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="203.0" x="0.0" y="4.0">#58 - Loading of Item Data</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 2 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>Load function the itemDataList.
+It shal load itemData, create 
+ItemData for each item and add 
+those ItemData to items.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n5">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="152.5" width="203.0" x="3868.6285714285714" y="1894.9507901263685"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="203.0" x="0.0" y="3.0">#59 - Saving of Item Data</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>A safe function in the ItemDataList 
+which saves all custom items using 
+GHI_SavedVariables</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n6">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="152.5" width="223.375" x="4131.62876984127" y="1437.7632901263687"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="223.375" x="0.0" y="4.0">#57 - Upgrade Item Data Transfer</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: medium</y:AttributeLabel>
+                <y:MethodLabel>ItemDataTransfer should be updated
+so it gets its information from the 
+ItemData object, instead of the global
+GHI_ItemData table.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n7">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="185.62839927741925" width="226.64200000000005" x="4442.572650793651" y="3543.7502752360997"/>
+              <y:Fill color="#99CC00" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="226.64200000000005" x="0.0" y="3.0">Attribute Setup</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+                <y:MethodLabel>The item info should have a list of free 
+attributes in the item and their default
+value. There should also be a list of
+locked attributes and their value.
+The locked attributes can not be
+changed.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+        <node id="n9::n8">
+          <data key="d1"/>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="454.54874906397663" width="218.09301710088084" x="4033.751110497179" y="321.1627832498923"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="218.09301710088084" x="0.0" y="4.0">#68 - Constructor for Item Data</y:NodeLabel>
+              <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy or training</y:AttributeLabel>
+                <y:MethodLabel>The constructor of the itemData object 
+should be upgraded to take a table as
+input (optional). 
+The table contains raw item data
+and the variables should be
+initialized from it. 
+
+E.g. if the constuctor table input
+is taclled 'itemTable', then the
+name variable could be intialized
+with name = itemTable.name.
+
+To make sure that we dont initialize
+variable we expect to be strings
+into nil values, some guards should
+be put on, so it will become.
+
+if itemTable.name then
+   name = itemTable
+end
+
+The name variable are earlier 
+initialized as an empty string, so this
+is only overwrtten if the itemTable
+got a name value.</y:MethodLabel>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n10">
+      <data key="d1"/>
+      <data key="d3">
+        <y:UMLClassNode>
+          <y:Geometry height="271.5277451974198" width="212.44999999999982" x="2705.802777777778" y="2569.5776730915563"/>
+          <y:Fill color="#FF9900" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="212.44999999999982" x="0.0" y="3.0">#64 - Guid creator</y:NodeLabel>
+          <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel>Estimated time: 1 hours
+Diffuculty: easy</y:AttributeLabel>
+            <y:MethodLabel>A class that created a guid (global 
+unique identifier). The guid should be 
+more space consuming than the old 
+method, which was Charname_Time 
+(a constant was subtracted from the
+time to reduce it).
+A way to reduce it further could be 
+to update the constant to a new 
+number and also to convert the 
+number into hexadecimal. 
+An "x" should be applied before the
+number to ensure that it does not
+collide with earlier IDs</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n11">
+      <data key="d1"/>
+      <data key="d3">
+        <y:UMLClassNode>
+          <y:Geometry height="141.5625" width="203.0" x="3005.065476190476" y="911.6802823138688"/>
+          <y:Fill color="#FF9900" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="203.0" x="0.0" y="4.0">#48 - SavedVariablesManager</y:NodeLabel>
+          <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel>Estimated time: 4 hours
+Diffuculty: hard</y:AttributeLabel>
+            <y:MethodLabel>GHI_SavedVariables should be 
+upgraded to look for a checksum on 
+the data and/or apply some 
+encryption
+</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <edge id="n9::e0" source="n9::n0" target="n9::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="67.66666666666666" sy="100.0" tx="0.0" ty="-100.0">
+            <y:Point x="4334.511111111112" y="245.58139162494618"/>
+            <y:Point x="4535.556746031746" y="245.58139162494618"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e1" source="n9::n0" target="n9::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="100.0" tx="55.84375" ty="-131.7499999999999">
+            <y:Point x="4266.844444444445" y="790.7115323138689"/>
+            <y:Point x="4254.48501984127" y="790.7115323138689"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e2" source="n9::n2" target="n9::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="89.35" sy="131.7499999999999" tx="-63.55257968285051" ty="-120.73562015698928">
+            <y:Point x="4287.99126984127" y="1129.2115323138687"/>
+            <y:Point x="4478.556547301277" y="1129.2115323138687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e3" source="n9::n1" target="n9::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="100.0" tx="63.55257968285059" ty="-120.73562015698917">
+            <y:Point x="4535.556746031746" y="997.4615323138688"/>
+            <y:Point x="4605.661706666978" y="997.4615323138688"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e4" source="n9::n2" target="n9::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="1.4210854715202004E-14" sy="131.7499999999999" tx="50.75" ty="-105.15624999999994">
+            <y:Point x="4198.64126984127" y="1393.8570401263687"/>
+            <y:Point x="4020.8785714285714" y="1393.8570401263687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e0" source="n11" target="n9::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="50.75" sy="70.78125" tx="-50.75" ty="-105.15624999999994">
+            <y:Point x="3157.315476190476" y="1129.2115323138687"/>
+            <y:Point x="3919.3785714285714" y="1129.2115323138687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e5" source="n9::n4" target="n9::n5">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="105.15624999999994" tx="0.0" ty="-76.25"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e6" source="n9::n2" target="n9::n6">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="44.67500000000001" sy="131.7499999999999" tx="0.0" ty="-76.25"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="n9::n2" target="n8::n0">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-44.67499999999998" sy="131.7499999999999" tx="0.0" ty="-253.7499999999999">
+            <y:Point x="4153.966269841269" y="1204.2115323138687"/>
+            <y:Point x="3471.3579365079363" y="1204.2115323138687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e0" source="n8::n1" target="n8::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="143.43749999999994" tx="74.45833333333334" ty="-79.375">
+            <y:Point x="3675.1285714285714" y="2129.6382901263682"/>
+            <y:Point x="3605.045634920635" y="2129.6382901263682"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e1" source="n8::n0" target="n8::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="59.229166666666515" sy="253.75" tx="0.0" ty="-79.375"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e2" source="n8::n0" target="n8::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-59.229166666666686" sy="253.7499999999999" tx="0.0" ty="-90.24999999999994"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e3" source="n8::n3" target="n8::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="90.24999999999994" tx="-74.45833333333334" ty="-79.375">
+            <y:Point x="3412.1285714285714" y="2076.4507901263682"/>
+            <y:Point x="3456.128968253968" y="2076.4507901263682"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e4" source="n8::n2" target="n8::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="27.921875" sy="79.375" tx="0.0" ty="-93.05000000000007">
+            <y:Point x="3558.5091765873017" y="2392.8530501263685"/>
+            <y:Point x="3680.2535714285714" y="2392.8530501263685"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e5" source="n8::n2" target="n8::n5">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-27.921875" sy="79.375" tx="0.0" ty="-108.4375">
+            <y:Point x="3502.6654265873017" y="2392.8530501263685"/>
+            <y:Point x="3412.190873015873" y="2392.8530501263685"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="n8::n2" target="n7::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="83.765625" sy="79.375" tx="0.0" ty="-83.78946650862645">
+            <y:Point x="3614.3529265873017" y="2377.8530501263685"/>
+            <y:Point x="4928.848412698413" y="2377.8530501263685"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n7::e0" source="n7::n1" target="n7::n0">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="54.3125" sy="83.78946650862645" tx="0.0" ty="-72.45000000000005">
+            <y:Point x="4983.160912698413" y="2804.1310121988927"/>
+            <y:Point x="5154.081746031747" y="2804.1310121988927"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n7::e1" source="n7::n0" target="n7::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="72.45000000000005" tx="0.0" ty="-112.45840220700688"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n7::e2" source="n7::n1" target="n7::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-54.3125" sy="83.78946650862645" tx="0.0" ty="-166.35400000000004"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n8::e6" source="n8::n2" target="n8::n6">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-83.765625" sy="79.375" tx="61.56250000000006" ty="-91.33048020163437">
+            <y:Point x="3446.8216765873017" y="2377.8530501263685"/>
+            <y:Point x="3178.9406746031746" y="2377.8530501263685"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="n11" target="n8::n6">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-50.75" sy="70.78124999999989" tx="-61.5625" ty="-91.3304802016346"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n6::e0" source="n6::n0" target="n6::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="126.125" tx="-56.66050000000001" ty="-135.13057658838716"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="n9::n2" target="n6::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-89.34999999999997" sy="131.7499999999999" tx="56.66050000000001" ty="-135.13057658838716">
+            <y:Point x="4109.291269841269" y="1144.2115323138687"/>
+            <y:Point x="565.2886746031746" y="1144.2115323138687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n6::e1" source="n6::n1" target="n6::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="135.13057658838716" tx="0.0" ty="-109.50189434446975"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n6::e2" source="n6::n2" target="n6::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="109.50189434446975" tx="0.0" ty="-95.24999999999989"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n5::e0" source="n5::n0" target="n5::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="195.5617377513977" tx="0.0" ty="-134.93493380817222"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n5::e1" source="n5::n0" target="n5::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="86.72003281479574" sy="195.5617377513977" tx="-51.17020666666667" ty="-69.0574701075268">
+            <y:Point x="2078.0890804338433" y="2915.903283441664"/>
+            <y:Point x="2476.292094920635" y="2915.903283441664"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n5::e2" source="n5::n0" target="n5::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="43.360016407397865" sy="195.5617377513977" tx="0.0" ty="-69.0574701075268">
+            <y:Point x="2034.7290640264455" y="2930.903283441664"/>
+            <y:Point x="2256.721825396825" y="2930.903283441664"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e5" source="n6::n3" target="n5::n0">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="58.562499999999986" sy="95.24999999999989" tx="0.0" ty="-195.5617377513977">
+            <y:Point x="567.1906746031747" y="2453.7280501263685"/>
+            <y:Point x="1991.3690476190477" y="2453.7280501263685"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e6" source="n10" target="n5::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="135.7638725987099" tx="51.17020666666667" ty="-69.0574701075268">
+            <y:Point x="2812.027777777778" y="2915.903283441664"/>
+            <y:Point x="2578.6325082539684" y="2915.903283441664"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e7" source="n6::n3" target="n4::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-58.56249999999997" sy="95.24999999999989" tx="0.0" ty="-80.47482787096772"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n4::e0" source="n4::n2" target="n4::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-28.774257741935514" sy="78.09354560000008" tx="0.0" ty="-84.15499138064513"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n4::e1" source="n4::n1" target="n4::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="80.47482787096772" tx="0.0" ty="-58.17736660645164"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n4::e2" source="n4::n4" target="n4::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="58.17736660645164" tx="0.0" ty="-78.09354560000008"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n4::e3" source="n4::n2" target="n4::n0">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="28.774257741935514" sy="78.09354560000008" tx="-53.65187176774191" ty="-117.05998276129026">
+            <y:Point x="478.84013075780854" y="3866.2370251715834"/>
+            <y:Point x="650.0405885497184" y="3866.2370251715834"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e8" source="n7::n3" target="n9::n7">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="56.66050000000001" sy="166.35400000000004" tx="0.0" ty="-92.81419963870962">
+            <y:Point x="4931.196214285715" y="3376.891924578035"/>
+            <y:Point x="4555.8936507936505" y="3376.891924578035"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n3::e0" source="n3::n1" target="n3::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="94.89697600000002" tx="55.080872" ty="-117.93288000000007">
+            <y:Point x="2162.772619047619" y="240.4783676249462"/>
+            <y:Point x="2083.1475386666666" y="240.4783676249462"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n3::e1" source="n3::n0" target="n3::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="100.0" tx="-55.080872" ty="-117.93288000000007">
+            <y:Point x="1893.3607142857143" y="245.58139162494618"/>
+            <y:Point x="1972.9857946666666" y="245.58139162494618"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n2::e0" source="n2::n0" target="n2::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-54.3125" sy="126.125" tx="0.0" ty="-135.13057658838716">
+            <y:Point x="1217.9744047619047" y="1655.1382901263687"/>
+            <y:Point x="1129.1424603174603" y="1655.1382901263687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n2::e1" source="n2::n0" target="n2::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="54.3125" sy="126.125" tx="0.0" ty="-130.97466400000002">
+            <y:Point x="1326.5994047619047" y="1655.1382901263687"/>
+            <y:Point x="1415.4313492063493" y="1655.1382901263687"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n2::e2" source="n2::n1" target="n2::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="130.97466400000002" tx="0.0" ty="-108.83976000000007"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n2::e3" source="n2::n3" target="n2::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="108.83976000000007" tx="0.0" ty="-103.38388799999996"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n5::e3" source="n5::n0" target="n5::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-43.360016407397865" sy="195.5617377513977" tx="52.3302397539785" ty="-116.31023330408584">
+            <y:Point x="1948.00903121165" y="3030.602990769863"/>
+            <y:Point x="1782.0861921349308" y="3030.602990769863"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e9" source="n2::n4" target="n5::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="103.38388799999996" tx="-52.3302397539785" ty="-116.31023330408584">
+            <y:Point x="1415.4313492063493" y="2915.903283441664"/>
+            <y:Point x="1677.4257126269738" y="2915.903283441664"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n3::e2" source="n3::n3" target="n3::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="81.56258453333334" tx="0.0" ty="-139.74319033118286"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::e0" source="n1::n0" target="n1::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="62.75065041204263" sy="130.58139162494618" tx="0.0" ty="-82.54040984086032">
+            <y:Point x="2553.1867615231536" y="276.16278324989236"/>
+            <y:Point x="2547.250396825397" y="276.16278324989236"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::e1" source="n1::n0" target="n1::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-62.75065041204243" sy="130.58139162494618" tx="-52.328932473117675" ty="-98.37939612816717"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::e2" source="n1::n2" target="n1::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="82.54040984086032" tx="52.3289324731179" ty="-98.37939612816717">
+            <y:Point x="2547.250396825397" y="645.9775676227409"/>
+            <y:Point x="2532.343218187403" y="645.9775676227409"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::e3" source="n1::n3" target="n1::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="85.96279841720434" tx="0.0" ty="-95.24999999999989"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e0" source="n0::n0" target="n0::n1">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-61.322697346724794" sy="148.58288332387087" tx="0.0" ty="-199.67255029677426">
+            <y:Point x="1234.1114296374021" y="3344.1208079019057"/>
+            <y:Point x="1050.057142857143" y="3344.1208079019057"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e1" source="n0::n0" target="n0::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="61.322697346724794" sy="148.58288332387087" tx="0.0" ty="-61.34677212903216"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e10" source="n4::n2" target="n0::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="86.32277322580654" sy="78.09354560000008" tx="-85.12270226717862" ty="-61.34677212903216">
+            <y:Point x="536.3886462416796" y="3851.2370251715834"/>
+            <y:Point x="988.1193612248848" y="3851.2370251715834"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e2" source="n0::n2" target="n0::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-54.03443288258063" sy="61.34677212903216" tx="0.0" ty="-78.09354560000065">
+            <y:Point x="1302.7223131491653" y="3712.9112470038413"/>
+            <y:Point x="1288.4873015873015" y="3712.9112470038413"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e11" source="n5::n2" target="n0::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="69.05747010752657" tx="71.53582902365588" ty="-78.09354560000065">
+            <y:Point x="2527.4623015873017" y="3376.891924578035"/>
+            <y:Point x="1533.095238095238" y="3376.891924578035"/>
+            <y:Point x="1533.095238095238" y="4136.390553532874"/>
+            <y:Point x="1360.0231306109574" y="4136.390553532874"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e3" source="n0::n1" target="n0::n4">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="199.67255029677426" tx="85.12270226717862" ty="-61.34677212903216">
+            <y:Point x="1050.057142857143" y="3851.2370251715834"/>
+            <y:Point x="1158.364765759242" y="3851.2370251715834"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e4" source="n0::n4" target="n0::n3">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="61.34677212903216" tx="-71.53582902365588" ty="-78.0935456000002">
+            <y:Point x="1073.2420634920634" y="4119.643780061906"/>
+            <y:Point x="1216.9514725636457" y="4119.643780061906"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n0::e5" source="n0::n2" target="n0::n5">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="54.03443288258063" sy="61.34677212903216" tx="0.0" ty="-78.0935456000002"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n4::e4" source="n4::n2" target="n4::n5">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-86.32277322580654" sy="78.09354560000008" tx="0.0" ty="-93.37672415999964">
+            <y:Point x="363.7430997900665" y="3729.658020474809"/>
+            <y:Point x="131.09722222222223" y="3729.658020474809"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e12" source="n5::n0" target="n0::n0">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-86.72003281479573" sy="195.5617377513977" tx="0.0" ty="-148.58288332387087">
+            <y:Point x="1904.649014804252" y="2930.903283441664"/>
+            <y:Point x="1295.434126984127" y="2930.903283441664"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e7" source="n9::n0" target="n9::n8">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-67.66666666666666" sy="100.0" tx="0.0" ty="-227.27437453198831">
+            <y:Point x="4199.177777777778" y="245.58139162494618"/>
+            <y:Point x="4142.797619047619" y="245.58139162494618"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n9::e8" source="n9::n8" target="n9::n2">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="227.27437453198831" tx="-55.84375" ty="-131.7499999999999"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e13" source="n7::n3" target="n4::n0">
+      <data key="d7">
+        <y:PolyLineEdge>
+          <y:Path sx="-56.660499999999956" sy="166.35400000000027" tx="53.65187176774191" ty="-117.05998276129048">
+            <y:Point x="4817.875214285715" y="3361.891924578035"/>
+            <y:Point x="757.3444444444444" y="3361.891924578035"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+  <data key="d0">
+    <y:Resources/>
+  </data>
+</graphml>

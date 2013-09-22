@@ -1,0 +1,641 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+
+    <Button name="GHG_GroupRosterButtonTemplate" virtual="true">
+   		<Size>
+   			<AbsDimension x="299" y="20"/>
+   		</Size>
+   		<Layers>
+   			<Layer level="BACKGROUND">
+   				<Texture name="$parentStripe" setAllPoints="true" file="Interface\AddOns\GHG\Texture\GuildFrame" parentKey="stripe">
+   					<TexCoords left="0.36230469" right="0.38183594" top="0.95898438" bottom="0.99804688"/>
+   				</Texture>
+   			</Layer>
+   			<Layer level="BORDER">
+   				<Texture name="$parentBarTexture" hidden="true" urgency="5" file="Interface\TargetingFrame\UI-StatusBar" parentKey="barTexture">
+   					<Size>
+   						<AbsDimension x="10" y="20"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="LEFT" x="60" y="0"/>
+   					</Anchors>
+   					<Color r="0" g="1" b="0" a="0.1"/>
+   				</Texture>
+   			</Layer>
+   			<Layer level="ARTWORK">
+   				<Texture name="$parentIcon" file="Interface\Glues\CharacterCreate\UI-CharacterCreate-Classes" parentKey="icon">
+   					<Anchors>
+   						<Anchor point="LEFT" x="36" y="0"/>
+   					</Anchors>
+   					<Size>
+   						<AbsDimension x="16" y="16"/>
+   					</Size>
+   					<TexCoords left="0" right="0.25" top="0" bottom="0.25"/>
+   				</Texture>
+   				<FontString name="$parentString1" inherits="GameFontHighlightSmall" wordwrap="false" hidden="true" parentKey="string1">
+   					<Size>
+   						<AbsDimension x="10" y="10"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="LEFT" x="0" y="0"/>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentString2" inherits="GameFontHighlightSmall" wordwrap="false" hidden="true" parentKey="string2">
+   					<Size>
+   						<AbsDimension x="10" y="10"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="LEFT" x="0" y="0"/>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentString3" inherits="GameFontHighlightSmall" wordwrap="false" hidden="true" parentKey="string3">
+   					<Size>
+   						<AbsDimension x="10" y="10"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="LEFT" x="0" y="0"/>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentString4" inherits="GameFontHighlightSmall" wordwrap="false" hidden="true" parentKey="string4">
+   					<Size>
+   						<AbsDimension x="10" y="10"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="LEFT" x="0" y="0"/>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentBarLabel" inherits="GameFontHighlightSmall" wordwrap="false" justifyH="RIGHT" hidden="true" parentKey="barLabel">
+   					<Size>
+   						<AbsDimension x="40" y="10"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="LEFT" x="146" y="0"/>
+   					</Anchors>
+   				</FontString>
+   			</Layer>
+   		</Layers>
+
+   		<HighlightTexture urgency="5" file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD" setAllPoints="true"/>
+   		<Scripts>
+   			<OnLoad>
+   				self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+   			</OnLoad>
+   			<OnClick function="GHG_GroupRosterButton_OnClick"/>
+   			<OnEnter>
+   				if ( self.online ) then
+   					--GameTooltip_AddNewbieTip(self, GROUP_MEMBER_OPTIONS, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_GROUP_MEMBER_OPTIONS, 1);
+   				end
+   			</OnEnter>
+   			<OnLeave>
+   				GameTooltip:Hide();
+   			</OnLeave>
+   		</Scripts>
+   	</Button>
+   	<Button name="GHG_GroupRosterColumnButtonTemplate" virtual="true">
+   		<Size>
+   			<AbsDimension x="50" y="24"/>
+   		</Size>
+   		<Layers>
+   			<Layer level="BACKGROUND">
+   				<Texture name="$parentLeft" urgency="5" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+   					<Size>
+   						<AbsDimension x="5" y="24"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="TOPLEFT"/>
+   					</Anchors>
+   					<TexCoords left="0" right="0.078125" top="0" bottom="0.75"/>
+   				</Texture>
+                <Texture name="$parentRight" urgency="5" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+                    <Size>
+                        <AbsDimension x="4" y="24"/>
+                    </Size>
+                      <Anchors>
+                           <Anchor point="TOPRIGHT"/>
+                       </Anchors>
+                    <TexCoords left="0.90625" right="0.96875" top="0" bottom="0.75"/>
+                </Texture>
+   				<Texture name="$parentMiddle" urgency="5" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
+   					</Anchors>
+   					<TexCoords left="0.078125" right="0.90625" top="0" bottom="0.75"/>
+   				</Texture>
+
+   			</Layer>
+   		</Layers>
+   		<Scripts>
+   			<OnClick function="GHG_GroupRoster_SortByColumn"/>
+   		</Scripts>
+   		<ButtonText>
+   			<Anchors>
+   				<Anchor point="LEFT">
+   					<Offset>
+   						<AbsDimension x="8" y="0"/>
+   					</Offset>
+   				</Anchor>
+   			</Anchors>
+   		</ButtonText>
+   		<NormalFont style="GameFontHighlightSmall"/>
+   		<HighlightTexture name="$parentHighlightTexture" file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD">
+   			<Anchors>
+   				<Anchor point="TOPLEFT" relativeTo="$parentLeft">
+   					<Offset>
+   						<AbsDimension x="-2" y="5"/>
+   					</Offset>
+   				</Anchor>
+   				<Anchor point="BOTTOMRIGHT" relativeTo="$parentRight">
+   					<Offset>
+   						<AbsDimension x="2" y="-7"/>
+   					</Offset>
+   				</Anchor>
+   			</Anchors>
+   		</HighlightTexture>
+   	</Button>
+   <!--
+   *******************************************************************************
+   	Roster panel
+   *******************************************************************************
+   -->
+   	<Frame name="GHG_GroupRosterFrame" parent="GHG_GroupFrameContent" setAllPoints="true" hidden="true" id="1">
+   		<Frames>
+   			<Frame name="$parentViewDropdown" inherits="UIDropDownMenuTemplate">
+   				<Anchors>
+   					<Anchor point="TOPRIGHT">
+   						<Offset>
+   							<AbsDimension x="-5" y="-5"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Layers>
+   					<Layer level="ARTWORK">
+   						<FontString inherits="GameFontNormal" text="GROUP_ROSTER_VIEW">
+   							<Anchors>
+   								<Anchor point="RIGHT" relativePoint="LEFT" x="12" y="2"/>
+   							</Anchors>
+   						</FontString>
+   					</Layer>
+   				</Layers>
+   				<Scripts>
+   					<OnLoad function="GHG_RosterViewDropdown_OnLoad"/>
+   				</Scripts>
+   			</Frame>
+
+   			<Button name="$parentColumnButton1" inherits="GHG_GroupRosterColumnButtonTemplate" id="1" text="LVL">
+                <Size>
+                    <AbsDimension x="32" y="24"/>
+                </Size>
+   				<Anchors>
+   					<Anchor point="TOPLEFT">
+   						<Offset>
+   							<AbsDimension x="0" y="-37"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   			</Button>
+   			<Button name="$parentColumnButton2" inherits="GHG_GroupRosterColumnButtonTemplate" id="2" text="CLS">
+                <Size>
+                    <AbsDimension x="32" y="24"/>
+                </Size>
+   				<Anchors>
+   					<Anchor point="LEFT" relativeTo="$parentColumnButton1" relativePoint="RIGHT">
+   						<Offset>
+   							<AbsDimension x="-2" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   			</Button>
+   			<Button name="$parentColumnButton3" inherits="GHG_GroupRosterColumnButtonTemplate" id="3" text="NAME">
+                <Size>
+                    <AbsDimension x="81" y="24"/>
+                </Size>
+   				<Anchors>
+   					<Anchor point="LEFT" relativeTo="$parentColumnButton2" relativePoint="RIGHT">
+   						<Offset>
+   							<AbsDimension x="-2" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   			</Button>
+   			<Button name="$parentColumnButton4" inherits="GHG_GroupRosterColumnButtonTemplate" id="4" >
+   				<Anchors>
+   					<Anchor point="BOTTOMLEFT" relativeTo="$parentColumnButton3" relativePoint="BOTTOMRIGHT">
+   						<Offset>
+   							<AbsDimension x="-2" y="0"/>
+   						</Offset>
+   					</Anchor>
+                       <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="-20" y="-37"/>
+                            </Offset>
+                        </Anchor>
+   				</Anchors>
+   			</Button>
+            <!--
+   			<Button name="$parentColumnButton5" inherits="GHG_GroupRosterColumnButtonTemplate">
+   				<Anchors>
+   					<Anchor point="LEFT" relativeTo="$parentColumnButton4" relativePoint="RIGHT">
+   						<Offset>
+   							<AbsDimension x="9" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   			</Button>   -->
+
+   			<ScrollFrame name="$parentContainer" inherits="HybridScrollFrameTemplate">
+   				<Size x="302" y="306"/>
+   				<Anchors>
+   					<Anchor point="TOPRIGHT">
+   						<Offset>
+   							<AbsDimension x="-22" y="-66"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Frames>
+   					<Slider name="$parentScrollBar" inherits="HybridScrollBarTemplate">
+   						<Anchors>
+   							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+   								<Offset>
+   									<AbsDimension x="0" y="-12"/>
+   								</Offset>
+   							</Anchor>
+   							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+   								<Offset>
+   									<AbsDimension x="0" y="12"/>
+   								</Offset>
+   							</Anchor>
+   						</Anchors>
+   					</Slider>
+   				</Frames>
+   			</ScrollFrame>
+   			<CheckButton name="$parentShowOfflineButton" checked="true">
+   				<Size>
+   					<AbsDimension x="20" y="20"/>
+   				</Size>
+   				<Anchors>
+   					<Anchor point="BOTTOMLEFT">
+   						<Offset>
+   							<AbsDimension x="0" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Layers>
+   					<Layer level="ARTWORK">
+   						<FontString inherits="GameFontHighlightSmall" text="SHOW_OFFLINE_GROUP_MEMBERS">
+   							<Anchors>
+   								<Anchor point="LEFT" relativePoint="RIGHT">
+   									<Offset>
+   										<AbsDimension x="2" y="1"/>
+   									</Offset>
+   								</Anchor>
+   							</Anchors>
+   						</FontString>
+   					</Layer>
+   				</Layers>
+   				<Scripts>
+   					<OnClick>
+   						--[[SetGroupRosterSelection(0);
+   						if ( self:GetChecked() ) then
+   							PlaySound("igMainMenuOptionCheckBoxOff");
+   						else
+   							PlaySound("igMainMenuOptionCheckBoxOn");
+   						end
+   						SetGroupRosterShowOffline(self:GetChecked());
+   						GroupRoster_Update();  --]]
+   					</OnClick>
+   				</Scripts>
+   				<NormalTexture urgency="5" file="Interface\Buttons\UI-CheckBox-Up"/>
+   				<PushedTexture urgency="5" file="Interface\Buttons\UI-CheckBox-Down"/>
+   				<HighlightTexture urgency="5" file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+   				<CheckedTexture urgency="5" file="Interface\Buttons\UI-CheckBox-Check"/>
+   				<DisabledCheckedTexture urgency="5" file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+   			</CheckButton>
+   		</Frames>
+        <Scripts>
+            <OnLoad>
+                self.UpdateFunc = GHG_UpdateGroupRoster;
+            </OnLoad>
+        </Scripts>
+   	</Frame>
+   <!--
+   *******************************************************************************
+   	Side panel
+   *******************************************************************************
+   -->
+   	<Frame name="GHG_GroupMemberDetailFrame" toplevel="true" enableMouse="true" hidden="true" parent="GHG_GroupFrame">
+   		<Size>
+   			<AbsDimension x="212" y="270"/>
+   		</Size>
+   		<Anchors>
+   			<Anchor point="TOPLEFT" relativeTo="GHG_GroupFrame" relativePoint="TOPRIGHT">
+   				<Offset>
+   					<AbsDimension x="0" y="-28"/>
+   				</Offset>
+   			</Anchor>
+   		</Anchors>
+   		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+   			<BackgroundInsets>
+   				<AbsInset left="11" right="12" top="12" bottom="11"/>
+   			</BackgroundInsets>
+   			<TileSize>
+   				<AbsValue val="32"/>
+   			</TileSize>
+   			<EdgeSize>
+   				<AbsValue val="32"/>
+   			</EdgeSize>
+   		</Backdrop>
+   		<Layers>
+   			<Layer level="ARTWORK">
+   				<FontString name="$parentName" inherits="GameFontNormal">
+   					<Size>
+   						<AbsDimension x="0" y="12"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="TOPLEFT">
+   							<Offset>
+   								<AbsDimension x="17" y="-18"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentLevel" inherits="GameFontHighlightSmall">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="0" y="-2"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentZoneLabel" inherits="GameFontNormalSmall" text="ZONE_COLON">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativeTo="$parentLevel" relativePoint="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="0" y="-11"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentZoneText" inherits="GameFontHighlight" justifyH="LEFT">
+   					<Size x="147" y="12"/>
+   					<Anchors>
+   						<Anchor point="LEFT" relativeTo="$parentZoneLabel" relativePoint="RIGHT">
+   							<Offset>
+   								<AbsDimension x="2" y="0"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentRankLabel" inherits="GameFontNormalSmall" text="RANK_COLON">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativeTo="$parentZoneLabel" relativePoint="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="0" y="-10"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentRankText" inherits="GameFontHighlight" justifyH="LEFT">
+   					<Anchors>
+   						<Anchor point="LEFT" relativeTo="$parentRankLabel" relativePoint="RIGHT">
+   							<Offset>
+   								<AbsDimension x="2" y="0"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentOnlineLabel" inherits="GameFontNormalSmall" text="LAST_ONLINE_COLON">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativeTo="$parentRankLabel" relativePoint="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="0" y="-10"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentOnlineText" inherits="GameFontHighlight">
+   					<Anchors>
+   						<Anchor point="LEFT" relativeTo="$parentOnlineLabel" relativePoint="RIGHT">
+   							<Offset>
+   								<AbsDimension x="2" y="0"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentNoteLabel" inherits="GameFontNormalSmall" text="NOTE_COLON">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativeTo="$parentOnlineLabel" relativePoint="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="0" y="-8"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<FontString name="$parentOfficerNoteLabel" inherits="GameFontNormalSmall" text="OFFICER_NOTE_COLON">
+   					<Anchors>
+   						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="17" y="92"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</FontString>
+   				<Texture file="Interface\FriendsFrame\UI-GuildMember-Patch">
+   					<Size>
+   						<AbsDimension x="256" y="32"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="BOTTOMLEFT">
+   							<Offset>
+   								<AbsDimension x="12" y="3"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</Texture>
+   			</Layer>
+   			<Layer level="OVERLAY">
+   				<Texture name="$parentCorner" file="Interface\DialogFrame\UI-DialogBox-Corner">
+   					<Size>
+   						<AbsDimension x="32" y="32"/>
+   					</Size>
+   					<Anchors>
+   						<Anchor point="TOPRIGHT">
+   							<Offset>
+   								<AbsDimension x="-6" y="-7"/>
+   							</Offset>
+   						</Anchor>
+   					</Anchors>
+   				</Texture>
+   			</Layer>
+   		</Layers>
+   		<Frames>
+           <Frame name="$parentRankDropdown" inherits="UIDropDownMenuTemplate" hidden="true">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentRankLabel" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-16" y="-3"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad function="GHG_GroupMemberDetailFrameRankDropdown_OnLoad"/>
+                </Scripts>
+            </Frame>
+   			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+   				<Anchors>
+   					<Anchor point="TOPRIGHT">
+   						<Offset>
+   							<AbsDimension x="-3" y="-3"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   			</Button>
+   			<Button name="$parentRemoveButton" inherits="UIPanelButtonTemplate" text="REMOVE">
+   				<Size>
+   					<AbsDimension x="96" y="22"/>
+   				</Size>
+   				<Anchors>
+   					<Anchor point="BOTTOMLEFT">
+   						<Offset>
+   							<AbsDimension x="10" y="12"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Scripts>
+   					<OnClick>
+   						--StaticPopup_Show("REMOVE_GROUPMEMBER");
+   					</OnClick>
+   					<OnEnter>
+   						GameTooltip_AddNewbieTip(self, REMOVE, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_GROUPREMOVE, 1);
+   					</OnEnter>
+   					<OnLeave function="GameTooltip_Hide"/>
+   				</Scripts>
+   				<NormalFont style="GameFontNormalSmall"/>
+   				<HighlightFont style="GameFontHighlightSmall"/>
+   				<DisabledFont style="GameFontDisableSmall"/>
+   			</Button>
+   			<Button name="$parentGroupInviteButton" inherits="UIPanelButtonTemplate" text="GROUP_INVITE">
+   				<Size>
+   					<AbsDimension x="96" y="22"/>
+   				</Size>
+   				<Anchors>
+   					<Anchor point="LEFT" relativeTo="$parentRemoveButton" relativePoint="RIGHT">
+   						<Offset>
+   							<AbsDimension x="1" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Scripts>
+   					<OnClick>
+   						--InviteUnit(GroupFrame.selectedName);
+   					</OnClick>
+   					<OnEnter>
+   						GameTooltip_AddNewbieTip(self, GROUP_INVITE, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_GROUPINVITE, 1);
+   					</OnEnter>
+   					<OnLeave function="GameTooltip_Hide"/>
+   				</Scripts>
+   				<NormalFont style="GameFontNormalSmall"/>
+   				<HighlightFont style="GameFontHighlightSmall"/>
+   				<DisabledFont style="GameFontDisableSmall"/>
+   			</Button>
+
+   			<Frame name="$parentNoteBackground" enableMouse="true">
+   				<Size>
+   					<AbsDimension x="181" y="40"/>
+   				</Size>
+   				<Anchors>
+   					<Anchor point="TOPLEFT" relativeTo="$parentNoteLabel" relativePoint="BOTTOMLEFT">
+   						<Offset>
+   							<AbsDimension x="-2" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Layers>
+   					<Layer level="ARTWORK">
+   						<FontString name="GHG_PersonalNoteText" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
+   							<Size>
+   								<AbsDimension x="165" y="32"/>
+   							</Size>
+   							<Anchors>
+   								<Anchor point="TOP">
+   									<Offset>
+   										<AbsDimension x="1" y="-6"/>
+   									</Offset>
+   								</Anchor>
+   							</Anchors>
+   						</FontString>
+   					</Layer>
+   				</Layers>
+   				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+   					<EdgeSize>
+   						<AbsValue val="16"/>
+   					</EdgeSize>
+   					<TileSize>
+   						<AbsValue val="16"/>
+   					</TileSize>
+   					<BackgroundInsets>
+   						<AbsInset left="5" right="5" top="5" bottom="5"/>
+   					</BackgroundInsets>
+   				</Backdrop>
+   				<Scripts>
+   					<OnLoad>
+   						self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b, 0.5);
+   						self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.25);
+   					</OnLoad>
+   				</Scripts>
+   			</Frame>
+   			<Frame name="$parentOfficerNoteBackground">
+   				<Size>
+   					<AbsDimension x="181" y="40"/>
+   				</Size>
+   				<Anchors>
+   					<Anchor point="TOPLEFT" relativeTo="$parentOfficerNoteLabel" relativePoint="BOTTOMLEFT">
+   						<Offset>
+   							<AbsDimension x="-2" y="0"/>
+   						</Offset>
+   					</Anchor>
+   				</Anchors>
+   				<Layers>
+   					<Layer level="ARTWORK">
+   						<FontString name="GHG_OfficerNoteText" inherits="GameFontHighlight" justifyH="LEFT" justifyV="TOP">
+   							<Size>
+   								<AbsDimension x="165" y="32"/>
+   							</Size>
+   							<Anchors>
+   								<Anchor point="TOP">
+   									<Offset>
+   										<AbsDimension x="1" y="-6"/>
+   									</Offset>
+   								</Anchor>
+   							</Anchors>
+   						</FontString>
+   					</Layer>
+   				</Layers>
+   				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+   					<EdgeSize>
+   						<AbsValue val="16"/>
+   					</EdgeSize>
+   					<TileSize>
+   						<AbsValue val="16"/>
+   					</TileSize>
+   					<BackgroundInsets>
+   						<AbsInset left="5" right="5" top="5" bottom="5"/>
+   					</BackgroundInsets>
+   				</Backdrop>
+   				<Scripts>
+   					<OnLoad>
+   						self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b, 0.5);
+   						self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.25);
+   					</OnLoad>
+   				</Scripts>
+   			</Frame>
+   		</Frames>
+   		<Scripts>
+   			<OnLoad>
+                self.ghmLocIgnore = true;
+   				--GroupFrame_RegisterPopup(self);
+   			</OnLoad>
+   		</Scripts>
+   	</Frame>
+</Ui>
