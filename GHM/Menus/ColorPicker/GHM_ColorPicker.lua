@@ -75,8 +75,10 @@ function GHM_ColorPicker()
 	}
 	
 	colorMenuFrame = GHM_NewFrame(class, colorT);
+	colorMenuFrame:SetToplevel(true)
 	colorMenuFrame:Hide()
-
+	
+	
 	class.New = function(_OnOkCallback, hex)
 		OnOkCallback = _OnOkCallback;
 		colorMenuFrame.ForceLabel("color", {1,1,1,1})
@@ -86,6 +88,7 @@ function GHM_ColorPicker()
 			returnHex = nil
 		end
 		colorMenuFrame:Show();
+		colorMenuFrame:GetParent():GetParent():SetFrameStrata("FULLSCREEN_DIALOG")
 		inUse = true;
 	end
 	
@@ -100,6 +103,7 @@ function GHM_ColorPicker()
 			colorMenuFrame.ForceLabel("color", _color)
 		end
 		colorMenuFrame:Show()
+		colorMenuFrame:GetParent():GetParent():SetFrameStrata("FULLSCREEN_DIALOG")
 		inUse = true;
 	end
 		

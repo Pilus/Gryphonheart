@@ -173,7 +173,7 @@ if GHMMenuCreator == nil then
           OnClick = function() 
             local objCode = [[
                 {
-                    type = "Color2",
+                    type = "Color",
                     text = "Color",
                     align = "c",
                     label = "color",

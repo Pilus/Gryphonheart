@@ -317,56 +317,7 @@ function GHM_MultiPageEditField(parent, main, profile)
 				self.H2 = 1;
 			end
 		end
-	end
-	----- Begin Link Edit Frame
-	local colorMenuFrame
-	local colorT = {
-		{
-			{
-				{
-					type = "Color2",
-					text = "Text Color",
-					align = "c",
-					label = "color",              
-				},
-			},			
-			{
-				{
-					type = "Button",
-					text = OKAY,
-					align = "l",
-					label = "ok",
-					compact = false,
-					yOff = -10,
-					OnClick = function(self)
-						local color = colorMenuFrame.GetLabel("color")
-						GHI_Book_InsertColor(color)
-						colorMenuFrame:Hide();
-					end,
-				},
-				{
-					type = "Button",
-					text = CANCEL,
-					align = "r",
-					label = "cancel",
-					compact = false,
-					yOff = -10,
-					OnClick = function(obj)
-						colorMenuFrame:Hide();
-					end,
-				},
-			},
-		},
-		title = "Color Text",
-		name = "GHI_BookColorFrame"..count,
-		theme = "BlankTheme",
-		width = 200,
-		height = 248,
-		useWindow = true,
-	}
-	colorMenuFrame = GHM_NewFrame("ColorMenu", colorT);
-	colorMenuFrame:Hide()
-	
+	end	
 	----- Confirm Delete Edit Frame
 	local deleteT = {
 		{
@@ -634,7 +585,9 @@ function GHM_MultiPageEditField(parent, main, profile)
 			{
 				texture = "interface\\addons\\GHM\\Textures\\GHI_Book_Editor_Color",
 				func = function()
-					colorMenuFrame:Show()				
+					GHM_ColorPickerList().New(function(color)
+						GHI_Book_InsertColor(color)
+						end)			
 				end,
 				tooltip = "Insert Color",
 			},

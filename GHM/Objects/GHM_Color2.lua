@@ -54,10 +54,7 @@ function GHM_Color2(parent, main, profile)
 	end)
 	
 	colorPick:SetScript("OnColorSelect", function(self,r,g,b)
-			colorSwatch:SetTexture(r, g, b);
-			if ( self.func ) then
-				self.func();
-			end			
+			colorSwatch:SetTexture(r, g, b);	
 			boxR:SetText(math.floor(r * 255))
 			boxG:SetText(math.floor(g * 255))
 			boxB:SetText(math.floor(b * 255))
@@ -66,35 +63,19 @@ function GHM_Color2(parent, main, profile)
 			end
 	end)
 	alphaSlider:SetScript("OnValueChanged", function(self, value)
-		boxA:SetText(math.floor(value * 100))
+		boxA:SetText(tonumber(strsub(value,1,4)) * 100)
 		colorSwatch:SetAlpha(value)
 		if profile.onColorSelect and type(profile.onColorSelect) == "function" then
 			profile.onColorSelect()
 		end
 	end)
 	
-	local function colorSet(frame, color)
+	local function colorSet()
+		local r = boxR:GetText()
+		local g = boxG:GetText()
+		local b = boxB:GetText()
 		
-		local wheelColors ={}
-		wheelColors.r, wheelColors.g, wheelColors.b = colorPick:GetColorRGB()
-		
-		local curColor = tonumber(frame:GetText())
-		local newColors = {r=0,g=0,b=0}
-		
-		if color == "r" then
-			newColors.r = curColor
-			newColors.g = wheelColors.g
-			newColors.b = wheelColors.b
-		elseif color == "g" then
-			newColors.g = curColor
-			newColors.r = wheelColors.r
-			newColors.b = wheelColors.b
-		elseif color == "b" then
-			newColors.b = curColor
-			newColors.g = wheelColors.g
-			newColors.r = wheelColors.r
-		end		
-		colorPick:SetColorRGB((newColors.r / 255), (newColors.g / 255),(newColors.b / 255))
+		colorPick:SetColorRGB((r / 255), (g / 255),(b / 255))
 	end
 	
 	boxR:SetScript("OnTextChanged", function(self, userInput)
@@ -154,7 +135,7 @@ function GHM_Color2(parent, main, profile)
 
 	frame.Clear = function(self)
 		colorPick:SetColorRGB(1, 1, 1)
-		alphaSlider:SetValue(1)
+		alphaSlider:SetValue(100)
 	end
 
 

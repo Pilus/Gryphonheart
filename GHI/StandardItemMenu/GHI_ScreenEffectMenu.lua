@@ -154,7 +154,7 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 		  },
 		  {
 			{
-			  type = "Color2",
+			  type = "Color",
 			  text = loc.COLOR,
 			  align = "l",
 			  label = "color",

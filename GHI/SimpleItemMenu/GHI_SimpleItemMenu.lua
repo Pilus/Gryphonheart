@@ -909,11 +909,10 @@ function GHI_SimpleItemMenu()
 
 				},
 				{
-					type = "Color2",
+					type = "Color",
 					text = loc.COLOR,  --will need help localizing color as they are formated as a table, unsure on
 					align = "l",
 					label = "mess_color",
-                    xOffset = -5,
 				},
 			},
     }
@@ -1179,7 +1178,7 @@ function GHI_SimpleItemMenu()
         },
         {
 				{
-					type = "Color2",
+					type = "Color",
 					text = loc.COLOR,
 					align = "l",
 					label = "se_color",

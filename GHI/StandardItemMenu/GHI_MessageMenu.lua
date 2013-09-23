@@ -130,7 +130,7 @@ function GHI_MessageMenu(_OnOkCallback, _editAction)
 			  texture = "Tooltip",
 			},
 			{
-			  type = "Color2",
+			  type = "Color",
 			  text = loc.COLOR,
 			  align = "r",
 			  label = "color",

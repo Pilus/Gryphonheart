@@ -11,7 +11,7 @@
 
 local count = 1;
 
-function GHM_BuildColorDD(dropDownMenu, colorTexture)
+function GHM_BuildColorDD(dropDownMenu, colorTexture, Force)
 		local miscAPI = GHI_MiscAPI().GetAPI()
 		local loc = GHI_Loc();
 				
@@ -55,7 +55,8 @@ function GHM_BuildColorDD(dropDownMenu, colorTexture)
 			tempData.colorCode = "\124c"..miscAPI.RGBAPercToHex(v.r,v.g,v.b)
 			tempData.notCheckable = true
 			tempData.func = function()
-				colorTexture:SetVertexColor(v.r, v.g, v.b, 1)
+				--colorTexture:SetVertexColor(v.r, v.g, v.b, 1)
+				Force({v.r,v.g,v.b,1})
 				dropDownMenu.CloseDropDownMenus()
 			end
 			tinsert(GHM_COLOR_MENU_DATA[1].menuList, tempData)
@@ -75,7 +76,8 @@ function GHM_BuildColorDD(dropDownMenu, colorTexture)
 			tempData.colorCode = "\124c"..miscAPI.RGBAPercToHex(color.r,color.g,color.b)
 			tempData.notCheckable = true
 			tempData.func = function()
-			colorTexture:SetVertexColor(color.r, color.g, color.b, 1)
+				--colorTexture:SetVertexColor(color.r, color.g, color.b, 1)
+				Force({color.r,color.g,color.b,1})
 				dropDownMenu.CloseDropDownMenus()
 			end
 			tinsert(GHM_COLOR_MENU_DATA[2].menuList, tempData)
@@ -95,7 +97,8 @@ function GHM_BuildColorDD(dropDownMenu, colorTexture)
 			tempData.colorCode = "\124c"..miscAPI.RGBAPercToHex(color.r,color.g,color.b)
 			tempData.notCheckable = true
 			tempData.func = function()
-				colorTexture:SetVertexColor(color.r, color.g, color.b, 1)
+				--colorTexture:SetVertexColor(color.r, color.g, color.b, 1)
+				Force({color.r,color.g,color.b,1})
 				dropDownMenu.CloseDropDownMenus()
 			end
 			tinsert(GHM_COLOR_MENU_DATA[3].menuList, tempData)
@@ -114,7 +117,8 @@ function GHM_BuildColorDD(dropDownMenu, colorTexture)
 			tempData.colorCode = "\124c"..miscAPI.RGBAPercToHex(v.r,v.g,v.b)
 			tempData.notCheckable = true
 			tempData.func = function()
-				colorTexture:SetVertexColor(v.r, v.g, v.b, 1)
+				--colorTexture:SetVertexColor(v.r, v.g, v.b, 1)
+				Force({v.r,v.g,v.b,1})
 				dropDownMenu.CloseDropDownMenus()
 			end
 			tinsert(GHM_COLOR_MENU_DATA[4].menuList, tempData)
@@ -133,7 +137,8 @@ function GHM_BuildColorDD(dropDownMenu, colorTexture)
 			tempData.colorCode = "\124c"..miscAPI.RGBAPercToHex(v.r,v.g,v.b)
 			tempData.notCheckable = true
 			tempData.func = function()
-				colorTexture:SetVertexColor(v.r, v.g, v.b, 1)
+				--colorTexture:SetVertexColor(v.r, v.g, v.b, 1)
+				Force({v.r,v.g,v.b,1})
 				dropDownMenu.CloseDropDownMenus()
 			end
 			tinsert(GHM_COLOR_MENU_DATA[5].menuList, tempData)
@@ -145,7 +150,8 @@ function GHM_BuildColorDD(dropDownMenu, colorTexture)
 			func = function()
 				local currColor = {colorTexture:GetVertexColor()}
 				GHM_ColorPickerList().Edit(currColor, function(_color)
-					colorTexture:SetVertexColor(_color.r or _color[1], _color.g or _color[2], _color.b or _color[3], _color.a or _color[4])
+					Force(_color)
+					--colorTexture:SetVertexColor(_color.r or _color[1], _color.g or _color[2], _color.b or _color[3], _color.a or _color[4])
 				end
 				)
 				dropDownMenu.CloseDropDownMenus()
@@ -161,7 +167,8 @@ function GHM_Color(parent, main, profile)
 	local miscAPI = GHI_MiscAPI().GetAPI()
 	local loc = GHI_Loc();
 	local dropDownMenu = GHM_DropDownMenu()	
-
+	local OnChange
+	local Force1
 	-- declaration and initialization
 	local label = profile.label;
 
@@ -171,10 +178,15 @@ function GHM_Color(parent, main, profile)
 	local button = _G[area:GetName().."Button"]
 	local colorTexture = _G[button:GetName().."Color"]
 	
-	local currentColor = {}
-	currentColor.r, currentColor.g, currentColor.b, currentColor.a = colorTexture:GetVertexColor()
-
+	if profile.OnChange then
+		OnChange = profile.OnChange
+	end
+	
 	labelFrame:SetText(profile.text or "");
+	
+	if profile.width then
+		frame:SetWidth(profile.width)
+	end
 
 	-- positioning
 	GHM_FramePositioning(frame,profile,parent);
@@ -184,37 +196,21 @@ function GHM_Color(parent, main, profile)
 	button:SetScript("OnClick", function()		
 		if not (ddMenuFrame) then
 			ddMenuFrame	= CreateFrame("Frame", frame:GetName().."ColorMenu", frame, "GHM_DropDownMenuTemplate")
-			dropDownMenu.EasyMenu(GHM_BuildColorDD(dropDownMenu,colorTexture), ddMenuFrame, button:GetName(), 0 ,0, "MENU", 1);
+			dropDownMenu.EasyMenu(GHM_BuildColorDD(dropDownMenu,colorTexture, Force1), ddMenuFrame, button:GetName(), 0 ,0, "MENU", 1);
 		else
-			dropDownMenu.ToggleDropDownMenu(nil,nil,ddMenuFrame,button:GetName(),0,0,GHM_BuildColorDD(dropDownMenu,colorTexture),nil,2)
+			dropDownMenu.ToggleDropDownMenu(nil,nil,ddMenuFrame,button:GetName(),0,0,GHM_BuildColorDD(dropDownMenu,colorTexture,Force1),nil,2)
 		end
 	end)
 		
 	-- functions
 	local varAttFrame;
 
-	local Force1 = function(data)
+	Force1 = function(data)
 		if type(data) == "table" then
 			colorTexture:SetVertexColor(data.r or data[1], data.g or data[2], data.b or data[3], data.a or data[4])
-		elseif type(data) == "string" then
-			for i,v in pairs(colors) do
-				if data == tostring(i) then
-					colorTexture:SetVertexColor(v.r, v.g, v.b, v.a)
-					return
-				end
+			if OnChange then
+				OnChange(data.r or data[1], data.g or data[2], data.b or data[3], data.a or data[4])
 			end
-			for i,v in pairs(classColors) do
-				if data == tostring(i) then
-					colorTexture:SetVertexColor(v.r, v.g, v.b, v.a)
-					return
-				end
-			end
-			for i,v in pairs(qualityColors) do
-				if data == tostring(i) then
-					colorTexture:SetVertexColor(v.r, v.g, v.b, v.a)
-					return
-				end
-			end			
 		end
 	end
 
