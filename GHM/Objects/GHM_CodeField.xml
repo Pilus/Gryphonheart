@@ -78,23 +78,24 @@
                                 <Scripts>
                                     <OnLoad>
                                         self:SetScript("OnCursorChanged",function(self,arg1,arg2,arg3)
-                                        local scrollBar = _G[self:GetParent():GetName().."ScrollBar"]
-                                        local h = scrollBar:GetHeight();
-                                        if (-arg2)-h-scrollBar:GetValue() > 22 then
-                                        scrollBar:SetValue(-arg2+ (-3.0*arg3) -h);
-                                        end
-                                        if -3 > -arg2-scrollBar:GetValue() then
-                                        scrollBar:SetValue(-arg2- 1.5*arg3);
-                                        end
+											local scrollBar = _G[self:GetParent():GetName().."ScrollBar"]
+											local h = scrollBar:GetHeight();
+											if (-arg2)-h-scrollBar:GetValue() > 22 then
+												scrollBar:SetValue(-arg2+ (-3.0*arg3) -h);
+											end
+											if -3 > -arg2-scrollBar:GetValue() then
+												scrollBar:SetValue(-arg2- 1.5*arg3);
+											end
                                         end);
+										GHM_LoadSyntaxColorList()
                                     </OnLoad>
 									<OnShow>
 										local syntaxDisabled = GHI_MiscData.syntaxDisabled
 										if syntaxDisabled == true then
-										return
+											return
 										else
-										local colorTable = GHM_GetSyntaxColorList()
-										IndentationLib.Enable(self,4,colorTable)
+											local syntaxColors = GHM_GetSyntaxColorList()
+											IndentationLib.Enable(self,4,syntaxColors)
 										end
 									</OnShow>
 									<OnHide>
@@ -106,7 +107,7 @@
                                     <OnTextChanged>
                                         local f = self:GetParent():GetParent();
                                         if f and f.main then
-                                        f.main.SetLabel(f.label,self:GetText());
+											f.main.SetLabel(f.label,self:GetText());
                                         end
                                     </OnTextChanged>
                                     <OnCursorChanged>

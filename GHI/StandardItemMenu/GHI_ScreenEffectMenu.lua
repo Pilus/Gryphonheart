@@ -58,30 +58,22 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 		inUse = true;
 		if (_editAction) then
 			class.editAction = _editAction;
-			local info = class.editAction.GetInfo();				
-			menuFrame.ForceLabel("color", 1)
-			for i, v in pairs(colorNames) do
-			--print(v)
-			--print(info.colorName)
-				if info.colorName == v then
-				menuFrame.ForceLabel("color", i);
-				end
-			end
-
+			local info = class.editAction.GetInfo();
+			local color = info.color
+			color.a = info.alpha
+			menuFrame.ForceLabel("color", color)
 			menuFrame.ForceLabel("fade_in", info.fade_in);
 			menuFrame.ForceLabel("fade_out", info.fade_out);
 			menuFrame.ForceLabel("duration", info.duration);
             menuFrame.ForceLabel("delay",info.delay);
-			menuFrame.ForceLabel("alpha",info.alpha)
 			menuFrame.ForceLabel("flashRepeat",info.flashRepeat)
 		else
 			class.editAction = nil;
-			menuFrame.ForceLabel("color", {1,1,1});
+			menuFrame.ForceLabel("color", {1,1,1,1});
 			menuFrame.ForceLabel("fade_in", 1);
 			menuFrame.ForceLabel("fade_out", 1);
 			menuFrame.ForceLabel("duration", 2);
             menuFrame.ForceLabel("delay",0);
-			menuFrame.ForceLabel("alpha",1)
 			menuFrame.ForceLabel("flashRepeat",1)
 		end
 		menuFrame:AnimatedShow();
@@ -92,15 +84,13 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 	local OnOk = function()
 		local action;
 
-		--local color = menuFrame.GetLabel("color");
 		local fade_in = menuFrame.GetLabel("fade_in");
 		local fade_out = menuFrame.GetLabel("fade_out");
 		local duration = menuFrame.GetLabel("duration");
-		local alpha = menuFrame.GetLabel("alpha");
 		local flashRepeat = menuFrame.GetLabel("flashRepeat");
 		local color = menuFrame.GetLabel("color");
 		local delay = menuFrame.GetLabel("delay");
-
+		local alpha =  color.a or color[4] or 1
 
 		local t = {
 			Type = "script",
@@ -162,9 +152,8 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 			{
 			  type = "Time",
 			  text = loc.SCREEN_EFFECT_FADEOUT,
-			  align = "r",
+			  align = "c",
 			  label = "fade_out",
-			  yOff = 55,
 			  width = 130,
 			  texture = "Tooltip",
 			  values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
@@ -182,36 +171,23 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 		  },
 		  {
 			{
-			  type = "CustomSlider",
-			  align = "r",
-			  values = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1},
-			  yOff = 100,
-			  width = 130,
-			  label = "alpha",
-			  text = loc.ALPHA,
-			},        
-			{
-			  type = "Time",
-			  text = loc.DURATION,
-			  align = "r",
-			  label = "duration",
-			  texture = "Tooltip",
-			  xOff = -5,
-			  yOff = -10,
-			  width = 130,
-			  values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-			},
-		  },
-		  {
-			{
 			  type = "Editbox",
 			  text = "Repeat",
-			  align = "r",
+			  align = "l",
 			  label = "flashRepeat",
 			  width = 50,
 			  texture = "Tooltip",
-			  yOff = 80,
 			  width = 130,
+			},
+			{
+			  type = "Time",
+			  text = loc.DURATION,
+			  align = "c",
+			  label = "duration",
+			  texture = "Tooltip",
+			  xOff = -5,
+			  width = 130,
+			  values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
 			},
 			{
 			  type = "Time",
@@ -221,6 +197,9 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 			  xOff = -5,
 			  texture = "Tooltip",
 			},
+		  },
+		  {
+			
 			
 		  },
 		  {

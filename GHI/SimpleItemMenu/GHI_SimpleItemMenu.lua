@@ -155,7 +155,7 @@ function GHI_SimpleItemMenu()
 		{text = "mess_text",color = "mess_color",delay = "mess_delay",output_type = "mess_type",}, -- Message
 		{buffName = "buff_name",buffDetails = "buff_details", buffDuration = "buff_duration", untilCanceled = "until_canceled", castOnSelf = "castOnSelf", filter = "filter", stackable = "stackable", buffType = "buff_type",buffIcon = "buff_icon",delay = "buff_delay",amount = "buff_amount",range = "buff_range",}, -- Buff
 		{item_name = "item_name",delay = "eq_delay",}, -- Equip Item
-		{color = "se_color",fade_in = "fade_in",fade_out = "fade_out",duration = "se_duration",delay = "se_delay",alpha = "se_alpha",}, -- Screen Flash
+		{color = "se_color",fade_in = "fade_in",fade_out = "fade_out",duration = "se_duration",delay = "se_delay"}, -- Screen Flash
 	}
 	
 	local defaultFormatting = function(i, v)
@@ -214,7 +214,9 @@ function GHI_SimpleItemMenu()
 		defaultFormatting,
 		function(i, v)
 			if i == "color" then
-				defaultFormatting(i,v)
+				local color = menuFrame.GetLabel("se_color")
+				actionToAdd["color"] = color
+				actionToAdd["alpha"] = color.a
 			else
 				actionToAdd[i] = tonumber(menuFrame.GetLabel(v))
 			end
@@ -890,30 +892,33 @@ function GHI_SimpleItemMenu()
 					texture = "Tooltip",
 				},
 				{
+					type = "Color",
+					text = loc.COLOR,  --will need help localizing color as they are formated as a table, unsure on
 					align = "r",
-					type = "Time",
-					text = loc.DELAY;
-					label = "mess_delay",
-					width = 80,
+					label = "mess_color",
 				},
 			},
 			{
 				{
 					type = "RadioButtonSet",
 					text = loc.OUTPUT_TYPE,
-					align = "r",
+					align = "c",
+					yOff = -10,
 					label = "mess_type",
 					returnIndex = true,
 					data = { loc.CHAT_FRAME, loc.ERROR_MSG_FRAME },
 					texture = "Tooltip",
-
 				},
 				{
-					type = "Color",
-					text = loc.COLOR,  --will need help localizing color as they are formated as a table, unsure on
 					align = "l",
-					label = "mess_color",
+					yOff = -10,
+					type = "Time",
+					label = "mess_delay",
+					text = loc.DELAY,
+					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+					startText = "0",
 				},
+				
 			},
     }
 	local editBuffPage = {
@@ -1151,14 +1156,13 @@ function GHI_SimpleItemMenu()
 					align = "l",
 				},
 		},
-		{
+		{		
 				{
-				   type = "Slider",
-				   align = "l",
-				   values = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1},
-				   label = "se_alpha",
-				   text = loc.ALPHA,
-				},				
+					type = "Color",
+					text = loc.COLOR,
+					align = "l",
+					label = "se_color",
+				},
 				{
 					type = "Time",
 					align = "c",
@@ -1178,16 +1182,10 @@ function GHI_SimpleItemMenu()
         },
         {
 				{
-					type = "Color",
-					text = loc.COLOR,
-					align = "l",
-					label = "se_color",
-				},
-				{
 					type = "Dummy",
-					align = "l",
+					height = 150,
 					width = 10,
-					height = 60,
+					align = "l",
 				},
 				{
 					type = "Time",
