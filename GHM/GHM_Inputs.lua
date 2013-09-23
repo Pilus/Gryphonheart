@@ -159,7 +159,7 @@ return {
 					texture = "INTERFACE\\ICONS\\priest_icon_chakra_blue",
 					tooltip = loc.SCRIPT_INSERT_ICON,
 					func = function(f)
-						GHI_MenuList("GHM_IconSelectionMenu").New(function(icon)
+						GHM_IconPickerList().New(function(icon)
 						local iconPath = string.gsub(icon,[[\]],[[\\]]);
 							f:Insert(string.format([["%s"]],iconPath));
 						end);
@@ -169,7 +169,7 @@ return {
 					texture = "Interface\\Icons\\INV_MISC_FILM_01",
 					tooltip = "Image",
 					func = function(f)
-						GHI_MenuList("GHM_ImageBrowser").New(function(selectedImage, selectedX, selectedY)
+						GHM_ImagePickerList().New(function(selectedImage, selectedX, selectedY)
 						local imagePath = string.gsub(selectedImage,[[\]],[[\\]]);
 						f:Insert(string.format([["%s"]],imagePath))
 						--selectedX.." "..selectedY;

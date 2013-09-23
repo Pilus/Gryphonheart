@@ -105,6 +105,19 @@ function GHM_DropDown(parent, main, profile)
 							end
 							dropDownMenu.CloseDropDownMenus()
 						end
+						
+						if info.menuList[i2].menuList then
+							for i3, v3 in pairs(info.menuList[i2].menuList) do
+								info.menuList[i2].menuList[i3].func = function(self)
+									if returnIndex == true then
+										Force1(i3)
+									else
+										Force1(v3.text);
+									end
+									dropDownMenu.CloseDropDownMenus()
+								end
+							end
+						end
 					end
 				else
 					info.func = function(self)

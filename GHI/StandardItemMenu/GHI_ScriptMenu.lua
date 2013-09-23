@@ -55,13 +55,8 @@ function GHI_ScriptMenu(_OnOkCallback, _editAction)
 	if not(soundMenuList) then
 		soundMenuList = GHI_MenuList("GHM_SoundSelectionMenu");
 	end
-
-	if not(iconMenuList) then
-		iconMenuList = GHI_MenuList("GHM_IconSelectionMenu");
-	end
-	if not(imageMenuList) then
-		imageMenuList = GHI_MenuList("GHM_ImageBrowser");
-	end
+	local iconMenuList = GHM_IconPickerList()
+	local imageMenuList = GHM_ImagePickerList()
 	
 	class.Show = function(_OnOkCallback, _editAction)
 		OnOkCallback = _OnOkCallback;

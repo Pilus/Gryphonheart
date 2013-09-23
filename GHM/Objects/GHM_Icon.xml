@@ -775,37 +775,6 @@
                         </Offset>
                     </Anchor>
                 </Anchors>
-                <Scripts>
-                    <OnClick>
-                        local main = self.main;
-                        if not(main.iconFrame) then
-                        main.iconFrame = CreateFrame("Frame",main:GetName().."_IconFrame",self,"GHM_IconFrame_Template");
-                        end
-                        local frame = main.iconFrame;
-                        frame.from = self;
-
-                        local parent = main;
-                        if self.iconFrameParent then
-                            parent = self.iconFrameParent;
-                        elseif main.window then
-                            parent = main.window;
-                        end
-
-                        frame:SetParent(parent);
-                        frame:SetFrameStrata(self:GetFrameStrata());
-
-                        if self.framealign == "l" then
-                        frame:SetPoint("RIGHT", parent, "LEFT", 0, 0);
-                        elseif self.framealign == "r" then
-                        frame:SetPoint("LEFT", parent, "RIGHT", 0, 0);
-                        else
-                        frame:SetPoint("CENTER", parent, "CENTER", 0, 0);
-                        frame:SetFrameLevel(self:GetFrameLevel()+10);
-                        end
-                        frame:Show();
-                    </OnClick>
-
-                </Scripts>
             </Button>
             <Frame name="$parentText" inherits="GHM_TextLabel_Template">
                 <Anchors>
