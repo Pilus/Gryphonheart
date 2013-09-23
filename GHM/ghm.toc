@@ -66,13 +66,18 @@ Objects\GHM_TextButton.lua
 Objects\GHM_DropDown.lua
 Objects\GHM_Logo.lua
 Objects\GHM_Logo.xml
-
-
+Objects\GHM_ImageList.lua
+Objects\GHM_ImageList.xml
 
 Toolbar\GHM_Toolbar.lua
 
 DropDownMenu\GHM_DropDownMenu.lua
 DropDownMenu\GHM_DropDownMenuTemplates.xml
+
+Menus\IconPicker\GHM_IconPicker.lua
+Menus\IconPicker\GHM_IconPickerList.lua
+Menus\ImagePicker\GHM_ImagePicker.lua
+Menus\ImagePicker\GHM_ImagePickerList.lua
 
 ghm_window.lua
 

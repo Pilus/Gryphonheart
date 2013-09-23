@@ -17,11 +17,11 @@ function GHM_ButtonWithIcon(parent, main, profile)
 	frame:SetWidth(32);
 	frame:SetHeight(32);
 
-	frame:SetNormalTexture("Interface\\addons\\GHM\\Textures\\DialogBox-Button-Up-White");
-	frame:GetNormalTexture():SetVertexColor(GHM_GetButtonColor());
+	frame:SetNormalTexture(profile.path);
+	--frame:GetNormalTexture():SetVertexColor(GHM_GetButtonColor());
 
-	frame:SetPushedTexture("Interface\\addons\\GHM\\Textures\\DialogBox-Button-Up-White");
-	frame:GetPushedTexture():SetVertexColor(GHM_GetButtonColor());
+	frame:SetPushedTexture(profile.path);
+	frame:GetPushedTexture():SetVertexColor(0.5,0.5,0.5,1);
 
 	frame:SetBackdrop({bgFile = "",
 	edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
@@ -32,6 +32,8 @@ function GHM_ButtonWithIcon(parent, main, profile)
 	-- Click handler
 	if profile.onClick then
 		frame:SetScript("OnClick",profile.onClick)
+	elseif profile.OnClick then
+		frame:SetScript("OnClick",profile.OnClick)
 	end
 
 	-- Tooltip
