@@ -17,7 +17,8 @@ function GHM_MultiPageEditField(parent, main, profile)
 	local miscApi = GHI_MiscAPI().GetAPI();
 	local actAPI = GHI_ActionAPI().GetAPI();
 	local loc = GHI_Loc()
-	local iconMenuList, imageMenuList
+	local iconMenuList = GHM_IconPickerList()
+	local imageMenuList = GHM_ImagePickerList()
 	
 	local frame = CreateFrame("Frame", "GHM_MultiPageEditField" .. count, parent, "GHM_MultiPageEditField_Template");
 	count = count + 1;
@@ -539,26 +540,21 @@ function GHM_MultiPageEditField(parent, main, profile)
 	-- toolbar buttons
 	local toolbar = GHM_Toolbar(areaFrame,fieldFrame);
 	toolbar:SetPoint("TOPLEFT",3,-3);
-	
-	if not(iconMenuList) then
-		iconMenuList = GHI_MenuList("GHM_IconSelectionMenu");
-	end
-	if not(imageMenuList) then
-		imageMenuList = GHI_MenuList("GHM_ImageBrowser");
-	end
-	
+		
 	local toolbarButtons
+	local dropDownMenu = GHM_DropDownMenu()
+	
 	local HTMLtoolbarButtons = {
 			{
 				texture = "interface\\addons\\GHM\\Textures\\GHI_Book_Editor_Align",
 				func = function()
-					local DDmenuFrame = CreateFrame("Frame","AlignMenu",frame,"UIDropDownMenuTemplate")
+					local DDmenuFrame = CreateFrame("Frame","AlignMenu",frame,"GHM_DropDownMenuTemplate")
 					local menuList = {
 							{text = loc.LEFT, func = function()GHI_AlignChoose(self,"l")end, notCheckable = true},
 							{text = loc.CENTER, func = function()GHI_AlignChoose(self,"c")end, notCheckable = true,},
 							{text = loc.RIGHT, func = function()GHI_AlignChoose(self,"r")end, notCheckable = true,},
 						}
-					EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
+					dropDownMenu.EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
 					DDmenuFrame:Show()
 				end,
 				tooltip = loc.ALIGNMENT,
@@ -566,13 +562,13 @@ function GHM_MultiPageEditField(parent, main, profile)
 			{
 				texture = "interface\\addons\\GHM\\Textures\\GHI_Book_Editor_H1",
 				func = function()
-					local DDmenuFrame = CreateFrame("Frame","H1AlignMenu",frame,"UIDropDownMenuTemplate")
+					local DDmenuFrame = CreateFrame("Frame","H1AlignMenu",frame,"GHM_DropDownMenuTemplate")
 					local menuList = {
 							{text = loc.LEFT, func = function()GHI_Book_H1OnClick(self,"l")end, notCheckable = true},
 							{text = loc.CENTER, func = function()GHI_Book_H1OnClick(self,"c")end, notCheckable = true,},
 							{text = loc.RIGHT, func = function()GHI_Book_H1OnClick(self,"r")end, notCheckable = true,},
 						}
-					EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
+					dropDownMenu.EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
 					DDmenuFrame:Show()				
 				end,
 				tooltip = loc.HEADLINE_1,
@@ -580,13 +576,13 @@ function GHM_MultiPageEditField(parent, main, profile)
 			{
 				texture = "interface\\addons\\GHM\\Textures\\GHI_Book_Editor_H2",
 				func = function()
-					local DDmenuFrame = CreateFrame("Frame","H2AlignMenu",frame,"UIDropDownMenuTemplate")
+					local DDmenuFrame = CreateFrame("Frame","H2AlignMenu",frame,"GHM_DropDownMenuTemplate")
 					local menuList = {
 							{text = loc.LEFT, func = function()GHI_Book_H2OnClick(self,"l")end, notCheckable = true},
 							{text = loc.CENTER, func = function()GHI_Book_H2OnClick(self,"c")end, notCheckable = true,},
 							{text = loc.RIGHT, func = function()GHI_Book_H2OnClick(self,"r")end, notCheckable = true,},
 						}
-					EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
+					dropDownMenu.EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
 					DDmenuFrame:Show()
 
 				end,
@@ -632,13 +628,6 @@ function GHM_MultiPageEditField(parent, main, profile)
 				texture = "interface\\addons\\GHM\\Textures\\GHI_Book_Editor_Att",
 				tooltip = "Insert Attribute",
 				func = function()
-					--[[local DDmenuFrame = CreateFrame("Frame","H2AlignMenu",frame,"UIDropDownMenuTemplate")
-					local menuList = {
-							{text = "Attribute", func = function()GHI_Book_InsertAttribute(self)end, notCheckable = true},
-							{text = "Variable", func = function()GHI_Book_InsertVariable(self)end, notCheckable = true,},
-						}
-					EasyMenu(menuList, DDmenuFrame, "cursor",0,0,"MENU",0.5)
-					DDmenuFrame:Show()]]
 					GHI_Book_InsertAttribute(self)					
 				end,
 			},

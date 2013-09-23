@@ -25,7 +25,7 @@ function GHI_Loc()
 	class = {}; --GHClass("Loc"); -- It is important that it is not a GHClass, because it is not allowed to be a frame
 
 	local locale = GetLocale();
-
+	
 	local textsContainer = {
 		BAG_BNT = {
 			enUS = "GHI Backpack",
@@ -420,17 +420,22 @@ function GHI_Loc()
           },
           ICON_CHOOSE = {
                enUS = "Choose Icon",
-
           },
           ICON_CATAGORY = {
-               enUS = "Catagory:",
+               enUS = "Category:",
           },
           ICON_SUBCAT = {
-               enUS = "Subcatagory:",
+               enUS = "Subcategory:",
           },
           ICON_SEARCH = {
                enUS = "Search text:",
           },
+		  ICON_SEARCH_TT = {
+			enUS = "Press Enter to search.",
+		  },
+		  ICON_UNDO = {
+			enUS = "Undo",
+		  },
           ICON_CLOSE = {
                enUS = "Close",
           },
@@ -449,12 +454,9 @@ function GHI_Loc()
           ICON_TYPE_3 = {
                enUS= "Custom GHI Icons",
           },
-
           ICON_OR = {
                enUS = "OR",
           },
-
-
      };
 
      local textsBookUI = {
@@ -1699,68 +1701,7 @@ function GHI_Loc()
 		},
 		COLOR_CUSTOM = {
 			enUS = "Custom Color",
-		},
-		COLOR_POOR = {
-			enUS = "Poor Gray",
-		},
-		COLOR_COMMON = {
-			enUS = "Common White",
-		},
-		COLOR_UNCOMMON = {
-			enUS = "Uncommon Green",
-		},
-		COLOR_RARE = {
-			enUS = "Rare Blue",
-		},
-		COLOR_EPIC = {
-			enUS = "Epic Purple",
-		},
-		COLOR_LEGENDARY = {
-			enUS = "Legendary Orange",
-		},
-		COLOR_HEIRLOOM = {
-			enUS = "Heirloom Gold",
-		},
-		COLOR_HUNTER = {
-			enUS = "Hunter Green",
-		},
-		COLOR_WARLOCK = {
-			enUS = "Warlock Purple",
-		},
-		COLOR_PALADIN = {
-			enUS = "Paladin Pink",
-		},
-		COLOR_PRIEST = {
-			enUS = "Priest White",
-		},
-		COLOR_MAGE = {
-			enUS = "Mage Blue",
-		},
-		COLOR_ROGUE = {
-			enUS = "Rogue Yellow",
-		},
-		COLOR_DRUID = {
-			enUS = "Druid Orange",
-		},
-		COLOR_SHAMAN = {
-			enUS = "Shaman BLue",
-		},
-		COLOR_WARRIOR = {
-			enUS = "Warrior Tan",
-		},
-		COLOR_DEATHKNIGHT = {
-			enUS = "Death Knight Red",
-		},
-		COLOR_MONK = {
-			enUS = "Monk Teal",
-		},
-		COLOR_HORDE = {
-			enUS = "Horde Red",
-		},
-		COLOR_ALLIANCE = {
-			enUS = "Alliance Blue",
-		},
-		
+		},		
 	};
 
     local textsPing = {

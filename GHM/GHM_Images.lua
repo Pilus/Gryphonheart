@@ -15,7 +15,8 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Helix Gearbreaker", x = 128, y = 64 },--gob
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Ribbly Screwspigot", x = 128, y = 64 },--Gob
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Tinkerer Gizlock", x = 128, y = 64 },--gob
-		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Lumbering Oaf", x = 128, y = 64 },--gob		
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Lumbering Oaf", x = 128, y = 64 },--gob
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Siegecrafter Blackfuse", x = 128, y = 64 }, -- goblin		
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Exarch Maladaar", x = 128, y = 64 },--drae
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Mennu the Betrayer", x = 128, y = 64 },--drae
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Swamplord Muselek", x = 128, y = 64 },--drae
@@ -90,6 +91,7 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Ji Kun", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Oondasta", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Tortos", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Thok the Bloodthirsty", x = 128, y = 64 }, -- beast
 	},
 	["Dragonkin"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Epoch Hunter", x = 128, y = 64 },
@@ -123,6 +125,7 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Valiona Dungeon", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Valiona Raid", x = 128, y = 64 }, --Twilight
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Nalak", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Galakras", x = 128, y = 64 }, -- dragon
 	},
 	["Giant"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Quagmirran", x = 128, y = 64 }, -- Fungal Giant
@@ -146,6 +149,7 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Forgemaster Throngus", x = 128, y = 64 }, -- Ettin
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Halfus Wyrmbreaker", x = 128, y = 64 }, -- ettin
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Ra Den", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Norushen", x = 128, y = 64 }, -- titan
 	},
 	["Mechanical"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Arcanotron", x = 128, y = 64 },
@@ -162,6 +166,7 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Mechano Lord Capacitus", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Mekgineer Thermaplugg", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Techbot", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Iron Juggernaut", x = 128, y = 64 }, -- mech
 	},
 	["Elemental"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Adarogg", x = 128, y = 64 },
@@ -214,6 +219,7 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Warp Splinter", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Yan Zhu the Uncasked", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Princess Theradras", x = 128, y = 64},
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Immerseus", x = 128, y = 64 }, -- elemental
 	},
 	["Undead"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Timmy the Cruel", x = 128, y = 64 },
@@ -312,6 +318,11 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Corrupted Deathwing", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Deathwing", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Sinestra", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Niuzao", x = 128, y = 64 }, -- lore
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Xuen", x = 128, y = 64 }, -- lore
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-YuLon", x = 128, y = 64 }, -- lore
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Garrosh Hellscream", x = 128, y = 64 }, -- lore
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Chi Ji", x = 128, y = 64 }, -- lore
 	},
 	["Pandaria"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Amber Shaper Unsok", x = 128, y = 64 },
@@ -321,6 +332,7 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-General Pavalak", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Grand Empress Shekzeer", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Imperial Vizier Zorlok", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Klaxxi Paragons", x = 128, y = 64 }, -- mantid
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Saboteur Kiptilak", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Striker Gadok", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Vizier Jinbak", x = 128, y = 64 },
@@ -344,10 +356,12 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Lorewalker Stonestep", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Master Snowdrift", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Taran Zhu", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Golden Lotus Council", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Sha of Anger", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Sha of Doubt", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Sha of Fear", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Sha of Violence", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Sha of Pride", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Dark Animus", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Durumu", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Empyreal Queens", x = 128, y = 64 },
@@ -355,6 +369,8 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Lei Shen", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Megaera", x = 128, y = 64 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Primordius", x = 128, y = 64 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Ordos", x = 128, y = 64 }, -- yangol
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Spolis of Pandaria", x = 128, y = 64 },
 	},
 	["Dwarf"] = {		
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Baelog", x = 128, y = 64 },
@@ -406,7 +422,10 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Warchief Rend Blackhand", x = 128, y = 64 }, --B
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Quartermaster Zigris", x = 128, y = 64 }, --B
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Grandmaster Vorpil", x = 128, y = 64 }, --B
-		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Gorosh the Dervish", x = 128, y = 64 }, --B	
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Gorosh the Dervish", x = 128, y = 64 }, --B
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-KorKron Dark Shaman", x = 128, y = 64 }, -- orc
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Malkorok", x = 128, y = 64 }, -- orc
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-General Nazgrim", x = 128, y = 64 }, -- orc
 	},
 	["Elf"] = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BOSS-Asira Dawnslayer", x = 128, y = 64 }, -- BE
@@ -672,6 +691,7 @@ GHM_IMGLIST = {
 		{p="Interface\\ARCHEOLOGY\\Arch-TempRareSketch",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\ArchRare-Mantid1HSword",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\ArchRare-MantidGun",x=256,y=128},
+		--[[{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
@@ -680,8 +700,7 @@ GHM_IMGLIST = {
 		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
 		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
-		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
-		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},
+		{p="Interface\\ARCHEOLOGY\\",x=256,y=128},]]
 		
 	},
 	["Character Portraits"] = {
@@ -790,6 +809,8 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-LOREBG-ZulAman", x = 256, y = 256 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-LOREBG-ZulFarrak", x = 256, y = 256 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-LOREBG-ZulGurub", x = 256, y = 256 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-LOREBG-ThunderKingRaid", x = 256, y = 256 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-LOREBG-SiegeofOrgrimmar", x = 256, y = 256 },
 		{ p = "Interface\\TalentFrame\\DeathKnightBlood-TopLeft", x = 256, y = 256 },
 		{ p = "Interface\\TalentFrame\\DeathKnightFrost-TopLeft", x = 256, y = 256 },
 		{ p = "Interface\\TalentFrame\\DeathKnightUnholy-TopLeft", x = 256, y = 256 },
@@ -824,7 +845,6 @@ GHM_IMGLIST = {
 		{ p = "Interface\\TalentFrame\\WarriorArm-TopLeft", x = 256, y = 256 },
 		{ p = "Interface\\TalentFrame\\WarriorFury-TopLeft", x = 256, y = 256 },
 		{ p = "Interface\\TalentFrame\\WarriorProtection-TopLeft", x = 256, y = 256 },
-		{ p = "Interface\\EncounterJournal\\UI-EJ-BACKGROUND-UI-EJ-LOREBG-ThunderKingRaid", x = 256, y = 256 },
 		{p="Interface\\PVPFrame\\PvpBg-AlteracValley-ToastBG",x=256, y=128},
 		{p="Interface\\PVPFrame\\PvpBg-BladesEdgeArena-ToastBG",x=256, y=128},
 		{p="Interface\\PVPFrame\\PvpBg-DalaranSewers-ToastBG",x=256, y=128},
@@ -911,11 +931,14 @@ GHM_IMGLIST = {
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BACKGROUND-ZulFarrak", x = 256, y = 256 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BACKGROUND-ZulGurub", x = 256, y = 256 },
 		{ p = "Interface\\EncounterJournal\\UI-EJ-BACKGROUND-UI-EJ-BACKGROUND-ThunderKingRaid", x = 256, y = 256 },
+		{ p = "Interface\\EncounterJournal\\UI-EJ-BACKGROUND-SiegeofOrgrimmar", x = 256, y = 256 },
 	},
 	["Vehicles"] = {
 		{p="Interface\\MINIMAP\\VEHICLE-AIR-ALLIANCE",x=256,y=256},
 		{p="Interface\\MINIMAP\\VEHICLE-AIR-HORDE",x=256,y=256},
 		{p="Interface\\MINIMAP\\Vehicle-Carriage",x=256,y=256},
+		{p="Interface\\MINIMAP\\Vehicle-AllianceCart",x=256,y=256},
+		{p="Interface\\MINIMAP\\Vehicle-HordeCart",x=256,y=256},
 		{p="Interface\\Vehicles\\SeatIndicator\\vehicle-mammoth",x=256,y=256},
 		{p="Interface\\Vehicles\\SeatIndicator\\vehicle-yak",x=256,y=256},
 		{p="Interface\\Vehicles\\SeatIndicator\\vehicle-motorcycle",x=256,y=256},

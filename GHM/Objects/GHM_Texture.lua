@@ -12,47 +12,41 @@ local count = 1;
 function GHM_Texture(parent, main, profile)
 
 	local miscAPI = GHI_MiscAPI().GetAPI();
-    local loc = GHI_Loc();
-	
+    local loc = GHI_Loc();	
     local frame = CreateFrame("Frame", "GHM_Texture" .. count, parent);
+	count = count + 1;
 	
-	local texture = frame:CreateTexture(frame:GetName().."Texture")
-	
-	texture:SetAllPoints(frame)
-		
-	count = count + 1; -- Increment the counter to give the next frame of this type a unique name
-
-    -- Initialize variables and reference objects
-    -- Example:
-    
-
     -- Help functions and further setup
 	
 	frame:SetWidth(profile.width or 64)
 	frame:SetHeight(profile.height or 64)
 	
+	frame.texture = frame:CreateTexture(frame:GetName().."Texture")
+	frame.texture:SetSize(frame:GetWidth(), frame:GetHeight())
+	frame.texture:SetPoint("CENTER")
+	
 	if type(profile.texCoord) == "table" then
-		texture:SetTexCoord(unpack(profile.texCoord))		
+		frame.texture:SetTexCoord(unpack(profile.texCoord))		
 	end
     
 	if profile.color then
-		texture:SetTexture(1,1,1,1)
-		texture:SetVertexColor(profile.color[1] or profile.r, profile.color[2] or profile.g, profile.color[3] or profile.b)
+		frame.texture:SetTexture(1,1,1,1)
+		frame.texture:SetVertexColor(profile.color[1] or profile.r, profile.color[2] or profile.g, profile.color[3] or profile.b)
 	else
-		texture:SetTexture(1,1,1,1)
-		texture:SetVertexColor(1,1,1)
+		frame.texture:SetTexture(1,1,1,1)
+		frame.texture:SetVertexColor(1,1,1)
 	end
 	
 	if profile.path then
-		texture:SetTexture(profile.path)
+		frame.texture:SetTexture(profile.path)
 	end
 
 	if profile.alpha then
-		texture:SetAlpha(profile.alpha)
+		frame.texture:SetAlpha(profile.alpha)
 	end
 	
 	if profile.blend then
-		texture:SetBlendMode(profile.blend)
+		frame.texture:SetBlendMode(profile.blend)
 	end
 			
     -- Position the frame
@@ -60,48 +54,77 @@ function GHM_Texture(parent, main, profile)
 
     -- Public functions
     local varAttFrame;
-
-    frame.Force = function(path,width,height,alpha) -- Calls Force1 or Force2 depending on the number of inputs. Either Force(value) or Force(Type,value)
-		
+	
+	local Force1 = function(path, width, height, alpha)
 		if type(path) == "string" then
-			texture:SetTexture(path)
+			frame.texture:SetTexture(path)
 		elseif type(path) == "table" then
-			texture:SetTexture(path[1] or path.r, path[2] or path.g, path[3] or path.b, 1)
+			frame.texture:SetTexture(path[1] or path.r, path[2] or path.g, path[3] or path.b, path[4] or path.a or 1)
 		end
+		
 		if width then
-			frame:SetWidth(width)
+			frame.texture:SetWidth(width)
 		end
 		if height then
-			frame:SetHeight(height)
+			frame.texture:SetHeight(height)
 		end
 		if alpha then
-			texture:SetAlpha(alpha)
-		end
-		
-		texture:SetAllPoints(frame)
-		
+			frame.texture:SetAlpha(alpha)
+		end		
+		frame.texture:SetAllPoints(frame)
+	end
+	
+	local Force2 = function(inputType, inputValue)
+        if (inputType == "attribute" or inputType == "variable") and varAttFrame then -- Handles input to var/Att frame
+            varAttFrame:SetValue(inputType, inputValue);
+
+        else -- static
+            varAttFrame:Clear();
+            Force1(inputValue);
+        end
+    end
+
+    frame.Force = function(self, ...)
+		--[[if self ~= frame then return frame.Force(frame, self, ...); end
+        local numInput = #({ ... });
+
+        if numInput == 1 then
+            Force1(...);
+        elseif numInput == 2 then
+            Force2(...);
+        end]]
+		Force1(self, ...)
+    end
+	
+	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
+        if not (varAttFrame) then
+            varAttFrame = GHM_VarAttInput(frame, area, frame:GetWidth());
+            frame:SetHeight(frame:GetHeight());
+        end
+        varAttFrame:EnableVariableAttributeInput(scriptingEnv, item, profile.outputOnly)
     end
 
     frame.Clear = function(self)
        frame:SetHeight(64)
 	   frame:SetWidth(64)
-	   texture:SetTexture(1, 1, 1, 1)
-	   texture:SetAlpha(1)
-	   texture:SetBlendMode("BLEND")
-	   texture:SetTexCoord(0,1,0,1)
+	   frame.texture:SetTexture(1, 1, 1, 1)
+	   frame.texture:SetSize(frame:GetWidth(), frame:GetHeight())
+	   frame.texture:SetAlpha(1)
+	   frame.texture:SetBlendMode("BLEND")
+	   frame.texture:SetTexCoord(0,1,0,1)
     end
 
     frame.GetValue = function(self) -- Get the current value
 		
-		local tex = texture:GetTexture()
+		local tex = frame.texture:GetTexture()
 		if tex == "SolidTexture" then
-			local r,g,b,a = texture:GetVertexColor()
+			local r,g,b,a = frame.texture:GetVertexColor()
 			tex = {r,g,b,a}
 		end
 		
 		local width = frame:GetWidth()
 		local height = frame:GetHeight()
-		local alpha = texture:GetAlpha()
+		local alpha = frame.texture:GetAlpha()
 		
 		return tex, width, height, alpha
 

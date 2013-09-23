@@ -33,12 +33,11 @@ function GHM_Icon(parent, main, profile)
 		button.framealign = "c";
 	end
 
-
-
 	local label = _G[frame:GetName() .. "TextLabel"];
 	label:ClearAllPoints();
 	label:SetPoint("TOPLEFT")
 	--label:SetWidth(1);
+	
 	if type(profile.text) == "string" then
 		label:SetText(profile.text);
 	else
@@ -48,49 +47,39 @@ function GHM_Icon(parent, main, profile)
 	local w = label:GetWidth();
 	_G[frame:GetName().."Text"]:SetWidth(w+3);
 
-
-
 	frame:SetWidth(37);
 	frame:SetHeight(37);
-	--height = height + label:GetHeight() * 1.8;
-	--offsetY = -10;
-	--[[
-	if profile.framealign then
-		obj.framealign = profile.framealign;
-	else
-		obj.framealign = "c";
-	end  --]]
 	frame.OnChanged = profile.OnChanged;
 
 	-- positioning
-	local extraX = profile.xOff or 0;
-	local extraY = profile.yOff or 0;
-
-	if profile.align == "c" then
-		frame:SetPoint("CENTER", parent, "CENTER", extraX, extraY);
-	elseif profile.align == "r" then
-		frame:SetPoint("RIGHT", parent.lastRight or parent, "RIGHT", extraX, extraY);
-		parent.lastRight = frame;
-	else
-		if parent.lastLeft then frame:SetPoint("LEFT", parent.lastLeft, "RIGHT", extraX, extraY); else frame:SetPoint("LEFT", parent, "LEFT", extraX, extraY); end
-		parent.lastLeft = frame;
-	end
-
+	GHM_FramePositioning(frame,profile,parent);
+	
 	-- functions
 	local varAttFrame;
-	local iconPath = "Interface\\Icons\\INV_Misc_QuestionMark";
+	local defaultIcon = "Interface\\Icons\\INV_Misc_QuestionMark";
+	local iconPath = defaultIcon;
 	SetItemButtonTexture(button, iconPath);
-	button.IconChoosen = function(orig,icon)
-
-		SetItemButtonTexture(button,icon.path);
-		iconPath = icon.path;
-		if frame.CloseOnChoosen == true then
-			icon:GetParent():Hide();
+	
+		
+	button:SetScript("OnClick", function()
+		if not (iconPath) == defaultIcon then
+			GHM_IconPickerList().Edit(iconPath, function(selectedIcon)
+				iconPath = selectedIcon
+				SetItemButtonTexture(button,iconPath)
+				if frame.OnChanged then
+					frame.OnChanged(iconPath);
+				end
+			end)
+		else
+			GHM_IconPickerList().New(function(selectedIcon)
+				iconPath = selectedIcon
+				SetItemButtonTexture(button,iconPath)
+				if frame.OnChanged then
+					frame.OnChanged(iconPath);
+				end
+			end)
 		end
-		if frame.OnChanged then
-			frame.OnChanged(icon.path);
-		end
-	end
+	end)
 
 	local Force1 = function(data)
 		if type(data) == "string" or type(data) == "number" then
@@ -153,7 +142,7 @@ function GHM_Icon(parent, main, profile)
 
 	return frame;
 end
-
+--[[
 local count = 1;
 function GHM_IconSelectionMenu()
 
@@ -245,4 +234,4 @@ function GHM_IconSelectionMenu()
 	menuFrame:Hide();
 	return menuFrame;
 end
-
+]]
