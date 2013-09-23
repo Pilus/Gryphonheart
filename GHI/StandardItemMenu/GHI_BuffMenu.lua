@@ -237,11 +237,11 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 					text = loc.BUFF_TYPE,
 					returnIndex = true,
 					data = {
-						{ text = loc.TYPE_MAGIC, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Magic")},
-						{ text = loc.TYPE_CURSE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Curse")},
-						{ text = loc.TYPE_DISEASE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Disease")},
-						{ text = loc.TYPE_POISON, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Poison")},
-						{ text = loc.TYPE_PHYSICAL, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("none")},
+						{ text = loc.TYPE_MAGIC, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Magic")},
+						{ text = loc.TYPE_CURSE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Curse")},
+						{ text = loc.TYPE_DISEASE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Disease")},
+						{ text = loc.TYPE_POISON, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Poison")},
+						{ text = loc.TYPE_PHYSICAL, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("none")},
 					  },
 				},
 				{
