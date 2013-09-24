@@ -262,7 +262,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		GHI_ScriptMenu_UseWideEditor(useWideEditor);
 		GHI_MiscData.useWideEditor = useWideEditor;
 		GHI_MiscData.syntaxDisabled = syntaxDisabled
-		GHI_MiscData.SyntaxColors = GHM_SyntaxColorList
+		GHI_MiscData.SyntaxColor = GHM_SyntaxColorList
 	end;
 	
 	menuFrame.parent = parentName;

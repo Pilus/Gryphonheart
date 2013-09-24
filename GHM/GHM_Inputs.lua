@@ -41,7 +41,7 @@ return {
 	time = {
 		ghm = {
 			type = "Time",
-			size = "M",
+			width = 130,
 		},
 		validate = function(value) return type(value) == "number" end,
 		default = 0,
@@ -247,7 +247,6 @@ return {
 			text = loc.ICON,
 			align = "c",
 			label = "icon",
-			framealign = "r",
 			CloseOnChoosen = true,
 			OnChanged = function(icon)
 
@@ -284,6 +283,7 @@ return {
 	color = {
 		ghm = {
 			type = "Color",
+			width = 130,
 		},
 		validate = function(value)
 			return (type(value) == "table");

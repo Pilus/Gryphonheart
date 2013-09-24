@@ -50,8 +50,8 @@ end
 
 function GHM_LoadSyntaxColorList()
 	for i ,cata in pairs(GHM_GetSyntaxCatagories()) do
-		if GHI_MiscData.SyntaxColors[cata] then
-			GHM_SetSyntaxColor(cata, unpack(GHI_MiscData.SyntaxColors[cata]))
+		if GHI_MiscData.SyntaxColor then
+			GHM_SetSyntaxColor(cata, unpack(GHI_MiscData.SyntaxColor[cata]))
 		else
 			GHM_SetSyntaxColor(cata, unpack(DEFAULT_SYNTAX_COLORS[cata]))
 		end
