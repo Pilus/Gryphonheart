@@ -19,7 +19,6 @@ function GHI_ActionAPI()
 	class = GHClass("GHI_ActionAPI");
 
 	local api = {};
-	--local itemGuid, itemSlot, itemBag, itemCreatorGuid, playerIsCreator, playerGuid, playerName;
 
 	local currentStack, currentItem;
 
@@ -95,7 +94,6 @@ function GHI_ActionAPI()
 		GHCheck("GHI_ProduceItem",{"string","number","numberStringNil"},{guid, amount, containerGuid})
 		log.Add(3,"Inserting item in bag",{guid=guid, amount=amount, containerGuid=containerGuid})
 
-
 		local item = itemList.GetItemInfo(guid);
 
 		if not(item) then
@@ -120,7 +118,6 @@ function GHI_ActionAPI()
 				containerList.InsertItemInMainBag(guid, stacksize, containerGuid) ;
 				amount = amount - stacksize;
 			end
-
 
 			return containerList.InsertItemInMainBag(guid, amount);
 		end
@@ -202,7 +199,6 @@ function GHI_ActionAPI()
 	api.GHI_ScreenFlash = function(fadeIn, fadeOut, duration, color, alpha, texture, blend, repeating)
 		local api = GHI_MiscAPI().GetAPI()
 		local colorList = api.GHI_GetColors()
-		--print(duration)
 		local blendTypes = {"ADD","BLEND","MOD","ALPHAKEY","DISABLE"}
 
 		if type(color) == "string" then
@@ -214,64 +210,63 @@ function GHI_ActionAPI()
 		return
 		end
 
-	  local delay = duration - (fadeIn + fadeOut)
-	  if repeating == nil then
-		repeating = 1
-	  end
+		local delay = duration - (fadeIn + fadeOut)
+		if repeating == nil then
+			repeating = 1
+		end
 
-	  if not (GHFlashFrame) then
-		GHFlashFrame = CreateFrame("Frame", "GHFlashFrame", UIParent);
-		GHFlashFrame:SetFrameStrata("BACKGROUND");
-		GHFlashFrame:SetAllPoints(UIParent);
-		GHFlashFrame.bg = GHFlashFrame:CreateTexture(nil, "CENTER")
-		GHFlashFrame.bg:SetAllPoints(GHFlashFrame)
-	  end
-	  if not (flashAnims) then
-		flashAnims = GHFlashFrame:CreateAnimationGroup("Flashing")
-		flashAnims.fadingIn = flashAnims:CreateAnimation("Alpha")
-		flashAnims.fadingIn:SetOrder(1)
-		flashAnims.fadingIn:SetSmoothing("NONE")
-		flashAnims.fadingIn:SetChange(1)
-		flashAnims.fadingOut = flashAnims:CreateAnimation("Alpha")
-		flashAnims.fadingOut:SetOrder(2)
-		flashAnims.fadingOut:SetSmoothing("NONE")
-		flashAnims.fadingOut:SetChange(-1)
-		flashAnims:SetScript("OnFinished",function(self,requested)
-			GHFlashFrame:Hide()
-			GHFlashFrame.bg:SetBlendMode("DISABLE")
-			isAni = false
-		end)
-		flashAnims:SetScript("OnPlay",function(self)
-			GHFlashFrame:Show()
-			GHFlashFrame:SetAlpha(0)
-			isAni = true
-		end)
-	  end
+		if not (GHFlashFrame) then
+			GHFlashFrame = CreateFrame("Frame", "GHFlashFrame", UIParent);
+			GHFlashFrame:SetFrameStrata("BACKGROUND");
+			GHFlashFrame:SetAllPoints(UIParent);
+			GHFlashFrame.bg = GHFlashFrame:CreateTexture(nil, "CENTER")
+			GHFlashFrame.bg:SetAllPoints(GHFlashFrame)
+		end
+		if not (flashAnims) then
+			flashAnims = GHFlashFrame:CreateAnimationGroup("Flashing")
+			flashAnims.fadingIn = flashAnims:CreateAnimation("Alpha")
+			flashAnims.fadingIn:SetOrder(1)
+			flashAnims.fadingIn:SetSmoothing("NONE")
+			flashAnims.fadingIn:SetChange(1)
+			flashAnims.fadingOut = flashAnims:CreateAnimation("Alpha")
+			flashAnims.fadingOut:SetOrder(2)
+			flashAnims.fadingOut:SetSmoothing("NONE")
+			flashAnims.fadingOut:SetChange(-1)
+			flashAnims:SetScript("OnFinished",function(self,requested)
+				GHFlashFrame:Hide()
+				GHFlashFrame.bg:SetBlendMode("DISABLE")
+				isAni = false
+			end)
+			flashAnims:SetScript("OnPlay",function(self)
+				GHFlashFrame:Show()
+				GHFlashFrame:SetAlpha(0)
+				isAni = true
+			end)
+		end
 
-	  flashAnims.fadingIn:SetDuration(fadeIn)
-	  flashAnims.fadingIn:SetEndDelay(delay)
-	  flashAnims.fadingOut:SetDuration(fadeOut)
-	  if repeating > 1 then
-		flashAnims:SetLooping("REPEAT")
-      else
-		flashAnims:SetLooping("NONE")
-	  end
-	  local timestart = GetTime()
-	  local looptime = duration * repeating
+		flashAnims.fadingIn:SetDuration(fadeIn)
+		flashAnims.fadingIn:SetEndDelay(delay)
+		flashAnims.fadingOut:SetDuration(fadeOut)
+		if repeating > 1 then
+			flashAnims:SetLooping("REPEAT")
+		else
+			flashAnims:SetLooping("NONE")
+		end
+		local timestart = GetTime()
+		local looptime = duration * repeating
 
-	  flashAnims:SetScript("OnLoop", function(self, loopstate)
-		  if loopstate == "FORWARD" then
-			local curtime = GetTime()
-			if difftime(curtime, timestart) == looptime - duration then
-			  flashAnims:SetLooping("NONE")
+		flashAnims:SetScript("OnLoop", function(self, loopstate)
+			if loopstate == "FORWARD" then
+				local curtime = GetTime()
+				if difftime(curtime, timestart) == looptime - duration then
+					flashAnims:SetLooping("NONE")
+				end
 			end
-		  end
-	  end)
+		end)
 
-	  if texture then
-	  		GHFlashFrame.bg:SetTexture(texture)
+		if texture then
+			GHFlashFrame.bg:SetTexture(texture)
 			GHFlashFrame.bg:SetBlendMode(blend or "ADD")
-
 			GHFlashFrame.bg:SetAlpha(alpha or 1)
 
 			if color then
@@ -287,24 +282,24 @@ function GHI_ActionAPI()
 			if not (blend) then
 				blend = 5
 			end
-		  	GHFlashFrame.bg:SetTexture(color.r or color[1], color.g or color[2], color.b or color[3])
+			GHFlashFrame.bg:SetTexture(color.r or color[1], color.g or color[2], color.b or color[3])
 			GHFlashFrame.bg:SetBlendMode(blendTypes[blend])
 			GHFlashFrame.bg:SetAlpha(alpha or 1)
 		end
 
-	  if isAni == true then -- if sone is already animating, stop it and do the new one
-		GHFlashFrame:StopAnimating()
-		GHFlashFrame.bg:SetAlpha(alpha or 1)
-		flashAnims:Play()
-	  else -- otherwise animate
-		flashAnims:Play()
-	  end
+		if isAni == true then -- if sone is already animating, stop it and do the new one
+			GHFlashFrame:StopAnimating()
+			GHFlashFrame.bg:SetAlpha(alpha or 1)
+			flashAnims:Play()
+		else -- otherwise animate
+			flashAnims:Play()
+		end
 	end
 
 	api.GHI_ScreenShake = function(duration,intensity,text)
 		if UnitAffectingCombat("player") then
 			if text == nil then
-			text = "The world around you shakes."
+				text = "The world around you shakes."
 			end
 			UIErrorsFrame:AddMessage(text, 1,0.25,0.25)
 		else
@@ -315,8 +310,7 @@ function GHI_ActionAPI()
 			local WorldFrame = WorldFrame
 			local WorldFramePoints = {}
 			f:Hide()
-			f:SetScript("OnUpdate",
-			function(self, elapsed)
+			f:SetScript("OnUpdate", function(self, elapsed)
 				duration = duration - elapsed
 				if duration < 0 then
 					duration = 0
@@ -327,8 +321,8 @@ function GHI_ActionAPI()
 				for _, v in pairs(WorldFramePoints) do
 					WorldFrame:SetPoint(v[1], v[2], v[3], v[4] + moveBy, v[5] + moveBy)
 				end
-			end
-			)
+			end);
+
 			f:RegisterEvent("PLAYER_REGEN_DISABLED")
 			f:SetScript("OnEvent",function(self,event)
 				if event == "PLAYER_REGEN_DISABLED" then
@@ -336,7 +330,7 @@ function GHI_ActionAPI()
 				end
 			end)
 			for i = 1, WorldFrame:GetNumPoints() do
-			WorldFramePoints[i] = { WorldFrame:GetPoint(i) }
+				WorldFramePoints[i] = { WorldFrame:GetPoint(i) }
 			end
 			f:Show()
 		end
@@ -429,7 +423,7 @@ function GHI_ActionAPI()
 			elseif strlower(rDetail) == "arm" or strlower(rDetail) == "armor" then
 				d = 6;
 			end
-			local n = 0;
+			local n,_ = 0;
 			if (d < 6) and (d > 0) then
 				_, n = UnitStat("player", d);
 			else
@@ -464,7 +458,7 @@ function GHI_ActionAPI()
 		elseif rType == "Normal Buff" then
 			local i = 1;
 			local name = "";
-			local k = nil;
+			local k;
 			while not (name == nil) and k == nil do
 				name = UnitBuff("player", i);
 				if name == rDetail then
@@ -494,31 +488,20 @@ function GHI_ActionAPI()
 				return false;
 			end
 		elseif rType == "LUA Statement" then
+			rDetail = gsub(rDetail, "\21", " ");
+			rDetail = gsub(rDetail, "\22", ",");
 
-		rDetail = gsub(rDetail, "\21", " ");
-		rDetail = gsub(rDetail, "\22", ",");
-			--print(rDetail)
 			local res = exeFunc("return " .. rDetail..";");
 			if res == true or res == 1 then
 				return true
 			else
 				return false
 			end
-			--[[
-			local codeblock = "if "..rDetail.." then return true else return false end"
-			local res, errorMessage = loadstring(codeblock)
-			--print(res())
-			if res() == true or res() == 1 then
-				return true;
-			else
-				return false;
-			end --]]
 		end
 
 	end
 
 	api.GHI_Message = function(msg)
-
 		if itemGuid then
 			msg = expressionHandler.InsertLinksInText(msg,itemGuid)
 		end
@@ -538,9 +521,6 @@ function GHI_ActionAPI()
 	api.GHI_EffectFrameEffect3 = effectFrame;
 	api.GHI_EffectFrameEffect3Texture = effectTexture;
 
-
-
-
 	-- alias functions
 	api.emote = api.GHI_Emote;
 	api.Emote = api.GHI_Emote;
@@ -553,10 +533,7 @@ function GHI_ActionAPI()
 	api.RemoveGHIBuff = api.GHI_RemoveBuff;
 	api.RemoveAllGHIBuffs = api.GHI_RemoveAllBuffs;
 	api.CountGHIBuff = api.GHI_CountBuff;
-    api.GHI_FindItem = api.GHI_FindOneItem;
-
-
-
+	api.GHI_FindItem = api.GHI_FindOneItem;
 
 	class.GetAPI = function()
 		local a = {};
@@ -565,19 +542,6 @@ function GHI_ActionAPI()
 		end
 		return a;
 	end
-	--[[
-	class.UpdateMeta = function(stack)
-		currentStack = stack;
-		if stack then
-			currentItem = stack.GetItemInfo()
-			itemGuid = currentItem.GetGUID();
-		else
-			currentItem = nil;
-		end
-	end    --]]
-
-	--playerGuid = UnitGUID("player");
-	--playerName = UnitName("player");
 
 	return class;
 end

@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_ContainerList
---  			GHI_ContainerList.lua
+--				GHI_ContainerList.lua
 --
---	          Handler for all containers
+--			Handler for all containers
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -47,11 +47,10 @@ function GHI_ContainerList()
 	local actionBar = GHI_ActionBarUI(
 		"GHI_ITEM",
 		function(guid)
-
-		local bag,slot = containerAPI.GHI_FindOneItem(guid);
-		if bag and slot then
-			class.UseItem(bag,slot);
-		end
+			local bag,slot = containerAPI.GHI_FindOneItem(guid);
+			if bag and slot then
+				class.UseItem(bag,slot);
+			end
 		end,
 		function(guid) -- returns icon,count,cooldown
 			if not(guid) then return end

@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_CreateItemAPI
---  			GHI_CreateItemAPI.lua
+--				GHI_CreateItemAPI.lua
 --
---	          (description)
+	--	API for creation of items
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 

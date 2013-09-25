@@ -3,7 +3,8 @@
 --				GHI_HorizontalChannel
 --  			GHI_HorizontalChannel.lua
 --
---	          (description)
+--	Holds information about the horizontal channels
+--	of connections.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

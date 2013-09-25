@@ -3,10 +3,10 @@
 --				GHI_DynamicActionInstance
 --  			GHI_DynamicActionInstance.lua
 --
---	    The instance of a dynamic action holds information
---       such as input variables and references.
+--	The instance of a dynamic action holds information
+--	such as input variables and references.
 --
--- 	  (c)2013 The Gryphonheart Team
+--		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local list;
@@ -77,7 +77,6 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 			}
 		end
 	end
-
 
 	class.GetGUID = function()
 		return guid;
@@ -221,7 +220,6 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 			guid = "";
 		end
 
-
 		local action = list.GetAction(actionGuid);
 		local script = action.GetScript();
 		local env = scriptEnvList.GetEnv(authorGuid, isUpdateAction);
@@ -240,7 +238,6 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 			combinedGuid = guid.."_"..strsub(tostring(class),8).."_"..(instanceIndex or 1);
 		end
 
-
 		if not (env.GotHeaderApi(combinedGuid)) then
 			env.SetValue("GetExecutionGuids_"..combinedGuid,function()
 				return unpack(exeGuids or {})
@@ -257,6 +254,7 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 					end
 					return
 				end
+
 				if input.type == "static" then
 					return input.info;
 				elseif input.type == "variable" then
@@ -373,7 +371,6 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 		end
 	end
 
-
 	-- information for gui
 	class.GetAction = function()
 		return list.GetAction(actionGuid);
@@ -455,7 +452,6 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 				local outputGuid, output = action.GetOutput(i);
 				local value = menu.GetLabel("_out_" .. outputGuid);
 
-				--print("output",value.type , value.value)
 				if type(value) == "table" and value.type and value.value then
 					class.SetOutputRef(outputGuid, value.type, value.value);
 				end
@@ -505,7 +501,6 @@ function GHI_DynamicActionInstance(actionGuid, instanceGuid, authorGuid)
 				local env = scriptEnvList.GetEnv(authorGuid);
 				outputFrame:EnableVariableAttributeInput(env, set.GetItem());
 			end
-
 
 			if edit then
 				local inputType, value = class.GetOutputRef(outputGuid);

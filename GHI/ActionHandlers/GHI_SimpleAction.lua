@@ -1,9 +1,10 @@
 --===================================================
 --
 --				GHI_SimpleAction
---  			GHI_SimpleAction.lua
+--				GHI_SimpleAction.lua
 --
---	   Data for a simple action of any type. This reflects most actions in GHI v.1.x.
+--	Data for a simple action of any type. This reflects
+--	most actions in GHI v.1.x.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -60,8 +61,8 @@ local GetActionScript = function(info,oldVersion)
 				    	end
 				    end
 				]],info.guid or info.id, info.amount)
-               end
-               --print(info.amount)
+			end
+
 			if info.loot_text == nil then
 				return string.format("GHI_ProduceItem(\"%s\",%s);", info.guid or info.id, info.amount),info.delay;
 			else
@@ -75,13 +76,6 @@ local GetActionScript = function(info,oldVersion)
 			elseif type(info.color) == "table" then
 			color = info.color
 			end
-			--[[
-			if info.output_type == 1 then
-				return "DEFAULT_CHAT_FRAME:AddMessage(\"" .. info.text .. "\"," .. color.r .. "," .. color.g .. "," .. color.b .. ");", info.delay or 0;
-			elseif info.output_type == 2 then
-				return "UIErrorsFrame:AddMessage(\"" .. info.text .. "\"," .. color.r .. "," .. color.g .. "," .. color.b .. ",53,5);", info.delay or 0;
-			end
-			return "", 0;    --]]
 
 			if info.output_type == 1 then
 				return ScriptFormat("DEFAULT_CHAT_FRAME:AddMessage(\"%s\",%s,%s,%s);",info.text,color.r, color.g, color.b), info.delay or 0;
@@ -135,7 +129,7 @@ local GetActionScript = function(info,oldVersion)
 		elseif dynamicTypeName == "consume_item" then
 			local amount = info.amount or 1
 			local guid = info.id or ""
-               local delay = info.delay or 0;
+			local delay = info.delay or 0;
 
 			local script = ScriptFormat("GHI_ConsumeItem(\"%s\",%s)",  guid or "nil",amount);
 			return script,delay;
@@ -173,21 +167,17 @@ local GetActionScript = function(info,oldVersion)
 
 		local script = ScriptFormat("GHI_ApplyBuff(\"%s\",\"%s\",\"%s\",%s,\"%s\",\"%s\",%s,%s,%s,%s,%s,%s,%s);", buffName, buffDetails, buffIcon, untilCanceled, filter, buffType, buffDuration, cancelable, stackable, count, delay, range, alwaysCastOnSelf);
 
-		--script = gsub(script, "\\", "\\\\")
 		return script, 0; -- the buff handler handles the delay
 	elseif actionType == "equip_item" then
 		return ScriptFormat("EquipItemByName(\"%s\");", info.item_name), info.delay or 0;
 	elseif actionType == "expression" then
 		local script;
-		--local text = gsub(info.text,"\"","\\\"");
+
 		if string.lower(info.expression_type) == "say" then
 			return ScriptFormat("GHI_Say(\"%s\",%s)", info.text, info.delay or "nil"),0;
 		elseif string.lower(info.expression_type) == "emote" then
 			return ScriptFormat("GHI_Emote(\"%s\",%s)", info.text, info.delay or "nil"),0;
 		end
-		--script = gsub(script, "\\", "\\\\");
-		--script = gsub(script, "\\\\\"", "\\\"");
-		--return script, 0;
 	elseif actionType == "random_expression" then
 		local strings = {};
 		for i, text in pairs(info.text) do
@@ -217,10 +207,9 @@ local GetActionScript = function(info,oldVersion)
 
 		return string.format("%s\n%s", determinationPart, executionPart), 0;
 	elseif actionType == "bag" then
-         -- print(info.size)
+
 		return ScriptFormat("GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),%s,\"%s\",%s);", info.size, info.texture or "", tostring(info.tradeable)), 0;
 	elseif actionType == "book" then
-		--syntax : GHI_ShowBook(title,pages,material,font,normalSize,h1Size,h2Size)
 
 		local pageScript = "{";
 
@@ -281,14 +270,8 @@ local GetActionScript = function(info,oldVersion)
 		else
 			return ScriptFormat("GHI_PlaySound(\"%s\",%s)", path, soundDelay);
 		end
-		--return gsub(script, "\\", "\\\\"), 0;
-    elseif actionType == "requirement" then --legacy script handler
+	elseif actionType == "requirement" then --legacy script handler
 
-               --print(info.req_type)
-               --print(info.req_alias)
-              -- print(info.req_detail)
-              --info.req
-               --IsRquirmentFullfilled(info.req_type,info.req_alias,info.req_detail,info.req)
 		return ScriptFormat("return IsRequirementFullfilled(%q,%q,GHI_DoScript)",info.req_type,info.req_detail);
 	else
 		return info.script or "GHI_Message(\"Item script not found. " .. (actionType or "nil") .. "\")", info.delay or 0; -- return script,delay,requiredItems
@@ -532,88 +515,90 @@ local conversionMatrix = {
 		};
 	end,
 	book = function(info)
-	  local title = info.title or ""
-	  local material = info.material    or "Parchment"
-	  local extraMat
-	  if info.extraMat then
-		material = info.extraMat
-	  end
-	  local font = info.font or "Frizqt"
-	  local n = info.n
-	  local h1 = info.h1
-	  local h2 = info.h2
-	  local pages = {}
-	  for i = 1, #(info) do
-		if type(info[i]) == "table" then
-		  local page = "";
-		  for j = 1, 10 do
-			if info[i]["text" .. j] then
-			  page = page .. info[i]["text" .. j];
-			end
-		  end
-		  table.insert(pages,page)
+		local title = info.title or ""
+		local material = info.material or "Parchment"
+		local extraMat
+		if info.extraMat then
+			material = info.extraMat
 		end
-	  end
-	  return {
-		  {
+
+		local font = info.font or "Frizqt"
+		local n = info.n
+		local h1 = info.h1
+		local h2 = info.h2
+		local pages = {}
+		for i = 1, #(info) do
+			if type(info[i]) == "table" then
+				local page = "";
+				for j = 1, 10 do
+					if info[i]["text" .. j] then
+						page = page .. info[i]["text" .. j];
+					end
+				end
+				table.insert(pages,page)
+			end
+		end
+
+		return {
+		{
 			actionGuid = "book_01",
 			guid = guidMaker.MakeGUID(),
 			inputs = {
-			  bookTitle = {
-				type = "static",
-				info = title,
-			  },
-			  bookMaterial = {
-				type = "static",
-				info = material    
-			  },
-			  bookFont = {
-				type = "static",
-				info = font,
-			  },
-			  h1Font = {
-				type = "static",
-				info = font,
-			  },
-			  h2Font = {
-				type = "static",
-				info = font,
-			  },
-			  nSize = {
-				type = "static",
-				info = n,
-			  },
-			  h1Size = {
-				type = "static",
-				info = h1,
-			  },
-			  h2Size = {
-				type = "static",
-				info = h2,
-			  },
-			  bookText = {
-				type = "static",
-				info = pages,
-			  },
-			  cover = {
-				type = "static",
-				info = "None",
-			  },
-			  coverLogo = {
-				type = "static",
-				info = "Interface\\Icons\\INV_MISC_FILM_01",
-			  },
-			  coverColor = {
-				type = "static",
-				info = {1,1,1},
-			  },
-			  logoColor = {
-				type = "static",
-				info = {1,1,1},
-			  },
+				bookTitle = {
+					type = "static",
+					info = title,
+				},
+				bookMaterial = {
+					type = "static",
+					info = material
+				},
+				bookFont = {
+					type = "static",
+					info = font,
+				},
+				h1Font = {
+					type = "static",
+					info = font,
+				},
+				h2Font = {
+					type = "static",
+					info = font,
+				},
+				nSize = {
+					type = "static",
+					info = n,
+				},
+				h1Size = {
+					type = "static",
+					info = h1,
+				},
+				h2Size = {
+					type = "static",
+					info = h2,
+				},
+				bookText = {
+					type = "static",
+					info = pages,
+				},
+				cover = {
+					type = "static",
+					info = "None",
+				},
+				coverLogo = {
+					type = "static",
+					info = "Interface\\Icons\\INV_MISC_FILM_01",
+				},
+				coverColor = {
+					type = "static",
+					info = {1,1,1},
+				},
+				logoColor = {
+					type = "static",
+					info = {1,1,1},
+				},
 			},
-		  }
-	  }        
+		}
+	}
 	end,
 	buff = function(info)
 		local buffName = info.buffName or "Unknown";
@@ -813,11 +798,10 @@ local conversionMatrix = {
 	end,
 	random_expression = function(info)
 		local t = {
-		    {
+			{
 				actionGuid = "rand_02",
 				guid = guidMaker.MakeGUID(),
 				inputs = {
-
 				},
 			},
 		};
@@ -956,7 +940,7 @@ local conversionMatrix = {
 };
 
 local ConvertActionToAdvanced = function(info)
- 	local actionType = info.Type;
+	local actionType = info.Type;
 	if (actionType == "script" or info.dynamic_rc_type) and info.dynamic_rc == true then
 		actionType = info.dynamic_rc_type;
 	end
@@ -988,15 +972,14 @@ function GHI_SimpleAction(info)
 
 	local Initialize = function()
 		script = "";
-        guid = info.guid or GHI_GUID().MakeGUID();
-        info.guid = guid;
+		guid = info.guid or GHI_GUID().MakeGUID();
+		info.guid = guid;
 		icon = info.icon;
 		actionName = info.type_name; -- localized action name
 		details = info.details;
 		script, delay = GetActionScript(info)
 		executionOrder = info.req or 1;
 		actionType = info.Type;
-
 
 		if info.ItemInfo then
 			local itemTable = info.ItemInfo or {};
@@ -1080,11 +1063,11 @@ function GHI_SimpleAction(info)
 
 	class.GetInfo = function()
 		return info;
-    end
+	end
 
-    class.GetGuid = function()
-        return guid;
-    end
+	class.GetGuid = function()
+		return guid;
+	end
 
 	class.UpdateInfo = function(_info)
 		info = _info;
@@ -1109,8 +1092,6 @@ function GHI_SimpleAction(info)
 		end
 		return
 	end
-
-
 
 	Initialize();
 

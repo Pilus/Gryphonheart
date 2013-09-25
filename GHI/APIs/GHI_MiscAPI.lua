@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_MiscAPI
---  			GHI_MiscAPI.lua
+--				GHI_MiscAPI.lua
 --
---	  API offering misc functions for the environment
+--	API offering misc functions for the environment
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -81,7 +81,6 @@ function GHI_MiscAPI()
 					b = ITEM_QUALITY_COLORS[quality].b,
 				};
 
-
 				local lines = {};
 				stack.DisplayItemTooltip({
 					AddLine = function(_,text, r, g, b, _, order)
@@ -144,7 +143,6 @@ function GHI_MiscAPI()
 				info[i] = "GHI Class: " .. v.GetType();
 			end
 		end
-
 		return unpack(info);
 	end
 
@@ -246,7 +244,7 @@ function GHI_MiscAPI()
 		horde = {r = PLAYER_FACTION_COLORS[0].r, g = PLAYER_FACTION_COLORS[0].g, b = PLAYER_FACTION_COLORS[0].b},
 		alliance = {r = PLAYER_FACTION_COLORS[1].r, g = PLAYER_FACTION_COLORS[1].g, b = PLAYER_FACTION_COLORS[1].b,}
 	}
-		
+
 	api.GHI_GetColors = function()
 		return colors;
 	end
@@ -255,43 +253,40 @@ function GHI_MiscAPI()
 		return GHI_FontList
 	end
 	
-   api.GHI_Pronoun = function(tense, upper, tar)
-    if tar == nil then
-      tar = "player"
-    elseif tar == true then
-      tar = "target"
-    end
-    local word
-    local gen = UnitSex(tar)
-   
-    local l = {
-      {nom = loc.PRONOUN_IT, pos = loc.PRONOUN_ITS},
-      {nom = loc.PRONOUN_HE, pos = loc.PRONOUN_HIS},
-      {nom = loc.PRONOUN_SHE, pos = loc.PRONOUN_HER},
-    }
-    if upper == true then
-      if tense == "nom" then
-         word = l[gen].nom
-         --print(word)
-         word = word:gsub("^%l", string.upper)
-         --print(word)
-         return word
-      elseif tense == "pos" then
-         word = l[gen].pos
-         word = word:gsub("^%l", string.upper)
-         return word
-      end
-    else
-      if tense == "nom" then
-         word = l[gen].nom
-         return word
-      elseif tense == "pos" then
-         word = l[gen].pos
-         return word 
-      end
-    end  
-   
-   end
+	api.GHI_Pronoun = function(tense, upper, tar)
+		if tar == nil then
+			tar = "player"
+		elseif tar == true then
+			tar = "target"
+		end
+		local word
+		local gen = UnitSex(tar)
+
+		local l = {
+			{nom = loc.PRONOUN_IT, pos = loc.PRONOUN_ITS},
+			{nom = loc.PRONOUN_HE, pos = loc.PRONOUN_HIS},
+			{nom = loc.PRONOUN_SHE, pos = loc.PRONOUN_HER},
+		}
+		if upper == true then
+			if tense == "nom" then
+				word = l[gen].nom
+				word = word:gsub("^%l", string.upper)
+				return word
+			elseif tense == "pos" then
+				word = l[gen].pos
+				word = word:gsub("^%l", string.upper)
+				return word
+			end
+		else
+			if tense == "nom" then
+				word = l[gen].nom
+				return word
+			elseif tense == "pos" then
+				word = l[gen].pos
+				return word
+			end
+		end
+	end
 
 	local urlMenuList;
 	api.GHI_URL = function(url)
@@ -324,13 +319,13 @@ function GHI_MiscAPI()
 	end
 
 	-- save / load
-	api.GHI_Save = function(index, var) --print("  save",index)
+	api.GHI_Save = function(index, var)
 		if not (type(GHI_MiscData.ScriptSave) == "table") then
 			GHI_MiscData.ScriptSave = {};
 		end
 		GHI_MiscData.ScriptSave[index] = var;
 	end
-	api.GHI_Load = function(index) --  print("   load",index)
+	api.GHI_Load = function(index)
 		return (GHI_MiscData.ScriptSave or {})[index];
 	end
 
@@ -369,7 +364,7 @@ function GHI_MiscAPI()
 		end
 		
 		for i=1,GetNumCompanions("mount") do
-		_, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
+		local _, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
 			
 			local firstLetter = strsub(mountName,1,1)
 			local info = {}
@@ -396,6 +391,7 @@ function GHI_MiscAPI()
 		for n,_ in pairs(mounts) do
 			table.insert(a, n)
 		end
+
 		table.sort(a)
 		for i = 1, #a do
 			if a[i] == nil then
@@ -406,11 +402,11 @@ function GHI_MiscAPI()
 			end
 		end
 		
-		return tempMounts		
+		return tempMounts
 	end
 		
 	api.GHI_GetDebuffColor = function(debuffType)
-			
+
 		local r = tonumber(DebuffTypeColor[debuffType].r)
 		local g = tonumber(DebuffTypeColor[debuffType].g)
 		local b = tonumber(DebuffTypeColor[debuffType].b)
@@ -420,7 +416,6 @@ function GHI_MiscAPI()
 
 		return string.format("%02x%02x%02x", r*255, g*255, b*255)
 	end
-	
 
 	class.GetAPI = function()
 		local a = {};
@@ -429,8 +424,6 @@ function GHI_MiscAPI()
 		end
 		return a;
 	end
-
-
 
 	return class;
 end

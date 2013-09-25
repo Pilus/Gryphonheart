@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_ViewAttributeMenu
---  			GHI_ViewAttributeMenu.lua
+--				GHI_ViewAttributeMenu.lua
 --
---	          (description)
+--		View attribute values for a item instance
 --
--- 	  (c)2013 The Gryphonheart Team
+--		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local menuIndex = 1;

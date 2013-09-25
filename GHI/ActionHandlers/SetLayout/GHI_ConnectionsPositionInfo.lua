@@ -1,17 +1,17 @@
 --===================================================
 --
 --				GHI_ConnectionsPositionInfo
---  			GHI_ConnectionsPositionInfo.lua
+--				GHI_ConnectionsPositionInfo.lua
 --
---	          (description)
+--		Holds position information for a connection
+--		between two actions in a dynamic action set.
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
 function GHI_ConnectionsPositionInfo(portConnections,connectionLayout,actionsPosition,verticalChannels,horizontalChannels)
 	local class = GHClass("GHI_ConnectionsPositionInfo");
-
 
 	class.GetNumConnections = function()
 		local c = 0;
@@ -60,7 +60,7 @@ function GHI_ConnectionsPositionInfo(portConnections,connectionLayout,actionsPos
 				table.insert(coors, { x = startX, y = startY, t = "right" });
 				table.insert(coors, { x = endX, y = endY, t = "right" });
 			end
-		else    --print("Not implemented: Bending connection from a set port",startY,"~=",endY)
+		else
 			if startX == endX then
 
 			else
@@ -123,26 +123,6 @@ function GHI_ConnectionsPositionInfo(portConnections,connectionLayout,actionsPos
 		if connection.startTier == connection.endTier - 1 then     -- connection going directly from one action to another without going back or skipping an action
 			coors = GetConnectionCoors_DirectConnected(connection)
 
-			--[[
-			local startX, startY = GetStartPos(connection);
-			local endX, endY = GetEndPos(connection);
-			local verX = startX + connection.startVerticalLane - 1;
-			if connection.startVerticalLane > 1 then
-				table.insert(coors, { x = startX, y = startY, t = "right" });
-			end
-			if startY < endY then
-				table.insert(coors, { x = verX, y = startY, t = "topright" });
-			else
-				table.insert(coors, { x = verX, y = startY, t = "bottomright" });
-			end
-			if startY < endY then
-				table.insert(coors, { x = verX, y = endY, t = "bottomleft" });
-			else
-				table.insert(coors, { x = verX, y = endY, t = "topleft" });
-			end
-			if verX < endX then
-				table.insert(coors, { x = endX, y = endY, t = "right" });
-			end --]]
 		else
 
 			local startDirInv = "down";
@@ -161,14 +141,13 @@ function GHI_ConnectionsPositionInfo(portConnections,connectionLayout,actionsPos
 			end
 
 			-- start pos
-
 			local startX, startY = GetStartPos(connection);
 			startX = startX + 1; -- Let the connections start in the field right of the port and end in the field left to the port
 			local startVerticalLane = verticalChannels[connection.startTier].GetConnectionLaneNumber(connection);
 			if startVerticalLane > 1 then
 				table.insert(coors, { x = startX, y = startY, t = "right" });
-				-- vertical channel pos
 
+				-- vertical channel pos
 				local verticalChannel1 = verticalChannels[connection.startTier];
 				local verticalChannelLane = verticalChannel1.GetConnectionLaneNumber(connection);
 				local verticalChannelPos = actionsPosition.GetVerticalChannelPos(connection.startTier);
@@ -245,10 +224,6 @@ function GHI_ConnectionsPositionInfo(portConnections,connectionLayout,actionsPos
 
 		return height, width;
 	end
-
-
-
-
 
 	return class;
 end

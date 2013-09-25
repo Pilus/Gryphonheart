@@ -38,7 +38,7 @@ function GHI_Trade()
 	local versionInfo = GHI_VersionInfo();
 	local itemInfoList = GHI_ItemInfoList();
 
-     local loc = GHI_Loc();
+	local loc = GHI_Loc();
 
 	local GetFreeBagIndex, AcceptTrade, ClearRecipientButton, ClearTradeButton, ClickTradeButton, GetGhiItemFromSlot, GetRecipientTradeItem, GetTradeItemBagInfo, GetTradeItemDuration;
 	local InsertItem, OnEvent, PickUpGhiItem, PickupGhiItemPlaceGhiItem, PickupGhiItemPlaceWowItem, PickupNonePlaceGhiItem, PickupWowItemPlaceGhiItem, RecieveBag;
@@ -60,10 +60,7 @@ function GHI_Trade()
 				comm.Send(nil, tradePlayer, "TradeAccepted", nil);
 				AcceptTrade(tradePlayer);
 			end
-
-
 		elseif (event == "TRADE_ACCEPT_UPDATE") then
-
 			playerAcceptState = TradeHighlightPlayer:IsShown();
 			recipientAcceptState = TradeHighlightRecipient:IsShown();
 
@@ -116,7 +113,6 @@ function GHI_Trade()
 
 	ClickTradeButton = function(slot)
 		if slot > 6 then return orig.ClickTradeButton(slot); end;
-
 
 		local cursorGotGhiItem = cursor.GetCursor() == "GHI_ITEM";
 		local slotGotGhiItem = tradeItemsPlayer[slot] and true;
@@ -293,7 +289,6 @@ function GHI_Trade()
 					local substack = cont.GetStack(i);
 					if substack then
 						RemoveFromTradeIfPresent(substack);
-
 						GetBagInfoForBagAndSubBags(substack,bagInfo);
 					end
 				end
@@ -340,11 +335,8 @@ function GHI_Trade()
 		comm.Send(nil, player, "TradeItem", slot, guid, amount, name, icon, itemType, {}, bagInfo, stackToSend.GetStackInfoTable());
 	end
 
-
-
 	GetTradeItemBagInfo = function(stack)
 		local bagGuid = GetTradeItemBagGuid(stack);
-
 		if bagGuid then
 			local container = containerList.GetContainerObj(bagGuid);
 			return container.GetContainerInfoTable();
@@ -422,7 +414,6 @@ function GHI_Trade()
 
 	UpdateTradeInfo = function(slot, guid, amount, itemType)
 		local item = itemInfoList.GetItemInfo(guid);
-
 		if not (item) and TradeFrame:IsShown() then
 			GHI_Timer(function() UpdateTradeInfo(slot, guid, amount, itemType) end, 1, true);
 		else
@@ -430,7 +421,6 @@ function GHI_Trade()
 			UpdateRecipientTradeItem(slot, name, icon, amount, itemType);
 		end
 	end
-
 
 	ClearTradeButton = function(slot)
 		tradeItemsPlayer[slot] = nil;
@@ -452,7 +442,6 @@ function GHI_Trade()
 	comm.AddRecieveFunc("RemoveTradeItem", RecieveRemoveTradeItem);
 
 	PickUpGhiItem = function(splitAmount, containerGuid, containerSlotID, stack, splitStack, origStackClone)
-
 		if splitStack then
 			local container = stack.GetParentContainer();
 			container.ReplaceStack(containerSlotID, origStackClone);
@@ -596,7 +585,7 @@ function GHI_Trade()
 			containerApi.GHI_DisplayContainerItemTooltip(containerGuid, containerSlotID, GameTooltip, self, showInspectionDetails);
 		end
 	end
-	local TradeItemButtonOnUpdate = function(self)
+	local TradeItemButtonOnUpdate = function(self, elapsed)
 		if (self.updateTooltip) then
 			self.updateTooltip = self.updateTooltip - elapsed;
 			if (self.updateTooltip > 0) then
@@ -621,7 +610,7 @@ function GHI_Trade()
 			end
 		end
 	end
-	local RecipientTradeItemButtonOnUpdate = function(self)
+	local RecipientTradeItemButtonOnUpdate = function(self, elapsed)
 		if (self.updateTooltip) then
 			self.updateTooltip = self.updateTooltip - elapsed;
 			if (self.updateTooltip > 0) then
@@ -633,7 +622,6 @@ function GHI_Trade()
 			RecipientTradeItemButtonOnEnter(self, self:GetParent():GetID());
 		end
 	end
-
 
 	-- SetUp
 	class:SetScript("OnEvent", OnEvent);

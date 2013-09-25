@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_InstanceMenu
---  			GHI_InstanceMenu.lua
+--				GHI_InstanceMenu.lua
 --
---	          (description)
+--	Menu for inspecting the content of an item instance
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

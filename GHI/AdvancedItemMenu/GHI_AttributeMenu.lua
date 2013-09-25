@@ -1,29 +1,13 @@
 --===================================================
 --
 --				GHI_AttributeMenu
---  			GHI_AttributeMenu.lua
+--				GHI_AttributeMenu.lua
 --
---	          (description)
+--	Menu to create or modify attributes
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
-
---[[local AttributeTypes = {
-	"string",
-	"number",
-	"boolean",
-	"tableOfStrings",
-	"icon",
-};  --]]
-
---[[
-local AttributeMergeRules = {
-	string = { "none", "concat", },
-	number = { "none", "average", "sum", "min", "max", },
-	boolean = { "none", "and", "or", "nor", },
-	tableOfString = { "none", "majority", "minority", },
-}    --]]
 
 local count = 1;
 
@@ -36,10 +20,9 @@ function GHI_AttributeMenu()
 	local AttributeTypes = GHM_Input_GetAvailableTypes();
 	local AttributeMergeRules = GHM_Input_GetAvailableMergeRules();
 
-
 	local typeDependingAreas = {};
 	local currentSelectedArea;
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	local HideAllAreas = function()
 		local anchor = menuFrame.GetLabelFrame("typeDependingAreaAnchor");
 		for i, attTypeName in pairs(AttributeTypes) do
@@ -84,11 +67,10 @@ function GHI_AttributeMenu()
 					texture = "Tooltip",
 					label = "type",
 					align = "c",
-					text = loc.TYPE, --this is for 'Type' if 'Type:" remove the _u
+					text = loc.TYPE,
 					dataFunc = function()
 						local t = {};
 						for i, attType in pairs(AttributeTypes) do
-
 							if attType then
 								t[i] = loc["ATTYPE_" .. attType:upper()] or attType;
 							end
@@ -195,7 +177,6 @@ function GHI_AttributeMenu()
 			returnIndex = true,
 		}
 
-
 		table.insert(t[1],{
 			{
 				type = "Dummy",
@@ -213,12 +194,7 @@ function GHI_AttributeMenu()
 	count = count + 1;
 
 	menuFrame:Hide();
-
 	HideAllAreas();
-
-
-
-
 
 	local GetMenuValues = function()
 
@@ -236,12 +212,7 @@ function GHI_AttributeMenu()
 
 		local merge = AttributeMergeRules[attType][menuFrame.GetLabel(attType .. "_merge")];
 
-		local additionalData;
-		if attType == "tableOfStrings" then
-			-- todo: additional data
-		end
-
-		return true, { name, attType, additionalData, defaultValue, modify, merge };
+		return true, { name, attType, nil, defaultValue, modify, merge };
 	end
 
 	local SetMenu = function(attribute)
@@ -263,7 +234,6 @@ function GHI_AttributeMenu()
 				end
 			end
 
-
 			local modifyVals = { "allItems", "myItems" }
 			for index, modify in pairs(modifyVals) do
 				if modify == data.modifyAccess then
@@ -277,10 +247,6 @@ function GHI_AttributeMenu()
 				if mergeRule == data.mergeRule then
 					menuFrame.ForceLabel(data.attType .. "_merge", index)
 				end
-			end
-
-			if data.attType == "tableOfStrings" then
-				-- todo: additional data for edit
 			end
 		end
 	end

@@ -3,9 +3,9 @@
 --				GHI_ScriptEnvList
 --  			GHI_ScriptEnvList.lua
 --
---	          (description)
+--		List of scripting environments
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -19,7 +19,7 @@ function GHI_ScriptEnvList()
 	local envs = {};
 	local limitedEnvs = {};
 
-	class.GetEnv = function(guid, limited)    assert(not(guid=="00x1"),"Incorrect environment lookup");
+	class.GetEnv = function(guid, limited)
 		if limited == true then
 			if limitedEnvs[guid] then
 				return limitedEnvs[guid];

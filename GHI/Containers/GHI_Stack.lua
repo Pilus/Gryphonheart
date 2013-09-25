@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_Stack
---  			GHI_Stack.lua
+--				GHI_Stack.lua
 --
---	          Holds information for an item stack
+--		Holds information for an item stack
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -220,6 +220,7 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 	end
 
 	class.IsLocked = function() return locked; end
+
 	class.SetLocked = function(newLocked)
 		if newLocked == true then
 			locked = true;
@@ -234,12 +235,10 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 			return itemInstances[1];
 		end
 
-
 		local t = {};
 		for i,v in pairs(itemInstances) do
 			t[i] = v;
 		end
-
 
 		local stackOrder = item.GetStackOrder();
 
@@ -305,7 +304,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 			local remainingInstance = GHI_ItemInstance(smallestItemInstance);
 			smallestItemInstance.amount = smallestItemInstance.amount - overflow;
 			remainingInstance.amount = remainingInstance.amount - smallestItemInstance.amount;
-
 			table.insert(itemInstances, remainingInstance);
 		end
 
@@ -341,7 +339,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 	end
 
 	local MergeAttributes = function(targetInstance, mergingInstance)
-
 		local attributes = item.GetAllAttributes();
 
 		for i,att in pairs(attributes) do
@@ -372,9 +369,7 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 	end
 
 	class.MergeStacks = function(otherStack)
-
 		local _,_,_,stackSize = item.GetItemInfo();
-
 
 		local mergetAmount = math.max(0,math.min(stackSize - class.GetTotalAmount(),otherStack.GetTotalAmount()));
 		local remainingAmount = otherStack.GetTotalAmount() - mergetAmount;
@@ -514,7 +509,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 			elseif item.GetItemComplexity() == "advanced" then
 				local attribute = class.GetItemInfo().GetAttribute(attributeName);
 
-
 				if instance then
 					if attribute then
 						if attribute.ValidateValue(value) then
@@ -555,35 +549,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 		end
 		event.TriggerEvent("GHI_CONTAINER_UPDATE", parentContainer.GetGUID())
 	end
-
-     --do i need this?
-     --[[class.ExecuteReq = function(rType,rAlais,rDetail,execOrder)
-          --handle execute order then send over to
-          --IsRequirementFullfilled
-          --this all may need to be in GHI_ItemInfo UseItem
-           --rFulf 1 = GHI_RUN_ALWAYS, 2 = GHI_IS_FORFILLED, 3 = GHI_IS_NOT_FORFILLED, 4 = GHI_BEFORE_REQ }
-          local itemInfo = itemInfoList.GetItemInfo(itemGuid);
-          --local res =  simpleAction.IsRequirementFullfilled(rType,rAlias,rDetail)
-          if execOrder == 1 then
-               --Execute action
-          elseif execOrder == 2 then
-               --if res == true then
-               --run action possibly after another check
-               --end
-          elseif execOrder == 3 then
-               --if res == false then
-               --execute action
-               --end
-          elseif execOrder ==4 then
-
-               --run it before anything else
-          else
-                 --execute action anyway
-          end
-
-
-
-     end  ]]--
 
 	class.GetStackAPI = function(canModify)
 		return {
@@ -688,7 +653,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 		end
 	end
 
-
 	-- update sequence
 	-- On Load
 	-- On Load
@@ -722,13 +686,11 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 				for i,seq in pairs(updateSequences) do
 					if type(seq.frequency) == "number" and (not(lastUpdate[seq]) or (GetTime() - lastUpdate[seq] >= seq.frequency)) then
 						lastUpdate[seq] = GetTime();
-
 						for i, instance in pairs(itemInstances) do
 							seq.sequence.Execute("onupdate", class, i, true);
 						end
-
 					end
-				end--]]
+				end
 			end
 		end
 	end, 1, false, "UpdateSequences");
@@ -742,7 +704,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 						for i, instance in pairs(itemInstances) do
 							seq.sequence.Execute("onupdate", class, i, true);
 						end
-
 					end
 				end
 			end
@@ -755,11 +716,9 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 		end
 	end);
 
-
 	class.Dispose = function()
-	    itemGuid = nil;
+		itemGuid = nil;
 		wipe(timer);
-	    --wipe(class);
 		class.disposed = true;
 	end
 
@@ -767,8 +726,6 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 	if success then
 		return class;
 	end
-
-
 
 	print("Stack generation failed.", reason)
 end

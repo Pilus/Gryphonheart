@@ -1,11 +1,12 @@
 --===================================================
 --
 --				GHI_ConnectionsLayoutInfo
---  			GHI_ConnectionsLayoutInfo.lua
+--				GHI_ConnectionsLayoutInfo.lua
 --
---	          (description)
+--	Holds layout information about the connections
+--	between actions in a dynamic action set.
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -54,7 +55,6 @@ function GHI_ConnectionsLayoutInfo(actionLocations)
 		end
 	end
 
-
 	local UpdateConnectionList = function()
 		connectionList = {};
 		for tier = 1,actionLocations.GetNumTiers() do
@@ -100,7 +100,6 @@ function GHI_ConnectionsLayoutInfo(actionLocations)
 	class.GetConnection = function(i)
 		return connectionList[i];
 	end
-
 
 	UpdateConnectionList();
 

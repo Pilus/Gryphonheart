@@ -3,9 +3,9 @@
 --				GHI_ExportItem
 --  			GHI_ExportItem.lua
 --
---	      Export and import of items
+--			Export and import of items
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -13,10 +13,10 @@ local class;
 function GHI_ExportItem()
 	if class then
 		return class;
-     end
+	end
 
 	class = GHClass("GHI_ExportItem");
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	local importExportEnvironment = GHI_ScriptEnviroment();
 	importExportEnvironment.SetValue("GHI_MiscData", { Import = GHI_MiscData.Import });
 	local itemInfoList = GHI_ItemInfoList();
@@ -123,13 +123,12 @@ function GHI_ExportItem()
 		importExportEnvironment.SetValue("G_Import", t);
 		importExportEnvironment.ExecuteScript(t["scriptAfter"]);
 		t = importExportEnvironment.GetValue("G_Import");
-          ----print(t["ID"])
+
 		local itemGuid = t["ID"];
 		local amount = t["amount"];
 		t.item.guid = itemGuid;
 		local item = GHI_ItemInfo(t["item"]);
 		realm = t["realm"];
-
 
 		-- version check
 		itemInfoList.UpdateItem(item);

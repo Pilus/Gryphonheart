@@ -3,9 +3,10 @@
 --				GHI_VerticalChannel
 --  			GHI_VerticalChannel.lua
 --
---	          (description)
+--	Holds information about the vertical channels
+--	of connections.
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -103,10 +104,9 @@ function GHI_VerticalChannel(tier,connectionLayout)
 
 	local ConnectionsIsColliding = function(connection1,connection2)
 		assert(connection1 and connection2,"Two connections must be compared")
-   		local fromNumber1,fromPort1,toNumber1,toPort1 = GetPredictedConnectionRange(connection1);
-   		local fromNumber2,fromPort2,toNumber2,toPort2 = GetPredictedConnectionRange(connection2);
-		--print("1::",fromNumber1,fromPort1,toNumber1,toPort1)
-		--print("2::",fromNumber2,fromPort2,toNumber2,toPort2)
+		local fromNumber1,fromPort1,toNumber1,toPort1 = GetPredictedConnectionRange(connection1);
+		local fromNumber2,fromPort2,toNumber2,toPort2 = GetPredictedConnectionRange(connection2);
+
 		if (toNumber1 == fromNumber1 and toPort1 == fromPort1) or (toNumber2 == fromNumber2 and toPort2 == fromPort2) then -- straight over
 			return false;
 		elseif toNumber1 < fromNumber2 and toNumber2 < fromNumber1 then -- A B
@@ -137,7 +137,6 @@ function GHI_VerticalChannel(tier,connectionLayout)
 
 	-- Layout vertical channel
 	local connections = connectionLayout.GetConnectionsInVerticalChannel(tier);
-		--print("sorting")
 	table.sort(connections,CompareConnections);
 
 	local lanes = {};--print("calculating lane layout for vertical",tier,"num connections:",#(connections));
@@ -149,13 +148,12 @@ function GHI_VerticalChannel(tier,connectionLayout)
 			end
 			spaceAvailableInLastLane = spaceAvailableInLastLane and not(ConnectionsIsColliding(connection,otherConnection));
 		end
-		if spaceAvailableInLastLane and #(lanes) > 0 then --print(i,"placing connection in prev lane, because they dont collide")
+		if spaceAvailableInLastLane and #(lanes) > 0 then
 			table.insert(lanes[#(lanes)],connection);
-		else --print(i,"placing in new lane")
+		else
 			table.insert(lanes,{connection});
 		end
 	end
-
 
 	class.GetWidth = function()
 		return math.max(1,#(lanes));
@@ -171,7 +169,6 @@ function GHI_VerticalChannel(tier,connectionLayout)
 		end
 		error("Lane not found in vertical "..tier)
 	end
-
 
 	return class;
 end

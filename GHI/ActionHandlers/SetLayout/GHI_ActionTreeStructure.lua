@@ -1,9 +1,10 @@
 --===================================================
 --
 --				GHI_ActionTreeStructure
---  			GHI_ActionTreeStructure.lua
+--				GHI_ActionTreeStructure.lua
 --
---	          (description)
+--		Holds a tree stucture of the actions in a
+--			dynamic action set.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -18,8 +19,8 @@ function GHI_ActionTreeStructure()
 
 	local GenerateSubTree;
 	GenerateSubTree = function(dept, instance, remainingInstances)
-	-- The actions are ordered in a tree structure including only the connections that goes into a 'SetUp' port (I1).
-	-- A action can at this point have many children, each connected to a port from 1 to N.
+		-- The actions are ordered in a tree structure including only the connections that goes into a 'SetUp' port (I1).
+		-- A action can at this point have many children, each connected to a port from 1 to N.
 
 		local tree = {
 			dept = dept,
@@ -72,8 +73,6 @@ function GHI_ActionTreeStructure()
 
 		return tree;
 	end
-
-
 
 	return class;
 end

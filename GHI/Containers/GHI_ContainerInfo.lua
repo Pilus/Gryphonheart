@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_ContainerInfo
---  			GHI_ContainerInfo.lua
+--				GHI_ContainerInfo.lua
 --
---	          Information and handling for each container / bag
+--	Information and handling for each container / bag
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -30,7 +30,7 @@ function GHI_ContainerInfo(info)
 		icon = "Interface\\Icons\\INV_Misc_QuestionMark";
 		texture = "";
 		stacks = {};
-        locked = false;
+		locked = false;
 
 		if type(info) == "table" then
 			local t = info[0];
@@ -99,6 +99,7 @@ function GHI_ContainerInfo(info)
 		end
 		return index;
 	end
+
 	local IsBagEmpty = function()
 		local free = class.GetNumFreeSlots()
 		if size == free then
@@ -129,16 +130,16 @@ function GHI_ContainerInfo(info)
 
 	class.GetGUID = function()
 		return guid;
-    end
+	end
 
-    class.IsLocked = function()
-        return locked;
-    end
+	class.IsLocked = function()
+		return locked;
+	end
 
-    class.SetLocked = function(lock)
-        locked = lock;
-        event.TriggerEvent("GHI_CONTAINER_UPDATE",guid)
-    end
+	class.SetLocked = function(lock)
+		locked = lock;
+		event.TriggerEvent("GHI_CONTAINER_UPDATE",guid)
+	end
 
 	class.IsSlotLocked = function(slotID)
 		if stacks[slotID] then
@@ -146,7 +147,7 @@ function GHI_ContainerInfo(info)
 		end
 	end
 
-	--[[
+	--[[  Maybe needed for #417
 	class.UpdateSize = function(_size)
 		for i,stack in pairs(stacks) do
 			if type(i) == "number" and i > _size then
