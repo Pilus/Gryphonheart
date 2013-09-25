@@ -22,9 +22,9 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	local LoadSyntaxColors;
 	local UpdateSyntaxPreview, ResetColors
 	local colorConfig = {};
-	local categories = GHM_GetSyntaxCatagories();
 	local syntaxColorPreview
-		
+	local syntaxHighlight = GHM_CodeField_SyntaxHighlight()
+	local categories = syntaxHighlight.GHM_GetSyntaxCatagories();
 	
 	local colorCatObjs = {}
 	
@@ -35,10 +35,10 @@ function GHI_CodeEditorOptionsMenu(parentName)
 				type = "Color",
 				width = 100,
 				text = loc["SYNTAX_" .. string.upper(cata)] or cata,
-				tooltip = "Sets the color to highlight "..loc["SYNTAX_" .. string.upper(cata)].." elements in.",
+				tooltip = loc.SYNTAX_TT_1..loc["SYNTAX_" .. string.upper(cata)]..loc.SYNTAX_TT_2,
 				label = cata,
 				OnChange = function(r,g,b)
-					GHM_SetSyntaxColor(cata, r, g, b)
+					syntaxHighlight.GHM_SetSyntaxColor(cata, r, g, b)
 					UpdateSyntaxPreview()
 				end
 			}
@@ -131,7 +131,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		end,
 		title = loc.SCRIPT_CODE_EDITOR_SETTINGS,
 		height = 400,
-				name = "GHI_OptionsCodeEditorSettingsFrame",
+		name = "GHI_OptionsCodeEditorSettingsFrame",
 		theme = "BlankTheme",
 		width = parentWidth,
 	}
@@ -201,32 +201,32 @@ function GHI_CodeEditorOptionsMenu(parentName)
 				
 	UpdateSyntaxPreview = function()
 		
-		local syntaxColors = GHM_SyntaxColorList	
-		local form = function(str, cat)
+		local syntaxColors = syntaxHighlight.GHM_SyntaxColorList
+		local makePreviewLine = function(str, cat)
 			return miscAPI.GHI_ColorString(str, unpack(syntaxColors[cat]));
 		end
 		local strings = {
-			form("--Syntax colors example", "comment"),
-			form("local", "keyword") .. " i = " .. form("12", "number") .. ";",
-			form("if", "keyword") .. " ( i > " .. form("10", "number") .. ") " .. form("then", "keyword"),
-			"   print(" .. form("\"Hello World\"", "string") .. ");",
-			form("   return", "keyword") .. " " .. form("true", "boolean") .. ";",
-			form("end", "keyword"),
+			makePreviewLine("--Syntax colors example", "comment"),
+			makePreviewLine("local", "keyword") .. " i = " .. makePreviewLine("12", "number") .. ";",
+			makePreviewLine("if", "keyword") .. " ( i > " .. makePreviewLine("10", "number") .. ") " .. makePreviewLine("then", "keyword"),
+			"   print(" .. makePreviewLine("\"Hello World\"", "string") .. ");",
+			makePreviewLine("   return", "keyword") .. " " .. makePreviewLine("true", "boolean") .. ";",
+			makePreviewLine("end", "keyword"),
 		};
 		local s = strjoin("\n", unpack(strings));
 		syntaxColorPreview.text:SetText(s)
 	end
 	
 	ResetColors = function()
-		GHM_ResetSyntaxColors()
-		local syntaxColors = GHM_SyntaxColorList
+		syntaxHighlight.GHM_ResetSyntaxColors()
+		local syntaxColors = syntaxHighlight.GHM_SyntaxColorList
 		for cat,color in pairs(syntaxColors) do
 			menuFrame.ForceLabel(cat,color)	
 		end
 	end
 	
 	local LoadSyntaxColors = function()
-		local syntaxColors = GHM_SyntaxColorList
+		local syntaxColors = syntaxHighlight.GHM_SyntaxColorList
 			for cat,color in pairs(syntaxColors) do
 				menuFrame.ForceLabel(cat,color)	
 			end
@@ -262,11 +262,11 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		GHI_ScriptMenu_UseWideEditor(useWideEditor);
 		GHI_MiscData.useWideEditor = useWideEditor;
 		GHI_MiscData.syntaxDisabled = syntaxDisabled
-		GHI_MiscData.SyntaxColor = GHM_SyntaxColorList
+		GHI_MiscData.SyntaxColor = syntaxHighlight.GHM_SyntaxColorList
 	end;
 	
 	menuFrame.parent = parentName;
-	GHM_LoadSyntaxColorList()
+	syntaxHighlight.GHM_LoadSyntaxColorList()
 	LoadSettings();
 
 	InterfaceOptions_AddCategory(menuFrame)

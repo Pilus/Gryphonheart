@@ -32,9 +32,11 @@ function GHM_ColorPickerList()
 	class.New = function(_callback, hex)
 		GetMenu().New(_callback, hex);
 	end
+	
 	class.Edit = function(color,_callback, hex)
 		GetMenu().Edit(color,_callback, hex);
 	end
+	
 	class.IsBeingEdited = function()
 		for i, menu in pairs(menus) do
 			if (menu.IsInUse()) then

@@ -39,14 +39,12 @@ function GHM_Color2(parent, main, profile)
 	labelText:SetText(profile.text or "");
 	-- positioning
 	if profile.scale then
-	frame:SetScale(profile.scale,profile.scale)
+		frame:SetScale(profile.scale,profile.scale)
 	end
-	
-	_G[frame:GetName() .. "Text"].tooltip = profile.tooltip;
-	
+		
 	function round(num, idp)
-	  local mult = 10^(idp or 0)
-	  return math.floor(num * mult + 0.5) / mult
+		local mult = 10^(idp or 0)
+		return math.floor(num * mult + 0.5) / mult
 	end
 	
 	colorPick:SetScript("OnLoad", function(self)
@@ -54,14 +52,15 @@ function GHM_Color2(parent, main, profile)
 	end)
 	
 	colorPick:SetScript("OnColorSelect", function(self,r,g,b)
-			colorSwatch:SetTexture(r, g, b);	
-			boxR:SetText(math.floor(r * 255))
-			boxG:SetText(math.floor(g * 255))
-			boxB:SetText(math.floor(b * 255))
-			if profile.onColorSelect and type(profile.onColorSelect) == "function" then
-				profile.onColorSelect()
-			end
+		colorSwatch:SetTexture(r, g, b);	
+		boxR:SetText(math.floor(r * 255))
+		boxG:SetText(math.floor(g * 255))
+		boxB:SetText(math.floor(b * 255))
+		if profile.onColorSelect and type(profile.onColorSelect) == "function" then
+			profile.onColorSelect()
+		end
 	end)
+	
 	alphaSlider:SetScript("OnValueChanged", function(self, value)
 		boxA:SetText(tonumber(strsub(value,1,4)) * 100)
 		colorSwatch:SetAlpha(value)
@@ -73,26 +72,28 @@ function GHM_Color2(parent, main, profile)
 	local function colorSet()
 		local r = boxR:GetText()
 		local g = boxG:GetText()
-		local b = boxB:GetText()
-		
+		local b = boxB:GetText()		
 		colorPick:SetColorRGB((r / 255), (g / 255),(b / 255))
 	end
 	
 	boxR:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
-		colorSet(self,"r")
+			colorSet()
 		end
 	end)
+	
 	boxG:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
-		colorSet(self,"g")
+			colorSet()
 		end
 	end)
+	
 	boxB:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
-		colorSet(self,"b")
+			colorSet()
 		end
 	end)
+	
 	boxA:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
 			alphaSlider:SetValue((tonumber(self:GetText()) / 100))
@@ -138,7 +139,6 @@ function GHM_Color2(parent, main, profile)
 		alphaSlider:SetValue(100)
 	end
 
-
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
 		if not (varAttFrame) then
 			varAttFrame = GHM_VarAttInput(frame, area, area:GetWidth(),0);
@@ -151,7 +151,7 @@ function GHM_Color2(parent, main, profile)
 		if (varAttFrame and not (varAttFrame:IsStaticTabShown())) then
 			return varAttFrame:GetValue();
 		else
-			if profile.iTable == true then
+			if profile.returnIndexTable == true then
 				local r1,g1,b1 = colorPick:GetColorRGB()
 				local a1 = alphaSlider:GetValue()
 				local rgb = {}
@@ -180,7 +180,6 @@ function GHM_Color2(parent, main, profile)
 	end
 
 	frame:Show();
-	--GHM_TempBG(frame);
 	
 	return frame;
 end

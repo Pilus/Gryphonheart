@@ -111,7 +111,5 @@ function GHM_ColorPicker()
 		 return inUse;
 	end
 	
-	colorMenuFrame:Hide();
-	
 	return class;
 end

@@ -4,20 +4,6 @@
         <Size>
             <AbsDimension x="170" y="80"/>
         </Size>
-		<Scripts>
-            <OnLoad>
-                local f = self;
-                f.Force = function(data)
-                if type(data) == "string" then
-                _G[f:GetName().."ScrollText"]:SetText(data);
-                end
-                end
-                f.Clear = function(self)
-
-                _G[f:GetName().."ScrollText"]:SetText("");
-                end
-            </OnLoad>
-        </Scripts>
         <Frames>
             <Frame name="$parentArea">
                 <Anchors>
@@ -61,59 +47,11 @@
                                 </Offset>
                             </Anchor>
                         </Anchors>
-                        <Scripts>
-                            <OnMouseDown>
-                                _G[self:GetName().."Text"]:SetFocus();
-                            </OnMouseDown>
-                            <OnMouseUp>
-                                _G[self:GetName().."Text"]:SetFocus();
-
-                            </OnMouseUp>
-                        </Scripts>
                         <ScrollChild>
                             <EditBox name="$parentText" multiLine="true" autoFocus="false">
                                 <Size>
                                     <AbsDimension x="160" y="100"/>
                                 </Size>
-                                <Scripts>
-                                    <OnLoad>
-                                        self:SetScript("OnCursorChanged",function(self,arg1,arg2,arg3)
-											local scrollBar = _G[self:GetParent():GetName().."ScrollBar"]
-											local h = scrollBar:GetHeight();
-											if (-arg2)-h-scrollBar:GetValue() > 22 then
-												scrollBar:SetValue(-arg2+ (-3.0*arg3) -h);
-											end
-											if -3 > -arg2-scrollBar:GetValue() then
-												scrollBar:SetValue(-arg2- 1.5*arg3);
-											end
-                                        end);
-										GHM_LoadSyntaxColorList()
-                                    </OnLoad>
-									<OnShow>
-										local syntaxDisabled = GHI_MiscData.syntaxDisabled
-										if syntaxDisabled == true then
-											return
-										else
-											local syntaxColors = GHM_GetSyntaxColorList()
-											IndentationLib.Enable(self,4,syntaxColors)
-										end
-									</OnShow>
-									<OnHide>
-										IndentationLib.Disable()
-									</OnHide>
-                                    <OnEscapePressed>
-                                        self:ClearFocus();
-                                    </OnEscapePressed>
-                                    <OnTextChanged>
-                                        local f = self:GetParent():GetParent();
-                                        if f and f.main then
-											f.main.SetLabel(f.label,self:GetText());
-                                        end
-                                    </OnTextChanged>
-                                    <OnCursorChanged>
-
-                                    </OnCursorChanged>
-                                </Scripts>
                                 <FontString inherits="GameFontHighlight"/>
                             </EditBox>
                         </ScrollChild>

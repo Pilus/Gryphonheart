@@ -269,7 +269,7 @@ function GHI_Loc()
 
      };
 
-     local textsOptionsDebug = {
+    local textsOptionsDebug = {
           DEBUG_EVENT_LOG = {
                enUS = "GHI Debug Event Log",
           },
@@ -316,79 +316,96 @@ function GHI_Loc()
 		NEW_THEME = {
 			enUS = "New Theme",
 		},
-          PRESET_THEME = {
-               enUS = "Preset Theme:",
-          },
-          LOAD_THEME = {
-               enUS = "Load",
-          },
-          SAVE_THEME = {
-               enUS = "Save",
-          },
-          DELETE_THEME = {
-               enUS = "Delete",
-          },
-          BACKGROUND = {
-               enUS = "Background:",
-          },
-          ANIMATION = {
-               enUS = "Show animation when opening menus",
-          },
-		  MENU_UNIFY_TEXT = {
-			  enUS = "Unify Text Colors",
-		  },
-		  MENU_UNIFY_TEXT_TT = {
-			  enUS = "Unifies all text to match the Main Text color.",
-		  },
-		  MENU_UNIFY_WINDOW = {
-			  enUS = "Unify Window Colors",
-		  },
-		  MENU_UNIFY_WINDOW_TT = {
-			  enUS = "Unifies all window colors to match the Window Header color.",
-		  },
-		  MENU_BG_ALPHA = {
-			  enUS = "BG Alpha:",
-		  },
-          MENU_COLORS = {
-               enUS = "Colors",
-          },
-          MENU_COLORS_U = {
-               enUS = "Colors:",
-          },
-		  MENU_WINDOW_COLORS = {
-			  enUS = "Window Colors:",
-		  },
-          MENU_WARN_RELOG = {
-               enUS = "Some changes might first apply after a reload or relog.",
-          },
+		PRESET_THEME = {
+			enUS = "Preset Theme:",
+		},
+		LOAD_THEME = {
+			enUS = "Load",
+		},
+		SAVE_THEME = {
+			enUS = "Save",
+		},
+		DELETE_THEME = {
+			enUS = "Delete",
+		},
+		BACKGROUND = {
+			enUS = "Background:",
+		},
+		ANIMATION = {
+			enUS = "Show animation when opening menus",
+		},
+		MENU_UNIFY_TEXT = {
+			enUS = "Unify Text Colors",
+		},
+		MENU_UNIFY_TEXT_TT = {
+			enUS = "Unifies all text to match the Main Text color.",
+		},
+		MENU_UNIFY_WINDOW = {
+			enUS = "Unify Window Colors",
+		},
+		MENU_UNIFY_WINDOW_TT = {
+			enUS = "Unifies all window colors to match the Window Header color.",
+		},
+		MENU_BG_ALPHA = {
+			enUS = "BG Alpha:",
+		},
+		MENU_COLORS = {
+			enUS = "Colors",
+		},
+		MENU_COLORS_U = {
+			enUS = "Colors:",
+		},
+		MENU_WINDOW_COLORS = {
+			enUS = "Window Colors:",
+		},
+		MENU_WARN_RELOG = {
+			enUS = "Some changes might first apply after a reload or relog.",
+		},
 		MENU_APPEARANCE = {
 			enUS = "Menu Appearance",
 		},
 		MENU_APPEARANCE_TEXT = {
 			enUS = "Customize the look of all the GHI menus with the options below, or select one of the preset setups.",
 		},
-          TITLE_BAR_COLOR = {
-               enUS = "Title bar color",
-          },
-          TITLE_BAR_TEXT_COLOR = {
-               enUS = "Title Bar Text Color",
-          },
-          BACKGROUND_COLOR = {
-               enUS = "Background Color",
-          },
-          BUTTON_COLOR = {
-               enUS = "Button Color"
-          },
-          MAIN_TEXT_COLOR = {
-               enUS = "Main Text Color",
-          },
-          DETAILS_TEXT_COLOR = {
-               enUS = "Details Text Color",
-          },
-          THEME_NAME = {
-               enUS = "Please enter a name for the theme.",
-
-          },
+		TITLE_BAR_COLOR = {
+			enUS = "Title Bar Color",
+		},
+		TITLE_BAR_TEXT_COLOR = {
+			enUS = "Title Bar Text Color",
+		},
+		BACKGROUND_COLOR = {
+			enUS = "Background Color",
+		},
+		BUTTON_COLOR = {
+			enUS = "Button Color"
+		},
+		MAIN_TEXT_COLOR = {
+			enUS = "Main Text Color",
+		},
+		DETAILS_TEXT_COLOR = {
+			enUS = "Details Text Color",
+		},
+		THEME_NAME = {
+			enUS = "Please enter a name for the theme.",
+		},
+		TITLE_BAR_COLOR_TT = {
+			enUS = "Sets the color of the title bar.",
+		},
+		TITLE_BAR_TEXT_COLOR_TT = {
+			enUS = "Sets the color of the text in the title bar.",
+		},
+		BACKGROUND_COLOR_TT = {
+			enUS = "Sets the background color of the frame, visible where no background texture is.",
+		},
+		BUTTON_COLOR_TT = {
+			enUS = "Sets the color of buttons."
+		},
+		MAIN_TEXT_COLOR_TT = {
+			enUS = "Sets the color of the widget labels.",
+		},
+		DETAILS_TEXT_COLOR_TT = {
+			enUS = "Sets the color of details text.",
+		},
 	};
 
      local textsDynamicActionArea = {    --GHM_DynamicActionArea
@@ -1588,6 +1605,12 @@ function GHI_Loc()
           SYNTAX_NUMBER = {
                enUS = "Number",
           },
+		  SYNTAX_TT_1 = {
+			enUS = "Sets the color to highlight ",
+		  },
+		  SYNTAX_TT_2 = {
+			enUS = " elements in.",
+		  },
      };
 
      local textsErr = { --error or general messages here

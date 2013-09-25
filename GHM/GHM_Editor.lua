@@ -181,7 +181,7 @@ if GHMMenuCreator == nil then
                     xOff = 0,
                     yOff = 0,
                     scale = 1,
-                    iTable = false,
+                    returnIndexTable = false,
                     onColorSelect = function()
                     end,
                 },

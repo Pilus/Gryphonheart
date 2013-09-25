@@ -17,7 +17,7 @@ local PREDEFINED_THEMES = {
 		background = "Interface\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains.blp",
 		titleBar = { 0.5, 0.1, 0.1, 1 },
 		titleBarTextColor = { 1, 1, 1, 1 },
-		backgroundColor = { 1, 1, 1, 1 },
+		backgroundColor = { 1, 1, 1, 0.5 },
 		buttonColor = { 0.5, 0.1, 0.1, 1 },
 		mainTextColor = { 1.0, 0.82, 0.0, 1 },
 		detailsTextColor = { 1.0, 1.0, 1.0, 1 },
@@ -28,7 +28,7 @@ local PREDEFINED_THEMES = {
 		background = "Interface\\DialogFrame\\UI-DialogBox-Background.blp",
 		titleBar = { 0.5, 0.1, 0.1, 1 },
 		titleBarTextColor = { 1, 1, 1, 1 },
-		backgroundColor = { 0.3, 0.3, 0.3, 1 },
+		backgroundColor = { 0.3, 0.3, 0.3, 0.5 },
 		buttonColor = { 0.5, 0.1, 0.1, 1 },
 		mainTextColor = { 1.0, 0.82, 0.0, 1 },
 		detailsTextColor = { 1.0, 1.0, 1.0, 1 },
@@ -85,9 +85,11 @@ local BACKGROUNDS = {
 
 local class;
 function GHI_MenuAppearanceOptionsMenu(parentName)
+
 	if class then
 		return class;
 	end
+	
 	class = GHClass("GHI_MenuAppearanceOptionsMenu");
 	GHI_MiscData = GHI_MiscData or {};
 
@@ -103,6 +105,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		themes = GHI_MiscData.UI_Themes or {};
 		return #(PREDEFINED_THEMES) + #(themes) + 1;
 	end
+	
 	local GetThemeInfo = function(i)
 		if i > #(PREDEFINED_THEMES) + #(themes) then
 			return "<"..loc.NEW_THEME..">";
@@ -142,6 +145,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 				end
 			end
 		end
+		
 		if not (theme) then
 			theme = PREDEFINED_THEMES[1];
 			themeI = 1;
@@ -203,18 +207,21 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					end,
 					OnSelect = function(i)
 						if menuFrame then
+							local save = menuFrame.GetLabelFrame("save")
+							local delete = menuFrame.GetLabelFrame("delete")
+							local load = menuFrame.GetLabelFrame("load")
 							if i <= GetNumPredefinedThemes() then
-								menuFrame.GetLabelFrame("save"):Disable();
-								menuFrame.GetLabelFrame("load"):Enable();
-								menuFrame.GetLabelFrame("delete"):Disable();
+								save:Disable();
+								delete:Disable();
+								load:Enable()
 							elseif i < GetNumThemes() then
-								menuFrame.GetLabelFrame("save"):Enable();
-								menuFrame.GetLabelFrame("load"):Enable();
-								menuFrame.GetLabelFrame("delete"):Enable();
+								save:Enable();
+								delete:Enable();
+								load:Enable()
 							else
-								menuFrame.GetLabelFrame("save"):Enable();
-								menuFrame.GetLabelFrame("load"):Disable();
-								menuFrame.GetLabelFrame("delete"):Disable();
+								save:Enable();
+								delete:Disable();
+								load:Enable()
 							end
 						end
 					end,
@@ -242,7 +249,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					text = loc.SAVE_THEME,
 					align = "l",
 					compact = false,
-					yOff = 0,
 					OnClick = function(obj)
 						local i = menuFrame.GetLabel("preset");
 						SaveTheme(i);
@@ -260,7 +266,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					text = loc.DELETE_THEME,
 					align = "l",
 					compact = false,
-					yOff = 0,
 					OnClick = function(obj)
 						local i = menuFrame.GetLabel("preset");
 						DeleteTheme(i);
@@ -312,7 +317,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 15,
+					height = 30,
 					type = "Dummy",
 					align = "l",
 					width = 20,
@@ -329,8 +334,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "Color",
 					text = loc.TITLE_BAR_COLOR,
 					label = "titleBar",
-					tooltip = "Sets the "..loc.TITLE_BAR_COLOR,
-					iTable = true,
+					tooltip = loc.TITLE_BAR_COLOR_TT,
+					returnIndexTable = true,
 					OnChanged = function()
 						OnColor()
 					end
@@ -340,8 +345,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "Color",
 					text = loc.TITLE_BAR_TEXT_COLOR,
 					label = "titleBarTextColor",
-					tooltip = "Sets the "..loc.TITLE_BAR_TEXT_COLOR,
-					iTable = true,
+					tooltip = loc.TITLE_BAR_TEXT_COLOR_TT,
+					returnIndexTable = true,
 					OnChanged = function()
 						OnColor()
 					end
@@ -351,8 +356,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "Color",
 					text = loc.BACKGROUND_COLOR,
 					label = "backgroundColor",
-					tooltip = "Sets the "..loc.BACKGROUND_COLOR,
-					iTable = true,
+					tooltip = loc.BACKGROUND_COLOR_TT,
+					returnIndexTable = true,
 					OnChanged = function()
 						OnColor()
 					end
@@ -364,8 +369,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "Color",
 					text = loc.BUTTON_COLOR,
 					label = "buttonColor",
-					tooltip = "Sets the "..loc.BUTTON_COLOR,
-					iTable = true,
+					tooltip = loc.BUTTON_COLOR_TT,
+					returnIndexTable = true,
 					OnChanged = function()
 						OnColor()
 					end
@@ -375,8 +380,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "Color",
 					text = loc.MAIN_TEXT_COLOR,
 					label = "mainTextColor",
-					tooltip = "Sets the "..loc.MAIN_TEXT_COLOR,
-					iTable = true,
+					tooltip = loc.MAIN_TEXT_COLOR_TT,
+					returnIndexTable = true,
 					OnChanged = function()
 						OnColor()
 					end
@@ -386,8 +391,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "Color",
 					text = loc.DETAILS_TEXT_COLOR,
 					label = "detailsTextColor",
-					tooltip = "Sets the "..loc.DETAILS_TEXT_COLOR,
-					iTable = true,
+					tooltip = loc.DETAILS_TEXT_COLOR_TT,
+					returnIndexTable = true,
 					OnChanged = function()
 						OnColor()
 					end
@@ -395,10 +400,10 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 15,
+					height = 50,
 					type = "Dummy",
 					align = "l",
-					width = 20,
+					width = 10,
 				},
 				{
 					type = "HBar",
@@ -408,20 +413,12 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					align = "l",
-					type = "Text",
-					text = loc.BACKGROUND,
-					fontSize = 10,
-					width = parentWidth -100,
-				},
-			},
-			{
-				{
 					type = "ImageList",
 					align = "l",
 					height = 200,
-					width = parentWidth-100,
+					width = parentWidth,
 					label = "background",
+					text = loc.BACKGROUND,
 					data = BACKGROUNDS,
 					OnSelect = function(self, path)
 						local i = menuFrame.GetLabel("preset");
@@ -502,7 +499,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 	end
 
 	SaveTheme = function(index)
-		local alpha = menuFrame.GetLabel("bg_alpha")
 			
 		local newCurrent = {
 			background = menuFrame.GetLabel("background"),
@@ -514,7 +510,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			detailsTextColor = menuFrame.GetLabel("detailsTextColor"),
 		}
 		
-		table.insert(newCurrent.backgroundColor,alpha)
 		if index and index < GetNumThemes() and index > GetNumPredefinedThemes() then
 			local name, guid = GetThemeInfo(index);
 			newCurrent.name = name;
@@ -522,6 +517,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			GHI_MiscData.UI_Themes[index - GetNumPredefinedThemes()] = newCurrent;
 			return
 		end
+		
 		StaticPopupDialogs["GHI_NAME_THEME"] = {
 			text = loc.THEME_NAME,
 			button1 = OKAY,

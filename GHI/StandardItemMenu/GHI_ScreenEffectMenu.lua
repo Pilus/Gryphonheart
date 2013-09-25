@@ -103,10 +103,9 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 			fade_in = tonumber(fade_in),
 			fade_out = tonumber(fade_out),
 			duration = tonumber(duration),
-            delay = tonumber(delay),
+			delay = tonumber(delay),
 			alpha = tonumber(alpha),
 			flashRepeat = tonumber(flashRepeat),
-
 		};
 
 		if (class.editAction) then
@@ -126,129 +125,125 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
 		{
-		  {
 			{
-			  type = "Dummy",
-			  height = 30,
-			  width = 10,
-			  align = "l",
+			{
+				type = "Dummy",
+				height = 30,
+				width = 10,
+				align = "l",
 			},
 			{
-			  type = "Text",
-			  fontSize = 11,
-			  width = 440,
-			  text = loc.SCREEN_EFFECT_TEXT,
-			  color = "white",
-			  align = "l",
+				type = "Text",
+				fontSize = 11,
+				width = 440,
+				text = loc.SCREEN_EFFECT_TEXT,
+				color = "white",
+				align = "l",
 			},
-		  },
-		  {
-			{
-			  type = "Color",
-			  text = loc.COLOR,
-			  align = "l",
-			  label = "color",
-			},
-			{
-			  type = "Time",
-			  text = loc.SCREEN_EFFECT_FADEOUT,
-			  align = "c",
-			  label = "fade_out",
-			  width = 130,
-			  texture = "Tooltip",
-			  values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-			},
-			{
-			  type = "Time",
-			  text = loc.SCREEN_EFFECT_FADEIN,
-			  align = "r",
-			  label = "fade_in",
-			  texture = "Tooltip",
-			  xOff = -5,
-			  width = 130,
-			  values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-			},
-		  },
-		  {
-			{
-			  type = "Editbox",
-			  text = "Repeat",
-			  align = "l",
-			  label = "flashRepeat",
-			  width = 50,
-			  texture = "Tooltip",
-			  width = 130,
-			},
-			{
-			  type = "Time",
-			  text = loc.DURATION,
-			  align = "c",
-			  label = "duration",
-			  texture = "Tooltip",
-			  xOff = -5,
-			  width = 130,
-			  values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-			},
-			{
-			  type = "Time",
-			  text = loc.DELAY,
-			  align = "r",
-			  label = "delay",
-			  xOff = -5,
-			  texture = "Tooltip",
-			},
-		  },
-		  {
-			
-			
-		  },
-		  {
-			{
-			  type = "Dummy",
-			  height = 10,
-			  width = 100,
-			  align = "l",
-			},
-			{
-			  type = "Button",
-			  text = OKAY,
-			  align = "l",
-			  label = "ok",
-			  compact = false,
-			  OnClick = OnOk,
-			},
-			{
-			  type = "Dummy",
-			  height = 10,
-			  width = 100,
-			  align = "r",
-			},
-			{
-			  type = "Button",
-			  text = CANCEL,
-			  align = "r",
-			  label = "cancel",
-			  compact = false,
-			  OnClick = function(obj)
-				menuFrame:Hide();
-			  end,
-			},
-		  },
 		},
-		title = TYPE_LOC,
-		name = NAME .. menuIndex,
-		theme = "BlankTheme",
-		width = 450,
-		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
-		OnShow = UpdateTooltip,
-		icon = ICON,
-		lineSpacing = 20,
-		OnHide = function()
-			if not (menuFrame.window:IsShown()) then
-				inUse = false;
-			end
-		end,
+		{
+			{
+				type = "Color",
+				text = loc.COLOR,
+				align = "l",
+				label = "color",
+			},
+			{
+				type = "Time",
+				text = loc.SCREEN_EFFECT_FADEOUT,
+				align = "c",
+				label = "fade_out",
+				width = 130,
+				texture = "Tooltip",
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+			},
+			{
+				type = "Time",
+				text = loc.SCREEN_EFFECT_FADEIN,
+				align = "r",
+				label = "fade_in",
+				texture = "Tooltip",
+				xOff = -5,
+				width = 130,
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+			},
+		},
+		{
+			{
+				type = "Editbox",
+				text = "Repeat",
+				align = "l",
+				label = "flashRepeat",
+				width = 50,
+				texture = "Tooltip",
+				width = 130,
+			},
+			{
+				type = "Time",
+				text = loc.DURATION,
+				align = "c",
+				label = "duration",
+				texture = "Tooltip",
+				xOff = -5,
+				width = 130,
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+			},
+			{
+				type = "Time",
+				text = loc.DELAY,
+				align = "r",
+				label = "delay",
+				xOff = -5,
+				texture = "Tooltip",
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 10,
+				width = 100,
+				align = "l",
+			},
+			{
+				type = "Button",
+				text = OKAY,
+				align = "l",
+				label = "ok",
+				compact = false,
+				OnClick = OnOk,
+			},
+			{
+				type = "Dummy",
+				height = 10,
+				width = 100,
+				align = "r",
+			},
+			{
+				type = "Button",
+				text = CANCEL,
+				align = "r",
+				label = "cancel",
+				compact = false,
+				OnClick = function(obj)
+				menuFrame:Hide();
+				end,
+			},
+		},
+	},
+	title = TYPE_LOC,
+	name = NAME .. menuIndex,
+	theme = "BlankTheme",
+	width = 450,
+	useWindow = true,
+	--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
+	OnShow = UpdateTooltip,
+	icon = ICON,
+	lineSpacing = 20,
+	OnHide = function()
+		if not (menuFrame.window:IsShown()) then
+			inUse = false;
+		end
+	end,
 	});
 
 	class.Show(_OnOkCallback, _editAction)
