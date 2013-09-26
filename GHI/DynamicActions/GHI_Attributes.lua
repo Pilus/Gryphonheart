@@ -3,7 +3,7 @@
 --			GHI_Attributes
 --			GHI_Attributes.lua
 --
---	   Dynamic action data for the 'Attributes' category
+--	Dynamic action data for the 'Attributes' category
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -23,8 +23,9 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	allowedInUpdateSequence = true,
 	script =
-	[[  local att = dyn.GetInput("att");
-	 	dyn.SetOutput("att_out",att);
+	[[
+	local att = dyn.GetInput("att");
+	dyn.SetOutput("att_out",att);
 	]],
 	ports = {},
 	inputs = {
@@ -61,7 +62,8 @@ for i,attType in pairs(AttTypes) do
 		setupOnlyOnce = false,
 		allowedInUpdateSequence = true,
 		script =
-		[[  local att = dyn.GetInput("att");
+		[[
+			local att = dyn.GetInput("att");
 			dyn.SetOutput("att_out",att);
 		]],
 		ports = {},
@@ -96,7 +98,8 @@ table.insert(GHI_ProvidedDynamicActions, {
 		setupOnlyOnce = false,
 		allowedInUpdateSequence = true,
 		script =
-		[[  local att = dyn.GetInput("att");
+		[[
+			local att = dyn.GetInput("att");
 			dyn.SetOutput("att_out",att);
 		]],
 		ports = {},

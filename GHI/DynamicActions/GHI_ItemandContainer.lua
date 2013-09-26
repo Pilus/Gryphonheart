@@ -3,7 +3,7 @@
 --				GHI_ItemandContainer
 --  			GHI_ItemandContainer.lua
 --
---	          (description)
+--	Dynamic actions interacting with items and containers.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -25,16 +25,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
+		local size = dyn.GetInput("size")
+		local texture = dyn.GetInput("texture") or ""
 
-	 --local bagAPI = GHI_ContainerAPI().GetAPI();
-
-      local size = dyn.GetInput("size")
-      local texture = dyn.GetInput("texture") or ""
-
-      GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),size,texture)
-      dyn.TriggerOutPort("bagOpen")
-
-
+		GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),size,texture)
+		dyn.TriggerOutPort("bagOpen")
 	]],
 	ports = {
 		bagOpen = {
@@ -77,14 +72,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 	requiredDisabledMenuElements = {label="stackSize",value=1},
 	script =
 	[[
+		local size = dyn.GetInput("size")
+		local texture = dyn.GetInput("texture") or ""
 
-      local size = dyn.GetInput("size")
-      local texture = dyn.GetInput("texture") or ""
-
-      GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),size,texture,true)
-      dyn.TriggerOutPort("bagOpen")
-
-
+		GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),size,texture,true)
+		dyn.TriggerOutPort("bagOpen")
 	]],
 	ports = {
 		bagOpen = {
@@ -127,18 +119,14 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-	   --local bagAPI = GHI_ContainerAPI().GetAPI();
+		local targetItem = dyn.GetInput("item")
+		local itemRes = GHI_FindOneItem(targetItem)
 
-	   local targetItem = dyn.GetInput("item")
-
-	   local itemRes = GHI_FindOneItem(targetItem)
-
-	   if itemRes then
-	     dyn.TriggerOutPort("found")
-	   else
-	     dyn.TriggerOutPort("notFound")
-	   end
-
+		if itemRes then
+			dyn.TriggerOutPort("found")
+		else
+			dyn.TriggerOutPort("notFound")
+		end
 	]],
 	ports = {
 		found = {
@@ -180,16 +168,13 @@ table.insert(GHI_ProvidedDynamicActions, {
 	allowedInUpdateSequence = true,
 	script =
 	[[
-
-
-	local targetItem = dyn.GetInput("item")
-	local amount = dyn.GetInput("amount");
-	GHI_ProduceItem(targetItem,amount);
-	local text = dyn.GetInput("text")
-	if type(text)=="string" and text:len() > 1 then
-		GHI_Message(string.format("You %s: %s x%s.",text,GHI_GenerateLink(targetItem),amount));
-	end
-
+		local targetItem = dyn.GetInput("item")
+		local amount = dyn.GetInput("amount");
+		GHI_ProduceItem(targetItem,amount);
+		local text = dyn.GetInput("text")
+		if type(text)=="string" and text:len() > 1 then
+			GHI_Message(string.format("You %s: %s x%s.",text,GHI_GenerateLink(targetItem),amount));
+		end
 	]],
 	inputs = {
 		item = {
@@ -259,13 +244,9 @@ table.insert(GHI_ProvidedDynamicActions, {
 	allowedInUpdateSequence = true,
 	script =
 	[[
-
-
-	local targetItem = dyn.GetInput("item")
-	local amount = dyn.GetInput("amount");
-	GHI_ConsumeItem(targetItem,amount);
-
-
+		local targetItem = dyn.GetInput("item")
+		local amount = dyn.GetInput("amount");
+		GHI_ConsumeItem(targetItem,amount);
 	]],
 	inputs = {
 		item = {

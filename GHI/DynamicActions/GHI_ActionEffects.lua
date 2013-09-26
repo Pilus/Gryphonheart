@@ -3,7 +3,7 @@
 --			GHI_Action and Effects
 --			GHI_ActionEffects.lua
 --
---	   Dynamic action data for the Action and Effects category
+--	Dynamic action data for the Action and Effects category
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -24,32 +24,22 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-	
-	    --local numPets = GetNumCompanions("CRITTER");
-        local _,numPets = C_PetJournal.GetNumPets(false)
-	    local targetCompanion = dyn.GetInput("companion")
-        local cName,active;
-	    for i=1,numPets do
-            local petID,_, isOwned, customName,_,_,_, cName, _, _, _, _, _, _,_ = C_PetJournal.GetPetInfoByIndex(i, false);--mop code
-	   
-			 
-            if cName:lower() == targetCompanion:lower() or (customName ~= nil and customName:lower() == targetCompanion:lower()) then
-			     
-			       
+		local _,numPets = C_PetJournal.GetNumPets(false)
+		local targetCompanion = dyn.GetInput("companion")
+		local cName,active;
+		for i=1,numPets do
+			local petID,_, isOwned, customName,_,_,_, cName, _, _, _, _, _, _,_ = C_PetJournal.GetPetInfoByIndex(i, false);--mop code
+			if cName:lower() == targetCompanion:lower() or (customName ~= nil and customName:lower() == targetCompanion:lower()) then
 				if C_PetJournal.GetSummonedPetGUID() == petID then active = true else active = false end
-				   
-                if active then---pet is already out or can't be summoned
-                    dyn.TriggerOutPort("issummon");
-                else
-                    dyn.SetOutput("currentPet",cName);
-                    dyn.TriggerOutPort("summon");
-                     --unsure if correct as the code next to summon will be
-                     --CallCompanion("CRITTER", i)
+				if active then---pet is already out or can't be summoned
+					dyn.TriggerOutPort("issummon");
+				else
+					dyn.SetOutput("currentPet",cName);
+					dyn.TriggerOutPort("summon");
 					C_PetJournal.SummonPetByGUID(petID)
-
-                end
-	        end
-	    end
+				end
+			end
+		end
 	]],
 	ports = {
 		summon = {
@@ -71,22 +61,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "The Companion name to summon",
 			type = "string",
 			defaultValue = "",
-			--specialGHM = "ghm_fromDDList",
-			--specialGHMScript = [[
-			--dataFunc = function()
-
-			--	local t = {};
-			--	local _,numPets = C_PetJournal.GetNumPets(false)
-				
-				
-			--    for i=1,numPets do
-			--    	local petID,_, isOwned, customName,_,_,_, cName,icon,, _, _, _, _, _,_ = C_PetJournal.GetPetInfoByIndex(i, false);--mop code
-			--        if isOwned then
-			--		table.insert(t,{value = cName,text = "\124T"..icon..":16\124t "..cName});
-			--		end
-			--   	end
-			--   	return t;
-			--end]],
 		},
 	},
 	outputs = {
@@ -97,7 +71,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 		},
 	},
 });
-
 
 table.insert(GHI_ProvidedDynamicActions, {
 	name = "Dismiss Companion",
@@ -113,21 +86,8 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-	    --local numPets = GetNumCompanions("CRITTER");
-
-	    --local targetCompanion = dyn.GetInput("companion")
-         --local cName,active;
-         --dyn.SetOutput("currentPet",false);
-	    ---for i=1,numPets do
-
-	       -- _, cName, _, _, active,_ = GetCompanionInfo("CRITTER", i)
-
-	        --if active then
-
-                DismissCompanion("CRITTER")
-			 dyn.TriggerOutPort("dismiss");
-	        --end
-	    --end
+		DismissCompanion("CRITTER")
+		dyn.TriggerOutPort("dismiss");
 	]],
 	ports = {
 		dismiss = {
@@ -140,7 +100,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 	inputs = {},
 	outputs = {},
 });
-
 
 table.insert(GHI_ProvidedDynamicActions, {
 	name = "Summon Mount",
@@ -155,31 +114,31 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-	    local numPets = GetNumCompanions("mount");
-		
-	    local targetCompanion		
-	    local mountInput = dyn.GetInput("mountCustom") or nil
-		
+		local numPets = GetNumCompanions("mount");
+
+		local targetCompanion
+		local mountInput = dyn.GetInput("mountCustom") or nil
+
 		if strlen(mountInput) >= 1 then
 			targetCompanion = mountInput
 		else
-			targetCompanion = dyn.GetInput("mountDD")	
+			targetCompanion = dyn.GetInput("mountDD")
 		end
-		
-        local cName,active;
-	    for i=1,numPets do
-	        local _, cName, _, _, active,_ = GetCompanionInfo("MOUNT", i)
 
-            if strlower(cName) == strlower(targetCompanion) then
+		local cName,active;
+		for i=1,numPets do
+			local _, cName, _, _, active,_ = GetCompanionInfo("MOUNT", i)
+
+			if strlower(cName) == strlower(targetCompanion) then
 				if active then
 					dyn.TriggerOutPort("issummon");
 				else
 					--dyn.SetOutput("currentPet",cName);
 					dyn.TriggerOutPort("summon");
 					CallCompanion("MOUNT", i)
-                end
-	        end
-	    end
+				end
+			end
+		end
 	]],
 	ports = {
 		summon = {
@@ -196,7 +155,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 		},
 	},
 	inputs = {
-		
 		mountCustom = {
 			name = "Mount Name",
 			description = "The name of the mount to summon (Optional, if not found in drop down)",
@@ -232,23 +190,17 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-	    local numPets = GetNumCompanions("MOUNT");
-
-	    --local targetCompanion = dyn.GetInput("companion")
-         local cName,active;
-         --dyn.SetOutput("currentPet",false);
-	    for i=1,numPets do
-
-	        _, cName, _, _, active,_ = GetCompanionInfo("MOUNT", i)
-
-	        if active then
-
-              if not(IsFlying()) then
-                DismissCompanion("MOUNT")
-			 dyn.TriggerOutPort("dismiss");
-		    end
-	        end
-	    end
+		local numPets = GetNumCompanions("MOUNT");
+		 local cName,active;
+		for i=1,numPets do
+			_, cName, _, _, active,_ = GetCompanionInfo("MOUNT", i)
+			if active then
+				if not(IsFlying()) then
+					DismissCompanion("MOUNT")
+			 		dyn.TriggerOutPort("dismiss");
+				end
+			end
+		end
 	]],
 	ports = {
 		dismiss = {
@@ -348,13 +300,12 @@ table.insert(GHI_ProvidedDynamicActions, {
 			local sound = sounds[selected];
 			GHI_PlayAreaSound(sound.path,range);
 
-
 			GHI_Timer(function()
 				if stop == true then
 					dyn.TriggerOutPort("stoppedSound")
 					return
 				end
-	        	Play();
+				Play();
 			end,(sound.duration or 2)+delay,true);
 		end
 		Play();
@@ -456,23 +407,19 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
+		local targetSound = dyn.GetInput("sound")
+		local range = dyn.GetInput("range")
+		local delay = dyn.GetInput("delay") or 0;
 
-
-	    local targetSound = dyn.GetInput("sound")
-
-         local range = dyn.GetInput("range")
-         local delay = dyn.GetInput("delay") or 0;
-         -- print(targetSound)
-        if targetSound ~= nil then
-             if range > 0 then
-                GHI_PlayAreaSound(targetSound.path,range,delay)
-                dyn.TriggerOutPort("playsound")
-             else
-                  GHI_PlayAreaSound(argetSound.path,10,delay)
-                --GHI_PlaySound(targetSound)
-                 dyn.TriggerOutPort("playsound")
-             end
-        end
+		if targetSound ~= nil then
+			if range > 0 then
+				GHI_PlayAreaSound(targetSound.path,range,delay)
+				dyn.TriggerOutPort("playsound")
+			else
+				GHI_PlayAreaSound(argetSound.path,10,delay)
+				dyn.TriggerOutPort("playsound")
+			end
+		end
 	]],
 	ports = {
 		playsound = {
@@ -518,12 +465,9 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-
-	    local targetEquip = dyn.GetInput("equip")
-
-         EquipItemByName(targetEquip)
-
-         dyn.TriggerOutPort("equip")
+		local targetEquip = dyn.GetInput("equip")
+		EquipItemByName(targetEquip)
+		dyn.TriggerOutPort("equip")
 	]],
 	ports = {
 		equip = {
@@ -557,12 +501,9 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-
-	    local targetSay = dyn.GetInput("expressSay")
-
-         GHI_Say(targetSay,0)
-
-         dyn.TriggerOutPort("say")
+		local targetSay = dyn.GetInput("expressSay")
+		GHI_Say(targetSay,0)
+		dyn.TriggerOutPort("say")
 	]],
 	ports = {
 		say = {
@@ -596,18 +537,17 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-
-	    local text = dyn.GetInput("text");
+		local text = dyn.GetInput("text");
 
 		local parts = {};
 		while (strlen(text) > 0) do
-	        local part = string.sub(text,0,256);
-	        local index = 0;
-	        local dotIndex;
-	        while (index) do
-	        	dotIndex = index;
-	         	index = string.find(part,"%.",index+1);
-	        end
+			local part = string.sub(text,0,256);
+			local index = 0;
+			local dotIndex;
+			while (index) do
+				dotIndex = index;
+				index = string.find(part,"%.",index+1);
+			end
 
 			if dotIndex == 0 then
 				index = 0;
@@ -617,11 +557,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 				end
 			end
 
-	        if dotIndex > 0 then
-	        	part = string.sub(part,0,dotIndex);
-	        end
-	       	text = string.sub(text,string.len(part)+2);
-	       	table.insert(parts,part);
+			if dotIndex > 0 then
+				part = string.sub(part,0,dotIndex);
+			end
+			text = string.sub(text,string.len(part)+2);
+			table.insert(parts,part);
 		end
 
 		local c = 1;
@@ -629,21 +569,21 @@ table.insert(GHI_ProvidedDynamicActions, {
 			c = c + 1;
 		end
 
-	    _G["TriggerSay"..c] = function(index)
-	    	if parts[index] then
-	        	GHI_Say(parts[index]);
+		_G["TriggerSay"..c] = function(index)
+			if parts[index] then
+				GHI_Say(parts[index]);
 				if parts[index+1] then
 					local dur = math.floor(string.len(parts[index])/15);
 					GHI_DoScript("TriggerSay"..c.."("..(index+1)..");",dur);
 				else
 					dyn.TriggerOutPort("done")
 				end
-	    	end
-	    end
+			end
+		end
 
-        _G["TriggerSay"..c](1);
+		_G["TriggerSay"..c](1);
 
-        dyn.TriggerOutPort("say")
+		dyn.TriggerOutPort("say")
 	]],
 	ports = {
 		say = {
@@ -689,12 +629,9 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-
-	    local targetEmote = dyn.GetInput("expressEmote")
-
-         GHI_Emote(targetEmote,0)
-
-         dyn.TriggerOutPort("emote")
+		local targetEmote = dyn.GetInput("expressEmote")
+		GHI_Emote(targetEmote,0)
+		dyn.TriggerOutPort("emote")
 	]],
 	ports = {
 		emote = {
@@ -729,11 +666,9 @@ table.insert(GHI_ProvidedDynamicActions, {
 	script =
 	[[
 		local color = dyn.GetInput("inputcolor");
-	    local targetMessage = dyn.GetInput("message");
-
-        DEFAULT_CHAT_FRAME:AddMessage(targetMessage,color.r,color.g,color.b)
-
-        dyn.TriggerOutPort("msgPort")
+		local targetMessage = dyn.GetInput("message");
+		DEFAULT_CHAT_FRAME:AddMessage(targetMessage,color.r,color.g,color.b)
+		dyn.TriggerOutPort("msgPort")
 	]],
 	ports = {
 		msgPort = {
@@ -760,7 +695,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 	outputs = {},
 });
 
-
 table.insert(GHI_ProvidedDynamicActions, {
 	name = "Screen Effect: Color",
 	guid = "Screen_01",
@@ -774,20 +708,18 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-        -- local miscAPI = GHI_MiscAPI().GetAPI();
-         local color = dyn.GetInput("inputcolor")
-         local fadeIn = dyn.GetInput("fadein")
-         local fadeOut = dyn.GetInput("fadeout")
-         local duration = dyn.GetInput("duration")
-		 local alpha = dyn.GetInput("inputalpha") or 1
-		 local repeating = dyn.GetInput("inputrepeat") or 1
-         --local delay = dyn.GetInput("delay")
+		local color = dyn.GetInput("inputcolor")
+		local fadeIn = dyn.GetInput("fadein")
+		local fadeOut = dyn.GetInput("fadeout")
+		local duration = dyn.GetInput("duration")
+		local alpha = dyn.GetInput("inputalpha") or 1
+		local repeating = dyn.GetInput("inputrepeat") or 1
 
-         GHI_ScreenFlash(fadeIn,fadeOut,duration,color,alpha,nil,nil,repeating)
+		GHI_ScreenFlash(fadeIn,fadeOut,duration,color,alpha,nil,nil,repeating)
 		local totalTime = duration * repeating
 
-         dyn.TriggerOutPort("effectPort")
-		 GHI_Timer(function() dyn.TriggerOutPort("effectDonePort") end, totalTime, true)
+		dyn.TriggerOutPort("effectPort")
+		GHI_Timer(function() dyn.TriggerOutPort("effectDonePort") end, totalTime, true)
 	]],
 	ports = {
 		effectPort = {
@@ -862,24 +794,21 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
+		local buffName = dyn.GetInput("buffName")
+		local buffDetails = dyn.GetInput("buffDetails")
+		local buffIcon = dyn.GetInput("buffIcon")
+		local untilCanceled = dyn.GetInput("untilCanceled")
+		local filter = dyn.GetInput("filter")
+		local buffType = dyn.GetInput("buffType")
+		local buffDuration = dyn.GetInput("duration")
+		local cancelable = dyn.GetInput("cancelable")
+		local stackable = dyn.GetInput("stackable")
+		local count = dyn.GetInput("count")
+		local delay = dyn.GetInput("delay")
+		local range = dyn.GetInput("range")
+		local alwaysCastOnSelf = dyn.GetInput("alwaysCastOnSelf")
 
-         local buffName = dyn.GetInput("buffName")
-         local buffDetails = dyn.GetInput("buffDetails")
-         local buffIcon = dyn.GetInput("buffIcon")
-         local untilCanceled = dyn.GetInput("untilCanceled")
-         local filter = dyn.GetInput("filter")
-         local buffType = dyn.GetInput("buffType")
-         local buffDuration = dyn.GetInput("duration")
-         local cancelable = dyn.GetInput("cancelable")
-         local stackable = dyn.GetInput("stackable")
-         local count = dyn.GetInput("count")
-         local delay = dyn.GetInput("delay")
-         local range = dyn.GetInput("range")
-         local alwaysCastOnSelf = dyn.GetInput("alwaysCastOnSelf")
-
-
-
-         GHI_ApplyBuff(buffName, buffDetails, buffIcon, untilCanceled, filter, buffType, buffDuration, cancelable, stackable, count, delay, range, alwaysCastOnSelf);
+		GHI_ApplyBuff(buffName, buffDetails, buffIcon, untilCanceled, filter, buffType, buffDuration, cancelable, stackable, count, delay, range, alwaysCastOnSelf);
 	]],
 	ports = {
 	},
@@ -929,11 +858,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 			specialGHMScript = [[
 				dataFunc = function()
 					return {
-							{ text = "Magic", colorCode = "\124cFF"..GHI_GetDebuffColor("Magic"), value = "Magic"},
-							{ text = "Curse", colorCode = "\124cFF"..GHI_GetDebuffColor("Curse"), value = "Curse"},
-							{ text = "Disease", colorCode = "\124cFF"..GHI_GetDebuffColor("Disease"), value = "Disease"},
-							{ text = "Poison", colorCode = "\124cFF"..GHI_GetDebuffColor("Poison"), value = "Poison"},
-							{ text = "Physical", colorCode = "\124cFF"..GHI_GetDebuffColor("none"), value = "Physical"},
+						{ text = "Magic", colorCode = "\124cFF"..GHI_GetDebuffColor("Magic"), value = "Magic"},
+						{ text = "Curse", colorCode = "\124cFF"..GHI_GetDebuffColor("Curse"), value = "Curse"},
+						{ text = "Disease", colorCode = "\124cFF"..GHI_GetDebuffColor("Disease"), value = "Disease"},
+						{ text = "Poison", colorCode = "\124cFF"..GHI_GetDebuffColor("Poison"), value = "Poison"},
+						{ text = "Physical", colorCode = "\124cFF"..GHI_GetDebuffColor("none"), value = "Physical"},
 					};
 				end
 			]],
@@ -1012,12 +941,12 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-         local buffName = dyn.GetInput("buffName")
-         local filter = dyn.GetInput("filter")
-         local amount = dyn.GetInput("amount")
-         local delay = dyn.GetInput("delay")
+		local buffName = dyn.GetInput("buffName")
+		local filter = dyn.GetInput("filter")
+		local amount = dyn.GetInput("amount")
+		local delay = dyn.GetInput("delay")
 
-         GHI_RemoveBuff(buffName,filter,amount,delay);
+		GHI_RemoveBuff(buffName,filter,amount,delay);
 	]],
 	ports = {
 	},
@@ -1084,24 +1013,24 @@ table.insert(GHI_ProvidedDynamicActions, {
 			["Winter"] = "Parchment",
 			["Vellum"] = "Parchment",
 		}
-		 local extraMat
-         local title = dyn.GetInput("bookTitle")
-		 local material = dyn.GetInput("bookMaterial")
-		 local font = dyn.GetInput("bookFont")
-		 local h1font = dyn.GetInput("h1Font")
-		 local h2font = dyn.GetInput("h2Font")
-		 local n = dyn.GetInput("nSize")
-		 local h1 = dyn.GetInput("h1Size")
-		 local h2 = dyn.GetInput("h2Size")
-		 local pages = dyn.GetInput("bookText")
-		 local cover = dyn.GetInput("cover")
-		 local coverColor = dyn.GetInput("coverColor")
-		 local coverLogo = dyn.GetInput("coverLogo")
-		 local logoColor = dyn.GetInput("logoColor")
-		 
-		 if coverLogo == "Interface\\Icons\\INV_MISC_FILM_01" then
-		 coverLogo = nil
-		 end
+		local extraMat
+		local title = dyn.GetInput("bookTitle")
+		local material = dyn.GetInput("bookMaterial")
+		local font = dyn.GetInput("bookFont")
+		local h1font = dyn.GetInput("h1Font")
+		local h2font = dyn.GetInput("h2Font")
+		local n = dyn.GetInput("nSize")
+		local h1 = dyn.GetInput("h1Size")
+		local h2 = dyn.GetInput("h2Size")
+		local pages = dyn.GetInput("bookText")
+		local cover = dyn.GetInput("cover")
+		local coverColor = dyn.GetInput("coverColor")
+		local coverLogo = dyn.GetInput("coverLogo")
+		local logoColor = dyn.GetInput("logoColor")
+
+		if coverLogo == "Interface\\Icons\\INV_MISC_FILM_01" then
+			coverLogo = nil
+		end
 		 
 		local coverTable
 		if cover ~= "None" then
@@ -1111,7 +1040,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 			coverTable.color = logoColor
 			if coverLogo and coverLogo ~= "" then
 				coverTable.logo = coverLogo
-			end			
+			end
 		else
 			coverTable = nil
 		end			 
@@ -1123,7 +1052,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 			end
 		end
 		 
-		 GHI_ShowBook(stack.GetContainerGuid(), stack.GetContainerSlot(),title,pages,material,font,n,h1,h2,h1font,h2font,extraMat,coverTable)
+		GHI_ShowBook(stack.GetContainerGuid(), stack.GetContainerSlot(),title,pages,material,font,n,h1,h2,h1font,h2font,extraMat,coverTable)
 	]],
 	ports = {
 	},
@@ -1178,7 +1107,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 						{ text = "Valentine",  index=13},
 					}
 				end;
-			]],			
+			]],
 		},
 		bookFont = {
 			name = "Font",
@@ -1272,7 +1201,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 					{ text ="Hide",index = 8},
 					{ text ="Reptile",index = 9},
 				}
-				end;				
+				end;
 			]],
 		},
 		coverColor = {
