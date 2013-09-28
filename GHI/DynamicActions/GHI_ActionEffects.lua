@@ -929,11 +929,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 			specialGHMScript = [[
 				dataFunc = function()
 					return {
-							{ text = "Magic", colorCode = "\124cFF"..GHI_GetDebuffColor("Magic"), value = "Magic"},
-							{ text = "Curse", colorCode = "\124cFF"..GHI_GetDebuffColor("Curse"), value = "Curse"},
-							{ text = "Disease", colorCode = "\124cFF"..GHI_GetDebuffColor("Disease"), value = "Disease"},
-							{ text = "Poison", colorCode = "\124cFF"..GHI_GetDebuffColor("Poison"), value = "Poison"},
-							{ text = "Physical", colorCode = "\124cFF"..GHI_GetDebuffColor("none"), value = "Physical"},
+							{ text = "Magic", colorCode = "\124c"..GHI_GetDebuffColor("Magic"), value = "Magic"},
+							{ text = "Curse", colorCode = "\124c"..GHI_GetDebuffColor("Curse"), value = "Curse"},
+							{ text = "Disease", colorCode = "\124c"..GHI_GetDebuffColor("Disease"), value = "Disease"},
+							{ text = "Poison", colorCode = "\124c"..GHI_GetDebuffColor("Poison"), value = "Poison"},
+							{ text = "Physical", colorCode = "\124c"..GHI_GetDebuffColor("none"), value = "Physical"},
 					};
 				end
 			]],
