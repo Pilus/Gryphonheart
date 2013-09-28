@@ -1,527 +1,481 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
-
-    <Font name="GHI_ItemTextFontH1" font="Fonts\MORPHEUS.TTF" justifyH="CENTER" virtual="true">
-        <FontHeight>
-            <AbsValue val="24"/>
-        </FontHeight>
-        <Color r="0.18" g="0.12" b="0.06"/>
-    </Font>
-
-    <Font name="GHI_ItemTextFontH2" font="Fonts\MORPHEUS.TTF" justifyH="CENTER" virtual="true">
-        <FontHeight>
-            <AbsValue val="20"/>
-        </FontHeight>
-        <Color r="0.18" g="0.12" b="0.06"/>
-    </Font>
-
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Font name="GHI_ItemTextFontH1" font="Fonts\MORPHEUS.TTF" justifyH="CENTER" virtual="true">
+		<FontHeight>
+			<AbsValue val="24" />
+		</FontHeight>
+		<Color r="0.18" g="0.12" b="0.06" />
+	</Font>
+	<Font name="GHI_ItemTextFontH2" font="Fonts\MORPHEUS.TTF" justifyH="CENTER" virtual="true">
+		<FontHeight>
+			<AbsValue val="20" />
+		</FontHeight>
+		<Color r="0.18" g="0.12" b="0.06" />
+	</Font>
 	<Frame name="GHI_Book_Template" toplevel="true" movable="true" enableMouse="true" hidden="true" parent="UIParent" inherits="PortraitFrameTemplate" virtual="true">
-        <Anchors>
-            <Anchor point="TOP" relativePoint="CENTER">
-                <Offset>
-                    <AbsDimension x="0" y="300"/>
-                </Offset>
-            </Anchor>
-        </Anchors>
-        <HitRectInsets>
-            <AbsInset left="0" right="30" top="0" bottom="70"/>
-        </HitRectInsets>
-        <Layers>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="300" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="30" top="0" bottom="70" />
+		</HitRectInsets>
+		<Layers>
 			<Layer level="OVERLAY" textureSubLevel="-1">
 				<Texture file="Interface\Spellbook\Spellbook-Icon">
-					<Size x="58" y="58"/>
+					<Size x="58" y="58" />
 					<Anchors>
-						<Anchor point="TOPLEFT" x="-5" y="5"/>
+						<Anchor point="TOPLEFT" x="-5" y="5" />
 					</Anchors>
 				</Texture>
 			</Layer>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentFrameBg" file="Interface\MailFrame\UI-MailFrameBG">
-					<Size x="512" y="512"/>
+					<Size x="512" y="512" />
 					<Anchors>
-						<Anchor point="TOPLEFT" x="7" y="-62"/>
+						<Anchor point="TOPLEFT" x="7" y="-62" />
 					</Anchors>
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK" textureSubLevel="1">
 				<Texture name="$parentStationery1" hidden="true">
-					<Size x="256" y="356"/>
+					<Size x="256" y="356" />
 					<Anchors>
-						<Anchor point="TOPLEFT" x="7" y="-62"/>
+						<Anchor point="TOPLEFT" x="7" y="-62" />
 					</Anchors>
 				</Texture>
 				<Texture name="$parentStationery2" hidden="true">
-					<Size x="64" y="356"/>
+					<Size x="64" y="356" />
 					<Anchors>
-						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parentStationery1" x="0" y="0"/>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parentStationery1" x="0" y="0" />
 					</Anchors>
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
 				<Texture name="$parentMaterialTopLeft">
-					<Size x="256" y="256"/>
+					<Size x="256" y="256" />
 					<Anchors>
-						<Anchor point="TOPLEFT" x="7" y="-62"/>
+						<Anchor point="TOPLEFT" x="7" y="-62" />
 					</Anchors>
 				</Texture>
 				<Texture name="$parentMaterialTopRight">
-					<Size x="64" y="256"/>
+					<Size x="64" y="256" />
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="TOPRIGHT" />
 					</Anchors>
 				</Texture>
 				<Texture name="$parentMaterialBotLeft">
-					<Size x="256" y="128"/>
+					<Size x="256" y="128" />
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="BOTTOMLEFT" />
 					</Anchors>
 				</Texture>
 				<Texture name="$parentMaterialBotRight">
-					<Size x="64" y="128"/>
+					<Size x="64" y="128" />
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="TOPLEFT" relativeTo="$parentMaterialTopLeft" relativePoint="BOTTOMRIGHT" />
 					</Anchors>
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
 				<FontString name="$parentTitleText" inherits="GameFontNormal">
-                   <Size x="224" y="14"/>
+					<Size x="224" y="14" />
 					<Anchors>
-						<Anchor point="CENTER" x="15" y="200"/>
+						<Anchor point="CENTER" x="15" y="200" />
 					</Anchors>
-                </FontString>
+				</FontString>
 			</Layer>
-        </Layers>
-        <Frames>
+		</Layers>
+		<Frames>
 			<Button name="$parentCover">
-				<Size x="300" y="356"/>
+				<Size x="300" y="356" />
 				<Anchors>
-					<Anchor point="TOPLEFT" x="7" y="-62"/>
+					<Anchor point="TOPLEFT" x="7" y="-62" />
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
 						<Texture name="$parentBackground" alphaMode="NONE">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parentCover" x="0" y="0"/>
-								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="$parentCover" x="0" y="0"/>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parentCover" x="0" y="0" />
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="$parentCover" x="0" y="0" />
 							</Anchors>
-							<TexCoords left="0.586" right="0" top="0" bottom="0.656"/>
+							<TexCoords left="0.586" right="0" top="0" bottom="0.656" />
 						</Texture>
 					</Layer>
 					<Layer level="ARTWORK">
 						<Texture name="$parentImageLogo" alphaMode="BLEND" hidden="true">
-							<Size x="128" y="128"/>
+							<Size x="128" y="128" />
 							<Anchors>
-								<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent" x="0" y="0"/>
+								<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent" x="0" y="0" />
 							</Anchors>
 						</Texture>
 						<Texture name="$parentLeft" alphaMode="BLEND">
-							<Size x="64" y="176"/>
+							<Size x="64" y="176" />
 							<Anchors>
-								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="CENTER"/>
+								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="CENTER" />
 							</Anchors>
-							<TexCoords left="1" right="0.01" top="0" bottom="1"/>
+							<TexCoords left="1" right="0.01" top="0" bottom="1" />
 						</Texture>
 						<Texture name="$parentRight" alphaMode="BLEND">
-							<Size x="64" y="176"/>
+							<Size x="64" y="176" />
 							<Anchors>
-								<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+								<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
 							</Anchors>
-							<TexCoords left="0.01" right="1" top="0" bottom="1"/>
+							<TexCoords left="0.01" right="1" top="0" bottom="1" />
 						</Texture>
 						<FontString name="$parentTitle1" inherits="QuestFont_Large">
-						   <Size x="290" y="96"/>
+							<Size x="290" y="96" />
 							<Anchors>
-								<Anchor point="BOTTOM" relativePoint="TOP" relativeTo="$parentImageLogo" x="0" y="3"/>
+								<Anchor point="BOTTOM" relativePoint="TOP" relativeTo="$parentImageLogo" x="0" y="3" />
 							</Anchors>
 						</FontString>
 						<FontString name="$parentTitle2" inherits="QuestFont_Large">
-						   <Size x="290" y="96"/>
+							<Size x="290" y="96" />
 							<Anchors>
-								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentImageLogo" x="0" y="-3"/>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentImageLogo" x="0" y="-3" />
 							</Anchors>
-						</FontString>					
+						</FontString>
 					</Layer>
-				</Layers>	
+				</Layers>
 			</Button>
 			<ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
-				<Size x="280" y="355"/>
+				<Size x="280" y="355" />
 				<Anchors>
-					<Anchor point="TOPRIGHT" x="-33" y="-63"/>
+					<Anchor point="TOPRIGHT" x="-33" y="-63" />
 				</Anchors>
 				<Layers>
-				<Layer level="ARTWORK">
+					<Layer level="ARTWORK">
 						<Texture name="$parentTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
-							<Size x="28" y="256"/>
+							<Size x="28" y="256" />
 							<Anchors>
-								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="5"/>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="5" />
 							</Anchors>
-							<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0" />
 						</Texture>
 						<Texture name="$parentBottom" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
-							<Size x="28" y="107"/>
+							<Size x="28" y="107" />
 							<Anchors>
-								<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="-3"/>
+								<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="0" y="-3" />
 							</Anchors>
-							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625" />
 						</Texture>
 					</Layer>
 					<Layer level="BACKGROUND">
 						<Texture name="$parentMiddle">
-							<Size x="25" y="365"/>
+							<Size x="25" y="365" />
 							<Anchors>
-								<Anchor point="TOPRIGHT" relativeTo="$parentTop"/>
+								<Anchor point="TOPRIGHT" relativeTo="$parentTop" />
 							</Anchors>
-							<Color r="0" g="0" b="0" a="0.8"/>
+							<Color r="0" g="0" b="0" a="0.8" />
 						</Texture>
 					</Layer>
 				</Layers>
 				<ScrollChild>
 					<Frame name="$parentChild">
 						<Size>
-							<AbsDimension x="10" y="10"/>
+							<AbsDimension x="10" y="10" />
 						</Size>
 						<Anchors>
-							<Anchor point="TOPLEFT"/>
+							<Anchor point="TOPLEFT" />
 						</Anchors>
-						<Frames>						
+						<Frames>
 							<SimpleHTML name="$parentPage">
-									<Size>
-										<AbsDimension x="270" y="304"/>
-									</Size>
-									<Anchors>
-										<Anchor point="TOPLEFT" x="0" y="-15"/>
-									</Anchors>
-									<Scripts>
-										<OnLoad>
-										</OnLoad>	
-									</Scripts>
+								<Size>
+									<AbsDimension x="270" y="304" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" x="0" y="-15" />
+								</Anchors>
+								<Scripts>
+									<OnLoad />
+								</Scripts>
 							</SimpleHTML>
 						</Frames>
 					</Frame>
-                </ScrollChild>
-            </ScrollFrame>
+				</ScrollChild>
+			</ScrollFrame>
 			<StatusBar name="$parentStatusBar" hidden="true">
-				<Size x="250" y="21"/>
+				<Size x="250" y="21" />
 				<Anchors>
-					<Anchor point="BOTTOM" relativeTo="$parentFrame" x="-5" y="128"/>
+					<Anchor point="BOTTOM" relativeTo="$parentFrame" x="-5" y="128" />
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
 						<Texture file="Interface\PaperDollInfoFrame\UI-Character-Skills-BarBorder">
-							<Size x="256" y="23"/>
+							<Size x="256" y="23" />
 							<Anchors>
-								<Anchor point="CENTER"/>
+								<Anchor point="CENTER" />
 							</Anchors>
-							<TexCoords left="0" right="1.0" top="0.0625" bottom="0.75"/>
+							<TexCoords left="0" right="1.0" top="0.0625" bottom="0.75" />
 						</Texture>
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnLoad>
-                        self:SetFrameLevel(self:GetFrameLevel()+1);
-                    </OnLoad>
+					<OnLoad>self:SetFrameLevel(self:GetFrameLevel()+1);</OnLoad>
 				</Scripts>
-				<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
-				<BarColor r="0.25" g="0.75" b="0.25"/>
-			</StatusBar>      
-            <Button name="$parentPrevPageButton">
-                <Size>
-                    <AbsDimension x="32" y="32"/>
-                </Size>
-                <Anchors>
-					<Anchor point="CENTER" relativePoint="TOPLEFT" x="75" y="-41"/>
+				<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill" />
+				<BarColor r="0.25" g="0.75" b="0.25" />
+			</StatusBar>
+			<Button name="$parentPrevPageButton">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOPLEFT" x="75" y="-41" />
 				</Anchors>
-                <Layers>
-                    <Layer level="ARTWORK">
-                        <FontString inherits="GameFontNormal" justifyH="LEFT" text="PREV">
-                            <Anchors>
-                                <Anchor point="LEFT" relativePoint="RIGHT"/>
-                            </Anchors>
-                        </FontString>
-                    </Layer>
-                </Layers>
-                <Scripts>
-                    <OnClick>
-                        PlaySound("igMainMenuOptionCheckBoxOn");
-                    </OnClick>
-                </Scripts>
-                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
-                <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
-                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
-            </Button>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString inherits="GameFontNormal" justifyH="LEFT" text="PREV">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="RIGHT" />
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PlaySound("igMainMenuOptionCheckBoxOn");</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up" />
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down" />
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled" />
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
+			</Button>
 			<Frame name="$parentPageNumberFrame">
-					<Anchors>
-						<Anchor point="CENTER" relativePoint="TOP">
-							<Offset>
-								<AbsDimension x="0" y="-41"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-					<Size>
-						<AbsDimension x="64" y="32"/>
-					</Size>
-					<Layers>
-						<Layer>
-							<FontString name="$parentCurrentPageNumber" justifyH="RIGHT" justifyV="CENTER" font="Fonts\FRIZQT__.TTF" text="1 ">
-								<Anchors>
-									<Anchor point="LEFT" relativePoint="LEFT"/>
-								</Anchors>
-								<Size>
-									<AbsDimension x="32" y="32"/>
-								</Size>
-								<FontHeight>
-									<AbsValue val="11"/>
-								</FontHeight>
-								<Color r="1" g="0.8196079" b="0"/>
-								<Shadow>
-									<Color r="0" g="0" b="0"/>
-									<Offset>
-										<AbsDimension x="1" y="-1"/>
-									</Offset>
-								</Shadow>
-							</FontString>
-							<FontString name="$parentTotalPageNumber" justifyH="LEFT" justifyV="CENTER" font="Fonts\FRIZQT__.TTF" text="of 1">
-								<Anchors>
-									<Anchor point="RIGHT" relativePoint="RIGHT"/>
-								</Anchors>
-								<Size>
-									<AbsDimension x="32" y="32"/>
-								</Size>
-								<FontHeight>
-									<AbsValue val="11"/>
-								</FontHeight>
-								<Color r="1" g="0.8196079" b="0"/>
-								<Shadow>
-									<Color r="0" g="0" b="0"/>
-									<Offset>
-										<AbsDimension x="1" y="-1"/>
-									</Offset>
-								</Shadow>
-							</FontString>
-						</Layer>
-					</Layers>
-				</Frame>
-            <Button name="$parentNextPageButton">
-                <Size>
-                    <AbsDimension x="32" y="32"/>
-                </Size>
-                <Anchors>
-					<Anchor point="CENTER" relativePoint="TOPRIGHT" x="-23" y="-41"/>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-41" />
+						</Offset>
+					</Anchor>
 				</Anchors>
-                <Layers>
-                    <Layer level="ARTWORK">
-                        <FontString inherits="GameFontNormal" justifyH="RIGHT" text="NEXT">
-                            <Anchors>
-                                <Anchor point="RIGHT" relativePoint="LEFT"/>
-                            </Anchors>
-                        </FontString>
-                    </Layer>
-                </Layers>
-                <Scripts>
-                    <OnClick>
-                       -- PlaySound("igMainMenuOptionCheckBoxOn");
-                    </OnClick>
-                </Scripts>
-                <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
-                <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
-                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
-            </Button>
+				<Size>
+					<AbsDimension x="64" y="32" />
+				</Size>
+				<Layers>
+					<Layer>
+						<FontString name="$parentCurrentPageNumber" justifyH="RIGHT" justifyV="CENTER" font="Fonts\FRIZQT__.TTF" text="1 ">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="LEFT" />
+							</Anchors>
+							<Size>
+								<AbsDimension x="32" y="32" />
+							</Size>
+							<FontHeight>
+								<AbsValue val="11" />
+							</FontHeight>
+							<Color r="1" g="0.8196079" b="0" />
+							<Shadow>
+								<Color r="0" g="0" b="0" />
+								<Offset>
+									<AbsDimension x="1" y="-1" />
+								</Offset>
+							</Shadow>
+						</FontString>
+						<FontString name="$parentTotalPageNumber" justifyH="LEFT" justifyV="CENTER" font="Fonts\FRIZQT__.TTF" text="of 1">
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="RIGHT" />
+							</Anchors>
+							<Size>
+								<AbsDimension x="32" y="32" />
+							</Size>
+							<FontHeight>
+								<AbsValue val="11" />
+							</FontHeight>
+							<Color r="1" g="0.8196079" b="0" />
+							<Shadow>
+								<Color r="0" g="0" b="0" />
+								<Offset>
+									<AbsDimension x="1" y="-1" />
+								</Offset>
+							</Shadow>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="$parentNextPageButton">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOPRIGHT" x="-23" y="-41" />
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString inherits="GameFontNormal" justifyH="RIGHT" text="NEXT">
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="LEFT" />
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>-- PlaySound("igMainMenuOptionCheckBoxOn");</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up" />
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down" />
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled" />
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
+			</Button>
 			<Button name="$parentMarkButton">
-                <Size>
-                    <AbsDimension x="22" y="22"/>
-                </Size>
-                <Anchors>
-                    <Anchor point="TOP" relativePoint="TOPLEFT">
-                        <Offset>
-                            <AbsDimension x="68" y="0"/>
-                        </Offset>
-                    </Anchor>
-                </Anchors>
-				<NormalTexture file="Interface\FriendsFrame\UI-FriendsList-Small-Up"/>
-                <PushedTexture file="Interface\FriendsFrame\UI-FriendsList-Small-Down"/>
-                <HighlightTexture file="Interface\FriendsFrame\UI-FriendsList-Highlight" alphaMode="ADD"/>
-                <Scripts>
-					<OnEnter>
-						GameTooltip:SetOwner(self)
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="68" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\FriendsFrame\UI-FriendsList-Small-Up" />
+				<PushedTexture file="Interface\FriendsFrame\UI-FriendsList-Small-Down" />
+				<HighlightTexture file="Interface\FriendsFrame\UI-FriendsList-Highlight" alphaMode="ADD" />
+				<Scripts>
+					<OnEnter>GameTooltip:SetOwner(self)
 						GameTooltip:SetAnchorType("ANCHOR_RIGHT" , 0, 0)
 						GameTooltip:ClearLines();
 						GameTooltip:SetText(self.tooltip, 1,1,0)
-						GameTooltip:Show()	
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide()
-					</OnLeave>
+						GameTooltip:Show()</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
 				</Scripts>
-            </Button>
+			</Button>
 			<Button name="$parentEditButton">
-                <Size>
-                    <AbsDimension x="22" y="22"/>
-                </Size>
-                <Anchors>
-                    <Anchor point="TOP" relativePoint="TOPRIGHT">
-                        <Offset>
-                            <AbsDimension x="-34" y="0"/>
-                        </Offset>
-                    </Anchor>
-                </Anchors>
-				<NormalTexture file="Interface\FriendsFrame\UI-FriendsList-Large-Up"/>
-                <PushedTexture file="Interface\FriendsFrame\UI-FriendsList-Large-Down"/>
-                <HighlightTexture file="Interface\FriendsFrame\UI-FriendsList-Highlight" alphaMode="ADD"/>
-                <Scripts>
-					<OnEnter>
-						GameTooltip:SetOwner(self)
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-34" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\FriendsFrame\UI-FriendsList-Large-Up" />
+				<PushedTexture file="Interface\FriendsFrame\UI-FriendsList-Large-Down" />
+				<HighlightTexture file="Interface\FriendsFrame\UI-FriendsList-Highlight" alphaMode="ADD" />
+				<Scripts>
+					<OnEnter>GameTooltip:SetOwner(self)
 						GameTooltip:SetAnchorType("ANCHOR_RIGHT" , 0, 0)
 						GameTooltip:ClearLines();
 						GameTooltip:SetText(self.tooltip, 1,1,0)
-						GameTooltip:Show()	
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide()
-					</OnLeave>
+						GameTooltip:Show()</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
 				</Scripts>
-            </Button>
-        </Frames>
-        <Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
 			<OnDragStart>self:StartMoving();</OnDragStart>
 			<OnDragStop>self:StopMovingOrSizing();</OnDragStop>
-            <OnLoad>
-				self:RegisterForDrag("LeftButton");
+			<OnLoad>self:RegisterForDrag("LeftButton");
                 local bg = _G[self:GetName().."FrameBg"];
                 if bg:GetTexture() == "SolidTexture" then -- texture missing
                     bg:SetTexture("INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains");
                     bg:SetWidth(300);
                     bg:SetHeight(355);
                     bg:SetDrawLayer("BORDER");
-                end
-            </OnLoad>
-            <OnEvent>
-                --$parentFrame_OnEvent(event);
-            </OnEvent>
-            <OnUpdate>
-                --$parentFrame_OnUpdate(arg1);
-            </OnUpdate>
-            <OnShow>
-                PlaySound("igMainMenuOpen");
-				GHI_Event().TriggerEvent("GHI_BOOK_OPEN", self.GUID)
-            </OnShow>
-            <OnHide>
-                --Close$parent();
+                end</OnLoad>
+			<OnEvent>--$parentFrame_OnEvent(event);</OnEvent>
+			<OnUpdate>--$parentFrame_OnUpdate(arg1);</OnUpdate>
+			<OnShow>PlaySound("igMainMenuOpen");
+				GHI_Event().TriggerEvent("GHI_BOOK_OPEN", self.GUID)</OnShow>
+			<OnHide>--Close$parent();
 				GHI_Event().TriggerEvent("GHI_BOOK_CLOSE", self.GUID)
-                PlaySound("igMainMenuClose");
-            </OnHide>
-        </Scripts>
-    </Frame>
-	
+                PlaySound("igMainMenuClose");</OnHide>
+		</Scripts>
+	</Frame>
 	<Frame name="GHI_LogoTemplate" setAllPoints="false" virtual="true">
-        <Size>
-            <AbsDimension x="128" y="176"/>
-        </Size>
-        <Layers>
-            <Layer level="BACKGROUND">
-
-                <Texture name="$parentLeft" alphaMode="BLEND">
-                    <Anchors>
-                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
-						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT"/>
-						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOP"/>
-						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOM"/>
-                    </Anchors>
-					<TexCoords left="1" right="0.01" top="0" bottom="1"/>
-                </Texture>
-                <Texture name="$parentRight" alphaMode="BLEND">
-                    <Anchors>
-                        <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT"/>
-						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"/>
-						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
-						<Anchor point="BOTTOMLEFT" relativeTo="$parentLeft" relativePoint="BOTTOMRIGHT"/>
-                    </Anchors>
-					<TexCoords left="0.01" right="1" top="0" bottom="1"/>
-                </Texture>
-            </Layer>
-        </Layers>
-    </Frame>
-	
-    <!--  Transcripe -->
-    <Button name="GHI_ItemTextTranscribeButton" inherits="UIPanelButtonTemplate" text="TRANSCRIBE"
-            parent="ItemTextFrame">
-        <Size>
-            <AbsDimension x="120" y="20"/>
-        </Size>
-        <Anchors>
-            <Anchor point="TOP" relativePoint="TOP">
-                <Offset>
-                    <AbsDimension x="10" y="-40"/>
-                </Offset>
-            </Anchor>
-        </Anchors>
-        <Scripts>
-            <OnLoad>
-                ItemTextCurrentPage:ClearAllPoints();
+		<Size>
+			<AbsDimension x="128" y="176" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentLeft" alphaMode="BLEND">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" />
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT" />
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOP" />
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOM" />
+					</Anchors>
+					<TexCoords left="1" right="0.01" top="0" bottom="1" />
+				</Texture>
+				<Texture name="$parentRight" alphaMode="BLEND">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT" />
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" />
+						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT" />
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentLeft" relativePoint="BOTTOMRIGHT" />
+					</Anchors>
+					<TexCoords left="0.01" right="1" top="0" bottom="1" />
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<!--  Transcripe -->
+	<Button name="GHI_ItemTextTranscribeButton" inherits="UIPanelButtonTemplate" text="TRANSCRIBE" parent="ItemTextFrame">
+		<Size>
+			<AbsDimension x="120" y="20" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="10" y="-40" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>ItemTextCurrentPage:ClearAllPoints();
                 ItemTextCurrentPage:SetPoint("TOP", 10, -60);
-                GH_Localize(self);
-            </OnLoad>
-            <OnClick>
-                GHI_TranscribeTextItem();
-            </OnClick>
-        </Scripts>
-
-    </Button>
-
-    <Button name="GHI_MailTextTranscribeButton" inherits="UIPanelButtonTemplate" text="TRANSCRIBE"
-            parent="OpenMailFrame">
-        <Size>
-            <AbsDimension x="120" y="20"/>
-        </Size>
-        <Anchors>
-            <Anchor point="TOP" relativePoint="TOP">
-                <Offset>
-                    <AbsDimension x="100" y="-63"/>
-                </Offset>
-            </Anchor>
-        </Anchors>
-        <Scripts>
-            <OnLoad>
-                ItemTextCurrentPage:ClearAllPoints();
+                GH_Localize(self);</OnLoad>
+			<OnClick>GHI_TranscribeTextItem();</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="GHI_MailTextTranscribeButton" inherits="UIPanelButtonTemplate" text="TRANSCRIBE" parent="OpenMailFrame">
+		<Size>
+			<AbsDimension x="120" y="20" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="100" y="-63" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>ItemTextCurrentPage:ClearAllPoints();
                 ItemTextCurrentPage:SetPoint("TOP", -30, -70);
-                GH_Localize(self);
-            </OnLoad>
-            <OnClick>
-                GHI_TranscribeMailboxLetter();
-            </OnClick>
-        </Scripts>
-    </Button>
-	
+                GH_Localize(self);</OnLoad>
+			<OnClick>GHI_TranscribeMailboxLetter();</OnClick>
+		</Scripts>
+	</Button>
 	<Frame name="GHI_TextureFrame_Template" setAllPoints="false" virtual="true">
-        <Size>
-            <AbsDimension x="64" y="88"/>
-        </Size>
-        <Layers>
-            <Layer level="BACKGROUND">
+		<Size>
+			<AbsDimension x="64" y="88" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
 				<Texture name="$parentTexture" alphaMode="BLEND">
-					<Size x="64" y="64"/>
-                    <Anchors>
-                        <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
-                    </Anchors>
-                </Texture>
-                <Texture name="$parentLogoLeft" alphaMode="BLEND">
-					<Size x="32" y="88"/>
-                    <Anchors>
-                        <Anchor point="RIGHT" relativeTo="$parent" relativePoint="CENTER"/>
-                    </Anchors>
-					<TexCoords left="1" right="0.01" top="0" bottom="1"/>
-                </Texture>
-                <Texture name="$parentLogoRight" alphaMode="BLEND">
-					<Size x="32" y="88"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativeTo="$parentLogoLeft" relativePoint="RIGHT"/>
-                    </Anchors>
-					<TexCoords left="0.01" right="1" top="0" bottom="1"/>
-                </Texture>
-            </Layer>
-        </Layers>
-    </Frame>
-
+					<Size x="64" y="64" />
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER" />
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLogoLeft" alphaMode="BLEND">
+					<Size x="32" y="88" />
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="CENTER" />
+					</Anchors>
+					<TexCoords left="1" right="0.01" top="0" bottom="1" />
+				</Texture>
+				<Texture name="$parentLogoRight" alphaMode="BLEND">
+					<Size x="32" y="88" />
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLogoLeft" relativePoint="RIGHT" />
+					</Anchors>
+					<TexCoords left="0.01" right="1" top="0" bottom="1" />
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
 </Ui>

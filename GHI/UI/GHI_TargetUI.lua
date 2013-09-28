@@ -1,10 +1,9 @@
 --===================================================
---									
---										GHI Target
---									GHI_TargetUI.lua
+--
+--						GHI Target
+--					GHI_TargetUI.lua
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
 --===================================================
 
 GHI_TargetUI = CreateFrame("Frame");
@@ -16,7 +15,6 @@ GHI_TargetUI.buttons = {};
 local loc = GHI_Loc();
 -- 	standard
 function GHI_TargetUI:Create(varName)
-
 	_G[varName] = GHI_TargetUI; -- there is no need for more than one object
 end
 
@@ -24,7 +22,6 @@ function GHI_TargetUI:OnEvent(event)
 	local versionInfo = GHI_VersionInfo();
 
 	if self.mainButton then
-
 		if UnitExists("target") and UnitIsPlayer("target") and UnitFactionGroup("target") == UnitFactionGroup("player") then
 			local displayMethod = GHI_MiscData.target_icon_display_method or 1;
 
@@ -43,10 +40,7 @@ end
 GHI_TargetUI:SetScript("OnEvent", GHI_TargetUI.OnEvent);
 GHI_TargetUI:RegisterEvent("PLAYER_TARGET_CHANGED");
 
-
-
 local function CreateTargetButton(name)
-	--local button = CreateFrame("Button", name, UIParent, "SecureHandlerClickTemplate")
 	local button = CreateFrame("Button", name, UIParent)
 	button:SetHeight(33);
 	button:SetWidth(33);
@@ -88,14 +82,11 @@ function GHI_TargetUI:AddButton(refID, icon, tooltipFunc, clickFunc, targetType)
 	local button = CreateTargetButton("GHI_TargetUIButton" .. refID);
 
 	button:SetParent(self.mainButton);
-
 	button:SetScript("OnEnter", tooltipFunc)
 	button:SetScript("OnLeave", function() GameTooltip:Hide() end)
 	button:SetScript("OnClick", clickFunc)
 
 	self.buttons[refID] = button;
-
-
 	self:ChangeButtonSetup();
 end
 
@@ -111,12 +102,9 @@ function GHI_TargetUI:SetUpMainButton()
 		button:SetScript("OnDragStop", function(b) b.obj.iconDrag = false end)
 		button:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
-
-
 		button.obj = self;
 
 		self.mainButton = button;
-
 		self:UnitIconButtonIconMove((GHI_MiscData or {})["TargetButtonPos"] or { UIParent:GetWidth() / 2, UIParent:GetHeight() / 2 });
 	end
 end
@@ -142,11 +130,6 @@ function GHI_TargetUI:ChangeButtonSetup()
 		-- set up main button with its info
 		self.mainButton:SetScript("OnEnter", button:GetScript("OnEnter"));
 		self.mainButton:SetScript("OnClick", button:GetScript("OnClick"));
-
-		-- set up button to have texture as the buttens texture
-		--self.mainButton:SetNormalTexture("Interface\\Addons\\GHT\\Textures\\GHT-TargetButtonUp");
-		--self.mainButton:SetPushedTexture("Interface\\Addons\\GHT\\Textures\\GHT-TargetButtonDown");
-
 	else
 		-- set up main button to only have main button into
 		self.mainButton:SetScript("OnEnter", function()
@@ -157,11 +140,6 @@ function GHI_TargetUI:ChangeButtonSetup()
 			self.UpdateTooltip = nil;
 		end);
 		self.mainButton:SetScript("OnClick", function(self, btn) if (button == "LeftButton") then b.obj:Toggle(); end end);
-		--self.mainButton:SetNormalTexture("Interface\\Addons\\GHT\\Textures\\GHT-TargetButtonUp");
-		--self.mainButton:SetPushedTexture("Interface\\Addons\\GHT\\Textures\\GHT-TargetButtonDown");
-
-
-		-- place icons around main icon and show them
 	end
 end
 
@@ -174,12 +152,9 @@ function GHI_TargetUI:Toggle()
 end
 
 function GHI_TargetUI:UnitIconButtonIconMove(iconpos)
-
-
 	if (not self.iconDrag and not iconpos) then
 		return;
 	end
-
 
 	local xpos, ypos;
 
@@ -202,6 +177,5 @@ function GHI_TargetUI:UnitIconButtonIconMove(iconpos)
 	GameTooltip:Hide();
 
 	-- Set the position
-
 	self.mainButton:SetPoint("CENTER", UIParent, "BOTTOMLEFT", xpos, ypos);
 end

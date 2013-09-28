@@ -3,7 +3,7 @@
 --				GHI_MenuList
 --  			GHI_MenuList.lua
 --
---	          (description)
+--	Dynamic list for any type of menu with the correct interface
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

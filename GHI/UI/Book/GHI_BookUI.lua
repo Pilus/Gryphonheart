@@ -12,43 +12,43 @@
 
 if not(GHI_FontList) then
 	GHI_FontList = {
-			["Morpheus"] = "Fonts\\MORPHEUS.TTF",
-			["Frizqt"] = "Fonts\\FRIZQT__.TTF",
-			["Arialn"] = "Fonts\\ARIALN.TTF",
-			["Skurri"] = "Fonts\\SKURRI.TTF",
-			["Alfabatix"] = "Interface\\Addons\\GHI\\Fonts\\ALFABET_.TTF",
-			["Alako"] = "Interface\\Addons\\GHI\\Fonts\\Alakob.TTF",
-			["Allura"] = "Interface\\Addons\\GHI\\Fonts\\Allura-Regular.TTF",
-			["Astloch"] = "Interface\\Addons\\GHI\\Fonts\\Astloch-Regular.TTF",
-			["Audiowide"] = "Interface\\Addons\\GHI\\Fonts\\Audiowide-Regular.TTF",
-			["Badscript"] = "Interface\\Addons\\GHI\\Fonts\\Badscript-Regular.TTF",
-			["Blkchcry"] = "Interface\\Addons\\GHI\\Fonts\\blkchcry.TTF",
-			["Butcherman"] = "Interface\\Addons\\GHI\\Fonts\\Butcherman-Regular.TTF",
-			["Condiment"] = "Interface\\Addons\\GHI\\Fonts\\Condiment-Regular.TTF",
-			["Fredericka"] = "Interface\\Addons\\GHI\\Fonts\\FrederickatheGreat-Regular.TTF",
-			["Frijole"] = "Interface\\Addons\\GHI\\Fonts\\Frijole-Regular.TTF",
-			["GochiHand"] = "Interface\\Addons\\GHI\\Fonts\\GochiHand-Regular.TTF",
-			["GreatVibes"] = "Interface\\Addons\\GHI\\Fonts\\GreatVibes-Regular.TTF",
-			["Holy Empire"] = "Interface\\Addons\\GHI\\Fonts\\HOLY.TTF",
-			["IMFellEnglish"] = "Interface\\Addons\\GHI\\Fonts\\IMFeENsc28P.TTF",
-			["Killigrew"] = "Interface\\Addons\\GHI\\Fonts\\Killig.TTF",
-			["LovedbytheKing"] = "Interface\\Addons\\GHI\\Fonts\\LovedbytheKing.TTF",
-			["LoversQuarrel"] = "Interface\\Addons\\GHI\\Fonts\\LoversQuarrel-Regular.TTF",
-			["Metamorphous"] = "Interface\\Addons\\GHI\\Fonts\\Metamorphous-Regular.TTF",
-			["Miltonian"] = "Interface\\Addons\\GHI\\Fonts\\Miltonian-Regular.TTF",
-			["Miniver"] = "Interface\\Addons\\GHI\\Fonts\\Miniver-Regular.TTF",
-			["Nightshade"] = "Interface\\Addons\\GHI\\Fonts\\JimNightshade-Regular.TTF",
-			["Norican"] = "Interface\\Addons\\GHI\\Fonts\\Norican-Regular.TTF",
-			["Nosifer"] = "Interface\\Addons\\GHI\\Fonts\\Nosifer-Regular.TTF",
-			["Novacut"] = "Interface\\Addons\\GHI\\Fonts\\Novacut.TTF",
-			["OleoScript"] = "Interface\\Addons\\GHI\\Fonts\\OleoScript-Regular.TTF",
-			["Rayando"] = "Interface\\Addons\\GHI\\Fonts\\rayando.TTF",
-			["Renaissance"] = "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF",
-			["Sarina"] = "Interface\\Addons\\GHI\\Fonts\\Sarina-Regular.TTF",
-			["Shojumaru"] = "Interface\\Addons\\GHI\\Fonts\\Shojumaru-Regular.TTF",
-			["Sniglet"] = "Interface\\Addons\\GHI\\Fonts\\Sniglet-Regular.TTF",
-			["TradeWinds"] = "Interface\\Addons\\GHI\\Fonts\\TradeWinds-Regular.TTF",	
-		}
+		["Morpheus"] = "Fonts\\MORPHEUS.TTF",
+		["Frizqt"] = "Fonts\\FRIZQT__.TTF",
+		["Arialn"] = "Fonts\\ARIALN.TTF",
+		["Skurri"] = "Fonts\\SKURRI.TTF",
+		["Alfabatix"] = "Interface\\Addons\\GHI\\Fonts\\ALFABET_.TTF",
+		["Alako"] = "Interface\\Addons\\GHI\\Fonts\\Alakob.TTF",
+		["Allura"] = "Interface\\Addons\\GHI\\Fonts\\Allura-Regular.TTF",
+		["Astloch"] = "Interface\\Addons\\GHI\\Fonts\\Astloch-Regular.TTF",
+		["Audiowide"] = "Interface\\Addons\\GHI\\Fonts\\Audiowide-Regular.TTF",
+		["Badscript"] = "Interface\\Addons\\GHI\\Fonts\\Badscript-Regular.TTF",
+		["Blkchcry"] = "Interface\\Addons\\GHI\\Fonts\\blkchcry.TTF",
+		["Butcherman"] = "Interface\\Addons\\GHI\\Fonts\\Butcherman-Regular.TTF",
+		["Condiment"] = "Interface\\Addons\\GHI\\Fonts\\Condiment-Regular.TTF",
+		["Fredericka"] = "Interface\\Addons\\GHI\\Fonts\\FrederickatheGreat-Regular.TTF",
+		["Frijole"] = "Interface\\Addons\\GHI\\Fonts\\Frijole-Regular.TTF",
+		["GochiHand"] = "Interface\\Addons\\GHI\\Fonts\\GochiHand-Regular.TTF",
+		["GreatVibes"] = "Interface\\Addons\\GHI\\Fonts\\GreatVibes-Regular.TTF",
+		["Holy Empire"] = "Interface\\Addons\\GHI\\Fonts\\HOLY.TTF",
+		["IMFellEnglish"] = "Interface\\Addons\\GHI\\Fonts\\IMFeENsc28P.TTF",
+		["Killigrew"] = "Interface\\Addons\\GHI\\Fonts\\Killig.TTF",
+		["LovedbytheKing"] = "Interface\\Addons\\GHI\\Fonts\\LovedbytheKing.TTF",
+		["LoversQuarrel"] = "Interface\\Addons\\GHI\\Fonts\\LoversQuarrel-Regular.TTF",
+		["Metamorphous"] = "Interface\\Addons\\GHI\\Fonts\\Metamorphous-Regular.TTF",
+		["Miltonian"] = "Interface\\Addons\\GHI\\Fonts\\Miltonian-Regular.TTF",
+		["Miniver"] = "Interface\\Addons\\GHI\\Fonts\\Miniver-Regular.TTF",
+		["Nightshade"] = "Interface\\Addons\\GHI\\Fonts\\JimNightshade-Regular.TTF",
+		["Norican"] = "Interface\\Addons\\GHI\\Fonts\\Norican-Regular.TTF",
+		["Nosifer"] = "Interface\\Addons\\GHI\\Fonts\\Nosifer-Regular.TTF",
+		["Novacut"] = "Interface\\Addons\\GHI\\Fonts\\Novacut.TTF",
+		["OleoScript"] = "Interface\\Addons\\GHI\\Fonts\\OleoScript-Regular.TTF",
+		["Rayando"] = "Interface\\Addons\\GHI\\Fonts\\rayando.TTF",
+		["Renaissance"] = "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF",
+		["Sarina"] = "Interface\\Addons\\GHI\\Fonts\\Sarina-Regular.TTF",
+		["Shojumaru"] = "Interface\\Addons\\GHI\\Fonts\\Shojumaru-Regular.TTF",
+		["Sniglet"] = "Interface\\Addons\\GHI\\Fonts\\Sniglet-Regular.TTF",
+		["TradeWinds"] = "Interface\\Addons\\GHI\\Fonts\\TradeWinds-Regular.TTF",
+	}
 end
 
 if not(GHI_Stationeries) then
@@ -143,7 +143,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 				frame:SetPoint("LEFT",UIParent,"LEFT",((frame:GetWidth() * (bookCount - 1)) + (10 * bookCount)),0)
 					for i, v in pairs(GHI_BookList) do
 						if v == "GHI_Book"..bookCount then
-							GHI_BookList[i] = nil							
+							GHI_BookList[i] = nil;
 							break
 						end
 					end
@@ -189,7 +189,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	local textDisplay = _G[frame:GetName().."ScrollFrameChildPage"]
 	local titleText = _G[frame:GetName().."TitleText"]
 	local coverPage = _G[frame:GetName().."Cover"]
-			
+
 	frame.currentPage = 1
 	
 	frame.pages = {}
@@ -209,7 +209,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 						cleanPage = cleanPage .. pages[i][page]
 					end
 				end
-				table.insert(cleanPages,i,cleanPage)			
+				table.insert(cleanPages,i,cleanPage)
 			end
 			frame.pages = cleanPages
 		else
@@ -238,13 +238,13 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 		local rhex, ghex, bhex = string.sub(hex, 1, 2), string.sub(hex, 3, 4), string.sub(hex, 5, 6)
 		return tonumber(rhex, 16)/255, tonumber(ghex, 16)/255, tonumber(bhex, 16)/255
 	end
-		
+
 	local function CheckForVariablesInPage(text)
 		local varCount = 0
 		local attCount = 0
 		
 		for w in string.gmatch(text, "<Var>") do
-		   varCount = varCount + 1
+			varCount = varCount + 1
 		end
 		
 		local varReplace
@@ -254,8 +254,8 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 				local c , d = strfind(text,"</Var>")
 				if c then
 					varReplace = string.sub(text,b+1,c-1)
-					local var = GHI_MiscData.ScriptSave[varReplace]	
-					if var then									
+					local var = GHI_MiscData.ScriptSave[varReplace]
+					if var then
 						text = string.gsub(text,"<Var>"..varReplace.."</Var>",var)
 					else
 						text = string.gsub(text,"<Var>"..varReplace.."</Var>","")
@@ -280,7 +280,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 						att = currentStack.GetAttribute(attReplace)
 					else
 						att = ""
-					end					
+					end
 					if att then
 						text = string.gsub(text,"<Att>"..attReplace.."</Att>",att)
 					else
@@ -289,8 +289,6 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 				end
 			end
 		end
-		
-			
 		
 		return text
 	end
@@ -320,15 +318,13 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	end
 	
 	local function CheckForIconsInPage(text)
-	
 		text = CheckForColors(text)
-		--text  = CheckForVariablesInPage(text)
 		frame.IconsInPage = {}
 		frame.IconsInPage.count = 0
 		for i = 1, 5 do
 			if (frame["logo"..i]) then
-				frame["logo"..i]:Hide()					
-			end	
+				frame["logo"..i]:Hide()
+			end
 			local a, b = strfind(text, "<Icon,");
 			-- find the icon in the text
 			if a and b then
@@ -347,30 +343,29 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 			frame.IconsInPage.text = text
 		end
 		
-		local finalText = frame.IconsInPage.text;		
-        local a;
-        local font, fontSize = textDisplay:GetFont();
-        if not (fontSize) then return end
-        fontSize = tonumber(fontSize);
-        if not (fontSize) then return end
+		local finalText = frame.IconsInPage.text;
+		local a;
+		local font, fontSize = textDisplay:GetFont();
+		if not (fontSize) then return end
+		fontSize = tonumber(fontSize);
+		if not (fontSize) then return end
 
-        local lines = floor((355 / fontSize) + 1)
-        local rest = lines - (355 / fontSize);
-        local emptyPageText = "";
-        for i = 1, lines do
-            emptyPageText = emptyPageText .. "<BR/>"
-        end
+		local lines = floor((355 / fontSize) + 1)
+		local rest = lines - (355 / fontSize);
+		local emptyPageText = "";
+		for i = 1, lines do
+			emptyPageText = emptyPageText .. "<BR/>"
+		end
 		
 		if frame.IconsInPage[1] then
-						
 			for i = 1 , 5 do
 								
 				GHI_Timer(function()
 					if frame.IconsInPage[i] then
-                        frame.IconsInPage.count = frame.IconsInPage.count + 1
-                        if not (frame["logo"..i]) then
-                            frame["logo"..i] = CreateFrame("Frame",frame:GetName().."_Logo"..i,frame,"GHI_LogoTemplate")
-                        end
+						frame.IconsInPage.count = frame.IconsInPage.count + 1
+						if not (frame["logo"..i]) then
+							frame["logo"..i] = CreateFrame("Frame",frame:GetName().."_Logo"..i,frame,"GHI_LogoTemplate")
+						end
 						local text = gsub(finalText, "</P></BODY></HTML>", "");
 						local pos = frame.IconsInPage[i].position;
 						if not pos then return end
@@ -384,14 +379,14 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 						
 						frame.IconsInPage[i].ypos = scrollFrame:GetVerticalScrollRange();
 						local data = frame.IconsInPage[i]
-												
+
 						frame["logo"..i]:ClearAllPoints()
 						
 						local num = data.num;
 						local align = string.lower(data.align);
 						local ypos = data.ypos;
 						local material = frame.material;
-				
+
 						if (not material) then
 							material = "Parchment";
 						end
@@ -409,58 +404,58 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 						else
 							frame["logo"..i]:SetPoint("LEFT", textDisplay, "TOPLEFT", -25, -ypos);
 						end
-					
+
 						frame["logo"..i]:SetParent(textDisplay);
-				
+
 						local textColor = GetMaterialTextColors(material);
 						
 						LeftPart:SetVertexColor(textColor[1], textColor[2], textColor[3]);
 						RightPart:SetVertexColor(textColor[1], textColor[2], textColor[3]);
 
 						frame["logo"..i]:Show();
-						textDisplay:SetText("")				
+						textDisplay:SetText("")
 					end
 				end,0.1, true)
 			end
 		end
 		return finalText
-    end
+	end
 
-    local standardFont = (font and font.GetFont and font.GetFont()) or font;
-    local tpc = GHI_TextPositionCalculator(textDisplay:GetWidth(), standardFont, n, standardFont, h1, standardFont, h2);
-    local function HandleObjectsInPage(text)
-        local ptrn = "\124T:[^\124]*\124t";
-        local i = string.find(text,ptrn);
-        while i do
-            local match = string.match(strsub(text,i))
-            local obj = GHI_BookObj();
-            obj.InitializeFromTextCode(match);
+	local standardFont = (font and font.GetFont and font.GetFont()) or font;
+	local tpc = GHI_TextPositionCalculator(textDisplay:GetWidth(), standardFont, n, standardFont, h1, standardFont, h2);
+	local function HandleObjectsInPage(text)
+		local ptrn = "\124T:[^\124]*\124t";
+		local i = string.find(text,ptrn);
+		while i do
+			local match = string.match(strsub(text,i))
+			local obj = GHI_BookObj();
+			obj.InitializeFromTextCode(match);
 
-            local h,w = obj.GetSize();
-            tpc.CalculatePos(strsub(text,0,i-1),w,h,function(x,y)
-                obj:SetParent(textDisplay);
-                obj:SetPoint("BOTTOMLEFT",textDisplay,"TOPLEFT",x,y);
-            end)
+			local h,w = obj.GetSize();
+			tpc.CalculatePos(strsub(text,0,i-1),w,h,function(x,y)
+				obj:SetParent(textDisplay);
+				obj:SetPoint("BOTTOMLEFT",textDisplay,"TOPLEFT",x,y);
+			end)
 
-            -- Find next
-            i = string.find(text,ptrn,i+1);
-        end
-    end
+			-- Find next
+			i = string.find(text,ptrn,i+1);
+		end
+	end
 	
 	local function SetPage(p)
 		frame.currentPage = p
 		local text = frame.pages[p]
 		text = CheckForIconsInPage(text)
-        -- Handle objects in the page
-        HandleObjectsInPage(text);
+		-- Handle objects in the page
+		HandleObjectsInPage(text);
 
-        local logoCount = frame.IconsInPage.count
-        GHI_Timer(function()
-            textDisplay:SetText(text)
-            pageNumTotal:SetText("of "..#frame.pages)
-            pageNumCurrent:SetText(frame.currentPage.." ")
-        end,((logoCount/10) + 0.1),true)
-	end	
+		local logoCount = frame.IconsInPage.count
+		GHI_Timer(function()
+			textDisplay:SetText(text)
+			pageNumTotal:SetText("of "..#frame.pages)
+			pageNumCurrent:SetText(frame.currentPage.." ")
+		end,((logoCount/10) + 0.1),true)
+	end
 	
 	local function SetMaterial(material, extraMat)
 		local materialParts = {"TopLeft", "TopRight", "BotLeft", "BotRight"}
@@ -469,14 +464,13 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 		local stat2 =_G[frame:GetName().."Stationery2"]
 		
 		if  material == "Parchment" then
-
 			stat1:Hide()
-			stat2:Hide()			
+			stat2:Hide()
 			for i, v in pairs(materialParts) do
 				local part = "Material"..v
 				matPart = _G[frame:GetName()..part]
 				matPart:Hide()
-			end						
+			end
 		else
 			stat1:Hide()
 			stat2:Hide()
@@ -505,12 +499,12 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 			stat2:SetTexture("Interface\\"..GHI_Stationeries[extraMat]..append2)
 			stat1:Show()
 			stat2:Show()
-		end	
+		end
 		
 	end
 	
 	local function DisplayCover(cover)
-				
+
 		if type(cover) == "nil" then
 			frame.coverPage:Hide()
 		elseif type(cover) == "table" then
@@ -603,8 +597,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 
 				LeftPart:SetTexture("Textures\\GuildEmblems\\Emblem_" .. coverLogo);
 				RightPart:SetTexture("Textures\\GuildEmblems\\Emblem_" .. coverLogo);
-			
-			end		
+			end
 			
 			if type(coverColor) == "string" then
 				local r,g,b = colors[coverColor].r, colors[coverColor].g, colors[coverColor].b
@@ -614,7 +607,6 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 				RightPart:SetVertexColor(r,g,b,1)
 				titleArea1:SetTextColor(r,g,b,1)
 				titleArea2:SetTextColor(r,g,b,1)
-			
 			elseif type(coverColor) == "table" then
 				local r,g,b = coverColor.r or coverColor[1], coverColor.g or coverColor[2], coverColor.b or coverColor[3]
 				imageLogo:SetDesaturated(true)
@@ -623,7 +615,6 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 				RightPart:SetVertexColor(r,g,b,1)
 				titleArea1:SetTextColor(r,g,b,1)
 				titleArea2:SetTextColor(r,g,b,1)
-				
 			else
 				imageLogo:SetDesaturated(true)
 				imageLogo:SetVertexColor(1,1,1,1)
@@ -638,16 +629,16 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 				nextButton:Show()
 				prevButton:Show()
 			end)
+
 			coverPage:SetScript("OnShow",function(self)
 				self:SetFrameStrata("HIGH")
 				nextButton:Hide()
 				prevButton:Hide()
-			end)			
-		end		
+			end)
+		end
 	end
 	
 	local function TextDisplaySettings(font, h1Font, h2Font, n, h1, h2, material)
-	
 		if not(font) or font == nil or font == "nil" then font = GHI_BookDefaults.font	end
 		if string.find(font,".TTF") or string.find(font,".ttf") then
 			for i,v in pairs(GHI_FontList) do
@@ -662,7 +653,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 		if not(n) then n = GHI_BookDefaults.N end
 		if not (h1Font) then h1Font = font end
 		if not (h2Font) then h2Font = h1Font end
-						
+
 		local typeFace = GHI_FontList[font]
 		local typeFaceH1 = GHI_FontList[h1Font]
 		local typeFaceH2 = GHI_FontList[h2Font]
@@ -673,11 +664,8 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 		textDisplay:SetTextColor("H1",textColor[1], textColor[2],textColor[3])
 		textDisplay:SetFont("H2",typeFaceH2,h2)
 		textDisplay:SetTextColor("H2",textColor[1], textColor[2],textColor[3])
-		--textDisplay:SetTextColor("A",1,0,0)
-	
 	end
-	
-	
+
 	-- Material Settings
 	if not(material) or material == "nil" or material == nil then material = GHI_BookDefaults.material end
 	
@@ -685,9 +673,9 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	TextDisplaySettings(font, h1Font, h2Font, n, h1, h2, material)
 	if (cover) then
 		DisplayCover(cover)
-	end		
-		
-	-- Mark Frame	
+	end
+
+	-- Mark Frame
 	markFrame:SetFontObject("SystemFont_Med1")
 	local matType = frame.material
 	local textColor = GetMaterialTextColors(matType)
@@ -696,7 +684,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	markFrame:SetMultiLine(true)
 	markFrame:SetAutoFocus(false)
 	markFrame:Hide()
-			
+
 	-- Widget Scripts
 	nextButton:SetScript("OnClick", function(self)
 		PlaySound("igMainMenuOptionCheckBoxOn");
@@ -731,6 +719,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 			markFrame:SetText(markFrame.text)
 		end
 	end)
+
 	markButton.tooltip = "Mark Text"
 	markButton:SetScript("OnClick", function(self)
 		PlaySound("igMainMenuOptionCheckBoxOn");
@@ -745,7 +734,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 		end
 	end)
 	
-	editButton.tooltip = "Edit Book Item"--loc.EDIT_BOOK --"Edit Book Item"
+	editButton.tooltip = "Edit Book Item"--loc.EDIT_BOOK
 	editButton:Hide()
 	if edit == 1 or edit == true then
 		editButton:Show()
@@ -753,35 +742,33 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	
 	editButton:SetScript("OnClick", function(self)
 		local contanerAPI = GHI_ContainerAPI().GetAPI()
-		--contanerAPI.GHI_EditItem(GUID)
-		local itemList = GHI_ItemInfoList();	
+		local itemList = GHI_ItemInfoList();
 		local bookItem = itemList.GetItemInfo(GUID)
 		local advancedItemMenuList = GHI_AdvancedItemMenuList();
 		
 		if bookItem.GetItemComplexity() == "standard" then
-
 			frame:Hide()
 
-            -- Locate the action
-            local item = itemList.GetItemInfo(GUID).CloneItem();
-            local action;
-            for i=1,item.GetSimpleActionCount() do
-                local a = item.GetSimpleAction(i);
-                if a.GetGuid() == actionGuid then
-                    action = a;
-                end
-            end
+			-- Locate the action
+			local item = itemList.GetItemInfo(GUID).CloneItem();
+			local action;
+			for i=1,item.GetSimpleActionCount() do
+				local a = item.GetSimpleAction(i);
+				if a.GetGuid() == actionGuid then
+					action = a;
+				end
+			end
 
-            if action then
-                -- Show the edit book action menu, without any edit item menu.
-                local menu = GHI_BookMenu(function()
-                    item.IncreaseVersion(true);
-                    itemList.UpdateItem(item);
-                    GHI_MiscData.lastUpdateItemTime = GetTime();
-                end,action);
-            else
-                print("Book action not found");
-            end
+			if action then
+				-- Show the edit book action menu, without any edit item menu.
+				local menu = GHI_BookMenu(function()
+					item.IncreaseVersion(true);
+					itemList.UpdateItem(item);
+					GHI_MiscData.lastUpdateItemTime = GetTime();
+				end,action);
+			else
+				print("Book action not found");
+			end
 		else
 			advancedItemMenuList.Edit(GUID)
 			frame:Hide()
@@ -894,8 +881,7 @@ function GHI_StringToHtml(text)
 	text = string.gsub(text, "&lt;al=l&gt;&lt;H2&gt;", "</P><H2 align=\"left\">");
 	text = string.gsub(text, "&lt;al=r&gt;&lt;H2&gt;", "</P><H2 align=\"right\">");
 	text = string.gsub(text, "&lt;/H2&gt;&lt;/al&gt;", "</H2><P>");
-	
-	  
+
 	text = string.gsub(text, "&lt;H1&gt;", "</P><H1 align=\"center\">");
 	text = string.gsub(text, "&lt;/H1&gt;", "</H1><P>");
 	text = string.gsub(text, "&lt;H2&gt;", "</P><H2>");
@@ -938,6 +924,7 @@ function GHI_StringToHtml(text)
 	text = "<HTML><BODY><P>" .. text .. "</P></BODY></HTML>";
 	return text;
 end
+
 -- Transcribe
 function GHI_TranscribeTextItem()
 	local loc = GHI_Loc()
@@ -1040,9 +1027,6 @@ function GHI_TranscribeTextItem()
 	GHI_Message(title .. " " .. loc.TRANSCRIBED .. ".");
 
 end
-
---[[local t;
-hooksecurefunc(OpenMailBodyText, "SetText", function(self, frameText) t = frameText end);]]
 
 function GHI_TranscribeMailboxLetter()
 	local loc = GHI_Loc()

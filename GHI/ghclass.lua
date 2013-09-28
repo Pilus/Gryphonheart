@@ -1,10 +1,10 @@
 ﻿--===================================================
 --									
---										GHClass
---									ghclass.lua
+--					GHClass
+--					ghclass.lua
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 
 
@@ -20,7 +20,6 @@ function GHClass(_className, nonFrame, ...)
 	else
 		obj = CreateFrame("Frame"); --
 	end
-
 
 	if not(obj.AddInherits) then
 		local inherits = {};
@@ -56,8 +55,6 @@ function GHClass(_className, nonFrame, ...)
 			return obj.GetType() == other.GetType()
 		end
 	end
-
-
 
 	obj.Dispose = function() -- Standard dispose func. This can be overwritten
 		wipe(obj);
@@ -101,7 +98,6 @@ function strsubutf8(str, a, b) -- modified from http://wowprogramming.com/snippe
 	assert(not (b) or (type(b) == "number" and b <= strlenutf8(str)), "end pos larger than string lenght", b, strlenutf8(str));
 
 	b = (b or strlenutf8(str));
-
 
 	local start, _end = #str + 1, #str + 1;
 	local currentIndex = 1

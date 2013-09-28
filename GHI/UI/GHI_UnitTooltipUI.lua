@@ -1,12 +1,12 @@
 ﻿--===================================================
 --									
---								GHI Unit Tooltip
---									GHI_UnitTooltipUI.lua
+--					GHI Unit Tooltip
+--					GHI_UnitTooltipUI.lua
 --
 --	Adds information to the tooltip of a unit
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================	
 
 local versionInfo
@@ -35,7 +35,6 @@ function GHI_UnitTooltip()
 		update = false;
 	end
 
-
 	local origShow = GameTooltip:GetScript("OnShow");
 	GameTooltip:SetScript("OnShow", function(...)
 		if origShow then origShow(...) end
@@ -43,7 +42,6 @@ function GHI_UnitTooltip()
 			update = true
 		end
 	end);
-	--class:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
 
 	class:SetScript("OnUpdate", function(...)
 		if update == true then

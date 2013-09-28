@@ -1,14 +1,13 @@
 ﻿--===================================================
 --									
---										GHI Links
---									ghi_linksUI.lua
+--					GHI Links
+--				ghi_linksUI.lua
 --
---				Dynamic handler of links in chat
+--		Dynamic handler of links in chat
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 		(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================	
-
 
 function GHI_LinksUI(prefix, syncDataFunc, linkClickFunc)
 	local class = GHClass("GHI_LinksUI");
@@ -116,6 +115,7 @@ function GHI_LinksUIHandler()
 		end);
 		return clean;
 	end
+
 	HexColorToColorArray = function(hexR, hexG, hexB)
 		return {
 			r = tonumber(hexR, 16) / 255,
@@ -125,31 +125,22 @@ function GHI_LinksUIHandler()
 	end
 
 	OnEvent = function(self, event, msg, author, ...)
-
-	
-	  if version.PlayerGotAddOn(author) then
-		if not (IsEventIgnoredChannelEvent(event, ...)) then
-			local linksInText = SubstractSuspectedLinkNames(msg);
-			if #(linksInText) > 0 then
-
-
+		if version.PlayerGotAddOn(author) then
+			if not (IsEventIgnoredChannelEvent(event, ...)) then
+				local linksInText = SubstractSuspectedLinkNames(msg);
+				if #(linksInText) > 0 then
 				if event == "CHAT_MSG_WHISPER_INFORM" then
 					StoreEvent(event, msg, author, linksInText, ...);
-					--if version.PlayerGotAddOn(author) then
 					SendSuspectedLinkName(playerName, linksInText, event);
-					--end
 				else
 					StoreEvent(event, msg, author, linksInText, ...);
-					--if version.PlayerGotAddOn(author) then
 					SendSuspectedLinkName(author, linksInText, event);
-					--end
 				end
 				return;
 			end
 		 end
 		end
 		ParseEventToFrames(event, msg, author, ...)
-	  
 	end
 
 	IsEventIgnoredChannelEvent = function(event, ...)
@@ -179,15 +170,10 @@ function GHI_LinksUIHandler()
 	
 	SubstractSuspectedLinkNames = function(text)
 		local links = {};
-		--if string.find(text,"(.-)(|[cC][0-9a-fA-F]+|H[%a%A]-|h|r)") == nil or string.find(text,"MogIt") == nil then
-          --if string.find(text .. " ", "%[(.-)%][^|]") then
-               --print("yay link")
 		string.gsub(text .. " ", "%[(.-)%][^|]", function(link)
-		    
 			table.insert(links, link);
 		end);
-         -- end
-		--end
+
 		return links;
 	end
 
@@ -270,7 +256,6 @@ function GHI_LinksUIHandler()
 						return newLink .. followingChar;
 					end)
 					RemoveValueFromTable(event.linkNames, linkText);
-
 					if #(event.linkNames) == 0 then
 						ParseEventToFrames(event.event, event.msg, event.author, unpack(event.args));
 						table.remove(incommingEvents, i);

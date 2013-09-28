@@ -1,12 +1,12 @@
 ﻿--===================================================
 --									
---										GHI Main
---									GHI_Main.lua
+--						GHI Main
+--						GHI_Main.lua
 --
---								Main setup file
+--					Main setup file
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================	
 
 local class
@@ -15,10 +15,9 @@ function GHI_Main()
 		return class
 	end
 	class = GHClass("GHI_Main")
-     local loc = GHI_Loc();
+	local loc = GHI_Loc();
 	local slashCmd, ghiPing, trade, options, log, itemList, containerList, miscAPI, dynamicActionList;
 	log = GHI_Log();
-	
 
 	local function SetUpOnGHILoaded()
 		if not(type(GHI_MiscData)=="table") then
@@ -74,8 +73,6 @@ function GHI_Main()
 			end
 		end)
 
-
-
 		options = GHI_MainOptionsMenu()
 		GHI_UnitTooltip();
 
@@ -88,9 +85,14 @@ function GHI_Main()
 	local f = CreateFrame("frame");
 	f:SetScript("OnEvent", function(self, event, addon) -- These events should later on be set up by calling an event handler class
 		if event == "ADDON_LOADED" then
-               local loaded = IsAddOnLoaded("GHM")
-               if not(loaded) then error("Gryphonheart Menu (GHM) Must be loaded with GHI") return end
-			if addon == "GHI" then SetUpOnGHILoaded(); end
+			local loaded = IsAddOnLoaded("GHM")
+			if not(loaded) then
+				error("Gryphonheart Menu (GHM) Must be loaded with GHI")
+				return
+			end
+			if addon == "GHI" then
+				SetUpOnGHILoaded();
+			end
 		elseif event == "TRADE_SHOW" then
 			SetUpOnTradeFrameShown()
 		elseif event == "VARIABLES_LOADED" then

@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI  Random Expression Menu
---	GHI_RandomExpressionMenu.lua
+--			GHI  Random Expression Menu
+--			GHI_RandomExpressionMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -25,12 +25,14 @@ function GHI_RandomExpressionMenu(_OnOkCallback, _editAction)
 			return;
 		end
 	end
+
 	for i, menu in pairs(menus) do
 		if not (menu.IsInUse()) then
 			menu.Show(_OnOkCallback, _editAction)
 			return menu
 		end
 	end
+
 	local class = GHClass(NAME);
 	table.insert(menus, class);
 
@@ -202,7 +204,6 @@ function GHI_RandomExpressionMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 400,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = ICON,
 		lineSpacing = 10,

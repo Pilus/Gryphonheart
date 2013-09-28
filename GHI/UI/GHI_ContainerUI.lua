@@ -1,3 +1,14 @@
+--===================================================
+--
+--				GHI_ContainerUI
+--				GHI_ContainerUI.lua
+--
+--		UI controller for the container UI.
+--
+--		(c)2013 The Gryphonheart Team
+--			  All rights reserved
+--===================================================
+
 local mainBagFrame;
 local bags = {};
 local menuButtons = {};
@@ -38,57 +49,52 @@ end
 local newItemMenuFrameDD
 
 local GHI_NewItemMenu = function(self)
-    local newItemDDMenu = {
+	local newItemDDMenu = {
 		{
-            text = loc.NEW_SIMP_ITEM,
-            notCheckable = true,
-            func = function() api.GHI_NewItem("simple") end,
-        },
-        {
-            text = loc.NEW_STD_ITEM,
-            notCheckable = true,
-            func = function() api.GHI_NewItem("standard") end,
-        },
-        {
-            text = loc.NEW_ADV_ITEM,
-            notCheckable = true,
-            func = function() api.GHI_NewItem("advanced")end,
-        },
+			text = loc.NEW_SIMP_ITEM,
+			notCheckable = true,
+			func = function() api.GHI_NewItem("simple") end,
+		},
 		{
-            text = loc.NEW_MACRO,
-            notCheckable = true,
-            func = function() api.GHI_NewItem("macro")end,
-        }
-    }
+			text = loc.NEW_STD_ITEM,
+			notCheckable = true,
+			func = function() api.GHI_NewItem("standard") end,
+		},
+		{
+			text = loc.NEW_ADV_ITEM,
+			notCheckable = true,
+			func = function() api.GHI_NewItem("advanced")end,
+		},
+		{
+			text = loc.NEW_MACRO,
+			notCheckable = true,
+			func = function() api.GHI_NewItem("macro")end,
+		}
+	}
     
 	local dropDownMenu = GHM_DropDownMenu()
 	
 	if not(NewItemDDMenuFrame) then
 		newItemMenuFrameDD	= CreateFrame("Frame", "NewItemDDMenuFrame", self, "GHM_DropDownMenuTemplate")
-    -- Make the menu appear at the cursor:
-		
+		-- Make the menu appear at the cursor:
 		dropDownMenu.EasyMenu(newItemDDMenu, newItemMenuFrameDD, self, 0 ,0, "MENU", 1);
 	else
 		dropDownMenu.ToggleDropDownMenu(1,nil,newItemMenuFrameDD,self,0,0,newItemDDMenu,nil,2)
 	end
-	
-	
-	
-    --newItemMenuFrameDD:Show()
 end
 
 local function SetUpContainerMenuButtons()
-    loc = GHI_Loc();
-    local buttonInfo = {
+	loc = GHI_Loc();
+	local buttonInfo = {
 		{
-            x = 45,
-            y = -28,
-            text = loc.NEW_ITEM_1LETTER,
-            details = loc.NEW_ITEM_DETAILS,
-            name = "new",
-            tooltip = loc.NEW_ITEM,
-            click =  GHI_NewItemMenu,
-        },
+			x = 45,
+			y = -28,
+			text = loc.NEW_ITEM_1LETTER,
+			details = loc.NEW_ITEM_DETAILS,
+			name = "new",
+			tooltip = loc.NEW_ITEM,
+			click =  GHI_NewItemMenu,
+		},
 		{
 			x = 67,
 			y = -28,
@@ -96,7 +102,6 @@ local function SetUpContainerMenuButtons()
 			details = loc.EDIT_ITEM_DETAILS,
 			tooltip = loc.EDIT_ITEM,
 			click = function()
-
 				miscApi.GHI_SetSelectItemCursor(function(guid)
 					api.GHI_EditItem(guid);
 				end, nil, "edit");
@@ -193,7 +198,6 @@ local function SetUpContainerMenuButtons()
 
 	for _, info in pairs(buttonInfo) do
 		local f = CreateFrame("Button", nil, mainBagFrame,"GHI_UIPanelButtonTemplate");
-
 		f:SetWidth(20);
 		f:SetHeight(20);
 		f:SetPoint("TOPLEFT", info.x, info.y);
@@ -239,6 +243,7 @@ GHI_Event("VARIABLES_LOADED", function()
 	SetUpContainerMenuButtons();
 	UpdateMainBagPageButtons();
 end);
+
 GHI_Event("GHI_CONTAINER_UPDATE", function(e, guid)
 	if mainBagFrame then
 		mainBagFrame.guid = api.GHI_GetCurrentMainBagGUID();
@@ -250,6 +255,7 @@ GHI_Event("GHI_CONTAINER_UPDATE", function(e, guid)
 		end
 	end
 end);
+
 GHI_Event("GHI_ITEM_UPDATE", function()
 	if mainBagFrame then
 		mainBagFrame.guid = api.GHI_GetCurrentMainBagGUID();
@@ -261,6 +267,7 @@ GHI_Event("GHI_ITEM_UPDATE", function()
 		end
 	end
 end);
+
 GHI_Event("GHI_BAG_UPDATE_COOLDOWN", function(e, guid)
 	for _, frame in pairs(bags) do
 		if frame.guid == guid and frame:IsShown() then
@@ -278,7 +285,7 @@ GHI_Event("GHI_BAG_OPEN", function(e, guid)
 	end
 	local bagFrame = GetFreeBagFrame();
 	local size, name, icon, texture = api.GHI_GetContainerInfo(guid);
-     --print(size)
+
 	if size == 35 then size = 34 end --fix for some bags
 	if not(tContains(ALLOWED_SIZES,size)) then
 		return
@@ -311,7 +318,6 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 	bgTextureBottom:SetTexture("Interface\\ContainerFrame\\UI-Bag-Components" .. bagTextureSuffix);
 	_G[name .. "MoneyFrame"]:Hide();
 
-
 	if size == 1 then
 
 		local bgTextureTop = _G[name .. "BackgroundTop"];
@@ -329,7 +335,6 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 		frame:SetHeight(70);
 		frame:SetWidth(99);
 		_G[frame:GetName() .. "Name"]:SetText("");
-		--SetBagPortraitTexture(_G[frame:GetName().."Portrait"], id);
 		local itemButton = _G[name .. "Item1"];
 		itemButton:SetID(1);
 		itemButton:SetPoint("BOTTOMRIGHT", name, "BOTTOMRIGHT", -10, 5);
@@ -412,7 +417,6 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 			bgTextureBottom:Show();
 		end
 
-
 		-- Set the frame height
 		frame:SetHeight(bgTextureTop:GetHeight() + bgTextureBottom:GetHeight() + middleBgHeight);
 		frame:SetWidth(CONTAINER_WIDTH);
@@ -427,16 +431,12 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 	end
 
 	local portraitButton = _G[frame:GetName() .. "PortraitButton"];
-
 	local portrait = frame:GetName() .. "Portrait";
-
-
 	if not (frame.customIcon) then
 		frame.customIcon = CreateFrame("Frame", portrait .. "custom", portraitButton, "GHM_RoundIconHalf_Template");
 		frame.customIcon:SetPoint("TOPLEFT", portraitButton, "TOPLEFT", 0.5, -1.5);
 	end
 
-	--SetBagPortaitTexture(_G[frame:GetName().."Portrait"], 1);
 	if icon then
 		if string.find(strlower(icon), "interface\\icons\\") then
 			SetPortraitToTexture(portrait, icon);
@@ -452,7 +452,6 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 		frame.customIcon:Hide();
 	end
 
-
 	for j = 1, size, 1 do
 		local index = size - j + 1;
 		local itemButton = _G[name .. "Item" .. j];
@@ -464,7 +463,6 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 			else
 				itemButton:SetPoint("BOTTOMRIGHT", name, "BOTTOMRIGHT", -12, 9);
 			end
-
 		else
 			if (mod((j - 1), columns) == 0) then
 				itemButton:SetPoint("BOTTOMRIGHT", name .. "Item" .. (j - columns), "TOPRIGHT", 0, 4);
@@ -491,7 +489,6 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 	btn:SetScript("OnUpdate", function(b) if b.drag then GHI_DragContainer(b.main) end end)
 	btn:SetScript("OnDragStart", function(b) b.drag = true; GHI_DragContainer(b.main,1) end)
 	btn:SetScript("OnDragStop", function(b) b.drag = false; GHI_DragContainer(b.main,2) end)
-
 end
 
 function GHI_ToggleBackpack()
@@ -503,7 +500,6 @@ function GHI_ToggleBackpack()
 end
 
 function GHI_ContainerFrame_OnShow(self)
-
 	PlaySound("igBackPackOpen");
 	GHI_UpdateContainerFrameAnchors();
 	GHI_ContainerFrame_Update(self)

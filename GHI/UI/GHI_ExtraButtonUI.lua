@@ -1,20 +1,18 @@
 --===================================================
 --
---			     	GHI_ExtraButtonUI
---  			  GHI_ExtraButtonUI.lua
+--				GHI_ExtraButtonUI
+--				GHI_ExtraButtonUI.lua
 --
---	      Allows GHI to to simulate Blizzard's
---               Extra Action Button
+--		Allows GHI to to simulate Blizzard's
+--				Extra Action Button
 --
--- 	        (c)2013 The Gryphonheart Team
---		        	All rights reserved
+-- 		(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
-
 
 local class;
 
 function GHI_ExtraButtonUI()
-
 	if class then
 		return class;
 	end
@@ -69,7 +67,6 @@ function GHI_ExtraButtonUI()
 			GameTooltip:AddLine(frame.TooltipText, nil,nil,nil,true)
 			GameTooltip:Show()
 		end
-	
 	end)
 
 	frame.button:SetScript("OnLeave", function(self)
@@ -81,7 +78,7 @@ function GHI_ExtraButtonUI()
 	class.SetIcon = function(icon)
 		frame.button.icon:SetTexture(icon)
 	end
-		
+
 	class.SetTheme = function(theme, icon)
 		if strfind(theme,"GHI") then
 			frame.button.style:SetTexture("Interface\\Addons\\GHI\\texture\\ExtraButton\\"..theme)
@@ -129,7 +126,6 @@ function GHI_ExtraButtonUI()
 		else
 			class.SetMaxCharges(charges,charges)
 		end
-		
 	end
 	
 	class.GetCharges = function()
@@ -162,13 +158,12 @@ function GHI_ExtraButtonUI()
 	
 	
 	class.Clear = function()
-			class.SetOnClick(nil)
-			class.SetMaxCharges(nil,nil)
-			class.SetCooldownTime(1)
-			class.SetTheme("Default")
-			class.SetIcon("Interface\\Icons\\INV_Misc_QuestionMark")			
+		class.SetOnClick(nil)
+		class.SetMaxCharges(nil,nil)
+		class.SetCooldownTime(1)
+		class.SetTheme("Default")
+		class.SetIcon("Interface\\Icons\\INV_Misc_QuestionMark")
 	end
-		
+
 	return class;
 end
-	

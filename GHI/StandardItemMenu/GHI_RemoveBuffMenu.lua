@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_RemoveBuffMenu
---	GHI_RemoveBuffMenu.lua
+--				GHI_RemoveBuffMenu
+--			GHI_RemoveBuffMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -39,7 +39,6 @@ function GHI_RemoveBuffMenu(_OnOkCallback, _editAction)
 	local menuIndex = 1;
 	while _G[NAME .. menuIndex] do menuIndex = menuIndex + 1; end
 
-
 	class.Show = function(_OnOkCallback, _editAction)
 		OnOkCallback = _OnOkCallback;
 		inUse = true;
@@ -69,7 +68,6 @@ function GHI_RemoveBuffMenu(_OnOkCallback, _editAction)
 		local filter = menuFrame.GetLabel("filter");
 		local amount = menuFrame.GetLabel("amount");
 		local delay = menuFrame.GetLabel("delay");
-
 
 		local t = {
 			Type = "script",
@@ -205,7 +203,6 @@ function GHI_RemoveBuffMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 340,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = ICON,
 		lineSpacing = 20,

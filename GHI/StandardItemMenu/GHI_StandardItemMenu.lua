@@ -1,12 +1,13 @@
 --===================================================
---								Standard Item Menu
---							GHI_StandardItemMenu.lua.lua
+--					Standard Item Menu
+--				GHI_StandardItemMenu.lua.lua
 --
---		Application Interface for scripts to execute functions relevant for actions
---		Handles relevant security checks on the API calls.
+--	Application Interface for scripts to execute
+--			functions relevant for actions
+--	Handles relevant security checks on the API calls.
 --
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================
 
 local UnitName = UnitName;
@@ -99,7 +100,6 @@ function GHI_StandardItemMenu()
 				itemTooltip:AddLine(line.text, line.r, line.g, line.b, true);
 			end
 			itemTooltip:Show()
-			--itemTooltip:SetFrameLevel(20);
 			itemTooltip:SetWidth(245)
 			itemTooltip:SetHeight(min(itemTooltip:GetHeight(), 180));
 		end
@@ -250,7 +250,6 @@ function GHI_StandardItemMenu()
 
 	local newActionClick = function(self)
 		if not (actionMenuFrame) then
-
 			for i = 1, #(simpleActions) do
 				local info = {};
 				info.text = simpleActions[i][3];
@@ -308,7 +307,7 @@ function GHI_StandardItemMenu()
 					align = "l",
 					type = "Editbox",
 					text = loc.WHITE_TEXT_1;
-                         tooltip = loc.WHITE_TEXT_1_TT;
+					tooltip = loc.WHITE_TEXT_1_TT;
 					label = "white1",
 					texture = "Tooltip",
 					OnTextChanged = function(self)
@@ -336,7 +335,7 @@ function GHI_StandardItemMenu()
 					align = "l",
 					type = "Editbox",
 					text = loc.YELLOW_QUOTE;
-                         tooltip = loc.YELLOW_QUOTE_TT;
+					tooltip = loc.YELLOW_QUOTE_TT;
 					label = "comment",
 					texture = "Tooltip",
 					OnTextChanged = function(self)
@@ -385,7 +384,7 @@ function GHI_StandardItemMenu()
 				{
 					type = "Slider",
 					text = loc.STACK_SIZE,
-                         tooltip = loc.STACK_SIZE_TT;
+					tooltip = loc.STACK_SIZE_TT;
 					align = "c",
 					label = "stackSize",
 					values = {1,5,10,20,50,100},
@@ -399,7 +398,7 @@ function GHI_StandardItemMenu()
 				{
 					type = "CheckBox",
 					text = loc.EDITABLE,
-                         tooltip = loc.EDITABLE_TT;
+					tooltip = loc.EDITABLE_TT;
 					align = "l",
 					label = "editable",
 					OnClick = function(self)
@@ -529,7 +528,6 @@ function GHI_StandardItemMenu()
 					align = "r",
 					label = "consumed",
 					OnClick = function(self)
-
 						item.SetConsumed(self:GetChecked());
 					end
 				},
@@ -580,7 +578,6 @@ function GHI_StandardItemMenu()
 		theme = "BlankTheme",
 		width = 500,
 		useWindow = true,
-		----background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then
@@ -599,8 +596,6 @@ function GHI_StandardItemMenu()
 
 	class.New = function()
 		menuFrame:AnimatedShow();
-
-
 		SetupWithNewItem();
 	end
 
@@ -611,8 +606,6 @@ function GHI_StandardItemMenu()
 			menuFrame:Hide();
 			return
 		end
-
-
 
 		item = editItem.CloneItem();
 

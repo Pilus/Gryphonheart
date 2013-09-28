@@ -1,11 +1,11 @@
 --===================================================
 --
---				GHI_StandardItemMenuList
---  			GHI_StandardItemMenuList.lua
+--			GHI_StandardItemMenuList
+--			GHI_StandardItemMenuList.lua
 --
---	          Handler for the Standard item menus
+--		Handler for the Standard item menus
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -43,7 +43,6 @@ function GHI_StandardItemMenuList()
 		end
 		return false
 	end
-
 
 	return class;
 end

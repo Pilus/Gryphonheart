@@ -3,7 +3,7 @@
 --				GHI_ImportMenu
 --  			GHI_ImportMenu.lua
 --
---	          (description)
+--	Menu for importing GHI items from export codes
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -15,7 +15,7 @@ function GHI_ImportMenu()
 	if class then
 		return class;
 	end
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	class = GHClass("GHI_ImportMenu");
 	local menuFrame;
 	local miscAPI = GHI_MiscAPI().GetAPI();
@@ -36,12 +36,8 @@ function GHI_ImportMenu()
 	end
 
 	local OnShow = function()
-	--SetDefaultValues();
-
 		menuFrame.ForceLabel("code", "")
 	end
-
-
 
 	-- Menu setup
 	local icon = "Interface\\Icons\\INV_Crate_04";
@@ -97,7 +93,6 @@ function GHI_ImportMenu()
 		theme = "BlankTheme",
 		width = 350,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 	});
 	_G[menuFrame.GetLabelFrame("code"):GetName() .. "AreaScrollText"]:SetMaxLetters(50000)
 

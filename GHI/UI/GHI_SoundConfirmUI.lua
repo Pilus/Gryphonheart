@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_ChatConfirm
---  			GHI_ChatConfirmUI.lua
+--				GHI_ChatConfirmUI.lua
 --
---	   Permission confirm for SendChatMessages.
+--		Permission confirm for SendChatMessages.
 --
--- 	    (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			  All rights reserved
 --===================================================
 
@@ -19,10 +19,10 @@ function GHI_SoundConfirm()
 	class = GHClass("GHI_SoundConfirm");
 	local soundQueue = {};
 	local menuFrame;
-     local misc = GHI_MiscAPI().GetAPI()
+	local misc = GHI_MiscAPI().GetAPI()
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local containerAPI = GHI_ContainerAPI().GetAPI();
-     local loc = GHI_Loc();
+	local loc = GHI_Loc();
 	class.QueueSound = function(soundPath,player)
 		table.insert(soundQueue, {
 			soundPath = soundPath,
@@ -34,7 +34,6 @@ function GHI_SoundConfirm()
 	class.ShowWindow = function()
 		menuFrame.ForceLabel("text_sample", soundQueue[1].soundPath);
 		menuFrame.ForceLabel("text_player", string.format(loc.SOUNDCONFIRM_SEND_BY,soundQueue[1].player));
-
 		menuFrame:Show();
 	end
 
@@ -93,17 +92,6 @@ function GHI_SoundConfirm()
 						width = 290
 					},
 				},
-				--{
-				--	{
-				--		align = "c",
-				--		type = "Text",
-				--		label = "text_sample",
-				--		text = "MESSAGE SAMPLE",
-				--		fontSize = 11,
-				--		color = "orange",
-				--		width = 290
-				--	},
-				--},
 				{
 					{
 						height = 3,

@@ -3,9 +3,9 @@
 --				GHI_ExportMenu
 --  			GHI_ExportMenu.lua
 --
---	          (description)
+--			Menu for export of items
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -16,7 +16,7 @@ function GHI_ExportMenu()
 		return class;
 	end
 	class = GHClass("GHI_ExportMenu");
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	local menuFrame;
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local containerAPI = GHI_ContainerAPI().GetAPI();
@@ -24,9 +24,7 @@ function GHI_ExportMenu()
 	local itemGuid, amount, scriptBefore, req, scriptAfter, containerGuid, containerSlot;
 
 	class.StartExport = function()
-
 		local f = menuFrame;
-		--if f.ID and f.ExportID then
 		local ID = f.ID;
 		local exID = f.ExportID;
 		local amount = f.GetLabel("amount") or 1;
@@ -43,7 +41,6 @@ function GHI_ExportMenu()
 		-- pr char limitation
 		if prChar > 0 then
 			scriptBefore = scriptBefore .. " GHI_MiscData = (GHI_MiscData or {}); GHI_MiscData.Import = (GHI_MiscData.Import or {}); local n = GHI_MiscData.Import." .. exID .. "; if not(type(n) == \"number\") then n = 0; end  if not(n < " .. prChar .. ") then IMPORT_REQ = false end";
-
 			scriptAfter = scriptAfter .. " GHI_MiscData.Import." .. exID .. " = (GHI_MiscData.Import." .. exID .. " or 0)+1;"
 		end
 
@@ -56,40 +53,35 @@ function GHI_ExportMenu()
 			st[3] = "GetGuildInfo(\"player\")";
 			st[4] = "GetRealmName()"
 			if st[limitType] then
-				--scriptBefore = scriptBefore.." if not(strfind("..limitFilter..","..st[limitType]..") then IMPORT_REQ = false end";
 				scriptBefore = scriptBefore .. " local t = {strsplit(\",\",\"" .. limitFilter .. "\")}; local found; for i=1,#(t) do if strlower(strtrim(t[i] or \"\")) == strlower(" .. st[limitType] .. ") then found = true; end end if not(found == true) then IMPORT_REQ = false end"
 			end
 		end
 
-           -- print(changeID)
-
 		-- change creator
 		if changeCreator == 1 or changeCreator == true then
 			scriptAfter = scriptAfter .. " G_Import.item.creater = UnitName(\"player\");"
-
 			-- also change ID
 			scriptAfter = scriptAfter .. " G_Import.ID = GHI_GUID().MakeGUID();"
 		elseif changeID == 1 or changeID == true then -- change ID
 			scriptAfter = scriptAfter .. " G_Import.ID = GHI_GUID().MakeGUID();"
 		end
 
-
 		local s = containerAPI.GHI_GenerateExportCode(itemGuid, amount, scriptBefore, req, scriptAfter, containerGuid, containerSlot)
-
 		_G[f.GetLabelFrame("code"):GetName() .. "AreaScrollText"]:SetMaxLetters((s or ""):len() + 5)
 
-         if amount > 0 then
-		f.ForceLabel("code", s);
-         else
-          GHI_Message("Amount must be more then 0, Export halted.")
-         end
-	--end
+		if amount > 0 then
+			f.ForceLabel("code", s);
+		else
+			GHI_Message("Amount must be more then 0, Export halted.")
+		end
 	end
+
 	class.Show = function(guid,_containerGuid, _containerSlot)
 		containerGuid, containerSlot = _containerGuid, _containerSlot;
 		menuFrame:AnimatedShow();
 		itemGuid = guid;
 	end
+
 	local OnOk = function()
 		local main = menuFrame;
 		menuFrame.ForceLabel("code", "")
@@ -97,16 +89,14 @@ function GHI_ExportMenu()
 	end
 
 	local OnShow = function()
-	--SetDefaultValues();
 		menuFrame.ForceLabel("code", "")
-          menuFrame.ForceLabel("amount",1)
+		menuFrame.ForceLabel("amount",1)
 	end
-
-
 
 	-- Menu setup
 	local icon = "Interface\\Icons\\INV_Crate_04";
-	menuFrame = GHM_NewFrame(class, {
+	menuFrame = GHM_NewFrame(class,
+	{
 		OnShow = OnShow,
 		OnOk = function(self) end,
 		{
@@ -122,7 +112,7 @@ function GHI_ExportMenu()
 				},
 			},
 			{
-                    {
+				{
 					height = 25,
 					type = "Dummy",
 					align = "l",
@@ -137,7 +127,7 @@ function GHI_ExportMenu()
 					width = 50,
 					numbersOnly = true,
 				},
-                    {
+				{
 					height = 25,
 					type = "Dummy",
 					align = "l",
@@ -154,23 +144,22 @@ function GHI_ExportMenu()
 				},
 			},
 			{
-                    {
+				{
 					height = 25,
 					type = "Dummy",
 					align = "l",
 					width = 5,
 				},
-                    {
+				{
 					type = "DropDown",
 					text = loc.LIMITED_TO,
 					width = 130,
 					align = "l",
-                         --width = 20,
 					label = "limitation_type",
 					returnIndex = true,
 					data = { loc.NONE, loc.CHARS, loc.GUILDS, loc.REALMS, loc.EXPORT_LUA_STATEMENT },
 				},
-                    {
+				{
 					height = 25,
 					type = "Dummy",
 					align = "c",
@@ -186,7 +175,6 @@ function GHI_ExportMenu()
 					numbersOnly = false,
 				},
 			},
-
 			{
 				{
 					type = "Text",
@@ -203,7 +191,6 @@ function GHI_ExportMenu()
 					width = 10,
 				},
 			},
-
 			{
 				{
 					type = "CheckBox",
@@ -220,7 +207,6 @@ function GHI_ExportMenu()
 					label = "changeCreator",
 				},
 			},
-
 			{
 				{
 					align = "c",
@@ -241,7 +227,6 @@ function GHI_ExportMenu()
 					height = 250,
 				},
 			},
-
 			{
 				{
 					height = 70,
@@ -271,12 +256,10 @@ function GHI_ExportMenu()
 			},
 		},
 		title = loc.EXPORT,
-		--height = 550,
 		name = "GHI_ExportMenuUI",
 		theme = "BlankTheme",
 		width = 400,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 	});
 
 	return class;

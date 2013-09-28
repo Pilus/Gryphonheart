@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_SoundMenu
---	GHI_SoundMenu.lua
+--					GHI_SoundMenu
+--				GHI_SoundMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -121,16 +121,12 @@ function GHI_SoundMenu(_OnOkCallback, _editAction)
 					OnSelect = function(path,duration)
 						if not(menuFrame) then return end
 						menuFrame.ForceLabel("currentSound", path);
-
-
 						local timeString = miscAPI.GHI_GetPreciseTimeString(duration);
 						if duration == 0.05 or duration == 0 then
 							timeString = "(Unknown)"
 						end
 						local coloredTimeString = miscAPI.GHI_ColorString(timeString, 0.0, 0.7, 0.5);
-
 						menuFrame.ForceLabel("duration", coloredTimeString);
-
 					end,
 				},
 			},
@@ -242,7 +238,6 @@ function GHI_SoundMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 400,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = function(self)
 			if not (menuFrame.playButton) then
 				local parent = menuFrame.GetLabelFrame("playSoundAnchor");
