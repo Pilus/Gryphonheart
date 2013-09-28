@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_EquipItemMenu
---	GHI_EquipItemMenu.lua
+--				GHI_EquipItemMenu
+--				GHI_EquipItemMenu.lua
 --
---	Simple action menu
+--		Simple action menu for equiping of wow item
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 		(c)2013 The Gryphonheart Team
+--			All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -25,12 +25,14 @@ function GHI_EquipItemMenu(_OnOkCallback, _editAction)
 			return;
 		end
 	end
+
 	for i, menu in pairs(menus) do
 		if not (menu.IsInUse()) then
 			menu.Show(_OnOkCallback, _editAction)
 			return menu
 		end
 	end
+
 	local class = GHClass(NAME);
 	table.insert(menus, class);
 
@@ -68,7 +70,6 @@ function GHI_EquipItemMenu(_OnOkCallback, _editAction)
 			Type = TYPE,
 			type_name = TYPE_LOC,
 			icon = ICON,
-			--details = string.sub(text, 0, 100), --need to add details.
 			item_name = itemname,
 			delay = delay,
 		};
@@ -123,7 +124,6 @@ function GHI_EquipItemMenu(_OnOkCallback, _editAction)
 					text = loc.DELAY,
 				},
 			},
-
 			{
 				{
 					type = "Dummy",
@@ -162,7 +162,6 @@ function GHI_EquipItemMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 375,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = ICON,
 		lineSpacing = 20,

@@ -1,9 +1,9 @@
 --===================================================
 --
---				GHI_UsageStatisticsManager
---  			GHI_UsageStatisticsManager.lua
+--			GHI_UsageStatisticsManager
+--			GHI_UsageStatisticsManager.lua
 --
---	          (description)
+--	Manager of GHI user statistics
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -16,7 +16,6 @@ function GHI_UsageStatisticsManager()
 		return class;
 	end
 	class = GHClass("GHI_UsageStatisticsManager");
-
 
 	local itemInfo = GHI_ItemInfoList();
 	local comm = GHI_Comm();
@@ -49,7 +48,6 @@ function GHI_UsageStatisticsManager()
 	return class;
 end
 
-
 local GatherStatistics = true;
 local Statistics = {};
 GHI_Event("GHI_LOADED",function()
@@ -67,7 +65,6 @@ GHI_SaveStatistic = function(index,index2)
 			if not(type(Statistics[index]) == "table") then
 				Statistics[index] = (Statistics[index] or 0) + 1;
 			end
-
 		else
 			if not(Statistics[index]) then Statistics[index]= {}; end
 			Statistics[index][index2] = (Statistics[index][index2] or 0) + 1;

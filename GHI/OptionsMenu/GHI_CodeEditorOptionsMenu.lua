@@ -3,9 +3,9 @@
 --				GHI_CodeEditorOptionsMenu
 --  			GHI_CodeEditorOptionsMenu.lua
 --
---	          (description)
+--	Options menu for code editor related options
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -13,8 +13,9 @@ local class;
 function GHI_CodeEditorOptionsMenu(parentName)
 	if class then
 		return class;
-     end
-     local loc = GHI_Loc()
+	end
+
+	local loc = GHI_Loc()
 	class = GHClass("GHI_CodeEditorOptionsMenu");
 	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
 
@@ -24,8 +25,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	local colorConfig = {};
 	local catagories = GHM_GetSyntaxCatagories();
 	local syntaxColorPreview
-		
-	
+
 	local colorCatObjs = {}
 	
 	local t = {
@@ -62,13 +62,12 @@ function GHI_CodeEditorOptionsMenu(parentName)
 					fontSize = 13,
 				}
 			},
-		}
-		,
+		},
 		OnShow = function()
 		end,
 		title = loc.SCRIPT_CODE_EDITOR_SETTINGS,
 		height = 400,
-				name = "GHI_OptionsCodeEditorSettingsFrame",
+		name = "GHI_OptionsCodeEditorSettingsFrame",
 		theme = "BlankTheme",
 		width = parentWidth,
 	}
@@ -87,29 +86,33 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		)
 	end
 	
-	table.insert(t[1],{colorCatObjs[1],colorCatObjs[2],colorCatObjs[3],{
-		type = "Button",
-		label = "ResetColors",
-		align = "r",
-		text = loc.SCRIPT_RESET_COLORS,
-		compact = false,
-		onclick = function(self)
-			LoadSyntaxColors(true);
-		end,
-	},	})
-	table.insert(t[1],{colorCatObjs[4],colorCatObjs[5], {
-					height = 170,
-					type = "Dummy",
-					yOff = -20,
-					xOff = 20,
-					align = "l",
-					width = 300,
-					label = "SyntaxColorAnchor"
-				},})
-	
-	--func = function(self, checked) UpdateSyntaxPreview(); end,
-
-	
+	table.insert(t[1],
+		{colorCatObjs[1],colorCatObjs[2],colorCatObjs[3],
+			{
+				type = "Button",
+				label = "ResetColors",
+				align = "r",
+				text = loc.SCRIPT_RESET_COLORS,
+				compact = false,
+				onclick = function(self)
+					LoadSyntaxColors(true);
+				end,
+			},
+		}
+	);
+	table.insert(t[1],
+		{colorCatObjs[4],colorCatObjs[5],
+			{
+				height = 170,
+				type = "Dummy",
+				yOff = -20,
+				xOff = 20,
+				align = "l",
+				width = 300,
+				label = "SyntaxColorAnchor"
+			},
+		}
+	);
 
 	local menuFrame = GHM_NewFrame(CreateFrame("frame"), t);
 
@@ -141,25 +144,25 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	
 	local function ToggleSyntaxHighlight(on)
 		if on == false then
-				local butt = menuFrame.GetLabelFrame("ResetColors")
-				local title = menuFrame.GetLabelFrame("color_title")
-				for i,v in pairs(colorCatObjs) do
-					local f = menuFrame.GetLabelFrame(v.label)
-					f:Hide()
-				end
-				butt:Hide()
-				syntaxColorPreview:Hide()
-				title:Hide()
+			local butt = menuFrame.GetLabelFrame("ResetColors")
+			local title = menuFrame.GetLabelFrame("color_title")
+			for i,v in pairs(colorCatObjs) do
+				local f = menuFrame.GetLabelFrame(v.label)
+				f:Hide()
+			end
+			butt:Hide()
+			syntaxColorPreview:Hide()
+			title:Hide()
 		elseif on == true then
-				local butt = menuFrame.GetLabelFrame("ResetColors")
-				local title = menuFrame.GetLabelFrame("color_title")
-				for i,v in pairs(colorCatObjs) do
-					local f = menuFrame.GetLabelFrame(v.label)
-					f:Show()
-				end
-				butt:Show()
-				syntaxColorPreview:Show()
-				title:Show()
+			local butt = menuFrame.GetLabelFrame("ResetColors")
+			local title = menuFrame.GetLabelFrame("color_title")
+			for i,v in pairs(colorCatObjs) do
+				local f = menuFrame.GetLabelFrame(v.label)
+				f:Show()
+			end
+			butt:Show()
+			syntaxColorPreview:Show()
+			title:Show()
 		end
 	end
 	
@@ -211,7 +214,6 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	
 	
 	LoadSyntaxColors = function(default)
-
 		for i,v in pairs(colorCatObjs) do
 				local label = v.label
 				local colorr,colorg,colorb = GHM_GetSyntaxColor(label,true)
@@ -262,9 +264,9 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	menuFrame.okay = function()
 		local t = GetSyntaxColorsTable();
 		for i,v in pairs(colorCatObjs) do
-				local label = v.label
-				local color = menuFrame.GetLabel(label)
-				GHM_SetSyntaxColor(label, color.r or color[1], color.g or color[2], color.b or color[3]);
+			local label = v.label
+			local color = menuFrame.GetLabel(label)
+			GHM_SetSyntaxColor(label, color.r or color[1], color.g or color[2], color.b or color[3]);
 		end
 		local useWideEditor = bool(menuFrame.GetLabel("useWideEditor"));
 		local syntaxDisabled = bool(menuFrame.GetLabel("disableSyntax"));

@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_MessageMenu
---	GHI_MessageMenu.lua
+--				GHI_MessageMenu
+--			GHI_MessageMenu.lua
 --
---	Simple action menu
+--			Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 		(c)2013 The Gryphonheart Team
+--			All rights reserved
 --===================================================
  local loc = GHI_Loc()
 local menus = {};

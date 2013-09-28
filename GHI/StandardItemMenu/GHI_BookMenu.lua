@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_BookMenu
---	GHI_BookMenu.lua
+--					GHI_BookMenu
+--				GHI_BookMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+--		(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -199,124 +199,122 @@ function GHI_BookMenu(_OnOkCallback, _editAction)
 		onOk = function(self) end,
 		{
 			{
-			  {
-				type = "Editbox",
-				text = loc.TITLE,
-				align = "c",
-				label = "bookTitle",
-				texture = "Tooltip",
-				width = 300,
-			  },
-			},
-			{
-			  {
-				type = "DropDown",
-				texture = "Tooltip",
-				width = 150,
-				label = "font",
-				align = "l",
-				text = "Font:",
-				data = fonts,
-			},
-			  {
-				type = "Editbox",
-				text = "N Size:",
-				align = "l",
-				label = "nSize",
-				texture = "Tooltip",
-				width = 60,
-				xOff = 10,
-				defaultValue = 15,
-                numbersOnly = true,
-			  },
-			  {
-				type = "Editbox",
-				text = "H1 Size:",
-				align = "l",
-				label = "h1Size",
-				texture = "Tooltip",
-				width = 60,
-				xOff = 10,
-				defaultValue = 24,
-                numbersOnly = true,
-			  },
-			  {
-				type = "Editbox",
-				text = "H2 Size:",
-				align = "l",
-				label = "h2Size",
-				texture = "Tooltip",
-				width = 60,
-				xOff = 10,
-				defaultValue = 19,
-                numbersOnly = true,
-			  },
-			},
-			{
-			  {
-				type = "DropDown",
-				texture = "Tooltip",
-				width = 150,
-				label = "mat",
-				align = "l",
-				text = loc.MATERIAL,
-				data = {
-					{ text = "Parchment",  index=1},
-					{ text = "Bronze",  index=2},
-					{ text = "Marble",  index=3},
-					{ text = "Silver",  index=4},
-					{ text = "Stone",  index=5},
-					{ text = "Vellum",  index=6},
-					{ text = "Auction",  index=7},
-					{ text = "Orc",  index=8},
-					{ text = "Tauren",  index=9},
-					{ text = "Forsaken",  index=10},
-					{ text = "Illidari",  index=11},
-					{ text = "Winter",  index=12},
-					{ text = "Valentine",  index=13},
-					
+				{
+					type = "Editbox",
+					text = loc.TITLE,
+					align = "c",
+					label = "bookTitle",
+					texture = "Tooltip",
+					width = 300,
 				},
-			  }, 
+			},
+			{
+				{
+					type = "DropDown",
+					texture = "Tooltip",
+					width = 150,
+					label = "font",
+					align = "l",
+					text = "Font:",
+					data = fonts,
+				},
+				{
+					type = "Editbox",
+					text = "N Size:",
+					align = "l",
+					label = "nSize",
+					texture = "Tooltip",
+					width = 60,
+					xOff = 10,
+					defaultValue = 15,
+					numbersOnly = true,
+				},
+				{
+					type = "Editbox",
+					text = "H1 Size:",
+					align = "l",
+					label = "h1Size",
+					texture = "Tooltip",
+					width = 60,
+					xOff = 10,
+					defaultValue = 24,
+					numbersOnly = true,
+				},
+				{
+					type = "Editbox",
+					text = "H2 Size:",
+					align = "l",
+					label = "h2Size",
+					texture = "Tooltip",
+					width = 60,
+					xOff = 10,
+					defaultValue = 19,
+					numbersOnly = true,
+				},
+			},
+			{
+				{
+					type = "DropDown",
+					texture = "Tooltip",
+					width = 150,
+					label = "mat",
+					align = "l",
+					text = loc.MATERIAL,
+					data = {
+						{ text = "Parchment",  index=1},
+						{ text = "Bronze",  index=2},
+						{ text = "Marble",  index=3},
+						{ text = "Silver",  index=4},
+						{ text = "Stone",  index=5},
+						{ text = "Vellum",  index=6},
+						{ text = "Auction",  index=7},
+						{ text = "Orc",  index=8},
+						{ text = "Tauren",  index=9},
+						{ text = "Forsaken",  index=10},
+						{ text = "Illidari",  index=11},
+						{ text = "Winter",  index=12},
+						{ text = "Valentine",  index=13},
+					},
+				},
 			},    
 			{      
-			  {
-				type = "MultiPageEditField",
-				align = "c",
-				width = 400,
-				height = 400,
-				label = "text",
-				HTMLtools = true,
-				toolbarButtons = {
-					{
-						texture = "Interface\\Icons\\INV_Misc_Spyglass_03",
-						func = function()
-						  local title = menuFrame.GetLabel("bookTitle")
-						  local material = menuFrame.GetLabel("material")
-						  local font = menuFrame.GetLabel("font")
-						  local N = menuFrame.GetLabel("nSize")
-						  local H1 = menuFrame.GetLabel("h1Size")
-						  local H2 = menuFrame.GetLabel("h2Size")
-						  local extraMat
-							for i,v in pairs(GHI_Stationeries) do
-								if material == "Illidari" then
-									extraMat = material
-									material = "Stone"
-								elseif material == i then
-									extraMat = i
-									material = "Parchment"
+				{
+					type = "MultiPageEditField",
+					align = "c",
+					width = 400,
+					height = 400,
+					label = "text",
+					HTMLtools = true,
+					toolbarButtons = {
+						{
+							texture = "Interface\\Icons\\INV_Misc_Spyglass_03",
+							func = function()
+								local title = menuFrame.GetLabel("bookTitle")
+								local material = menuFrame.GetLabel("material")
+								local font = menuFrame.GetLabel("font")
+								local N = menuFrame.GetLabel("nSize")
+								local H1 = menuFrame.GetLabel("h1Size")
+								local H2 = menuFrame.GetLabel("h2Size")
+								local extraMat
+								for i,v in pairs(GHI_Stationeries) do
+									if material == "Illidari" then
+										extraMat = material
+										material = "Stone"
+									elseif material == i then
+										extraMat = i
+										material = "Parchment"
+									end
 								end
-							end
-						  
-						  local textFrame = menuFrame.GetLabelFrame("text")
-						  local page = textFrame.currentPage
-						  local text = menuFrame.GetLabel("text")
 
-						  GHI_ShowBook("Preview", nil, title, text[page], 0, material, GHI_FontList[font], N, H1, H2,nil,nil,extraMat,nil)
-						end,
-						tooltip = "Preview Page",
-					},
-				}
-			  },
+								local textFrame = menuFrame.GetLabelFrame("text")
+								local page = textFrame.currentPage
+								local text = menuFrame.GetLabel("text")
+								GHI_ShowBook("Preview", nil, title, text[page], 0, material, GHI_FontList[font], N, H1, H2,nil,nil,extraMat,nil)
+							end,
+							tooltip = "Preview Page",
+						},
+					}
+				},
 			},
 			{
 				{
@@ -355,7 +353,7 @@ function GHI_BookMenu(_OnOkCallback, _editAction)
 				inUse = false;
 			end
 		end,
-		});		
+		});
 
 	class.Show(_OnOkCallback, _editAction)
 

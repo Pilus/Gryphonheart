@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_ConsumeItemMenu
---	GHI_ConsumeItemMenu.lua
+--				GHI_ConsumeItemMenu
+--			GHI_ConsumeItemMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+--		(c)2013 The Gryphonheart Team
+--			All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -87,7 +87,7 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 
 		local amount = menuFrame.GetLabel("amount");
 		local ItemInfo = menuFrame.GetLabel("ItemInfo");
-          local delay = menuFrame.GetLabel("delay");
+		local delay = menuFrame.GetLabel("delay");
 
 		local t = {
 			Type = "script",
@@ -98,7 +98,7 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 			amount = amount,
 			dynamic_rc = true,
 			id = menuFrame.produceGuid,
-               delay=delay;
+			delay=delay;
 		};
 
 		if (class.editAction) then
@@ -144,8 +144,6 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 					numbersOnly = true,
 					width = 45,
 				},
-
-
 				{
 					type = "Dummy",
 					height = 30,
@@ -166,8 +164,6 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 
 							local infoLine = "";
 							for _, line in pairs(lines) do
-
-
 								local linetext = miscAPI.GHI_ColorString(line.text, line.r, line.g, line.b)
 
 								if infoLine == "" then
@@ -178,7 +174,6 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 							end
 							menuFrame.ForceLabel("ItemInfo", infoLine)
 							menuFrame.produceGuid = guid;
-						--print("selecting",guid);
 						end);
 					end
 				},
@@ -245,7 +240,6 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 370,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = ICON,
 		lineSpacing = 10,

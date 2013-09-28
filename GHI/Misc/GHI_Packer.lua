@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_Packer
---  			GHI_Packer.lua
+--				GHI_Packer.lua
 --
---	          (description)
+--	Packing of serialized information into a string.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

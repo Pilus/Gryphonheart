@@ -1,12 +1,12 @@
 ﻿--===================================================
---									
---										GHI Ping
---									GHI_Ping.lua
 --
---						Manual ping to other clients
+--					GHI Ping
+--					GHI_Ping.lua
+--
+--			Manual ping to other clients
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 
 local class;
@@ -25,7 +25,7 @@ function GHI_Ping()
 	local comm = GHI_Comm();
 	local pingCallbackFuncs = {};
 
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 
 	CapitalizeFirstLetterOfString = function(str)
 		return strupper(strsub(str, 0, 1)) .. strlower(strsub(str, 2));

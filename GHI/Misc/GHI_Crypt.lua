@@ -3,7 +3,7 @@
 --				GHI_Crypt
 --  			GHI_Crypt.lua
 --
---	          (description)
+--	Class for encryption and decryption of strings
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

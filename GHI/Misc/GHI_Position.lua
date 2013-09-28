@@ -1,12 +1,12 @@
 --===================================================
 --									
---								GHI Position
---								GHI_Position.lua
+--					GHI Position
+--					GHI_Position.lua
 --
---			Information about position of the user
+--		Information about position of the user
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 
 local class
@@ -33,7 +33,6 @@ function GHI_Position()
 		end
 	end);
 
-
 	local Round = function(num,decimals)
 		if decimals then
 			return tonumber(string.format("%."..decimals.."f",num));
@@ -59,7 +58,7 @@ function GHI_Position()
 		f:GetScript("OnClick")(f)
 	end
 
-	local ResetMap = function() --print("restting to id",areaID)
+	local ResetMap = function()
 		SetMapToCurrentZone();
 		if GetCurrentMapAreaID() == areaID then
 			SetDungeonMapLevel(dungeonLevel);

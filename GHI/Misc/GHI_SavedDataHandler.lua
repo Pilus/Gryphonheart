@@ -3,7 +3,7 @@
 --			GHI_SavedDataHandler
 --			GHI_SavedData.lua
 --
---	          (description)
+--	Dynamic handler of saved data
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -79,9 +79,8 @@ function GHI_SavedData(saveTableName,subTableName)
 		cs_n = GenerateCS(saveTableName) + GenerateCS(UnitName("player")) + GenerateCS(GetRealmName());
 		GHI_CS = GHI_CS or {};
 		local cr = false;
-		--print("loading",saveTableName);
+
 		if not (UPGRADE_DETECTED) then
-			--if not( GHI_CS[cs_n]) then print("cs table not found for",cs_n) end
 			local cs = GHI_CS[cs_n] or {};
 			for i, v in pairs(data) do
 				if not (GenerateCS(v) == cs[UCS(i)]) then
@@ -89,13 +88,12 @@ function GHI_SavedData(saveTableName,subTableName)
 					cr = true;
 				end
 			end
-		else --print("Upgrade")
+		else
 			local cs = {};
 			for i, v in pairs(data) do
-				cs[UCS(i)] = GenerateCS(v); --print(i,"cs",cs[UCS(i)])
+				cs[UCS(i)] = GenerateCS(v);
 			end
 			GHI_CS[cs_n] = cs;
-			--print("CS table saved to",cs_n)
 		end
 		loaded = true;
 		if cr == true then

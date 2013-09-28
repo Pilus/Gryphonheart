@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_ExpressionMenu
---  			GHI_ExpressionMenu.lua
+--				GHI_ExpressionMenu.lua
 --
---	          Menu for GHI_Expression action
+--		Menu for GHI_Expression action
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local loc = GHI_Loc()
@@ -68,9 +68,6 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 
 	local OnOk = function()
 		local action;
-
-
-
 		local text = menuFrame.GetLabel("text");
 		local expressionType = menuFrame.GetLabel("type");
 		local delay = menuFrame.GetLabel("delay");
@@ -202,7 +199,6 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 400,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = icon,
 		lineSpacing = 20,

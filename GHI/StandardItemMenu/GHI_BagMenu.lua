@@ -1,14 +1,14 @@
 --===================================================
 --
---	GHI_BagMenu
---	GHI_BagMenu.lua
+--					GHI_BagMenu
+--				GHI_BagMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+--		(c)2013 The Gryphonheart Team
+--			All rights reserved
 --===================================================
- local loc = GHI_Loc()
+local loc = GHI_Loc()
 local menus = {};
 local miscAPI;
 local ICON = "Interface\\Icons\\INV_Misc_Bag_09_Blue";

@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_SimpleItemMenu
---  			GHI_SimpleItemMenu.lua
+--				GHI_SimpleItemMenu.lua
 --
---	          (description)
+--		Simple menu for creation of standard items
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -32,19 +32,21 @@ function GHI_SimpleItemMenu()
     local buttonList = {}
 	local menuIndex = 1;
 	
-    -- Pages
-    local page2, bagPage, bookPage, sayPage, emotePage, soundPage, messagePage, buffPage, equipPage, screenEffPage
-    
-    -- Item Setup Stuff
+	-- Pages
+	local page2, bagPage, bookPage, sayPage, emotePage, soundPage, messagePage, buffPage, equipPage, screenEffPage
+
+	-- Item Setup Stuff
 	local itemList = GHI_ItemInfoList();
 	local containerList = GHI_ContainerList();
 	local guidCreator = GHI_GUID();
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local inUse = false;
 	local selAct = 10
-    -- Default Action Selection
-    local actionSelection = {"none",loc.NONE}
-    -- Color and Texture Info
+
+	-- Default Action Selection
+	local actionSelection = {"none",loc.NONE}
+
+	-- Color and Texture Info
 	local textures = { "-Normal", "-Bank", "-Keyring" };
 	local textures_loc = { loc.NORMAL, loc.BANK, loc.KEYRING };
 	local fonts = {}
@@ -127,22 +129,20 @@ function GHI_SimpleItemMenu()
 			else
 				itemTooltip:Hide()
 			end
-			--itemTooltip:SetFrameStrata("MEDIUM");
-			--itemTooltip:SetFrameLevel(0)
 			itemTooltip:SetWidth(245)
 			itemTooltip:SetHeight(min(itemTooltip:GetHeight(), 180));
 		end
 	end
 	
 	local stationary = {
-				["Auction"] = "Parchment",
-				["Orc"] = "Parchment",
-				["Tauren"] = "Parchment",
-				["Forsaken"] = "Parchment",
-				["Illidari"] = "Stone",
-				["Winter"] = "Parchment",
-				["Vellum"] = "Parchment",
-			}
+		["Auction"] = "Parchment",
+		["Orc"] = "Parchment",
+		["Tauren"] = "Parchment",
+		["Forsaken"] = "Parchment",
+		["Illidari"] = "Stone",
+		["Winter"] = "Parchment",
+		["Vellum"] = "Parchment",
+	}
 
 	local actionToAdd = {}
 
@@ -159,7 +159,7 @@ function GHI_SimpleItemMenu()
 	}
 	
 	local defaultFormatting = function(i, v)
-			actionToAdd[i] = menuFrame.GetLabel(v)
+		actionToAdd[i] = menuFrame.GetLabel(v)
 	end
 	
 	local SpecialFormating = {
@@ -218,11 +218,10 @@ function GHI_SimpleItemMenu()
 			else
 				actionToAdd[i] = tonumber(menuFrame.GetLabel(v))
 			end
-		end,	
+		end,
 	}
 	
 	local specialProperties = function(selected)
-	
 		actionToAdd["Type"] = simpleActions[selected][1]
 		actionToAdd["type_name"] = simpleActions[selected][4]
 		actionToAdd["icon"] = simpleActions[selected][3]
@@ -242,7 +241,6 @@ function GHI_SimpleItemMenu()
 	end
 	
 	local function AddSelectedAction(selected)
-	
 		for i,v in pairs(actionPropertiesList[selected]) do
 			SpecialFormating[selected](i,v)
 		end
@@ -252,17 +250,14 @@ function GHI_SimpleItemMenu()
 		item.AddSimpleAction(action);
 		
 		actionToAdd = nil
-		actionToAdd ={}	
+		actionToAdd ={}
 	end
     
 	local OnOk = function()
-        if selAct <= 9 then
-     	   AddSelectedAction(selAct)		
-        end
-        
-		--if (edit) then
-			item.IncreaseVersion(true);
-		--end
+		if selAct <= 9 then
+			AddSelectedAction(selAct)
+		end
+		item.IncreaseVersion(true);
 		itemList.UpdateItem(item);
 		if not (edit) then
 			containerList.InsertItemInMainBag(item.GetGUID());
@@ -292,7 +287,7 @@ function GHI_SimpleItemMenu()
 					align = "l",
 					type = "Editbox",
 					text = loc.WHITE_TEXT_1;
-                         tooltip = loc.WHITE_TEXT_1_TT;
+					tooltip = loc.WHITE_TEXT_1_TT;
 					label = "white1",
 					texture = "Tooltip",
 					OnTextChanged = function(self)
@@ -320,7 +315,7 @@ function GHI_SimpleItemMenu()
 					align = "l",
 					type = "Editbox",
 					text = loc.YELLOW_QUOTE;
-                         tooltip = loc.YELLOW_QUOTE_TT;
+					tooltip = loc.YELLOW_QUOTE_TT;
 					label = "comment",
 					texture = "Tooltip",
 					OnTextChanged = function(self)
@@ -369,7 +364,7 @@ function GHI_SimpleItemMenu()
 				{
 					type = "StackSlider",
 					text = loc.STACK_SIZE,
-                         tooltip = loc.STACK_SIZE_TT;
+					tooltip = loc.STACK_SIZE_TT;
 					align = "l",
 					label = "stackSize",
 					OnValueChanged = function(size)
@@ -382,7 +377,6 @@ function GHI_SimpleItemMenu()
 					align = "c",
 					label = "consumed",
 					OnClick = function(self)
-
 						item.SetConsumed(self:GetChecked());
 					end
 				},
@@ -410,27 +404,27 @@ function GHI_SimpleItemMenu()
 			end
 		end,
 	};
-    t.OnOk = OnOk
-	
-    local editBagPage = {
-            {
-                {
-					type = "Text",
-                    fontSize = 16,
-					width = 490,
-					text = loc.SM_BAG_SET,
-					color = "Yellow",
-					align = "l",
-				},
-            },
-            {
-                {
+	t.OnOk = OnOk
+
+	local editBagPage = {
+		{
+			{
+				type = "Text",
+				fontSize = 16,
+				width = 490,
+				text = loc.SM_BAG_SET,
+				color = "Yellow",
+				align = "l",
+			},
+		},
+		{
+			{
 					type = "Dummy",
 					height = 25,
 					width = 1,
 					align = "l",
 				},
-            },
+			},
 			{
 				{
 					type = "Text",
@@ -460,9 +454,9 @@ function GHI_SimpleItemMenu()
 					returnIndex = true,
 				},
 			},
-    }
-    local editBookPage = {
-        {
+	}
+	local editBookPage = {
+		{
 			{
 				type = "Text",
 				text = loc.SM_BOOK_SET,
@@ -471,7 +465,7 @@ function GHI_SimpleItemMenu()
 				color = "yellow",
 				width = 490,
 			},
-        },
+		},
 		{
 			{
 				type = "Editbox",
@@ -504,9 +498,8 @@ function GHI_SimpleItemMenu()
 					{ text = "Illidari",  index=11},
 					{ text = "Winter",  index=12},
 					{ text = "Valentine",  index=13},
-					
 				},
-			  }, 
+			},
 		},
 		{
 			{
@@ -528,7 +521,7 @@ function GHI_SimpleItemMenu()
 				width = 50,
 				startText = "15",
 			},
-				{
+			{
 				type = "Editbox",
 				text = loc.H1,
 				align = "l",
@@ -557,162 +550,160 @@ function GHI_SimpleItemMenu()
 				label = "bookText",
 				HTMLtools = true,
 				toolbarButtons = {
-				  {
-					texture = "Interface\\Icons\\INV_Misc_Spyglass_03",
-					func = function()
-					  local title = menuFrame.GetLabel("bookTitle")
-						local text = menuFrame.GetLabel("bookText")
-						local material = menuFrame.GetLabel("bookMaterial")
-						local font = menuFrame.GetLabel("bookFont")
-						local N = menuFrame.GetLabel("nSize")
-						local H1 = menuFrame.GetLabel("h1Size")
-						local H2 = menuFrame.GetLabel("h2Size")
-						local extraMat
-						for i,v in pairs(GHI_Stationeries) do
-							if material == "Illidari" then
-								extraMat = material
-								material = "Stone"
-							elseif material == i then
-								extraMat = i
-								material = "Parchment"
+					{
+						texture = "Interface\\Icons\\INV_Misc_Spyglass_03",
+						func = function()
+							local title = menuFrame.GetLabel("bookTitle")
+							local text = menuFrame.GetLabel("bookText")
+							local material = menuFrame.GetLabel("bookMaterial")
+							local font = menuFrame.GetLabel("bookFont")
+							local N = menuFrame.GetLabel("nSize")
+							local H1 = menuFrame.GetLabel("h1Size")
+							local H2 = menuFrame.GetLabel("h2Size")
+							local extraMat
+							for i,v in pairs(GHI_Stationeries) do
+								if material == "Illidari" then
+									extraMat = material
+									material = "Stone"
+								elseif material == i then
+									extraMat = i
+									material = "Parchment"
+								end
 							end
-						end
-					  
-					  local textFrame = menuFrame.GetLabelFrame("bookText")
-					  local page = textFrame.currentPage
-
-					  GHI_ShowBook("Preview",nil,title, text[page], 0, material, GHI_FontList[font], N, H1, H2, nil,nil,extraMat,nil)
-					end,
-					tooltip = "Preview Page",
-				  },
+							local textFrame = menuFrame.GetLabelFrame("bookText")
+							local page = textFrame.currentPage
+							GHI_ShowBook("Preview",nil,title, text[page], 0, material, GHI_FontList[font], N, H1, H2, nil,nil,extraMat,nil)
+						end,
+						tooltip = "Preview Page",
+					},
 				},
 			},
 		},
-    }
-    local editSayPage = {
-        {
-                {
-                    type = "Text",
-                    text = loc.SM_SPEACH_SET,
-                    align = "l",
-                    fontSize = 16,
-                    color = "yellow",
-                    width = 490,
-                },
-        },
-        {
-				{
-					type = "Dummy",
-					height = 25,
-					width = 1,
-					align = "l",
-                },
-        },
-        {
-                {
-					type = "Text",
-					fontSize = 11,
-					width = 490,
-					text = loc.SM_SPEACH_TEXT,
-					color = "white",
-					align = "l",
-                },
-        },
-        {
-				{
-					align = "l",
-					type = "Editbox",
-					text = loc.TEXT;
-					label = "say_text",
-					width = 390,
-					texture = "Tooltip",
-					OnTextChanged = function(self)
-					end,
-				},
-				{
-					align = "r",
-					type = "Time",
-					text = loc.DELAY;
-					label = "say_delay",
-					width = 80,
-				},
-        },
-        {
-				{
-					type = "Dummy",
-					height = 60,
-					width = 10,
-					align = "l",
-				},
-				{
-					type = "Text",
-					fontSize = 11,
-					width = 490,
-					text = loc.EXPRESSION_TIP,
-					color = "white",
-					align = "l",
-				},
-        },
-    }
-    local editEmotePage = {
-        {
-                {
-                    type = "Text",
-                    text = loc.SM_EMOTE_SET,
-                    align = "l",
-                    fontSize = 16,
-                    color = "yellow",
-                    width = 400,
-                },
-        },
-        {
-                {
-					type = "Dummy",
-					height = 25,
-					width = 1,
-					align = "c",
-				},
-        },
-        {
-            {
-                align = "l",
-                type = "Editbox",
-                label = "emote_text",
-                width = 300,
-                text = loc.EMOTE,
-                texture = "Tooltip",
-                value = "",
-            },
-            {
-               align = "l",
-               type = "PlayButton",
-               width = 40,
-               yOff = -3,
-               onclick = function()
-                  local selEmote = menuFrame.GetLabel("emote_text");
-                  local isStdEmote
-                  for key,value in pairs(GHIemoteList) do
-                     if value ==  string.upper(selEmote) then
-                        isStdEmote = true
-                     end
-                  end
-                  if isStdEmote then
-                     DoEmote(string.upper(selEmote));
-                  else
-                     SendChatMessage(selEmote, EMOTE)
-                  end
-               end,
-            },
+	}
+	local editSayPage = {
+		{
 			{
-					align = "r",
-					type = "Time",
-					text = loc.DELAY;
-					label = "emote_delay",
-					tooltip = "",
-					width = 80,
+				type = "Text",
+				text = loc.SM_SPEACH_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 490,
 			},
-        },
-        {
+		},
+		{
+			{
+				type = "Dummy",
+				height = 25,
+				width = 1,
+				align = "l",
+			},
+		},
+		{
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 490,
+				text = loc.SM_SPEACH_TEXT,
+				color = "white",
+				align = "l",
+			},
+		},
+		{
+			{
+				align = "l",
+				type = "Editbox",
+				text = loc.TEXT;
+				label = "say_text",
+				width = 390,
+				texture = "Tooltip",
+				OnTextChanged = function(self)
+				end,
+			},
+			{
+				align = "r",
+				type = "Time",
+				text = loc.DELAY;
+				label = "say_delay",
+				width = 80,
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 60,
+				width = 10,
+				align = "l",
+			},
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 490,
+				text = loc.EXPRESSION_TIP,
+				color = "white",
+				align = "l",
+			},
+		},
+	}
+	local editEmotePage = {
+		{
+			{
+				type = "Text",
+				text = loc.SM_EMOTE_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 400,
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 25,
+				width = 1,
+				align = "c",
+			},
+		},
+		{
+			{
+				align = "l",
+				type = "Editbox",
+				label = "emote_text",
+				width = 300,
+				text = loc.EMOTE,
+				texture = "Tooltip",
+				value = "",
+			},
+			{
+				align = "l",
+				type = "PlayButton",
+				width = 40,
+				yOff = -3,
+				onclick = function()
+					local selEmote = menuFrame.GetLabel("emote_text");
+					local isStdEmote
+					for key,value in pairs(GHIemoteList) do
+						if value ==  string.upper(selEmote) then
+							isStdEmote = true
+						end
+					end
+					if isStdEmote then
+						DoEmote(string.upper(selEmote));
+					else
+						SendChatMessage(selEmote, EMOTE)
+					end
+				end,
+			},
+			{
+				align = "r",
+				type = "Time",
+				text = loc.DELAY;
+				label = "emote_delay",
+				tooltip = "",
+				width = 80,
+			},
+		},
+		{
 				{
 					type = "Dummy",
 					height = 60,
@@ -727,141 +718,140 @@ function GHI_SimpleItemMenu()
 					color = "white",
 					align = "l",
 				},
-        },
-    }
-    local editSoundPage = {
-        {
-                {
-                    type = "Text",
-                    text = loc.SM_SOUND_SET,
-                    align = "l",
-                    fontSize = 16,
-                    color = "yellow",
-                    width = 400,
-                },
-        },
-        {
-				{
-					type = "Dummy",
-					height = 20,
-					width = 10,
-					align = "l",
-				},
-				{
-					type = "Text",
-					fontSize = 11,
-					width = 490,
-					text = loc.SOUND_SEL,
-					color = "white",
-					align = "l",
-				},
-        },
-        {
-				{
-					align = "l",
-					type = "SoundSelection",
-					label = "simplesoundTree",
-					width = 400,
-					height = 180,
-					texture = "Tooltip",
-					OnSelect = function(path,duration)
-						if not(menuFrame) then return end
-						menuFrame.ForceLabel("simple_currentSound", path);
+		},
+	}
+	local editSoundPage = {
+		{
+			{
+				type = "Text",
+				text = loc.SM_SOUND_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 400,
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 20,
+				width = 10,
+				align = "l",
+			},
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 490,
+				text = loc.SOUND_SEL,
+				color = "white",
+				align = "l",
+					},
+		},
+		{
+			{
+				align = "l",
+				type = "SoundSelection",
+				label = "simplesoundTree",
+				width = 400,
+				height = 180,
+				texture = "Tooltip",
+				OnSelect = function(path,duration)
+					if not(menuFrame) then return end
+					menuFrame.ForceLabel("simple_currentSound", path);
 
 
-						local timeString = miscAPI.GHI_GetPreciseTimeString(duration);
-						if duration == 0.05 or duration == 0 then
-							timeString = "(Unknown)"
-						end
-						local coloredTimeString = miscAPI.GHI_ColorString(timeString, 0.0, 0.7, 0.5);
+					local timeString = miscAPI.GHI_GetPreciseTimeString(duration);
+					if duration == 0.05 or duration == 0 then
+						timeString = "(Unknown)"
+					end
+					local coloredTimeString = miscAPI.GHI_ColorString(timeString, 0.0, 0.7, 0.5);
 
-						menuFrame.ForceLabel("simple_soundDuration", coloredTimeString);
+					menuFrame.ForceLabel("simple_soundDuration", coloredTimeString);
 
-					end,
-				},
-				{
-					align = "r",
-					type = "Time",
-					text = loc.DELAY;
-					label = "sound_delay",
-					width = 80,
-					yOff = 60,
-				},
-        },
-        {
-				{
-					type = "Text",
-					fontSize = 11,
-					width = 150,
-					text = loc.CURRENTLY_SELECTED,
-					color = "yellow",
-					align = "l",
-					singleLine = true,
-				},
-				{
-					type = "PlayButton",
-					xOff = 20,
-                    yOff = 5,
-					align = "l",
-					label = "simplePlaySound",
-                    onclick = function(self)
-                            local path = menuFrame.GetLabel("simple_currentSound")
-                            if path then
-                                PlaySoundFile(path)
-                            else
-                                print("You have not chosen a sound yet.")
-                            end
-                    end,
-				},
-				{
-					type = "Editbox",
-					texture = "Tooltip",
-					label = "sound_range",
-					align = "r",
-					text = loc.RANGE,
-					numbersOnly = true,
-					width = 60,
-                    yOff = 40
-				},
-
-        },
-        {
-                {
-					type = "Text",
-					fontSize = 11,
-					width = 400,
-					height = 50,
-					text = loc.NONE,
-					color = "white",
-					align = "l",
-					label = "simple_currentSound",
-					singleLine = true,
-                    yOff = 6.
-				},
-				{
-					type = "Text",
-					fontSize = 11,
-					width = 250,
-					text = "",
-					color = "white",
-					yOff = -14,
-					align = "l",
-					label = "simple_soundDuration",
-					singleLine = true,
-				},
-        },
-    }
-    local editMessagePage = {
-        {
-                {
-                    type = "Text",
-                    text = loc.SM_MESS_SET,
-                    align = "l",
-                    fontSize = 16,
-                    color = "yellow",
-                    width = 400,
-                },
-        },
+				end,
+			},
+			{
+				align = "r",
+				type = "Time",
+				text = loc.DELAY;
+				label = "sound_delay",
+				width = 80,
+				yOff = 60,
+			},
+		},
+		{
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 150,
+				text = loc.CURRENTLY_SELECTED,
+				color = "yellow",
+				align = "l",
+				singleLine = true,
+			},
+			{
+				type = "PlayButton",
+				xOff = 20,
+				yOff = 5,
+				align = "l",
+				label = "simplePlaySound",
+				onclick = function(self)
+					local path = menuFrame.GetLabel("simple_currentSound")
+					if path then
+						PlaySoundFile(path)
+					else
+						print("You have not chosen a sound yet.")
+					end
+				end,
+			},
+			{
+				type = "Editbox",
+				texture = "Tooltip",
+				label = "sound_range",
+				align = "r",
+				text = loc.RANGE,
+				numbersOnly = true,
+				width = 60,
+				yOff = 40
+			},
+		},
+		{
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 400,
+				height = 50,
+				text = loc.NONE,
+				color = "white",
+				align = "l",
+				label = "simple_currentSound",
+				singleLine = true,
+				yOff = 6.
+			},
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 250,
+				text = "",
+				color = "white",
+				yOff = -14,
+				align = "l",
+				label = "simple_soundDuration",
+				singleLine = true,
+			},
+		},
+	}
+	local editMessagePage = {
+		{
+			{
+				type = "Text",
+				text = loc.SM_MESS_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 400,
+			},
+		},
 			{
 				{
 					type = "Dummy",
@@ -869,8 +859,8 @@ function GHI_SimpleItemMenu()
 					width = 10,
 					align = "c",
 				},
-            },
-            {
+			},
+			{
 				{
 					type = "Text",
 					fontSize = 11,
@@ -880,357 +870,354 @@ function GHI_SimpleItemMenu()
 					width = 400,
 				},
 			},
-        {
-				{
-					type = "Editbox",
-					text = loc.TEXT,
-					align = "l",
-					label = "mess_text",
-					width = 300,
-					texture = "Tooltip",
-				},
-				{
-					align = "r",
-					type = "Time",
-					text = loc.DELAY;
-					label = "mess_delay",
-					width = 80,
+		{
+			{
+				type = "Editbox",
+				text = loc.TEXT,
+				align = "l",
+				label = "mess_text",
+				width = 300,
+				texture = "Tooltip",
+			},
+			{
+				align = "r",
+				type = "Time",
+				text = loc.DELAY;
+				label = "mess_delay",
+				width = 80,
+			},
+		},
+		{
+			{
+				type = "RadioButtonSet",
+				text = loc.OUTPUT_TYPE,
+				align = "r",
+				label = "mess_type",
+				returnIndex = true,
+				data = { loc.CHAT_FRAME, loc.ERROR_MSG_FRAME },
+				texture = "Tooltip",
+			},
+			{
+				type = "Color2",
+				text = loc.COLOR,  --will need help localizing color as they are formated as a table, unsure on
+				align = "l",
+				label = "mess_color",
+				xOffset = -5,
+			},
+		},
+	}
+	local editBuffPage = {
+		{
+			{
+				type = "Text",
+				text = loc.SM_BUFF_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 400,
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 40,
+				width = 10,
+				align = "l",
+			},
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 490,
+				text = loc.BUFF_TEXT,
+				color = "white",
+				align = "l",
+			},
+		},
+		{
+			{
+				align = "l",
+				type = "Editbox",
+				texture = "Tooltip",
+				text = loc.BUFF_NAME,
+				label = "buff_name",
+				width = 300,
+			},
+			{
+				type = "Editbox",
+				texture = "Tooltip",
+				label = "buff_range",
+				align = "r",
+				text = loc.RANGE,
+				numbersOnly = true,
+				width = 60,
+			},
+			{
+				align = "r",
+				type = "Icon",
+				label = "buff_icon",
+				frameAlign = "r",
+				xOff = -100,
+				yOff = -10,
+				text = loc.ICON,
+				CloseOnChoosen = true,
+			},
+		},
+		{
+			{
+				align = "l",
+				type = "Editbox",
+				texture = "Tooltip",
+				text = loc.BUFF_DETAILS,
+				label = "buff_details",
+				width = 300,
+			},
+			{
+				type = "Editbox",
+				texture = "Tooltip",
+				label = "buff_amount",
+				align = "r",
+				text = loc.AMOUNT,
+				numbersOnly = true,
+				width = 60,
+			},
+		},
+		{
+			{
+				type = "DropDown",
+				texture = "Tooltip",
+				width = 155,
+				label = "buff_type",
+				align = "l",
+				text = loc.BUFF_TYPE,
+				returnIndex = true,
+				data = {
+					{ text = loc.TYPE_MAGIC, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Magic")},
+					{ text = loc.TYPE_CURSE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Curse")},
+					{ text = loc.TYPE_DISEASE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Disease")},
+					{ text = loc.TYPE_POISON, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Poison")},
+					{ text = loc.TYPE_PHYSICAL, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("none")},
 				},
 			},
 			{
-				{
-					type = "RadioButtonSet",
-					text = loc.OUTPUT_TYPE,
-					align = "r",
-					label = "mess_type",
-					returnIndex = true,
-					data = { loc.CHAT_FRAME, loc.ERROR_MSG_FRAME },
-					texture = "Tooltip",
-
+				type = "RadioButtonSet",
+				texture = "Tooltip",
+				width = 155,
+				label = "filter",
+				align = "c",
+				text = loc.BUFF_DEBUFF,
+				data = {
+					{ value = "Helpful", text = loc.HELPFUL},
+					{ value = "Harmful", text = loc.HARMFUL},
 				},
-				{
-					type = "Color2",
-					text = loc.COLOR,  --will need help localizing color as they are formated as a table, unsure on
-					align = "l",
-					label = "mess_color",
-                    xOffset = -5,
-				},
+				yOff = -10,
 			},
-    }
-	local editBuffPage = {
-      {
-        {
-          type = "Text",
-          text = loc.SM_BUFF_SET,
-          align = "l",
-          fontSize = 16,
-          color = "yellow",
-          width = 400,
-        },
-      },
-      {
-        {
-          type = "Dummy",
-          height = 40,
-          width = 10,
-          align = "l",
-        },
-        {
-          type = "Text",
-          fontSize = 11,
-          width = 490,
-          text = loc.BUFF_TEXT,
-          color = "white",
-          align = "l",
-        },
-      },
-      {
-        {
-          align = "l",
-          type = "Editbox",
-          texture = "Tooltip",
-          text = loc.BUFF_NAME,
-          label = "buff_name",
-          width = 300,
-        },
-        {
-          type = "Editbox",
-          texture = "Tooltip",
-          label = "buff_range",
-          align = "r",
-          text = loc.RANGE,
-          numbersOnly = true,
-          width = 60,
-        },
-        {
-          align = "r",
-          type = "Icon",
-          label = "buff_icon",
-          frameAlign = "r",
-          xOff = -100,
-		  yOff = -10,
-          text = loc.ICON,
-          CloseOnChoosen = true,
-        },
-        
-      },
-      {
-        {
-          align = "l",
-          type = "Editbox",
-          texture = "Tooltip",
-          text = loc.BUFF_DETAILS,
-          label = "buff_details",
-          width = 300,
-        },
-        {
-          type = "Editbox",
-          texture = "Tooltip",
-          label = "buff_amount",
-          align = "r",
-          text = loc.AMOUNT,
-          numbersOnly = true,
-          width = 60,
-        },
-      },
-      {
-        {
-			type = "DropDown",
-			texture = "Tooltip",
-			width = 155,
-			label = "buff_type",
-			align = "l",
-			text = loc.BUFF_TYPE,
-			returnIndex = true,
-			data = {
-				{ text = loc.TYPE_MAGIC, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Magic")},
-				{ text = loc.TYPE_CURSE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Curse")},
-				{ text = loc.TYPE_DISEASE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Disease")},
-				{ text = loc.TYPE_POISON, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Poison")},
-				{ text = loc.TYPE_PHYSICAL, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("none")},
-			},         
-        },
-        {
-			type = "RadioButtonSet",
-			texture = "Tooltip",
-			width = 155,
-			label = "filter",
-			align = "c",
-			text = loc.BUFF_DEBUFF,
-			data = {
-				{ value = "Helpful", text = loc.HELPFUL},
-				{ value = "Harmful", text = loc.HARMFUL},
+			{
+				align = "c",
+				type = "CheckBox",
+				text = loc.BUFF_ON_SELF,
+				label = "castOnSelf",
+				xOff = 100,
 			},
-			yOff = -10,
-        },
-        {
-          align = "c",
-          type = "CheckBox",
-          text = loc.BUFF_ON_SELF,
-          label = "castOnSelf",
-          xOff = 100,
-        },
-      },
-      {        
-        {
-          align = "l",
-          type = "Time",
-          text = loc.BUFF_DURATION,
-          label = "buff_duration",
-          yOff = -10,
-        },
-        {
-          align = "c",
-          type = "Time",
-          text = loc.DELAY;
-          label = "buff_delay",
-          width = 80,
-          yOff = -10,
-          xOff = -20,
-        },
-        {
-          align = "c",
-          type = "CheckBox",
-          text = loc.BUFF_UNTIL_CANCELED,
-          label = "until_canceled",
-          xOff = 120,
-          yOff = 20,
-          frameAlign = "l",
-        },
-      },
-      {
-        
-        {
-          align = "c",
-          type = "CheckBox",
-          text = loc.STACKABLE,
-          label = "stackable",
-          xOff = 92,
-          yOff = 27,
-        },                 
-      },
-    }
-    local editEquipPage = {
-        {
-                {
-                    type = "Text",
-                    text = loc.SM_EQUIP_SET,
-                    align = "l",
-                    fontSize = 16,
-                    color = "yellow",
-                    width = 400,
-                },
-        },
-        {
-				{
-					type = "Dummy",
-					height = 25,
-					width = 10,
-					align = "l",
-				},
-        },
-        {
-				{
-					type = "Text",
-					fontSize = 11,
-					width = 490,
-					text = loc.EQUIP_ITEM_TEXT,
-					color = "white",
-					align = "l",
-				},
-        },
-        {
-				{
-					align = "l",
-					type = "Editbox",
-					texture = "Tooltip",
-					text = loc.ITEM_NAME,
-					label = "item_name",
-					width = 200,
-				},
-				{
-					type = "Dummy",
-					height = 10,
-					width = 50,
-					align = "r",
-				},
-				{
-					align = "r",
-					type = "Time",
-					text = loc.DELAY;
-					label = "eq_delay",
-					width = 80,
-				},
-        },
-    }
-    local editScreenEffPage = {
-        {
-                {
-                    type = "Text",
-                    text = loc.SM_SCREEN_EFF_SET,
-                    align = "l",
-                    fontSize = 16,
-                    color = "yellow",
-                    width = 400,
-                },
-        },
-        {
-				{
-					type = "Dummy",
-					height = 25,
-					width = 10,
-					align = "l",
-				},
-        },
-        {
-				{
-					type = "Text",
-					fontSize = 11,
-					width = 490,
-					text = loc.SCREEN_EFFECT_TEXT,
-					color = "white",
-					align = "l",
-				},
 		},
 		{
-				{
-				   type = "Slider",
-				   align = "l",
-				   values = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1},
-				   label = "se_alpha",
-				   text = loc.ALPHA,
-				},				
-				{
-					type = "Time",
-					align = "c",
-					label = "se_duration",
-					text = loc.DURATION,
-					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-					startText = "0",
-				},
-				{
-					type = "Time",
-					align = "r",
-					label = "fade_in",
-					text = loc.SCREEN_EFFECT_FADEIN,
-					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-					startText = "0",
-				},
-        },
-        {
-				{
-					type = "Color2",
-					text = loc.COLOR,
-					align = "l",
-					label = "se_color",
-				},
-				{
-					type = "Dummy",
-					align = "l",
-					width = 10,
-					height = 60,
-				},
-				{
-					type = "Time",
-					align = "c",
-					label = "se_delay",
-					text = loc.DELAY,
-					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-					startText = "0",
-				},
-				{
-					type = "Time",
-					align = "r",
-					label = "fade_out",
-					text = loc.SCREEN_EFFECT_FADEOUT,
-					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
-					startText = "0",
-				},
-        },
-    }
+			{
+				align = "l",
+				type = "Time",
+				text = loc.BUFF_DURATION,
+				label = "buff_duration",
+				yOff = -10,
+			},
+			{
+				align = "c",
+				type = "Time",
+				text = loc.DELAY;
+				label = "buff_delay",
+				width = 80,
+				yOff = -10,
+				xOff = -20,
+			},
+			{
+				align = "c",
+				type = "CheckBox",
+				text = loc.BUFF_UNTIL_CANCELED,
+				label = "until_canceled",
+				xOff = 120,
+				yOff = 20,
+				frameAlign = "l",
+			},
+		},
+		{
+			{
+				align = "c",
+				type = "CheckBox",
+				text = loc.STACKABLE,
+				label = "stackable",
+				xOff = 92,
+				yOff = 27,
+			},
+		},
+	}
+	local editEquipPage = {
+		{
+			{
+				type = "Text",
+				text = loc.SM_EQUIP_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 400,
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 25,
+				width = 10,
+				align = "l",
+			},
+		},
+		{
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 490,
+				text = loc.EQUIP_ITEM_TEXT,
+				color = "white",
+				align = "l",
+			},
+		},
+		{
+			{
+				align = "l",
+				type = "Editbox",
+				texture = "Tooltip",
+				text = loc.ITEM_NAME,
+				label = "item_name",
+				width = 200,
+			},
+			{
+				type = "Dummy",
+				height = 10,
+				width = 50,
+				align = "r",
+			},
+			{
+				align = "r",
+				type = "Time",
+				text = loc.DELAY;
+				label = "eq_delay",
+				width = 80,
+			},
+		},
+	}
+	local editScreenEffPage = {
+		{
+			{
+				type = "Text",
+				text = loc.SM_SCREEN_EFF_SET,
+				align = "l",
+				fontSize = 16,
+				color = "yellow",
+				width = 400,
+			},
+		},
+		{
+			{
+				type = "Dummy",
+				height = 25,
+				width = 10,
+				align = "l",
+			},
+		},
+		{
+			{
+				type = "Text",
+				fontSize = 11,
+				width = 490,
+				text = loc.SCREEN_EFFECT_TEXT,
+				color = "white",
+				align = "l",
+			},
+		},
+		{
+			{
+				type = "Slider",
+				align = "l",
+				values = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1},
+				label = "se_alpha",
+				text = loc.ALPHA,
+			},
+			{
+				type = "Time",
+				align = "c",
+				label = "se_duration",
+				text = loc.DURATION,
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+				startText = "0",
+			},
+			{
+				type = "Time",
+				align = "r",
+				label = "fade_in",
+				text = loc.SCREEN_EFFECT_FADEIN,
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+				startText = "0",
+			},
+		},
+		{
+			{
+				type = "Color2",
+				text = loc.COLOR,
+				align = "l",
+				label = "se_color",
+			},
+			{
+				type = "Dummy",
+				align = "l",
+				width = 10,
+				height = 60,
+			},
+			{
+				type = "Time",
+				align = "c",
+				label = "se_delay",
+				text = loc.DELAY,
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+				startText = "0",
+			},
+			{
+				type = "Time",
+				align = "r",
+				label = "fade_out",
+				text = loc.SCREEN_EFFECT_FADEOUT,
+				values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
+				startText = "0",
+			},
+		},
+	}
 	
 	local actionPages = {bagPage, bookPage, sayPage, emotePage, soundPage, messagePage, buffPage, equipPage, screenEffPage}
 	
 	local activatePage = function(actionChosen)
 		bagPage.active, bookPage.active, sayPage.active, emotePage.active, soundPage.active, messagePage.active, buffPage.active, equipPage.active, screenEffPage.active = false
 		if actionChosen == 1 then
-		bookPage.active = true
+			bookPage.active = true
 		elseif actionChosen == 2 then
-		bagPage.active = true
+			bagPage.active = true
 		elseif actionChosen == 3 then
-		sayPage.active = true
+			sayPage.active = true
 		elseif actionChosen == 4 then
-		emotePage.active = true
+			emotePage.active = true
 		elseif actionChosen == 5 then
-		soundPage.active = true
+			soundPage.active = true
 		elseif actionChosen == 6 then
-		messagePage.active = true
+			messagePage.active = true
 		elseif actionChosen == 7 then
-		buffPage.active = true
+			buffPage.active = true
 		elseif actionChosen == 8 then
-		equipPage.active = true
+			equipPage.active = true
 		elseif actionChosen == 9 then
-		screenEffPage.active = true
+			screenEffPage.active = true
 		end
 		selAct = actionChosen
 		menuFrame.UpdatePages()
@@ -1312,38 +1299,37 @@ function GHI_SimpleItemMenu()
     
     
 	table.insert(t,1,selectActionPage);
-    table.insert(t,3,editBagPage);
-    table.insert(t,4,editBookPage);
-    table.insert(t,5,editSayPage);
-    table.insert(t,6,editEmotePage);
-    table.insert(t,7,editSoundPage);
-    table.insert(t,8,editMessagePage);
-    table.insert(t,9,editBuffPage);
-    table.insert(t,10,editEquipPage);
-    table.insert(t,11,editScreenEffPage);
-    
+	table.insert(t,3,editBagPage);
+	table.insert(t,4,editBookPage);
+	table.insert(t,5,editSayPage);
+	table.insert(t,6,editEmotePage);
+	table.insert(t,7,editSoundPage);
+	table.insert(t,8,editMessagePage);
+	table.insert(t,9,editBuffPage);
+	table.insert(t,10,editEquipPage);
+	table.insert(t,11,editScreenEffPage);
+
 	menuFrame = GHM_NewFrame(class, t);
 	page2 = _G[menuFrame:GetName().."_P2"];
-    bagPage = _G[menuFrame:GetName().."_P3"];
-    bookPage = _G[menuFrame:GetName().."_P4"];
-    sayPage = _G[menuFrame:GetName().."_P5"];
-    emotePage = _G[menuFrame:GetName().."_P6"];
-    soundPage = _G[menuFrame:GetName().."_P7"];
-    messagePage = _G[menuFrame:GetName().."_P8"];
-    buffPage = _G[menuFrame:GetName().."_P9"];
-    equipPage = _G[menuFrame:GetName().."_P10"];
-    screenEffPage = _G[menuFrame:GetName().."_P11"];
-	
+	bagPage = _G[menuFrame:GetName().."_P3"];
+	bookPage = _G[menuFrame:GetName().."_P4"];
+	sayPage = _G[menuFrame:GetName().."_P5"];
+	emotePage = _G[menuFrame:GetName().."_P6"];
+	soundPage = _G[menuFrame:GetName().."_P7"];
+	messagePage = _G[menuFrame:GetName().."_P8"];
+	buffPage = _G[menuFrame:GetName().."_P9"];
+	equipPage = _G[menuFrame:GetName().."_P10"];
+	screenEffPage = _G[menuFrame:GetName().."_P11"];
+
 	activatePage(selAct)
 
-    class.IsInUse = function() return inUse end
+	class.IsInUse = function() return inUse end
 	
-    class.GetItemGuid = function()
+	class.GetItemGuid = function()
 		return item.GetGUID();
 	end
     
 	class.New = function()
-
 		menuFrame:AnimatedShow();
 		menuFrame.SetPage(1);
 
@@ -1358,15 +1344,12 @@ function GHI_SimpleItemMenu()
 			return
 		end
 
-
-
 		item = editItem.CloneItem();
 
 		if editItem.IsAdvanced() then
 			edit = true;
 			return ConvertToAdvItem();
 		end
-
 
 		menuFrame:AnimatedShow();
 		menuFrame.SetPage(1);
@@ -1381,10 +1364,6 @@ function GHI_SimpleItemMenu()
 	menuFrame.OnPageChange = function(page)
 		UpdateTooltip();
 	end
-
-	menuFrame.window:AddScript("OnMinimize", function()
-
-	end);
 
 	return class;
 end

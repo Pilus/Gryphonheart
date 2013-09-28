@@ -1,9 +1,9 @@
 --===================================================
 --
---				GHI_MenuAppearanceOptionsMenu
---  			GHI_MenuAppearanceOptionsMenu.lua
+--		GHI_MenuAppearanceOptionsMenu
+--		GHI_MenuAppearanceOptionsMenu.lua
 --
---	          (description)
+--	Options menu for the appearance of GHM menus
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -113,6 +113,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		themes = GHI_MiscData.UI_Themes or {};
 		return #(PREDEFINED_THEMES) + #(themes) + 1;
 	end
+
 	local GetThemeInfo = function(i)
 		if i > #(PREDEFINED_THEMES) + #(themes) then
 			return "<"..loc.NEW_THEME..">";
@@ -179,9 +180,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		
 	end
 	
-	
-	
-			
 	local row1 = {}
 	local row2 = {}
 	
@@ -345,7 +343,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					align = "l",
 					width = parentWidth-100,
 				},
-							
 			},
 			{
 				{
@@ -455,8 +452,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		theme = "BlankTheme",
 		width = parentWidth,
 	}
-	
-	
 	local t = {
 		{
 			{

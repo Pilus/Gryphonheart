@@ -3,7 +3,7 @@
 --				GHI_CursorHandler
 --  			GHI_CursorHandler.lua
 --
---	          Handles cursor click, pickups and placements
+--	Handles cursor click, pickups and placements
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -40,7 +40,6 @@ function GHI_CursorHandler()
 		ClearCursor();
 		ResetCursor();
 		local setCursorCursorType = cursorType
-		--SetCursor(cursorType);
 
 		if cursorType == "ITEM" then
 			setCursorCursorType = "ITEM_CURSOR";
@@ -49,7 +48,6 @@ function GHI_CursorHandler()
 			cursorItemIcon.texture:SetTexture(cursorDetail);
 
 			local guid;
-
 			local id = gsub(type2,"_REF","");
 
 			if id == "GHI_ITEM" then
@@ -60,9 +58,6 @@ function GHI_CursorHandler()
 			end
 
 			actionBar.ShowAll(id,guid,cursorDetail,function() class.ClearCursor(); end);
-			--if type2 == "GHI_ITEM" or type2 == "GHI_ITEM_REF" then
-
-			--end
 		else
 			cursorItemIcon:Hide();
 		end

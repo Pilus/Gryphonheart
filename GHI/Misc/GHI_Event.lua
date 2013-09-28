@@ -3,11 +3,12 @@
 --				GHI_Event
 --  			GHI_Event.lua
 --
---	          Event handler for both blizzard events and internal events
+--	Event handler for both blizzard events and internal events
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
+local PRINT_HIGH_MEMORY_MSG = false;
 
 local class;
 local registered = {};
@@ -82,16 +83,16 @@ function GHI_Event(event, func, priority)
 						local priority = data.priority;
 						if (j==1 and priority == true) or (j==2 and not(priority)) then
 							func(unpack(eventTable));
-
-							--[[UpdateAddOnMemoryUsage()
-							local memoryBefore = GetAddOnMemoryUsage("GHI");
-							func(unpack(eventTable));
-							UpdateAddOnMemoryUsage()
-							local memoryDiff = GetAddOnMemoryUsage("GHI") - memoryBefore;
-							if (memoryDiff) > 0 then
-								print(memoryDiff,"event",event)
-								--error("high memory",memoryDiff)
-							end --]]
+							if PRINT_HIGH_MEMORY_MSG then
+								UpdateAddOnMemoryUsage()
+								local memoryBefore = GetAddOnMemoryUsage("GHI");
+								func(unpack(eventTable));
+								UpdateAddOnMemoryUsage()
+								local memoryDiff = GetAddOnMemoryUsage("GHI") - memoryBefore;
+								if (memoryDiff) > 0 then
+									print(memoryDiff,"event",event)
+								end
+							end
 						end
 					end
 				end
