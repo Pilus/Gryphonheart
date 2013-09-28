@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_ItemInfo_Access
---  			GHI_ItemInfo_Access.lua
+--				GHI_ItemInfo_Access.lua
 --
---	          (description)
+--	Holds the access related parts of item info
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

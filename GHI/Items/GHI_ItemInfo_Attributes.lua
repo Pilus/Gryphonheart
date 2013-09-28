@@ -3,7 +3,7 @@
 --				GHI_ItemInfo_Attributes
 --  			GHI_ItemInfo_Attributes.lua
 --
---	          (description)
+	--	Holds attribute information in itemss
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -91,7 +91,6 @@ function GHI_ItemInfo_Attributes(info)
 			t.attributes = attData;
 			t.stackOrder = stackOrder;
 		end
-
 
 		if OtherSerialize then
 			t = OtherSerialize(stype,t)

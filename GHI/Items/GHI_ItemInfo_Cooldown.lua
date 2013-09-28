@@ -3,7 +3,7 @@
 --				GHI_ItemInfo_Cooldown
 --  			GHI_ItemInfo_Cooldown.lua
 --
---	     Cooldown handler for GHI Item Info
+--		Cooldown handler for GHI Item Info
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -56,7 +56,6 @@ function GHI_ItemInfo_Cooldown(info)
 			t.rightClick.cooldown = cooldown;
 			t.rightClick.CD = cooldown;
 		end
-
 
 		if OtherSerialize then
 			t = OtherSerialize(stype,t)

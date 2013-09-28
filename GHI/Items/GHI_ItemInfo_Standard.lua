@@ -3,7 +3,7 @@
 --				GHI_ItemInfo_Standard
 --  			GHI_ItemInfo_Standard.lua
 --
---	          (description)
+--		Item information for standard itemss
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -226,7 +226,7 @@ function GHI_ItemInfo_Standard(info)
 
 					if action.info.portConnection then
 						for _,conn in pairs(action.info.portConnection) do
-							local otherInstance = dynActions[i+conn.instanceIndexDiff];  --  print("conn",conn.port,"setup","to:",otherInstance.instance.GetActionInfo())
+							local otherInstance = dynActions[i+conn.instanceIndexDiff];
 							otherInstance.instance.SetPortConnection(conn.port,action.instance,"setup");
 						end
 					elseif prev.info.nextPort then

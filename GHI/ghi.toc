@@ -38,7 +38,6 @@ Misc\GHI_UsageStatisticsSet.lua
 Misc\GHI_UsageStatisticsManager.lua
 Misc\GHI_GroupComm.lua
 
-Items\GHI_ItemUpdater.lua
 Items\GHI_ItemInfoList.lua
 Items\GHI_ItemInfo.lua
 Items\GHI_ItemInfo_Access.lua
@@ -79,21 +78,6 @@ ActionExecutors\GHI_BuffHandler.lua
 ActionExecutors\GHI_AreaSound.lua
 ActionExecutors\GHI_AreaBuff.lua
 ActionExecutors\GHI_ActionAPI.lua
-
-Document\GHI_DOC_Input.lua
-Document\GHI_DOC_Block.lua
-Document\GHI_DOC_Document.lua
-Document\GHI_DOC_Font.lua
-Document\GHI_DOC_Line.lua
-Document\GHI_DOC_Area.lua
-Document\GHI_DOC_Page.lua
-Document\GHI_DOC_PageLayout.lua
-Document\GHI_DOC_FontList.lua
-Document\GHI_DOC_CursorMarker.lua
-Document\GHI_DOC_DocumentTexture.lua
-Document\GHI_DOC_Texture.lua
-Document\GHI_DOC_TextureData.lua
-Document\GHI_DOC_KeySet.lua
 
 Map\GHI_Map.lua
 

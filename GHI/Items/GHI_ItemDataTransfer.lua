@@ -1,10 +1,10 @@
 ﻿--===================================================
 --									
---								GHI Item Data Transfer
---							GHI_ItemDataTransfer.lua
+--			GHI Item Data Transfer
+--			GHI_ItemDataTransfer.lua
 --
---	Syncronisation and transfering of item data betweet clients
---	
+--	Syncronisation and transfering of item data
+--				betweet clients
 -- 						(c)2013 The Gryphonheart Team
 --								All rights reserved
 --===================================================
@@ -20,7 +20,6 @@ function GHI_ItemDataTransfer()
 	local dynamicActionList = GHI_DynamicActionList();
 	local comm = GHI_Comm();
 	local log = GHI_Log();
-	--local itemUpdater = GHI_ItemUpdater(); -- This is most likely not needed anymore
 	local recieveItemFeedbackFunc = {};
 
 	class.AddRecieveDataItemFeedbackFunction = function(func)
@@ -66,7 +65,6 @@ function GHI_ItemDataTransfer()
 			data.guid = guid;
 		end
 		local recievedItem = GHI_ItemInfo(data);
-
 		local itemGotUpdated = itemInfoList.UpdateItem(recievedItem);
 
 		for _, f in pairs(recieveItemFeedbackFunc) do
@@ -126,12 +124,6 @@ function GHI_ItemDataTransfer()
 		if not(receivedActionData[guid]) or (time() - receivedActionData[guid] > 15) then -- skip if the await flag arrives just after the data
 			awaitingActionData[guid] = t;
 		end
-		--[[local item = itemInfoList.GetItemInfo(guid);
-		if item then
-			item.SetItemDataArrivalTime(t);
-		else
-			print("No item to save data in",guid,t)
-		end--]]
 	end
 
 	class.GetAwaitingActionDataTime = function(guid)
@@ -166,7 +158,7 @@ function GHI_ItemDataTransfer()
 						class.SyncItemActionData(player, dependingGuid);
 					end,(i-1)*5+#(dependingItems)*2,true);
 				end
-				  --]]
+
 				receivedActionData[guid] = nil;
 				SetAwaitingActionDataTime(guid,time()+#(dependingItems)*10);
 				GHI_Timer(function() SetAwaitingActionDataTime(guid,nil); end,#(dependingItems)*10,true)

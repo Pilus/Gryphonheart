@@ -3,7 +3,7 @@
 --				GHI_ItemInfo_AdvTooltip
 --  			GHI_ItemInfo_AdvTooltip.lua
 --
---	          (description)
+--	Holds dynamic tooltip information for advanced itemss
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -210,7 +210,6 @@ function GHI_ItemInfo_AdvTooltip(info,inheritObject)
 				end
 			end
 		end
-
 
 		if OtherSerialize then
 			t = OtherSerialize(stype,t)

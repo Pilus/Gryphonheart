@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_ItemInfo_Advanced
---  			GHI_ItemInfo_Advanced.lua
+--				GHI_ItemInfo_Advanced.lua
 --
---	          (description)
+--	Holds general item information for advanced items
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -49,7 +49,6 @@ function GHI_ItemInfo_Advanced(info)
 		local itemList = GHI_ItemInfoList();
 		local thisDepending = dynamicActionSet.GetDependingItems(stack);
 
-		--local depending = {};
 		for _, itemGuid in pairs(thisDepending) do
 			if not (tContains(depending, itemGuid)) then
 				table.insert(depending,itemGuid);
