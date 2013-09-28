@@ -20,14 +20,31 @@ function GHI_CodeEditorOptionsMenu(parentName)
 
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local LoadSyntaxColors;
-	local UpdateSyntaxPreview;
+	local UpdateSyntaxPreview, ResetColors
 	local colorConfig = {};
-	local catagories = GHM_GetSyntaxCatagories();
 	local syntaxColorPreview
-		
+	local syntaxHighlight = GHM_CodeField_SyntaxHighlight()
+	local categories = syntaxHighlight.GHM_GetSyntaxCatagories();
 	
 	local colorCatObjs = {}
 	
+	for i,cata in pairs(categories) do
+		table.insert(colorCatObjs,
+			{
+				alight = "l",
+				type = "Color",
+				width = 100,
+				text = loc["SYNTAX_" .. string.upper(cata)] or cata,
+				tooltip = loc.SYNTAX_TT_1..loc["SYNTAX_" .. string.upper(cata)]..loc.SYNTAX_TT_2,
+				label = cata,
+				OnChange = function(r,g,b)
+					syntaxHighlight.GHM_SetSyntaxColor(cata, r, g, b)
+					UpdateSyntaxPreview()
+				end
+			}
+		)
+	end
+
 	local t = {
 		onOk = function(self) end,
 		{
@@ -41,26 +58,72 @@ function GHI_CodeEditorOptionsMenu(parentName)
 			},
 			{
 				{
-					align = "c",
+					align = "l",
 					type = "CheckBox",
 					text = loc.SCRIPT_USE_WIDE,
 					label = "useWideEditor",
 				},
 				{
-					align = "l",
+					align = "r",
 					type = "CheckBox",
 					text = loc.SCRIPT_DISABLE_SYNTAX,
 					label = "disableSyntax",
-				},				
+				},
 			},
 			{
 				{
+					height = 15,
+					type = "Dummy",
+					align = "l",
+					width = 20,
+				},
+				{
+					type = "HBar",
 					align = "c",
+					width = parentWidth-100,
+				},
+			},
+			{
+				{
+					align = "l",
 					type = "Text",
 					label = "color_title",
 					text = loc.OPT_SYNTAX_HIGHLIGHT_COLOR,
 					fontSize = 13,
-				}
+				},
+				{
+					height = 20,
+					type = "Dummy",
+					align = "l",
+					width = 20,
+				},
+			},
+			{
+				colorCatObjs[1],
+				colorCatObjs[2],
+				colorCatObjs[3],
+				colorCatObjs[4],
+				colorCatObjs[5],
+				{
+					type = "Button",
+					label = "ResetColors",
+					align = "r",
+					text = loc.SCRIPT_RESET_COLORS,
+					compact = false,
+					OnClick = function(self)
+						ResetColors()
+					end,
+				},
+			},
+			{
+				{
+					height = 170,
+					type = "Dummy",
+					align = "r",
+					yOff = -20,
+					width = 300,
+					label = "SyntaxColorAnchor"
+				},				
 			},
 		}
 		,
@@ -68,49 +131,11 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		end,
 		title = loc.SCRIPT_CODE_EDITOR_SETTINGS,
 		height = 400,
-				name = "GHI_OptionsCodeEditorSettingsFrame",
+		name = "GHI_OptionsCodeEditorSettingsFrame",
 		theme = "BlankTheme",
 		width = parentWidth,
 	}
 	
-	for i,cata in pairs(catagories) do
-		table.insert(colorCatObjs,
-		{
-			alight = "l",
-			type = "Color2",
-			xOff = 20,
-			text = loc["SYNTAX_" .. string.upper(cata)] or cata,
-			tooltip = "Sets the color to highlight "..loc["SYNTAX_" .. string.upper(cata)].." elements in.",
-			label = cata,
-			scale = 0.75,
-		}
-		)
-	end
-	
-	table.insert(t[1],{colorCatObjs[1],colorCatObjs[2],colorCatObjs[3],{
-		type = "Button",
-		label = "ResetColors",
-		align = "r",
-		text = loc.SCRIPT_RESET_COLORS,
-		compact = false,
-		onclick = function(self)
-			LoadSyntaxColors(true);
-		end,
-	},	})
-	table.insert(t[1],{colorCatObjs[4],colorCatObjs[5], {
-					height = 170,
-					type = "Dummy",
-					yOff = -20,
-					xOff = 20,
-					align = "l",
-					width = 300,
-					label = "SyntaxColorAnchor"
-				},})
-	
-	--func = function(self, checked) UpdateSyntaxPreview(); end,
-
-	
-
 	local menuFrame = GHM_NewFrame(CreateFrame("frame"), t);
 
 	syntaxColorPreview = CreateFrame("Frame", nil, menuFrame);
@@ -174,51 +199,37 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		end
 	)
 				
-	local GetSyntaxColorsTable = function()
-		local t = {};
-			for i,v in pairs(colorCatObjs) do
-				local label = v.label
-				local color = {}
-				color.r, color.g, color.b = GHM_GetSyntaxColor(label)
-				t[label] = color
-			end
-			
-		return t;
-	end
-
 	UpdateSyntaxPreview = function()
-		local syntax = {}
-		for i,v in pairs(colorCatObjs) do
-				local label = v.label
-				local color = menuFrame.GetLabel(label)
-				syntax[label] = {color.r, color.g, color.b}
-		end		
 		
-		local form = function(s, t)
-			return miscAPI.GHI_ColorString(s, t.r or t[1],t.g or t[2],t.b or t[3]);
+		local syntaxColors = syntaxHighlight.GHM_SyntaxColorList
+		local makePreviewLine = function(str, cat)
+			return miscAPI.GHI_ColorString(str, unpack(syntaxColors[cat]));
 		end
 		local strings = {
-			form("--Syntax colors example", (syntax.comment)),
-			form("local", (syntax.keyword)) .. " i = " .. form("12", (syntax.number)) .. ";",
-			form("if", (syntax.keyword)) .. " ( i > " .. form("10", (syntax.number)) .. ") " .. form("then", (syntax.keyword)),
-			"   print(" .. form("\"Hello World\"", (syntax.string)) .. ");",
-			form("   return", (syntax.keyword)) .. " " .. form("true", (syntax.boolean)) .. ";",
-			form("end", (syntax.keyword)),
+			makePreviewLine("--Syntax colors example", "comment"),
+			makePreviewLine("local", "keyword") .. " i = " .. makePreviewLine("12", "number") .. ";",
+			makePreviewLine("if", "keyword") .. " ( i > " .. makePreviewLine("10", "number") .. ") " .. makePreviewLine("then", "keyword"),
+			"   print(" .. makePreviewLine("\"Hello World\"", "string") .. ");",
+			makePreviewLine("   return", "keyword") .. " " .. makePreviewLine("true", "boolean") .. ";",
+			makePreviewLine("end", "keyword"),
 		};
 		local s = strjoin("\n", unpack(strings));
 		syntaxColorPreview.text:SetText(s)
 	end
 	
-	
-	LoadSyntaxColors = function(default)
-
-		for i,v in pairs(colorCatObjs) do
-				local label = v.label
-				local colorr,colorg,colorb = GHM_GetSyntaxColor(label,true)
-				menuFrame.ForceLabel(label,{colorr,colorg,colorb})
+	ResetColors = function()
+		syntaxHighlight.GHM_ResetSyntaxColors()
+		local syntaxColors = syntaxHighlight.GHM_SyntaxColorList
+		for cat,color in pairs(syntaxColors) do
+			menuFrame.ForceLabel(cat,color)	
 		end
-		
-		UpdateSyntaxPreview();
+	end
+	
+	local LoadSyntaxColors = function()
+		local syntaxColors = syntaxHighlight.GHM_SyntaxColorList
+			for cat,color in pairs(syntaxColors) do
+				menuFrame.ForceLabel(cat,color)	
+			end
 	end
 
 	local bool = function(b)
@@ -232,58 +243,37 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		menuFrame.ForceLabel("useWideEditor", useWideEditor)
 		local syntaxDisabled = bool(GHI_MiscData.syntaxDisabled);
 		menuFrame.ForceLabel("disableSyntax",syntaxDisabled);
-		LoadSyntaxColors()
-		UpdateSyntaxPreview();
-		
 		if syntaxDisabled == true then
 			ToggleSyntaxHighlight(false)
 		end
-		
+		LoadSyntaxColors()
 	end
 	
-	for i,v in pairs(colorCatObjs) do
-		local f = menuFrame.GetLabelFrame(v.label)
-		local _, mf = f:GetChildren()
-		local _, colorPick = mf:GetChildren()
-		colorPick:HookScript("OnColorSelect",function()
-			local r,g,b = colorPick:GetColorRGB()
-			UpdateSyntaxPreview()
-		end)
-	end
-
 	menuFrame.name = loc.SCRIPT_CODE_EDITOR;
 	menuFrame.refresh = function()
 		syntaxColorPreview:SetHeight(syntaxColorPreview:GetHeight());
-		LoadSyntaxColors();
-		UpdateSyntaxPreview();
-		LoadSettings();
+		UpdateSyntaxPreview()
+		LoadSettings()
 	end
 	
 	menuFrame.okay = function()
-		local t = GetSyntaxColorsTable();
-		for i,v in pairs(colorCatObjs) do
-				local label = v.label
-				local color = menuFrame.GetLabel(label)
-				GHM_SetSyntaxColor(label, color.r or color[1], color.g or color[2], color.b or color[3]);
-		end
 		local useWideEditor = bool(menuFrame.GetLabel("useWideEditor"));
 		local syntaxDisabled = bool(menuFrame.GetLabel("disableSyntax"));
 		GHI_ScriptMenu_UseWideEditor(useWideEditor);
 		GHI_MiscData.useWideEditor = useWideEditor;
 		GHI_MiscData.syntaxDisabled = syntaxDisabled
-		
+		GHI_MiscData.SyntaxColor = syntaxHighlight.GHM_SyntaxColorList
 	end;
 	
 	menuFrame.parent = parentName;
-
+	syntaxHighlight.GHM_LoadSyntaxColorList()
 	LoadSettings();
 
 	InterfaceOptions_AddCategory(menuFrame)
 
-	class.Show = function(cat)
+	class.Show = function()
 		InterfaceOptionsFrame_OpenToCategory(menuFrame);
 	end
 
 	return class;
 end
-
