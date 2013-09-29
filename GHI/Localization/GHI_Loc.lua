@@ -2356,14 +2356,14 @@ function GHI_Loc()
 		-- Add lookups to new table below this
 
 		local texts = textsContainer[key] or textsOptionsMain[key] or textsOptionsBag[key] or textsOptionsAppearance[key] or textsDynamicActionArea[key]
-                  or textsIconFrame[key] or textsPosInput[key] or textsVarAttInput[key] or textsBookUI[key] or textsSoundSelection[key]
-                  or textsImportExport[key] or textsWizard[key] or textsStandardMenu[key] or textsSTDBagMenu[key] or textsBookMenu[key]
-                  or textsBuffMenu[key] or textsConsumeItem[key] or textsEquipItem[key] or textsExpressionMenu[key] or textsMessageMenu[key]
-                  or textsProduceItemMenu[key] or textsRemoveBuffMenu[key] or textsScreenEffectMenu[key] or textsScriptMenu[key] or textsErr[key]
-				  or textsTime[key] or textsColors[key] or textsPing[key] or textsTrade[key] or textsTargetUI[key]
-                  or textsOptionsDebug[key] or textsOptionsWhitelist[key] or textsADVItemMenu[key] or textsAttributeMenu[key]
-                  or textsSeqMenu[key] or textsTTMenu[key] or textsMergeRule[key] or textsChatConfirm[key] or textsSimpleItemMenu[key] or textsStdEmoteMenu[key]
-				  or textsEquipmentDisplay[key] or textsViewAttributeMenu[key] or textsSoundConfirm[key] or textsMacroMenu[key] or textsPronouns[key];
+			or textsIconFrame[key] or textsPosInput[key] or textsVarAttInput[key] or textsBookUI[key] or textsSoundSelection[key]
+			or textsImportExport[key] or textsWizard[key] or textsStandardMenu[key] or textsSTDBagMenu[key] or textsBookMenu[key]
+			or textsBuffMenu[key] or textsConsumeItem[key] or textsEquipItem[key] or textsExpressionMenu[key] or textsMessageMenu[key]
+			or textsProduceItemMenu[key] or textsRemoveBuffMenu[key] or textsScreenEffectMenu[key] or textsScriptMenu[key] or textsErr[key]
+			or textsTime[key] or textsColors[key] or textsPing[key] or textsTrade[key] or textsTargetUI[key]
+			or textsOptionsDebug[key] or textsOptionsWhitelist[key] or textsADVItemMenu[key] or textsAttributeMenu[key]
+			or textsSeqMenu[key] or textsTTMenu[key] or textsMergeRule[key] or textsChatConfirm[key] or textsSimpleItemMenu[key] or textsStdEmoteMenu[key]
+			or textsEquipmentDisplay[key] or textsViewAttributeMenu[key] or textsSoundConfirm[key] or textsMacroMenu[key] or textsPronouns[key];
 		if not(texts) then
 			print("Unknown localization:",key)
 			return "UNKNOWN"

@@ -2,18 +2,23 @@
 	<script file="ghm_icons.lua" />
 	<Frame name="GHM_Window" virtual="true">
 		<Scripts>
-			<OnLoad>GHM_Window_OnLoad(self);</OnLoad>
+			<OnLoad>
+				GHM_Window_OnLoad(self);
+			</OnLoad>
 		</Scripts>
 	</Frame>
 	<Frame name="GHM_Window_Test" virtual="true">
 		<Scripts>
-			<OnLoad>GHM_Window_Test_OnLoad(self);</OnLoad>
+			<OnLoad>
+				GHM_Window_Test_OnLoad(self);
+			</OnLoad>
 		</Scripts>
 	</Frame>
 	<!--  Submodule templates -->
 	<CheckButton name="GHM_ChooseIconMenuButtonTemplate" inherits="ItemButtonTemplate" virtual="true">
 		<Scripts>
-			<OnLoad>self:SetScript("OnMouseWheel",function(self,arg1,arg2)
+			<OnLoad>
+				self:SetScript("OnMouseWheel",function(self,arg1,arg2)
 				local bar = _G[self:GetParent():GetName().."ScrollBar"];
 				self = bar;
 				local val = max((FauxScrollFrame_GetOffset(bar) - arg1)*16,0);
@@ -98,7 +103,9 @@
 			<AbsDimension x="10" y="154" />
 		</Size>
 		<Scripts>
-			<OnVerticalScroll>FauxScrollFrame_OnVerticalScroll(self,offset,self:GetParent().lines*3, self:GetScript("OnShow")); --</OnVerticalScroll>
+			<OnVerticalScroll>
+				FauxScrollFrame_OnVerticalScroll(self,offset,self:GetParent().lines*3, self:GetScript("OnShow"));
+			</OnVerticalScroll>
 			<OnShow />
 		</Scripts>
 	</ScrollFrame>
@@ -118,7 +125,8 @@
 				-- Set the position
 				self:GetParent():ClearAllPoints();
 				self:GetParent():SetPoint("TOP", UIParent, "BOTTOMLEFT", xpos, ypos);
-					end</OnUpdate>
+					end
+			</OnUpdate>
 		</Scripts>
 	</Button>
 	<!--  Frame templates -->
@@ -1114,7 +1122,6 @@
 		</ThumbTexture>
 	</Slider>
 	<Slider name="GHM_TimeSlider_Template" minValue="1" maxValue="19" defaultValue="1" valueStep="1" orientation="Horizontal" virtual="true">
-		<!--<FrameSkin skinid="f15d4970-d66d-444e-bb2d-1ad102c87fed" frameid="f15d4976-d66d-444e-bb2d-1ad102c87fed" />-->
 		<Size>
 			<AbsDimension x="140" y="20" />
 		</Size>
