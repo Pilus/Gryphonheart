@@ -353,7 +353,7 @@ function GHI_StandardItemMenu()
 					label = "quality",
 					width = 150,
 					quality = true,
-					OnSelect = function(index, newValue)
+					OnValueChanged = function(newValue)
 						item.SetQuality(newValue);
 						UpdateTooltip();
 					end,
