@@ -11,8 +11,8 @@ end
 local frame = CreateFrame("Frame");
 frame:RegisterEvent("VARIABLES_LOADED")
 frame:SetScript("OnEvent",function()
-      local loaded = IsAddOnLoaded("GHI")
-     if not(loaded) then error("Gryphonheart Items (GHI) Must be loaded with GHM") return end
+	local loaded = IsAddOnLoaded("GHI")
+	if not(loaded) then error("Gryphonheart Items (GHI) Must be loaded with GHM") return end
 	local loc = GHI_Loc();
 	for _,f in pairs(framesToLocalize) do
 		loc.LocalizeFrame(frame);
@@ -97,8 +97,6 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 
 	local main = givenMain or parent:GetParent():GetParent();
 
-	--print("Create obj",profile.type)
-
 	-- new object format
 	if type(_G["GHM_" .. profile.type]) == "function" then
 		local obj = _G["GHM_" .. profile.type](parent, main, profile)
@@ -110,12 +108,10 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		return obj:GetHeight();
 	end
 
-
 	local offsetX = 0;
 	local offsetY = 0;
 	local extraX = 0;
 	local extraY = 0;
-
 
 	--	Create object
 	local obj = CreateFrame(GetFrameType(profile.type), parent:GetName() .. "_O" .. num, parent, "GHM_" .. profile.type .. "_Template");
@@ -140,7 +136,6 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		label:SetText(profile.text);
 		if profile.color == "white" then
 			label:SetTextColor(1, 1, 1);
-			--GHI_Message("Making "..obj:GetName().." white");
 		end
 
 		if profile.align == "c" then
@@ -163,7 +158,6 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 
 		height = label:GetHeight();
 	elseif profile.type == "Editbox" then
-
 
 	elseif profile.type == "StackSlider" then
 		local label = _G[obj:GetName() .. "TextLabel"];
@@ -270,12 +264,6 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		offsetY = -5;
 		extraX = 0;
 		obj.OnValueChanged = profile.OnValueChanged;
-		-- (obj:GetWidth()/2)
-		--if profile.align == "r" then
-		--	extraX = extraX - 87;
-		--elseif profile.align == "c" then
-		--	extraX = extraX; -- 40;
-		--end
 		obj:Hide();
 		obj:Show();
 	elseif profile.type == "CustomDD" then
@@ -334,14 +322,6 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 
 		height = height + label:GetHeight();
 		offsetY = -5;
-		--[[
-		extraX = - (obj:GetWidth()/2)
-		if profile.align == "r" then
-			extraX = extraX - 87;
-		elseif profile.align == "c" then
-			extraX = extraX - 40;
-		end 
-		]]
 		obj.returnIndex = profile.returnIndex;
 	elseif profile.type == "Button" then
 		local label = _G[obj:GetName() .. "Text"];
@@ -349,10 +329,6 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 			if type(profile.text) == "string" then
 				label:SetText(profile.text);
 			end
-			if profile.fontSize then
-				--label:SetFont("Fonts\\FRIZQT__.TTF",profile.fontSize);
-			end
-
 			if profile.compact == true then
 				obj:SetHeight(label:GetHeight() + 8);
 				obj:SetWidth(label:GetWidth() + 8);
@@ -482,12 +458,8 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		end
 	end
 
-	--GHI_Message((profile.label or "nil")..": "..type(profile.OnLoad));
 	if type(profile.OnLoad) == "function" then
-		--local This = self;
-		--this = obj;
 		profile.OnLoad(obj);
-		--self = This;
 	end
 	obj:Show();
 
@@ -536,7 +508,7 @@ local function CreatePage(num, profile, parent, lineSpacing)
 		local i = 1;
 		local offset = -(parent.frame_offset_y or 0);
 		lastestEditbox = nil
-		while type(profile[i]) == "table" do --and -offset <((parent.frame_offset_y or 0) + (parent.frame_y or 0)) do
+		while type(profile[i]) == "table" do
 
 			offset = GHM_CreateLine(i, profile[i], page, offset);
 			i = i + 1;
@@ -593,21 +565,13 @@ function GHM_LayerHandle(frame)
 	end
 end
 
-
-
 function GHM_NewFrame(self, profile)
-      local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	if type(profile) == "table" and type(profile.name) == "string" then
-		--[[
-		if _G[profile.name] then
-			Warning("A frame named "..profile.name.." already exsists.");
-			return _G[profile.name];
-		end --]]
 		local theme = profile.theme
 		if not (theme) then
 			theme = "StdTheme";
 		end
-
 
 		local main = CreateFrame("Frame", profile.name, UIParent, "GHM_" .. theme .. "_Template");
 		if _G[profile.name .. "TitleString"] then
@@ -698,8 +662,6 @@ function GHM_NewFrame(self, profile)
 		main.autohide = profile.autohide;
 		--print(main.currentPage)
 		main.madeBy = self;
-		--print("level ",main:GetFrameLevel());
-		--main:SetFrameLevel(main:GetFrameLevel()+5);--issue
 
 		if not (profile.height) then
 			main:SetHeight(main.pageHeight);
@@ -712,7 +674,6 @@ function GHM_NewFrame(self, profile)
 		end
 
 		if type(profile.OnShow) == "function" then
-			--main:SetScript("OnShow",profile.OnShow);
 			main.onShow = profile.OnShow; --changed due to layer handling
 		end
 		if type(profile.OnHide) == "function" then
@@ -732,7 +693,6 @@ function GHM_NewFrame(self, profile)
 						table.insert(pagesActive,i);
 					end
 				end
-
 
 				local currentIndex = 1;
 				for index,pageIndex in pairs(pagesActive) do
@@ -776,13 +736,12 @@ function GHM_NewFrame(self, profile)
 				end
 			end
 
-
 			main.bb:SetScript("OnClick", function(self)
 				local main = self:GetParent();
 				main.currentPage = self.targetPage;
-                    if DropDownList1:IsShown() then
-                         DropDownList1:Hide();
-                    end
+					if DropDownList1:IsShown() then
+						 DropDownList1:Hide();
+					end
 				main.UpdatePages()
 			end);
 
@@ -792,16 +751,16 @@ function GHM_NewFrame(self, profile)
 					main.OnOk(self);
 					if not (main.autohide == false) then
 						main:Hide();
-                         end
-                         if DropDownList1:IsShown() then
-                              DropDownList1:Hide();
-                         end
+					end
+					if DropDownList1:IsShown() then
+						DropDownList1:Hide();
+					end
 				else
 					main.currentPage = self.targetPage;
 					main.UpdatePages()
-                         if DropDownList1:IsShown() then
-                              DropDownList1:Hide();
-                         end
+					if DropDownList1:IsShown() then
+						DropDownList1:Hide();
+					end
 				end
 			end);
 
@@ -819,7 +778,6 @@ function GHM_NewFrame(self, profile)
 				main.pages[i].active = false;
 				main.UpdatePages();
 			end
-
 
 			main.UpdatePages();
 		elseif theme == "SpellBookTheme" then
@@ -855,7 +813,6 @@ function GHM_NewFrame(self, profile)
 		elseif theme == "BlankTheme" then
 		end
 
-
 		if profile.useWindow then
 			local window = CreateFrame("Frame", nil, UIParent, "GHM_Window");
 			window.settingUp = true;
@@ -863,9 +820,6 @@ function GHM_NewFrame(self, profile)
 			window:SetWidth(main:GetWidth() + 30);
 			window.menu = main;
 			window:SetHeight(main:GetHeight() + 30);
-
-			-- TestWin:SetPoint("TOPRIGHT",TestWin:GetParent(),"CENTER");
-			--window:SetPoint("CENTER",-5,0);
 
 			window:SetDevMode(false);
 			window:SetContent(main);
@@ -925,11 +879,7 @@ function GHM_NewFrame(self, profile)
 			window.TitleBar.bg:SetTexture(GHM_GetTitleBarColor());
 			window.TopBgFrame:SetFrameLevel(window.BgFrame:GetFrameLevel() + 1);
 
-
 			window:SetFrameStrata("MEDIUM");
-
-			--window.Height = window:GetHeight();
-			--window.Width = window:GetWidth();
 
 			main:SetScript("OnShow", function(self) GHM_LayerHandle(self.window or self); if self.onShow then self.onShow(self); end end);
 			main:SetScript("OnHide", function(self) GHM_LayerHandle(self.window or self); if self.onHide then self.onHide(self); end end);
@@ -947,19 +897,12 @@ function GHM_NewFrame(self, profile)
 				self.window:AnimatedShow();
 			end
 
-			--GHM_UpdateMenuStringColors(main);
-
 			window.settingUp = false;
-
 			return main;
 		end
 
-
 		main:ClearAllPoints()
 		main:SetPoint("CENTER", UIParent, "CENTER", 0, 0);
-
-
-
 
 		-- layer handling
 		if main.onShow then
@@ -977,28 +920,9 @@ local GetColorDiff = function(r1, g1, b1, r2, g2, b2)
 	return abs(r1 - r2) + abs(g1 - g2) + abs(b1 - b2);
 end
 
---[[
-function GHM_UpdateMenuStringColors(frame)
-	local children = { frame:GetChildren() };
-	for _, child in ipairs(children) do
-		GHM_UpdateMenuStringColors(child);
-	end
-	local regions = { frame:GetRegions() };
-	for _, region in ipairs(regions) do
-		if region:GetObjectType() == "FontString" then
-			if GetColorDiff(1, 1, 1, region:GetTextColor()) < 0.02 then
-				region:SetTextColor(GHM_GetDetailsTextColor());
-			elseif GetColorDiff(1, 0.82, 0, region:GetTextColor()) < 0.02 then
-				region:SetTextColor(GHM_GetHeadTextColor());
-			end
-		end
-	end
-end   --]]
-
 --[[ Profile structure
 For wizard:
 	profile[x][y][z]   =  Info table about page x, line y, object z
-
 
 ]]
 local iconSearchString = nil;
@@ -1147,7 +1071,6 @@ end
 function GHM_SetUpRoundIcon(self, halfSize) --- Current issue
 	local m = 1;
 	if halfSize then m = 1.8; end
-	--local self = _G[self];
 	local res = 20
 	Warning("Setting up round icon");
 	local tex_x1 = 0.06;
@@ -1159,12 +1082,9 @@ function GHM_SetUpRoundIcon(self, halfSize) --- Current issue
 	local xunit = (tex_x2 - tex_x1) / res;
 	local yunit = (tex_y2 - tex_y1) / res;
 
-	--local c = 1;
-
 	self:SetHeight(diameter);
 	self:SetWidth(diameter);
 	self:SetFrameLevel(0);
-
 
 	--[ [ New
 	local cir = {};
@@ -1305,7 +1225,6 @@ function GHM_SetUpRoundIcon(self, halfSize) --- Current issue
 		end
 	end
 
-	--print("round icon set")
 end
 
 
@@ -1381,355 +1300,3 @@ function GHM_ChatConfig_CreateCheckboxes(frame, checkBoxTable, checkBoxTemplate,
 	end
 end
 
-
-
---[[
-
-RC_List = {}
-RC_List[1] = {}
-RC_List[2] = {}
-RC_List[3] = {}
-RC_List[4] = {}
-RC_List[5] = {}
-RC_List[6] = {}
-RC_List[7] = {}
-RC_List[8] = {}
-RC_List[1]["type"]="Script";
-RC_List[1]["details"]="A script that do something";
-RC_List[2]["type"]="GHR";
-RC_List[2]["details"]="Stormwind Militia";
-RC_List[2]["req"]=3;
-RC_List[3]["type"]="Bag";
-RC_List[3]["details"]="4 slots";
-RC_List[3]["req"]=2;
-RC_List[4]["type"]="Expression";
-RC_List[4]["details"]="looks around.";
-RC_List[5]["type"]="Expression";
-RC_List[5]["details"]="For Stormwind.";
-RC_List[6]["type"]="Random expression";
-RC_List[6]["details"]="Six expressions";
-RC_List[7]["req"]=1;
-RC_List[7]["type"]="Script";
-RC_List[7]["details"]="while( (drunk == true or drunk == false) and awake == true and self:GetNearstAleSupply():GetStorageAmount() > 0) do self.Drink(beer) end";
-RC_List[8]["type"]="Letter/Book";
-RC_List[8]["details"]="2 pages";
-local obj = {};
-
-TestProfile = {};
-TestProfile.name = "GHM_Tester";
-TestProfile.title = "Create new GHI item";
-TestProfile.theme = "WizardTheme";
-TestProfile.height = 512;
-TestProfile.OnOk = function()  end
-TestProfile.icon = "Interface\\Icons\\Trade_Engineering";
-
-TestProfile[1] = {};
-TestProfile[1].name = "Generel";
-TestProfile[1][1] = {};
-TestProfile[1][2] = {};
-TestProfile[1][3] = {};
-TestProfile[1][4] = {};
-TestProfile[1][5] = {};
-TestProfile[1][6] = {};
-TestProfile[1][7] = {};
-TestProfile[1][8] = {};
-TestProfile[1][9] = {};
-TestProfile[1][10] = {};
-
-
-TestProfile[2] = {};
-TestProfile[2].name = "Right Click";
-TestProfile[2][1] = {};
-TestProfile[2][2] = {};
-TestProfile[2][3] = {};
-TestProfile[2][4] = {};
-TestProfile[2][5] = {};
-TestProfile[2][6] = {};
-TestProfile[2][7] = {};
-
-local obj2 = {};
-
-obj = {};
-obj.type = "List";
-obj.lines = 6;
-obj.align = "c";
-obj.label = "RCList";
-obj2 = {};
-obj2[1] = {}
-obj2[1].type = "Icon";
-obj2[1].catagory = "";
-obj2[1].width = 20;
-obj2[1].label = "icon";
-obj2[2] = {}
-obj2[2].type = "Text";
-obj2[2].catagory = "Type";
-obj2[2].width = 120;
-obj2[2].label = "type";
-obj2[3] = {}
-obj2[3].type = "Text";
-obj2[3].catagory = "Details";
-obj2[3].width = 200;
-obj2[3].label = "details";
-obj2[4] = {}
-obj2[4].type = "CycleButton";
-obj2[4].cycles = {"Run Always","is forfilled","is not forfilled"};
-obj2[4].catagory = "Run When Req.";
-obj2[4].width = 100;
-obj2[4].label = "req";
-obj.column = obj2;
-table.insert(TestProfile[2][2],obj);
-
-
-
-obj = {};
-obj.type = "Text";
-obj.fontSize = 16;
-obj.text = "General Item Info";
-obj.align = "c";
-table.insert(TestProfile[1][1],obj);
-
-obj = {};
-obj.type = "Text";
-obj.fontSize = 11;
-obj.text = "Buff";
-obj.align = "l";
-obj.width = 40
-obj.singleLine = true;
-table.insert(TestProfile[1][2],obj);
-
-obj = {};
-obj.type = "Text";
-obj.fontSize = 11;
-obj.text = "A Holy Blessing";
-obj.align = "l";
-obj.width = 80
-obj.singleLine = true;
-table.insert(TestProfile[1][2],obj);
-
-obj = {};
-obj.type = "Button";
-obj.text = "Run Always";
-obj.align = "l";
-obj.label = "button1";
-obj.compact = true;
-obj.onclick = function()  end
-obj.width = 80;
-table.insert(TestProfile[1][2],obj);
-
-obj = {};
-obj.type = "Button";
-obj.text = "Clicky";
-obj.align = "r";
-obj.label = "button2";
-obj.compact = true;
-obj.onclick = function()  end
-obj.width = 50;
-table.insert(TestProfile[1][2],obj);
-
-
-obj = {};
-obj.type = "Editbox";
-obj.text = "Name:";
-obj.align = "l";
-obj.label = "name";
-table.insert(TestProfile[1][3],obj);
-
-obj = {};
-obj.type = "QualityDD";
-obj.text = "Quality:";
-obj.align = "c";
-obj.label = "quality";
-table.insert(TestProfile[1][3],obj);
-
-obj = {};
-obj.type = "Icon";
-obj.text = "Icon:";
-obj.align = "r";
-obj.label = "icon";
-obj.framealign = "r";
-obj.CloseOnChoosen = true;
-table.insert(TestProfile[1][3],obj);
-
-obj = {};
-obj.type = "Editbox";
-obj.text = "White text 1:";
-obj.align = "c";
-obj.label = "white1";
-table.insert(TestProfile[1][4],obj);
-
-obj = {};
-obj.type = "Editbox";
-obj.text = "White text 2:";
-obj.align = "c";
-obj.label = "white2";
-table.insert(TestProfile[1][5],obj);
-
-obj = {};
-obj.type = "Editbox";
-obj.text = "Yellow quoted text:";
-obj.align = "c";
-obj.label = "quote";
-table.insert(TestProfile[1][6],obj);
-
-obj = {};
-obj.type = "Editbox";
-obj.text = "Amount:";
-obj.align = "r";
-obj.label = "amount";
-obj.width = 50;
-obj.numbersOnly = true;
-table.insert(TestProfile[1][7],obj);
-
-obj = {};
-obj.type = "StackSlider";
-obj.text = "Stack Size:";
-obj.align = "c";
-obj.label = "stackSize";
-table.insert(TestProfile[1][7],obj);
-
-obj = {};
-obj.type = "CheckBox";
-obj.text = "Copyable by others";
-obj.align = "l";
-obj.label = "copyable";
-table.insert(TestProfile[1][7],obj);
-
-obj = {};
-obj.type = "TimeSlider";
-obj.text = "Item duration:";
-obj.align = "c";
-obj.label = "duration";
-obj.values = {0,1,5,10,15,30,60,90,120,60*5,60*10,60*15,60*30,60*60,60*90,60*60*2,60*60*5,60*60*10,60*60*20,60*60*24,60*60*24*2,60*60*24*7,60*60*24*14,60*60*24*30,60*60*24*30*2,60*60*24*30*3,60*60*24*30*6,60*60*24*365}
-table.insert(TestProfile[1][8],obj);
-
-obj = {};
-obj.type = "CheckBox";
-obj.text = "Start duration when traded";
-obj.align = "l";
-obj.label = "durationWhenTraded";
-table.insert(TestProfile[1][9],obj);
-
-obj = {};
-obj.type = "CheckBox";
-obj.text = "Use real time, instead of played time for duration.";
-obj.align = "c";
-obj.label = "durationWhenTraded";
-table.insert(TestProfile[1][9],obj);
-
-
-
-
-
-obj = {};
-obj.type = "Text";
-obj.fontSize = 16;
-obj.text = "Rightclick Actions";
-obj.align = "c";
-table.insert(TestProfile[2][1],obj);  --]]
-
---[[
-obj = {};
-obj.type = "Text";
-obj.fontSize = 18;
-obj.text = "CENTER!";
-obj.align = "c";
-obj.label = "headline";
-table.insert(TestProfile[1][1],obj);
-
-obj = {};
-obj.type = "Text";
-obj.fontSize = 11;
-obj.text = "Left";
-obj.align = "l";
-obj.label = "string1";
-table.insert(TestProfile[1][2],obj);
-
-obj = {};
-obj.type = "Editbox";
-obj.text = "Name:";
-obj.align = "c";
-obj.label = "Name";
-table.insert(TestProfile[1][3],obj);
-
-obj = {};
-obj.type = "Text";
-obj.fontSize = 11;
-obj.text = "After";
-obj.align = "c";
-obj.label = "string2";
-table.insert(TestProfile[1][4],obj);
-
-
-obj = {};
-obj.type = "StackSlider";
-obj.text = "Time to live:";
-obj.align = "r";
-obj.label = "stackSize";
-table.insert(TestProfile[1][5],obj);
-
-obj = {};
-obj.type = "TimeSlider";
-obj.text = "Name3:";
-obj.align = "l";
-obj.label = "time";
-table.insert(TestProfile[1][6],obj);
-
-
-obj = {};
-obj.type = "CheckBox";
-obj.text = "Choose";
-obj.align = "r";
-obj.label = "chosen";
-table.insert(TestProfile[1][7],obj);
-
-obj = {};
-obj.type = "QualityDD";
-obj.text = "Quality:";
-obj.align = "c";
-obj.label = "quality";
-table.insert(TestProfile[1][8],obj);
-
-obj = {};
-obj.type = "Icon";
-obj.text = "Icon:";
-obj.align = "r";
-obj.label = "icon";
-obj.framealign = "r";
-obj.CloseOnChoosen = true;
-table.insert(TestProfile[1][8],obj);
-
-obj = {};
-obj.type = "Icon";
-obj.text = "Icon:";
-obj.align = "c";
-obj.label = "icon";
-obj.CloseOnChoosen = true;
-table.insert(TestProfile[1][9],obj);
-
-
-obj = {};
-obj.type = "QualityDD";
-obj.text = "Quality:";
-obj.align = "r";
-obj.label = "quality2";
-obj.initPos = 4;
-table.insert(TestProfile[1][12],obj);
-
-obj = {};
-obj.type = "Button";
-obj.text = "Exit.";
-obj.align = "l";
-obj.label = "button1";
-obj.compact = false;
-obj.onclick = function() GHI_Message("clicked"); end
-table.insert(TestProfile[1][13],obj);
-
-obj = {};
-obj.type = "Icon";
-obj.text = "Icon:";
-obj.align = "c";
-obj.label = "icon";
-obj.CloseOnChoosen = true;
-table.insert(TestProfile[1][14],obj);
-
-]]

@@ -1,4 +1,3 @@
---- The following data is partly ripped from Ephemeral, modified and updated to TBC. Later updated to WotLK
 
 --[[
 Abstract = {"Ability", "Spell", "Trade"}
