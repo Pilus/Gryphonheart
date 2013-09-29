@@ -10,6 +10,7 @@
 --===================================================
 
 local class;
+
 function GHI_MiscAPI()
 	if class then
 		return class;
@@ -123,7 +124,7 @@ function GHI_MiscAPI()
 	api.GHI_ColorString = function(s, r, g, b)
 		if not (s) or s == "" then return ""; end;
 		if not (r) or not (g) or not (b) then return ""; end;
-		return "|CFF" .. string.format("%.2x", r * 255) .. string.format("%.2x", g * 255) .. string.format("%.2x", b * 255) .. s .. "|r";
+		return "|C" .. api.RGBAPercToHex(r,g,b,1) .. s .. "|r";
 	end
 
 	api.GHI_SetSelectItemCursor = function(clickFunction, clearFunction, identifier)
@@ -203,6 +204,26 @@ function GHI_MiscAPI()
 		return;
 	end
 
+	api.RGBAPercToHex = function(r, g, b, a)
+		if not(a) then a = 1 end
+		r = r <= 1 and r >= 0 and r or 0
+		g = g <= 1 and g >= 0 and g or 0
+		b = b <= 1 and b >= 0 and b or 0
+		a = a <= 1 and a >= 0 and a or 1
+		
+		return string.format("%02x%02x%02x%02x",a*255 ,r*255, g*255, b*255)
+	end
+	
+	api.HexToRGBAPerc = function(hex)
+		if strlen(hex) == 6 then
+			local rhex, ghex, bhex = string.sub(hex, 1,2), string.sub(hex, 3, 4), string.sub(hex, 5, 6)
+			return tonumber(rhex, 16)/255, tonumber(ghex, 16)/255, tonumber(bhex, 16)/255, 1
+		else
+			local ahex, rhex, ghex, bhex = string.sub(hex, 1,2), string.sub(hex, 3, 4), string.sub(hex, 5, 6), string.sub(hex, 7, 8)
+			return tonumber(rhex, 16)/255, tonumber(ghex, 16)/255, tonumber(bhex, 16)/255, tonumber(ahex, 16)/255
+		end
+	end
+	
 	local colors = {
 		red = { r = 1, g = 0.0, b = 0.0 },
 		white = { r = 1, g = 1, b = 1 },
@@ -223,28 +244,8 @@ function GHI_MiscAPI()
 		brown = { r = 0.5, g = 0.0, b = 0.0 },
 		gray = { r = 0.5, g = 0.5, b = 0.5 },
 		black = { r = 0, g = 0, b = 0 },
-		poor = {r =  ITEM_QUALITY_COLORS[0].r, g =  ITEM_QUALITY_COLORS[0].g, b =  ITEM_QUALITY_COLORS[0].b},
-		common = {r =  ITEM_QUALITY_COLORS[1].r, g =  ITEM_QUALITY_COLORS[1].g, b =  ITEM_QUALITY_COLORS[1].b},
-		uncommon = {r =  ITEM_QUALITY_COLORS[2].r, g =  ITEM_QUALITY_COLORS[2].g, b =  ITEM_QUALITY_COLORS[2].b},
-		rare = {r =  ITEM_QUALITY_COLORS[3].r, g =  ITEM_QUALITY_COLORS[3].g, b =  ITEM_QUALITY_COLORS[3].b},
-		epic = {r =  ITEM_QUALITY_COLORS[4].r, g =  ITEM_QUALITY_COLORS[4].g, b =  ITEM_QUALITY_COLORS[4].b},
-		legendary = {r =  ITEM_QUALITY_COLORS[5].r, g =  ITEM_QUALITY_COLORS[5].g, b =  ITEM_QUALITY_COLORS[5].b},
-		heirloom = {r =  ITEM_QUALITY_COLORS[6].r, g =  ITEM_QUALITY_COLORS[6].g, b =  ITEM_QUALITY_COLORS[6].b},
-		hunter = {r = RAID_CLASS_COLORS["HUNTER"].r, g = RAID_CLASS_COLORS["HUNTER"].g, b = RAID_CLASS_COLORS["HUNTER"].b},
-		warlock = {r = RAID_CLASS_COLORS["WARLOCK"].r, g = RAID_CLASS_COLORS["WARLOCK"].g, b = RAID_CLASS_COLORS["WARLOCK"].b},
-		priest = {r = RAID_CLASS_COLORS["PRIEST"].r, g = RAID_CLASS_COLORS["PRIEST"].g, b = RAID_CLASS_COLORS["PRIEST"].b},
-		paladin = {r = RAID_CLASS_COLORS["PALADIN"].r, g = RAID_CLASS_COLORS["PALADIN"].g, b = RAID_CLASS_COLORS["PALADIN"].b},
-		mage = {r = RAID_CLASS_COLORS["MAGE"].r, g = RAID_CLASS_COLORS["MAGE"].g, b = RAID_CLASS_COLORS["MAGE"].b},
-		rogue = {r = RAID_CLASS_COLORS["ROGUE"].r, g = RAID_CLASS_COLORS["ROGUE"].g, b = RAID_CLASS_COLORS["ROGUE"].b},
-		druid = {r = RAID_CLASS_COLORS["DRUID"].r, g = RAID_CLASS_COLORS["DRUID"].g, b = RAID_CLASS_COLORS["DRUID"].b},
-		shaman = {r = RAID_CLASS_COLORS["SHAMAN"].r, g = RAID_CLASS_COLORS["SHAMAN"].g, b = RAID_CLASS_COLORS["SHAMAN"].b},
-		warrior = {r = RAID_CLASS_COLORS["WARRIOR"].r, g = RAID_CLASS_COLORS["WARRIOR"].g, b = RAID_CLASS_COLORS["WARRIOR"].b},
-		deathknight = {r = RAID_CLASS_COLORS["DEATHKNIGHT"].r, g = RAID_CLASS_COLORS["DEATHKNIGHT"].g, b = RAID_CLASS_COLORS["DEATHKNIGHT"].b},
-		monk = {r = RAID_CLASS_COLORS["MONK"].r, g = RAID_CLASS_COLORS["MONK"].g, b = RAID_CLASS_COLORS["MONK"].b},
-		horde = {r = PLAYER_FACTION_COLORS[0].r, g = PLAYER_FACTION_COLORS[0].g, b = PLAYER_FACTION_COLORS[0].b},
-		alliance = {r = PLAYER_FACTION_COLORS[1].r, g = PLAYER_FACTION_COLORS[1].g, b = PLAYER_FACTION_COLORS[1].b,}
 	}
-
+		
 	api.GHI_GetColors = function()
 		return colors;
 	end
@@ -406,17 +407,8 @@ function GHI_MiscAPI()
 	end
 		
 	api.GHI_GetDebuffColor = function(debuffType)
-
-		local r = tonumber(DebuffTypeColor[debuffType].r)
-		local g = tonumber(DebuffTypeColor[debuffType].g)
-		local b = tonumber(DebuffTypeColor[debuffType].b)
-		r = r <= 1 and r >= 0 and r or 0
-		g = g <= 1 and g >= 0 and g or 0
-		b = b <= 1 and b >= 0 and b or 0
-
-		return string.format("%02x%02x%02x", r*255, g*255, b*255)
+		return api.RGBAPercToHex(DebuffTypeColor[debuffType].r, DebuffTypeColor[debuffType].g, DebuffTypeColor[debuffType].b, 1)
 	end
-
 	class.GetAPI = function()
 		local a = {};
 		for i, f in pairs(api) do

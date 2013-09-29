@@ -5,7 +5,7 @@
 --
 --	Options menu for the appearance of GHM menus
 --
--- 	  (c)2013 The Gryphonheart Team
+--	(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local loc = GHI_Loc();
@@ -17,7 +17,7 @@ local PREDEFINED_THEMES = {
 		background = "Interface\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains.blp",
 		titleBar = { 0.5, 0.1, 0.1, 1 },
 		titleBarTextColor = { 1, 1, 1, 1 },
-		backgroundColor = { 1, 1, 1, 1 },
+		backgroundColor = { 1, 1, 1, 0.5 },
 		buttonColor = { 0.5, 0.1, 0.1, 1 },
 		mainTextColor = { 1.0, 0.82, 0.0, 1 },
 		detailsTextColor = { 1.0, 1.0, 1.0, 1 },
@@ -28,22 +28,12 @@ local PREDEFINED_THEMES = {
 		background = "Interface\\DialogFrame\\UI-DialogBox-Background.blp",
 		titleBar = { 0.5, 0.1, 0.1, 1 },
 		titleBarTextColor = { 1, 1, 1, 1 },
-		backgroundColor = { 0.3, 0.3, 0.3, 1 },
+		backgroundColor = { 0.3, 0.3, 0.3, 0.5 },
 		buttonColor = { 0.5, 0.1, 0.1, 1 },
 		mainTextColor = { 1.0, 0.82, 0.0, 1 },
 		detailsTextColor = { 1.0, 1.0, 1.0, 1 },
 	},
 }
-
-local colorAreas = {
-	titleBar = loc.TITLE_BAR_COLOR,
-	titleBarTextColor = loc.TITLE_BAR_TEXT_COLOR,
-	backgroundColor = loc.BACKGROUND_COLOR,
-	buttonColor = loc.BUTTON_COLOR,
-	mainTextColor = loc.MAIN_TEXT_COLOR,
-	detailsTextColor = loc.DETAILS_TEXT_COLOR,
-}
-local alphaValues = {0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1}
 
 local BACKGROUNDS = {
 	{ p = "", x = 256, y = 256 },
@@ -95,9 +85,11 @@ local BACKGROUNDS = {
 
 local class;
 function GHI_MenuAppearanceOptionsMenu(parentName)
+
 	if class then
 		return class;
 	end
+	
 	class = GHClass("GHI_MenuAppearanceOptionsMenu");
 	GHI_MiscData = GHI_MiscData or {};
 
@@ -113,7 +105,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		themes = GHI_MiscData.UI_Themes or {};
 		return #(PREDEFINED_THEMES) + #(themes) + 1;
 	end
-
+	
 	local GetThemeInfo = function(i)
 		if i > #(PREDEFINED_THEMES) + #(themes) then
 			return "<"..loc.NEW_THEME..">";
@@ -153,6 +145,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 				end
 			end
 		end
+		
 		if not (theme) then
 			theme = PREDEFINED_THEMES[1];
 			themeI = 1;
@@ -167,75 +160,33 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		local _, lastLoaded = GetThemeInfo(themeI);
 		menuFrame.lastLoaded = lastLoaded;
 		menuFrame.ForceLabel("background", theme.background or "");
-		
-		for i,v in pairs(colorAreas) do
-			if tostring(i) == "backgroundColor" then
-				local r, g, b, a = unpack(theme.backgroundColor)
-				menuFrame.ForceLabel("backgroundColor",theme.backgroundColor)
-				menuFrame.ForceLabel("bg_alpha",a)	
-			else
-			menuFrame.ForceLabel(i,theme[i])
-			end
-		end
-		
-	end
-	
-	local row1 = {}
-	local row2 = {}
-	
-	local rowCount = 1	
-	for cata,title in pairs(colorAreas) do
-		if rowCount <= 3 then
-		table.insert(row1,
-		{
-			alight = "l",
-			type = "Color2",
-			text = title or cata,
-			label = cata,
-			tooltip = "Sets the "..title,
-			xOff = 20,
-			scale = 0.9,
-			iTable = true,
-		}
-		)
-		rowCount = rowCount + 1
-		else
-		table.insert(row2,
-		{
-			alight = "l",
-			type = "Color2",
-			xOff = 20,
-			text = title or cata,
-			label = cata,
-			tooltip = "Sets the "..title,
-			scale = 0.9,
-			iTable = true,
-		}
-		)
-		rowCount = rowCount + 1
-		end
-	end
-	row1[1].xOff = 0
-	row2[1].xOff = 0
-	row2[1].yOff = -10
-	
-	local st = {
+		menuFrame.ForceLabel("titleBar" , theme.titleBar)
+		menuFrame.ForceLabel("titleBarTextColor" , theme.titleBarTextColor)
+		menuFrame.ForceLabel("backgroundColor" , theme.backgroundColor)
+		menuFrame.ForceLabel("buttonColor" , theme.buttonColor)
+		menuFrame.ForceLabel("mainTextColor" , theme.mainTextColor)
+		menuFrame.ForceLabel("detailsTextColor" , theme.detailsTextColor)		
+	end	
+				
+	local t = {
 		onOk = function(self) end,
 		{
+			{
+				{
+					align = "c",
+					type = "Text",
+					text = loc.MENU_APPEARANCE,
+					fontSize = 13,
+				},
+			},
 			{
 				{
 					align = "l",
 					type = "Text",
 					color = "white",
-					width = parentWidth - 100,
+					width = parentWidth - 20,
 					text = loc.MENU_APPEARANCE_TEXT,
 					fontSize = 11,
-				},
-				{
-					height = 30,
-					type = "Dummy",
-					align = "r",
-					width = 20,
 				},
 			},
 			{
@@ -256,18 +207,21 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					end,
 					OnSelect = function(i)
 						if menuFrame then
+							local save = menuFrame.GetLabelFrame("save")
+							local delete = menuFrame.GetLabelFrame("delete")
+							local load = menuFrame.GetLabelFrame("load")
 							if i <= GetNumPredefinedThemes() then
-								menuFrame.GetLabelFrame("save"):Disable();
-								menuFrame.GetLabelFrame("load"):Enable();
-								menuFrame.GetLabelFrame("delete"):Disable();
+								save:Disable();
+								delete:Disable();
+								load:Enable()
 							elseif i < GetNumThemes() then
-								menuFrame.GetLabelFrame("save"):Enable();
-								menuFrame.GetLabelFrame("load"):Enable();
-								menuFrame.GetLabelFrame("delete"):Enable();
+								save:Enable();
+								delete:Enable();
+								load:Enable()
 							else
-								menuFrame.GetLabelFrame("save"):Enable();
-								menuFrame.GetLabelFrame("load"):Disable();
-								menuFrame.GetLabelFrame("delete"):Disable();
+								save:Enable();
+								delete:Disable();
+								load:Enable()
 							end
 						end
 					end,
@@ -280,7 +234,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					yOff = 0,
 					OnClick = function(obj)
 						local i = menuFrame.GetLabel("preset");
-                              --UpdateTheme()
 						LoadTheme(i);
 					end,
 					label = "load",
@@ -296,7 +249,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					text = loc.SAVE_THEME,
 					align = "l",
 					compact = false,
-					yOff = 0,
 					OnClick = function(obj)
 						local i = menuFrame.GetLabel("preset");
 						SaveTheme(i);
@@ -314,7 +266,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					text = loc.DELETE_THEME,
 					align = "l",
 					compact = false,
-					yOff = 0,
 					OnClick = function(obj)
 						local i = menuFrame.GetLabel("preset");
 						DeleteTheme(i);
@@ -333,35 +284,17 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 30,
-					type = "Dummy",
-					align = "l",
-					width = 20,
-				},
-				{
-					type = "HBar",
-					align = "l",
-					width = parentWidth-100,
-				},
-			},
-			{
-				{
 					align = "l",
 					type = "Text",
 					text = loc.MENU_WINDOW_COLORS,
 					fontSize = 10,
 				},
-			},
-			row1,
-			row2,
-			{
 				{
 					type = "Button",
 					text = loc.MENU_UNIFY_TEXT,
-					align = "l",
-					compact = false,
+					align = "r",
+					compact = true,
 					tooltip = loc.MENU_UNIFY_TEXT_TT,
-					yOff = -10,
 					OnClick = function(obj)
 						local unifiedColors = menuFrame.GetLabel("mainTextColor")
 						menuFrame.ForceLabel("titleBarTextColor",unifiedColors)
@@ -371,25 +304,15 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 				{
 					type = "Button",
 					text = loc.MENU_UNIFY_WINDOW,
-					align = "l",
-					compact = false,
+					align = "r",
+					compact = true,
 					tooltip = loc.MENU_UNIFY_WINDOW_TT,
-					xOff = 10,
+					xOff = -10,
 					OnClick = function(obj)
 						local unifiedColors = menuFrame.GetLabel("titleBar")
 						menuFrame.ForceLabel("backgroundColor",unifiedColors)
 						menuFrame.ForceLabel("buttonColor",unifiedColors)
 					end,
-				},
-				{
-				   type = "Slider",
-				   align = "l",
-				   values = alphaValues,
-				   xOff = 10,
-				   yOff = -8,
-				   label = "bg_alpha",
-				   text = loc.MENU_BG_ALPHA,
-				   width = 150,
 				},
 			},
 			{
@@ -401,17 +324,91 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 				},
 				{
 					type = "HBar",
-					align = "l",
+					align = "c",
 					width = parentWidth-100,
 				},
 			},
 			{
 				{
+					alight = "l",
+					type = "Color",
+					text = loc.TITLE_BAR_COLOR,
+					label = "titleBar",
+					tooltip = loc.TITLE_BAR_COLOR_TT,
+					returnIndexTable = true,
+					OnChanged = function()
+						OnColor()
+					end
+				},
+				{
+					alight = "l",
+					type = "Color",
+					text = loc.TITLE_BAR_TEXT_COLOR,
+					label = "titleBarTextColor",
+					tooltip = loc.TITLE_BAR_TEXT_COLOR_TT,
+					returnIndexTable = true,
+					OnChanged = function()
+						OnColor()
+					end
+				},
+				{
+					alight = "l",
+					type = "Color",
+					text = loc.BACKGROUND_COLOR,
+					label = "backgroundColor",
+					tooltip = loc.BACKGROUND_COLOR_TT,
+					returnIndexTable = true,
+					OnChanged = function()
+						OnColor()
+					end
+				},
+			},
+			{
+				{
+					alight = "l",
+					type = "Color",
+					text = loc.BUTTON_COLOR,
+					label = "buttonColor",
+					tooltip = loc.BUTTON_COLOR_TT,
+					returnIndexTable = true,
+					OnChanged = function()
+						OnColor()
+					end
+				},
+				{
+					alight = "l",
+					type = "Color",
+					text = loc.MAIN_TEXT_COLOR,
+					label = "mainTextColor",
+					tooltip = loc.MAIN_TEXT_COLOR_TT,
+					returnIndexTable = true,
+					OnChanged = function()
+						OnColor()
+					end
+				},
+				{
+					alight = "l",
+					type = "Color",
+					text = loc.DETAILS_TEXT_COLOR,
+					label = "detailsTextColor",
+					tooltip = loc.DETAILS_TEXT_COLOR_TT,
+					returnIndexTable = true,
+					OnChanged = function()
+						OnColor()
+					end
+				},
+			},
+			{
+				{
+					height = 50,
+					type = "Dummy",
 					align = "l",
-					type = "Text",
-					text = loc.BACKGROUND,
-					fontSize = 10,
-					width = parentWidth -100,
+					width = 10,
+				},
+				{
+					type = "HBar",
+					align = "c",
+					width = parentWidth-100,
 				},
 			},
 			{
@@ -419,11 +416,9 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					type = "ImageList",
 					align = "l",
 					height = 200,
-					width = parentWidth-100,
-					scaleX = 1.4,
-					scaleY = 1.4,
+					width = parentWidth,
 					label = "background",
-					xOff = 5,
+					text = loc.BACKGROUND,
 					data = BACKGROUNDS,
 					OnSelect = function(self, path)
 						local i = menuFrame.GetLabel("preset");
@@ -452,49 +447,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		theme = "BlankTheme",
 		width = parentWidth,
 	}
-	local t = {
-		{
-			{
-				{
-					align = "c",
-					type = "Text",
-					text = loc.MENU_APPEARANCE,
-					fontSize = 13,
-				},
-				{
-					height = 20,
-					type = "Dummy",
-					align = "r",
-					width = 20,
-				},
-			},
-			{
-				{
-					height = 515,
-					type = "Dummy",
-					align = "l",
-					width = parentWidth-10,
-					label = "colorAnchor"
-				},
-			},			
-		},
-		OnShow = function()	end,
-		height = 600,
-		name = "GHI_OptionsMenuAppearanceFrame",
-		theme = "BlankTheme",
-		width = parentWidth,	
-	}
 
-	rowCount = 1
-	
-	scrollMenuFrame = GHM_NewFrame(CreateFrame("frame"), t);
-	menuFrame = GHM_NewFrame(CreateFrame("frame"), st)
-	
-	scrollMenuFrame.scroll = CreateFrame("ScrollFrame","$parentScroll",scrollMenuFrame,"GHM_ScrollFrameTemplate")
-	scrollMenuFrame.scroll:SetAllPoints(scrollMenuFrame.GetLabelFrame("colorAnchor"))
-	scrollMenuFrame.scroll:SetScrollChild(menuFrame)
-	menuFrame:SetParent(scrollMenuFrame.scroll)
-	menuFrame:Show()
+	menuFrame = GHM_NewFrame(CreateFrame("frame"), t)
 	
 	local OnColor = function()
 		local i = menuFrame.GetLabel("preset");
@@ -502,17 +456,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			menuFrame.ForceLabel("preset", GetNumThemes())
 		end
 	end;
-	
-	for label,_ in pairs(colorAreas) do
-		local f = menuFrame.GetLabelFrame(label)
-		local _, mf = f:GetChildren()
-		local _, colorPick = mf:GetChildren()
-		
-		colorPick:HookScript("OnColorSelect",function()
-			OnColor()
-		end)
-	
-	end
 
 	menuFrame.GetLabelFrame("background").SetImages(BACKGROUNDS);
 
@@ -556,7 +499,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 	end
 
 	SaveTheme = function(index)
-		local alpha = menuFrame.GetLabel("bg_alpha")
 			
 		local newCurrent = {
 			background = menuFrame.GetLabel("background"),
@@ -568,7 +510,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			detailsTextColor = menuFrame.GetLabel("detailsTextColor"),
 		}
 		
-		table.insert(newCurrent.backgroundColor,alpha)
 		if index and index < GetNumThemes() and index > GetNumPredefinedThemes() then
 			local name, guid = GetThemeInfo(index);
 			newCurrent.name = name;
@@ -576,6 +517,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			GHI_MiscData.UI_Themes[index - GetNumPredefinedThemes()] = newCurrent;
 			return
 		end
+		
 		StaticPopupDialogs["GHI_NAME_THEME"] = {
 			text = loc.THEME_NAME,
 			button1 = OKAY,
@@ -652,15 +594,14 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			menuFrame.ForceLabel("useAnimation",  true)
 		end
 	end
-	scrollMenuFrame.name = loc.MENU_APPEARANCE;
-	scrollMenuFrame.okay = function()
+	menuFrame.name = loc.MENU_APPEARANCE;
+	menuFrame.okay = function()
 		ApplyTheme();
 		GHI_MiscData["UseMenuAnimation"] = menuFrame.GetLabel("useAnimation");
 		GHM_SetUseAnimation(GHI_MiscData["UseMenuAnimation"]);
 	end;
-	scrollMenuFrame.parent = parentName;
-
-	InterfaceOptions_AddCategory(scrollMenuFrame);
+	menuFrame.parent = parentName
+	InterfaceOptions_AddCategory(menuFrame)
 
 	class.Show = function(cat)
 		InterfaceOptionsFrame_OpenToCategory(scrollMenuFrame);

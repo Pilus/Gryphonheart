@@ -126,11 +126,10 @@ function GHI_MessageMenu(_OnOkCallback, _editAction)
 			  align = "l",
 			  label = "text",
 			  width = 275,
-			  yOff = 70,
 			  texture = "Tooltip",
 			},
 			{
-			  type = "Color2",
+			  type = "Color",
 			  text = loc.COLOR,
 			  align = "r",
 			  label = "color",
@@ -147,16 +146,14 @@ function GHI_MessageMenu(_OnOkCallback, _editAction)
 			  returnIndex = true,
 			  data = { loc.CHAT_FRAME, loc.ERROR_MSG_FRAME },
 			  texture = "Tooltip",
-			  yOff = 120,
 			},
 			{
 			  type = "Time",
 			  text = loc.DELAY,
+			  yOff = -10,
 			  align = "l",
 			  label = "delay",
 			  texture = "Tooltip",
-			  yOff = -70,
-			  xOff = -130,
 			}
 		  },
 		  {
