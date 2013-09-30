@@ -484,7 +484,7 @@ function GHI_StandardItemMenu()
 						{
 							type = "Text",
 							catagory = loc.DETAILS,
-							width = 295,
+							width = 302,
 							label = "details",
 						},
 					},
@@ -517,15 +517,9 @@ function GHI_StandardItemMenu()
 					end,
 				},
 				{
-					type = "Dummy",
-					height = 10,
-					width = 30,
-					align = "r",
-				},
-				{
 					type = "CheckBox",
 					text = loc.CONSUMED,
-					align = "r",
+					align = "c",
 					label = "consumed",
 					OnClick = function(self)
 						item.SetConsumed(self:GetChecked());
@@ -619,7 +613,7 @@ function GHI_StandardItemMenu()
 	itemTooltip = CreateFrame("GameTooltip", "GHI_StandardItemMenuItemTooltip" .. menuIndex, menuFrame, "GHI_StandardItemMenuItemTooltip");
 	_G["GHI_StandardItemMenuItemTooltip" .. menuIndex .. "TextLabel"]:SetText(loc.PREVIEW)
 
-	itemTooltip:SetPoint("TOPRIGHT", 10, -24)
+	itemTooltip:SetPoint("TOPRIGHT", 10, -19)
 	menuFrame.window:AddScript("OnMinimize", function()
 		if menuFrame.iconFrame then
 			menuFrame.iconFrame:Hide();

@@ -3,7 +3,7 @@
 --				GHM_Text
 --  			GHM_Text.lua
 --
---	          EditBox object for GHM
+--		Text area for GHM
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -16,18 +16,13 @@ local count = 1;
 function GHM_Text(parent, main, profile)
 	local frame = CreateFrame("Frame", "GHM_Text" .. count, parent, "GHM_Text_Template");
 	count = count + 1;
-	
-	
 
 	-- declaration and initialization
 	profile = profile or {};
 
 	-- setup
 	local labelFrame = _G[frame:GetName() .. "Label"];
-	
-	
-	
-	
+
 	local fontProperties = {
 		font = "Fonts\\FRIZQT__.TTF",
 		fontSize = 11,
@@ -38,14 +33,14 @@ function GHM_Text(parent, main, profile)
 		l = "LEFT",
 		r = "RIGHT",
 	}
-		
+
 	if profile.font then
 		if strfind(profile.font,".ttf") then
 			fontProperties.font = profile.font
-		else				
+		else
 			fontProperties.font = GHI_FontList[profile.font]
-		end		
-	end	
+		end
+	end
 	
 	if profile.fontSize then
 		fontProperties.fontSize = profile.fontSize
@@ -54,12 +49,10 @@ function GHM_Text(parent, main, profile)
 	if profile.outline == true then
 		fontProperties.flags = "OUTLINE"
 	end
-	
-	
-	
+
 	labelFrame:SetFont(fontProperties.font,fontProperties.fontSize,fontProperties.flags)	
 	labelFrame:SetJustifyH(alignments[profile.align or "l"]);
-	
+
 	if profile.shadow == true then
 		labelFrame:SetShadowColor(0,0,0,0.75)
 		labelFrame:SetShadowOffset(2,-2)
@@ -67,15 +60,13 @@ function GHM_Text(parent, main, profile)
 
 	frame.color = "white"; -- default
 	if profile.color == "white" then
-		--labelFrame:SetTextColor(1, 1, 1);
 		frame.color = "white";
 	elseif profile.color == "yellow" then
-		--labelFrame:SetTextColor(1,0.8196079,0);
 		frame.color = "yellow";
 	elseif profile.color == "black" then
 		frame.color = "black"
 	end
-		
+
 	labelFrame:SetWordWrap(true)
 	labelFrame:SetNonSpaceWrap(false)
 	
@@ -84,23 +75,22 @@ function GHM_Text(parent, main, profile)
 	if profile.width then
 		frame:SetWidth(profile.width);
 		labelFrame:SetWidth(profile.width);
-
 		frame:SetHeight(labelFrame:GetHeight()+15)
 	else
 		frame:SetWidth(labelFrame:GetWidth());
 		frame:SetHeight(labelFrame:GetHeight());
 	end
 
-
 	frame.Force = function(self, text, newFont)
-		if self ~= frame then return frame.Force(frame, self); end
+		if self ~= frame then
+			return frame.Force(frame, self);
+		end
 
 		labelFrame:SetText(text);
 		
 		if profile.width then
 			frame:SetWidth(profile.width);
 			labelFrame:SetWidth(profile.width);
-
 			frame:SetHeight(labelFrame:GetHeight()+15)
 		else
 			frame:SetWidth(labelFrame:GetWidth());
@@ -115,7 +105,6 @@ function GHM_Text(parent, main, profile)
 	end
 
 	frame:Show();
-	--GHM_TempBG(frame);
 
 	return frame;
 end

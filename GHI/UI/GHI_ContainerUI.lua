@@ -179,7 +179,7 @@ local function SetUpContainerMenuButtons()
 			text = loc.INSPECT_ITEM_1LETTER,
 			details = loc.INSPECT_ITEM_DETAILS,
 			tooltip = loc.INSPECT_ITEM,
-			click = function()			
+			click = function()
 				miscApi.GHI_SetSelectItemCursor(function(guid)
 					local inspectInfo = api.GHI_InspectItem(guid)
 					for i,v in pairs(inspectInfo) do
@@ -187,7 +187,7 @@ local function SetUpContainerMenuButtons()
 							local text = miscApi.GHI_ColorString(v.text,v.r,v.g,v.b)
 							print(text)
 						else
-						print(v)
+							print(v)
 						end
 					end
 				end, nil, "GHI_INSPECT");

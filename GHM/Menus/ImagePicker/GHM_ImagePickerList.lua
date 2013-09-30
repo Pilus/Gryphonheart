@@ -3,7 +3,7 @@
 --				GHM_ImagePickerList
 --  			GHM_ImagePickerList.lua
 --
---	          Handler for the Icon Picker windows
+--		Handler for the Icon Picker windows
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

@@ -103,15 +103,9 @@ function GHI_BagMenu(_OnOkCallback, _editAction)
 		{
 			{
 				{
-					type = "Dummy",
-					height = 30,
-					width = 1,
-					align = "c",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
-					width = 390,
+					width = 400,
 					text = loc.BAG_TEXT,
 					color = "white",
 					align = "l",

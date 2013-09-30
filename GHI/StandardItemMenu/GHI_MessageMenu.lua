@@ -119,101 +119,91 @@ function GHI_MessageMenu(_OnOkCallback, _editAction)
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
 		{
-		  {
 			{
-			  type = "Editbox",
-			  text = loc.TEXT,
-			  align = "l",
-			  label = "text",
-			  width = 275,
-			  texture = "Tooltip",
+				{
+					type = "Editbox",
+					text = loc.TEXT,
+					align = "l",
+					label = "text",
+					width = 260,
+					texture = "Tooltip",
+				},
+				{
+					type = "Color",
+					text = loc.COLOR,
+					align = "r",
+					label = "color",
+					texture = "Tooltip",
+				},
 			},
 			{
-			  type = "Color",
-			  text = loc.COLOR,
-			  align = "r",
-			  label = "color",
-			  texture = "Tooltip",
-			},
-			
-		  },
-		  {
-			{
-			  type = "RadioButtonSet",
-			  text = loc.OUTPUT_TYPE,
-			  align = "l",
-			  label = "type",
-			  returnIndex = true,
-			  data = { loc.CHAT_FRAME, loc.ERROR_MSG_FRAME },
-			  texture = "Tooltip",
-			},
-			{
-			  type = "Time",
-			  text = loc.DELAY,
-			  yOff = -10,
-			  align = "l",
-			  label = "delay",
-			  texture = "Tooltip",
-			}
-		  },
-		  {
-			{
-			  type = "Dummy",
-			  height = 10,
-			  width = 10,
-			  align = "c",
+				{
+					type = "RadioButtonSet",
+					text = loc.OUTPUT_TYPE,
+					align = "l",
+					label = "type",
+					returnIndex = true,
+					data = { loc.CHAT_FRAME, loc.ERROR_MSG_FRAME },
+					texture = "Tooltip",
+				},
+				{
+					type = "Time",
+					text = loc.DELAY,
+					align = "r",
+					label = "delay",
+					texture = "Tooltip",
+				}
 			},
 			{
-			  type = "Text",
-			  fontSize = 11,
-			  text = loc.MSG_TEXT,
-			  align = "l",
-			  color = "white",
-			  width = 400,
-			},
-		  },
-		  {
-			{
-			  type = "Dummy",
-			  height = 10,
-			  width = 100,
-			  align = "l",
+				{
+					type = "Text",
+					fontSize = 11,
+					text = loc.MSG_TEXT,
+					align = "l",
+					color = "white",
+					width = 400,
+				},
 			},
 			{
-			  type = "Button",
-			  text = OKAY,
-			  align = "l",
-			  label = "ok",
-			  compact = false,
-			  OnClick = OnOk,
+				{
+					type = "Dummy",
+					height = 10,
+					width = 100,
+					align = "l",
+				},
+				{
+					type = "Button",
+					text = OKAY,
+					align = "l",
+					label = "ok",
+					compact = false,
+					OnClick = OnOk,
+				},
+				{
+					type = "Dummy",
+					height = 10,
+					width = 100,
+					align = "r",
+				},
+				{
+					type = "Button",
+					text = CANCEL,
+					align = "r",
+					label = "cancel",
+					compact = false,
+					OnClick = function(obj)
+						menuFrame:Hide();
+					end,
+				},
 			},
-			{
-			  type = "Dummy",
-			  height = 10,
-			  width = 100,
-			  align = "r",
-			},
-			{
-			  type = "Button",
-			  text = CANCEL,
-			  align = "r",
-			  label = "cancel",
-			  compact = false,
-			  OnClick = function(obj)
-				menuFrame:Hide();
-			  end,
-			},
-		  },
 		},
 		title = TYPE_LOC,
 		name = NAME .. menuIndex,
 		theme = "BlankTheme",
 		width = 450,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = ICON,
-		--lineSpacing = 20,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then
 				inUse = false;

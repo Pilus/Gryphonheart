@@ -380,8 +380,6 @@ function GHM_List(parent, main, profile)
 			_G[header:GetName() .. "Middle"]:SetWidth(w - 7);
 			header:SetPoint("TOPLEFT", lastHeader, "TOPRIGHT", 0, 0);
 
-
-
 			scroll:SetPoint("TOPRIGHT", header, "BOTTOMLEFT", -4, 0);
 			scroll:Show();
 			header:Show();
@@ -457,13 +455,8 @@ function GHM_List(parent, main, profile)
 		local lines = f.lines;
 		--- Show data.
 
-
-
-
 		for i = 1, f.numColumns do
-
 			local f1 = _G[f:GetName() .. "_H" .. i];
-
 
 			for j = 1, lines do
 				local k = j + offset;

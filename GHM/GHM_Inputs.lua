@@ -3,7 +3,7 @@
 --				GHM_Inputs
 --  			GHM_Inputs.lua
 --
---	          (description)
+--	Input types for GHI attributes
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -312,7 +312,7 @@ return {
 						texture = "Interface\\Icons\\INV_Misc_Spyglass_03",
 						func = function(f)
 							local main = f:GetParent():GetParent():GetParent():GetParent():GetParent():GetParent()
-														
+
 							local title = main.GetLabel("_in_bookTitle")
 							local material = main.GetLabel("_in_bookMaterial")
 							local font = main.GetLabel("_in_bookFont")

@@ -121,7 +121,7 @@ function GHM_UseAnimation()
 end
 
 function GHM_AddThemedObject(obj)
-    tinsert(updateList,obj);
+	tinsert(updateList,obj);
 	GHI_Timer(function() obj:UpdateTheme(); end,0,true);
 end
 
