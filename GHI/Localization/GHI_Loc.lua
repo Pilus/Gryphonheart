@@ -267,7 +267,7 @@ function GHI_Loc()
 		},
 	};
 
-	local textsOptionsDebug = {
+     local textsOptionsDebug = {
 		DEBUG_EVENT_LOG = {
 			enUS = "GHI Debug Event Log",
 		},
@@ -385,6 +385,24 @@ function GHI_Loc()
 		},
 		THEME_NAME = {
 			enUS = "Please enter a name for the theme.",
+		},
+		TITLE_BAR_COLOR_TT = {
+			enUS = "Sets the color of the title bar.",
+		},
+		TITLE_BAR_TEXT_COLOR_TT = {
+			enUS = "Sets the color of the text in the title bar.",
+		},
+		BACKGROUND_COLOR_TT = {
+			enUS = "Sets the background color of the frame, visible where no background texture is.",
+		},
+		BUTTON_COLOR_TT = {
+			enUS = "Sets the color of buttons."
+		},
+		MAIN_TEXT_COLOR_TT = {
+			enUS = "Sets the color of the widget labels.",
+		},
+		DETAILS_TEXT_COLOR_TT = {
+			enUS = "Sets the color of details text.",
 		},
 	};
 
@@ -1258,10 +1276,7 @@ function GHI_Loc()
 		},
 		TYPE_PHYSICAL = {
 			enUS = "Physical",
-
 		},
-
-
 	};
 
 	local textsEquipItem = {
@@ -1320,13 +1335,11 @@ function GHI_Loc()
 			enUS = "Text:",
 			deDE = "Text:",
 			frFR = "Texte :",
-
 		},
 		TYPE = {
 			enUS = "Type:",
 			deDE = "Art:",
 			frFR = "Type:",
-
 		},
 
 		SAY ={
@@ -1339,7 +1352,6 @@ function GHI_Loc()
 			deDE = "Emote",
 			frFR = "Émote",
 		},
-
 		EXPRESSION_TEXT = {
 			enUS = "The expression action makes your character say the text or do an emote.",
 			deDE = "Bitte trage die Ausdrucksart, dessen Text und eventuell eine Abklingzeit/Pausezeit zwischen den Ausdr" .. uu .. "cken/Emotes (in Sek.) ein. \nSchreibe %L, um einen Link eines Items einzuf" .. uu .. "gen.",
@@ -1374,7 +1386,6 @@ function GHI_Loc()
 			enUS = "|CFFFFD100Tip:|R Using %t in the text will show up as the name of your target and %L will show up as a link for the item.\n\n|CFFFFD100Tip:|R When making items to be used by others, consider using the Message action instead. E.g. |CFF999999'The soup is burning in your mouth'|R. This can be used to give the player instructions on which they can write their own reaction.",
 
 		},
-
 	};
 
 	local textsMessageMenu = {
@@ -1585,6 +1596,12 @@ function GHI_Loc()
 		SYNTAX_NUMBER = {
 			enUS = "Number",
 		},
+		  SYNTAX_TT_1 = {
+			enUS = "Sets the color to highlight ",
+		  },
+		  SYNTAX_TT_2 = {
+			enUS = " elements in.",
+		  },
 	};
 
 	local textsErr = { --error or general messages here

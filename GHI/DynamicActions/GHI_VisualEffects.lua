@@ -86,11 +86,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-         local color = dyn.GetInput("inputcolor") or {1,1,1}
+         local color = dyn.GetInput("inputcolor") or {1,1,1,1}
          local fadeIn = dyn.GetInput("fadein")
          local fadeOut = dyn.GetInput("fadeout")
          local duration = dyn.GetInput("duration")
-		 local alpha = dyn.GetInput("inputalpha") or 1
+		 local alpha = color.a or color[4] or 1
 		 local repeating = dyn.GetInput("inputrepeat") or 1
 		 local texture = dyn.GetInput("inputtexture")
 		 local blend = dyn.GetInput("inputblend") or "ADD"
@@ -121,36 +121,35 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "the time (in seconds) the effect will fade in for.",
 			type = "number",
 			defaultValue = 1,
+			order = 2,
 		},
 		fadeout = {
 			name = "Fade out",
 			description = "the time (in seconds) the effect will fade out for.",
 			type = "number",
 			defaultValue = 1,
+			order = 3,
 		},
 		duration = {
 			name = "Duration",
 			description = "How long each flash lasts.",
 			type = "number",
 			defaultValue = 2,
-		},
-		inputalpha = {
-			name = "Transparency",
-			description = "How transparent the effect will be.",
-			type = "number",
-			defaultValue = 1,
+			order = 1,
 		},
 		inputrepeat = {
 			name = "Repeating",
 			description = "How many times the screen will flash.",
 			type = "number",
 			defaultValue = 1,
+			order = 4,
 		},
 		inputblend = {
 			name = "Blend Mode",
 			description = "The blend mode of the texture",
 			type = "string",
 			defaultValue = "ADD",
+			order = 5,
 			specialGHM = "ghm_fromDDList",
 			specialGHMScript = [[
 			dataFunc = function()
@@ -183,11 +182,13 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "The texture used for the effect",
 			type = "image",
 			--defaultValue = "Interface\\Icons\\INV_MISC_FILM_01",
+			order = 7,
 		},
 		inputcolor = {
 			name = "Color",
 			description = "The color for the effect",
 			type = "color",
+			order = 6,
 		},
 	},
 	outputs = {},
@@ -236,21 +237,25 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "How long the effect lasts.",
 			type = "time",
 			defaultValue = 2,
+			order = 1,
 		},
 		inputtexture = {
 			name = "Texture",
 			description = "The texture used for the effect.",
 			type = "image",
+			order = 4,
 		},
 		inputstartcolor = {
 			name = "Color",
 			description = "The color for the effect at start. Leave white for no color change.",
 			type = "color",
+			order = 2,
 		},
 		inputendcolor = {
 			name = "Color",
 			description = "The color for the effect at end. Leave white for no color change.",
 			type = "color",
+			order = 3,
 		},
 	},
 	outputs = {},
@@ -299,21 +304,25 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "How long the effect lasts.",
 			type = "time",
 			defaultValue = 2,
+			order = 1,
 		},
 		inputtexture = {
 			name = "Texture",
 			description = "The texture used for the effect.",
 			type = "image",
+			order = 4,
 		},
 		inputstartcolor = {
 			name = "Color",
 			description = "The color for the effect at start. Leave white for no color change.",
 			type = "color",
+			order = 2,
 		},
 		inputendcolor = {
 			name = "Color",
 			description = "The color for the effect at end. Leave white for no color change.",
 			type = "color",
+			order = 3,
 		},
 	},
 	outputs = {},
@@ -362,21 +371,25 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "How long the effect lasts.",
 			type = "time",
 			defaultValue = 2,
+			order = 1,
 		},
 		inputtexture = {
 			name = "Texture",
 			description = "The texture used for the effect.",
 			type = "image",
+			order = 4,
 		},
 		inputstartcolor = {
 			name = "Color",
 			description = "The color for the effect at start. Leave white for no color change.",
 			type = "color",
+			order = 2,
 		},
 		inputendcolor = {
 			name = "Color",
 			description = "The color for the effect at end. Leave white for no color change.",
 			type = "color",
+			order = 3,
 		},
 	},
 	outputs = {},
