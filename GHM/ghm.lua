@@ -739,9 +739,6 @@ function GHM_NewFrame(self, profile)
 			main.bb:SetScript("OnClick", function(self)
 				local main = self:GetParent();
 				main.currentPage = self.targetPage;
-					if DropDownList1:IsShown() then
-						 DropDownList1:Hide();
-					end
 				main.UpdatePages()
 			end);
 
@@ -752,15 +749,9 @@ function GHM_NewFrame(self, profile)
 					if not (main.autohide == false) then
 						main:Hide();
 					end
-					if DropDownList1:IsShown() then
-						DropDownList1:Hide();
-					end
 				else
 					main.currentPage = self.targetPage;
 					main.UpdatePages()
-					if DropDownList1:IsShown() then
-						DropDownList1:Hide();
-					end
 				end
 			end);
 
