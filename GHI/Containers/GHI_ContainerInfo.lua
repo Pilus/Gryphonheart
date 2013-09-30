@@ -149,8 +149,8 @@ function GHI_ContainerInfo(info)
 
 	
 	class.UpdateSize = function(_size)
-		for i,stack in pairs(stacks) do
-			if type(i) == "number" and i > _size then
+		for i = _size+1,size do
+			if stacks[i] then
 				local s = stacks[i];
 				stacks[i] = nil;
 				stacks[GetFirstFreeSlot()] = s;
