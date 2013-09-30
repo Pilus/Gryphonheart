@@ -154,12 +154,6 @@ function GHI_RandomExpressionMenu(_OnOkCallback, _editAction)
 			GenerateTextBoxAndType(6),
 			{
 				{
-					type = "Dummy",
-					height = 10,
-					width = 8,
-					align = "l",
-				},
-				{
 					type = "CheckBox",
 					text = loc.RANDOM_EXPRESSION_ALLOW_SAME,
 					align = "l",

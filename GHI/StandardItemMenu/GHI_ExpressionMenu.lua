@@ -59,7 +59,7 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 			class.editAction = nil;
 			menuFrame.ForceLabel("text", "");
 			menuFrame.ForceLabel("type", 1);
-			menuFrame.ForceLabel("delay", "");
+			menuFrame.ForceLabel("delay", 0);
 		end
 		menuFrame:AnimatedShow();
 	end
@@ -101,12 +101,6 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 		{
 			{
 				{
-					type = "Dummy",
-					height = 30,
-					width = 10,
-					align = "l",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
 					width = 390,
@@ -121,7 +115,7 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 					type = "Editbox",
 					text = loc.TEXT;
 					label = "text",
-					width = 390,
+					width = 400,
 					texture = "Tooltip",
 					OnTextChanged = function(self)
 					end,
@@ -146,12 +140,6 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 				},
 			},
 			{
-				{
-					type = "Dummy",
-					height = 60,
-					width = 10,
-					align = "l",
-				},
 				{
 					type = "Text",
 					fontSize = 11,

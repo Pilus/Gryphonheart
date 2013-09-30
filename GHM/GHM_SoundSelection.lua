@@ -3,7 +3,7 @@
 --				GHM_SoundSelection
 --  			GHM_SoundSelection.lua
 --
---	          (description)
+--		Menu for sound selection
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -14,9 +14,6 @@ function GHM_SoundSelection(parent, main, profile)
 	local frame = CreateFrame("Frame", "GHM_SoundSelection" .. count, parent, "GHM_SoundSelection_Template");
 	count = count + 1;
 	local list = _G[frame:GetName().."ListScrollList"];
-
-	--local label = _G[frame:GetName().."Label"];
-
 
 	if not (GHM_SoundList) then
 		GHM_InitSoundList()
@@ -103,11 +100,11 @@ function GHM_SoundSelection(parent, main, profile)
 				local node = self:GetParent();
 				local path = "Sound\\" .. strjoin("", unpack(node:GetFullPath()));
 
-			     if strfind(path,"\\Music\\") then
-                         path = path..".mp3"
-                    else
-			          path = path .. ".ogg";
-			     end
+				if strfind(path,"\\Music\\") then
+					path = path..".mp3"
+				else
+					path = path .. ".ogg";
+				end
 				PlaySoundFile(path);
 			end);
 			playBtn:RegisterForClicks("AnyUp");
@@ -173,7 +170,6 @@ function GHM_SoundSelection(parent, main, profile)
 
 			pTree.refreshing = true;
 			if pTree.Collapse and pTree.Expand then
-
 				pTree:Collapse();
 				pTree:Expand();
 			end
@@ -198,14 +194,12 @@ function GHM_SoundSelection(parent, main, profile)
 		EnvokeExpandOnAllExpanded(tree);
 	end)
 
-
 	tree.tableValue = GHM_SoundList["Sound\\"];
 	local loaded = false;
 	tree:SetScript("OnShow", function()
 		tree:SetWidth(main:GetWidth() - 20);
 		OnExpand(tree);
 	end)
-
 
 	-- Frame positioning
 	local extraX = profile.xOff or 0;
@@ -226,7 +220,6 @@ function GHM_SoundSelection(parent, main, profile)
 	local varAttFrame;
 
 	local Change = function(path,duration)
-
 		if profile.OnSelect then
 		   profile.OnSelect(path,duration or 0);
 		end
@@ -237,10 +230,10 @@ function GHM_SoundSelection(parent, main, profile)
 			local path = "Sound\\" .. strjoin("", unpack(node:GetFullPath()));
 
 			if strfind(path,"\\Music\\") then
-                    path = path..".mp3"
-               else
-		          path = path .. ".ogg";
-		     end
+				path = path..".mp3"
+			else
+				path = path .. ".ogg";
+			end
 
 			currentSound = path;
 			Change(path,node.tableValue);

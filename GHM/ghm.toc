@@ -89,7 +89,4 @@ GHM_Inputs.lua
 
 GHM_Images.lua
 
-
-
-
 ghm.xml

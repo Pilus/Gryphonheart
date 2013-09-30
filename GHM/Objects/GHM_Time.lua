@@ -42,16 +42,13 @@ function GHM_Time(parent, main, profile)
 		slider:SetMinMaxValues(1,#(SliderValues));
 	end
 
-
-
 	labelFrame:SetText(profile.text or "");
 	
 	local width = profile.width or frame:GetWidth();
 	frame:SetWidth(width);
 	editBox:SetWidth(width);
 	_G[editBox:GetName() .. "Left"]:SetWidth(width - 10);
-	
-	
+
 	slider:SetScript("OnLoad", function(self)
 		self:SetValueStep(1)
 		local f = self;
@@ -90,7 +87,6 @@ function GHM_Time(parent, main, profile)
 		_G[self:GetParent():GetName().."Box"]:SetText(secs)
 		end
 		_G[self:GetName().."ValueLabel"]:SetText(labelText)
-
 
 	end
 	);
@@ -142,18 +138,14 @@ function GHM_Time(parent, main, profile)
 		editBox:SetText("");
 	end
 
-
 	local t = "";
 	editBox:SetScript("OnChar", function(self, arg1)
 	end);
 
 	editBox:SetTextureTheme("Tooltip")
-	
 	GHM_FramePositioning(frame,profile,parent);
 
-
-	-- functions	
-	
+	-- functions
 	local varAttFrame;
 
 	local Force1 = function(data)
@@ -185,9 +177,8 @@ function GHM_Time(parent, main, profile)
 	end
 
 	frame.Clear = function(self)
-		editBox:SetText("");
+		editBox:SetText(0);
 	end
-
 
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
 		if not (varAttFrame) then
@@ -201,17 +192,15 @@ function GHM_Time(parent, main, profile)
 		if (varAttFrame and not (varAttFrame:IsStaticTabShown())) then
 			return varAttFrame:GetValue();
 		else
-				return tonumber(editBox:GetText());
+			return tonumber(editBox:GetText());
 		end
 	end
-
-
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end
 
-
+	frame.Clear();
 	frame:Show();
 	--GHM_TempBG(frame);
 

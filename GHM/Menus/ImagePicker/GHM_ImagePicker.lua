@@ -36,36 +36,36 @@ function GHM_ImagePicker()
 	local imageCatMenu = {}
 	for i,v in pairs(GHM_IMGCATLIST) do
 	  
-	  tempData = {}
-	  tempData.text = i
-	  tempData.value = i
-	  tempData.notCheckable = true
-	  if type(v) == "table" then
-		tempData.hasArrow = true
-		tempData.menuList ={}
-		for i2,v2 in pairs(v) do
-			local subMenuTemp1 = {}
-			subMenuTemp1.text = v2
-			subMenuTemp1.value = i2
-			subMenuTemp1.notCheckable = true
-			if type(v2) == "table" then
-				subMenuTemp1.text = i2
-				subMenuTemp1.hasArrow = true
-				subMenuTemp1.menuList ={}
-				for i3,v3 in pairs(v2) do
-					local subMenuTemp2 = {}
-					subMenuTemp2.text = v3
-					subMenuTemp2.value = v3
-					subMenuTemp2.index = i3
-					subMenuTemp2.notCheckable = true
-					tinsert(subMenuTemp1.menuList,subMenuTemp2)
+		tempData = {}
+		tempData.text = i
+		tempData.value = i
+		tempData.notCheckable = true
+		if type(v) == "table" then
+			tempData.hasArrow = true
+			tempData.menuList ={}
+			for i2,v2 in pairs(v) do
+				local subMenuTemp1 = {}
+				subMenuTemp1.text = v2
+				subMenuTemp1.value = i2
+				subMenuTemp1.notCheckable = true
+				if type(v2) == "table" then
+					subMenuTemp1.text = i2
+					subMenuTemp1.hasArrow = true
+					subMenuTemp1.menuList ={}
+					for i3,v3 in pairs(v2) do
+						local subMenuTemp2 = {}
+						subMenuTemp2.text = v3
+						subMenuTemp2.value = v3
+						subMenuTemp2.index = i3
+						subMenuTemp2.notCheckable = true
+						tinsert(subMenuTemp1.menuList,subMenuTemp2)
+					end
 				end
+				tinsert(tempData.menuList,subMenuTemp1)
 			end
-			tinsert(tempData.menuList,subMenuTemp1)
 		end
-	  end
-	  tinsert(imageCatMenu, tempData)	  
-	end	
+		tinsert(imageCatMenu, tempData)
+	end
 	
 	while _G["GHM_Image_Picker" .. menuIndex] do
 		menuIndex = menuIndex + 1
