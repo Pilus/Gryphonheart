@@ -19,6 +19,7 @@ function GHI_ActionAPI()
 	class = GHClass("GHI_ActionAPI");
 
 	local api = {};
+	--local itemGuid, itemSlot, itemBag, itemCreatorGuid, playerIsCreator, playerGuid, playerName;
 
 	local currentStack, currentItem;
 
@@ -94,6 +95,7 @@ function GHI_ActionAPI()
 		GHCheck("GHI_ProduceItem",{"string","number","numberStringNil"},{guid, amount, containerGuid})
 		log.Add(3,"Inserting item in bag",{guid=guid, amount=amount, containerGuid=containerGuid})
 
+
 		local item = itemList.GetItemInfo(guid);
 
 		if not(item) then
@@ -118,6 +120,7 @@ function GHI_ActionAPI()
 				containerList.InsertItemInMainBag(guid, stacksize, containerGuid) ;
 				amount = amount - stacksize;
 			end
+
 
 			return containerList.InsertItemInMainBag(guid, amount);
 		end
@@ -197,103 +200,61 @@ function GHI_ActionAPI()
 	local GHFlashFrame
 	local flashAnims, isAni
 	api.GHI_ScreenFlash = function(fadeIn, fadeOut, duration, color, alpha, texture, blend, repeating)
-		local api = GHI_MiscAPI().GetAPI()
-		local colorList = api.GHI_GetColors()
-		local blendTypes = {"ADD","BLEND","MOD","ALPHAKEY","DISABLE"}
-
-		if type(color) == "string" then
-		color = colorList[color]
-		end
 
 		if not (color) and not (texture) then
-		GHI_Message("You must define a texture or color.")
-		return
+			GHI_Message("You must define a texture or color.")
+			return
 		end
-
-		local delay = duration - (fadeIn + fadeOut)
-		if repeating == nil then
-			repeating = 1
-		end
-
-		if not (GHFlashFrame) then
-			GHFlashFrame = CreateFrame("Frame", "GHFlashFrame", UIParent);
-			GHFlashFrame:SetFrameStrata("BACKGROUND");
-			GHFlashFrame:SetAllPoints(UIParent);
-			GHFlashFrame.bg = GHFlashFrame:CreateTexture(nil, "CENTER")
-			GHFlashFrame.bg:SetAllPoints(GHFlashFrame)
-		end
-		if not (flashAnims) then
-			flashAnims = GHFlashFrame:CreateAnimationGroup("Flashing")
-			flashAnims.fadingIn = flashAnims:CreateAnimation("Alpha")
-			flashAnims.fadingIn:SetOrder(1)
-			flashAnims.fadingIn:SetSmoothing("NONE")
-			flashAnims.fadingIn:SetChange(1)
-			flashAnims.fadingOut = flashAnims:CreateAnimation("Alpha")
-			flashAnims.fadingOut:SetOrder(2)
-			flashAnims.fadingOut:SetSmoothing("NONE")
-			flashAnims.fadingOut:SetChange(-1)
-			flashAnims:SetScript("OnFinished",function(self,requested)
-				GHFlashFrame:Hide()
-				GHFlashFrame.bg:SetBlendMode("DISABLE")
-				isAni = false
-			end)
-			flashAnims:SetScript("OnPlay",function(self)
-				GHFlashFrame:Show()
-				GHFlashFrame:SetAlpha(0)
-				isAni = true
-			end)
-		end
-
-		flashAnims.fadingIn:SetDuration(fadeIn)
-		flashAnims.fadingIn:SetEndDelay(delay)
-		flashAnims.fadingOut:SetDuration(fadeOut)
-		if repeating > 1 then
-			flashAnims:SetLooping("REPEAT")
+		
+		local animFrame	
+		if _G["GHI_AnimFrame_Screen"] then
+			animFrame = _G["GHI_AnimFrame_Screen"]
 		else
-			flashAnims:SetLooping("NONE")
+			animFrame = GHI_CreateAnimationFrame("Screen")
 		end
-		local timestart = GetTime()
-		local looptime = duration * repeating
-
-		flashAnims:SetScript("OnLoop", function(self, loopstate)
-			if loopstate == "FORWARD" then
-				local curtime = GetTime()
-				if difftime(curtime, timestart) == looptime - duration then
-					flashAnims:SetLooping("NONE")
-				end
+		
+		if not(color) then
+			color = {1,1,1,1}
+		end
+		
+		local miscAPI = GHI_MiscAPI().GetAPI()
+		local colorList = miscAPI.GHI_GetColors()
+		local animInfo = GHI_AnimationInfo()
+		
+		animFrame.Clear()
+		animFrame.SetAnimType("Flash")
+		animFrame.SetPosition("Full Screen")
+		animFrame.SetFlashTimes(fadeIn, fadeOut, (duration - (fadeIn + fadeOut)) )
+		
+		if type(color) == "string" then
+			color = colorList[color]
+		end
+		
+		if alpha then
+			if color.r then
+				color.a = color.a or alpha
+			elseif color[1] then
+				color[4] = color[4] or alpha
 			end
-		end)
-
+		end
+		
 		if texture then
-			GHFlashFrame.bg:SetTexture(texture)
-			GHFlashFrame.bg:SetBlendMode(blend or "ADD")
-			GHFlashFrame.bg:SetAlpha(alpha or 1)
-
-			if color then
-				GHFlashFrame.bg:SetVertexColor(
-						color.r or color[1],
-						color.g or color[2],
-						color.b or color[3]
-					)
-			else
-				GHFlashFrame.bg:SetVertexColor(1,1,1,1)
-			end
+			animFrame.SetTexture(texture, color)
 		else
-			if not (blend) then
-				blend = 5
-			end
-			GHFlashFrame.bg:SetTexture(color.r or color[1], color.g or color[2], color.b or color[3])
-			GHFlashFrame.bg:SetBlendMode(blendTypes[blend])
-			GHFlashFrame.bg:SetAlpha(alpha or 1)
+			animFrame.SetTexture("SOLID", color)
 		end
-
-		if isAni == true then -- if sone is already animating, stop it and do the new one
-			GHFlashFrame:StopAnimating()
-			GHFlashFrame.bg:SetAlpha(alpha or 1)
-			flashAnims:Play()
-		else -- otherwise animate
-			flashAnims:Play()
+		
+		if blend then
+			animFrame.SetTextureBlend(blend)
 		end
+		
+		if repeating then
+			animFrame.SetRepeating(repeating)
+		end
+		
+		animFrame:Show()
+		animFrame.PlayAnimation()
+		
 	end
 
 	api.GHI_ScreenShake = function(duration,intensity,text)
@@ -306,23 +267,25 @@ function GHI_ActionAPI()
 			if intensity > 64 then
 				intensity = 64
 			end
+			
 			local f = CreateFrame("Frame")
 			local WorldFrame = WorldFrame
 			local WorldFramePoints = {}
 			f:Hide()
-			f:SetScript("OnUpdate", function(self, elapsed)
-				duration = duration - elapsed
-				if duration < 0 then
-					duration = 0
-					f:Hide()
+			f:SetScript("OnUpdate",
+				function(self, elapsed)
+					duration = duration - elapsed
+					if duration < 0 then
+						duration = 0
+						f:Hide()
+					end
+					local moveBy = math.random(-intensity, intensity) * duration
+					WorldFrame:ClearAllPoints()
+					for _, v in pairs(WorldFramePoints) do
+						WorldFrame:SetPoint(v[1], v[2], v[3], v[4] + moveBy, v[5] + moveBy)
+					end
 				end
-				local moveBy = math.random(-intensity, intensity) * duration
-				WorldFrame:ClearAllPoints()
-				for _, v in pairs(WorldFramePoints) do
-					WorldFrame:SetPoint(v[1], v[2], v[3], v[4] + moveBy, v[5] + moveBy)
-				end
-			end);
-
+			)
 			f:RegisterEvent("PLAYER_REGEN_DISABLED")
 			f:SetScript("OnEvent",function(self,event)
 				if event == "PLAYER_REGEN_DISABLED" then
@@ -423,7 +386,7 @@ function GHI_ActionAPI()
 			elseif strlower(rDetail) == "arm" or strlower(rDetail) == "armor" then
 				d = 6;
 			end
-			local n,_ = 0;
+			local n = 0;
 			if (d < 6) and (d > 0) then
 				_, n = UnitStat("player", d);
 			else
@@ -458,7 +421,7 @@ function GHI_ActionAPI()
 		elseif rType == "Normal Buff" then
 			local i = 1;
 			local name = "";
-			local k;
+			local k = nil;
 			while not (name == nil) and k == nil do
 				name = UnitBuff("player", i);
 				if name == rDetail then
@@ -488,20 +451,31 @@ function GHI_ActionAPI()
 				return false;
 			end
 		elseif rType == "LUA Statement" then
-			rDetail = gsub(rDetail, "\21", " ");
-			rDetail = gsub(rDetail, "\22", ",");
 
+		rDetail = gsub(rDetail, "\21", " ");
+		rDetail = gsub(rDetail, "\22", ",");
+			--print(rDetail)
 			local res = exeFunc("return " .. rDetail..";");
 			if res == true or res == 1 then
 				return true
 			else
 				return false
 			end
+			--[[
+			local codeblock = "if "..rDetail.." then return true else return false end"
+			local res, errorMessage = loadstring(codeblock)
+			--print(res())
+			if res() == true or res() == 1 then
+				return true;
+			else
+				return false;
+			end --]]
 		end
 
 	end
 
 	api.GHI_Message = function(msg)
+
 		if itemGuid then
 			msg = expressionHandler.InsertLinksInText(msg,itemGuid)
 		end
@@ -533,7 +507,7 @@ function GHI_ActionAPI()
 	api.RemoveGHIBuff = api.GHI_RemoveBuff;
 	api.RemoveAllGHIBuffs = api.GHI_RemoveAllBuffs;
 	api.CountGHIBuff = api.GHI_CountBuff;
-	api.GHI_FindItem = api.GHI_FindOneItem;
+    api.GHI_FindItem = api.GHI_FindOneItem;
 
 	class.GetAPI = function()
 		local a = {};
@@ -542,6 +516,19 @@ function GHI_ActionAPI()
 		end
 		return a;
 	end
+	--[[
+	class.UpdateMeta = function(stack)
+		currentStack = stack;
+		if stack then
+			currentItem = stack.GetItemInfo()
+			itemGuid = currentItem.GetGUID();
+		else
+			currentItem = nil;
+		end
+	end    --]]
+
+	--playerGuid = UnitGUID("player");
+	--playerName = UnitName("player");
 
 	return class;
 end

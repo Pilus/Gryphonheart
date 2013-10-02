@@ -1,42 +1,72 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\World of Warcraft\BlizzardInterfaceCode\Interface\FrameXML\UI.xsd">
-	<Frame name="GHI_TextureAnimation_Template" virtual="true">
-		<Size x="32" y="32"/>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\World of Warcraft\BlizzardInterfaceCode\Interface\FrameXML\UI.xsd">
+	
+	<Frame name="GHI_Animation_Template" virtual="true">
+		<Size x="64" y="64"/>
 		<Anchors>
 			<Anchor point="CENTER" x="0" y="0"/>
 		</Anchors>
 		<Animations>
-			<AnimationGroup parentKey="shimmer" looping="BOUNCE"> 
-				<Alpha change="1" duration="0.3" order="1"/>
-				<Scale duration="0.3" scaleX="0.25" scaleY="0.25" order="1"/>
-			</AnimationGroup>
-			<AnimationGroup parentKey="shield" looping="BOUNCE">
-				<Scale duration="0.3" scaleX="0.25" scaleY="0.25"/>
-				<Alpha change="-1" duration="0.3" order="2"/>
+			<AnimationGroup parentKey="shimmer">
+				<Scale scaleX="1.08" scaleY="1.08" duration="0.5" smoothing="IN_OUT" order="1"/>
+				<Scale scaleX="0.9259" scaleY="0.9259" duration="0.5" smoothing="IN_OUT" order="2"/>
+				<Alpha change="-0.5" duration="0.5" order="1" smoothing="IN_OUT"/>
+				<Alpha change="0.5" duration="0.5" order="2" smoothing="IN_OUT"/>
 			</AnimationGroup>
 			<AnimationGroup parentKey="buffCast">
-				<Scale duration="0.3" scaleX="2" scaleY="2" order="1"/>
-				<Alpha change="-1" duration="0.3" order="1"/>
-				<Translation offsetY="10" order="1"/>
+				<Translation offsetY="-100" order="1" duration="0.01"/>
+				<Scale duration="0.01" scaleX="0.25" scaleY="0.25" order="1"/>
+				
+				<Scale duration="0.99" scaleX="4.1" scaleY="4.1" order="2">
+					<Origin point="BOTTOM">
+						<Offset x="0" y="0"/>
+					 </Origin>
+				</Scale>
+				<Alpha change="1" duration="1" order="1"/>
+				<Translation offsetY="100" order="2" duration="0.99"/>
+				<Scripts>
+					<OnPlay>
+						self:GetParent():SetAlpha(0)
+					</OnPlay>
+				</Scripts>
 			</AnimationGroup>
-			<AnimationGroup parentKey="hover" looping="BOUNCE">
-				<Scale duration="0.3" scaleX="2" scaleY="2" order="1"/>
-				<Translation offsetY="10" order="1"/>
+			<AnimationGroup parentKey="hover">
+				<Scale duration="0.3" scaleX="2" scaleY="2" order="1" smoothing="IN_OUT"/>
+				<Translation offsetY="10" order="1" smoothing="IN_OUT"/>
+				<Scale duration="0.3" scaleX="-2" scaleY="-2" order="2" smoothing="IN_OUT"/>
+				<Translation offsetY="-10" order="2" smoothing="IN_OUT"/>
+			</AnimationGroup>
+			<AnimationGroup parentKey="flash">
+				<Alpha change="1" duration="1" order="1" parentKey="fadeIn"/>
+				<Alpha change="1" duration="1" order="2" parentKey="hold"/>
+				<Alpha change="-1" duration="1" order="3" parentKey="fadeOut"/>
+				<Scripts>
+					<OnPlay>
+						self:GetParent():SetAlpha(0)
+					</OnPlay>
+				</Scripts>
 			</AnimationGroup>
 		</Animations>
 		<Layers>
 			<Layer level="ARTWORK">
-				<Texture name="$parentTexture" parentKey="tex" setAllPoints="true"/>
+				<Texture name="$parentTexture" parentKey="tex" setAllPoints="true" hidden="true"/>
 			</Layer>
 		</Layers>
 		<Frames>
 			<Frame name="$parentLogo" parentKey="logo" inherits="GHI_LogoTemplate" hidden="true">
 				<Anchors>
-					<Anchor point="CENTER"/>
+					<Anchor point="TOPLEFT"/>
 					<Anchor point="TOPRIGHT"/>
 					<Anchor point="BOTTOMLEFT" x="0" y="-12"/>
 					<Anchor point="BOTTOMRIGHT" x="0" y="-12"/>
 				</Anchors>
 			</Frame>
+			<PlayerModel name="$parentModel" parentKey="model" setAllPoints="true" hidden="true">
+			</PlayerModel>
 		</Frames>
+		<Scripts>
+		</Scripts>
 	</Frame>
 </Ui>
