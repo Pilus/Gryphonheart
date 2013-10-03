@@ -256,7 +256,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		b:SetAllPoints(actionButton);
 		b:Hide();
 		b:RegisterForDrag("LeftButton","RightButton");
-		b:RegisterForClicks("LeftButtonUp","RightButtonUp");  --[[
+		b:RegisterForClicks("LeftButtonUp","RightButtonUp");
 		if actionButton:GetNormalTexture() then
 			local texture = actionButton:GetNormalTexture();
 			if string.startsWith(actionButton:GetName(),"BT4Button") then
@@ -270,7 +270,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 			end
 		else
 			b:SetNormalTexture(nil);
-		end  --]]
+		end
 		b:SetFrameStrata(actionButton:GetFrameStrata());
 		b:SetFrameLevel(actionButton:GetFrameLevel() + 1);
 
