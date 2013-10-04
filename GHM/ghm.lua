@@ -46,7 +46,7 @@ function GHM_FramePositioning(frame,profile,parent)
 end
 
 local GiveWarnings = false;
-local ShowLines = true;
+local ShowLines = false;
 
 function GHM_TempBG(f)
 	f:SetBackdrop({
@@ -104,7 +104,7 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		if not(obj.GetLabel) then
 			obj.GetLabel = function() return profile.label end
 		end
-			GHM_TempBG(obj);
+		--GHM_TempBG(obj);
 		return obj:GetHeight();
 	end
 

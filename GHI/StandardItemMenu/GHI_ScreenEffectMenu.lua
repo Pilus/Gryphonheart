@@ -185,7 +185,7 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
 				},
 			},
-				},
+			{	
 				{
 					type = "Time",
 					text = loc.DELAY,
