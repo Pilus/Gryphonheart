@@ -319,7 +319,7 @@ function GHI_ContainerList()
 	class.OpenBag = function(containerGuid, openedByStack, size, texture, name, icon)
 		if containers[containerGuid] then
 			if size then
-				--containers[containerGuid].UpdateSize(size);
+				containers[containerGuid].UpdateSize(size);
 			end
 			containers[containerGuid].SetName(name);
 			containers[containerGuid].SetTexture(texture);

@@ -54,7 +54,7 @@ function GHM_Slider(parent, main, profile)
   GHM_FramePositioning(frame,profile,parent);
 
   local OnValueChanged = function(self,value)
-	local val = sliderValues[self:GetValue()];
+	local val = sliderValues[math.floor(self:GetValue())];
 
 	if profile.isTimeSlider then
 	  valueLabel:SetText(SecondsToTime(val));

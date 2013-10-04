@@ -16,6 +16,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	end
 
 	local loc = GHI_Loc()
+	class = GHClass("GHI_CodeEditorOptionsMenu");
 	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
 
 	local miscAPI = GHI_MiscAPI().GetAPI();
@@ -123,7 +124,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 					yOff = -20,
 					width = 300,
 					label = "SyntaxColorAnchor"
-				},				
+				},
 			},
 		}
 		,
@@ -162,6 +163,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		insets = { left = 4, right = 4, top = 4, bottom = 4 }
 	});
 	syntaxColorPreview:SetBackdropColor(0, 0, 0, 1);
+	syntaxColorPreview:SetFrameLevel(menuFrame.GetLabelFrame("SyntaxColorAnchor"):GetFrameLevel()+1)
 	syntaxColorPreview:Show()
 	
 	local function ToggleSyntaxHighlight(on)
