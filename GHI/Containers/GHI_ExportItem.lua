@@ -38,6 +38,7 @@ function GHI_ExportItem()
 		end
 		local exportGuid = GHI_GUID();
 		local t = {
+			["aaExport"] = "exported",
 			["amount"] = amount,
 			["ID"] = itemGuid,
 			["item"] = item.Serialize(),
@@ -55,13 +56,20 @@ function GHI_ExportItem()
 
 		local dependingGuids = item.GetDependingItems(stack);
 		t.dependingItems = {};
-		for _,guid in pairs(dependingGuids) do
-			local dItem = itemInfoList.GetItemInfo(guid)
-			table.insert(t.dependingItems,dItem.Serialize());
+		if dependingGuids ~= nil then
+			for _,guid in pairs(dependingGuids) do
+				local dItem = itemInfoList.GetItemInfo(guid)
+				table.insert(t.dependingItems,dItem.Serialize());
+			end
 		end
 
 		local s = packer.TableToString(t);
 		local e = crypt.Encrypt(s);
+		
+		while string.find(e, "]]") or string.find(e, "[[") do
+			e = crypt.Encrypt(s);
+		end
+		
 		local r = crypt.Decrypt(e);
 		if s == "" or not (s) then
 			return "Export error. Packing failed";
