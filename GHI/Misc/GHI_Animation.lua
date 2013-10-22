@@ -26,17 +26,17 @@ function GHI_AnimationInfo()
 				BOTTOMRIGHT = {"BOTTOMRIGHT"}
 			},
 			["Body"] = {
-				TOP = {"CENTER",0,25},
+				TOP = {"CENTER",0,25}
 			},
 			["Head"] = {
-				BOTTOM = {"CENTER"}
+				BOTTOM = {"CENTER"},
 			},
 		}
 	end
 	
 	class.GetTimes = function(frame)
 		return {
-			["Shimmer"] = function() return 1 end,
+			["Shimmer"] = function() return 0.5 end,
 			["Buff Cast"] = function() return 1 end,
 			["Hover"] = function() return 1 end,
 			["Flash"] = function()
@@ -96,12 +96,9 @@ function GHI_CreateAnimationFrame(name)
 	local stylePositions = animInfo.GetPositions()
 	
 	local AnimOnFinish_Repeat = function(self)
-		self.counter = self.counter + 1
-		
-		local repeating = frame.repeating
-		
+		self.counter = self.counter + 1		
+		local repeating = frame.repeating		
 		if frame.repeating == false then repeating = 1 end
-		
 		if self.counter < repeating then
 			self:Play()
 		elseif self.counter >= repeating then
@@ -116,7 +113,7 @@ function GHI_CreateAnimationFrame(name)
 	
 	local function ColorStep(color1, color2)
 		local animDuration = animTimes[frame.animType]()
-		local totalFrames = GetFramerate() * (animDuration * (frame.repeating or 1))
+		local totalFrames = GetFramerate() * (frame.duration or 1)
 		local diffR = (color2.r or color2[1]) - (color1.r or color1[1])
 		local diffG = (color2.g or color2[2]) - (color1.g or color1[2])
 		local diffB = (color2.b or color2[3]) - (color1.b or color1[3])
@@ -135,19 +132,7 @@ function GHI_CreateAnimationFrame(name)
 	
 	frame.repeating = false
 	-- frame.repeating tells us if we repeat the animation
-	
-	frame.SetRepeating = function(rep)
-	
-		if type(rep) == "boolean" and rep == false then
-			frame.repeating = false
-		elseif type(rep) == "number" then
-			frame.repeating = rep
-		else
-			frame.repeating = false
-		end
-		
-	end
-	
+			
 	frame.PlayAnimation = function()
 		local animationType = animList[frame.animType]
 		frame[animationType].counter = 0
@@ -161,22 +146,32 @@ function GHI_CreateAnimationFrame(name)
 			frame[animationType]:SetScript("OnFinished", AnimOnFinish)
 		end
 		
+		if frame.duration then
+			GHI_Timer(function()
+				frame[animationType]:Stop()
+				frame:Hide()
+			end,tonumber(frame.duration),true)
+		end
 	end
 	
 	frame.SetFlashTimes = function(inTime, outTime, holdTime)
-	
 		frame.flash.fadeIn:SetDuration(inTime)
 		frame.flash.fadeOut:SetDuration(outTime)
 		frame.flash.hold:SetDuration(holdTime)
-		
+	end
+	
+	frame.SetRepeating = function(rep)
+		if type(rep) == "boolean" and rep == false then
+			frame.repeating = false
+		elseif type(rep) == "number" then
+			frame.repeating = rep
+		else
+			frame.repeating = false
+		end
 	end
 	
 	frame.SetTotalDuration = function(duration)
-		local animDuration = animTimes[frame.animType]()
-		local timesToLoop = math.floor(duration / animDuration) + 1
-
-		frame.SetRepeating(timesToLoop)
-	
+		frame.duration = duration	
 	end
 	
 	frame.SetTexture = function(texture, tint, tint2)
@@ -269,6 +264,22 @@ function GHI_CreateAnimationFrame(name)
 		frame:SetSize(x * ratX, y * ratY)
 	end
 	
+	frame.SetModel = function(model)
+		frame.model:Show()
+		if type(model) == "string" then
+			frame.model:SetModel(model)
+		end
+	end
+	
+	frame.SetDisplayID = function(ID)
+		frame.model:Show()
+		frame.model:SetDisplayInfo(tonumber(ID))
+	end
+	
+	frame.SetCamera = function(cam)
+		frame.model:SetCamera(tonumber(cam))
+	end
+	
 	frame.Clear = function()
 		frame.logo.l = _G[frame.logo:GetName().."Left"]
 		frame.logo.r = _G[frame.logo:GetName().."Right"]
@@ -276,11 +287,12 @@ function GHI_CreateAnimationFrame(name)
 		frame.tex:SetTexture(nil)
 		frame.logo.l:SetTexture(nil)
 		frame.logo.r:SetTexture(nil)
-		--frame.model:SetModel(nil)
+		frame.model:ClearModel()
 		
 		frame.PositionType = nil
 		frame.animType = ""
 		frame.repeating = false
+		frame.duration = nil
 		
 		frame:SetAlpha(1)
 		frame:SetScale(1,1)

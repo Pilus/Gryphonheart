@@ -37,6 +37,8 @@ Misc\GHI_PopupMenu.lua
 Misc\GHI_UsageStatisticsSet.lua
 Misc\GHI_UsageStatisticsManager.lua
 Misc\GHI_GroupComm.lua
+Misc\GHI_Animation.lua
+APIs\GHI_Animation.xml
 
 Items\GHI_ItemInfoList.lua
 Items\GHI_ItemInfo.lua
@@ -146,7 +148,6 @@ APIs\GHI_GameWorldData.lua
 APIs\GHI_CreateItemAPI.lua
 APIs\GHI_MenuAPI.lua
 APIs\GHI_AnimationAPI.lua
-APIs\GHI_AnimationAPI.xml
 APIs\GHI_MarySueAPI.lua
 
 UI\GHI_LinksUI.lua
