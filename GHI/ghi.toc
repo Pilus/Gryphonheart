@@ -149,6 +149,8 @@ APIs\GHI_AnimationAPI.lua
 APIs\GHI_AnimationAPI.xml
 APIs\GHI_MarySueAPI.lua
 
+UI\GHI_Compatibility.xml
+UI\GHI_Compatibility.lua
 UI\GHI_LinksUI.lua
 UI\GHI_BuffUI.lua
 UI\GHI_ButtonUI.lua

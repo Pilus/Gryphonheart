@@ -311,7 +311,7 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>-- PlaySound("igMainMenuOptionCheckBoxOn");</OnClick>
+					<OnClick>PlaySound("igMainMenuOptionCheckBoxOn");</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up" />
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down" />
@@ -369,20 +369,18 @@
 			<OnDragStart>self:StartMoving();</OnDragStart>
 			<OnDragStop>self:StopMovingOrSizing();</OnDragStop>
 			<OnLoad>self:RegisterForDrag("LeftButton");
-                local bg = _G[self:GetName().."FrameBg"];
-                if bg:GetTexture() == "SolidTexture" then -- texture missing
-                    bg:SetTexture("INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains");
-                    bg:SetWidth(300);
-                    bg:SetHeight(355);
-                    bg:SetDrawLayer("BORDER");
-                end</OnLoad>
-			<OnEvent>--$parentFrame_OnEvent(event);</OnEvent>
-			<OnUpdate>--$parentFrame_OnUpdate(arg1);</OnUpdate>
+				local bg = _G[self:GetName().."FrameBg"];
+				if bg:GetTexture() == "SolidTexture" then -- texture missing
+					bg:SetTexture("INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains");
+					bg:SetWidth(300);
+					bg:SetHeight(355);
+					bg:SetDrawLayer("BORDER");
+				end</OnLoad>
 			<OnShow>PlaySound("igMainMenuOpen");
 				GHI_Event().TriggerEvent("GHI_BOOK_OPEN", self.GUID)</OnShow>
 			<OnHide>--Close$parent();
 				GHI_Event().TriggerEvent("GHI_BOOK_CLOSE", self.GUID)
-                PlaySound("igMainMenuClose");</OnHide>
+				PlaySound("igMainMenuClose");</OnHide>
 		</Scripts>
 	</Frame>
 	<Frame name="GHI_LogoTemplate" setAllPoints="false" virtual="true">
