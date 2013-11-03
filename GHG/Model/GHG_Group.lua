@@ -8,51 +8,6 @@
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
-local TrimForSpaces = function(text)
-	return string.gsub(text,".",function(s) if not(s==" ") then return s; end return ""; end);
-end
-
---[[
- Some thing => St
- Something => Something
- Some of a Thing => SoaT
-]]
-local GenerateHeaderFromName = function(name)
-	if name:len() <= 8 and not(string.find(name," ")) then
-		return name;
-	end
-
-
-	local header = name:sub(0,1);
-	string.gsub(name,"%s.",function(s)
-		s = string.sub(s,s:len())
-		if not(s==" ") then
-			header = header..s;
-		end
-		return "";
-	end);
-
-	if header:len() < 2 then
-		return string.sub(name,0,8);
-	end
-
-	return header;
-end
-
-assert("St"==GenerateHeaderFromName("Some thing"))
-assert("Somethin"==GenerateHeaderFromName("Something"))
-assert("SoaT"==GenerateHeaderFromName("Some of a Thing"))
-
-
-local RandomChatColor;
-RandomChatColor = function()
-	local c = {r = random(100)/100, g = random(100)/100, b = random(100)/100 }
-	if (c.r + c.g + c.b) < 0.90 then -- too dark
-		return RandomChatColor();
-	end
-	return c;
-end
-
 
 function GHG_Group(info)
 	local class = GHClass("GHG_Group");
@@ -252,6 +207,21 @@ function GHG_Group(info)
 
 	end
 
+	class.SetChatName = function(_chatName)
+		chatName = _chatName;
+	end
+
+	class.SetChatHeader = function(_chatHeader)
+		chatHeader = _chatHeader;
+	end
+
+	class.SetChatColor = function(_chatColor)
+		chatColor = _chatColor;
+	end
+
+	class.SetChatSlashCommand = function(_slashCommand)
+		chatSlashCmds = _slashCommand;
+	end
 
 	class.GetGroupChatInfo = function()
 		return chatName,chatHeader,chatColor,chatSlashCmds;
@@ -353,9 +323,9 @@ function GHG_Group(info)
 		ranks = LoadNestedCryptated(info.ranks or {},GHG_GroupRank,true);
 
 		chatName = info.chatName or name;
-		chatHeader = info.chatHeader or GenerateHeaderFromName(name);
-		chatColor = info.chatColor or RandomChatColor();
-		chatSlashCmds = info.chatSlashCmds or {GenerateHeaderFromName(name)};
+		chatHeader = info.chatHeader or "";
+		chatColor = info.chatColor or {r=1.0, g=1.0, b=1.0};
+		chatSlashCmds = info.chatSlashCmds or {};
 
 		chat = GHG_GroupChat(guid,keys);
 		if active and class.IsPlayerMemberOfGuild(UnitGUID("player")) then
@@ -372,7 +342,7 @@ function GHG_Group(info)
 	return class;
 end
 
--- [[
+--[[
 TEST = function(text)
 
 	local crypt = GHI_Crypt(random(100),random(100))
