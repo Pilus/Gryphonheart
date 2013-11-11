@@ -38,7 +38,7 @@ function GHI_ExportItem()
 		end
 		local exportGuid = GHI_GUID();
 		local t = {
-			["aaExport"] = "exported",
+			["!first"] = "exported",
 			["amount"] = amount,
 			["ID"] = itemGuid,
 			["item"] = item.Serialize(),
@@ -66,7 +66,9 @@ function GHI_ExportItem()
 		local s = packer.TableToString(t);
 		local e = crypt.Encrypt(s);
 		
-		while string.find(e, "%]%]") or string.find(e, "%[%[") do
+		while string.find(e, "%]%]") or string.find(e, "%[%[") or string.find(e, "\"") do
+			t["!first"] = t["!first"].."Exporting";
+			s = packer.TableToString(t);
 			e = crypt.Encrypt(s);
 		end
 		
