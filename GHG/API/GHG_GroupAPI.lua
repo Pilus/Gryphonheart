@@ -28,6 +28,33 @@ function GHG_GroupAPI(userGuid)
 	local toasts = GHG_GroupToasts();
 
 
+	local GenerateChatHeaderAndSlashCommand = function(groupName)
+		if string.len(groupName) <= 6 then
+			-- The group name is short enough to be the chat header
+			return groupName, string.lower(gsub(groupName, " ", ""));
+		elseif string.count(groupName," .") >= 2 then
+			-- The name consists of two or more words. Use an acronym
+			local acronym = string.sub(groupName,0,1);
+			string.gsub(groupName," .",function(letter)
+				acronym = acronym .. strtrim(letter);
+			end);
+			return acronym, string.lower(acronym);
+		else
+			-- The name is one or more long words. Use the first 6 letters.
+			local first = string.sub(groupName, 0, 6);
+			return first, string.lower(gsub(first, " ", ""));
+		end
+	end
+
+	local RandomChatColor;
+	RandomChatColor = function()
+		local c = {r = random(100)/100, g = random(100)/100, b = random(100)/100 }
+		if (c.r + c.g + c.b) < 0.90 then -- too dark
+			return RandomChatColor();
+		end
+		return c;
+	end
+
 	class.CreateGroup = function(name)
 		GHCheck("CreateGroup", { "string" }, { name });
 		local group = GHG_Group();
@@ -35,9 +62,12 @@ function GHG_GroupAPI(userGuid)
 		GHG_GroupKeys[group.GetGuid()] = {random(100),random(100)};
 		group.InitializeCryptatedData();
 
-
-
 		group.SetName(name);
+		local chatHeader, slashCmd = GenerateChatHeaderAndSlashCommand(name);
+		group.SetChatName(name);
+		group.SetChatHeader(chatHeader);
+		group.SetChatSlashCommand({slashCmd});
+		group.SetChatColor(RandomChatColor());
 
 		group.AddRank("Leader");
 		local leaderRank = group.GetRank(1);

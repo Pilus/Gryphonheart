@@ -1,63 +1,79 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
-    <Frame name="GHG_GroupInfoFrame" parent="GHG_GroupFrameContent" setAllPoints="true" hidden="true" id="2">
-       	<Frames>
-           <Button name="$parentAddMemberButton" inherits="MagicButtonTemplate" text="ADD_MEMBER">
-                <Size x="116" y="22"/>
-                <Anchors>
-                    <Anchor point="BOTTOMLEFT" x="-3" y="-1"/>
-                </Anchors>
-                <Scripts>
-                    <OnClick>
-                        if ( StaticPopup_FindVisible("GHG_ADD_GROUP_MEMBER") ) then
-                            StaticPopup_Hide("GHG_ADD_GROUP_MEMBER");
-                        else
-                            StaticPopup_Show("GHG_ADD_GROUP_MEMBER");
-                        end
-                    </OnClick>
-                </Scripts>
-            </Button>
-            <Button name="$parentLeaveButton" inherits="MagicButtonTemplate" text="LEAVE_GROUP">
-                <Size x="116" y="22"/>
-                <Anchors>
-                    <Anchor point="BOTTOMRIGHT" x="3" y="-1"/>
-                </Anchors>
-                <Scripts>
-                    <OnClick>
-                        if ( not GuildControlUI ) then
-                            UIParentLoadAddOn("Blizzard_GuildControlUI");
-                        end
-                        CloseWindows(nil, GuildFrame);
-                        GuildFramePopup_Toggle(GuildControlUI);
-                    </OnClick>
-                    <OnEnter>
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+	<Frame name="GHG_GroupInfoFrame" parent="GHG_GroupFrameContent" setAllPoints="true" hidden="true" id="2">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentChatInfo" inherits="GameFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="200" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="50" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentAddMemberButton" inherits="MagicButtonTemplate" text="ADD_MEMBER">
+				<Size x="116" y="22"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" x="-3" y="-1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if ( StaticPopup_FindVisible("GHG_ADD_GROUP_MEMBER") ) then
+							StaticPopup_Hide("GHG_ADD_GROUP_MEMBER");
+						else
+							StaticPopup_Show("GHG_ADD_GROUP_MEMBER");
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentLeaveButton" inherits="MagicButtonTemplate" text="LEAVE_GROUP">
+				<Size x="116" y="22"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="3" y="-1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if ( not GuildControlUI ) then
+							UIParentLoadAddOn("Blizzard_GuildControlUI");
+						end
+						CloseWindows(nil, GuildFrame);
+						GuildFramePopup_Toggle(GuildControlUI);
+					</OnClick>
+					<OnEnter>
 
-                    </OnEnter>
-                    <OnLeave function="GameTooltip_Hide"/>
-                </Scripts>
-            </Button>
-            <Button name="$parentViewLogButton" inherits="MagicButtonTemplate" text="VIEW_LOG" disabled="true">
-                <Size x="0" y="22"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativeTo="$parentAddMemberButton" relativePoint="RIGHT"/>
-                    <Anchor point="RIGHT" relativeTo="$parentLeaveButton" relativePoint="LEFT"/>
-                </Anchors>
-                <Scripts>
-                    <OnClick>
-                        --GuildFramePopup_Toggle(GuildLogFrame);
-                    </OnClick>
-                    <OnLoad>
-                        self:Disable();
-                    </OnLoad>
-                </Scripts>
-            </Button>
-        </Frames>
-        <Scripts>
-            <OnLoad>
-                self.UpdateFunc = GHG_UpdateGroupInfo;
-            </OnLoad>
-        </Scripts>
-    </Frame>
+					</OnEnter>
+					<OnLeave function="GameTooltip_Hide"/>
+				</Scripts>
+			</Button>
+			<Button name="$parentViewLogButton" inherits="MagicButtonTemplate" text="VIEW_LOG" disabled="true">
+				<Size x="0" y="22"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentAddMemberButton" relativePoint="RIGHT"/>
+					<Anchor point="RIGHT" relativeTo="$parentLeaveButton" relativePoint="LEFT"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						--GuildFramePopup_Toggle(GuildLogFrame);
+					</OnClick>
+					<OnLoad>
+						self:Disable();
+					</OnLoad>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self.UpdateFunc = GHG_UpdateGroupInfo;
+			</OnLoad>
+		</Scripts>
+	</Frame>
 
 
 </Ui>

@@ -1,7 +1,7 @@
 --===================================================
 --
 --				GHI_ActionBarUI
---  			GHI_ActionBarUI.lua
+--				GHI_ActionBarUI.lua
 --
 --		UI for action bars for ghi items
 --
@@ -167,6 +167,20 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		b:Hide();
 		b:RegisterForDrag("LeftButton","RightButton");
 		b:RegisterForClicks("LeftButtonUp","RightButtonUp");
+		if actionButton:GetNormalTexture() then
+			local texture = actionButton:GetNormalTexture();
+			if string.startsWith(actionButton:GetName(),"BT4Button") then
+				b:SetNormalTexture("Interface\\Buttons\\UI-Quickslot2");
+				local newTexture = b:GetNormalTexture();
+				newTexture:SetTexCoord(texture:GetTexCoord());
+			else
+				b:SetNormalTexture(texture:GetTexture() or "Interface\\Buttons\\UI-Quickslot2");
+				local newTexture = b:GetNormalTexture();
+				newTexture:SetTexCoord(texture:GetTexCoord());
+			end
+		else
+			b:SetNormalTexture(nil);
+		end
 		b:SetFrameStrata(actionButton:GetFrameStrata());
 		b:SetFrameLevel(actionButton:GetFrameLevel() + 1);
 

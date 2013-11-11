@@ -24,7 +24,8 @@ local GroupInvite = function(name)
 end
 
 function GHG_UpdateGroupInfo()
-
+	local _,chatHeader,_,chatSlash = api.GetGroupChatInfo(GetGroupIndex());
+	GHG_GroupInfoFrameChatInfo:SetText(string.format(loc.CHAT_INFO_TEXT,chatHeader,chatSlash[1]));
 end
 
 StaticPopupDialogs["GHG_ADD_GROUP_MEMBER"] = {

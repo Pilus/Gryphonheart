@@ -182,6 +182,17 @@ string.endsWith = function(str,pattern)
 	return false;
 end
 
+string.count = function(str,pattern)
+	local last = 0;
+	local count;
+	local _;
+	while (last) do
+		_,last = string.find(str,pattern,last);
+		count = (count or -1) + 1;
+	end
+	return count;
+end
+
 local _,_,_,tocNum = GetBuildInfo();
 if tocNum >= 30000 and tocNum < 40000 then
 	local orig = PlaySoundFile;

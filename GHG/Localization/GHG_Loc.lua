@@ -220,7 +220,21 @@ function GHG_Loc()
 		MOVE_DOWN = {
 			enUS = "Move down",
 		},
-
+		CHAT_NAME = {
+			enUS = "Chat name",
+		},
+		CHAT_HEADER = {
+			enUS = "Chat header",
+		},
+		CHAT_COLOR = {
+			enUS = "Chat color",
+		},
+		CHAT_SLASH = {
+			enUS = "Chat slash cmd",
+		},
+		CHAT_INFO_TEXT = {
+			enUS = "Group chat (%s) accessible through /%s",
+		},
 
 		-- Promote demote
 		PLAYER_PROMOTED = {

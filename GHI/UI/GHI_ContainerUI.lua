@@ -1,4 +1,4 @@
---===================================================
+	--===================================================
 --
 --				GHI_ContainerUI
 --				GHI_ContainerUI.lua
@@ -246,6 +246,7 @@ end);
 
 GHI_Event("GHI_CONTAINER_UPDATE", function(e, guid)
 	if mainBagFrame then
+		api = api or GHI_ContainerAPI().GetAPI();
 		mainBagFrame.guid = api.GHI_GetCurrentMainBagGUID();
 		UpdateMainBagPageButtons();
 		for _, frame in pairs(bags) do
