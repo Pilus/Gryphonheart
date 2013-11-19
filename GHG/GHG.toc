@@ -23,6 +23,8 @@ Model\GHG_PlayerData.lua
 Model\GHG_PlayerDataList.lua
 Model\GHG_GroupMember.lua
 Model\GHG_GroupRank.lua
+Model\GHG_LogEventType.lua
+Model\GHG_LogEvent.lua
 
 Comm\GHG_GroupChat.lua
 Comm\GHG_GroupInvite.lua

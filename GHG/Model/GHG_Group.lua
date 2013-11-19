@@ -13,6 +13,7 @@ function GHG_Group(info)
 	local class = GHClass("GHG_Group");
 
 	local guid,name,version,icon;
+	local logEvents;
 	local members = {};
 	local ranks = {};
 	local chatName,chatHeader,chatColor,chatSlashCmds;
@@ -126,18 +127,25 @@ function GHG_Group(info)
 			rankGuid = rankGuid,
 		})
 		table.insert(members,member);
+
+		local event = GHG_LogEvent();
+		event.Initialize(GHG_LogEventType.INVITE, UnitName("PLAYER"), {name});
+		table.insert(logEvents, event);
 	end
 
 	class.RemoveMember = function(guid)
 		for i,member in pairs(members) do
 			if member.GetGuid() == guid then
 				table.remove(members,i);
+
+				local event = GHG_LogEvent();
+				event.Initialize(GHG_LogEventType.REMOVE, UnitName("PLAYER"), {name});
+				table.insert(logEvents, event);
+
 				return
 			end
 		end
 	end
-
-
 
 	-- Rank
 	local GetRankByGuid = function(guid)
@@ -183,7 +191,13 @@ function GHG_Group(info)
 	class.SetRankOfMember = function(guid,rankGuid)
 		local member = GetMemberByGuid(guid);
 		if member then
+			local oldRankGuid = member.GetRankGuid();
 			member.SetRankGuid(rankGuid);
+
+			local eventType = (GHG_LogEventType.PROMOTE and class.GetRankIndex(oldRankGuid) >= class.GetRankIndex(rankGuid)) or GHG_LogEventType.DEMOTE;
+			local event = GHG_LogEvent();
+			event.Initialize(eventType, UnitName("PLAYER"), {name});
+			table.insert(logEvents, event);
 		end
 	end
 
@@ -231,7 +245,6 @@ function GHG_Group(info)
 		chat.SendChatMessage(msg)
 	end
 
-
 	class.Activate = function()
 		active = true;
 		if chat then
@@ -248,6 +261,10 @@ function GHG_Group(info)
 
 	class.Clone = function()
 		return GHG_Group(class.Serialize());
+	end
+
+	class.GetLogEvents = function()
+		return logEvents;
 	end
 
 	-- Serialization
@@ -276,6 +293,7 @@ function GHG_Group(info)
 			t.members = SaveNested(members);
 			t.ranks = SaveNested(ranks);
 
+			t.logEvents = logEvents;
 			t.chatName = chatName;
 			t.chatHeader = chatHeader;
 			t.chatColor = chatColor;
@@ -319,6 +337,8 @@ function GHG_Group(info)
 			return info2;
 		end
 
+		logEvents = info.logEvents or {};
+
 		members = LoadNestedCryptated(info.members or {},GHG_GroupMember);
 		ranks = LoadNestedCryptated(info.ranks or {},GHG_GroupRank,true);
 
@@ -341,20 +361,3 @@ function GHG_Group(info)
 
 	return class;
 end
-
---[[
-TEST = function(text)
-
-	local crypt = GHI_Crypt(random(100),random(100))
-
-	local swapped = crypt.Swap(text);
-
-	print(swapped);
-
-	local deswapped = crypt.Deswap(swapped);
-
-	print(deswapped == text)
-
-	print(deswapped);
-
-end --]]
