@@ -65,11 +65,16 @@ function GHI_ExportItem()
 
 		local s = packer.TableToString(t);
 		local e = crypt.Encrypt(s);
-		
-		while string.find(e, "%]%]") or string.find(e, "%[%[") or string.find(e, "\"") do
-			t["!first"] = t["!first"].."Exporting";
+
+		local c = 0;
+		while string.find(e, "%]%]") or string.find(e, "%[%[") do
+			t["!first"..c] = "Exporting";
 			s = packer.TableToString(t);
 			e = crypt.Encrypt(s);
+			c = c + 1;
+			if c > 100 then
+				break;
+			end
 		end
 		
 		local r = crypt.Decrypt(e);
