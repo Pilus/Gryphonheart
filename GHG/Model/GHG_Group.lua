@@ -129,7 +129,7 @@ function GHG_Group(info)
 		table.insert(members,member);
 
 		local event = GHG_LogEvent();
-		event.Initialize(GHG_LogEventType.INVITE, UnitName("PLAYER"), {name});
+		event.CreateEvent(GHG_LogEventType.INVITE, UnitName("PLAYER"), {name});
 		table.insert(logEvents, event);
 	end
 
@@ -139,7 +139,7 @@ function GHG_Group(info)
 				table.remove(members,i);
 
 				local event = GHG_LogEvent();
-				event.Initialize(GHG_LogEventType.REMOVE, UnitName("PLAYER"), {name});
+				event.CreateEvent(GHG_LogEventType.REMOVE, UnitName("PLAYER"), {name});
 				table.insert(logEvents, event);
 
 				return
@@ -196,7 +196,7 @@ function GHG_Group(info)
 
 			local eventType = (GHG_LogEventType.PROMOTE and class.GetRankIndex(oldRankGuid) >= class.GetRankIndex(rankGuid)) or GHG_LogEventType.DEMOTE;
 			local event = GHG_LogEvent();
-			event.Initialize(eventType, UnitName("PLAYER"), {name});
+			event.CreateEvent(eventType, UnitName("PLAYER"), {name});
 			table.insert(logEvents, event);
 		end
 	end
@@ -293,7 +293,7 @@ function GHG_Group(info)
 			t.members = SaveNested(members);
 			t.ranks = SaveNested(ranks);
 
-			t.logEvents = logEvents;
+			t.logEvents = SaveNested(logEvents);
 			t.chatName = chatName;
 			t.chatHeader = chatHeader;
 			t.chatColor = chatColor;
@@ -337,7 +337,14 @@ function GHG_Group(info)
 			return info2;
 		end
 
-		logEvents = info.logEvents or {};
+		if info.logEvents then
+			logEvents = LoadNestedCryptated(info.logEvents, GHG_LogEvent);
+		else
+			local event = GHG_LogEvent();
+			event.CreateEvent(GHG_LogEventType.CREATE, UnitName("PLAYER"), {});
+			logEvents = {event};
+		end
+
 
 		members = LoadNestedCryptated(info.members or {},GHG_GroupMember);
 		ranks = LoadNestedCryptated(info.ranks or {},GHG_GroupRank,true);

@@ -102,3 +102,15 @@ StaticPopupDialogs["GHG_CONFIRM_GROUP_LEAVE"] = {
 	hideOnEscape = 1
 };
 
+function GHG_UpdateGroupEventLog()
+	local t = {};
+	local num = api.GetNumGroupEventLogEntries(GetGroupIndex())
+	for i=1,num do
+		local eventType, timeStamp, author, arg1, arg2, arg4, arg4 = api.GetGroupEventLogEntry(GetGroupIndex(), i);
+		if eventType then
+			table.insert(t, string.format(loc["LOGEVENT_"..eventType], timeStamp, author, arg1, arg2, arg4, arg4));
+		end
+	end
+	GHG_GroupEventMessage:SetText(strjoin("\n",unpack(t)));
+end
+

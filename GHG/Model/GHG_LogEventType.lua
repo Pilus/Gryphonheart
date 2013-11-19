@@ -10,6 +10,7 @@
 --===================================================
 
 GHG_LogEventType = {
+	CREATE = "GROUP_CREATED",
 	PROMOTE = "MEMBER_PROMOTED",
 	DEMOTE = "MEMBER_DEMOTED",
 	INVITE = "MEMBER_INVITED",

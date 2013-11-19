@@ -66,12 +66,12 @@
 			</Button>
 			<Frame name="$parentEventLogFrame" enableMouse="true" hidden="true">
 				<Size>
-					<AbsDimension x="395" y="435"/>
+					<AbsDimension x="335" y="300"/>
 				</Size>
 				<Anchors>
-					<Anchor point="TOPLEFT">
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="0" y="0"/>
+							<AbsDimension x="40" y="3"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -89,7 +89,7 @@
 								</Anchor>
 							</Anchors>
 						</Texture>
-						<FontString name="GuildEventLogTitle" inherits="GameFontNormal" text="GUILD_EVENT_LOG">
+						<FontString name="$parentTitle" inherits="GameFontNormal" text="GUILD_EVENT_LOG">
 							<Anchors>
 								<Anchor point="TOPLEFT">
 									<Offset>
@@ -101,14 +101,16 @@
 					</Layer>
 				</Layers>
 				<Frames>
-					<Frame name="GuildEventFrame">
-						<Size>
-							<AbsDimension x="375" y="370"/>
-						</Size>
+					<Frame name="$parentEventFrame">
 						<Anchors>
 							<Anchor point="TOPLEFT">
 								<Offset>
 									<AbsDimension x="11" y="-32"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-11" y="36"/>
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -124,23 +126,23 @@
 							</BackgroundInsets>
 						</Backdrop>
 						<Frames>
-							<ScrollFrame name="GuildEventLogScrollFrame" inherits="UIPanelScrollFrameTemplate">
-								<Size>
-									<AbsDimension x="340" y="359"/>
-								</Size>
+							<ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
 								<Anchors>
-									<Anchor point="TOPRIGHT" relativeTo="GuildEventFrame" relativePoint="TOPRIGHT">
+									<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
 										<Offset x="-28" y="-6"/>
+									</Anchor>
+									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+										<Offset x="6" y="6"/>
 									</Anchor>
 								</Anchors>
 								<ScrollChild>
-									<Frame name="GuildEventLogScrollChildFrame">
+									<Frame name="$parentChildFrame">
 										<Size>
 											<AbsDimension x="340" y="359"/>
 										</Size>
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="GuildEventMessage" inherits="ChatFontNormal" justifyH="LEFT">
+												<FontString name="GHG_GroupEventMessage" inherits="ChatFontNormal" justifyH="LEFT">
 													<Size>
 														<AbsDimension x="340" y="0"/>
 													</Size>
@@ -161,21 +163,21 @@
 							</OnLoad>
 						</Scripts>
 					</Frame>
-					<Button name="GuildEventLogCloseButton" inherits="UIPanelCloseButton">
+					<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
 						<Anchors>
 							<Anchor point="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="-3" y="-3"/>
+									<AbsDimension x="-1" y="-3"/>
 								</Offset>
 							</Anchor>
 						</Anchors>
 					</Button>
-					<Button name="GuildEventLogCancelButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+					<Button name="$parentCancelButton" inherits="UIPanelButtonTemplate" text="CLOSE">
 						<Size>
 							<AbsDimension x="139" y="22"/>
 						</Size>
 						<Anchors>
-							<Anchor point="BOTTOMRIGHT" relativeTo="GuildEventLogFrame" relativePoint="BOTTOMRIGHT">
+							<Anchor point="BOTTOMRIGHT" relativeTo="GHG_GroupInfoFrameEventLogFrame" relativePoint="BOTTOMRIGHT">
 								<Offset x="-9" y="13"/>
 							</Anchor>
 						</Anchors>
@@ -199,13 +201,7 @@
 					</EdgeSize>
 				</Backdrop>
 				<Scripts>
-					<OnLoad>
-						self:RegisterEvent("GUILD_EVENT_LOG_UPDATE");
-					</OnLoad>
-					<OnEvent>
-						GuildEventLog_Update();
-					</OnEvent>
-					<OnShow function="QueryGuildEventLog"/>
+					<OnShow function="GHG_UpdateGroupEventLog"/>
 				</Scripts>
 			</Frame>
 		</Frames>

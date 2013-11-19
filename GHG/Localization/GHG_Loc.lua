@@ -250,6 +250,20 @@ function GHG_Loc()
 		LEAVE_CONFIRM = {
 			enUS = "Are you sure that you want to leave the group: %s.",
 		},
+
+		-- Event log
+		LOG = {
+			enUS = "Log",
+		},
+		CLOSE = {
+			enUS = "Close",
+		},
+		LOGEVENT_GROUP_CREATED = {
+			enUS = "%s: %s created the group.",
+		},
+		LOGEVENT_MEMBER_INVITED = {
+			enUS = "%s: %s invited %s to the group.",
+		},
 	}
 
 
