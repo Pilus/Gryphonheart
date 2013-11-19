@@ -211,6 +211,35 @@ function GHG_GroupAPI(userGuid)
 		end
 	end
 
+	class.GetNumGroupEventLogEntries = function(index)
+		GHCheck("GetNumGroupEventLogEntries", { "number" }, { index });
+		local group = GetGroupByIndex(index);
+
+		if group then
+			return #(group.GetLogEvents());
+		end
+	end
+
+	class.GetGroupEventLogEntry = function(index,i)
+		GHCheck("GetGroupEventLogEntry", { "number", "number" }, { index,i });
+		local group = GetGroupByIndex(index);
+
+		if group then
+			local events = group.GetLogEvents();
+			if events and events[i] then
+				local eventType, timeStamp, author, args = events[i].GetInfo();
+				if eventType == GHG_LogEventType.PROMOTE or eventType == GHG_LogEventType.DEMOTE then
+					local rankIndex = group.GetRankIndex(args[1]);
+					local rank = group.GetRank(rankIndex);
+					if rank then
+						return eventType, timeStamp, author, rank.GetName(), args[2], args[3], args[4];
+					end
+				end
+				return eventType, timeStamp, author, unpack(args);
+			end
+		end
+	end
+
 
 	-- ======== Invite player to group ===========
 	local invite = GHG_GroupInvite();
@@ -268,9 +297,6 @@ function GHG_GroupAPI(userGuid)
 		end
 
 	end
-
-
-
 
 	class.GetIndexOfGroupByGuid = function(gGuid)
 		local guids = groupList.GetAllGroupGuids();

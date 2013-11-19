@@ -64,6 +64,10 @@ function GHI_Packer()
 	class.TableToString = function(t, addCheck)
 		local s = "{";
 		for index, value in pairs(t) do
+			if value == "!first" then
+				index = format("\"%s\"", index);
+				print("!first check")
+			end
 			if type(index) == "string" then
 				index = format("\"%s\"", index);
 			end

@@ -60,13 +60,154 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						--GuildFramePopup_Toggle(GuildLogFrame);
+						_G[self:GetParent():GetName().."EventLogFrame"]:Show();
 					</OnClick>
-					<OnLoad>
-						self:Disable();
-					</OnLoad>
 				</Scripts>
 			</Button>
+			<Frame name="$parentEventLogFrame" enableMouse="true" hidden="true">
+				<Size>
+					<AbsDimension x="395" y="435"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture file="Interface\DialogFrame\UI-DialogBox-Corner">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-6" y="-7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="GuildEventLogTitle" inherits="GameFontNormal" text="GUILD_EVENT_LOG">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="17" y="-17"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Frame name="GuildEventFrame">
+						<Size>
+							<AbsDimension x="375" y="370"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="11" y="-32"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="16"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="5" right="5" top="5" bottom="5"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<ScrollFrame name="GuildEventLogScrollFrame" inherits="UIPanelScrollFrameTemplate">
+								<Size>
+									<AbsDimension x="340" y="359"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPRIGHT" relativeTo="GuildEventFrame" relativePoint="TOPRIGHT">
+										<Offset x="-28" y="-6"/>
+									</Anchor>
+								</Anchors>
+								<ScrollChild>
+									<Frame name="GuildEventLogScrollChildFrame">
+										<Size>
+											<AbsDimension x="340" y="359"/>
+										</Size>
+										<Layers>
+											<Layer level="OVERLAY">
+												<FontString name="GuildEventMessage" inherits="ChatFontNormal" justifyH="LEFT">
+													<Size>
+														<AbsDimension x="340" y="0"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" />
+													</Anchors>
+												</FontString>
+											</Layer>
+										</Layers>
+									</Frame>
+								</ScrollChild>
+							</ScrollFrame>
+						</Frames>
+						<Scripts>
+							<OnLoad>
+								self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<Button name="GuildEventLogCloseButton" inherits="UIPanelCloseButton">
+						<Anchors>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-3" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="GuildEventLogCancelButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+						<Size>
+							<AbsDimension x="139" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="GuildEventLogFrame" relativePoint="BOTTOMRIGHT">
+								<Offset x="-9" y="13"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick function="HideParentPanel"/>
+						</Scripts>
+						<NormalFont style="GameFontNormalSmall"/>
+						<HighlightFont style="GameFontHighlightSmall"/>
+						<DisabledFont style="GameFontDisableSmall"/>
+					</Button>
+				</Frames>
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="12" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						self:RegisterEvent("GUILD_EVENT_LOG_UPDATE");
+					</OnLoad>
+					<OnEvent>
+						GuildEventLog_Update();
+					</OnEvent>
+					<OnShow function="QueryGuildEventLog"/>
+				</Scripts>
+			</Frame>
 		</Frames>
 		<Scripts>
 			<OnLoad>
