@@ -5,16 +5,20 @@
     <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Progress on GHG.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GHG.toc" afterPath="$PROJECT_DIR$/GHG/GHG.toc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua" afterPath="$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.lua" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.xml" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Localization/GHG_Loc.lua" afterPath="$PROJECT_DIR$/GHG/Localization/GHG_Loc.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_LogEventType.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_LogEventType.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_LogEvent.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_LogEvent.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Misc/GHI_Crypt.lua" afterPath="$PROJECT_DIR$/GHI/Misc/GHI_Crypt.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
-    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384879567945" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384970320740" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
     <file path="/ghi.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383389486973" ignored="false" />
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
@@ -67,19 +71,22 @@
     <file path="/GHI_ClassAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447910656" ignored="false" />
     <file path="/GHI_CodeEditorOptionsMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380831253981" ignored="false" />
     <file path="/GHI_Compatibility.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383499829639" ignored="false" />
-    <file path="/GHG_Group.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384901295923" ignored="false" />
-    <file path="/GHG_GroupAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384011298753" ignored="false" />
+    <file path="/GHG_Group.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384979611339" ignored="false" />
+    <file path="/GHG_GroupAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384977975058" ignored="false" />
     <file path="/ghclass.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383512266221" ignored="false" />
-    <file path="/GHG_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384900883265" ignored="false" />
+    <file path="/GHG_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384973067910" ignored="false" />
     <file path="/GHG_GroupAdmin.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383515083879" ignored="false" />
     <file path="/GHG_AdminAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383514190274" ignored="false" />
     <file path="/GHG_GroupInfoFrame.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384899583504" ignored="false" />
-    <file path="/GHG_GroupInfoFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384901431134" ignored="false" />
+    <file path="/GHG_GroupInfoFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384974240580" ignored="false" />
     <file path="/GHM_ImageList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384000702047" ignored="false" />
     <file path="/GHG.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384006311174" ignored="false" />
     <file path="/GHG_LogEventType.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384900768524" ignored="false" />
-    <file path="/GHG_LogEvent.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384008481903" ignored="false" />
+    <file path="/GHG_LogEvent.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384972832295" ignored="false" />
     <file path="/GHI_ExportItem.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384878654415" ignored="false" />
+    <file path="/GHG_GroupList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384974116542" ignored="false" />
+    <file path="/GHI_Crypt.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384976886848" ignored="false" />
+    <file path="/GHG_GroupFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384980015477" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,13 +152,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GHI_VersionInfo.lua" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_VersionInfo.lua">
+      <file leaf-file-name="GHG_GroupFrame.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="23" selection-start="4472" selection-end="4485" vertical-scroll-proportion="0.48305085">
+            <state line="223" column="8" selection-start="4978" selection-end="4978" vertical-scroll-proportion="-12.24">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHG.toc" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHG/GHG.toc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="0" selection-start="1181" selection-end="1181" vertical-scroll-proportion="1.4265734">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHG_Group.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_Group.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="271" column="23" selection-start="5429" selection-end="5429" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHG_GroupFrame.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="207" column="44" selection-start="7330" selection-end="7330" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="n#CompareNumbers#0" expanded="false" />
-                <element signature="n#CompareVersions#0" expanded="false" />
+                <element signature="tag#Button#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#CheckButton#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Size#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Anchors#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Layers#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Button#0;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Frame#0;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Button#1;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Button#2;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+                <element signature="tag#Button#3;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -180,22 +222,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHI/UI/Book/GHI_BookUI.xml" />
-        <option value="$PROJECT_DIR$/GHI/UI/GHI_Compatibility.lua" />
-        <option value="$PROJECT_DIR$/GHI/UI/GHI_Compatibility.xml" />
         <option value="$PROJECT_DIR$/GHI/ghclass.lua" />
         <option value="$PROJECT_DIR$/GHG/API/GHG_AdminAPI.lua" />
         <option value="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.lua" />
         <option value="$PROJECT_DIR$/GHM/Objects/GHM_ImageList.lua" />
-        <option value="$PROJECT_DIR$/GHG/Model/GHG_LogEvent.lua" />
-        <option value="$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua" />
         <option value="$PROJECT_DIR$/GHI/Containers/GHI_ExportItem.lua" />
-        <option value="$PROJECT_DIR$/GHG/GHG.toc" />
         <option value="$PROJECT_DIR$/GHG/Model/GHG_LogEventType.lua" />
+        <option value="$PROJECT_DIR$/GHG/Model/GHG_LogEvent.lua" />
         <option value="$PROJECT_DIR$/GHG/Localization/GHG_Loc.lua" />
-        <option value="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" />
         <option value="$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.xml" />
+        <option value="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" />
         <option value="$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.lua" />
+        <option value="$PROJECT_DIR$/GHI/Misc/GHI_Crypt.lua" />
+        <option value="$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua" />
+        <option value="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" />
+        <option value="$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua" />
+        <option value="$PROJECT_DIR$/GHG/GHG.toc" />
       </list>
     </option>
   </component>
@@ -234,8 +276,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -314,6 +354,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -350,23 +408,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="GUI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AddOns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GHG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="API" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="151" />
-    <property name="project.structure.proportion" value="0.0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="150" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="151" />
@@ -411,6 +489,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -436,19 +527,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -716,18 +794,18 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3546798" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3535188" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.74055827" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19621213" sideWeight="0.6453202" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19621213" sideWeight="0.64648116" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3316413" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -822,41 +900,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHG/Comm/GHG_GroupInvite.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_GroupMember.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="21" selection-start="495" selection-end="506" vertical-scroll-proportion="0.48056537">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_GroupRank.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="8" selection-start="7833" selection-end="7833" vertical-scroll-proportion="0.02915952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/GHG.toc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="67" selection-end="67" vertical-scroll-proportion="0.1021021">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_ExportItem.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="36" selection-start="1540" selection-end="1540" vertical-scroll-proportion="-1.0517712">
@@ -878,37 +921,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_VersionInfo.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="170" column="23" selection-start="4472" selection-end="4485" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#CompareNumbers#0" expanded="false" />
+            <element signature="n#CompareVersions#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_LogEvent.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="15" selection-start="771" selection-end="771" vertical-scroll-proportion="0.30427352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GHG/Localization/GHG_Loc.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="45" selection-start="4403" selection-end="4403" vertical-scroll-proportion="0.6185286">
+        <state line="272" column="20" selection-start="4573" selection-end="4573" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="38" selection-start="854" selection-end="864" vertical-scroll-proportion="-4.28">
+        <state line="71" column="124" selection-start="1809" selection-end="1809" vertical-scroll-proportion="0.74464285">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_LogEvent.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_Crypt.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.66757494">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_Group.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="340" column="72" selection-start="6913" selection-end="6913" vertical-scroll-proportion="0.38418078">
+        <state line="116" column="22" selection-start="2368" selection-end="2381" vertical-scroll-proportion="0.3931624">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="223" column="13" selection-start="5977" selection-end="5977" vertical-scroll-proportion="-4.28">
+        <state line="278" column="27" selection-start="7534" selection-end="7534" vertical-scroll-proportion="-14.24">
           <folding>
             <element signature="e#741#1396#1" expanded="false" />
             <element signature="e#1441#1627#1" expanded="false" />
@@ -916,9 +969,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GHG/Modules/GH_DataSharer.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-4.5076923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="52" selection-start="4075" selection-end="4075" vertical-scroll-proportion="0.5714286">
+        <state line="45" column="69" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="tag#Layers#0;tag#Frame#0;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
             <element signature="tag#Backdrop#0;tag#Frame#0;tag#Frames#0;tag#Frame#0;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
@@ -929,18 +989,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupInfoFrame.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="115" selection-start="2948" selection-end="2948" vertical-scroll-proportion="0.8391813">
+        <state line="29" column="7" selection-start="800" selection-end="800" vertical-scroll-proportion="0.84273505">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_VersionInfo.lua">
+    <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="23" selection-start="4472" selection-end="4485" vertical-scroll-proportion="0.48305085">
+        <state line="207" column="44" selection-start="7330" selection-end="7330" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="n#CompareNumbers#0" expanded="false" />
-            <element signature="n#CompareVersions#0" expanded="false" />
+            <element signature="tag#Button#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#CheckButton#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Size#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Anchors#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Layers#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Button#0;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Frame#0;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Button#1;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Button#2;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
+            <element signature="tag#Button#3;tag#Frames#0;tag#Frame#0;tag#Ui#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_Group.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="271" column="23" selection-start="5429" selection-end="5429" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="223" column="8" selection-start="4978" selection-end="4978" vertical-scroll-proportion="-12.24">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHG/GHG.toc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1181" selection-end="1181" vertical-scroll-proportion="1.4265734">
+          <folding />
         </state>
       </provider>
     </entry>

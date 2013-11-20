@@ -40,11 +40,11 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if ( not GuildControlUI ) then
-							UIParentLoadAddOn("Blizzard_GuildControlUI");
+						if ( StaticPopup_FindVisible("GHG_CONFIRM_GROUP_LEAVE") ) then
+							StaticPopup_Hide("GHG_CONFIRM_GROUP_LEAVE");
+						else
+							StaticPopup_Show("GHG_CONFIRM_GROUP_LEAVE");
 						end
-						CloseWindows(nil, GuildFrame);
-						GuildFramePopup_Toggle(GuildControlUI);
 					</OnClick>
 					<OnEnter>
 

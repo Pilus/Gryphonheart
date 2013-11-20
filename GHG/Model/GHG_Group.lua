@@ -12,6 +12,7 @@
 function GHG_Group(info)
 	local class = GHClass("GHG_Group");
 
+	local deleted;
 	local guid,name,version,icon;
 	local logEvents;
 	local members = {};
@@ -58,7 +59,7 @@ function GHG_Group(info)
 
 
 	class.CanRead = function()
-		return cryptatedDataInitialized;
+		return cryptatedDataInitialized and not(deleted);
 	end
 
 	class.GetGuid = function()
@@ -267,10 +268,23 @@ function GHG_Group(info)
 		return logEvents;
 	end
 
+	class.Delete = function()
+		deleted = true;
+	end
+
 	-- Serialization
 	local OtherSerialize = class.Serialize;
 	class.Serialize = function(stype, t)
 		t = t or info or {};
+
+		if deleted == true then
+			return {
+				guid = guid,
+				version = version,
+				deleted = true,
+			};
+		end
+
 		if not(cryptatedDataInitialized) then
 			return info;
 		end
@@ -314,6 +328,11 @@ function GHG_Group(info)
 	class.InitializeCryptatedData = function()
 		local keys = GHG_GroupKeys[guid];
 		if not(keys) then
+			return
+		end
+
+		if info.deleted == true then
+			deleted = true;
 			return
 		end
 

@@ -264,6 +264,13 @@ function GHG_Loc()
 		LOGEVENT_MEMBER_INVITED = {
 			enUS = "%s: %s invited %s to the group.",
 		},
+		TIME_AGO = {
+			enUS = "%s ago",
+		},
+		JUST_NOW = {
+			enUS = "Just now",
+		},
+
 	}
 
 

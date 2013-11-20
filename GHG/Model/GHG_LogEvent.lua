@@ -30,10 +30,10 @@ function GHG_LogEvent(info)
 	class.Serialize = function(stype, t)
 		t = t or {};
 		if not (stype) then
-			info.eventType = eventType;
-			info.timeStamp = timeStamp;
-			info.author = author;
-			info.args = args;
+			t.eventType = eventType;
+			t.timeStamp = timeStamp;
+			t.author = author;
+			t.args = args;
 		end
 		if OtherSerialize then
 			t = OtherSerialize(stype, t)

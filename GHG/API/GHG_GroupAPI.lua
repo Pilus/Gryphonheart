@@ -89,8 +89,7 @@ function GHG_GroupAPI(userGuid)
 
 		for _,guid in pairs(guids) do
 			local group = groupList.GetGroup(guid);
-
-		   	if group.CanRead() and group.IsPlayerMemberOfGuild(userGuid) then
+			if group.CanRead() and group.IsPlayerMemberOfGuild(userGuid) then
 				table.insert(groupGuids,group.GetGuid());
 			end
 		end
@@ -218,6 +217,7 @@ function GHG_GroupAPI(userGuid)
 		if group then
 			return #(group.GetLogEvents());
 		end
+		return 0;
 	end
 
 	class.GetGroupEventLogEntry = function(index,i)
@@ -271,10 +271,13 @@ function GHG_GroupAPI(userGuid)
 
 		local group = GetGroupByIndex(index);
 		if not(group) then
-		return;
+			return;
 		end
 		group = group.Clone();
 		group.RemoveMember(userGuid);
+		if group.GetNumMembers() == 0 then
+			group.Delete();
+		end
 		group.UpdateVersion()
 		groupList.SetGroup(group);
 	end

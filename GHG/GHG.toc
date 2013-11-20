@@ -46,4 +46,3 @@ GUI\GHG_ChatConfig.lua
 GUI\GHG_ChatConfig.xml
 GUI\GHG_GroupInfoFrame.lua
 GUI\GHG_GroupInfoFrame.xml
-

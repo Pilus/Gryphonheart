@@ -25,7 +25,9 @@ end
 
 function GHG_UpdateGroupInfo()
 	local _,chatHeader,_,chatSlash = api.GetGroupChatInfo(GetGroupIndex());
-	GHG_GroupInfoFrameChatInfo:SetText(string.format(loc.CHAT_INFO_TEXT,chatHeader,chatSlash[1]));
+	if chatHeader then
+		GHG_GroupInfoFrameChatInfo:SetText(string.format(loc.CHAT_INFO_TEXT,chatHeader,chatSlash[1]));
+	end
 end
 
 StaticPopupDialogs["GHG_ADD_GROUP_MEMBER"] = {
@@ -108,7 +110,13 @@ function GHG_UpdateGroupEventLog()
 	for i=1,num do
 		local eventType, timeStamp, author, arg1, arg2, arg4, arg4 = api.GetGroupEventLogEntry(GetGroupIndex(), i);
 		if eventType then
-			table.insert(t, string.format(loc["LOGEVENT_"..eventType], timeStamp, author, arg1, arg2, arg4, arg4));
+			local timeString = SecondsToTime(time() - timeStamp, true)
+			if timeString == "" then
+				timeString = loc.JUST_NOW;
+			else
+				timeString = string.format(loc.TIME_AGO,timeString);
+			end
+			table.insert(t, string.format(loc["LOGEVENT_"..eventType], timeString, author, arg1, arg2, arg4, arg4));
 		end
 	end
 	GHG_GroupEventMessage:SetText(strjoin("\n",unpack(t)));
