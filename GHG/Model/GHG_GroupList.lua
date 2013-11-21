@@ -69,7 +69,7 @@ function GHG_GroupList()
 				newGroup.Activate();
 			end
 
-			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or existingGroup.IsPlayerMemberOfGuild(UnitGUID("player")) then
+			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(UnitGUID("player"))) then
 				event.TriggerEvent("GHG_GROUP_UPDATED",guid);
 			end
 		end

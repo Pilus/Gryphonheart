@@ -30,7 +30,7 @@ function GHG_Group(info)
 	Encrypt = function(v)
 		if type(v) == "string" then
 			local swap = crypt.Swap(v);
-			return crypt.Encrypt(swap);
+			return crypt.Encrypt(swap,true);
 		elseif type(v) == "table" then
 			local t = {}
 			for i,vv in pairs(v) do
