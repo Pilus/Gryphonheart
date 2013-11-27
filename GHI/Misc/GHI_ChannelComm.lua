@@ -11,12 +11,12 @@
 
 local libSerial = LibStub("AceSerializer-3.0");
 local libCompress = LibStub("LibCompress")
-local libEncode = libCompress:GetAddonEncodeTable()
+local libEncode = libCompress:GetChatEncodeTable()
 local ADDON_PREFIX = "GHI";
 local MSG_SINGLE = "\001"
-local MSG_MULTI_FIRST = "\002"
-local MSG_MULTI_MIDDLE = "\003"
-local MSG_MULTI_LAST = "\004"
+local MSG_MULTI_FIRST = 	{"\002","\005","\006","\007","\016"}
+local MSG_MULTI_MIDDLE = 	{"\003","\008","\009","\011","\017"}
+local MSG_MULTI_LAST = 		{"\004","\012","\014","\015","\018"}
 
 local class;
 function GHI_ChannelComm()
@@ -45,6 +45,11 @@ function GHI_ChannelComm()
 
 	local chatIsReady = false;
 	local preSetupBuffer = {}
+	local sendCounter = {
+		NORMAL = 0,
+		ALERT = 0,
+		BULK = 0,
+	}
 
 	local ChatReady = function()
 		chatIsReady = true;
@@ -77,6 +82,7 @@ function GHI_ChannelComm()
 		return t;
 	end
 
+
 	class.Send = function(prio, prefix, ...)
 		assert(not (target == "WHISPER"), "Non updated sending of info");
 		GHCheck("GHI_ChannelComm.Send", { "StringNil", "String" }, { prio, prefix })
@@ -91,25 +97,27 @@ function GHI_ChannelComm()
 		local channelNum = GetChannelName(channelName);
 
 		local prio = strupper(prio or "NORMAL");
-		local msg = libEncode:Encode(libSerial:Serialize({ prefix, ... }));
+		local msg = libSerial:Serialize({ prefix, ... });
 		local chunks = ChunkUpMsg(msg);
 
 		if (#(chunks) == 1) then
 			CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_SINGLE .. chunks[1], "CHANNEL", nil, channelNum);
 		else
-			CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_MULTI_FIRST .. chunks[1], "CHANNEL", nil, channelNum);
+			local counter = sendCounter[prio];
+			sendCounter[prio] = sendCounter[prio] + 1;
+			CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_MULTI_FIRST[mod(counter,#(MSG_MULTI_FIRST))+1] .. chunks[1], "CHANNEL", nil, channelNum);
 			for i = 2, #(chunks) - 1 do
-				CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_MULTI_MIDDLE .. chunks[i], "CHANNEL", nil, channelNum);
+				CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_MULTI_MIDDLE[mod(counter,#(MSG_MULTI_MIDDLE))+1] .. chunks[i], "CHANNEL", nil, channelNum);
 			end
-			CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_MULTI_LAST .. chunks[#(chunks)], "CHANNEL", nil, channelNum);
+			CTL:SendChatMessage(prio, prefix, ADDON_PREFIX .. MSG_MULTI_LAST[mod(counter,#(MSG_MULTI_LAST))+1] .. chunks[#(chunks)], "CHANNEL", nil, channelNum);
 		end
 	end
 
 	Recieve = function(msg, sender)
 		--Decompress the decoded data
-		local message = libCompress:Decompress(libEncode:Decode(msg))
+		local message = libEncode:Decode(msg)
 		if (not message) then
-			log.Add(1, "Error decompressing channel data from " .. sender, { message });
+			log.Add(1, "Error decoding channel data from " .. sender, { message });
 			return
 		end
 
@@ -127,22 +135,24 @@ function GHI_ChannelComm()
 		end
 	end
 
-	SetupInputBuffer = function(sender, firstMsg)
-		if inputBuffer[sender] then
-			log.Add(1, "Recieved new channel message from sender before end of first message. " .. sender, inputBuffer[sender]);
+	SetupInputBuffer = function(sender, num, firstMsg)
+		inputBuffer[sender] = inputBuffer[sender] or {};
+		if inputBuffer[sender][num] then
+			log.Add(1, "Recieved new channel message from sender before end of first message. " .. sender, {num});
 		end
-		inputBuffer[sender] = {};
-		AddMsgToInputBuffer(sender, firstMsg);
+		inputBuffer[sender][num] = {};
+		AddMsgToInputBuffer(sender,num, firstMsg);
 	end
 
-	AddMsgToInputBuffer = function(sender, msg)
-		table.insert(inputBuffer[sender] or {}, strsub(msg, ADDON_PREFIX:len() + 1));
+	AddMsgToInputBuffer = function(sender, num, msg)
+		inputBuffer[sender] = inputBuffer[sender] or {};
+		table.insert(inputBuffer[sender][num] or {}, strsub(msg, ADDON_PREFIX:len() + 2));
 	end
 
-	AddLastMsgToInputBufferAndRecieve = function(sender, lastMsg)
-		AddMsgToInputBuffer(sender, lastMsg)
-		local msg = strjoin("", unpack(inputBuffer[sender] or {}));
-		inputBuffer[sender] = nil;
+	AddLastMsgToInputBufferAndRecieve = function(sender, num, lastMsg)
+		AddMsgToInputBuffer(sender,num, lastMsg)
+		local msg = strjoin("", unpack(inputBuffer[sender][num] or {}));
+		inputBuffer[sender][num] = nil;
 		Recieve(msg, sender);
 	end
 
@@ -163,7 +173,13 @@ function GHI_ChannelComm()
 		end
 	end,1);
 
-
+	local GetIndexOf = function(t,v)
+		for i,v2 in pairs(t) do
+			if v2 == v then
+				return i;
+			end
+		end
+	end
 
 	class:SetScript("OnEvent", function(self, event, msg, sender, arg3, arg4, arg5, arg6, arg7, channelNumber)
 		if event == "CHAT_MSG_CHANNEL" and channelNumber == GetChannelName(channelName) and strsub(msg, 0, ADDON_PREFIX:len()) == ADDON_PREFIX then
@@ -177,12 +193,12 @@ function GHI_ChannelComm()
 			local ctrl = strsub(msg, ADDON_PREFIX:len() + 1, ADDON_PREFIX:len() + 1);
 			if ctrl == MSG_SINGLE then
 				Recieve(strsub(msg, ADDON_PREFIX:len() + 1), sender)
-			elseif ctrl == MSG_MULTI_FIRST then
-				SetupInputBuffer(sender, msg);
-			elseif ctrl == MSG_MULTI_MIDDLE then
-				AddMsgToInputBuffer(sender, msg);
-			elseif ctrl == MSG_MULTI_LAST then
-				AddLastMsgToInputBufferAndRecieve(sender, msg);
+			elseif tContains(MSG_MULTI_FIRST,ctrl) then
+				SetupInputBuffer(sender,GetIndexOf(MSG_MULTI_FIRST,ctrl), msg);
+			elseif tContains(MSG_MULTI_MIDDLE,ctrl) then
+				AddMsgToInputBuffer(sender,GetIndexOf(MSG_MULTI_MIDDLE,ctrl), msg);
+			elseif tContains(MSG_MULTI_LAST,ctrl) then
+				AddLastMsgToInputBufferAndRecieve(sender,GetIndexOf(MSG_MULTI_LAST,ctrl), msg);
 			else
 				log.Add(1, "Recieved channel msg with unknown control char. From " .. sender, { raw = ctrl, byte = strbyte(ctrl) });
 			end

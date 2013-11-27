@@ -107,6 +107,7 @@ function GHG_AdminAPI(userGuid)
 			t = rank.Serialize();
 		end
 
+		t.permissions = nil;
 		t.name,t.canEditRanksAndPermissions,t.canInvite,t.CanKickMember,t.canPromoteDemote,t.canEditOfficersNote,t.canViewOfficersNote,
 			t.canEditPublicNote,t.canViewPublicNote,t.canTalkInChat,t.canHearChat = unpack({...});
 

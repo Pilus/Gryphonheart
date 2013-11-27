@@ -308,8 +308,8 @@ function GHG_Group(info)
 			t.ranks = SaveNested(ranks);
 
 			t.logEvents = SaveNested(logEvents);
-			t.chatName = chatName;
-			t.chatHeader = chatHeader;
+			t.chatName = Encrypt(chatName);
+			t.chatHeader = Encrypt(chatHeader);
 			t.chatColor = chatColor;
 			t.chatSlashCmds = chatSlashCmds;
 		end
@@ -368,8 +368,8 @@ function GHG_Group(info)
 		members = LoadNestedCryptated(info.members or {},GHG_GroupMember);
 		ranks = LoadNestedCryptated(info.ranks or {},GHG_GroupRank,true);
 
-		chatName = info.chatName or name;
-		chatHeader = info.chatHeader or "";
+		chatName = Decrypt(info.chatName) or name;
+		chatHeader = Decrypt(info.chatHeader) or "";
 		chatColor = info.chatColor or {r=1.0, g=1.0, b=1.0};
 		chatSlashCmds = info.chatSlashCmds or {};
 

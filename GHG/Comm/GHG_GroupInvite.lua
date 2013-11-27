@@ -64,7 +64,6 @@ function GHG_GroupInvite()
 	end
 
 	comm.AddRecieveFunc("GHG_InviteAccepted",function(playerName,groupGuid,playerGuid)
-		print(groupGuid..playerName,invitedPlayers[groupGuid..playerName])
 		if invitedPlayers[groupGuid..playerName] then
 			event.TriggerEvent("GHG_SEND_INVITE_ACCEPTED",playerName);
 

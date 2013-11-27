@@ -24,10 +24,11 @@ function GHG_GroupList()
 	local savedGroupInfo = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName());
 	local event = GHI_Event();
 	local comm = GH_Comm();
+	local channelComm = GHI_ChannelComm();
 	local sharer;
 
 	class.LoadFromSaved = function()
-		sharer = GH_DataSharer("GHG","GHG_GroupData",class.GetGroup,class.SetGroup,class.GetAllGroupGuids,true);
+		sharer = GH_DataSharer("GHG","GHG_GroupData2",class.GetGroup,class.SetGroup,class.GetAllGroupGuids,true);
 
 		local data = savedGroupInfo.GetAll();
 		groups = {};
@@ -39,6 +40,7 @@ function GHG_GroupList()
 			end
 			event.TriggerEvent("GHG_GROUP_LOADED",index);
 		end
+		class.RequestGroupKeys();
 	end
 
 	class.GetGroup = function(guid)
@@ -75,7 +77,6 @@ function GHG_GroupList()
 		end
 	end
 
-
 	class.SetGroup = function(guid,value)
 		if value == nil and type(guid) == "table" then
 			value = guid;
@@ -89,14 +90,30 @@ function GHG_GroupList()
 				end
 			else
 				local group = GHG_Group(value);
-
 				SetGroup(group);
 				sharer.DatasetChanged(group.GetGuid());
 			end
 		end
 	end
 
+	class.RequestGroupKeys = function()
+		channelComm.Send("NORMAL","GHG_GroupKeysReq","")
+	end
 
+	channelComm.AddRecieveFunc("GHG_GroupKeysReq",function(sender,_)
+		local keys = {};
+		local any = false;
+		for guid,group in pairs(groups) do
+			if group.CanRead() and group.IsPlayerMemberOfGuild(sender) then
+				keys[guid] = GHG_GroupKeys[guid];
+				any = true;
+			end
+		end
+
+		if any == true then
+			comm.Send("ALERT",sender,"GroupKeys",keys)
+		end
+	end);
 
 	class.SendKeyTo = function(guid,player)
 		if groups[guid] and GHG_GroupKeys[guid] then
@@ -104,16 +121,24 @@ function GHG_GroupList()
 		end
 	end
 
-	comm.AddRecieveFunc("GroupKey",function(sender,guid,key)
+	local ReceiveGroupKey = function(guid,key)
 		if not(GHG_GroupKeys[guid]) then
 			GHG_GroupKeys[guid] = key;
 			if groups[guid] then
 				groups[guid].InitializeCryptatedData();
 			end
 		end
+	end
+
+	comm.AddRecieveFunc("GroupKey",function(sender,guid,key)
+		ReceiveGroupKey(guid,key);
 	end);
 
-
+	comm.AddRecieveFunc("GroupKeys",function(sender,keys)
+		for guid,key in pairs(keys) do
+			ReceiveGroupKey(guid,key);
+		end
+	end);
 
 	return class;
 end
