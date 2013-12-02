@@ -30,7 +30,7 @@ function GHI_AnimationAPI()
 	local api = {};
 	local miscAPI = GHI_MiscAPI().GetAPI()
 
-	api.GHI_AnimHoverTexture = function(texture, effectDuration, startingColor, endingColor)
+	api.GHI_AnimHoverTexture = function(texture, effectDuration, startingColor, endingColor,xPos,yPos)
 		if not(texture) then
 			print("No texture defined")
 			return
@@ -47,7 +47,11 @@ function GHI_AnimationAPI()
 		
 		animFrame.Clear()
 		animFrame.SetAnimType("Shimmer")
-		animFrame.SetPosition("Head")
+		if xPos > 0 or yPos > 0 then --user set
+			aniFrame.SetPosition("Custom",xPos,yPos)
+		else
+			animFrame.SetPosition("Head")
+		end
 		animFrame.SetTotalDuration(effectDuration)
 		
 		if type(texture) == "table" then
@@ -102,7 +106,7 @@ function GHI_AnimationAPI()
 		animFrame.PlayAnimation()
 	end
 	
-	api.GHI_AnimShield = function(texture, effectDuration, startingColor, endingColor)
+	api.GHI_AnimShield = function(texture, effectDuration, startingColor, endingColor,xPos,yPos)
 		if not(texture) then
 			print("No texture defined")
 			return
@@ -121,7 +125,11 @@ function GHI_AnimationAPI()
 		
 		animFrame.Clear()
 		animFrame.SetAnimType("Shimmer")
-		animFrame.SetPosition("Body")
+		if xPos > 0 or yPos > 0 then --user set
+			aniFrame.SetPosition("Custom",xPos,yPos)
+		else
+			animFrame.SetPosition("Body")
+		end
 		animFrame.SetTotalDuration(effectDuration)
 		
 		animFrame.SetSize((288 * raceScale), (288 * raceScale))

@@ -245,11 +245,17 @@ function GHI_CreateAnimationFrame(name)
 		frame.logo:Show()
 	end
 		
-	frame.SetPosition = function(pos)
-		frame.PositionType = pos
-		frame:ClearAllPoints()
-		for point, data in pairs(stylePositions[pos]) do
-			frame:SetPoint(point, WorldFrame, unpack(data))
+	frame.SetPosition = function(pos,x,y)
+		if pos == "Custom" then
+			frame.PositionType = pos
+			frame:ClearAllPoints()
+			frame:SetPoint("CENTER", WorldFrame, x,y)
+		else
+			frame.PositionType = pos
+			frame:ClearAllPoints()
+			for point, data in pairs(stylePositions[pos]) do
+				frame:SetPoint(point, WorldFrame, unpack(data))
+			end
 		end
 	end
 	
