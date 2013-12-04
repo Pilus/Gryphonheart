@@ -123,6 +123,23 @@ function GHI_CreateAnimationFrame(name)
 		return rStep, gStep, bStep, aStep
 	end
 	
+	local AnimFrameOnMove = function(self)
+		--onmove update function to becalled by SetScript ( http://wowprogramming.com/docs/widgets#frame)
+		--Things needed to be done:
+		--Set up Defualt image so user can see what they are move (Icon question mark or other)
+		--Unlock Frame
+		--Save Data on move finish
+		
+		--x, y = frame:GetCenter()
+		--GHI_MiscData[name.."x"] = x
+		--GHI_MiscData[name.."y"] = y
+		
+		--Lock Frame
+		--Clear image
+		
+		--Use button with dropdown or just buttons from mainpage of Addon Interface options for animation types?
+	end
+	
 	frame.animType = ""
 	-- frame.animType sets which type of animation to play.
 	
