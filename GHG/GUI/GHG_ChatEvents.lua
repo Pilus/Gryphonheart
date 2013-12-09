@@ -60,6 +60,9 @@ function GHG_ChatEvents()
 		local groupIndex = api.GetIndexOfGroupByGuid(guid);
 		if groupIndex then
 			local name,header,defaultColor,chatSlashCmds = api.GetGroupChatInfo(groupIndex);
+			if not(type(name)=="string" and type(header)=="string" and type(defaultColor)=="table" and type(chatSlashCmds)=="table") then
+				return
+			end
 			chat.DefineChatType(guid,header,defaultColor,name,chatSlashCmds);
 
 			local orig = SendChatMessage;

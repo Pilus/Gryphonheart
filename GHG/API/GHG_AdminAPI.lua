@@ -108,7 +108,7 @@ function GHG_AdminAPI(userGuid)
 		end
 
 		t.permissions = nil;
-		t.name,t.canEditRanksAndPermissions,t.canInvite,t.CanKickMember,t.canPromoteDemote,t.canEditOfficersNote,t.canViewOfficersNote,
+		t.name,t.canEditRanksAndPermissions,t.canInvite,t.canKickMember,t.canPromoteDemote,t.canEditOfficersNote,t.canViewOfficersNote,
 			t.canEditPublicNote,t.canViewPublicNote,t.canTalkInChat,t.canHearChat = unpack({...});
 
 		if index == 1 then
@@ -142,6 +142,30 @@ function GHG_AdminAPI(userGuid)
 	class.Admin_GetGroupChatInfo = function()
 		assert(currentAdmin,"Administration not active");
 		return currentAdmin.GetGroupChatInfo();
+	end
+
+	class.Admin_SetChatName = function(_chatName)
+		assert(currentAdmin,"Administration not active");
+		assert(type(_chatName)=="string","Usage Admin_SetChatName(string)")
+		currentAdmin.SetChatName(_chatName);
+	end
+
+	class.Admin_SetChatHeader = function(_chatHeader)
+		assert(currentAdmin,"Administration not active");
+		assert(type(_chatHeader)=="string","Usage Admin_SetChatHeader(string)")
+		currentAdmin.SetChatHeader(_chatHeader);
+	end
+
+	class.Admin_SetChatColor = function(_chatColor)
+		assert(currentAdmin,"Administration not active");
+		assert(type(_chatColor)=="table","Usage Admin_SetChatColor(colortable)")
+		currentAdmin.SetChatColor(_chatColor);
+	end
+
+	class.Admin_SetChatSlashCommand = function(_slashCommand)
+		assert(currentAdmin,"Administration not active");
+		assert(type(_slashCommand)=="string","Usage Admin_SetChatSlashCommand(string)")
+		currentAdmin.SetChatSlashCommand(_slashCommand);
 	end
 
 	return class;

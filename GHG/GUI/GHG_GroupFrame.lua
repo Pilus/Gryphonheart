@@ -102,7 +102,10 @@ local function ToggleSideButton(index)
 	local num = api.GetNumberOfGroups();
 	if index > 0 and index <= num then
 		groupFrame.selectedSideTab = index;
-
+		if GHG_AdminFrame:IsShown() then
+			GHG_AdminFrame:Hide();
+			GHG_AdminFrame:Show();
+		end
 
 		UpdateSelectedContent()
 	elseif index == num + 1 then -- New group button

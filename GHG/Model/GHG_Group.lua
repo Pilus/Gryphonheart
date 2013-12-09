@@ -235,7 +235,7 @@ function GHG_Group(info)
 	end
 
 	class.SetChatSlashCommand = function(_slashCommand)
-		chatSlashCmds = _slashCommand;
+		chatSlashCmds = {_slashCommand};
 	end
 
 	class.GetGroupChatInfo = function()

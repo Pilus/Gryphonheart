@@ -69,6 +69,8 @@ function GHG_GroupList()
 					existingGroup.Deactivate();
 				end
 				newGroup.Activate();
+			else
+				print("do not activate?")
 			end
 
 			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(UnitGUID("player"))) then
