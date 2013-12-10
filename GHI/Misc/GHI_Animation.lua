@@ -123,22 +123,13 @@ function GHI_CreateAnimationFrame(name)
 		return rStep, gStep, bStep, aStep
 	end
 	
-	local AnimFrameOnMove = function(self)
-		--onmove update function to becalled by SetScript ( http://wowprogramming.com/docs/widgets#frame)
-		--Things needed to be done:
-		--Set up Defualt image so user can see what they are move (Icon question mark or other)
-		--Unlock Frame
-		--Save Data on move finish
-		
-		--x, y = frame:GetCenter()
-		--GHI_MiscData[name.."x"] = x
-		--GHI_MiscData[name.."y"] = y
-		
-		--Lock Frame
-		--Clear image
-		
-		--Use button with dropdown or just buttons from mainpage of Addon Interface options for animation types?
-	end
+	
+	local t = frame:CreateTexture(nil,"OVERLAY",nil,6) --for dragging I am getting some of this from the RothUI set of addons
+	
+	t:SetTexture(0,1,1)
+	t:SetAlpha(0)
+	
+	frame.UnlockTexture = t;
 	
 	frame.animType = ""
 	-- frame.animType sets which type of animation to play.
@@ -260,6 +251,44 @@ function GHI_CreateAnimationFrame(name)
 			frame.logo:SetScript("OnUpdate", function(self) end)			
 		end	
 		frame.logo:Show()
+	end
+	
+	frame.UnlockFrame = function(self)
+		if InCombatLockdown() then return end
+		if frame.locked == false then return end --its unlocked already lets not double up things
+		frame:EnableMouse(true)
+		framelocked = false
+		frame.UnlockTexture:SetAlpha(0.3)
+		frame:RegisterForDrag("LeftButton","RightButton")
+		---Put in a placeholder texture
+		frame:SetScript("OnDragStart", function(self,b)
+			if b == "LeftButton" then
+				self:StartMoving()
+			end
+			if b == "RightButton" then
+				frame.LockFrame(self)
+			end
+		end)
+		
+		frame:SetScript("OnDragStop", function(self)
+		  self:StopMovingOrSizing()
+		  --may want to do following in lockfunction, unsure
+		 --x, y = frame:GetCenter()
+		--GHI_MiscData[name.."x"] = x
+		--GHI_MiscData[name.."y"] = y
+		end)
+	
+	end
+	
+	frame.LockFrame = function(self)
+		if InCombatLockdown() then return end
+		if frame.locked == true then return end --already locked
+		frame.locked = true
+		frame.dragtexture:SetAlpha(0)
+		frame:RegisterForDrag(nil)
+		frame:SetScript("OnDragStart", nil)
+		frame:SetScript("OnDragStop", nil)
+	
 	end
 		
 	frame.SetPosition = function(pos,x,y)
