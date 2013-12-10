@@ -126,7 +126,7 @@ function GHI_ItemInfo_Basic(info)
 		end
 
 
-		local cd,elapsed = (stack or class).GetCooldown();
+		local cd,elapsed = class.GetCooldown();
 		if (elapsed and elapsed < cd) then
 			table.insert(lines, {
 				order = 60,
