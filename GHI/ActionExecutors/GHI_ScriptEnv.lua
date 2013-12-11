@@ -830,11 +830,53 @@ function GHI_ScriptEnviroment(ownerGuid)
 
 		-- StaticPopupDialogs support
 		StaticPopupDialogs = {},
-		StaticPopup_Show = function(name)
+		StaticPopup_Show = function(name,...)
 			local popups = class.GetValue("StaticPopupDialogs");
 			if name and popups[name] then
-				StaticPopupDialogs[ownerGuid..name] = popups[name];
-				StaticPopup_Show(ownerGuid..name)
+				local pop = popups[name];
+
+				local selfMock = {};
+				local selfOrig;
+				local editBoxMock;
+
+				if pop.hasEditBox then
+					editBoxMock = {
+						GetParent = function() return selfMock; end,
+						GetText = function() return selfOrig.editBox:GetText(); end,
+						SetText = function(_,v) return selfOrig.editBox:SetText(v); end,
+					}
+					selfMock.editBox = editBoxMock;
+				end
+				for i=1,3 do
+					selfMock["button"..i] = {
+						Enable = function() selfOrig["button"..i]:Enable() end,
+						Disable = function() selfOrig["button"..i]:Disable() end,
+					}
+				end
+
+				local dialog = {}
+				for i,v in pairs(pop) do
+					if type(v) == "string" or type(v) == "number" or type(v) == "boolean" then
+						dialog[i] = v;
+					elseif type(v) == "function" then
+						if i=="OnCancel" or i=="OnShow" or i=="OnAccept" then
+							dialog[i] = function(x,a1,a2,a3,a4,a5)
+								selfOrig = x;
+								v(selfMock,a1,a2,a3,a4,a5);
+							end
+						elseif i == "EditBoxOnTextChanged" then
+							dialog[i] = function(_,a1,a2,a3,a4,a5)
+								v(editBoxMock,a1,a2,a3,a4,a5);
+							end
+						else
+							dialog[i] = function()
+								v();
+							end
+						end
+					end
+				end
+				StaticPopupDialogs[ownerGuid..name] = dialog;
+				StaticPopup_Show(ownerGuid..name,...)
 			end
 		end,
 
@@ -930,7 +972,11 @@ function GHI_ScriptEnviroment(ownerGuid)
 
 		local codeFunc, err = loadstring(code);
 		if not (codeFunc) then
-			handleError(err,origCode,headers[headerGuid].start,false);
+			if headers[headerGuid] then
+				handleError(err,origCode,headers[headerGuid].start,false);
+			else
+				handleError(err,origCode,0,false);
+			end
 			return
 		end
 
