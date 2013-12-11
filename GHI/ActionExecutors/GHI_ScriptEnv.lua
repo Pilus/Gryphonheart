@@ -818,6 +818,8 @@ function GHI_ScriptEnviroment(ownerGuid)
 		EquipItem = EquipItem,
 		GHI_GET_LOOT = loc.GET_LOOT,
 
+		NumbersToWords = NumbersToWords,
+
 		-- classes
 		GHI_Timer = GHI_Timer,
 		GHI_Comm = GHI_Comm,
