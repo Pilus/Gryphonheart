@@ -64,17 +64,21 @@ function GHI_UpdateNotification()
 			end
 		end
 
-		if newVersion == true then
+				if newVersion == true then
 			log.Add(3,"New version detected: "..ver,nil)
-			if GHI_UpdateNotify ~= true then
-				if dev == "false" then
-					DisplayUpdateWindow(ver)
-				elseif dev == false then
-					DisplayUpdateWindow(ver)
-				elseif dev == nil then
-					DisplayUpdateWindow(ver)
-				elseif dev == "true" or true then
-					return
+			if InCombatLockdown() then 
+				return;
+			else
+				if GHI_UpdateNotify ~= true then
+					if dev == "false" then
+						DisplayUpdateWindow(ver)
+					elseif dev == false then
+						DisplayUpdateWindow(ver)
+					elseif dev == nil then
+						DisplayUpdateWindow(ver)
+					elseif dev == "true" or true then
+						return
+					end
 				end
 			end
 		end	
