@@ -64,7 +64,7 @@ function GHI_UpdateNotification()
 			end
 		end
 
-				if newVersion == true then
+		if newVersion == true then
 			log.Add(3,"New version detected: "..ver,nil)
 			if InCombatLockdown() then 
 				return;
