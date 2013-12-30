@@ -70,7 +70,7 @@ function GHG_GroupList()
 				end
 				newGroup.Activate();
 			else
-				print("do not activate?")
+				--print("do not activate?")
 			end
 
 			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(UnitGUID("player"))) then
@@ -79,7 +79,7 @@ function GHG_GroupList()
 		end
 	end
 
-	class.SetGroup = function(guid,value)
+	class.SetGroup = function(guid,value)   print("set group")
 		if value == nil and type(guid) == "table" then
 			value = guid;
 		end
@@ -87,7 +87,7 @@ function GHG_GroupList()
 			if type(value.IsClass) == "function" then
 				if value.IsClass("GHG_Group") then
 					assert(value.ReadyForModification(),"Group write access error");
-					SetGroup(value);
+					SetGroup(value); print("update",value.GetGuid())
 					sharer.DatasetChanged(value.GetGuid());
 				end
 			else
@@ -103,6 +103,10 @@ function GHG_GroupList()
 	end
 
 	channelComm.AddRecieveFunc("GHG_GroupKeysReq",function(sender,_)
+		if sender == UnitName("player") then
+			return
+		end
+
 		local keys = {};
 		local any = false;
 		for guid,group in pairs(groups) do
