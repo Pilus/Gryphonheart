@@ -70,13 +70,13 @@ function GHI_UpdateNotification()
 				return;
 			else
 				if GHI_UpdateNotify ~= true then
-					if dev == "false" then
+					if dev == "false" or dev == "False" then
 						DisplayUpdateWindow(ver)
 					elseif dev == false then
 						DisplayUpdateWindow(ver)
 					elseif dev == nil then
 						DisplayUpdateWindow(ver)
-					elseif dev == "true" or true then
+					elseif dev == "true" or dev == "True" or  dev == true then
 						return
 					end
 				end
