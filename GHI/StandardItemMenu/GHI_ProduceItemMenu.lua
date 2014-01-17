@@ -45,7 +45,7 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 
 	local GetItemTextLine = function(guid)
 		local item = itemlist.GetItemInfo(guid)
-		local lines = item.GetTooltipLines(guid)
+		local lines = item.GetTooltipLines()
 
 		local infoLine = "";
 		for _, line in pairs(lines) do
