@@ -1003,9 +1003,10 @@ function GHI_SimpleAction(info)
 			local producedItem = GHI_ItemInfo(itemTable);
 			itemInfoList.UpdateItem(producedItem)
 			dependingItems = { producedItem.GetGUID() };
+		else
+			dependingItems = {}
 		end
 
-		dependingItems = { info.guid or info.id }
 	end
 
 	class.Serialize = function(stype)
