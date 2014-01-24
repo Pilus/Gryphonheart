@@ -128,7 +128,11 @@ function GHM_Color2(parent, main, profile)
 		
 	for i, info in pairs(colors) do
 		local colorDat = {}
-		colorDat.text = loc["COLOR_"..string.upper(i)]
+		if _G[string.upper(i)] then
+			colorDat.text = _G[string.upper(i)];
+		else
+			colorDat.text = loc["COLOR_"..string.upper(i)];
+		end
 		colorDat.colorCode = "\124cFF"..rgbPercentToHex(info.r,info.g,info.b)
 		colorDat.func = function()
 			colorPick:SetColorRGB(info.r, info.g, info.b)

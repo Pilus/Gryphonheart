@@ -1701,7 +1701,67 @@ function GHI_Loc()
 		},
 		COLOR_CUSTOM = {
 			enUS = "Custom Color",
-		},		
+		},
+		COLOR_PALADIN = {
+			enUS = "Paladin",
+		},
+		COLOR_MAGE = {
+			enUS = "Mage",
+		},
+		COLOR_WARRIOR = {
+			enUS = "Warrior",
+		},
+		COLOR_HUNTER = {
+			enUS = "Hunter",
+		},
+		COLOR_ROGUE = {
+			enUS = "Rogue",
+		},
+		COLOR_MONK = {
+			enUS = "Monk",
+		},
+		COLOR_SHAMAN = {
+			enUS = "Shaman",
+		},
+		COLOR_PRIEST = {
+			enUS = "Priest",
+		},
+		COLOR_DRUID = {
+			enUS = "Druid",
+		},
+		COLOR_WARLOCK = {
+			enUS = "Warlock",
+		},
+		COLOR_DEATHKNIGHT = {
+			enUS = "Death knight",
+		},
+		COLOR_POOR = {
+			enUS = "Poor",
+		},
+		COLOR_COMMON = {
+			enUS = "Common",
+		},
+		COLOR_UNCOMMON = {
+			enUS = "Uncommon",
+		},
+		COLOR_RARE = {
+			enUS = "Rare",
+		},
+		COLOR_EPIC = {
+			enUS = "Epic",
+		},
+		COLOR_LEGENDARY = {
+			enUS = "Legendary",
+		},
+		COLOR_ALLIANCE = {
+			enUS = "Alliance",
+		},
+		COLOR_HORDE = {
+			enUS = "Horde",
+		},
+		COLOR_HEIRLOOM = {
+			enUS = "Heirloom",
+		},
 	};
 
     local textsPing = {
