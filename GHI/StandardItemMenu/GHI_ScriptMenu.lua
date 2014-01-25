@@ -1,14 +1,14 @@
 --===================================================
 --
 --				GHI_ScriptMenu
---  			GHI_ScriptMenu.lua
+--				GHI_ScriptMenu.lua
 --
---	         Simple action menu
+--			Simple action menu
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
- local loc = GHI_Loc()
+local loc = GHI_Loc()
 local USE_WIDE_EDITOR = false;
 local menus = {};
 
@@ -36,6 +36,7 @@ function GHI_ScriptMenu(_OnOkCallback, _editAction)
 			return;
 		end
 	end
+
 	for i, menu in pairs(menus) do
 		if not (menu.IsInUse()) and not (menu.IsSuspended()) then
 			menu.Show(_OnOkCallback, _editAction)
@@ -203,57 +204,6 @@ function GHI_ScriptMenu(_OnOkCallback, _editAction)
 					texture = "Tooltip",
 					numbersOnly = true,
 				},
-				--[[
-				{
-					type = "Dummy",
-					height = 10,
-					width = 10,
-					align = "r",
-				},
-				{
-					type = "Button",
-					text = loc.SCRIPT_OPTIONS_NL,
-					align = "r",
-					compact = false,
-					yOff = -5,
-					OnClick = function(obj)
-						GHI_CodeEditorOptionsMenu().Show();
-					end,
-				},
-				{
-					type = "Dummy",
-					height = 10,
-					width = 10,
-					align = "r",
-				},
-				{
-					type = "Button",
-					text = loc.SCRIPT_RELOAD_ENV,
-					align = "r",
-					compact = false,
-					yOff = 0,
-					OnClick = function(obj)
-						local code = menuFrame.GetLabelFrame("code"):GetCleanText();
-						local env = GHI_ScriptEnvList().ReloadEnv(playerGUID);
-					end,
-				},
-				{
-					type = "Dummy",
-					height = 10,
-					width = 10,
-					align = "r",
-				},
-				{
-					type = "Button",
-					text = loc.SCRIPT_TEST,
-					align = "r",
-					compact = false,
-					OnClick = function(obj)
-						local code = menuFrame.GetLabelFrame("code"):GetCleanText();
-						local env = GHI_ScriptEnvList().GetEnv(playerGUID);
-						env.ExecuteScript(code)
-					end,
-				},  ]]--
 			},
 			{
 				{
@@ -325,7 +275,6 @@ function GHI_ScriptMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = USE_WIDE_EDITOR and 800 or 400,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = icon,
 		OnHide = function()

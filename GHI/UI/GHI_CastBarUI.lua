@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_CastBarUI
---  			GHI_CastBarUI.lua
+--				GHI_CastBarUI.lua
 --
---	          (description)
+--			UI for cast bar
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -22,9 +22,9 @@ local function UpdateNonBlizzardCast()
 
 ---function to force update qurtz or other addons as needed
 if IsAddOnLoaded("Quartz") then
---print("Loaded")
-Quartz3CastBarPlayer:UNIT_SPELLCAST_STOP("Player","player")
-Quartz3CastBarPlayer:UpdateUnit()
+
+	Quartz3CastBarPlayer:UNIT_SPELLCAST_STOP("Player","player")
+	Quartz3CastBarPlayer:UpdateUnit()
 end
 
 
@@ -41,8 +41,6 @@ function GHI_CastBarUI()
 
 	local num = 0;
 	local pos = GHI_Position();
-
-
 
 	class.Cast = function(unit,name,icon,duration,doneFunction,interruptedFunction)
 		num = num-1;
@@ -85,7 +83,6 @@ function GHI_CastBarUI()
 			end
 		end
 	end
-
 
 	return class;
 end

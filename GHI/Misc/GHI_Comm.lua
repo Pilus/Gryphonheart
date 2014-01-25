@@ -1,12 +1,12 @@
 ﻿--===================================================
---									
---								GHI Communication
---									GHI_Comm.lua
 --
---	Handler of all communication between clients
+--					GHI Communication
+--						GHI_Comm.lua
+--
+--		Handler of all communication between clients
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 				(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================	
 
 local libComm = LibStub("AceComm-3.0");
@@ -104,11 +104,8 @@ function GHI_Comm()
 	local cachePointer = 1;
 
 	sendNew = function(prio, target, prefix, ...)
-		--resetMem();
 		local v = { prefix, ... };
-		--printMem("init")
 		local a = libSerial:Serialize(v);
-		--printMem("libSerial")
 
 		local b;
 		for i,v in pairs(cache) do
@@ -129,14 +126,8 @@ function GHI_Comm()
 			end
 		end
 
-		--printMem("libCompress")
 		local finalMsg = libEncode:Encode(b);
-		--printMem("libEncode")
-
-		libComm:SendCommMessage(addOnPrefix, finalMsg, channel, target, prio)--  if not(prefix == "ReqAddOns" or prefix=="AddOns" or prefix == "DummyMsg") then   print("send",prefix)    end
-		--printMem("libComm")
-
-
+		libComm:SendCommMessage(addOnPrefix, finalMsg, channel, target, prio)
 
 		playersCommunicatedWith[target] = true;
 	end
@@ -157,14 +148,12 @@ function GHI_Comm()
 
 	recieveNew = function(prefix, data, channel, sender)
 		playerAddOnProtocolVersion[sender] = NEW_PROTOCOL;
-		---print("receive...")
 
 		local one = libEncode:Decode(data)
 
 		--Decompress the decoded data
 		local message = libCompress:Decompress(one)
 		if (not message) then
-			--GHI_Message("GHI: error decompressing")
 			log.Add(1, "Error decompressing data from " .. sender, { message });
 			return
 		end
@@ -181,8 +170,6 @@ function GHI_Comm()
 			log.Add(3, "Recieved " .. prefix .. " from " .. sender .. " (new protocol)", data);
 		end
 
-		--print("...",prefix)
-
 		if recieveFuncs[prefix] then
 			recieveFuncs[prefix](sender, unpack(data));
 		end
@@ -197,9 +184,7 @@ function GHI_Comm()
 			playerAddOnProtocolVersion[sender] = OLD_PROTOCOL;
 		end
 
-
 		local success, data = libSerial:Deserialize(data);
-
 		local convertedData = { ConvertArgumentsOldToNew(sender, unpack(data)) };
 		local prefix = table.remove(convertedData, 1);
 
@@ -256,7 +241,6 @@ function GHI_Comm()
 	end
 
 	ConvertArgumentsNewToOld = function(target, prefix, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, ...)
-
 		if prefix == "Ping" then
 			return { true, "AddonVersionReq" };
 		elseif prefix == "PingReply" then
@@ -335,7 +319,6 @@ function GHI_Comm()
 			return prefix, arg1, arg2, ...;
 		elseif strsub(prefix, 0, 6) == "Trade<" then
 			local slot = tonumber(strsub(prefix, 7, 7));
-
 			if arg1 == 0 then
 				return "RemoveTradeItem", slot;
 			end
@@ -381,9 +364,6 @@ function GHI_Comm()
 		return "";
 	end
 
-
-
-
 	class.GetQueueSize = function()
 		local size = 0;
 		for prioname, Prio in pairs(ChatThrottleLib.Prio) do
@@ -404,7 +384,6 @@ function GHI_Comm()
 				local player = string.match(msg, pattern);
 
 				if player and playersCommunicatedWith[player] then
-					--log.Add(3, "CHAT_MSG_SYSTEM blocked", { msg, ... });
 					return true;
 				end
 			end
@@ -416,12 +395,7 @@ function GHI_Comm()
 	libComm:RegisterComm(addOnPrefix, recieveNew);
 	libCommOld:RegisterComm(oldAddOnPrefix, recieveOld);
 
-
 	versionInfo = GHI_VersionInfo();
-
-
-
-
 
 	return class;
 end

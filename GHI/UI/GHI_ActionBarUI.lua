@@ -1,89 +1,13 @@
 --===================================================
 --
 --				GHI_ActionBarUI
---  			GHI_ActionBarUI.lua
+--				GHI_ActionBarUI.lua
 --
---	          (description)
+--		UI for action bars for ghi items
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
-
-
-
---[[
-local MatchAnchor = function(frame,newFrame)
-	newFrame:SetWidth(frame:GetWidth());
-	newFrame:SetHeight(frame:GetHeight());
-	newFrame:ClearAllPoints();
-	for i=1,frame:GetNumPoints() do
-		newFrame:SetPoint(frame:GetPoint(i));
-	end
-
-	if frame:IsShown() then
-		newFrame:Show();
-	else
-		newFrame:Hide();
-	end
-end
-
-local CloneRegion = function(region,name,parent)
-	local Type = region:GetObjectType();
-	local newRegion;
-
-	if Type == "Texture" then
-		newRegion = parent:CreateTexture(name);
-		newRegion:SetTexture(region:GetTexture());
-		newRegion:SetTexCoord(region:GetTexCoord());
-	elseif Type == "FontString" then
-		newRegion = parent:CreateFontString(name);
-		newRegion:SetFontObject(region:GetFontObject());
-		newRegion:SetTextColor(region:GetTextColor());
-		newRegion:SetText(region:GetText());
-	else
-		print(Type);
-	end
-
-	if newRegion then
-		MatchAnchor(region,newRegion);
-	end
-end
-
-local CloneFrame;
-CloneFrame = function(frame,name,parent)  print("Create",name)
-	local newFrame = CreateFrame(frame:GetObjectType(),name,parent);
-	MatchAnchor(frame,newFrame);
-
-	local children = {frame:GetChildren()};
-	for i,c in pairs(children) do
-		CloneFrame(c,gsub(c:GetName(),frame:GetName(),newFrame:GetName()),newFrame);
-	end
-
-	local regions = {frame:GetRegions()};
-	for i,r in pairs(regions) do
-		local n;
-		if r:GetName() then
-			n = gsub(r:GetName(),frame:GetName(),newFrame:GetName());
-		end
-		CloneRegion(r,n,newFrame);
-	end
-
-	local Type = frame:GetObjectType();
-	if Type == "Button" or Type == "CheckButton" then
-   		if frame:GetNormalFontObject() then newFrame:SetNormalFontObject(frame:GetNormalFontObject()); end
-		if frame:GetDisabledFontObject() then newFrame:SetDisabledFontObject(frame:GetDisabledFontObject()); end
-		if frame:GetHighlightFontObject() then newFrame:SetHighlightFontObject(frame:GetHighlightFontObject()); end
-		newFrame:SetText(frame:GetText());
-		newFrame:SetNormalTexture(frame:GetNormalTexture());
-		newFrame:SetPushedTexture(frame:GetPushedTexture());
-		newFrame:SetHighlightTexture(frame:GetHighlightTexture());
-		newFrame:SetDisabledTexture(frame:GetDisabledTexture());
-	else
-	end
-
-	return newFrame
-end       --]]
-
 
 
 local variablesLoaded;
@@ -113,7 +37,6 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		Update()
 	end);
 	Update();
-
 
 	if class then
 		return class;
@@ -159,7 +82,6 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 
 		ghButton:SetScript("OnLeave",function()
 			GameTooltip:Hide();
-
 		end)
 	end
 
@@ -190,12 +112,8 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 			CooldownFrame_SetTimer(cooldownFrame, GetTime() - (elapsed), total, 1);
 		end
 
-
 		button:SetChecked(false);
-
-
 		button.icon = icon;
-
 
 		local index = button:GetName();
 		local savedGuid = savedData[index];
@@ -211,11 +129,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 			savedData[index] = data;
 			saved.SetVar(index,data);
 		end
-
-
 	end
-
-
 
 	class.ShowAll = function(id,guid,icon,clearFunc)
 		if getInfoFuncs[id] then
@@ -235,8 +149,6 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		end
 	end
 
-
-
 	class.HideEmpty = function()
 		for barName,b in pairs(buttons) do
 			local origButton = b.origButton;
@@ -245,10 +157,8 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 				ghButton:Hide();
 			end
 			ButtonScripts(ghButton);
-
 		end
 	end
-
 
 	local GenerateGHButton = function(actionButton)
 		local b = CreateFrame("CheckButton",actionButton:GetName().."GH",actionButton:GetParent(),"ActionButtonTemplate") --SecureActionButtonTemplate
@@ -256,7 +166,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		b:SetAllPoints(actionButton);
 		b:Hide();
 		b:RegisterForDrag("LeftButton","RightButton");
-		b:RegisterForClicks("LeftButtonUp","RightButtonUp");  --[[
+		b:RegisterForClicks("LeftButtonUp","RightButtonUp");
 		if actionButton:GetNormalTexture() then
 			local texture = actionButton:GetNormalTexture();
 			if string.startsWith(actionButton:GetName(),"BT4Button") then
@@ -270,7 +180,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 			end
 		else
 			b:SetNormalTexture(nil);
-		end  --]]
+		end
 		b:SetFrameStrata(actionButton:GetFrameStrata());
 		b:SetFrameLevel(actionButton:GetFrameLevel() + 1);
 
@@ -281,8 +191,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		elseif type(t) == "table" then
 			SetItem(t.id,b,t.guid);
 			b:Show();
-		end      --]]
-
+		end
 		return b;
 	end
 
@@ -301,8 +210,6 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 			end
 		end
 	end);
-
-
 
 	local NewButton = function(mirror)
 		if not(buttons[mirror:GetName()]) then
@@ -338,7 +245,6 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		local func = function(s,e)
 			NewButton(s);
 		end
-		--hooksecurefunc("ActionButton_OnUpdate",func);
 		hooksecurefunc("ActionButton_OnEvent",func);
 
 		GHI_Event().TriggerEventOnAllFrames("ACTIONBAR_SHOWGRID");
@@ -351,8 +257,6 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		end
 	end
 
-
-
 	if variablesLoaded then
 		Initialize();
 	else
@@ -363,4 +267,3 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 
 	return class;
 end
-

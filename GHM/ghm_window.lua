@@ -61,16 +61,6 @@ local function AnimateWindowOpening(self)
 	_x, _y = _x / s, _y / s;
 
 	local x,y = (UIParent:GetWidth() / 2) - _x, (UIParent:GetHeight() / 2) - _y;
-	--[[ Code for opening windows depending on last opened window
-	if #(animatedFrames) > 0 then
-		local last = animatedFrames[#(animatedFrames)];
-		if last:GetWidth() <= self:GetWidth() and last:GetHeight() <= self:GetHeight() then
-			local _1,_2,_3,x,y = last:GetPoint(1);
-			local x2,y2 = x-(last:GetWidth() / 2),y+(last:GetHeight() / 2);
-			x,y = x2 + (self:GetWidth() / 2), y2 - (self:GetHeight()/2);
-			self:SetPoint(_1,_2,_3,x+25,y-25)
-		end
-	end --]]
 
 	self:Show();
 
@@ -90,49 +80,11 @@ local function AnimateWindowOpening(self)
 		end
 	end)
 
-
-	--[[
-	self.menu.SetScale = print;
-
-
-	local newAni=self:CreateAnimationGroup()
-
-	local animation1=newAni:CreateAnimation("Translation")
- 	animation1:SetDuration(0)
-	animation1:SetOrder(1);
- 	--animation1:SetSmoothing("IN_OUT")
-	animation1:SetOffset(-x,-y)
-
-	local animation1=newAni:CreateAnimation("Translation")
- 	animation1:SetDuration(duration)
-	animation1:SetOrder(2);
- 	--animation1:SetSmoothing("OUT")
-	animation1:SetOffset(x,y)
-
-	--self:SetScale(0.1,0.1)
-	newAni:SetScript("OnUpdate",function(ani)
-		local p = ani:GetProgress();
-		if p > 0 then
-			--print(p);
-	  		self:SetScale(p,p)
-		end
-	end)
-
-
-	newAni:SetScript("OnFinished",function()
-		self:SetScale(1);
-	end);
-
-	self:SetScale(0.1);
-	newAni:Play()           --]]
 end
 
 
 function GHM_Window_OnLoad(self)
-	--self:SetFrameStrata("DIALOG");
-
- self:SetClampedToScreen(true)
-
+	self:SetClampedToScreen(true)
 
 	function self:AddScript(event, handler)
 		local events = { "OnResize", "OnMove", "OnMinimize", "OnRestore", "OnDock", "OnUndock", };
@@ -187,7 +139,6 @@ function GHM_Window_OnLoad(self)
 		local _, _, _, x, y = self:GetPoint()
 		self:SetPoint("CENTER", x - math.floor(alphaWidth / 2), y - math.floor(alphaHeight / 2));
 
-
 		if self.Scripts and self.Scripts["OnMinimize"] then
 			for key, OnMinimize in ipairs(self.Scripts["OnMinimize"]) do
 				OnMinimize(self);
@@ -236,7 +187,6 @@ function GHM_Window_OnLoad(self)
 		frame:SetParent(self.ContentFrame);
 		frame:ClearAllPoints();
 		frame:SetPoint("TOPLEFT", 5, 0);
-		--self.ContentFrame:SetScrollChild(frame); --disabled due to problems with nested scroll frames. (when a menu got e.g. an edit field)
 		self.Content = frame;
 		self.ContentFrame:Update();
 		self:UpdateScrollBarsVisibility();
@@ -300,15 +250,16 @@ function GHM_Window_OnLoad(self)
 	function self:OnMove(deltaX, deltaY)
 		local point = self:GetPointInfo(1);
 		local prevPoint = self.Point;
-        if type(prevPoint) == "function" then prevPoint = point end;
-		--if deltaX > 0 and deltaY > 0 then
-			if self.Scripts and self.Scripts["OnMove"] then
-				for key, OnMove in ipairs(self.Scripts["OnMove"]) do
-					OnMove(self, point["xOfs"], point["yOfs"], (prevPoint and prevPoint["xOfs"] or 0), (prevPoint and prevPoint["yOfs"] or 0), point, prevPoint);
-				end
+		if type(prevPoint) == "function" then
+			prevPoint = point
+		end;
+		if self.Scripts and self.Scripts["OnMove"] then
+			for key, OnMove in ipairs(self.Scripts["OnMove"]) do
+				OnMove(self, point["xOfs"], point["yOfs"], (prevPoint and prevPoint["xOfs"] or 0), (prevPoint and prevPoint["yOfs"] or 0), point, prevPoint);
 			end
-			self.Point = point;
-		--end
+		end
+		self.Point = point;
+
 		GHM_LayerHandle(self);
 	end
 
@@ -422,9 +373,6 @@ function GHM_Window_OnLoad(self)
 	menuBar.Window = self;
 	self.MenuBar = menuBar;
 
-
-
-
 	-- Status Bar
 	local statusBar = CreateFrame("Frame", "$parentStatusBar", self);
 	statusBar:SetHeight(15);
@@ -437,8 +385,6 @@ function GHM_Window_OnLoad(self)
 	-- Content Frame
 
 	local scrollFrame = CreateFrame("ScrollFrame", "$parentContentContainer", self);
-	--scrollFrame:SetFrameStrata("DIALOG");
-
 	scrollFrame:SetPoint("TOPLEFT", menuBar, "BOTTOMLEFT", 0, 0);
 	scrollFrame:SetPoint("BOTTOMRIGHT", statusBar, "TOPRIGHT", 0, 0); --]]
 
@@ -483,23 +429,14 @@ function GHM_Window_OnLoad(self)
 	self:AddScript("OnResize", function(self, ...) bgFrame2:SetHeight(self:GetHeight() + BORDER_SIZE * 2); bgFrame2:SetWidth(self:GetWidth() + BORDER_SIZE * 2); end);
 	self.BgFrame2 = bgFrame2;
 
-
-	--self.BgFrame:SetFrameLevel(self.BgFrame2:GetFrameLevel()+1)
-
 	-- Top Bar Background frame
 	local topBgFrame = CreateFrame("Frame", "$parentBgFrame", self);
 	topBgFrame:SetHeight(titleBar:GetHeight() + BORDER_SIZE * 2);
 	topBgFrame:SetWidth(titleBar:GetWidth() + BORDER_SIZE * 2);
 	topBgFrame:SetPoint("CENTER", titleBar, "CENTER", 0, 0);
 	topBgFrame:Show();
-	--topBgFrame:SetFrameLevel(self.BgFrame:GetFrameLevel()+30)
 	self:AddScript("OnResize", function(self, ...) topBgFrame:SetHeight(titleBar:GetHeight() + BORDER_SIZE * 2); topBgFrame:SetWidth(titleBar:GetWidth() + BORDER_SIZE * 2); end);
 	self.TopBgFrame = topBgFrame;
-
-	--  local bg = bgFrame:CreateTexture();
-	--     bg:SetAllPoints(bgFrame);
-	-- bg:SetTexture("Interface\\GLUES\\loading");
-
 
 	function self:UpdateScrollBarsVisibility()
 
@@ -613,8 +550,6 @@ function GHM_Window_OnLoad(self)
 		self.TitleBar.Text:SetTextColor(GHM_GetTitleBarTextColor())
 		self.BgFrame2:SetBackdropColor(GHM_GetBackgroundColor())
 
-
-
 	end
 
 	GHM_AddThemedObject(self)
@@ -623,7 +558,6 @@ end
 
 
 function GHM_Window_Test_OnLoad(self)
-	--self:SetFrameStrata("DIALOG");
 
 	function self:AddScript(event, handler)
 		local events = { "OnResize", "OnMove", "OnMinimize", "OnRestore", "OnDock", "OnUndock", "OnClose" };
@@ -701,7 +635,6 @@ function GHM_Window_Test_OnLoad(self)
 		end
 		self:SetParent(nil);
 
-
 		self = nil;
 	end
 
@@ -768,7 +701,6 @@ function GHM_Window_Test_OnLoad(self)
 	---------------------------------------------------------------------------------------------------------
 	self:RegisterForDrag("LeftButton");
 	self:SetMovable();
-
 
 	-- Title Bar
 	local titleBar = CreateFrame("Frame", "$parentTitleB", self);
@@ -961,190 +893,3 @@ function GHM_Window_Test_OnLoad(self)
 	self.Type = "Window";
 end
 
-
-
-
-function GHM_WindowTest()
-	if not TestWin then
-		TestWin = CreateFrame("Frame", "$parentGHIWindow", nil, "GHM_Window");
-		TestWin:SetWidth(500);
-		TestWin:SetHeight(400);
-		-- TestWin:SetPoint("TOPRIGHT",TestWin:GetParent(),"CENTER");
-		TestWin:SetPoint("CENTER", 0, 0);
-		TestWin:SetTitle("This is test window");
-
-		TestWin:SetDevMode(false);
-
-		local bg = TestWin:CreateTexture();
-		bg:SetAllPoints(TestWin);
-		bg:SetTexture("Interface\\GLUES\\loading");
-		TestWin:AddScript("OnMove", function(self, x, y, px, py) print("OnMove Trigger:  x:" .. x .. " y:" .. y .. " px:" .. px .. " py:" .. py); end);
-		TestWin:AddScript("OnResize", function(self, w, h, pw, ph) print("OnResize Trigger:  w:" .. w .. " h:" .. h .. " pw:" .. pw .. " ph:" .. ph); end);
-		print("Window on");
-	else
-		TestWin:Hide();
-		TestWin = nil;
-		print("Window off");
-	end
-end
-
-function GHM_WindowTest2()
-	if not TestWin then
-
-
-		TestWin = CreateFrame("Frame", "$parentGHIWindow", nil, "GHM_Window_Test");
-
-
-		TestWin:SetWidth(500);
-
-
-		TestWin:SetHeight(400);
-
-
-		TestWin:SetPoint("CENTER", 0, 0);
-
-
-		TestWin:SetTitle("This is test window");
-
-
-
-		TestWin:SetDevMode(true);
-
-
-
-
-		local frame = CreateFrame("Frame");
-
-
-		frame:SetWidth(512);
-
-
-		frame:SetHeight(512);
-
-
-
-		local bg = frame:CreateTexture();
-
-		bg:SetAllPoints(frame);
-
-		bg:SetTexture("Interface\\GLUES\\loading");
-
-
-
-		TestWin:SetContent(frame);
-
-
-		TestWin:AddScript("OnMove", function(self, x, y, px, py) print("OnMove Trigger:  x:" .. x .. " y:" .. y .. " px:" .. px .. " py:" .. py); end);
-
-		TestWin:AddScript("OnResize", function(self, w, h, pw, ph) print("OnResize Trigger:  w:" .. w .. " h:" .. h .. " pw:" .. pw .. " ph:" .. ph); end);
-
-		TestWin:AddScript("OnClose", function(self) if TestWin then TestWin:Hide(); TestWin = nil; end print("OnClose Trigger!"); end);
-
-		TestWin:SetContentScale(3);
-
-
-		print("Test Window on");
-	end
-end
-
-function AnimationTest()
-	local newFrame1 = CreateFrame("Frame", "aniFrame") --Makes a Frame called "newFrame1", and gives it the ID "aniFrame" (for identification later on).
-	newFrame1:SetHeight(100) --100 pixels in height.
-	newFrame1:SetWidth(100) --100 pixels in width.
-	newFrame1:Show();
-	newFrame1:SetPoint("CENTER")
-
-	local tex1 = newFrame1:CreateTexture() --This makes a new Texture called tex1. And made as the child of newFrame1.
-	tex1:SetAllPoints(newFrame1) --Just like SetPoint, this will do the exact same thing that newFrame1 did with its SetPoint. And each time newFrame1 gets new points, tex1 will get those points along with it.
-	tex1:SetTexture(0, 0, 0)
-
-	local newAni = newFrame1:CreateAnimationGroup()
-
-	local animation1 = newAni:CreateAnimation("Translation") --Creates an Animation, as a child of newAni. In this case, a Translation, which just has an offset amount that it moves about.
-	animation1:SetDuration(1) --Duration is the time it takes to do the animation, from start to finish. This animation takes 1 second.
-	animation1:SetSmoothing("OUT") --"IN", "OUT", or "IN_OUT". "IN" makes the animation start slow and gradually accelerate faster. "OUT" makes it slow down til it stops.
-
-	animation1:SetOffset(100, 300)
-
-	local animation2 = newAni:CreateAnimation("Scale") --Creates an Animation, as a child of newAni. In this case, a Translation, which just has an offset amount that it moves about.
-	animation2:SetDuration(1) --Duration is the time it takes to do the animation, from start to finish. This animation takes 1 second.
-	animation2:SetSmoothing("OUT")
-
-	animation2:SetScale(0.2, 0.2);
-
-	newAni:Play()
-end
-
-
-function AnimationExample()
-
-	BB_x = 0
-	BB_y = 0 --Setting the x and y vars, these are global vars (also saved vars) that get changed to random points on the screen upon mouseover of the frame. Both start off with a default of 0, which is the centre of the screen.
-
-	local newFrame1 = CreateFrame("Frame", "aniFrame") --Makes a Frame called "newFrame1", and gives it the ID "aniFrame" (for identification later on).
-	newFrame1:SetHeight(100) --100 pixels in height.
-	newFrame1:SetWidth(100) --100 pixels in width.
-	newFrame1:EnableMouse(true) --This line you need to have if you want the mouse to interact with the Frame, tells newFrame1 that it's going to be doing things with the mouse.
-	newFrame1:RegisterEvent("ADDON_LOADED") --The RegisterEvent method makes the "OnEvent" widget handler specifically look for an event, which in this case is "ADDON_LOADED".
-	newFrame1:Show();
-	newFrame1:SetPoint("CENTER")
-
-	local tex1 = newFrame1:CreateTexture() --This makes a new Texture called tex1. And made as the child of newFrame1.
-	tex1:SetAllPoints(newFrame1) --Just like SetPoint, this will do the exact same thing that newFrame1 did with its SetPoint. And each time newFrame1 gets new points, tex1 will get those points along with it.
-	tex1:SetTexture(0, 0, 0) --RGB colouring. 0,0,0 is full black.
-
-	local newFrame2 = CreateFrame("Frame") --Another Frame callled "newFrame2", this and its Texture are duplicates of newFrame1 and tex1.
-	newFrame2:SetHeight(100)
-	newFrame2:SetWidth(100)
-	newFrame2:Hide() --Makes this Frame hidden.
-
-	local tex2 = newFrame2:CreateTexture() --Another Texture "tex2", just like tex1.
-	tex2:SetAllPoints(newFrame2)
-	tex2:SetTexture(0, 0, 0)
-
-	local newAni = newFrame1:CreateAnimationGroup() --This makes an AnimationGroup with the name "newAni", and attaches it to newFrame2 as its child. The Animations can only be housed in AnimationGroups it seems.
-
-	local animation1 = newAni:CreateAnimation("Translation") --Creates an Animation, as a child of newAni. In this case, a Translation, which just has an offset amount that it moves about.
-	animation1:SetDuration(1) --Duration is the time it takes to do the animation, from start to finish. This animation takes 1 second.
-	animation1:SetSmoothing("OUT") --"IN", "OUT", or "IN_OUT". "IN" makes the animation start slow and gradually accelerate faster. "OUT" makes it slow down til it stops.
-
-	local animation2 = newAni:CreateAnimation("Rotation") --Creating another Animation, a child of newAni. Rotations, well, they rotate. You can set the degrees or rotation, a radian and point of rotation.
-	animation2:SetDuration(1)
-	animation2:SetSmoothing("OUT")
-
-	newFrame1:SetScript("OnUpdate", function() --Makes another SetScript for newFrame1. "OnUpdate" fires each time the frames update, not Frames as in widget objects, but frames as in FPS. Not putting self and elapsed in the function as they're not used.
-		if GetMouseFocus() and GetMouseFocus():GetName() == "aniFrame" then --GetMouseFocus() checks in the mouse cursor is over a Frame with an ID, and if it is, it returns true. Then it checks for the ID of the Frame that the mouse cursor is over, and if the ID is "aniFrame"(the ID given to newFrame1) it returns true and starts doing the code in the if statement.
-			-- newFrame1:Hide()                         --This will hide newFrame1, as this is not the Frame that has the Animation.
-			--newFrame2:SetPoint("CENTER",nil,"CENTER",BB_x,BB_y)          --Places newFrame2 at the starting line.
-			-- newFrame2:Show()                         --Shows newFrame2, this is the frame that does the Animation.
-			local x = random(100, 460) --Makes a local var called x. In WoW API "random" is short for "math.random" in Lua.
-			local y = random(100, 280) --And another called y. A random number between 100 and 280.
-			if BB_x > 0 then --If BB_x is greater than 0. Or, if the horizontal position is to right side of the screen.
-				BB_x = BB_x - x --Itself minus the x random. Left.
-				x = x * -1 --Turns the x random into its negative number. Negative numbers will make it go to the left.
-			else --Everything else. Or, the left side of the screen (or very centre).
-				BB_x = BB_x + x --Itself plus the x random.
-			end
-			if BB_y > 0 then --Does the same as BB_x var, only for the vertical.
-				BB_y = BB_y - y
-				y = y * -1
-			else
-				BB_y = BB_y + y
-			end
-			-- newFrame1:SetPoint("CENTER",nil,"CENTER",BB_x,BB_y)          --Places newFrame1 at the finish line. It's still hidden.
-			animation1:SetOffset(x, y) --Gives animation1 a new offset. The Offset is how far the animation travels, not a point on the screen where the animation should travel.
-			local rot = random(0, 1)
-			if rot == 1 then
-				animation2:SetDegrees(180) --Sets how much the animation rotates, in degrees.
-			else
-				animation2:SetDegrees(-180) --50:50 chance the animation rotates clockwise or anti-clockwise.
-			end
-			newAni:Play() --This will play the Animations in AnimationGroup "newAni", playing all of its children.
-		end
-	end) --Ends the function, closes the SetScript.
-
-	newAni:SetScript("OnFinished", function() --This gives the AnimationGroup newAni, the SetScript handler (AnimationGroups have very little in the way of handlers) "OnFinished" which fires when all the children Animations of this AnimationGroup finish playing.
-		newFrame1:Show() --Shows newFrame1, which is at the finish line, allowing its mouseover to be used once more.
-		newFrame2:Hide() --Hides newFrame2, which is still at the starting line.
-	end)
-end

@@ -1,12 +1,12 @@
 ﻿--===================================================
---									
---							GHI Backpack Button
---								ghi_buttonUI.lua
+--
+--				GHI Backpack Button
+--					ghi_buttonUI.lua
 --
 --	Moveable button for opening of the main GHI bag
 --
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
  local class;
 function GHI_ButtonUI()
@@ -20,14 +20,8 @@ function GHI_ButtonUI()
 	local OnMove, OnEnter, OnClick, OnLeave, PositionChangeCallbackFunc;
 	local sideFrames = {};
 	local sideButtons = {};
-
-
 	local UpdateSubButtons;
 	local HideSubButtons;
-
-
-
-
 	local squaredButton = CreateFrame("CheckButton", "GHI_ButtonSquared", UIParent, "ItemButtonTemplate");
 	squaredButton:Hide();
 
@@ -69,8 +63,6 @@ function GHI_ButtonUI()
 	roundButton:Hide();
 	roundButton:RegisterForClicks("AnyUp")
 
-	--roundButton:SetScript("OnMouseDown", function(b) b.icon:SetTexCoord(0,1,0,1) end);
-	--roundButton:SetScript("OnMouseUp", function(b) b.icon:SetTexCoord(.075,.925,.075,.925) end);
 	roundButton:Hide();
 
 	roundButton:SetScript("OnUpdate", function(b) if b.iconDrag then OnMove(b) end end)
@@ -208,7 +200,6 @@ function GHI_ButtonUI()
 			end
 		end);
 
-
 		return btn;
 	end
 
@@ -219,11 +210,9 @@ function GHI_ButtonUI()
 
 		if PLACEMENT[num] and not(sideButtons[num]) then
 			sideButtons[num] = GenerateSideButton(PLACEMENT[num],currentButton,frame);
-
 			return sideButtons[num];
 		end
 	end
-
 
 	-- =============== Sub buttons =================
 	local subButtons = {};
@@ -243,8 +232,6 @@ function GHI_ButtonUI()
 		if not(subButtonScroll) then
 			subButtonScroll = CreateFrame("ScrollFrame");
 			subButtonScroll:SetWidth(BUTTON_SIZE)
-			--GHM_TempBG(subButtonScroll)
-
 
 			subButtonScroll.RollOut = function()
 				local startPos,endPos = subButtonScroll:GetVerticalScroll(),BUTTON_SIZE*#(subButtons);
@@ -341,12 +328,8 @@ function GHI_ButtonUI()
 		subButtonScroll.RollIn();
 	end
 
-	--class.AddSubButton("Interface/ICONS/INV_Misc_QuestionMark","tt",function() print("click 1") end);
-
 	class.SetScale(1);
 	class.UseSquared();
-
-
 
 	return class;
 end

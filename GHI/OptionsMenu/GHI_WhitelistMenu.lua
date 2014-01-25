@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_WhitelistMenu
---  			GHI_WhitelistMenu.lua
+--				GHI_WhitelistMenu.lua
 --
---	          (description)
+--	Options menu containing the whitelist for scripting
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -15,7 +15,7 @@ function GHI_WhitelistMenu(parentName)
 		return class;
 	end
 	class = GHClass("GHI_WhitelistMenu");
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
 	local parentHeight = InterfaceOptionsFramePanelContainer:GetHeight() - 20;
 
@@ -69,7 +69,6 @@ function GHI_WhitelistMenu(parentName)
 		theme = "BlankTheme",
 		width = parentWidth,
 	});
-
 
 	menuFrame.name = loc.WHITELIST_TITLE;
 	menuFrame.refresh = function()

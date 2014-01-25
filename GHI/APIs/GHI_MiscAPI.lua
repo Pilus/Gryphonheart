@@ -1,15 +1,16 @@
 --===================================================
 --
 --				GHI_MiscAPI
---  			GHI_MiscAPI.lua
+--				GHI_MiscAPI.lua
 --
---	  API offering misc functions for the environment
+--	API offering misc functions for the environment
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
 local class;
+
 function GHI_MiscAPI()
 	if class then
 		return class;
@@ -81,7 +82,6 @@ function GHI_MiscAPI()
 					b = ITEM_QUALITY_COLORS[quality].b,
 				};
 
-
 				local lines = {};
 				stack.DisplayItemTooltip({
 					AddLine = function(_,text, r, g, b, _, order)
@@ -124,7 +124,7 @@ function GHI_MiscAPI()
 	api.GHI_ColorString = function(s, r, g, b)
 		if not (s) or s == "" then return ""; end;
 		if not (r) or not (g) or not (b) then return ""; end;
-		return "|CFF" .. string.format("%.2x", r * 255) .. string.format("%.2x", g * 255) .. string.format("%.2x", b * 255) .. s .. "|r";
+		return "|C" .. api.RGBAPercToHex(r,g,b,1) .. s .. "|r";
 	end
 
 	api.GHI_SetSelectItemCursor = function(clickFunction, clearFunction, identifier)
@@ -144,7 +144,6 @@ function GHI_MiscAPI()
 				info[i] = "GHI Class: " .. v.GetType();
 			end
 		end
-
 		return unpack(info);
 	end
 
@@ -205,6 +204,26 @@ function GHI_MiscAPI()
 		return;
 	end
 
+	api.RGBAPercToHex = function(r, g, b, a)
+		if not(a) then a = 1 end
+		r = r <= 1 and r >= 0 and r or 0
+		g = g <= 1 and g >= 0 and g or 0
+		b = b <= 1 and b >= 0 and b or 0
+		a = a <= 1 and a >= 0 and a or 1
+		
+		return string.format("%02x%02x%02x%02x",a*255 ,r*255, g*255, b*255)
+	end
+	
+	api.HexToRGBAPerc = function(hex)
+		if strlen(hex) == 6 then
+			local rhex, ghex, bhex = string.sub(hex, 1,2), string.sub(hex, 3, 4), string.sub(hex, 5, 6)
+			return tonumber(rhex, 16)/255, tonumber(ghex, 16)/255, tonumber(bhex, 16)/255, 1
+		else
+			local ahex, rhex, ghex, bhex = string.sub(hex, 1,2), string.sub(hex, 3, 4), string.sub(hex, 5, 6), string.sub(hex, 7, 8)
+			return tonumber(rhex, 16)/255, tonumber(ghex, 16)/255, tonumber(bhex, 16)/255, tonumber(ahex, 16)/255
+		end
+	end
+	
 	local colors = {
 		red = { r = 1, g = 0.0, b = 0.0 },
 		white = { r = 1, g = 1, b = 1 },
@@ -225,26 +244,6 @@ function GHI_MiscAPI()
 		brown = { r = 0.5, g = 0.0, b = 0.0 },
 		gray = { r = 0.5, g = 0.5, b = 0.5 },
 		black = { r = 0, g = 0, b = 0 },
-		poor = {r =  ITEM_QUALITY_COLORS[0].r, g =  ITEM_QUALITY_COLORS[0].g, b =  ITEM_QUALITY_COLORS[0].b},
-		common = {r =  ITEM_QUALITY_COLORS[1].r, g =  ITEM_QUALITY_COLORS[1].g, b =  ITEM_QUALITY_COLORS[1].b},
-		uncommon = {r =  ITEM_QUALITY_COLORS[2].r, g =  ITEM_QUALITY_COLORS[2].g, b =  ITEM_QUALITY_COLORS[2].b},
-		rare = {r =  ITEM_QUALITY_COLORS[3].r, g =  ITEM_QUALITY_COLORS[3].g, b =  ITEM_QUALITY_COLORS[3].b},
-		epic = {r =  ITEM_QUALITY_COLORS[4].r, g =  ITEM_QUALITY_COLORS[4].g, b =  ITEM_QUALITY_COLORS[4].b},
-		legendary = {r =  ITEM_QUALITY_COLORS[5].r, g =  ITEM_QUALITY_COLORS[5].g, b =  ITEM_QUALITY_COLORS[5].b},
-		heirloom = {r =  ITEM_QUALITY_COLORS[6].r, g =  ITEM_QUALITY_COLORS[6].g, b =  ITEM_QUALITY_COLORS[6].b},
-		hunter = {r = RAID_CLASS_COLORS["HUNTER"].r, g = RAID_CLASS_COLORS["HUNTER"].g, b = RAID_CLASS_COLORS["HUNTER"].b},
-		warlock = {r = RAID_CLASS_COLORS["WARLOCK"].r, g = RAID_CLASS_COLORS["WARLOCK"].g, b = RAID_CLASS_COLORS["WARLOCK"].b},
-		priest = {r = RAID_CLASS_COLORS["PRIEST"].r, g = RAID_CLASS_COLORS["PRIEST"].g, b = RAID_CLASS_COLORS["PRIEST"].b},
-		paladin = {r = RAID_CLASS_COLORS["PALADIN"].r, g = RAID_CLASS_COLORS["PALADIN"].g, b = RAID_CLASS_COLORS["PALADIN"].b},
-		mage = {r = RAID_CLASS_COLORS["MAGE"].r, g = RAID_CLASS_COLORS["MAGE"].g, b = RAID_CLASS_COLORS["MAGE"].b},
-		rogue = {r = RAID_CLASS_COLORS["ROGUE"].r, g = RAID_CLASS_COLORS["ROGUE"].g, b = RAID_CLASS_COLORS["ROGUE"].b},
-		druid = {r = RAID_CLASS_COLORS["DRUID"].r, g = RAID_CLASS_COLORS["DRUID"].g, b = RAID_CLASS_COLORS["DRUID"].b},
-		shaman = {r = RAID_CLASS_COLORS["SHAMAN"].r, g = RAID_CLASS_COLORS["SHAMAN"].g, b = RAID_CLASS_COLORS["SHAMAN"].b},
-		warrior = {r = RAID_CLASS_COLORS["WARRIOR"].r, g = RAID_CLASS_COLORS["WARRIOR"].g, b = RAID_CLASS_COLORS["WARRIOR"].b},
-		deathknight = {r = RAID_CLASS_COLORS["DEATHKNIGHT"].r, g = RAID_CLASS_COLORS["DEATHKNIGHT"].g, b = RAID_CLASS_COLORS["DEATHKNIGHT"].b},
-		monk = {r = RAID_CLASS_COLORS["MONK"].r, g = RAID_CLASS_COLORS["MONK"].g, b = RAID_CLASS_COLORS["MONK"].b},
-		horde = {r = PLAYER_FACTION_COLORS[0].r, g = PLAYER_FACTION_COLORS[0].g, b = PLAYER_FACTION_COLORS[0].b},
-		alliance = {r = PLAYER_FACTION_COLORS[1].r, g = PLAYER_FACTION_COLORS[1].g, b = PLAYER_FACTION_COLORS[1].b,}
 	}
 		
 	api.GHI_GetColors = function()
@@ -255,43 +254,40 @@ function GHI_MiscAPI()
 		return GHI_FontList
 	end
 	
-   api.GHI_Pronoun = function(tense, upper, tar)
-    if tar == nil then
-      tar = "player"
-    elseif tar == true then
-      tar = "target"
-    end
-    local word
-    local gen = UnitSex(tar)
-   
-    local l = {
-      {nom = loc.PRONOUN_IT, pos = loc.PRONOUN_ITS},
-      {nom = loc.PRONOUN_HE, pos = loc.PRONOUN_HIS},
-      {nom = loc.PRONOUN_SHE, pos = loc.PRONOUN_HER},
-    }
-    if upper == true then
-      if tense == "nom" then
-         word = l[gen].nom
-         --print(word)
-         word = word:gsub("^%l", string.upper)
-         --print(word)
-         return word
-      elseif tense == "pos" then
-         word = l[gen].pos
-         word = word:gsub("^%l", string.upper)
-         return word
-      end
-    else
-      if tense == "nom" then
-         word = l[gen].nom
-         return word
-      elseif tense == "pos" then
-         word = l[gen].pos
-         return word 
-      end
-    end  
-   
-   end
+	api.GHI_Pronoun = function(tense, upper, tar)
+		if tar == nil then
+			tar = "player"
+		elseif tar == true then
+			tar = "target"
+		end
+		local word
+		local gen = UnitSex(tar)
+
+		local l = {
+			{nom = loc.PRONOUN_IT, pos = loc.PRONOUN_ITS},
+			{nom = loc.PRONOUN_HE, pos = loc.PRONOUN_HIS},
+			{nom = loc.PRONOUN_SHE, pos = loc.PRONOUN_HER},
+		}
+		if upper == true then
+			if tense == "nom" then
+				word = l[gen].nom
+				word = word:gsub("^%l", string.upper)
+				return word
+			elseif tense == "pos" then
+				word = l[gen].pos
+				word = word:gsub("^%l", string.upper)
+				return word
+			end
+		else
+			if tense == "nom" then
+				word = l[gen].nom
+				return word
+			elseif tense == "pos" then
+				word = l[gen].pos
+				return word
+			end
+		end
+	end
 
 	local urlMenuList;
 	api.GHI_URL = function(url)
@@ -324,13 +320,13 @@ function GHI_MiscAPI()
 	end
 
 	-- save / load
-	api.GHI_Save = function(index, var) --print("  save",index)
+	api.GHI_Save = function(index, var)
 		if not (type(GHI_MiscData.ScriptSave) == "table") then
 			GHI_MiscData.ScriptSave = {};
 		end
 		GHI_MiscData.ScriptSave[index] = var;
 	end
-	api.GHI_Load = function(index) --  print("   load",index)
+	api.GHI_Load = function(index)
 		return (GHI_MiscData.ScriptSave or {})[index];
 	end
 
@@ -369,7 +365,7 @@ function GHI_MiscAPI()
 		end
 		
 		for i=1,GetNumCompanions("mount") do
-		_, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
+		local _, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
 			
 			local firstLetter = strsub(mountName,1,1)
 			local info = {}
@@ -396,6 +392,7 @@ function GHI_MiscAPI()
 		for n,_ in pairs(mounts) do
 			table.insert(a, n)
 		end
+
 		table.sort(a)
 		for i = 1, #a do
 			if a[i] == nil then
@@ -406,22 +403,12 @@ function GHI_MiscAPI()
 			end
 		end
 		
-		return tempMounts		
+		return tempMounts
 	end
 		
 	api.GHI_GetDebuffColor = function(debuffType)
-			
-		local r = tonumber(DebuffTypeColor[debuffType].r)
-		local g = tonumber(DebuffTypeColor[debuffType].g)
-		local b = tonumber(DebuffTypeColor[debuffType].b)
-		r = r <= 1 and r >= 0 and r or 0
-		g = g <= 1 and g >= 0 and g or 0
-		b = b <= 1 and b >= 0 and b or 0
-
-		return string.format("%02x%02x%02x", r*255, g*255, b*255)
+		return api.RGBAPercToHex(DebuffTypeColor[debuffType].r, DebuffTypeColor[debuffType].g, DebuffTypeColor[debuffType].b, 1)
 	end
-	
-
 	class.GetAPI = function()
 		local a = {};
 		for i, f in pairs(api) do
@@ -429,8 +416,6 @@ function GHI_MiscAPI()
 		end
 		return a;
 	end
-
-
 
 	return class;
 end

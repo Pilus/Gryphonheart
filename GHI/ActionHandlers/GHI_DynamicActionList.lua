@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_DynamicActionList
---  			GHI_DynamicActionList.lua
+--				GHI_DynamicActionList.lua
 --
---	          (description)
+--	Holds a list of dynamic action (templates).
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -80,8 +80,8 @@ function GHI_DynamicActionList()
 				end
 			end
 		end
-		table.sort(a1,function(ac1,ac2) return CompareStrings(ac1.GetName(),ac2.GetName()); end)
 
+		table.sort(a1,function(ac1,ac2) return CompareStrings(ac1.GetName(),ac2.GetName()); end)
 		local a2 = {};
 		for _, action in pairs(actions) do
 			if category ~= "" and action.GetCategory() == category and action.GetAuthor() ~= "00x1" then
@@ -92,8 +92,8 @@ function GHI_DynamicActionList()
 				end
 			end
 		end
-		table.sort(a2,function(ac1,ac2) return CompareStrings(ac1.GetName(),ac2.GetName()); end)
 
+		table.sort(a2,function(ac1,ac2) return CompareStrings(ac1.GetName(),ac2.GetName()); end)
 		for i=1,#(a2) do
 			table.insert(a1,a2[i]);
 		end
@@ -147,7 +147,6 @@ function GHI_DynamicActionList()
 		local action = GHI_DynamicAction(data);
 		class.AddAction(action);
 	end);
-
 
 	return class;
 end

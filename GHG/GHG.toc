@@ -1,6 +1,6 @@
 ## Interface: 50400
 ## Title: Gryphonheart Groups
-## Version: 0.0.1
+## Version: 0.0.3
 ## Notes: Support for guild like groups, which are invisible to other players. E.g. a secret lodge, a tradesman guild or a subguild to an existing guild.
 ## X-CodeTool: true
 ## RequiredDeps: GHI,GHM
@@ -23,6 +23,8 @@ Model\GHG_PlayerData.lua
 Model\GHG_PlayerDataList.lua
 Model\GHG_GroupMember.lua
 Model\GHG_GroupRank.lua
+Model\GHG_LogEventType.lua
+Model\GHG_LogEvent.lua
 
 Comm\GHG_GroupChat.lua
 Comm\GHG_GroupInvite.lua
@@ -44,4 +46,3 @@ GUI\GHG_ChatConfig.lua
 GUI\GHG_ChatConfig.xml
 GUI\GHG_GroupInfoFrame.lua
 GUI\GHG_GroupInfoFrame.xml
-

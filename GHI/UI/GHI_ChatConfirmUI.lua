@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_ChatConfirm
---  			GHI_ChatConfirmUI.lua
+--				GHI_ChatConfirmUI.lua
 --
---	   Permission confirm for SendChatMessages.
+--		Permission confirm for SendChatMessages.
 --
--- 	    (c)2013 The Gryphonheart Team
+--		(c)2013 The Gryphonheart Team
 --			  All rights reserved
 --===================================================
 
@@ -21,7 +21,7 @@ function GHI_ChatConfirm()
 	local menuFrame;
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local containerAPI = GHI_ContainerAPI().GetAPI();
-     local loc = GHI_Loc();
+	local loc = GHI_Loc();
 	class.QueueMessage = function(text, chatType, language, channel)
 		table.insert(messageQueue, {
 			text = text,

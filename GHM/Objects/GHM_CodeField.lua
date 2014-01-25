@@ -3,40 +3,91 @@
 --				GHM_CodeField
 --  			GHM_CodeField.lua
 --
---	          Text field object for large amounts of text
+--	   Text field object for large amounts of text
 --
--- 	  (c)2013 The Gryphonheart Team
---			All rights reserved
+-- 	  	(c)2013 The Gryphonheart Team
+--			  All rights reserved
 --===================================================
 
 local DEFAULT_WIDTH = 170;
 local DEFAULT_HEIGHT = 80;
-local codeFields = {};
 
 local count = 1;
 function GHM_CodeField(parent, main, profile)
 	local frame = CreateFrame("Frame", "GHM_CodeField" .. count, parent, "GHM_CodeField_Template");
 	count = count + 1;
-
+	
 	local label = _G[frame:GetName().."TextLabel"];
-	label:SetText(profile.text or "");
-	local areaFrame = _G[frame:GetName().."Area"];
-	local fieldFrame = _G[frame:GetName().."AreaScrollText"];
 	local area = _G[frame:GetName().."Area"];
+	local scrollFrame = _G[area:GetName().."Scroll"];
+	local fieldFrame = _G[scrollFrame:GetName().."Text"];
+	local syntaxHighlight = GHM_CodeField_SyntaxHighlight()
+	
+	label:SetText(profile.text or "");
+	
 	frame.field = fieldFrame;
+	
 	GHM_FramePositioning(frame,profile,parent);
+	
 	if profile.height then
 		frame:SetHeight(profile.height);
 	end
+	
 	if profile.width then
 		frame:SetWidth(profile.width);
 	end
+	
+	frame:SetScript("OnMouseDown", function()
+		fieldFrame:SetFocus();
+	end)
+	frame:SetScript("OnMouseUp", function()
+		fieldFrame:SetFocus();
+	end)
 
 	fieldFrame:SetWidth(frame:GetWidth()-33);
+	
+	fieldFrame:SetScript("OnCursorChanged",function(self,arg1,arg2,arg3)
+		local scrollBar = _G[self:GetParent():GetName().."ScrollBar"]
+		local h = scrollBar:GetHeight();
+		if (-arg2)-h-scrollBar:GetValue() > 22 then
+			scrollBar:SetValue(-arg2+ (-3.0*arg3) -h);
+		end
+		if -3 > -arg2-scrollBar:GetValue() then
+			scrollBar:SetValue(-arg2- 1.5*arg3);
+		end
+	end)
+	
+	syntaxHighlight.GHM_LoadSyntaxColorList()
+	
+	fieldFrame:SetScript("OnShow", function(self)
+		local syntaxDisabled = GHI_MiscData.syntaxDisabled
+		if syntaxDisabled == true then
+			return
+		else
+			local syntaxColors = syntaxHighlight.GHM_GetSyntaxColorList()
+			IndentationLib.Enable(self,4,syntaxColors)
+		end
+	end)
+	
+	fieldFrame:SetScript("OnHide", function(self)
+		IndentationLib.Disable()
+	end)
+	
+	fieldFrame:SetScript("OnEscapePressed", function(self)
+		self:ClearFocus();
+	end)
+	
+	fieldFrame:SetScript("OnTextChanged", function(self,userInput)
+		local f = self:GetParent():GetParent();
+		if f and f.main then
+			f.main.SetLabel(f.label,self:GetText());
+		end
+	end)
 
 	-- toolbar buttons
 	local toolbar = GHM_Toolbar(area,fieldFrame);
 	toolbar:SetPoint("TOPLEFT",3,-3);
+	
 	if profile.toolbarButtons then
 		for _,toolbarButton in pairs(profile.toolbarButtons) do
 			toolbar.AddButton(toolbarButton.texture,toolbarButton.func,toolbarButton.tooltip);
@@ -53,7 +104,6 @@ function GHM_CodeField(parent, main, profile)
 	local Force2 = function(inputType, inputValue)
 		if (inputType == "attribute" or inputType == "variable") and varAttFrame then
 			varAttFrame:SetValue(inputType, inputValue);
-
 		else -- static
 			varAttFrame:Clear();
 			Force1(inputValue);
@@ -75,10 +125,9 @@ function GHM_CodeField(parent, main, profile)
 		fieldFrame:SetText("");
 	end
 
-
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
 		if not (varAttFrame) then
-			varAttFrame = GHM_VarAttInput(frame, areaFrame, frame:GetWidth());
+			varAttFrame = GHM_VarAttInput(frame, area, frame:GetWidth());
 			frame:SetHeight(frame:GetHeight());
 		end
 		varAttFrame:EnableVariableAttributeInput(scriptingEnv, item, profile.outputOnly)
@@ -96,8 +145,6 @@ function GHM_CodeField(parent, main, profile)
 		fieldFrame:Insert(t)
 	end
 
-
-
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end
@@ -107,18 +154,3 @@ function GHM_CodeField(parent, main, profile)
 
 	return frame;
 end
-
-
-local updateColors = false;
-function GHM_CodeField_UpdateColors()
-    updateColors = true;
-end
-local f = CreateFrame("Frame");
-f:SetScript("OnUpdate", function(...)
-    if updateColors == true then
-        updateColors = false;
-        for _, frame in pairs(codeFields) do
-            frame:GetScript("OnTextChanged")(frame);
-        end
-    end
-end);

@@ -1,5 +1,5 @@
 ---------------------------------------------------
---		
+--
 --	Copy of UIDropDwonMenu.lua, and associated XML
 --	Modified by Gryphonheart Team for use in GH Addons
 --
@@ -238,12 +238,6 @@ GHM_DropDownMenu = function()
 	end
 
 	class.DropDownMenu_AddButton = function(info, level)
-		--[[
-		Might to uncomment this if there are performance issues 
-		if ( not class.OPEN_MENU ) then
-			return;
-		end
-		]]
 		if ( not level ) then
 			level = 1;
 		end
@@ -433,7 +427,7 @@ GHM_DropDownMenu = function()
 		if (info.iconOnly) then
 			displayInfo = icon;
 		end
-				
+
 		displayInfo:ClearAllPoints();
 		if ( info.notCheckable ) then
 			if ( info.justifyH and info.justifyH == "CENTER" ) then
@@ -462,7 +456,7 @@ GHM_DropDownMenu = function()
 		if ( info.leftPadding ) then
 			xPos = xPos + info.leftPadding;
 		end
-				
+
 		button:SetPoint("TOPLEFT", button:GetParent(), "TOPLEFT", xPos, yPos);
 
 		-- See if button is selected by id or name
@@ -481,7 +475,6 @@ GHM_DropDownMenu = function()
 				end
 			end
 		end
-
 
 		if not info.notCheckable then 
 			if info.isNotRadio then
@@ -905,8 +898,7 @@ GHM_DropDownMenu = function()
 			end
 
 			listFrame.onHide = dropDownFrame.onHide;
-			
-			
+
 			--  We just move level 1 enough to keep it on the screen. We don't necessarily change the anchors.
 			if ( level == 1 ) then
 				local offLeft = listFrame:GetLeft()/uiScale;

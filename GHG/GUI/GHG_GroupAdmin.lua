@@ -42,7 +42,6 @@ local Initialize = function()
 					fontSize = 14,
 					texture = "Tooltip",
 					OnTextChanged = function(self)
-
 					end,
 				},
 				{
@@ -180,6 +179,50 @@ local Initialize = function()
 					compact = true,
 					OnClick = function()
 						rankUI.Show({index = api.Admin_GetNumRanks() + 1},SetRank);
+					end,
+				},
+			},
+			{
+				{
+					align = "l",
+					type = "Editbox",
+					text = loc.CHAT_NAME..":";
+					label = "chatName";
+					width = 120,
+					fontSize = 14,
+					texture = "Tooltip",
+					OnTextChanged = function(self)
+					end,
+				},
+				{
+					align = "r",
+					type = "Editbox",
+					text = loc.CHAT_HEADER..":";
+					label = "chatHeader";
+					width = 120,
+					fontSize = 14,
+					texture = "Tooltip",
+					OnTextChanged = function(self)
+					end,
+				},
+			},
+			{
+				{
+					type = "Color",
+					text = loc.CHAT_COLOR,
+					align = "l",
+					label = "chatColor",
+					texture = "Tooltip",
+				},
+				{
+					align = "r",
+					type = "Editbox",
+					text = loc.CHAT_SLASH..":";
+					label = "chatSlash";
+					width = 120,
+					fontSize = 14,
+					texture = "Tooltip",
+					OnTextChanged = function(self)
 					end,
 				},
 			},
@@ -373,6 +416,11 @@ GHG_UpdateAdminFrame = function()
 	local name,icon = api.Admin_GetGroupInfo();
 	menuFrame.ForceLabel("name",name);
 	menuFrame.ForceLabel("icon",icon);
+	local chatName,chatHeader,chatColor,chatSlashCmds = api.Admin_GetGroupChatInfo();
+	menuFrame.ForceLabel("chatName",chatName);
+	menuFrame.ForceLabel("chatHeader",chatHeader);
+	menuFrame.ForceLabel("chatColor",chatColor);
+	menuFrame.ForceLabel("chatSlash",(chatSlashCmds or {})[1]);
 
 	UpdateRanksList();
 

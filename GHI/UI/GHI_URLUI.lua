@@ -3,9 +3,9 @@
 --				GHI_URLUI
 --  			GHI_URLUI.lua
 --
---	          (description)
+--		UI for displaying urls in a practical ui
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local menuIndex = 1;
@@ -17,7 +17,6 @@ function GHI_URLUI()
 	frame:SetWidth(300);
 	frame:SetHeight(20);
 	frame:SetPoint("CENTER")
-	--GHM_TempBG(frame);
 
 	local textBox = CreateFrame("EditBox","$parentEditbox",frame,"GHM_EditBox_Box_Template")
 	textBox:SetPoint("TOPLEFT");

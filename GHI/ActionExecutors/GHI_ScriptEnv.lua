@@ -13,7 +13,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 	local delayedScripts = {};
 	local executingStackIndex;
 	local stacks = {};
-     local loc = GHI_Loc();
+	local loc = GHI_Loc();
 	-- create special objects
 	local GHUIParent = CreateFrame("Frame", UIParent);
 	GHUIParent:SetAllPoints(UIParent);
@@ -24,7 +24,6 @@ function GHI_ScriptEnviroment(ownerGuid)
 	GHWorldFrame:SetAllPoints(WorldFrame);
 	GHWorldFrame.GetParent = function(...) return end;
 	GHWorldFrame.GetPoint = function(...) return end;
-
 
 	-- set up the allowed functions
 	local environment = {
@@ -760,15 +759,12 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GHI_ExportItem = GHI_ExportItem,
 		GHI_ImportItem = GHI_ImportItem,
 
-
 		-- cursor
 		GHI_SetCursor = GHI_SetCursor,
 		GHI_ResetCursor = GHI_ResetCursor,
 		GHI_GetCursor = GHI_GetCursor,
 		GHI_GetCursorPreDetails = GHI_GetCursorPreDetails,
 		GHI_AddExternalPreDetails = GHI_AddExternalPreDetails,
-
-
 
 		-- display
 		GHI_SetCustomSlotInfo = GHI_SetCustomSlotInfo,
@@ -777,7 +773,6 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GHI_SetTargetEqDisplay = GHI_SetTargetEqDisplay,
 		GHI_CopyTargetEqDisplay = GHI_CopyTargetEqDisplay,
 		GHI_ToggleTargetEqDisplay = GHI_ToggleTargetEqDisplay,
-
 
 		-- links
 		GHI_GenerateLink = GHI_GenerateLink,
@@ -805,9 +800,6 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GHI_EffectFrameEffect4 = GHI_EffectFrameEffect4,
 		GHI_EffectFrameEffect4Texture = GHI_EffectFrameEffect4Texture,
 
-		--GHI_ItemData = GHI_ItemData,
-		--GHI_ContainerData = GHI_ContainerData,
-		--GHI_TradeItemsRecipient = GHI_TradeItemsRecipient,
 		UIParent = GHUIParent,
 		GHI_ColorString = GHI_ColorString,
 		GHI_MiscData = GHI_MiscData,
@@ -845,6 +837,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 				StaticPopup_Show(ownerGuid..name)
 			end
 		end,
+
 		StaticPopup_Hide = function(name)
 			StaticPopup_Hide(ownerGuid..(name or ""))
 		end,
@@ -852,27 +845,35 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GHI_ReloadEnv = function()
 			GHI_ScriptEnvList().ReloadEnv(ownerGuid);
 		end,
+
 		SetItemButtonTexture = function(...)
 			return SetItemButtonTexture(...);
 		end,
+
 		SetItemButtonCount = function(...)
 			return SetItemButtonCount(...);
 		end,
+
 		SetItemButtonDesaturated = function(...)
 			return SetItemButtonDesaturated(...);
 		end,
+
 		GHI_ContainerFrame_UpdateCooldown = function(...)
 			return GHI_ContainerFrame_UpdateCooldown(...);
 		end,
+
 		GHI_ContainerFrameItemButton_OnLoad = function(...)
 			return GHI_ContainerFrameItemButton_OnLoad(...);
 		end,
+
 		GHI_ContainerFrameItemButton_OnEnter = function(...)
 			return GHI_ContainerFrameItemButton_OnEnter(...);
 		end,
+
 		GHI_ContainerFrameItemButton_OnUpdate = function(...)
 			return GHI_ContainerFrameItemButton_OnUpdate(...);
 		end,
+
 		HideTooltip = function(self)
 			self.updateTooltip = nil;
 			GameTooltip:Hide();
@@ -887,9 +888,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 			ClearLines = function(_,...) GameTooltip:ClearLines(...); end,
 			AddTexture = function(_,...) GameTooltip:AddTexture(...); end,
 		},
-
 	}
-
 
 
 	if type(GHI_MiscData["WhiteList"]) == "table" then
@@ -898,7 +897,6 @@ function GHI_ScriptEnviroment(ownerGuid)
 		end
 	end
 
-	 --[string "test ab"]:1: '=' expected near 'ab'
 	local handleError = function(err,code,startHeader,atRuntime)
 		local runtime = "";
 		if atRuntime then runtime = "at runtime"; end
@@ -914,11 +912,9 @@ function GHI_ScriptEnviroment(ownerGuid)
 				print(i..":",t[i]);
 			end
 		end
-
 	end
 
 	local headers = {};
-
 	local Execute = function(code, headerGuid, skipEndHeader)
 		local origCode = code;
 		if headers[headerGuid] then
@@ -938,7 +934,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 			return
 		end
 
-		setfenv(codeFunc, environment); --print("Execute:\n"..code)
+		setfenv(codeFunc, environment);
 		local ok,ret1,ret2,ret3,ret4,ret5 =  pcall(codeFunc);
 		if ok then
 			return ret1,ret2,ret3,ret4,ret5;
@@ -971,10 +967,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		return Execute(code, headerGuid, skipEndHeader);
 	end
 
-
-
 	environment.DoScript = environment.GHI_DoScript;
-
 	environment._G = environment;
 
 	class.SetValue = function(name, val)
@@ -991,9 +984,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		return codeFunc();
 	end
 
-
 	class.GetAllValues = function(search)
-
 		local codeFunc = function()
 			local t = {};
 			local len = strlen(search);
@@ -1045,7 +1036,6 @@ function GHI_ScriptEnviroment(ownerGuid)
 			end
 		end
 	end
-
 
 	class.SetHeaderApi = function(guid, headerCode, endCode)
 		headers[guid] = { start = headerCode, _end = endCode };

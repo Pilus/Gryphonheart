@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_AdvancedItemMenuList
---  			GHI_AdvancedItemMenuList.lua
+--				GHI_AdvancedItemMenuList.lua
 --
---	          (description)
+--		List of menu for advanced items
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local class;
@@ -30,9 +30,11 @@ function GHI_AdvancedItemMenuList()
 	class.New = function(itemInProgress)
 		GetMenu().New(itemInProgress);
 	end
+
 	class.Edit = function(itemInProgress)
 		GetMenu().Edit(itemInProgress);
 	end
+
 	class.IsBeingEdited = function(guid)
 		for i, menu in pairs(menus) do
 			if (menu.IsInUse()) and menu.GetItemGuid() == guid then

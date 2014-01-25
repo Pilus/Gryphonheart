@@ -1,9 +1,10 @@
 --===================================================
 --
 --				GHI_ClassAPI
---  			GHI_ClassAPI.lua
+--				GHI_ClassAPI.lua
 --
---	          (description)
+--		API for GHI objects that are classes.
+--	This includes timer, communication and position.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -20,6 +21,7 @@ function GHI_ClassAPI()
 
 	api.GHI_Timer = GHI_Timer;
 	--syntax GHI_Timer(func, interval, onceOnly) function must be a declared, not existing. interval is number, onceOnly is boolean if nil, repeats.
+
 	api.GHI_Comm = function()
 		local obj = {};
 		local comm = GHI_Comm();
@@ -69,11 +71,10 @@ function GHI_ClassAPI()
 	end
 
 	api.GHI_GUID = function()
-	
 		local GUID = GHI_GUID()
 		local obj = {};
 		obj.MakeGUID = GUID.MakeGUID;
-	     return obj;
+		return obj;
 	end
 
 	api.GHI_CastBarUI = function()
@@ -86,13 +87,12 @@ function GHI_ClassAPI()
 		obj.Interrupt = function(...)
 			castBar.Interrupt("player",...)
 		end
-
 		return obj;
 	end
 	
 	api.GHI_StatusBarUI = function()
 		local statusBar = GHI_StatusBarUI()
-		obj = {}
+		local obj = {}
 		
 		statusBar.Clear()
 		
@@ -130,8 +130,7 @@ function GHI_ClassAPI()
 	
 	api.GHI_ExtraButtonUI = function()
 		local extraButton = GHI_ExtraButtonUI()
-		
-		obj = {}
+		local obj = {}
 		extraButton.Clear()
 		
 		obj.SetTheme = function(...)
@@ -139,16 +138,16 @@ function GHI_ClassAPI()
 		end
 		obj.SetIcon = function(...)
 			extraButton.SetIcon(...)
-		end		
+		end
 		obj.SetCooldownTime = function(...)
 			extraButton.SetCooldownTime(...)
-		end		
+		end
 		obj.SetMaxCharges = function(...)
 			extraButton.SetMaxCharges(...)
-		end		
+		end
 		obj.ChangeCharges = function(...)
 			extraButton.ChangeCharges(...)			
-		end		
+		end
 		obj.GetCharges = extraButton.GetCharges()
 		obj.SetOnClick = function(...)
 			extraButton.SetOnClick(...)

@@ -3,9 +3,9 @@
 --				GHI_DebugMenu
 --  			GHI_DebugMenu.lua
 --
---	          (description)
+--	Options menu showing the debug log
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -17,7 +17,7 @@ function GHI_DebugMenu(parentName)
 	class = GHClass("GHI_DebugMenu");
 	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
 	local parentHeight = InterfaceOptionsFramePanelContainer:GetHeight() - 20;
-     local loc = GHI_Loc();
+	local loc = GHI_Loc();
 	local log = GHI_Log();
 
 	local menuFrame;
@@ -63,12 +63,6 @@ function GHI_DebugMenu(parentName)
 	class.Show = function(cat)
 		InterfaceOptionsFrame_OpenToCategory(menuFrame);
 	end
-
-	--[[GHI_Timer(function()
-		if menuFrame:IsShown() then
-			menuFrame.ForceLabel("log", log.ToText());
-		end
-	end,1,false,"debug log update") --]]
 
 	return class;
 end

@@ -89,7 +89,7 @@ function GHM_ImageList(parent, main, profile)
 		local prevImgF
 		frame.images = imgList;
 		
-		local width = floor(list:GetWidth())
+		local width = floor(frame:GetWidth())
 		local buttonWidth = (sizeX * scaleX)
 		local numPrLine = floor(width / buttonWidth);
 

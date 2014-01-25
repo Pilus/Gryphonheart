@@ -1,3 +1,13 @@
+--===================================================
+--
+--			GHI_Communications
+--			GHI_Communications.lua
+--
+--	Dynamic action data for communication
+--
+--		(c)2013 The Gryphonheart Team
+--			All rights reserved
+--===================================================
 
 local category = "Communication";
 

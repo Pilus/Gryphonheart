@@ -138,7 +138,10 @@ function GHG_AdminAPI(userGuid)
 		currentAdmin.DeleteRank(index);
 	end
 
-
+	class.Admin_GetGroupChatInfo = function()
+		assert(currentAdmin,"Administration not active");
+		return currentAdmin.GetGroupChatInfo();
+	end
 
 	return class;
 end

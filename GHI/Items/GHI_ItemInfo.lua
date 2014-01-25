@@ -1,12 +1,12 @@
 ﻿ --===================================================
 --
---								GHI Item Info
---								ghi_itemInfo.lua
+--					GHI Item Info
+--					ghi_itemInfo.lua
 --
---	          Item information storage and display
+--		Item information storage and display
 --
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================
 local itemFunctions;
 
@@ -27,6 +27,7 @@ function GHI_ItemInfo(info)
 		itemComplexity = info;
 		info = nil;
 	end
+
 	if not(itemComplexity) then
 		if info.isAdvancedItem then
 			itemComplexity = "advanced";

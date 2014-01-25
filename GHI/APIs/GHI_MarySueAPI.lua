@@ -1,11 +1,11 @@
 --===================================================
 --
 --				GHI_MarySueAPI
---  			GHI_MarySueAPI.lua
+--				GHI_MarySueAPI.lua
 --
---	  API for accessing data from Mary Sue Protocol Addons
+--		API for accessing data from Mary Sue Protocol Addons
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -83,7 +83,6 @@ function GHI_MarySueAPI()
 			nameTitle = gsub(nameTitle,tempName,"")
 			nameTitle = gsub(nameTitle,",","")
 			nameTitle = strtrim(nameTitle)
-			--local name, title = strsplit("\ ", nameTitle,1)
 			return  tempName, nameTitle
 		end
 	end
@@ -100,6 +99,7 @@ function GHI_MarySueAPI()
 			return
 		end
 	end
+
 	-- functions for gettign the current player's info
 	api.GHI_GetPlayerPhysical = function()
 		if _G.msp_RPAddOn and msp then
@@ -134,7 +134,6 @@ function GHI_MarySueAPI()
 			nameTitle = gsub(nameTitle,tempName,"")
 			nameTitle = gsub(nameTitle,",","")
 			nameTitle = strtrim(nameTitle)
-			--local name, title = strsplit("\ ", nameTitle,1)
 			return  tempName, nameTitle
 		end
 	end
@@ -155,10 +154,10 @@ function GHI_MarySueAPI()
 			local char = msp.my
 			char["CU"] = text
 			msp:Update()
-			--
+
 			local RPAddon = _G.msp_RPAddOn
 			if RPAddon == "MyRolePlay" then
-				mrp:SaveField( "CU", text )		
+				mrp:SaveField( "CU", text )
 			end
 		else
 			log.Add(1, "No RP Addon detected. Unable to set current flag.",nil);
@@ -194,8 +193,6 @@ function GHI_MarySueAPI()
 		end
 		return a;
 	end
-
-
 
 	return class;
 end

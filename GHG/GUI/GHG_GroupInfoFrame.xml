@@ -1,63 +1,216 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.blizzard.com/wow/ui">
-    <Frame name="GHG_GroupInfoFrame" parent="GHG_GroupFrameContent" setAllPoints="true" hidden="true" id="2">
-       	<Frames>
-           <Button name="$parentAddMemberButton" inherits="MagicButtonTemplate" text="ADD_MEMBER">
-                <Size x="116" y="22"/>
-                <Anchors>
-                    <Anchor point="BOTTOMLEFT" x="-3" y="-1"/>
-                </Anchors>
-                <Scripts>
-                    <OnClick>
-                        if ( StaticPopup_FindVisible("GHG_ADD_GROUP_MEMBER") ) then
-                            StaticPopup_Hide("GHG_ADD_GROUP_MEMBER");
-                        else
-                            StaticPopup_Show("GHG_ADD_GROUP_MEMBER");
-                        end
-                    </OnClick>
-                </Scripts>
-            </Button>
-            <Button name="$parentLeaveButton" inherits="MagicButtonTemplate" text="LEAVE_GROUP">
-                <Size x="116" y="22"/>
-                <Anchors>
-                    <Anchor point="BOTTOMRIGHT" x="3" y="-1"/>
-                </Anchors>
-                <Scripts>
-                    <OnClick>
-                        if ( not GuildControlUI ) then
-                            UIParentLoadAddOn("Blizzard_GuildControlUI");
-                        end
-                        CloseWindows(nil, GuildFrame);
-                        GuildFramePopup_Toggle(GuildControlUI);
-                    </OnClick>
-                    <OnEnter>
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui">
+	<Frame name="GHG_GroupInfoFrame" parent="GHG_GroupFrameContent" setAllPoints="true" hidden="true" id="2">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentChatInfo" inherits="GameFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="200" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="50" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentAddMemberButton" inherits="MagicButtonTemplate" text="ADD_MEMBER">
+				<Size x="116" y="22"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" x="-3" y="-1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if ( StaticPopup_FindVisible("GHG_ADD_GROUP_MEMBER") ) then
+							StaticPopup_Hide("GHG_ADD_GROUP_MEMBER");
+						else
+							StaticPopup_Show("GHG_ADD_GROUP_MEMBER");
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentLeaveButton" inherits="MagicButtonTemplate" text="LEAVE_GROUP">
+				<Size x="116" y="22"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="3" y="-1"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if ( StaticPopup_FindVisible("GHG_CONFIRM_GROUP_LEAVE") ) then
+							StaticPopup_Hide("GHG_CONFIRM_GROUP_LEAVE");
+						else
+							StaticPopup_Show("GHG_CONFIRM_GROUP_LEAVE");
+						end
+					</OnClick>
+					<OnEnter>
 
-                    </OnEnter>
-                    <OnLeave function="GameTooltip_Hide"/>
-                </Scripts>
-            </Button>
-            <Button name="$parentViewLogButton" inherits="MagicButtonTemplate" text="VIEW_LOG" disabled="true">
-                <Size x="0" y="22"/>
-                <Anchors>
-                    <Anchor point="LEFT" relativeTo="$parentAddMemberButton" relativePoint="RIGHT"/>
-                    <Anchor point="RIGHT" relativeTo="$parentLeaveButton" relativePoint="LEFT"/>
-                </Anchors>
-                <Scripts>
-                    <OnClick>
-                        --GuildFramePopup_Toggle(GuildLogFrame);
-                    </OnClick>
-                    <OnLoad>
-                        self:Disable();
-                    </OnLoad>
-                </Scripts>
-            </Button>
-        </Frames>
-        <Scripts>
-            <OnLoad>
-                self.UpdateFunc = GHG_UpdateGroupInfo;
-            </OnLoad>
-        </Scripts>
-    </Frame>
+					</OnEnter>
+					<OnLeave function="GameTooltip_Hide"/>
+				</Scripts>
+			</Button>
+			<Button name="$parentViewLogButton" inherits="MagicButtonTemplate" text="VIEW_LOG" disabled="true">
+				<Size x="0" y="22"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentAddMemberButton" relativePoint="RIGHT"/>
+					<Anchor point="RIGHT" relativeTo="$parentLeaveButton" relativePoint="LEFT"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						_G[self:GetParent():GetName().."EventLogFrame"]:Show();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="$parentEventLogFrame" enableMouse="true" hidden="true">
+				<Size>
+					<AbsDimension x="335" y="300"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="40" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture file="Interface\DialogFrame\UI-DialogBox-Corner">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-6" y="-7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitle" inherits="GameFontNormal" text="GUILD_EVENT_LOG">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="17" y="-17"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Frame name="$parentEventFrame">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="11" y="-32"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-11" y="36"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="16"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="5" right="5" top="5" bottom="5"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
+								<Anchors>
+									<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+										<Offset x="-28" y="-6"/>
+									</Anchor>
+									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+										<Offset x="6" y="6"/>
+									</Anchor>
+								</Anchors>
+								<ScrollChild>
+									<Frame name="$parentChildFrame">
+										<Size>
+											<AbsDimension x="340" y="359"/>
+										</Size>
+										<Layers>
+											<Layer level="OVERLAY">
+												<FontString name="GHG_GroupEventMessage" inherits="ChatFontNormal" justifyH="LEFT">
+													<Size>
+														<AbsDimension x="340" y="0"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" />
+													</Anchors>
+												</FontString>
+											</Layer>
+										</Layers>
+									</Frame>
+								</ScrollChild>
+							</ScrollFrame>
+						</Frames>
+						<Scripts>
+							<OnLoad>
+								self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+						<Anchors>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-1" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCancelButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+						<Size>
+							<AbsDimension x="139" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="GHG_GroupInfoFrameEventLogFrame" relativePoint="BOTTOMRIGHT">
+								<Offset x="-9" y="13"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick function="HideParentPanel"/>
+						</Scripts>
+						<NormalFont style="GameFontNormalSmall"/>
+						<HighlightFont style="GameFontHighlightSmall"/>
+						<DisabledFont style="GameFontDisableSmall"/>
+					</Button>
+				</Frames>
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="12" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+				<Scripts>
+					<OnShow function="GHG_UpdateGroupEventLog"/>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self.UpdateFunc = GHG_UpdateGroupInfo;
+			</OnLoad>
+		</Scripts>
+	</Frame>
 
 
 </Ui>

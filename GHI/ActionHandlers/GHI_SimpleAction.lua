@@ -3,7 +3,8 @@
 --				GHI_SimpleAction
 --  			GHI_SimpleAction.lua
 --
---	   Data for a simple action of any type. This reflects most actions in GHI v.1.x.
+--	Data for a simple action of any type. This reflects
+--	most actions in GHI v.1.x.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -60,8 +61,8 @@ local GetActionScript = function(info,oldVersion)
 				    	end
 				    end
 				]],info.guid or info.id, info.amount)
-               end
-               --print(info.amount)
+			end
+
 			if info.loot_text == nil then
 				return string.format("GHI_ProduceItem(\"%s\",%s);", info.guid or info.id, info.amount),info.delay;
 			else
@@ -75,13 +76,6 @@ local GetActionScript = function(info,oldVersion)
 			elseif type(info.color) == "table" then
 			color = info.color
 			end
-			--[[
-			if info.output_type == 1 then
-				return "DEFAULT_CHAT_FRAME:AddMessage(\"" .. info.text .. "\"," .. color.r .. "," .. color.g .. "," .. color.b .. ");", info.delay or 0;
-			elseif info.output_type == 2 then
-				return "UIErrorsFrame:AddMessage(\"" .. info.text .. "\"," .. color.r .. "," .. color.g .. "," .. color.b .. ",53,5);", info.delay or 0;
-			end
-			return "", 0;    --]]
 
 			if info.output_type == 1 then
 				return ScriptFormat("DEFAULT_CHAT_FRAME:AddMessage(\"%s\",%s,%s,%s);",info.text,color.r, color.g, color.b), info.delay or 0;
@@ -173,21 +167,17 @@ local GetActionScript = function(info,oldVersion)
 
 		local script = ScriptFormat("GHI_ApplyBuff(\"%s\",\"%s\",\"%s\",%s,\"%s\",\"%s\",%s,%s,%s,%s,%s,%s,%s);", buffName, buffDetails, buffIcon, untilCanceled, filter, buffType, buffDuration, cancelable, stackable, count, delay, range, alwaysCastOnSelf);
 
-		--script = gsub(script, "\\", "\\\\")
 		return script, 0; -- the buff handler handles the delay
 	elseif actionType == "equip_item" then
 		return ScriptFormat("EquipItemByName(\"%s\");", info.item_name), info.delay or 0;
 	elseif actionType == "expression" then
 		local script;
-		--local text = gsub(info.text,"\"","\\\"");
+
 		if string.lower(info.expression_type) == "say" then
 			return ScriptFormat("GHI_Say(\"%s\",%s)", info.text, info.delay or "nil"),0;
 		elseif string.lower(info.expression_type) == "emote" then
 			return ScriptFormat("GHI_Emote(\"%s\",%s)", info.text, info.delay or "nil"),0;
 		end
-		--script = gsub(script, "\\", "\\\\");
-		--script = gsub(script, "\\\\\"", "\\\"");
-		--return script, 0;
 	elseif actionType == "random_expression" then
 		local strings = {};
 		for i, text in pairs(info.text) do
@@ -217,10 +207,9 @@ local GetActionScript = function(info,oldVersion)
 
 		return string.format("%s\n%s", determinationPart, executionPart), 0;
 	elseif actionType == "bag" then
-         -- print(info.size)
+
 		return ScriptFormat("GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),%s,\"%s\",%s);", info.size, info.texture or "", tostring(info.tradeable)), 0;
 	elseif actionType == "book" then
-		--syntax : GHI_ShowBook(title,pages,material,font,normalSize,h1Size,h2Size)
 
 		local pageScript = "{";
 
@@ -817,7 +806,6 @@ local conversionMatrix = {
 				actionGuid = "rand_02",
 				guid = guidMaker.MakeGUID(),
 				inputs = {
-
 				},
 			},
 		};
@@ -997,16 +985,14 @@ function GHI_SimpleAction(info)
 		executionOrder = info.req or 1;
 		actionType = info.Type;
 
-
 		if info.ItemInfo then
 			local itemTable = info.ItemInfo or {};
 			local producedItem = GHI_ItemInfo(itemTable);
 			itemInfoList.UpdateItem(producedItem)
 			dependingItems = { producedItem.GetGUID() };
-		else
-			dependingItems = {}
 		end
 
+		dependingItems = { info.guid or info.id }
 	end
 
 	class.Serialize = function(stype)
@@ -1110,8 +1096,6 @@ function GHI_SimpleAction(info)
 		end
 		return
 	end
-
-
 
 	Initialize();
 

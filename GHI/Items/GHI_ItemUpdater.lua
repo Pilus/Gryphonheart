@@ -1,26 +1,25 @@
 --===================================================
---									
---								GHI Item Updater
---							GHI_ItemUpdater.lua
---									<< Singleton >>
 --
---			Updates part of all item data to make it be 
---			executeable in the new scripting environment
+--					GHI Item Updater
+--					GHI_ItemUpdater.lua
+--					<< Singleton >>
+--
+--		Updates part of all item data to make it be
+--		executeable in the new scripting environment
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+--				(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================
 
 local class;
 function GHI_ItemUpdater()
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	if class then
 		return class;
 	end
 	class = GHClass("GHI_ItemUpdater");
 
 	local UpdateAction, UpdateProduceItem, UpdateConsumeItem;
-
 
 	class.UpdateAllItems = function()
 		for ID, _ in pairs(GHI_ItemData) do

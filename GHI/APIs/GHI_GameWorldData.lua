@@ -3,7 +3,8 @@
 --				GHI_GameWorldData
 --  			GHI_GameWorldData.lua
 --
---	     Contains functions providing data about the game world, such as temperature.
+--		Contains functions providing data about the
+--		game world, such as temperature.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -17,7 +18,7 @@ local inside = IsIndoors()
 local flying = IsFlying()
 local onTaxi = UnitOnTaxi("player")
 
---all tempreatures in C, and rounded
+--all temperatures in Celsius, and rounded
 local climates = {
 	["mountain"] 	= { dayTemp = -15, 	nightTemp = -25, 	indoor = 5, 	humidity = "low", 		precipitation = "snow" 		},
 	["forest"] 		= { dayTemp = 15,	nightTemp = 8, 		indoor = 20, 	humidity = "medium", 	precipitation = "rain" 		},
@@ -169,7 +170,6 @@ function GHI_GameWorldData()
 		else
 			temp = (t-12)*(-(dayTemp-nightTemp)/12)+ dayTemp;
 		end
-
 
 		if IsSwimming() then
 			return temp-5;

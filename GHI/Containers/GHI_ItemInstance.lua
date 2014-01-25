@@ -3,8 +3,8 @@
 --				GHI_ItemInstance
 --  			GHI_ItemInstance.lua
 --
---	          Holds data about an instance of an item,
---             including different modifiers
+--		Holds data about an instance of an item,
+--			including different modifiers
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -78,7 +78,6 @@ function GHI_ItemInstance(info)
 		end
 	end;
 	setmetatable(class,meta);
-
 
 	Initialize();
 

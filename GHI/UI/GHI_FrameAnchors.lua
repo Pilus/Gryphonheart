@@ -1,3 +1,15 @@
+--===================================================
+--
+--				GHI_FrameAnchors
+--				GHI_FrameAnchors.lua
+--
+--	Aux functions for positioning of frames
+--	Used for dragable bagpacks
+--
+-- 		(c)2013 The Gryphonheart Team
+--				All rights reserved
+--===================================================
+
 local frames = {};
 
 function GHI_ContainerAnchorFrame(f, special)
@@ -12,9 +24,7 @@ function GHI_ContainerAnchorFrame(f, special)
 			ap:SetWidth(155);
 			ap:SetHeight(308);
 
-			--ap:Hide();
 			f.anchorPlate = ap;
-			--f.parent:SetParent(ap);
 			f:ClearAllPoints();
 
 			if f:IsShown() then
@@ -149,12 +159,10 @@ function GHI_DragContainer(obj,state)
 		return;
 	end
 
-
 	local x,y = GetCursorPosition();
 	local s = obj:GetEffectiveScale();
 
 	local xpos, ypos = x/s, y/s;
-
 
 	-- Hide the tooltip
 	GameTooltip:Hide();
@@ -164,7 +172,6 @@ function GHI_DragContainer(obj,state)
 	obj:SetPoint("TOP", UIParent, "BOTTOMLEFT", xpos, ypos);
 
 	if state == 2 and (GetScreenWidth() - obj:GetRight()) < obj:GetWidth()*2 then
-
 		GHI_ContainerAnchorFrame(obj);
 	end
 end

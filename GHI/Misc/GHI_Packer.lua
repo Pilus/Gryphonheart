@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_Packer
---  			GHI_Packer.lua
+--				GHI_Packer.lua
 --
---	          (description)
+--	Packing of serialized information into a string.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -64,6 +64,10 @@ function GHI_Packer()
 	class.TableToString = function(t, addCheck)
 		local s = "{";
 		for index, value in pairs(t) do
+			if value == "!first" then
+				index = format("\"%s\"", index);
+				print("!first check")
+			end
 			if type(index) == "string" then
 				index = format("\"%s\"", index);
 			end

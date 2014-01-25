@@ -3,8 +3,8 @@
 --				GHI_ActionsPositionInfo
 --  			GHI_ActionsPositionInfo.lua
 --
---	          (description)
---
+--		Holds information about the position of an
+--				action in an action set.
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
@@ -18,7 +18,6 @@ function GHI_ActionsPositionInfo(actionLocation,verticalChannels,horizontalChann
 	local horizontalChannelCoordinate = {};
 	local portCoordinates = {};
 
-
 	local y = 1;
 	for number = 1,actionLocation.GetNumActionsInLargestTier() do
 		local x = 2;
@@ -31,6 +30,7 @@ function GHI_ActionsPositionInfo(actionLocation,verticalChannels,horizontalChann
 			if instance then
 				local guid = instance.GetGUID();
 				actionCoordinates[guid] = {x = x, y = y};
+
 				-- Port coordinates
 				portCoordinates[guid] = {};
 				for i=1,instance.GetPortsInCount() do
@@ -43,7 +43,6 @@ function GHI_ActionsPositionInfo(actionLocation,verticalChannels,horizontalChann
 					portCoordinates[guid][portGuid] = {x = x+ACTION_WIDTH-1, y = y+1+i};
 				end
 
-
 				lineActionHeight = math.max(lineActionHeight,math.max(instance.GetPortsInCount(),instance.GetPortsOutCount()) + ACTION_HEIGHT);
 			end
 
@@ -54,10 +53,9 @@ function GHI_ActionsPositionInfo(actionLocation,verticalChannels,horizontalChann
 			veticalChannelCoordinate[tier] = x;
 			x = x + verticalChannel.GetWidth();
 		end
+
 		y = y + lineActionHeight;
-
 		horizontalChannelCoordinate[number] = y;
-
 		y = y + horizontalChannel.GetWidth();
 	end
 
@@ -86,9 +84,6 @@ function GHI_ActionsPositionInfo(actionLocation,verticalChannels,horizontalChann
 	class.GetHorizontalChannelPos = function(number)
 		return horizontalChannelCoordinate[number];
 	end
-
-
-
 
 	return class;
 end

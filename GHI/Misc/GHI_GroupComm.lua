@@ -1,13 +1,14 @@
 ﻿--===================================================
 --									
---					GHI Group Communication
---						GHI_GroupComm.lua
+--			GHI Group Communication
+--				GHI_GroupComm.lua
 --
---				   Handler of communication between
---				  clients over group addon channels
--- 				(c)2013 The Gryphonheart Team
---						All rights reserved
---===================================================		
+--		Handler of communication between
+--		 clients over group addon channels
+--
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
+--===================================================
 
 local libComm = LibStub("AceComm-3.0");
 local libSerial = LibStub("AceSerializer-3.0");

@@ -1,9 +1,9 @@
 --===================================================
 --									
---						GHI Update Notification
---					GHI_UpdateNotificationUI.lua
+--					GHI Update Notification
+--				GHI_UpdateNotificationUI.lua
 --
---			 Notifies the user if a new version is available.
+--			Notifies the user if a new version is available.
 --	
 -- 				(c)2013 The Gryphonheart Team
 --						All rights reserved
@@ -26,27 +26,26 @@ function GHI_UpdateNotification()
 	end
 		
 	StaticPopupDialogs["GHI_NEWVERSION"] = {
-	  text = "There is a new version of GHI Available.\n\nThe current version is: ",
-	  button1 = OKAY,
-	  OnAccept = function(self)
-		GHI_UpdateNotify = true
-	  end,
-	  OnShow = function(self)
-		self.editBox:SetWidth(self:GetWidth()-64)
-		self.editBox:SetText("http://www.curse.com/addons/wow/ghi")
-		self.editBox:HighlightText()    
-	  end,
-	  hasEditBox = 1,
-	  showAlert = true,
-	  timeout = 0,
-	  whileDead = true,
-	  hideOnEscape = true,
+		text = "There is a new version of GHI Available.\n\nThe current version is: ",
+		button1 = OKAY,
+		OnAccept = function(self)
+			GHI_UpdateNotify = true
+		end,
+		OnShow = function(self)
+			self.editBox:SetWidth(self:GetWidth()-64)
+			self.editBox:SetText("http://www.curse.com/addons/wow/ghi")
+			self.editBox:HighlightText()
+		end,
+		hasEditBox = 1,
+		showAlert = true,
+		timeout = 0,
+		whileDead = true,
+		hideOnEscape = true,
 	}
 	
 	local DisplayUpdateWindow = function(version)
 		StaticPopupDialogs["GHI_NEWVERSION"].text =  StaticPopupDialogs["GHI_NEWVERSION"].text.."|cffffff00"..version.."|r"
 		StaticPopup_Show("GHI_NEWVERSION")
-
 	end
 	
 	class.CheckForUpdate = function(player)
@@ -64,8 +63,7 @@ function GHI_UpdateNotification()
 				newVersion = false
 			end
 		end
-		
-			
+
 		if newVersion == true then
 			log.Add(3,"New version detected: "..ver,nil)
 			if GHI_UpdateNotify ~= true then

@@ -3,10 +3,10 @@
 --				GHI_ActionsLocationInfo
 --  			GHI_ActionsLocationInfo.lua
 --
---	      Holds information about the location of each
---               action in the action set.
+--		Holds information about the location of each
+--			action in the action set.
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -47,12 +47,15 @@ function GHI_ActionsLocationInfo(actionTree)
 			locationActionTable = {};
 			actionLocationTable = {};
 		end
+
 		if tree.instance then
 			locationActionTable.maxTier = math.max(locationActionTable.maxTier or 0, dept);
 		end
+
 		if not (locationActionTable[dept]) then
 			locationActionTable[dept] = {};
 		end
+
 		for i = 1, #(tree) do
 			local subTree = tree[i];
 			local instance = subTree.instance;
@@ -66,9 +69,7 @@ function GHI_ActionsLocationInfo(actionTree)
 				locationActionTable[dept][number] = instance;
 				locationActionTable[dept].maxNumber = number;
 				locationActionTable.maxNumber = math.max(locationActionTable.maxNumber or 0,number);
-
 				actionLocationTable[instance.GetGUID()] = { dept, number };
-
 				UpdateActionLocationTable(subTree, number);
 			end
 		end

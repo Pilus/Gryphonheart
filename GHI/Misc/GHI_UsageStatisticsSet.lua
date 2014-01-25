@@ -1,9 +1,9 @@
 --===================================================
 --
---				GHI_UsageStatisticsSet
---  			GHI_UsageStatisticsSet.lua
+--			GHI_UsageStatisticsSet
+--  		GHI_UsageStatisticsSet.lua
 --
---	          (description)
+--	A set of GHI usage statistics
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

@@ -3,9 +3,9 @@
 --				GHI_VersionInfo
 --  			GHI_VersionInfo.lua
 --
---	    Handles version requests and information about other clients
+--	Handles version requests and information about other clients
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -39,7 +39,6 @@ local function CompareNumbers(t1, t2)
 	end
 end
 
-
 local function CompareVersions(v1, v2)
 	if not (type(v1) == "string" or type(v1) == "number") then return false end
 	if not (type(v2) == "string" or type(v2) == "number") then return false end
@@ -47,7 +46,7 @@ local function CompareVersions(v1, v2)
 	local t2 = { strsplit(".", v2) };
 	return CompareNumbers(t1, t2);
 end
---GHI_FOUND = {};
+
 local class;
 function GHI_VersionInfo()
 	if class then
@@ -75,13 +74,6 @@ function GHI_VersionInfo()
 	};
 	
 	local function OnFindEvent(event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
-		--print("event:",event,"arg1",arg1,"arg2",arg2,"arg3",arg3,"arg4",arg4,"arg5",arg5,"arg6",arg6,"arg7",arg7)
-		-- when joining or leaving a channel
-		if event == "CHAT_MSG_CHANNEL_NOTICE" then
-
-			-- not needed, assuming all others with GHI will send a message to the player when he joins the channel anyway. By this he will be aware of them
-		end
-
 		-- when others joining ("CHAT_MSG_CHANNEL_JOIN")
 		if event == "CHAT_MSG_CHANNEL_JOIN" then
 			class.NoticePlayer(arg2);
@@ -90,7 +82,6 @@ function GHI_VersionInfo()
 		end
 
 		-- on chat message
-
 		if e[event] and not (arg6 == "GM") then
 			class.NoticePlayer(arg2);
 		end
@@ -193,9 +184,7 @@ function GHI_VersionInfo()
 
 	class.NumPlayersWithAddOn = function(addOnShort, version)
 		addOnShort = addOnShort or "GHI"; -- default value for addOn is GHI
-
 		local num = 0;
-
 		for player, addons in pairs(playerAddOns) do
 			if class.PlayerGotAddOn(player, addOnShort, version) then
 				num = num + 1;
@@ -232,7 +221,6 @@ function GHI_VersionInfo()
 
 	class.PlayerGotAddOn = function(player, addOnShort, version)
 		addOnShort = addOnShort or "GHI"; -- default value for addOn is GHI
-		--local t = playerAddOns[player] or {};
 
 		-- look for the addon
 		if type(playerAddOns[player]) == "table" then
@@ -258,8 +246,7 @@ function GHI_VersionInfo()
 	end
 
 	-- Notice a player and update the player if it was unknown or outdated
-	class.NoticePlayer = function(player)  --print("notice",player)
-		--table.insert(GHI_FOUND,player);
+	class.NoticePlayer = function(player)
 		if not (player) or string.len(player or "") == 0 then
 			return;
 		end
@@ -326,7 +313,6 @@ function GHI_VersionInfo()
 		class.NotifyAll(player)
 	end)
 
-
 	-- channel scan
 	local channelScanNum;
 	local channels = {};
@@ -376,13 +362,10 @@ function GHI_VersionInfo()
 		channelScanNum = 1;
 	end
 
-
 	GHI_Timer(InitializeChannelScan, 60 * 15);
-
 
 	SetUp()
 	GHI_Timer(InitializeChannelScan, 30 * 5 , true); -- when logging in, the channel information might first be available after a few minutes
-
 
 	-- request via channel
 	local cc = GHI_ChannelComm()

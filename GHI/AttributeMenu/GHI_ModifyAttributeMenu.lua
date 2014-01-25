@@ -1,11 +1,12 @@
 --===================================================
 --
 --				GHI_ModifyAttributeMenu
---  			GHI_ModifyAttributeMenu.lua
+--				GHI_ModifyAttributeMenu.lua
 --
---	          (description)
+--		Menu for modifying of attribute values
+--			in an item instance
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local menuIndex = 1;
@@ -36,7 +37,6 @@ function GHI_ModifyAttributeMenu()
 					align = "c",
 				},
 				{
-
 				},
 				{
 					type = "Dummy",
@@ -110,16 +110,11 @@ function GHI_ModifyAttributeMenu()
 			}
 		end
 
-
 		menuFrame = GHM_NewFrame(class,t);
 		menuIndex = menuIndex + 1;
 
-
 		inUse = true;
 		menuFrame:AnimatedShow();
-
-
-		--local text = string.format(loc.INSTANCE_MENU_TEXT,stack.GetItemInstanceCount(),stackOrder);
 		menuFrame.ForceLabel("attribute",attValue);
 	end
 

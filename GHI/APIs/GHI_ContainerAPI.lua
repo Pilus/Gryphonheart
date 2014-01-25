@@ -1,9 +1,10 @@
 --===================================================
 --
 --				GHI_ContainerAPI
---  			GHI_ContainerAPI.lua
+--				GHI_ContainerAPI.lua
 --
---	   Applies security checks to the container API functions and makes them available to the scripting environment
+--	Applies security checks to the container API functions
+--	and makes them available to the scripting environment
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -22,7 +23,6 @@ function GHI_ContainerAPI()
 	local api = {};
 	local apiReqAuthorGuid = {}; -- API functions that requires the guid of the current author.
 
-	--local currentStack, currentItem;
 	local standardItemMenuList = GHI_StandardItemMenuList();
 	local advancedItemMenuList = GHI_AdvancedItemMenuList();
     local simpleItemMenuList = GHI_SimpleItemMenuList();
@@ -122,16 +122,16 @@ function GHI_ContainerAPI()
 	end
 
 	api.GHI_NewItem = function(newType)
-        if newType == "standard" then
-            standardItemMenuList.New()
-        elseif newType == "simple" then
-            simpleItemMenuList.New()
-        elseif newType == "advanced" then
-            advancedItemMenuList.New()
+		if newType == "standard" then
+			standardItemMenuList.New()
+		elseif newType == "simple" then
+			simpleItemMenuList.New()
+		elseif newType == "advanced" then
+			advancedItemMenuList.New()
 		elseif newType == "macro" then
 			macroMenuList.New()
-        end
-    end
+		end
+	end
         
         
 	api.GHI_EditItem = function(guid )
@@ -146,6 +146,7 @@ function GHI_ContainerAPI()
 			end
 		end
 	end
+
    	api.GHI_IsBeingEdited = function(guid)
 		return standardItemMenuList.IsBeingEdited(guid) or advancedItemMenuList.IsBeingEdited(guid);
 	end
@@ -206,7 +207,6 @@ function GHI_ContainerAPI()
 		end
 		return a;
 	end
-
 
 	return class;
 end

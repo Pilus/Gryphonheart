@@ -3,7 +3,7 @@
 --				GHI_ItemInfo_Basic
 --  			GHI_ItemInfo_Basic.lua
 --
---	          (description)
+--	Holds the basic information for all item typess
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -200,7 +200,6 @@ function GHI_ItemInfo_Basic(info)
 			});
 		end
 
-
 		return lines;
 	end
 
@@ -265,11 +264,6 @@ function GHI_ItemInfo_Basic(info)
 			t.stackSize = stackSize;
 			t.consumed = consumed;
 		end
-		if not(stype) or stype == "action" or stype == "oldAction" then
-
-		end
-
-
 
 		if OtherSerialize then
 			t = OtherSerialize(stype,t)

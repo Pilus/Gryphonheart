@@ -41,7 +41,6 @@ end
 
 local api;
 
-
 local function UpdateSelectedContent()
 	local name = api.GetGroupInfo(groupFrame.selectedSideTab);
 	_G[groupFrame:GetName().."TitleText"]:SetText(name);
@@ -163,7 +162,18 @@ local EnableAllTabs = function()
 	PanelTemplates_UpdateTabs(groupFrame);
 end
 
-
+local function UpdateTabsAndDDs()
+	if api.GetNumberOfGroups() > 0 then
+		EnableAllTabs();
+		GHG_GroupRosterFrameViewDropdownButton:Enable();
+		GHG_GroupRosterFrameShowOfflineButton:Enable();
+	else
+		ToggleTab(1);
+		DisableAllTabs();
+		GHG_GroupRosterFrameViewDropdownButton:Disable();
+		GHG_GroupRosterFrameShowOfflineButton:Disable();
+	end
+end
 
 local function Initialize(self)
 	self.initialized = true;
@@ -206,10 +216,12 @@ local function Initialize(self)
 	GHI_Event("GHG_GROUP_UPDATED",function()
 		UpdateSideButtons()
 		UpdateSelectedContent()
+		UpdateTabsAndDDs();
 	end);
 
 	GHI_Event("GHP_PLAYER_UPDATED",function()
 		UpdateSelectedContent()
+		UpdateTabsAndDDs();
 	end);
 end
 

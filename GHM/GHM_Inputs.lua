@@ -3,7 +3,7 @@
 --				GHM_Inputs
 --  			GHM_Inputs.lua
 --
---	          (description)
+--	Input types for GHI attributes
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -41,7 +41,7 @@ return {
 	time = {
 		ghm = {
 			type = "Time",
-			size = "M",
+			width = 130,
 		},
 		validate = function(value) return type(value) == "number" end,
 		default = 0,
@@ -247,7 +247,6 @@ return {
 			text = loc.ICON,
 			align = "c",
 			label = "icon",
-			framealign = "r",
 			CloseOnChoosen = true,
 			OnChanged = function(icon)
 
@@ -283,13 +282,13 @@ return {
 	},
 	color = {
 		ghm = {
-			type = "Color2",
-			scale = 0.75,
+			type = "Color",
+			width = 130,
 		},
 		validate = function(value)
 			return (type(value) == "table");
 		end,
-		default = {r=1,g=1,b=1},
+		default = {r=1,g=1,b=1,a=1},
 	},
 	item = {
 		ghm = {
@@ -313,7 +312,7 @@ return {
 						texture = "Interface\\Icons\\INV_Misc_Spyglass_03",
 						func = function(f)
 							local main = f:GetParent():GetParent():GetParent():GetParent():GetParent():GetParent()
-														
+
 							local title = main.GetLabel("_in_bookTitle")
 							local material = main.GetLabel("_in_bookMaterial")
 							local font = main.GetLabel("_in_bookFont")

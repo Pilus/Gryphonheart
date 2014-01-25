@@ -3,7 +3,9 @@
 --				GHI_DynamicAction
 --  			GHI_DynamicAction.lua
 --
---	          (description)
+--	Holds template information for a dynamic action
+--	This is the information for the action which does
+--	not variate from instance to instance.
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -127,9 +129,9 @@ function GHI_DynamicAction(dataTable)
 		end
 
 		requiredDisabledMenuElements = data.requiredDisabledMenuElements;
-
 		specialActionCategory = data.specialActionCategory;
 	end
+
 	SetupDynamicActionInfo(dataTable);
 
 	local GetInput = function(inputGuid)
@@ -287,7 +289,6 @@ function GHI_DynamicAction(dataTable)
 			i = i - 1;
 		end
 
-
 		local order;
 		if direction == "in" then
 			order = portsOrderIn;
@@ -301,7 +302,6 @@ function GHI_DynamicAction(dataTable)
 		end
 		return;
 	end
-
 
 	-- menu functions
 	local menus = {};
@@ -339,6 +339,7 @@ function GHI_DynamicAction(dataTable)
 				width = 380,
 			},
 		});
+
 		if class.GetInputsCount() > 0 then
 			table.insert(menuPageData, {
 				{
@@ -475,7 +476,6 @@ function GHI_DynamicAction(dataTable)
 
 				table.insert(line, m);
 
-
 				if #(line) == 3 then
 					table.insert(menuPageData, line);
 					line = {};
@@ -519,7 +519,6 @@ function GHI_DynamicAction(dataTable)
 				end,
 			},
 		});
-
 
 		menuFrame = GHM_NewFrame(parent, {
 			[1] = menuPageData,

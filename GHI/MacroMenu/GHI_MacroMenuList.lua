@@ -3,9 +3,9 @@
 --				GHI_MacroMenuList
 --  			GHI_MacroMenuList.lua
 --
---	          Handler for the Macro menus
+	--		Handler for the Macro menus
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 

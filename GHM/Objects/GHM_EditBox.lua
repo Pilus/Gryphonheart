@@ -66,6 +66,11 @@ function GHM_Editbox(parent, main, profile)
 	if type(profile.size) == "number" then -- 1 to 256
 		editBox:SetMaxLetters(profile.size);
 	end
+	if profile.OnEnterPressed then
+		editBox:SetScript("OnEnterPressed", function(self)
+			profile.OnEnterPressed(self)
+		end)
+	end
 
 
 	if not (main.lastestEditbox == nil) then

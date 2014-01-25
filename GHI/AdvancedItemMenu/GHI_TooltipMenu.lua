@@ -3,9 +3,9 @@
 --				GHI_TooltipMenu
 --  			GHI_TooltipMenu.lua
 --
---	          (description)
+--		Menu for creation of custom tooltips
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
  local loc = GHI_Loc();
@@ -19,7 +19,6 @@ function GHI_TooltipMenu()
 	local menuFrame;
 	local OnOk;
 	local set;
-
 
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
@@ -128,7 +127,6 @@ function GHI_TooltipMenu()
 			menuFrame.ForceLabel("name", "");
 			menuFrame.ForceLabel("align", 1)
 		end
-
 
 		menuFrame.GetLabelFrame("updateSequence").SetDynamicActionInstanceSet(set);
 	end

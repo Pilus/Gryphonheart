@@ -78,6 +78,8 @@ Menus\IconPicker\GHM_IconPicker.lua
 Menus\IconPicker\GHM_IconPickerList.lua
 Menus\ImagePicker\GHM_ImagePicker.lua
 Menus\ImagePicker\GHM_ImagePickerList.lua
+Menus\ColorPicker\GHM_ColorPicker.lua
+Menus\ColorPicker\GHM_ColorPickerList.lua
 
 ghm_window.lua
 
@@ -86,8 +88,5 @@ GHM_Themes.lua
 GHM_Inputs.lua
 
 GHM_Images.lua
-
-
-
 
 ghm.xml

@@ -3,13 +3,12 @@
 --			GHI_ItemInfoList
 --			GHI_ItemInfoList.lua
 --
---	          (description)
+--	Holds a list of all items known to the player
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local LOAD_IN_COROUTINE = true;
-
 
 local class;
 local ITEM_DATA_SAVE_TABLE = "GHI_ItemData";
@@ -57,7 +56,7 @@ function GHI_ItemInfoList()
 		local requiredItems = {}
 		local c = 0;
 		for guid, item in pairs(items) do
-			if GHI_ItemGuidsOfStacksLoaded[guid] then --containerAPI.GHI_FindOneItem(guid) then --its in the bag somewhere
+			if GHI_ItemGuidsOfStacksLoaded[guid] then
 
 				if not (tContains(requiredItems, guid)) then
 					table.insert(requiredItems, guid);
@@ -122,7 +121,6 @@ function GHI_ItemInfoList()
 	--@args guid
 	--@returns GHI_ItemInfo
 	class.GetItemInfo = function(guid)
-		--GHCheck("GHI_ItemInfoList.GetItemInfo", { "stringNumber" }, { guid });
 		return items[guid];
 	end
 
@@ -133,7 +131,6 @@ function GHI_ItemInfoList()
 			class.AddItem(item);
 		end
 	end
-
 
 	local LoadAllSavedItem = function()
 		local allItems = savedItemInfo.GetAll();
@@ -151,7 +148,7 @@ function GHI_ItemInfoList()
 
 				c = c + 1;
 				if c >= 100 then
-					if LOAD_IN_COROUTINE then   --print("Loaded batch of 100 items")
+					if LOAD_IN_COROUTINE then
 						coroutine.yield()
 						c = 0;
 					end
@@ -176,7 +173,6 @@ function GHI_ItemInfoList()
 	class.LoadFromSaved = function()
 		if LOAD_IN_COROUTINE then
 			local thread = coroutine.create(LoadAllSavedItem);
-			--
 
 			GHI_Timer(function()
 				if coroutine.status(thread) ~= "dead" then
@@ -325,4 +321,3 @@ function GHI_ItemInfoList()
 
 	return class;
 end
-

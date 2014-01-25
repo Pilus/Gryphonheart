@@ -3,9 +3,9 @@
 --				GHI_UpdateSequenceMenu
 --  			GHI_UpdateSequenceMenu.lua
 --
---	        Menu for update sequences for attributes.
+--		Menu for update sequences for attributes.
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local UPDATE_FREQUENCIES = {
@@ -24,7 +24,7 @@ function GHI_UpdateSequenceMenu()
 	local menuFrame;
 	local OnOk;
 	local set;
-     local loc = GHI_Loc()
+	local loc = GHI_Loc()
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
 		{
@@ -35,7 +35,6 @@ function GHI_UpdateSequenceMenu()
 					text = loc.SEQ_FREQUENCY,
 					label = "frequency",
 					returnIndex = true,
-					--data = {"1 sec","1 min","10 min","On login","On container change"},
 					dataFunc = function()
 						local t = {};
 						for i = 1, #(UPDATE_FREQUENCIES) do
@@ -46,7 +45,6 @@ function GHI_UpdateSequenceMenu()
 				},
 				{
 					type = "Text",
-					--fontSize = 12,
 					text = loc.SEQM_TEXT,
 					align = "r",
 					color = "white",
@@ -137,7 +135,6 @@ function GHI_UpdateSequenceMenu()
 			local freq = UPDATE_FREQUENCIES[menuFrame.GetLabel("frequency") or 1];
 			parentItem.AddUpdateSequence(set, freq)
 			if createdFeedbackFunc then
-
 				createdFeedbackFunc(set, freq)
 			end
 		end
@@ -152,13 +149,11 @@ function GHI_UpdateSequenceMenu()
 			local freq = UPDATE_FREQUENCIES[menuFrame.GetLabel("frequency") or 1];
 			parentItem.ReplaceUpdateSequence(editSeq, set, freq)
 			if createdFeedbackFunc then
-
 				createdFeedbackFunc(set, freq)
 			end
 		end
 		SetMenu(parentItem, editSeq, editFreq);
 	end
-
 
 	return class;
 end

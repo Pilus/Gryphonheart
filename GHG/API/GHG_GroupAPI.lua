@@ -28,6 +28,33 @@ function GHG_GroupAPI(userGuid)
 	local toasts = GHG_GroupToasts();
 
 
+	local GenerateChatHeaderAndSlashCommand = function(groupName)
+		if string.len(groupName) <= 6 then
+			-- The group name is short enough to be the chat header
+			return groupName, string.lower(gsub(groupName, " ", ""));
+		elseif string.count(groupName," .") >= 2 then
+			-- The name consists of two or more words. Use an acronym
+			local acronym = string.sub(groupName,0,1);
+			string.gsub(groupName," .",function(letter)
+				acronym = acronym .. strtrim(letter);
+			end);
+			return acronym, string.lower(acronym);
+		else
+			-- The name is one or more long words. Use the first 6 letters.
+			local first = string.sub(groupName, 0, 6);
+			return first, string.lower(gsub(first, " ", ""));
+		end
+	end
+
+	local RandomChatColor;
+	RandomChatColor = function()
+		local c = {r = random(100)/100, g = random(100)/100, b = random(100)/100 }
+		if (c.r + c.g + c.b) < 0.90 then -- too dark
+			return RandomChatColor();
+		end
+		return c;
+	end
+
 	class.CreateGroup = function(name)
 		GHCheck("CreateGroup", { "string" }, { name });
 		local group = GHG_Group();
@@ -35,9 +62,12 @@ function GHG_GroupAPI(userGuid)
 		GHG_GroupKeys[group.GetGuid()] = {random(100),random(100)};
 		group.InitializeCryptatedData();
 
-
-
 		group.SetName(name);
+		local chatHeader, slashCmd = GenerateChatHeaderAndSlashCommand(name);
+		group.SetChatName(name);
+		group.SetChatHeader(chatHeader);
+		group.SetChatSlashCommand({slashCmd});
+		group.SetChatColor(RandomChatColor());
 
 		group.AddRank("Leader");
 		local leaderRank = group.GetRank(1);
@@ -59,8 +89,7 @@ function GHG_GroupAPI(userGuid)
 
 		for _,guid in pairs(guids) do
 			local group = groupList.GetGroup(guid);
-
-		   	if group.CanRead() and group.IsPlayerMemberOfGuild(userGuid) then
+			if group.CanRead() and group.IsPlayerMemberOfGuild(userGuid) then
 				table.insert(groupGuids,group.GetGuid());
 			end
 		end
@@ -181,6 +210,36 @@ function GHG_GroupAPI(userGuid)
 		end
 	end
 
+	class.GetNumGroupEventLogEntries = function(index)
+		GHCheck("GetNumGroupEventLogEntries", { "number" }, { index });
+		local group = GetGroupByIndex(index);
+
+		if group then
+			return #(group.GetLogEvents());
+		end
+		return 0;
+	end
+
+	class.GetGroupEventLogEntry = function(index,i)
+		GHCheck("GetGroupEventLogEntry", { "number", "number" }, { index,i });
+		local group = GetGroupByIndex(index);
+
+		if group then
+			local events = group.GetLogEvents();
+			if events and events[i] then
+				local eventType, timeStamp, author, args = events[i].GetInfo();
+				if eventType == GHG_LogEventType.PROMOTE or eventType == GHG_LogEventType.DEMOTE then
+					local rankIndex = group.GetRankIndex(args[1]);
+					local rank = group.GetRank(rankIndex);
+					if rank then
+						return eventType, timeStamp, author, rank.GetName(), args[2], args[3], args[4];
+					end
+				end
+				return eventType, timeStamp, author, unpack(args);
+			end
+		end
+	end
+
 
 	-- ======== Invite player to group ===========
 	local invite = GHG_GroupInvite();
@@ -212,10 +271,13 @@ function GHG_GroupAPI(userGuid)
 
 		local group = GetGroupByIndex(index);
 		if not(group) then
-		return;
+			return;
 		end
 		group = group.Clone();
 		group.RemoveMember(userGuid);
+		if group.GetNumMembers() == 0 then
+			group.Delete();
+		end
 		group.UpdateVersion()
 		groupList.SetGroup(group);
 	end
@@ -238,9 +300,6 @@ function GHG_GroupAPI(userGuid)
 		end
 
 	end
-
-
-
 
 	class.GetIndexOfGroupByGuid = function(gGuid)
 		local guids = groupList.GetAllGroupGuids();

@@ -3,7 +3,7 @@
 --				GHI_Crypt
 --  			GHI_Crypt.lua
 --
---	          (description)
+--	Class for encryption and decryption of strings
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -67,9 +67,8 @@ function GHI_Crypt(cryptKey,swapKey)
 			else
 				local t = n;
 				local plus = AREA;
-				while (plus < i + 60) do plus = plus + AREA; end
+				while (plus < i + AREA) do plus = plus + AREA; end
 				n = mod(((n - 32) - (cryptKey + i)) + plus, AREA) + 32;
-
 				s = s .. string.char(n);
 			end
 			i = i + 1;
@@ -114,3 +113,46 @@ function GHI_Crypt(cryptKey,swapKey)
 	return class;
 end
 
+
+function GHI_CryptTest(k1,k2)
+	local crypt = GHI_Crypt(94,78);
+	local Encrypt;
+	Encrypt = function(v)
+		if type(v) == "string" then
+			local swap = crypt.Swap(v);
+			return crypt.Encrypt(swap);
+		elseif type(v) == "table" then
+			local t = {}
+			for i,vv in pairs(v) do
+				t[i] = Encrypt(vv);
+			end
+			return t;
+		else
+			return v;
+		end
+	end
+	local Decrypt;
+	Decrypt = function(v)
+		if type(v) == "string" then
+			local decrypted = crypt.Decrypt(v);
+			return crypt.Deswap(decrypted)
+		elseif type(v) == "table" then
+			local t = {}
+			for i,vv in pairs(v) do
+				t[i] = Decrypt(vv);
+			end
+			return t;
+		else
+			return v;
+		end
+	end
+
+	local str = "This is a testing string";
+	--[[local temp = Encrypt(str);
+	local res = Decrypt(temp);
+	print(str == res)   --]]
+
+	local temp = crypt.Encrypt(str);
+	local res = crypt.Decrypt(temp);
+	return str == res;
+end

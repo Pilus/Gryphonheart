@@ -3,9 +3,9 @@
 --				GHI_AdvancedItemMenu
 --  			GHI_AdvancedItemMenu.lua
 --
---	          (description)
+--	Menu for creation of advanced items
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 local UnitName = UnitName;
@@ -21,7 +21,7 @@ function GHI_AdvancedItemMenu()
 	local guidCreator = GHI_GUID();
 	local miscApi = GHI_ActionAPI().GetAPI();
 	local inUse = false;
-    local loc = GHI_Loc()
+	local loc = GHI_Loc()
 
 	local attributeMenu, UpdateAttributeList, attributeList;
 	local updateSequenceMenu, UpdateUpdateSequenceList, updateSequenceList;
@@ -57,9 +57,7 @@ function GHI_AdvancedItemMenu()
 		end
 
 		UpdateAttributeList();
-
 		UpdateUpdateSequenceList();
-
 		UpdateTooltipList();
 	end
 
@@ -85,7 +83,7 @@ function GHI_AdvancedItemMenu()
 			});
 		end
 
-			UpdateMenu();
+		UpdateMenu();
 		UpdateTooltip();
 	end
 
@@ -103,16 +101,14 @@ function GHI_AdvancedItemMenu()
 				itemTooltip:AddLine(line.text, line.r, line.g, line.b, true);
 			end
 			itemTooltip:Show()
-			--itemTooltip:SetFrameStrata("MEDIUM");
+
 			itemTooltip:SetWidth(245)
 			itemTooltip:SetHeight(min(itemTooltip:GetHeight(), 180));
 		end
 	end
 
 	local OnOk = function()
-		--if (edit) then
-			item.IncreaseVersion(true);
-		--end
+		item.IncreaseVersion(true);
 		itemList.UpdateItem(item);
 		if not (edit) then
 			containerList.InsertItemInMainBag(item.GetGUID());
@@ -310,7 +306,6 @@ function GHI_AdvancedItemMenu()
 			{
 				{
 					type = "Text",
-					--fontSize = 12,
 					text = loc.ADV_DESCRIPTIONS,
 					align = "l",
 					color = "white",
@@ -343,7 +338,6 @@ function GHI_AdvancedItemMenu()
 			{
 				{
 					type = "Text",
-					--fontSize = 12,
 					text = loc.DYN_ACTIONS_TEXT,
 					align = "l",
 					color = "white",
@@ -598,12 +592,6 @@ function GHI_AdvancedItemMenu()
 					compact = true,
 					OnClick = function() tooltipMenu.New(item, UpdateTooltipList); end,
 				},
-				--[[{
-					type = "Dummy",
-					height = 10,
-					width = 30,
-					align = "r",
-				},       --]]
 				{
 					type = "Button",
 					text = "  " .. loc.SEQ_ADD_UPDATE .. "  ",
@@ -626,11 +614,10 @@ function GHI_AdvancedItemMenu()
 		},
 		title = loc.CREATE_TITLE_ADV,
 		name = "GHI_Advanced_Item_Menu" .. menuIndex,
-		theme = "BlankWizardTheme",--"BlankWizardTheme",
+		theme = "BlankWizardTheme",
 		width = 500,
 		height = 440,
 		useWindow = true,
-		----background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		OnOk = OnOk,
 		OnHide = function()
@@ -712,9 +699,7 @@ function GHI_AdvancedItemMenu()
 			for _, s in pairs(sequences) do
 				local sequence = s.sequence;
 				local frequency = s.frequency;
-
 				local freqName = loc["SEQ_FREQUENCY_" .. string.upper(frequency)];
-
 				local existsAlready = false;
 				for j = 1, updateSequenceList.GetTubleCount() do
 					local t = updateSequenceList.GetTuble(j);
@@ -808,12 +793,12 @@ function GHI_AdvancedItemMenu()
 			menuFrame:Hide();
 			return
 		end
-		--print("clone item")
+
 		item = editItem.CloneItem();
-		                --print("Set Page")
-		menuFrame.SetPage(1);  --print("show")
+
+		menuFrame.SetPage(1);
 		menuFrame:AnimatedShow();
-		                                  --print("show done")
+
 		edit = true;
 		SetupWithEditItem();
 	end

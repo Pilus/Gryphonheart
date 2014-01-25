@@ -3,10 +3,10 @@
 --				GHI_PopupMenu
 --  			GHI_PopupMenu.lua
 --
---	  A popup menu system displaying popups in GHM style,
---    using the same information as StaticPopup.
+--	A popup menu system displaying popups in GHM style,
+--		using the same information as StaticPopup.
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -16,7 +16,7 @@ data = {
 	title = "Name of the popup",
 	text = "Text in the popup",
 	buttons = {
-        OKAY,
+		OKAY,
 	},
 	gotCancel = true, -- automatically inserts a cancel button as well
 }

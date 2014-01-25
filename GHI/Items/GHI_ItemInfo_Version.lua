@@ -3,7 +3,7 @@
 --				GHI_ItemInfo_Version
 --  			GHI_ItemInfo_Version.lua
 --
---	          Version handling for item info
+--			Version handling for item info
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

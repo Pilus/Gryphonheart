@@ -1,10 +1,6 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\World of Warcraft\BlizzardInterfaceCode\Interface\FrameXML\UI.xsd">
-
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\World of Warcraft\BlizzardInterfaceCode\Interface\FrameXML\UI.xsd">
 	<Frame name="GHI_StatusBarFrame" enableMouse="true" movable="true" hidden="true" parent="UIParent">
-		<Size x="96" y="256"/>
+		<Size x="96" y="256" />
 		<Scripts>
 			<OnLoad>self:RegisterForDrag("LeftButton");</OnLoad>
 			<OnDragStart>self:StartMoving();</OnDragStart>
@@ -12,76 +8,72 @@
 		</Scripts>
 		<Animations>
 			<AnimationGroup parentKey="intro">
-				<Alpha change="1.0" duration="0.3" order="1"/>
+				<Alpha change="1.0" duration="0.3" order="1" />
 				<Scripts>
-					<OnFinished>
-						self:GetParent():SetAlpha(1.0);
-					</OnFinished>
+					<OnFinished>self:GetParent():SetAlpha(1.0);</OnFinished>
 				</Scripts>
 			</AnimationGroup>
 			<AnimationGroup parentKey="outro">
-				<Alpha change="-1.0" duration="0.3" order="1"/>
+				<Alpha change="-1.0" duration="0.3" order="1" />
 				<Scripts>
-					<OnFinished>
-						self:GetParent():SetAlpha(0.0);
-						self:GetParent():Hide();
-					</OnFinished>
+					<OnFinished>self:GetParent():SetAlpha(0.0);
+						self:GetParent():Hide();</OnFinished>
 				</Scripts>
 			</AnimationGroup>
 		</Animations>
 		<Frames>
 			<Frame frameLevel="3" setAllPoints="true" parentKey="frame">
 				<Anchors>
-					<Anchor point="TOPLEFT" x="0" y="0"/>
-					<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+					<Anchor point="TOPLEFT" x="0" y="0" />
+					<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
 						<Texture parentKey="tex" setAllPoints="true">
 							<Anchors>
-								<Anchor point="TOPLEFT" x="0" y="0"/>
-								<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+								<Anchor point="TOPLEFT" x="0" y="0" />
+								<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 							</Anchors>
 						</Texture>
-					    <FontString name="$parentText" inherits="TextStatusBarText" parentKey="statusText">
-                            <Anchors>
-								<Anchor point="TOPLEFT" x="0" y="0"/>
-								<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+						<FontString name="$parentText" inherits="TextStatusBarText" parentKey="statusText">
+							<Anchors>
+								<Anchor point="TOPLEFT" x="0" y="0" />
+								<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 							</Anchors>
-                        </FontString>
-                    </Layer>
-                </Layers>
+						</FontString>
+					</Layer>
+				</Layers>
 			</Frame>
 			<StatusBar frameLevel="2" parentKey="status" hidden="false">
 				<Anchors>
-					<Anchor point="TOPLEFT" x="0" y="0"/>
-					<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+					<Anchor point="TOPLEFT" x="0" y="0" />
+					<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 				</Anchors>
 				<BarTexture parentKey="barTex">
 					<Anchors>
-						<Anchor point="TOPLEFT" x="0" y="0"/>
-						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+						<Anchor point="TOPLEFT" x="0" y="0" />
+						<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 					</Anchors>
 				</BarTexture>
 			</StatusBar>
 			<Slider parentKey="slider" frameLevel="2" hidden="true">
-					<Anchors>
-						<Anchor point="TOPLEFT" x="28" y="0"/>
-						<Anchor point="BOTTOMRIGHT" x="-28" y="0"/>
-					</Anchors>
-				<ThumbTexture name="$parentThumbTexture" parentKey="thumb" alphaMode="ADD"/>
-			</Slider>
-			<Frame frameLevel="1"  setAllPoints="true" parentKey="background">
 				<Anchors>
-					<Anchor point="TOPLEFT" x="0" y="0"/>
-					<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+					<Anchor point="TOPLEFT" x="28" y="0" />
+					<Anchor point="BOTTOMRIGHT" x="-28" y="0" />
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" parentKey="thumb" alphaMode="ADD" />
+			</Slider>
+			<Frame frameLevel="1" setAllPoints="true" parentKey="background">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="0" y="0" />
+					<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
 						<Texture parentKey="tex" setAllPoints="true">
 							<Anchors>
-								<Anchor point="TOPLEFT" x="0" y="0"/>
-								<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+								<Anchor point="TOPLEFT" x="0" y="0" />
+								<Anchor point="BOTTOMRIGHT" x="0" y="0" />
 							</Anchors>
 						</Texture>
 					</Layer>
@@ -89,5 +81,4 @@
 			</Frame>
 		</Frames>
 	</Frame>
-	
 </Ui>

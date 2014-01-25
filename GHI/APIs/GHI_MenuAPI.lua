@@ -1,9 +1,9 @@
 --===================================================
 --
 --				GHI_MenuAPI
---  			GHI_MenuAPI.lua
+--				GHI_MenuAPI.lua
 --
---	          API for creation of GHM menus
+--		API for creation of GHM menus
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
@@ -84,7 +84,6 @@ function GHI_MenuAPI()
 
 		return f;
 	end
-
 
 	class.GetAPI = function()
 		local a = {};

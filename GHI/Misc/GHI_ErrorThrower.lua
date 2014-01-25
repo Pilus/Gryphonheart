@@ -1,12 +1,12 @@
 --===================================================
 --									
---									GHI Error Thrower 
---								GHI_ErrorThrower.lua
+--				GHI Error Thrower
+--				GHI_ErrorThrower.lua
 --
---				Handles throwing of player errors (e.g. 'Too far away')
+--	Handles throwing of player errors (e.g. 'Too far away')
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 
 local class;

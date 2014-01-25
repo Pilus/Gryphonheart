@@ -3,7 +3,7 @@
 --				GHM_Toolbar
 --  			GHM_Toolbar.lua
 --
---	     Creates toolbar with buttons
+--		Creates toolbar with buttons
 --		API:
 --
 --			profile[n] = a GHM object profile. n is any number

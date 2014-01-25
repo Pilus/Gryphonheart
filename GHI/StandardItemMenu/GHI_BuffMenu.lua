@@ -1,14 +1,14 @@
 --===================================================
 --
---	GHI_BuffMenu
---	GHI_BuffMenu.lua
+--				GHI_BuffMenu
+--			GHI_BuffMenu.lua
 --
---	Simple action menu
+--			Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 		(c)2013 The Gryphonheart Team
+--			All rights reserved
 --===================================================
- local loc = GHI_Loc()
+local loc = GHI_Loc()
 local menus = {};
 local miscAPI;
 local ICON = "Interface\\Icons\\Spell_Holy_WordFortitude";
@@ -100,7 +100,6 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 		local buff_duration = menuFrame.GetLabel("buff_duration");
 		local until_canceled = menuFrame.GetLabel("until_canceled");
 		local castOnSelf = menuFrame.GetLabel("castOnSelf");
-		--local filters = {"Helpful","Harmful"}
 		local filter = menuFrame.GetLabel("filter");
 		if filter == "" then filter = "Helpful"; end
 		local stackable = menuFrame.GetLabel("stackable");
@@ -237,11 +236,11 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 					text = loc.BUFF_TYPE,
 					returnIndex = true,
 					data = {
-						{ text = loc.TYPE_MAGIC, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Magic")},
-						{ text = loc.TYPE_CURSE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Curse")},
-						{ text = loc.TYPE_DISEASE, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Disease")},
-						{ text = loc.TYPE_POISON, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("Poison")},
-						{ text = loc.TYPE_PHYSICAL, colorCode = "\124cFF"..miscAPI.GHI_GetDebuffColor("none")},
+						{ text = loc.TYPE_MAGIC, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Magic")},
+						{ text = loc.TYPE_CURSE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Curse")},
+						{ text = loc.TYPE_DISEASE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Disease")},
+						{ text = loc.TYPE_POISON, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Poison")},
+						{ text = loc.TYPE_PHYSICAL, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("none")},
 					  },
 				},
 				{

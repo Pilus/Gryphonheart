@@ -30,89 +30,73 @@ function GHM_Color2(parent, main, profile)
 	local boxR = _G[area:GetName().."R".."Box"]
 	local boxG = _G[area:GetName().."G".."Box"]
 	local boxB = _G[area:GetName().."B".."Box"]
+	local boxA = _G[area:GetName().."A".."Box"]
 	local colorPick = _G[area:GetName().."ColorPicker"]
 	local colorSwatch = _G[colorPick:GetName().."ColorSwatch"]
-	local dd = _G[area:GetName() .. "DD"];
+	local alphaSlider = _G[area:GetName().."OpacitySlider"]
 	local menuFrame
 	
 	labelText:SetText(profile.text or "");
 	-- positioning
 	if profile.scale then
-	frame:SetScale(profile.scale,profile.scale)
+		frame:SetScale(profile.scale,profile.scale)
 	end
-	
-	_G[frame:GetName() .. "Text"].tooltip = profile.tooltip;
-	
+		
 	function round(num, idp)
-	  local mult = 10^(idp or 0)
-	  return math.floor(num * mult + 0.5) / mult
+		local mult = 10^(idp or 0)
+		return math.floor(num * mult + 0.5) / mult
 	end
 	
 	colorPick:SetScript("OnLoad", function(self)
 		self:SetColorRGB(1,1,1)
 	end)
-		
+	
 	colorPick:SetScript("OnColorSelect", function(self,r,g,b)
-			colorSwatch:SetTexture(r, g, b);
-			if ( self.func ) then
-				self.func();
-			end
-			boxR:SetText(round(r,3))
-			boxG:SetText(round(g,3))
-			boxB:SetText(round(b,3))
-			if profile.onColorSelect and type(profile.onColorSelect) == "function" then
+		colorSwatch:SetTexture(r, g, b);	
+		boxR:SetText(math.floor(r * 255))
+		boxG:SetText(math.floor(g * 255))
+		boxB:SetText(math.floor(b * 255))
+		if profile.onColorSelect and type(profile.onColorSelect) == "function" then
 			profile.onColorSelect()
-			end
-			
+		end
 	end)
 	
-	local function colorSet(frame, color)
-		
-		local wheelColors ={}
-		wheelColors.r, wheelColors.g, wheelColors.b = colorPick:GetColorRGB()
-		
-		local curColor = round(tonumber(frame:GetText()),3)	
-		local newColors = {r=0,g=0,b=0}
-		
-		if color == "r" then
-			newColors.r = curColor
-			newColors.g = wheelColors.g
-			newColors.b = wheelColors.b
-		elseif color == "g" then
-			newColors.g = curColor
-			newColors.r = wheelColors.r
-			newColors.b = wheelColors.b
-		elseif color == "b" then
-			newColors.b = curColor
-			newColors.g = wheelColors.g
-			newColors.r = wheelColors.r
-		end		
-		colorPick:SetColorRGB(newColors.r, newColors.g,newColors.b)
+	alphaSlider:SetScript("OnValueChanged", function(self, value)
+		boxA:SetText(tonumber(strsub(value,1,4)) * 100)
+		colorSwatch:SetAlpha(value)
+		if profile.onColorSelect and type(profile.onColorSelect) == "function" then
+			profile.onColorSelect()
+		end
+	end)
+	
+	local function colorSet()
+		local r = boxR:GetText()
+		local g = boxG:GetText()
+		local b = boxB:GetText()		
+		colorPick:SetColorRGB((r / 255), (g / 255),(b / 255))
 	end
 	
 	boxR:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
-		colorSet(self,"r")
+			colorSet()
 		end
 	end)
+	
 	boxG:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
-		colorSet(self,"g")
+			colorSet()
 		end
 	end)
+	
 	boxB:SetScript("OnTextChanged", function(self, userInput)
 		if userInput == true then
-		colorSet(self,"b")
+			colorSet()
 		end
 	end)
-
-	GHM_FramePositioning(frame,profile,parent)
 	
-	local ColorName = function(name,rgb)
-		if not(rgb.r >= 0.8 or rgb.g >= 0.4) then
-			return miscAPI.GHI_ColorString(name, rgb.r, rgb.g, rgb.b).." ("..name..")";
-		else
-			return miscAPI.GHI_ColorString(name, rgb.r, rgb.g, rgb.b);
+	boxA:SetScript("OnTextChanged", function(self, userInput)
+		if userInput == true then
+			alphaSlider:SetValue((tonumber(self:GetText()) / 100))
 		end
 	end
 
@@ -154,13 +138,15 @@ function GHM_Color2(parent, main, profile)
 		end
 	end)
 
-
+	GHM_FramePositioning(frame,profile,parent)
+	
 	-- functions
 	local varAttFrame;
 
 	local Force1 = function(data)
 		if type(data) == "table" then
 			colorPick:SetColorRGB(data.r or data[1], data.g or data[2], data.b or data[3])
+			alphaSlider:SetValue(data.a or data[4] or 1)
 		else
 			print(tostring(data))
 		end
@@ -188,13 +174,14 @@ function GHM_Color2(parent, main, profile)
 
 	frame.Clear = function(self)
 		colorPick:SetColorRGB(1, 1, 1)
+		alphaSlider:SetValue(100)
 	end
 
 
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
 		if not (varAttFrame) then
-			varAttFrame = GHM_VarAttInput(frame, area, dd:GetWidth());
-			frame:SetHeight(DEFAULT_HEIGHT + 15);
+			varAttFrame = GHM_VarAttInput(frame, area, area:GetWidth(),0);
+			frame:SetHeight(area:GetHeight() + 15);
 		end
 		varAttFrame:EnableVariableAttributeInput(scriptingEnv, item, profile.outputOnly)
 	end
@@ -203,20 +190,24 @@ function GHM_Color2(parent, main, profile)
 		if (varAttFrame and not (varAttFrame:IsStaticTabShown())) then
 			return varAttFrame:GetValue();
 		else
-			if profile.iTable == true then
+			if profile.returnIndexTable == true then
 				local r1,g1,b1 = colorPick:GetColorRGB()
+				local a1 = alphaSlider:GetValue()
 				local rgb = {}
-				table.insert(rgb,round(r1,2))
-				table.insert(rgb,round(g1,2))
-				table.insert(rgb,round(b1,2))		
+				table.insert(rgb,round(r1,3))
+				table.insert(rgb,round(g1,3))
+				table.insert(rgb,round(b1,3))	
+				table.insert(rgb,round(a1,3))
 				return rgb
 			else
 				local r1,g1,b1 = colorPick:GetColorRGB()
+				local a1 = alphaSlider:GetValue()
 				local rgb = {
-				["r"] = round(r1,2),
-				["g"] = round(g1,2),
-				["b"] = round(b1,2),
-				["name"] = "None",
+					["r"] = round(r1,3),
+					["g"] = round(g1,3),
+					["b"] = round(b1,3),
+					["a"] = round(a1,3),
+					["name"] = "None",
 				}			
 				return rgb
 			end
@@ -228,7 +219,6 @@ function GHM_Color2(parent, main, profile)
 	end
 
 	frame:Show();
-	--GHM_TempBG(frame);
 	
 	return frame;
 end

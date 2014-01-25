@@ -3,9 +3,9 @@
 --				GHI_MainOptionsMenu
 --  			GHI_MainOptionsMenu.lua
 --
---	          (description)
+--		The main options menu
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -111,7 +111,6 @@ function GHI_MainOptionsMenu()
 				},
 			},
 			{
-
 				{
 					type = "RadioButtonSet",
 					text = loc.TARGET_ICON,
@@ -171,7 +170,6 @@ function GHI_MainOptionsMenu()
 					text = loc.SHOW_AREA_SOUND_SENDER,
 					label = "show_area_sound_sender",
 				},
-
 			},
 			{
 				{
@@ -185,7 +183,6 @@ function GHI_MainOptionsMenu()
 					type = "CheckBox",
 					text = loc.STICK_PLAYER_BUFFS,
 					label = "stick_player_buffs",
-
 				},
 				{
 					align = "r",
@@ -234,7 +231,6 @@ function GHI_MainOptionsMenu()
 
 		menuFrame.ForceLabel("hide_empty_slots", GHI_MiscData["hide_empty_slots"]);
 		menuFrame.ForceLabel("block_area_buff", GHI_MiscData["block_area_buff"]);
-		--menuFrame.ForceLabel("block_area_sound", GHI_MiscData["block_area_sound"]);
 		menuFrame.ForceLabel("show_area_sound_sender", GHI_MiscData["show_area_sound_sender"]);
 		menuFrame.ForceLabel("stick_player_buffs", GHI_MiscData["stick_player_buffs"]);
 		menuFrame.ForceLabel("stick_target_buffs", GHI_MiscData["stick_target_buffs"]);
@@ -247,11 +243,10 @@ function GHI_MainOptionsMenu()
 		menuFrame.ForceLabel("allow_camera_move", GHI_MiscData["allow_camera_move"]);
 		menuFrame.ForceLabel("notify_update", GHI_MiscData["notify_update"]);
 	end;
-	menuFrame.okay = function()
 
+	menuFrame.okay = function()
 		GHI_MiscData["block_std_emote"] = menuFrame.GetLabel("block_std_emote") or false;
 		GHI_MiscData["hide_empty_slots"] = menuFrame.GetLabel("hide_empty_slots") or false;
-		--GHI_MiscData["block_area_sound"] = menuFrame.GetLabel("block_area_sound") or false;
 		GHI_MiscData["block_area_buff"] = menuFrame.GetLabel("block_area_buff") or false;
 		GHI_MiscData["show_area_sound_sender"] = menuFrame.GetLabel("show_area_sound_sender") or false;
 		GHI_MiscData["stick_player_buffs"] = menuFrame.GetLabel("stick_player_buffs") or false;
@@ -264,15 +259,14 @@ function GHI_MainOptionsMenu()
 		GHI_MiscData["hide_mod_att_tooltip"] = menuFrame.GetLabel("hide_mod_att_tooltip") or false;
 		GHI_MiscData["allow_camera_move"] = menuFrame.GetLabel("allow_camera_move") or false;
 		GHI_MiscData["notify_update"] = menuFrame.GetLabel("notify_update") or false;
-          if menuFrame.GetLabel("soundPermission") == 3 then --block
-               GHI_MiscData["block_area_sound"]  = true;
-          else
-               GHI_MiscData["block_area_sound"] = false;
-          end
+		if menuFrame.GetLabel("soundPermission") == 3 then --block
+			GHI_MiscData["block_area_sound"]  = true;
+		else
+			GHI_MiscData["block_area_sound"] = false;
+		end
 		GHI_BuffHandler().UpdateBuffSticking();
 	end;
 	InterfaceOptions_AddCategory(menuFrame);
-
 
 	if not (GHI_MiscData["tooltip_version"] == false) then
 		GHI_MiscData["tooltip_version"] = true;

@@ -1,12 +1,12 @@
 ﻿--===================================================
---									
---								GHI Channel Communication
---									GHI_ChannelComm.lua
+--
+--				GHI Channel Communication
+--					GHI_ChannelComm.lua
 --
 --	Handler of all communication between clients over channels
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================	
 
 local libSerial = LibStub("AceSerializer-3.0");
@@ -17,8 +17,6 @@ local MSG_SINGLE = "\001"
 local MSG_MULTI_FIRST = "\002"
 local MSG_MULTI_MIDDLE = "\003"
 local MSG_MULTI_LAST = "\004"
-
-
 
 local class;
 function GHI_ChannelComm()
@@ -34,9 +32,6 @@ function GHI_ChannelComm()
 		return class;
 	end
 	class = GHClass("GHI_Comm","frame");
-
-
-
 
 	local channelName = "xtensionxtooltip2";
 	local recieveFuncs = {};
@@ -82,8 +77,6 @@ function GHI_ChannelComm()
 		return t;
 	end
 
-	-- SendAddonMessage
-
 	class.Send = function(prio, prefix, ...)
 		assert(not (target == "WHISPER"), "Non updated sending of info");
 		GHCheck("GHI_ChannelComm.Send", { "StringNil", "String" }, { prio, prefix })
@@ -112,12 +105,8 @@ function GHI_ChannelComm()
 		end
 	end
 
-
-
 	Recieve = function(msg, sender)
-
-
-	--Decompress the decoded data
+		--Decompress the decoded data
 		local message = libCompress:Decompress(libEncode:Decode(msg))
 		if (not message) then
 			log.Add(1, "Error decompressing channel data from " .. sender, { message });
@@ -151,8 +140,6 @@ function GHI_ChannelComm()
 	end
 
 	AddLastMsgToInputBufferAndRecieve = function(sender, lastMsg)
-
-
 		AddMsgToInputBuffer(sender, lastMsg)
 		local msg = strjoin("", unpack(inputBuffer[sender] or {}));
 		inputBuffer[sender] = nil;
@@ -161,22 +148,17 @@ function GHI_ChannelComm()
 
 
 	local JoinChannel = function()
-	   --local id, channame = GetChannelName(channelName);
-	   --if channame == nil then---code to keep it from fireing too many times
 		JoinChannelByName(channelName);
 		local i = 1;
 		while _G["ChatWindow" .. i] do
 			ChatFrame_RemoveChannel(_G["ChatWindow" .. i], channelName);
 		end
 		log.Add(2, "Joined communication channel");
-	   --else
-	   -- log.Add(2, "Communication Channel already joined.");
-	   --end
 	end
 
 	GHI_Timer(function()
 		if not(chatIsReady) then
-			local channelNum = GetChannelName(channelName);  --  print("pinging channel",channelNum)
+			local channelNum = GetChannelName(channelName);
 			CTL:SendChatMessage("ALERT", ADDON_PREFIX,ADDON_PREFIX .. MSG_SINGLE .. "ChannelReadyCheck", "CHANNEL", nil, channelNum);
 		end
 	end,1);
@@ -204,14 +186,11 @@ function GHI_ChannelComm()
 			else
 				log.Add(1, "Recieved channel msg with unknown control char. From " .. sender, { raw = ctrl, byte = strbyte(ctrl) });
 			end
-		--elseif event == "CHAT_MSG_CHANNEL_NOTICE" and setUp == false then
 		end
 
 		if setUp == false then
 			setUp = true;
-			--GHI_Timer(JoinChannel, 3, true);
 			JoinChannel()
-
 		end
 	end);
 	class:RegisterEvent("CHAT_MSG_CHANNEL");
@@ -221,8 +200,6 @@ function GHI_ChannelComm()
 
 	return class;
 end
-
--- /script local t = {}; for i=1,350 do t[i] = mod(i,10) end GHI_ChannelComm().Send("bulk","Test","Testing message "..strjoin("",unpack(t)));
 
 
 

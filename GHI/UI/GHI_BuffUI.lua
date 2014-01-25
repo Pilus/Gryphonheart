@@ -1,8 +1,18 @@
-﻿local supportedUnits = { "player", "target" };
+﻿--===================================================
+--
+--				GHI_ActionBarUI
+--				GHI_ActionBarUI.lua
+--
+--		Custom buffs cast by items
+--
+-- 	  (c)2013 The Gryphonheart Team
+--			All rights reserved
+--===================================================
+
+local supportedUnits = { "player", "target" };
 
 local function GHI_Set(array, ...) -- last argument is the value to set as.
 	for i, index in pairs({ ... }) do
-
 		if not (type(array[index]) == "table") then
 			assert(array[index] == nil or i == (#({ ... }) - 1), "Set error. Value " .. index .. " is already written as " .. type(array[index]));
 			array[index] = {};
@@ -27,7 +37,6 @@ GHI_BuffUIDisplay.stickToBlizzFrame = {};
 
 local GHI_BuffUIFrames = {};
 function GHI_BuffUIDisplay:OnEvent(event, arg1, arg2)
-
 	if event == "PLAYER_TARGET_CHANGED" and GHI_BuffUIFrames["target"] then
 		self:UpdateDB("target");
 		if self.stickToBlizzFrame["target"] then
@@ -39,7 +48,6 @@ function GHI_BuffUIDisplay:OnEvent(event, arg1, arg2)
 
 	if event == "PLAYER_ENTERING_WORLD" then
 		GHI_Timer(self.CheckUpdate, 1, false, "Check buff updates")
-
 		hooksecurefunc("BuffFrame_Update", function() GHI_BuffUIFrame_Update() end);
 	end
 
@@ -59,20 +67,14 @@ GHI_BuffUIDisplay:RegisterEvent("UNIT_AURA");
 function GHI_BuffUIDisplay:RegisterBuffObj(buffObj)
 	if not (type(self.buffObjs) == "table") then
 		self.buffObjs = {};
-
 		self.buffFrames = {};
 		hooksecurefunc("BuffFrame_Update", GHI_BuffUIFrame_Update);
-		--hooksecurefunc("TargetFrame_UpdateAuras",GHI_TargetFrame_UpdateAuras);
-		--TargetFrame_UpdateAuras = GHI_TargetFrame_UpdateAuras; 
-
 		self.buffs = {};
 		self.debuffs = {};
 		self.nextUpdate = {};
-		--GHI_RegTimer(self,self.CheckUpdate)--GHI_BuffUIDisplay,GHI_BuffUIDisplay.CheckUpdate);
 	end
 
 	table.insert(self.buffObjs, buffObj);
-
 
 	return self;
 end
@@ -104,20 +106,16 @@ end
 function GHI_BuffUIDisplay:UpdateDB(unit) -- remember to call this on target change etc.
 	local guid = UnitGUID(unit);
 	local nextUp
-	--print("Update buff db for",unit);
 
 	self.buffs = self.buffs or {};
 
 	-- update buffs
 	self.buffs[unit] = {};
-	--print(#(self.buffObjs),"buff objs");
 	for i, buffObj in pairs(self.buffObjs) do
 		local res = buffObj:GetBuffs(guid, 1);
 
 		if type(res) == "table" then
-			--print(#(res),"in buff obj",i);
 			for _, b in pairs(res) do
-
 				b.buffObj = buffObj; -- Is this used? Maybe when clicking
 
 				if b.expirationTime and not (b.expirationTime == 0) and b.expirationTime <= GetTime() then
@@ -136,7 +134,6 @@ function GHI_BuffUIDisplay:UpdateDB(unit) -- remember to call this on target cha
 		end
 	end
 
-	--print(#(self.buffs[unit]),"buffs");
 	-- update debuffs
 	self.debuffs[unit] = {};
 	for _, buffObj in pairs(self.buffObjs) do
@@ -144,7 +141,6 @@ function GHI_BuffUIDisplay:UpdateDB(unit) -- remember to call this on target cha
 		if type(res) == "table" then
 			for _, b in pairs(res) do
 				b.buffObj = buffObj;
-
 				if b.expirationTime and not (b.expirationTime == 0) and b.expirationTime <= GetTime() then
 					-- remove buff
 					buffObj:RemoveBuff(b.refID, UnitGUID(unit), 0);
@@ -191,18 +187,16 @@ function GHI_BuffUIDisplay:DisplayTooltip(button)
 	if not (unit and refID) then return end;
 	local buff = self:FindBuff(unit, refID);
 	if not (buff) then return end;
-	--print(refID)
+
 	if button:GetCenter() > UIParent:GetWidth() / 2 then
 		GameTooltip:SetOwner(button, "ANCHOR_BOTTOMLEFT", 0, 0);
 	else
 		GameTooltip:SetOwner(button, "ANCHOR_BOTTOMRIGHT", 15, -25);
 	end
-	--GameTooltip:Show()
+
 	GameTooltip:ClearLines();
 	GameTooltip:SetText(buff.name or "", 1, 0.8196079, 0);
 	GameTooltip:AddLine(buff.description or "", 1, 1, 1, 1, 1);
-	--print(buff)
-	--print(buff.description )
 
 	if buff.expirationTime > 0 then
 		local s1 = format(SecondsToTimeAbbrev(buff.expirationTime - GetTime()));
@@ -247,19 +241,12 @@ function GHI_BuffUIDisplay:StickDisplayToBlizzFrame(unit, stick)
 
 end
 
-
 -- ================================================================
 -- Buff functions. Copied from Blizzard code and modified
 -- ================================================================
 
-
-
-
-
 function GHI_BuffUIResetAllPositions(self)
 	local x, y = UIParent:GetWidth() / 2, UIParent:GetHeight() / 2;
-
-
 	for _, unit in pairs(supportedUnits) do
 		GHI_Set(GHI_MiscData, "BuffPos", unit, 1, x);
 		GHI_Set(GHI_MiscData, "BuffPos", unit, 2, y);
@@ -278,7 +265,6 @@ function GHI_BuffUIIconButtonIconMove(self)
 		return;
 	end
 
-
 	local xpos, ypos;
 
 	if (iconpos) then
@@ -289,18 +275,15 @@ function GHI_BuffUIIconButtonIconMove(self)
 	if (not xpos and not ypos) then
 		local x, y = GetCursorPosition();
 		local s = self.main:GetEffectiveScale();
-
 		xpos, ypos = x / s, y / s;
 	end
 
-	--GHI_MiscData = GHI_MiscData or {};
 	GHI_Set(GHI_MiscData, "BuffPos", self.main.unit, { xpos + (self:GetWidth() / 2), ypos - (self:GetHeight() / 2) });
 
 	-- Hide the tooltip
 	GameTooltip:Hide();
 
 	-- Set the position
-
 	self.main:SetPoint("TOPRIGHT", UIParent, "BOTTOMLEFT", xpos + (self:GetWidth() / 2), ypos - (self:GetHeight() / 2));
 end
 
@@ -329,132 +312,85 @@ local function GHI_Get(array, ...)
 end
 
 function GHI_BuffUIFrame_Update()
-	for _, unit in pairs(supportedUnits) do if GHI_Get then
-		-- Create new frames
-		if not (GHI_BuffUIFrames[unit]) then  --print("Create frame d")
-			local f = CreateFrame("Button", nil, UIParent);          -- D = D or {};     f:SetScript("OnHide",function(s) print(s.unit,"hidden") end); f:SetScript("OnShow",function(s) print(s.unit,"shown") end);
-			--f.debugType = "D";                                        --         table.insert(D,f);
-			--GHI_BuffUIFrame:SetPoint("TOPRIGHT", BuffFrame, "TOPRIGHT", 0, 40);
+	for _, unit in pairs(supportedUnits) do
+		if GHI_Get then
+			-- Create new frames
+			if not (GHI_BuffUIFrames[unit]) then
+				local f = CreateFrame("Button", nil, UIParent);
+				local x = GHI_Get(GHI_MiscData, "BuffPos", unit, 1) or UIParent:GetWidth() / 2;
+				local y = GHI_Get(GHI_MiscData, "BuffPos", unit, 2) or UIParent:GetHeight() / 2;
 
-			local x = GHI_Get(GHI_MiscData, "BuffPos", unit, 1) or UIParent:GetWidth() / 2;
-			local y = GHI_Get(GHI_MiscData, "BuffPos", unit, 2) or UIParent:GetHeight() / 2;
-			--print("x: ",x," y: ",y);
+				f:SetPoint("TOPRIGHT", UIParent, "BOTTOMLEFT", x, y);
+				f:Show();
 
-			f:SetPoint("TOPRIGHT", UIParent, "BOTTOMLEFT", x, y);
-			f:Show();
+				f:SetFrameStrata("BACKGROUND")
+				f:SetWidth(90)
+				f:SetHeight(32)
 
-			f:SetFrameStrata("BACKGROUND")
-			f:SetWidth(90) --*BUFFS_PER_ROW)
-			f:SetHeight(32)
+				f:SetScript("OnEnter", function(f) GHI_BuffUIFrame_OnEnter(f.unit); end);
+				f:SetScript("OnLeave", function(f) GHI_BuffUIFrame_OnLeave(f.unit); end);
 
-			--f:SetScript("OnEnter",GHI_BuffUIFrame_OnEnter);
-			f:SetScript("OnEnter", function(f) GHI_BuffUIFrame_OnEnter(f.unit); end);
-			f:SetScript("OnLeave", function(f) GHI_BuffUIFrame_OnLeave(f.unit); end);
-
-
-			local b = CreateFrame("Button", nil, f);
-			b.debugType = "E";
-			b:SetWidth(100)
-			b:SetHeight(40);
-			local t = b:CreateTexture(nil, "BACKGROUND")
-			t:SetTexture("Interface\\CHATFRAME\\ChatFrameTab.blp")
-			t:SetAllPoints(b)
-			b.texture = t;
-			b:SetPoint("BOTTOMRIGHT", f, "TOPRIGHT", 10, -1);
-			b:RegisterForClicks("AnyUp")
-			b:SetScript("OnUpdate", function(b) GHI_BuffUIIconButtonIconMove(b) end)
-			b:SetScript("OnDragStart", function(b) b.iconDrag = true end)
-			b:SetScript("OnDragStop", function(b) b.iconDrag = false end)
-			b:RegisterForDrag("LeftButton")
-			b:SetMovable();
-			b:Hide();
-
-			local pf = b:CreateFontString();
-			pf:SetFontObject("GameFontNormalSmall");
-			pf:SetText("GH Buffs");
-			pf:SetPoint("CENTER", 0, 0, b);
-
-			local pf2 = b:CreateFontString();
-			pf2:SetFontObject("GameFontWhiteTiny");
-			pf2:SetText(strsub(strupper(unit), 0, 1) .. strsub(strlower(unit), 2));
-			pf2:SetPoint("CENTER", 0, -10, b);
-
-			b:SetScript("OnEnter", function() GHI_BuffUIFrame_OnEnter(b.main.unit) end);
-			b:SetScript("OnLeave", function() GHI_BuffUIFrame_OnLeave(b.main.unit) end);
-			b.main = f
-
-			f.unit = unit
-			f.button = b;
-			GHI_BuffUIFrames[unit] = f;
-
-			-- Set position depending on load data
-
-			--[[
-			   local t = GHI_BuffUIFrame:CreateTexture(nil,"BACKGROUND")
-			   t:SetTexture("Interface\\Glues\\CharacterCreate\\UI-CharacterCreate-Factions.blp")
-			   t:SetAllPoints(GHI_BuffUIFrame)
-			   GHI_BuffUIFrame.texture = t --]]
-
-			--print("buff frame created");
-		end
-
-		if not (UnitExists(unit)) then
-			GHI_BuffUIFrames[unit]:Hide();
-		elseif not(GHI_BuffUIDisplay.stickToBlizzFrame[unit]) then
-			GHI_BuffUIFrames[unit]:Show();
-		end
-
-		-- Handle Buffs
-		-- hide those not in use
-		--[[
-		for i=1,BUFF_ACTUAL_DISPLAY do
-			local b = _G["GHI_BuffUIButton"..i];
-			if b then
+				local b = CreateFrame("Button", nil, f);
+				b.debugType = "E";
+				b:SetWidth(100)
+				b:SetHeight(40);
+				local t = b:CreateTexture(nil, "BACKGROUND")
+				t:SetTexture("Interface\\CHATFRAME\\ChatFrameTab.blp")
+				t:SetAllPoints(b)
+				b.texture = t;
+				b:SetPoint("BOTTOMRIGHT", f, "TOPRIGHT", 10, -1);
+				b:RegisterForClicks("AnyUp")
+				b:SetScript("OnUpdate", function(b) GHI_BuffUIIconButtonIconMove(b) end)
+				b:SetScript("OnDragStart", function(b) b.iconDrag = true end)
+				b:SetScript("OnDragStop", function(b) b.iconDrag = false end)
+				b:RegisterForDrag("LeftButton")
+				b:SetMovable();
 				b:Hide();
-				b.duration:Hide();
-			end
-		end--]]
 
-		--f or i=BUFF_ACTUAL_DISPLAY+1, BUFF_MAX_DISPLAY d o
-		for i = 1, BUFF_MAX_DISPLAY do
-			if (GHI_AuraButton_Update("GHI_BuffUIButton", i, "HELPFUL", unit)) then
-				--BUFF_ACTUAL_DISPLAY = BUFF_ACTUAL_DISPLAY + 1;
+				local pf = b:CreateFontString();
+				pf:SetFontObject("GameFontNormalSmall");
+				pf:SetText("GH Buffs");
+				pf:SetPoint("CENTER", 0, 0, b);
+
+				local pf2 = b:CreateFontString();
+				pf2:SetFontObject("GameFontWhiteTiny");
+				pf2:SetText(strsub(strupper(unit), 0, 1) .. strsub(strlower(unit), 2));
+				pf2:SetPoint("CENTER", 0, -10, b);
+
+				b:SetScript("OnEnter", function() GHI_BuffUIFrame_OnEnter(b.main.unit) end);
+				b:SetScript("OnLeave", function() GHI_BuffUIFrame_OnLeave(b.main.unit) end);
+				b.main = f
+
+				f.unit = unit
+				f.button = b;
+				GHI_BuffUIFrames[unit] = f;
 			end
+
+			if not (UnitExists(unit)) then
+				GHI_BuffUIFrames[unit]:Hide();
+			elseif not(GHI_BuffUIDisplay.stickToBlizzFrame[unit]) then
+				GHI_BuffUIFrames[unit]:Show();
+			end
+
+			for i = 1, BUFF_MAX_DISPLAY do
+				if (GHI_AuraButton_Update("GHI_BuffUIButton", i, "HELPFUL", unit)) then
+				end
+			end
+
+			GHI_BuffUIFrame_UpdateAllBuffAnchors(unit);
+
+			for i = 1, DEBUFF_MAX_DISPLAY do
+				if (GHI_AuraButton_Update("GHI_DebuffButton", i, "HARMFUL", unit)) then
+				end
+			end
+
+			GHI_BuffUIFrame_UpdateAllDebuffAnchors(unit);
 		end
-
-		GHI_BuffUIFrame_UpdateAllBuffAnchors(unit);
-
-		-- Handle debuffs
-		--[[
-		for i=1,DEBUFF_ACTUAL_DISPLAY do
-			local b = _G["GHI_DebuffButton"..i];
-			if b then
-				b:Hide();
-				b.duration:Hide();
-			end
-		end--]]
-
-		--fo r i=DEBUFF_ACTUAL_DISPLAY+1, DEBUFF_MAX_DISPLAY d o
-		for i = 1, DEBUFF_MAX_DISPLAY do
-			if (GHI_AuraButton_Update("GHI_DebuffButton", i, "HARMFUL", unit)) then
-				--DEBUFF_ACTUAL_DISPLAY = DEBUFF_ACTUAL_DISPLAY + 1;
-			end
-		end
-
-		GHI_BuffUIFrame_UpdateAllDebuffAnchors(unit);
-	end
 	end
 end
 
 function GHI_AuraButton_Update(buttonName, index, filter, unit)
 	local buffName
-	--[[if type(buttonName) == "table" then -- called from event
-			local btn = buttonName;
-			buffName = btn:GetName();
-			index = btn.index;
-			filter = btn.filter;
-			unit = btn.unit;
-	end--]]
 
 	self = GHI_BuffUIDisplay;
 
@@ -463,9 +399,7 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 
 	local done;
 
-	--if filter == "HELPFUL" and index > BUFF_ACTUAL_DISPLAY and index <= BUFF_ACTUAL_DISPLAY+ self:GetNumberBuffs("player",1) th en
 	if filter == "HELPFUL" and index <= self:GetNumberBuffs(unit, 1) then
-		--local t = self:GetBuffs("player",1)[index-BUFF_ACTUAL_DISPLAY];
 		local t = self:GetBuffs(unit, 1)[index];
 
 		if type(t) == "table" then
@@ -483,7 +417,6 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 			duration = 0;
 			texture = "Interface\\Icons\\Ability_Marksmanship";
 		end
-		--el sei f filter == "HARMFUL" and index > DEBUFF_ACTUAL_DISPLAY and index <= DEBUFF_ACTUAL_DISPLAY+ self:GetNumberBuffs("player",2) th en
 	elseif filter == "HARMFUL" and index <= self:GetNumberBuffs(unit, 2) then
 		local t = self:GetBuffs(unit, 2)[index];
 		if type(t) == "table" then
@@ -537,15 +470,12 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 				buff.debugType = "B";
 			end
 
-			--print(unit,helpful,buff:GetHeight());
-
 			buff.parent = GHI_BuffUIFrames[unit];
 			buff.unit = unit;
 			buff.index = index;
 
 			buff:SetScript("OnEnter", function()
 				GHI_BuffUIFrame_OnEnter(buff.unit);
-				--GameTooltip:SetOwner(buff, "ANCHOR_BOTTOMRIGHT");
 				GameTooltip:SetFrameLevel(buff:GetFrameLevel() + 2);
 				GHI_BuffUIDisplay:DisplayTooltip(buff);
 			end);
@@ -590,7 +520,6 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 		-- Set filter-specific attributes
 		if (not helpful) then
 			-- Anchor Debuffs
-			--DebuffButton_UpdateAnchors(buttonName, index);
 
 			-- Set color of debuff border based on dispel class.
 			local debuffSlot = _G[buffName .. "Border"];
@@ -598,14 +527,7 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 				local color;
 				if (debuffType) then
 					color = DebuffTypeColor[debuffType];
-					if (ENABLE_COLORBLIND_MODE == "1") then
-						--buff.symbol:Show();
-						--buff.symbol:SetText(DebuffTypeSymbol[debuffType] or "");
-					else
-						--buff.symbol:Hide();
-					end
 				else
-					--buff.symbol:Hide();
 					color = DebuffTypeColor["none"];
 				end
 				debuffSlot:SetVertexColor(color.r, color.g, color.b);
@@ -615,14 +537,13 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 		if unit == "player" then
 			if (duration > 0 and expirationTime) then
 				if (SHOW_BUFF_DURATIONS == "1") then
-					buff.duration:Show(); --print("show dur");
+					buff.duration:Show();
 				else
-					buff.duration:Hide(); --print("hide dur");
+					buff.duration:Hide();
 				end
 
 				if (not buff.timeLeft) then
 					buff.timeLeft = expirationTime - GetTime();
-
 					buff:SetScript("OnUpdate", GHI_AuraButton_OnUpdate);
 				else
 					buff.timeLeft = expirationTime - GetTime();
@@ -630,7 +551,6 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 			else
 				buff.duration:Hide();
 				if (buff.timeLeft) then
-
 					buff:SetScript("OnUpdate", nil);
 				end
 				buff.timeLeft = nil;
@@ -648,7 +568,6 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 			frameCooldown = _G[buffName .. "Cooldown"];
 			if (duration > 0) then
 				frameCooldown:Show();
-				--print(format("start %s end %s lasts %s",expirationTime - duration,expirationTime,duration));
 				CooldownFrame_SetTimer(frameCooldown, expirationTime - duration, duration, 1);
 			else
 				frameCooldown:Hide();
@@ -658,13 +577,8 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 		local icon = _G[buffName .. "Icon"];
 		icon:SetTexture(texture);
 
-
-
 		-- Refresh tooltip
 		if (GameTooltip:IsOwned(buff)) then
-			--GameTooltip:SetUnitAura(PlayerFrame.unit, index, filter);
-
-			--print(buff)
 			self:DisplayTooltip(buff);
 		end
 
@@ -672,9 +586,6 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 			if (buff.timeLeft and duration > 30) then
 				buff.exitTime = expirationTime - max(10, duration / 10);
 			end
-			--buff.expirationTime = expirationTime;			
-			--buff.consolidated = true;
-			--table.insert(consolidatedBuffs, buff);
 		end
 	end
 	return 1;
@@ -689,29 +600,24 @@ function GHI_AuraButton_OnUpdate(self)
 	end
 
 	-- Update duration
-	--securecall("AuraButton_UpdateDuration", self, self.timeLeft); -- Taint issue with SecondsToTimeAbbrev 
-	AuraButton_UpdateDuration(self, self.timeLeft); -- Taint issue with SecondsToTimeAbbrev 
+	AuraButton_UpdateDuration(self, self.timeLeft); -- Taint issue with SecondsToTimeAbbrev
 	self.timeLeft = max(self.expirationTime - GetTime(), 0);
 
-	--[[
-	if ( BuffFrame.BuffFrameUpdateTime > 0 ) then
-		return;
-	end--]]
 	if (GameTooltip:IsOwned(self)) then
 		GHI_BuffUIDisplay:DisplayTooltip(self);
-	end --]]
+	end
 end
 
 local PlayerGotNonConsolidateBuff = function()
-    local i = 1;
-    while (UnitBuff("player",i)) do
-        local shouldConsilidate = select(10,UnitBuff("player",i));
-        if shouldConsilidate then
-            return false;
-        end
-        i = i + 1;
-    end
-    return true;
+	local i = 1;
+	while (UnitBuff("player",i)) do
+		local shouldConsilidate = select(10,UnitBuff("player",i));
+		if shouldConsilidate then
+			return false;
+		end
+		i = i + 1;
+	end
+	return true;
 end
 
 function GHI_BuffUIFrame_UpdateAllBuffAnchors(unit)
@@ -720,14 +626,10 @@ function GHI_BuffUIFrame_UpdateAllBuffAnchors(unit)
 	local numBuffs = 0;
 	local slack = 0;
 
-
-
 	numBuffs = 0;
 
-	--print("Unit:",unit,GHI_BuffUIDisplay.stickToBlizzFrame[unit]);
 	for i = 1, self:GetNumberBuffs(unit, 1) do
 		local buff = _G["GHI_BuffUIButton" .. unit .. i];
-
 		numBuffs = numBuffs + 1;
 		local index = numBuffs + slack;
 		if (buff.parent ~= GHI_BuffUIFrames[unit]) then
@@ -750,9 +652,8 @@ function GHI_BuffUIFrame_UpdateAllBuffAnchors(unit)
 			end
 		end
 
-
 		buff:ClearAllPoints();
-		if (index == 1) then --print("Set first");
+		if (index == 1) then
 			if unit == "player" then
 				if GHI_BuffUIDisplay.stickToBlizzFrame[unit] then
 					-- determine the last shown buff button
@@ -764,12 +665,10 @@ function GHI_BuffUIFrame_UpdateAllBuffAnchors(unit)
 					if (i > 0) then
 						buff:SetPoint("RIGHT", _G["BuffButton" .. i], "LEFT", -5, 0);
 					elseif ConsolidatedBuffs and ConsolidatedBuffs:IsShown() and not(PlayerGotNonConsolidateBuff()) then
-                        buff:SetPoint("TOPRIGHT", ConsolidatedBuffs, "TOPLEFT", -5, 0);
-                    else
+						buff:SetPoint("TOPRIGHT", ConsolidatedBuffs, "TOPLEFT", -5, 0);
+					else
 						buff:SetPoint("TOPRIGHT", BuffFrame, "TOPRIGHT", 0, 0);
 					end
-
-
 				else
 					buff:SetPoint("TOPRIGHT", GHI_BuffUIFrames[unit], "TOPRIGHT", 0, -2);
 				end
@@ -796,8 +695,6 @@ function GHI_BuffUIFrame_UpdateAllBuffAnchors(unit)
 							buff:SetPoint("LEFT", _G["TargetFrameDebuff" .. debuffI], "RIGHT", 5, 0);
 						end
 					end
-
-
 				else
 					buff:SetPoint("TOPLEFT", GHI_BuffUIFrames[unit], "TOPLEFT", 0, -2);
 				end
@@ -825,9 +722,7 @@ function GHI_BuffUIFrame_UpdateAllDebuffAnchors(unit)
 	local buffHeight = TempEnchant1:GetHeight();
 	local buttonName = "GHI_DebuffButton" .. unit;
 
-
 	numBuffs = 0
-
 
 	for index = 1, self:GetNumberBuffs(unit, 2) do
 		buff = _G[buttonName .. index];
@@ -858,14 +753,10 @@ function GHI_BuffUIFrame_UpdateAllDebuffAnchors(unit)
 						i = i - 1;
 					end;
 					if (i > 0) then
-
 						buff:SetPoint("RIGHT", _G["DebuffButton" .. i], "LEFT", -5, 0);
 					else
-
 						buff:SetPoint("TOPRIGHT", ConsolidatedBuffs, "BOTTOMRIGHT", 0, -1 * ((2 * BUFF_ROW_SPACING) + TempEnchant1:GetHeight()));
 					end
-
-
 				else
 					buff:SetPoint("TOPRIGHT", GHI_BuffUIFrames[unit], "TOPRIGHT", 0, -47);
 				end
@@ -892,20 +783,12 @@ function GHI_BuffUIFrame_UpdateAllDebuffAnchors(unit)
 					else
 						buff:SetPoint("TOPLEFT", TargetFrame, "BOTTOMLEFT", 5, 32 - 24);
 					end
-
-
 				else
 					buff:SetPoint("TOPLEFT", GHI_BuffUIFrames[unit], "TOPLEFT", 0, -24);
 				end
 			else
 				buff:SetPoint("TOPLEFT", GHI_BuffUIFrames[unit], "TOPLEFT", 0, -24);
 			end
-			--[[
-			if ( rows < 2 ) then
-				buff:SetPoint("TOPRIGHT", ConsolidatedBuffs, "BOTTOMRIGHT", 0, -1*((2*BUFF_ROW_SPACING)+buffHeight));
-			else
-				buff:SetPoint("TOPRIGHT", ConsolidatedBuffs, "BOTTOMRIGHT", 0, -rows*(BUFF_ROW_SPACING+buffHeight));
-			end --]]
 		else
 			if unit == "player" then
 				buff:SetPoint("RIGHT", previousBuff, "LEFT", -5, 0);
@@ -960,7 +843,6 @@ function GHI_BuffUI:CastBuff(filter, refID, guid, name, description, icon, total
 	filter = strlower(tostring(filter or ""));
 
 	if not (guid) then return nil end
-
 
 	-- make sure it is a valid debuff type
 	local realDebuffType;
@@ -1024,7 +906,7 @@ function GHI_BuffUI:CastBuff(filter, refID, guid, name, description, icon, total
 		end
 	end
 
-	-- i_f the guid is a supported unit for displaying, th en update DB
+	-- if the guid is a supported unit for displaying, th en update DB
 	for _, unit in pairs(supportedUnits) do
 		if UnitGUID(unit) == guid then
 			self.display:UpdateDB(unit);
@@ -1133,6 +1015,7 @@ function GHI_BuffUI:RemoveBuff(refID, guid, count, filter) --API
 			end
 		end
 	end
+
 	if found == nil and not(OnlyBuffs == true) then
 		if type(self.debuffs[guid]) == "table" then
 			for i, buff in pairs(self.debuffs[guid]) do
@@ -1156,10 +1039,8 @@ function GHI_BuffUI:RemoveBuff(refID, guid, count, filter) --API
 		end
 	end
 
-	-- i_f the guid is a supported unit for displaying, th en update DB
-
+	-- if the guid is a supported unit for displaying, th en update DB
 	for _, unit in pairs(supportedUnits) do
-		--print("%s == %s",UnitGUID(unit),guid);
 		if UnitGUID(unit) == guid then
 			self.display:UpdateDB(unit);
 		end
@@ -1173,8 +1054,7 @@ function GHI_BuffUI:ClearAllBuffs(guid) --API
 	self.buffs[guid] = {};
 	self.debuffs[guid] = {};
 
-	-- i_f the guid is a supported unit for displaying, th en update DB
-
+	-- if the guid is a supported unit for displaying, th en update DB
 	for _, unit in pairs(supportedUnits) do
 		--print("%s == %s",UnitGUID(unit),guid);
 		if UnitGUID(unit) == guid then

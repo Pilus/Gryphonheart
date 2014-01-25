@@ -1,28 +1,23 @@
 --===================================================
 --
 --				GHI_StatusBarUI
---  			GHI_StatusBarUI.lua
+--				GHI_StatusBarUI.lua
 --
---	    Allows GHI to simulate status bars similar
---            to blizzard's  extra action bar
+--		Allows GHI to simulate status bars similar
+--			to blizzard's  extra action bar
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
-
 local class;
-
 function GHI_StatusBarUI()
-
 	if class then
 		return class;
 	end
-	
 	class = GHClass("GHI_StatusBarUI","frame");
 	
 	local powerFrame = _G["GHI_StatusBarFrame"]
-	
 	powerFrame:SetSize(256,64)
 	powerFrame:SetPoint("TOP",UIParent,"TOP",0,-100)
 	powerFrame.frame.tex:SetTexture("Interface\\UNITPOWERBARALT\\Generic1Player_Horizontal_Frame")
@@ -86,7 +81,7 @@ function GHI_StatusBarUI()
 		local cR, cG, cB, cA = bar:GetStatusBarColor()
 		bar:SetStatusBarColor(r or cR, g or cG, b or cB, a or cA)
 	end
-		
+
 	class.ChangeValue = function(value)
 		local current
 		value = value * 10
@@ -126,7 +121,7 @@ function GHI_StatusBarUI()
 			end
 		end
 	end
-		
+
 	class.SetText = function(text, font, color)
 		powerFrame.frame.statusText:SetText(text)
 		if font then
@@ -149,7 +144,5 @@ function GHI_StatusBarUI()
 		class.SetMinMax(1,100)		
 	end
 	
-	
 	return class;
 end
-	

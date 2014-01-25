@@ -1,6 +1,6 @@
 --===================================================
 --					GHM_IconPicker
---				  GHM_IconPicker.lua
+--				GHM_IconPicker.lua
 --
 --		Window for choosing an icon in a GHM window
 --
@@ -150,7 +150,7 @@ function GHM_IconPicker()
 								end
 							end
 							menuFrame.ForceLabel("icons",searchList)
-						end					
+						end
 					end,
 				}, 
 				{

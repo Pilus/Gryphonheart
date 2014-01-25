@@ -3,9 +3,9 @@
 --				GHI_SimpleItemMenuList
 --  			GHI_SimpleItemMenuList.lua
 --
---	          Handler for the simple item menus
+--		Handler for the simple item menus
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 

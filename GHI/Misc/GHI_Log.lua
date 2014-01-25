@@ -1,13 +1,13 @@
 ﻿--===================================================
 --									
---								GHI Event Logger
---									GHI_Log.lua
+--					GHI Event Logger
+--					GHI_Log.lua
 --
 --	Logging of events in GHI to aid the debugging process
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
---===================================================	
+-- 			(c)2013 The Gryphonheart Team
+--					All rights reserved
+--===================================================
 
 local class;
 function GHI_Log()
@@ -69,7 +69,6 @@ function GHI_Log()
 	class.GetRaw = function()
 		return events;
 	end
-
 
 	return class;
 end

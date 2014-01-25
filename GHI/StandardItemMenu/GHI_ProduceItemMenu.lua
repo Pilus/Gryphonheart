@@ -1,12 +1,12 @@
 --===================================================
 --
---	GHI_ProduceItemMenu
---	GHI_ProduceItemMenu.lua
+--				GHI_ProduceItemMenu
+--				GHI_ProduceItemMenu.lua
 --
---	Simple action menu
+--				Simple action menu
 --
--- 	(c)2013 The Gryphonheart Team
---	All rights reserved
+-- 			(c)2013 The Gryphonheart Team
+--				All rights reserved
 --===================================================
 local loc = GHI_Loc()
 local menus = {};
@@ -173,9 +173,7 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 					text = loc.CHOOSE_ITEM,
 					compact = true,
 					OnClick = function(self)
-
 						miscAPI.GHI_SetSelectItemCursor(function(guid)
-
 							menuFrame.ForceLabel("ItemInfo", GetItemTextLine(guid))
 							menuFrame.produceGuid = guid;
 						--print("selecting",guid);
@@ -190,7 +188,6 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 					text = loc.DELAY,
 				},
 			},
-
 			{
 				{
 					fontSize = 11,
@@ -246,7 +243,6 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 		theme = "BlankTheme",
 		width = 370,
 		useWindow = true,
-		--background = "INTERFACE\\GLUES\\MODELS\\UI_BLOODELF\\bloodelf_mountains",
 		OnShow = UpdateTooltip,
 		icon = ICON,
 		lineSpacing = 20,

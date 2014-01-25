@@ -1,12 +1,12 @@
 --===================================================
 --									
---										GHI SlashCmd
---									GHI_SlashCmdUI.lua
+--						GHI SlashCmd
+--					GHI_SlashCmdUI.lua
 --
---							Slash Command handler
+--					Slash Command handler
 --	
--- 						(c)2013 The Gryphonheart Team
---								All rights reserved
+-- 				(c)2013 The Gryphonheart Team
+--					All rights reserved
 --===================================================	
 
 function GHI_SlashCmd(mainSlashPrefix)
@@ -40,12 +40,10 @@ function GHI_SlashCmd(mainSlashPrefix)
 		return prefix, suffix;
 	end
 
-
 	local OnSlashCommand = function(slashCmdMsg)
 		local prefix, suffix = ExtractPrefixAndSuffixFromString(slashCmdMsg);
 		RunCmdFunc(prefix, suffix);
 	end
-
 
 	class.SetDefaultFunc = function(func)
 		assert(type(func) == "function");

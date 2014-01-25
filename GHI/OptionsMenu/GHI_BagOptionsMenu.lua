@@ -3,7 +3,7 @@
 --				GHI_BagOptionsMenu
 --  			GHI_BagOptionsMenu.lua
 --
---	          (description)
+--	Options menu for bag related options
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved

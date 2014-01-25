@@ -3,7 +3,7 @@
 --				GHI_Attribute
 --  			GHI_Attribute.lua
 --
---	          Holds information about an attribute for an item
+--	Holds information about an attribute for an item
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
