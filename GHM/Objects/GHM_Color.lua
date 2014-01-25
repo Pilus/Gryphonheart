@@ -10,6 +10,7 @@
 --===================================================
 
 local count = 1;
+local GHM_COLOR_MENU_DATA;
 
 function GHM_BuildColorDD(dropDownMenu, GetValue, Force)
 	local miscAPI = GHI_MiscAPI().GetAPI()
