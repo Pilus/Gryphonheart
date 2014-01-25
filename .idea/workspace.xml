@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
-    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Minor change to check if th">
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Minor change to check if this is the correct branch.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" />
     </list>
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -194,6 +193,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="LINE_SEPARATORS_CONVERSION" value="NONE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -811,7 +811,11 @@
       <created>1390672175012</created>
       <updated>1390672175012</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Minor change to check if this is the correct branch.">
+      <created>1390672791088</created>
+      <updated>1390672791088</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -900,7 +904,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="More merging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor change to check if this is the correct branch." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -913,7 +917,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Dynamic action for tradeable bag." />
     <MESSAGE value="Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
     <MESSAGE value="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
     <MESSAGE value="Re #96. Almost everything is done with trade." />
@@ -938,6 +941,7 @@
     <MESSAGE value="Fixed encryption bug for GHG." />
     <MESSAGE value="Fixed issues in GHG regarding communication. Improved sharing of keys, so that players loosing their data would get access again as soon as they are online at the same time as one from their group. Converted the rank data into a number where each rank permission can be extracted, in order to save space and bandwidth when transferring data." />
     <MESSAGE value="More merging" />
+    <MESSAGE value="Minor change to check if this is the correct branch." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
