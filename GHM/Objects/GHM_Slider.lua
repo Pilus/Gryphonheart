@@ -55,7 +55,7 @@ function GHM_Slider(parent, main, profile)
 
   local OnValueChanged = function(self,value)
 	local val = sliderValues[math.floor(self:GetValue())];
-
+	
 	if profile.isTimeSlider then
 	  valueLabel:SetText(SecondsToTime(val));
 	elseif profile.isSlotSlider then

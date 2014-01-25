@@ -98,6 +98,44 @@ function GHM_Color2(parent, main, profile)
 		if userInput == true then
 			alphaSlider:SetValue((tonumber(self:GetText()) / 100))
 		end
+	end
+
+	local colors = miscAPI.GHI_GetColors();
+	local colorData = {};
+	
+	local function rgbPercentToHex(r,g,b)
+		r = r <= 1 and r >= 0 and r or 0
+		g = g <= 1 and g >= 0 and g or 0
+		b = b <= 1 and b >= 0 and b or 0
+		return string.format("%02x%02x%02x", r*255, g*255, b*255)
+	end
+		
+	for i, info in pairs(colors) do
+		local colorDat = {}
+		if _G[string.upper(i)] then
+			colorDat.text = _G[string.upper(i)];
+		else
+			colorDat.text = loc["COLOR_"..string.upper(i)];
+		end
+		colorDat.colorCode = "\124cFF"..rgbPercentToHex(info.r,info.g,info.b)
+		colorDat.func = function()
+			colorPick:SetColorRGB(info.r, info.g, info.b)
+		end	
+		colorDat.notCheckable = true
+		
+		table.insert(colorData, colorDat);
+	end
+	
+	local colorlistDD
+	local dropDownMenu = GHM_DropDownMenu()	
+	
+	dd:SetScript("OnClick", function(self)
+		if not(colorlistDD) then
+			colorlistDD	= CreateFrame("Frame", frame:GetName().."ColorListDD", frame, "GHM_DropDownMenuTemplate")		
+			dropDownMenu.EasyMenu(colorData, colorlistDD, self, 0 ,0, "MENU", 1);
+		else
+			dropDownMenu.ToggleDropDownMenu(nil,nil,colorlistDD,self:GetName(),0,0,colorData,nil,2)
+		end
 	end)
 
 	GHM_FramePositioning(frame,profile,parent)
@@ -138,6 +176,7 @@ function GHM_Color2(parent, main, profile)
 		colorPick:SetColorRGB(1, 1, 1)
 		alphaSlider:SetValue(100)
 	end
+
 
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
 		if not (varAttFrame) then
