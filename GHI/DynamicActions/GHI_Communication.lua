@@ -110,7 +110,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 		local prefix = dyn.GetInput("prefix");
 		local comm = GHI_Comm();
 		comm.AddRecieveFunc(prefix,function(player,arg1,arg2,arg3)
-			dyn.SetOutput("playerName",playerName);
+			dyn.SetOutput("playerName",player);
 			dyn.SetOutput("arg1",arg1);
 			dyn.SetOutput("arg2",arg2);
 			dyn.SetOutput("arg3",arg3);
@@ -259,7 +259,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 		local prefix = dyn.GetInput("prefix");
 		local comm = GHI_Comm();
 		comm.AddRecieveFunc(prefix,function(player,arg1,arg2,arg3)
-			dyn.SetOutput("playerName",playerName);
+			dyn.SetOutput("playerName",player);
 			dyn.SetOutput("arg1",arg1);
 			dyn.SetOutput("arg2",arg2);
 			dyn.SetOutput("arg3",arg3);
