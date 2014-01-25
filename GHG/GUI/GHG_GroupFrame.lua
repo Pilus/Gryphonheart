@@ -10,6 +10,7 @@
 --===================================================
 
 local groupFrame = GHG_GroupFrame;
+local UpdateTabsAndDDs;
 
 local loc = GHG_Loc();
 
@@ -102,13 +103,17 @@ local function ToggleSideButton(index)
 	local num = api.GetNumberOfGroups();
 	if index > 0 and index <= num then
 		groupFrame.selectedSideTab = index;
-
+		if GHG_AdminFrame:IsShown() then
+			GHG_AdminFrame:Hide();
+			GHG_AdminFrame:Show();
+		end
 
 		UpdateSelectedContent()
 	elseif index == num + 1 then -- New group button
 		StaticPopup_Show("GHG_CREATE_GROUP")
 	end
 	UpdateSideButtons()
+	UpdateTabsAndDDs();
 end
 
 StaticPopupDialogs["GHG_CREATE_GROUP"] = {
@@ -156,13 +161,23 @@ local EnableAllTabs = function()
 	while (_G[groupFrame:GetName().."Tab"..(i+1)]) do
 		i=i+1;
 	end
+
+	local adminIndex = GHG_AdminFrame:GetID();
 	for index=1,i do
-		_G[groupFrame:GetName().."Tab"..index].isDisabled = nil;
+		if index == adminIndex then
+			if api.CanAdministrateGroup(groupFrame.selectedSideTab) then
+				_G[groupFrame:GetName().."Tab"..index].isDisabled = nil;
+			else
+				_G[groupFrame:GetName().."Tab"..index].isDisabled = true;
+			end
+		else
+			_G[groupFrame:GetName().."Tab"..index].isDisabled = nil;
+		end
 	end
 	PanelTemplates_UpdateTabs(groupFrame);
 end
 
-local function UpdateTabsAndDDs()
+UpdateTabsAndDDs = function()
 	if api.GetNumberOfGroups() > 0 then
 		EnableAllTabs();
 		GHG_GroupRosterFrameViewDropdownButton:Enable();

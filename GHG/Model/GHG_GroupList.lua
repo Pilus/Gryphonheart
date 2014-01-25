@@ -24,10 +24,11 @@ function GHG_GroupList()
 	local savedGroupInfo = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName());
 	local event = GHI_Event();
 	local comm = GH_Comm();
+	local channelComm = GHI_ChannelComm();
 	local sharer;
 
 	class.LoadFromSaved = function()
-		sharer = GH_DataSharer("GHG","GHG_GroupData",class.GetGroup,class.SetGroup,class.GetAllGroupGuids,true);
+		sharer = GH_DataSharer("GHG","GHG_GroupData2",class.GetGroup,class.SetGroup,class.GetAllGroupGuids,true);
 
 		local data = savedGroupInfo.GetAll();
 		groups = {};
@@ -39,6 +40,7 @@ function GHG_GroupList()
 			end
 			event.TriggerEvent("GHG_GROUP_LOADED",index);
 		end
+		class.RequestGroupKeys();
 	end
 
 	class.GetGroup = function(guid)
@@ -67,16 +69,17 @@ function GHG_GroupList()
 					existingGroup.Deactivate();
 				end
 				newGroup.Activate();
+			else
+				--print("do not activate?")
 			end
 
-			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or existingGroup.IsPlayerMemberOfGuild(UnitGUID("player")) then
+			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(UnitGUID("player"))) then
 				event.TriggerEvent("GHG_GROUP_UPDATED",guid);
 			end
 		end
 	end
 
-
-	class.SetGroup = function(guid,value)
+	class.SetGroup = function(guid,value)   print("set group")
 		if value == nil and type(guid) == "table" then
 			value = guid;
 		end
@@ -84,19 +87,39 @@ function GHG_GroupList()
 			if type(value.IsClass) == "function" then
 				if value.IsClass("GHG_Group") then
 					assert(value.ReadyForModification(),"Group write access error");
-					SetGroup(value);
+					SetGroup(value); print("update",value.GetGuid())
 					sharer.DatasetChanged(value.GetGuid());
 				end
 			else
 				local group = GHG_Group(value);
-
 				SetGroup(group);
 				sharer.DatasetChanged(group.GetGuid());
 			end
 		end
 	end
 
+	class.RequestGroupKeys = function()
+		channelComm.Send("NORMAL","GHG_GroupKeysReq","")
+	end
 
+	channelComm.AddRecieveFunc("GHG_GroupKeysReq",function(sender,_)
+		if sender == UnitName("player") then
+			return
+		end
+
+		local keys = {};
+		local any = false;
+		for guid,group in pairs(groups) do
+			if group.CanRead() and group.IsPlayerMemberOfGuild(sender) then
+				keys[guid] = GHG_GroupKeys[guid];
+				any = true;
+			end
+		end
+
+		if any == true then
+			comm.Send("ALERT",sender,"GroupKeys",keys)
+		end
+	end);
 
 	class.SendKeyTo = function(guid,player)
 		if groups[guid] and GHG_GroupKeys[guid] then
@@ -104,16 +127,24 @@ function GHG_GroupList()
 		end
 	end
 
-	comm.AddRecieveFunc("GroupKey",function(sender,guid,key)
+	local ReceiveGroupKey = function(guid,key)
 		if not(GHG_GroupKeys[guid]) then
 			GHG_GroupKeys[guid] = key;
 			if groups[guid] then
 				groups[guid].InitializeCryptatedData();
 			end
 		end
+	end
+
+	comm.AddRecieveFunc("GroupKey",function(sender,guid,key)
+		ReceiveGroupKey(guid,key);
 	end);
 
-
+	comm.AddRecieveFunc("GroupKeys",function(sender,keys)
+		for guid,key in pairs(keys) do
+			ReceiveGroupKey(guid,key);
+		end
+	end);
 
 	return class;
 end

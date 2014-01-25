@@ -152,6 +152,9 @@ function GHG_Loc()
 		INVITATION_TEXT = {
 			enUS = "%2$s invites you to join the group: %1$s.",
 		},
+		PLAYER_REMOVED = {
+			enUS = "%3$s have kicked %1$s from the group: %2$s",
+		},
 
 		-- Admin
 		GROUP_NAME = {

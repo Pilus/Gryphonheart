@@ -66,7 +66,7 @@ function GHG_GroupAPI(userGuid)
 		local chatHeader, slashCmd = GenerateChatHeaderAndSlashCommand(name);
 		group.SetChatName(name);
 		group.SetChatHeader(chatHeader);
-		group.SetChatSlashCommand({slashCmd});
+		group.SetChatSlashCommand(slashCmd);
 		group.SetChatColor(RandomChatColor());
 
 		group.AddRank("Leader");
@@ -282,6 +282,7 @@ function GHG_GroupAPI(userGuid)
 		groupList.SetGroup(group);
 	end
 
+	local remove = GHG_GroupRemove();
 	class.KickMemberFromGroup = function(index,i)
 		GHCheck("KickMemberFromGroup", { "number","number" }, { index, i });
 		local group = GetGroupByIndex(index);
@@ -296,6 +297,7 @@ function GHG_GroupAPI(userGuid)
 				group.RemoveMember(member.GetGuid());
 				group.UpdateVersion();
 				groupList.SetGroup(group);
+				remove.RemovePlayerFromGroup(member.GetName(),group);
 			end
 		end
 
@@ -533,6 +535,22 @@ function GHG_GroupAPI(userGuid)
 				return
 			end
 		end
+	end
+
+	class.CanAdministrateGroup = function(index)
+		GHCheck("CanAdministrateGroup", { "number" }, { index });
+
+		local group = GetGroupByIndex(index);
+		if not(group) then
+			return;
+		end
+
+		-- check access
+		local rank = group.GetRankOfMember(userGuid);
+		if rank and rank.CanEditRanksAndPermissions() then
+			return true;
+		end
+		return false;
 	end
 	
 	return class;

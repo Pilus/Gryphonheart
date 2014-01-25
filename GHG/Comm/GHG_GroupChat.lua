@@ -5,7 +5,7 @@
 --
 --	          (description)
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 	 chatinfo (c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
@@ -41,7 +41,7 @@ function GHG_GroupChat(groupGuid,keys)
 		active = false;
 	end
 
-	channelComm.AddRecieveFunc("GHG_Chat_"..groupGuid,function(sender,senderGuid,cryptText,chatFlag)
+	channelComm.AddRecieveFunc("GHG_Chat_"..groupGuid,function(sender,senderGuid,cryptText,chatFlag) print(sender,active)
 		if active then
 			local decryptedText = crypt.Decrypt(cryptText);
 			local text = crypt.Deswap(decryptedText);

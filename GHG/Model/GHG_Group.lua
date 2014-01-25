@@ -30,11 +30,11 @@ function GHG_Group(info)
 	Encrypt = function(v)
 		if type(v) == "string" then
 			local swap = crypt.Swap(v);
-			return crypt.Encrypt(swap);
+			return crypt.Encrypt(swap,true);
 		elseif type(v) == "table" then
 			local t = {}
 			for i,vv in pairs(v) do
-				t[i] = Encrypt(vv);
+				t[i] = Encrypt(vv); if GH_DEBUG then print(i,vv,"=>",t[i]); end
 			end
 			return t;
 		else
@@ -235,7 +235,7 @@ function GHG_Group(info)
 	end
 
 	class.SetChatSlashCommand = function(_slashCommand)
-		chatSlashCmds = _slashCommand;
+		chatSlashCmds = {_slashCommand};
 	end
 
 	class.GetGroupChatInfo = function()
@@ -308,10 +308,10 @@ function GHG_Group(info)
 			t.ranks = SaveNested(ranks);
 
 			t.logEvents = SaveNested(logEvents);
-			t.chatName = chatName;
-			t.chatHeader = chatHeader;
+			t.chatName = Encrypt(chatName);
+			t.chatHeader = Encrypt(chatHeader);
 			t.chatColor = chatColor;
-			t.chatSlashCmds = chatSlashCmds;
+			t.chatSlashCmds = Encrypt(chatSlashCmds);
 		end
 
 		if OtherSerialize then
@@ -364,14 +364,13 @@ function GHG_Group(info)
 			logEvents = {event};
 		end
 
-
 		members = LoadNestedCryptated(info.members or {},GHG_GroupMember);
 		ranks = LoadNestedCryptated(info.ranks or {},GHG_GroupRank,true);
 
-		chatName = info.chatName or name;
-		chatHeader = info.chatHeader or "";
+		chatName = Decrypt(info.chatName) or name;
+		chatHeader = Decrypt(info.chatHeader) or "";
 		chatColor = info.chatColor or {r=1.0, g=1.0, b=1.0};
-		chatSlashCmds = info.chatSlashCmds or {};
+		chatSlashCmds = Decrypt(info.chatSlashCmds) or {};
 
 		chat = GHG_GroupChat(guid,keys);
 		if active and class.IsPlayerMemberOfGuild(UnitGUID("player")) then

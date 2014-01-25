@@ -79,8 +79,6 @@ function GHG_GroupInvite()
 		end
 	end);
 
-
-
 	class.DeclineGroupInvitation = function()
 		if currentInvitation then
 			local groupGuid,sender,groupName = unpack(currentInvitation);

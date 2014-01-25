@@ -147,7 +147,6 @@ function GHI_ContainerInfo(info)
 		end
 	end
 
-	
 	class.UpdateSize = function(_size)
 		for i = _size+1,size do
 			if stacks[i] then
@@ -156,9 +155,17 @@ function GHI_ContainerInfo(info)
 				stacks[GetFirstFreeSlot()] = s;
 			end
 		end
-		size = max(GetFirstFreeSlot(),_size);
+		size = max(GetFirstFreeSlot()-1,_size);
+		if size < 4 then
+			if not(size == 1) then
+				size = 4;
+			end
+		elseif mod(size,2) == 1 then
+			size = size + 1;
+		end
+
 		containerList.SaveContainer(guid)
-	end   
+	end 
 
 	class.InsertItem = function(stack)
 		if not (class.IsContainerAccessible()) or class.IsLocked() then

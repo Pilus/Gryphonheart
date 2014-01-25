@@ -14,33 +14,7 @@
             </Anchor>
         </Anchors>
         <Frames>
-            <!--
-            <ScrollFrame name="$parentContainer" inherits="HybridScrollFrameTemplate">
-                <Size x="302" y="306"/>
-                <Anchors>
-                    <Anchor point="TOPRIGHT">
-                        <Offset>
-                            <AbsDimension x="-22" y="-66"/>
-                        </Offset>
-                    </Anchor>
-                </Anchors>
-                <Frames>
-                    <Slider name="$parentScrollBar" inherits="HybridScrollBarTemplate">
-                        <Anchors>
-                            <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
-                                <Offset>
-                                    <AbsDimension x="0" y="-12"/>
-                                </Offset>
-                            </Anchor>
-                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
-                                <Offset>
-                                    <AbsDimension x="0" y="12"/>
-                                </Offset>
-                            </Anchor>
-                        </Anchors>
-                    </Slider>
-                </Frames>
-            </ScrollFrame>  -->
+
         </Frames>
         <Scripts>
             <OnLoad>

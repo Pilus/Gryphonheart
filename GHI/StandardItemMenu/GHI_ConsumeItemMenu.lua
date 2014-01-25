@@ -50,7 +50,7 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 			local guid = info.id;
 			local item = itemlist.GetItemInfo(guid or "");
 			if item then
-				local lines = item.GetTooltipLines(guid)
+				local lines = item.GetTooltipLines()
 
 				local infoLine = "";
 				for _, line in pairs(lines) do
@@ -160,7 +160,7 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 
 						miscAPI.GHI_SetSelectItemCursor(function(guid)
 							local item = itemlist.GetItemInfo(guid)
-							local lines = item.GetTooltipLines(guid)
+							local lines = item.GetTooltipLines()
 
 							local infoLine = "";
 							for _, line in pairs(lines) do

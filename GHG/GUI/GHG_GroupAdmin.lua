@@ -17,7 +17,7 @@
 --GHM_TempBG(AdminFrame);
 
 local api,OnHide,loc,rankUI,SetRank,UpdateRanksList;
-
+local active = false;
 local init = false;
 local Initialize = function()
 	init = true;
@@ -249,8 +249,13 @@ OnHide = function()
 
 	api.Admin_SetGroupName(menuFrame.GetLabel("name"));
 	api.Admin_SetGroupIcon(menuFrame.GetLabel("icon"));
+	api.Admin_SetChatName(menuFrame.GetLabel("chatName"));
+	api.Admin_SetChatHeader(menuFrame.GetLabel("chatHeader"));
+	api.Admin_SetChatColor(menuFrame.GetLabel("chatColor"));
+	api.Admin_SetChatSlashCommand(menuFrame.GetLabel("chatSlash"));
 
 	api.SaveGroupAdministration();
+	active = false;
 end
 
 local FormPermissionIcons = function(i)
@@ -402,10 +407,18 @@ UpdateRanksList = function()
 
 end
 
+
+
 GHG_UpdateAdminFrame = function()
 	if not(init) then
 		Initialize();
 	end
+
+	if (active == true) then
+		return
+	end
+
+	active = true;
 
 	local menuFrame = GHG_AdminFrame.menuFrame;
 

@@ -25,7 +25,26 @@ function GHG_PlayerDataList()
 	local sharer;
 	local msp = GHI_MarySueAPI().GetAPI();
 
+	local DecompressGuid = function(guid)
+		if string.startsWith(guid,"0x") then
+			return guid;
+		end
+		return "0x"..string.rep("0",16-string.len(guid))..guid;
+	end
+
+	local CompressGuid = function(guid)
+		if string.startsWith(guid,"0x") then
+			guid = string.sub(guid,3);
+		end
+		while (string.startsWith(guid,"0")) do
+			guid = string.sub(guid,2);
+		end
+		return guid;
+	end
+	local g = UnitGUID("player");
+
 	class.GetPlayerData = function(guid)
+		guid = DecompressGuid(guid);
 		return playerData[guid];
 	end
 
@@ -54,7 +73,7 @@ function GHG_PlayerDataList()
 	class.GetAllPlayerGuids = function()
 		local t = {};
 		for guid,_ in pairs(playerData) do
-			table.insert(t,guid);
+			table.insert(t,CompressGuid(guid));
 		end
 		return t;
 	end
@@ -100,7 +119,7 @@ function GHG_PlayerDataList()
 			playerData[index] = GHG_PlayerData(value);
 		end
 
-		sharer = GH_DataSharer("GHG","GHG_PlayerData",class.GetPlayerData,class.SetPlayerData,class.GetAllPlayerGuids,true);
+		sharer = GH_DataSharer("GHG","GHG_PlayerData2",class.GetPlayerData,class.SetPlayerData,class.GetAllPlayerGuids,true);
 
 
 

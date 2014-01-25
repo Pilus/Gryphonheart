@@ -151,6 +151,7 @@ function GHG_ChatDisplayer()
 	local defined = {};
 
 	class.DefineChatType = function(chatType,header,defaultColor,name,chatSlashCmds)
+		GHCheck("GHG_ChatDisplayer.DefineChatType", { "String", "String", "table", "String" ,"table"}, { chatType,header,defaultColor,name,chatSlashCmds })
 		local completeHeader = "["..header.."] %s: ";
 
 		_G["CHAT_MSG_"..chatType] = "Where is this?"

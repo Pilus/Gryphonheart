@@ -29,6 +29,7 @@ Model\GHG_LogEvent.lua
 Comm\GHG_GroupChat.lua
 Comm\GHG_GroupInvite.lua
 Comm\GHG_GroupToasts.lua
+Comm\GHG_GroupRemove.lua
 
 API\GHG_GroupAPI.lua
 API\GHG_AdminAPI.lua
