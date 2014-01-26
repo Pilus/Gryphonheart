@@ -1362,7 +1362,7 @@ function GHI_SimpleItemMenu()
 	itemTooltip = CreateFrame("GameTooltip", "GHI_SimpleItemMenuItemTooltip" .. menuIndex, menuFrame, "GHI_StandardItemMenuItemTooltip");
 	_G["GHI_SimpleItemMenuItemTooltip" .. menuIndex .. "TextLabel"]:SetText(loc.PREVIEW)
 
-	itemTooltip:SetPoint("TOPRIGHT", 10, -24)
+	itemTooltip:SetPoint("TOPRIGHT", 10, -20)
 
 	menuFrame.OnPageChange = function(page)
 		UpdateTooltip();

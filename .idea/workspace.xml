@@ -2,23 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
-    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Fixed saving of chat name, header and slash commands">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/API/GHG_AdminAPI.lua" afterPath="$PROJECT_DIR$/GHG/API/GHG_AdminAPI.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_ChatEvents.lua" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_ChatEvents.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.lua" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.xml" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin_RankMenu.lua" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin_RankMenu.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Comm/GHG_GroupChat.lua" afterPath="$PROJECT_DIR$/GHG/Comm/GHG_GroupChat.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua" afterPath="$PROJECT_DIR$/GHG/GUI/GHG_GroupFrame.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" afterPath="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_CheckBox.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_CheckBox.lua" />
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Adjusted the sliders in the simple item menu into using the newer slider. Modified the slider so that the slider graphics is centered vertically.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/SimpleItemMenu/GHI_SimpleItemMenu.lua" afterPath="$PROJECT_DIR$/GHI/SimpleItemMenu/GHI_SimpleItemMenu.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
-    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386625690087" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390756574771" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
     <file path="/ghi.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383389486973" ignored="false" />
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
@@ -30,7 +21,7 @@
     <file path="/GHI_ActionAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447100441" ignored="false" />
     <file path="/GHM_DropDown.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376147460379" ignored="false" />
     <file path="/GHI_BuffMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338643231" ignored="false" />
-    <file path="/GHM_Slider.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378633463853" ignored="false" />
+    <file path="/GHM_Slider.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390756083274" ignored="false" />
     <file path="/GHM_Color2.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376512274108" ignored="false" />
     <file path="/GHM_MultiPageEditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377717826108" ignored="false" />
     <file path="/GHI_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930411277" ignored="false" />
@@ -96,6 +87,7 @@
     <file path="/GHG_GroupAdmin_RankMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385587459821" ignored="false" />
     <file path="/GHG_ChatEvents.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385928062214" ignored="false" />
     <file path="/GHG_GroupChat.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386013882694" ignored="false" />
+    <file path="/GHI_SimpleItemMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390755968945" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,38 +153,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GHG_ChatEvents.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_ChatEvents.lua">
+      <file leaf-file-name="GHM_Slider.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Slider.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="22" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.0">
+            <state line="152" column="17" selection-start="4011" selection-end="4011" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHG_GroupChat.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHG/Comm/GHG_GroupChat.lua">
+      <file leaf-file-name="GHM_Slider.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Slider.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="5" selection-start="140" selection-end="148" vertical-scroll-proportion="0.0">
+            <state line="5" column="39" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHG_Group.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_Group.lua">
+      <file leaf-file-name="GHI_SimpleItemMenu.lua" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHI/SimpleItemMenu/GHI_SimpleItemMenu.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="375" column="40" selection-start="7711" selection-end="7711" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GHG_GroupList.lua" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="40" selection-start="1791" selection-end="1791" vertical-scroll-proportion="0.03068592">
-              <folding />
+            <state line="1364" column="44" selection-start="29418" selection-end="29418" vertical-scroll-proportion="0.516129">
+              <folding>
+                <element signature="e#5688#7159#1" expanded="false" />
+                <element signature="e#7189#7740#1" expanded="false" />
+                <element signature="e#7744#8042#0" expanded="false" />
+                <element signature="e#11241#11976#1" expanded="false" />
+                <element signature="e#11999#14731#1" expanded="false" />
+                <element signature="e#14753#15659#1" expanded="false" />
+                <element signature="e#15683#16906#1" expanded="false" />
+                <element signature="e#16930#19127#1" expanded="false" />
+                <element signature="e#19153#20281#1" expanded="false" />
+                <element signature="e#20304#23114#1" expanded="false" />
+                <element signature="e#23138#23862#1" expanded="false" />
+                <element signature="e#23890#25169#1" expanded="false" />
+                <element signature="e#25317#26098#1" expanded="false" />
+                <element signature="e#26129#27653#1" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -220,9 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHG/Comm/GHG_GroupInvite.lua" />
-        <option value="$PROJECT_DIR$/GHG/Modules/GH_Comm.lua" />
-        <option value="$PROJECT_DIR$/GHG/Modules/GH_DataSharer.lua" />
         <option value="$PROJECT_DIR$/GHG/Model/GHG_PlayerDataList.lua" />
         <option value="$PROJECT_DIR$/GHG/Model/GHG_GroupRank.lua" />
         <option value="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.xml" />
@@ -236,6 +231,9 @@
         <option value="$PROJECT_DIR$/GHG/Comm/GHG_GroupChat.lua" />
         <option value="$PROJECT_DIR$/GHG/Model/GHG_Group.lua" />
         <option value="$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_Slider.xml" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_Slider.lua" />
+        <option value="$PROJECT_DIR$/GHI/SimpleItemMenu/GHI_SimpleItemMenu.lua" />
       </list>
     </option>
   </component>
@@ -334,7 +332,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
+              <option name="myItemId" value="GHI" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -348,101 +346,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
+              <option name="myItemId" value="GHI" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Localization" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GUI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Comm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
+              <option name="myItemId" value="SimpleItemMenu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -455,12 +363,12 @@
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="151" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="150" />
     <property name="project.structure.proportion" value="0.0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="150" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="151" />
@@ -505,19 +413,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -543,6 +438,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -788,7 +696,11 @@
       <created>1385578599059</created>
       <updated>1385578599059</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Adjusted the sliders in the simple item menu into using the newer slider. Modified the slider so that the slider graphics is centered vertically.">
+      <created>1390756578814</created>
+      <updated>1390756578814</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -823,6 +735,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3535188" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.74055827" order="5" side_tool="false" content_ui="tabs" />
@@ -833,7 +746,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34348562" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -880,7 +792,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issues in GHG regarding communication. Improved sharing of keys, so that players loosing their data would get access again as soon as they are online at the same time as one from their group. Converted the rank data into a number where each rank permission can be extracted, in order to save space and bandwidth when transferring data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted the sliders in the simple item menu into using the newer slider. Modified the slider so that the slider graphics is centered vertically." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -894,7 +806,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Fixed an issue with the slider that blocked item creation." />
     <MESSAGE value="Dynamic action for tradeable bag." />
     <MESSAGE value="Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
     <MESSAGE value="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
@@ -919,36 +830,18 @@
     <MESSAGE value="Progress on GHG event log." />
     <MESSAGE value="Fixed encryption bug for GHG." />
     <MESSAGE value="Fixed issues in GHG regarding communication. Improved sharing of keys, so that players loosing their data would get access again as soon as they are online at the same time as one from their group. Converted the rank data into a number where each rank permission can be extracted, in order to save space and bandwidth when transferring data." />
+    <MESSAGE value="Adjusted the sliders in the simple item menu into using the newer slider. Modified the slider so that the slider graphics is centered vertically." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHG/Modules/GH_Comm.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_PlayerDataList.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="53" selection-start="2949" selection-end="2949" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/Modules/GH_DataSharer.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="60" selection-start="1760" selection-end="1770" vertical-scroll-proportion="14.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_GroupRank.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="90" column="33" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.0">
@@ -1014,7 +907,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GHG/GUI/GHG_ChatEvents.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="22" selection-start="1899" selection-end="1899" vertical-scroll-proportion="0.0">
+        <state line="63" column="22" selection-start="1830" selection-end="1830" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1028,15 +921,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_Group.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="375" column="40" selection-start="7711" selection-end="7711" vertical-scroll-proportion="0.0">
+        <state line="375" column="40" selection-start="7807" selection-end="7807" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHG/Model/GHG_GroupList.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="40" selection-start="1791" selection-end="1791" vertical-scroll-proportion="0.03068592">
+        <state line="72" column="40" selection-start="1791" selection-end="1791" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Slider.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="39" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Slider.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="152" column="17" selection-start="4011" selection-end="4011" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/SimpleItemMenu/GHI_SimpleItemMenu.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1364" column="44" selection-start="29418" selection-end="29418" vertical-scroll-proportion="0.516129">
+          <folding>
+            <element signature="e#5688#7159#1" expanded="false" />
+            <element signature="e#7189#7740#1" expanded="false" />
+            <element signature="e#7744#8042#0" expanded="false" />
+            <element signature="e#11241#11976#1" expanded="false" />
+            <element signature="e#11999#14731#1" expanded="false" />
+            <element signature="e#14753#15659#1" expanded="false" />
+            <element signature="e#15683#16906#1" expanded="false" />
+            <element signature="e#16930#19127#1" expanded="false" />
+            <element signature="e#19153#20281#1" expanded="false" />
+            <element signature="e#20304#23114#1" expanded="false" />
+            <element signature="e#23138#23862#1" expanded="false" />
+            <element signature="e#23890#25169#1" expanded="false" />
+            <element signature="e#25317#26098#1" expanded="false" />
+            <element signature="e#26129#27653#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
