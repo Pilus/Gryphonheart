@@ -1294,6 +1294,7 @@
 				local f = self;
 				f.Force = function(data)
 					if type(data) == "number" and f.SliderValues then
+					
 						for i=1,#(f.SliderValues) do
 							if f.SliderValues[i] == data then
 								f:SetValue(i);
@@ -1311,7 +1312,7 @@
 					self.SliderValues = {1,2,3}
 					self:SetMinMaxValues(1,3);
 				end
-				self.val = self.SliderValues[self:GetValue()];
+				self.val = self.SliderValues[math.floor(self:GetValue()+0.5)];
 				_G[self:GetName().."Label2"]:SetText(self.val);
 				if not(self.main == nil) then
 					self.main.SetLabel(self.label,self.val);
