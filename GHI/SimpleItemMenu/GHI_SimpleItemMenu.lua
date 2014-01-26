@@ -364,13 +364,16 @@ function GHI_SimpleItemMenu()
 			},
 			{
 				{
-					type = "StackSlider",
+					type = "Slider",
 					text = loc.STACK_SIZE,
 					tooltip = loc.STACK_SIZE_TT;
 					align = "l",
 					label = "stackSize",
-					OnValueChanged = function(size)
-						item.SetStackSize(size);
+					isStackSlider = true,
+					OnValueChanged = function(_, size)
+						if item then
+							item.SetStackSize(size);
+						end
 					end,
 				},
 				{
@@ -383,12 +386,15 @@ function GHI_SimpleItemMenu()
 					end
 				},
 				{
-					type = "TimeSlider",
+					type = "Slider",
 					text = loc.ITEM_CD,
 					align = "r",
 					label = "cooldown",
-					OnValueChanged = function(cd)
-						item.SetCooldown(cd);
+					isTimeSlider = true,
+					OnValueChanged = function(_, cd)
+						if item then
+							item.SetCooldown(cd);
+						end
 					end,
 				},
 			},
