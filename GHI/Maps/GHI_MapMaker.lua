@@ -1,37 +1,113 @@
 
 
 local zoneData = {
-	[2] = {
-		[5] = {
-			scaleX = 772.866,
-			scaleY = 514.850,
-			offsetX = 9115.787,
-			offsetY = 5332.187,
+	[0] = {
+		[0] = { -- World (Azeroth)
+			scaleX = 14545.759,
+			scaleY = 9697.186,
+			offsetX = -2822.734,
+			offsetY = -409.958,
 		},
-		[8] = {
-			scaleX = 661.959,
-			scaleY = 441.297,
-			offsetX = 8797.567,
+	},
+	[2] = {
+
+		--[[ Lower Eastern Kingdom
+		[3] = { -- Badlands
+			scaleX = 772.852,
+			scaleY = 501.613,
+			offsetX = 9468.255,
+			offsetY = 5054.806,
+		},
+		[4] = { -- Blasted Lands
+			scaleX = 897.999,
+			scaleY = 598.666,
+			offsetX = 9294.582,
+			offsetY = 6214.340,
+		},
+		[5] = { -- Burning Steppes
+			scaleX = 772.852,
+			scaleY = 514.895,
+			offsetX = 9115.799,
+			offsetY = 5332.174,
+		},
+		[7] = { -- Deadwind Pass
+			scaleX = 612.966,
+			scaleY = 408.642,
+			offsetX = 9206.213,
+			offsetY = 6038.623,
+		},
+		[9] = { -- Dun Morogh
+			scaleX = 1200.907,
+			scaleY = 800.436,
+			offsetX = 8477.802,
+			offsetY = 4585.855,
+		},
+		[10] = { -- Duskwood
+			scaleX = 662.006,
+			scaleY = 441.336,
+			offsetX = 8797.566,
 			offsetY = 6001.845,
 		},
-		[10] = {
-			scaleX = 851.040,
-			scaleY = 567.520,
-			offsetX = 8625.378,
-			offsetY = 5566.111,
+		[12] = { -- Elwynn Forest
+			scaleX = 851.007,
+			scaleY = 567.508,
+			offsetX = 8625.424,
+			offsetY = 5566.124,
 		},
-		[19] = {
-			scaleX = 629.827,
-			scaleY = 419.921,
-			offsetX = 9364.542,
-			offsetY = 5707.064,
+		[19] = { --Loch Modan
+			scaleX = 676.309,
+			scaleY = 451.044,
+			offsetX = 9490.732,
+			offsetY = 4719.716,
 		},
-		[38] = {
-			scaleX = 858.108,
-			scaleY = 572.102,
-			offsetX = 8262.245,
-			offsetY = 5924.200,
-		},  --]]
+		[21] = { -- Northern Stranglethorn
+			scaleX = 1005.270,
+			scaleY = 670.180,
+			offsetX = 8574.343,
+			offsetY = 6320.587,
+		},
+		[23] = { -- Redridge Mountains
+			scaleX = 629.824,
+			scaleY = 419.884,
+			offsetX = 9364.562,
+			offsetY = 5707.107,
+		},
+		[26] = { -- Searing Gorge
+			scaleX = 547.076,
+			scaleY = 364.716,
+			offsetX = 9081.064,
+			offsetY = 5115.082,
+		},
+		[33] = { -- Swamp of Sorrows
+			scaleX = 615.010,
+			scaleY = 410.178,
+			offsetX = 9512.187,
+			offsetY = 5957.404,
+		},
+		[34] = { -- Northern Stranglethorn
+			scaleX = 967.472,
+			scaleY = 645.152,
+			offsetX = 8484.951,
+			offsetY = 6688.369,
+		},
+		[39] = { -- Twilight Highlands
+			scaleX = 1292.342,
+			scaleY = 861.732,
+			offsetX = 9599.534,
+			offsetY = 4148.123,
+		},
+		[43] = { -- Westfall
+			scaleX = 858.156,
+			scaleY = 572.104,
+			offsetX = 8262.241,
+			offsetY = 5924.201,
+		},
+		[44] = { -- Wetlands
+			scaleX = 1013.951,
+			scaleY = 675.798,
+			offsetX = 9097.411,
+			offsetY = 4146.080,
+		},]]
 	},
 }
 
@@ -45,6 +121,7 @@ local GenerateTexture = function(frame,width,height,x,y,texCoord,path)
 	texture:Show();
 end
 
+local MapData;
 local FromZone = function()
 	local currentZoneData = zoneData[GetCurrentMapContinent()][GetCurrentMapZone()] or {};
 
@@ -101,8 +178,7 @@ local FromZone = function()
 					t.x = 	(currentZoneData.offsetX + (  	t.x  * currentZoneData.scaleX/1000))/(0.10*scale);
 					t.y = -	(currentZoneData.offsetY + (  -	t.y  * currentZoneData.scaleY/(1000/1.5)))/(0.10*scale);       --]]
 
-					GHI_MapData = GHI_MapData or {};
-					table.insert(GHI_MapData,t);
+					table.insert(MapData,t);
 					--print(t.width,t.height,t.x,t.y);
 					--GenerateTexture(mapFrame,t.width,t.height,t.x,t.y,t.texCoord,t.path)
 				end
@@ -112,10 +188,10 @@ local FromZone = function()
 end
 
 local FromAllZones = function()
-	GHI_MapData = {};
+	MapData = {};
 
-    for i=1,2 do
-		for j=1,50 do
+	for i=0,2 do
+		for j=0,50 do
 			if zoneData[i] and zoneData[i][j] then
 				print(i,j);
 				SetMapZoom(i,j);
@@ -180,7 +256,8 @@ function GHI_MapTest()
 	t:SetAllPoints(mapFrame);--]]
 
 	FromAllZones();
-	for i,t in pairs(GHI_MapData) do
+	GHI_MiscData.Map = MapData;
+	for i,t in pairs(MapData) do
 		GenerateTexture(mapFrame,t.width,t.height,t.x,t.y,t.texCoord,t.path);
 	end
 
@@ -230,8 +307,9 @@ local worldX1,worldY1,zoneX1,zoneY1,zone1;
 
 local First = function()
 	local pos = GHI_Position();
-	worldX1,worldY1 = pos.GetCoor("player",3);
 	zoneX1,zoneY1 = GetCurrentZoneCoor();
+	worldX1,worldY1 = pos.GetCoor("player",3);
+
 
 	zone1 = GetRealZoneText();
 	local z = GetCurrentMapZone();
@@ -240,21 +318,25 @@ end
 
 function GHI_Map_ZoneCalc()
 	local zone = GetRealZoneText();
-	if not(zone1 == zone) then
+	if zone1 == nil then
 		First();
 		return
 	end
+	if not(zone1 == zone) then
+		print("warning, other zone than first measure point")
+	end
 
+	local zoneX2,zoneY2 = GetCurrentZoneCoor();
 	local pos = GHI_Position();
 	local worldX2,worldY2 = pos.GetCoor("player",3);
-	local zoneX2,zoneY2 = GetCurrentZoneCoor();
+
 
 	local scaleX = (worldX1-worldX2)/(zoneX1-zoneX2);
-   	local offX = worldX2-zoneX2*(worldX1-worldX2)/(zoneX1-zoneX2);
-	print("Scale X:",scaleX,"Offset X:",offX,"m.");
+	local offX = worldX2-zoneX2*(worldX1-worldX2)/(zoneX1-zoneX2);
+	print(string.format("Scale X: %.3f Offset X: %.3f",scaleX,offX));
 	local scaleY = (worldY1-worldY2)/(zoneY1-zoneY2);
-   	local offY = worldY2-zoneY2*(worldY1-worldY2)/(zoneY1-zoneY2);
-	print("Scale Y:",scaleY,"Offset Y:",offY,"m.");
+	local offY = worldY2-zoneY2*(worldY1-worldY2)/(zoneY1-zoneY2);
+	print(string.format("Scale Y: %.3f Offset Y: %.3f",scaleY,offY));
 
 
 	worldX1,worldY1,zoneX1,zoneY1,zone1 = nil,nil,nil,nil,nil;

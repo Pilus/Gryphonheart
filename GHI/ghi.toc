@@ -79,7 +79,10 @@ ActionExecutors\GHI_AreaSound.lua
 ActionExecutors\GHI_AreaBuff.lua
 ActionExecutors\GHI_ActionAPI.lua
 
-Map\GHI_Map.lua
+Maps\GHI_MapData.lua
+Maps\GHI_MapDisplayer.lua
+Maps\GHI_MapMaker.lua
+Maps\GHI_MapMenu.lua
 
 GHI_Main.lua
 
