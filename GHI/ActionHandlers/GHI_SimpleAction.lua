@@ -1,7 +1,7 @@
 --===================================================
 --
 --				GHI_SimpleAction
---  			GHI_SimpleAction.lua
+--				GHI_SimpleAction.lua
 --
 --	Data for a simple action of any type. This reflects
 --	most actions in GHI v.1.x.
@@ -129,7 +129,7 @@ local GetActionScript = function(info,oldVersion)
 		elseif dynamicTypeName == "consume_item" then
 			local amount = info.amount or 1
 			local guid = info.id or ""
-               local delay = info.delay or 0;
+			local delay = info.delay or 0;
 
 			local script = ScriptFormat("GHI_ConsumeItem(\"%s\",%s)",  guid or "nil",amount);
 			return script,delay;
@@ -270,14 +270,8 @@ local GetActionScript = function(info,oldVersion)
 		else
 			return ScriptFormat("GHI_PlaySound(\"%s\",%s)", path, soundDelay);
 		end
-		--return gsub(script, "\\", "\\\\"), 0;
-    elseif actionType == "requirement" then --legacy script handler
+	elseif actionType == "requirement" then --legacy script handler
 
-               --print(info.req_type)
-               --print(info.req_alias)
-              -- print(info.req_detail)
-              --info.req
-               --IsRquirmentFullfilled(info.req_type,info.req_alias,info.req_detail,info.req)
 		return ScriptFormat("return IsRequirementFullfilled(%q,%q,GHI_DoScript)",info.req_type,info.req_detail);
 	else
 		return info.script or "GHI_Message(\"Item script not found. " .. (actionType or "nil") .. "\")", info.delay or 0; -- return script,delay,requiredItems
@@ -521,88 +515,90 @@ local conversionMatrix = {
 		};
 	end,
 	book = function(info)
-	  local title = info.title or ""
-	  local material = info.material    or "Parchment"
-	  local extraMat
-	  if info.extraMat then
-		material = info.extraMat
-	  end
-	  local font = info.font or "Frizqt"
-	  local n = info.n
-	  local h1 = info.h1
-	  local h2 = info.h2
-	  local pages = {}
-	  for i = 1, #(info) do
-		if type(info[i]) == "table" then
-		  local page = "";
-		  for j = 1, 10 do
-			if info[i]["text" .. j] then
-			  page = page .. info[i]["text" .. j];
-			end
-		  end
-		  table.insert(pages,page)
+		local title = info.title or ""
+		local material = info.material or "Parchment"
+		local extraMat
+		if info.extraMat then
+			material = info.extraMat
 		end
-	  end
-	  return {
-		  {
+
+		local font = info.font or "Frizqt"
+		local n = info.n
+		local h1 = info.h1
+		local h2 = info.h2
+		local pages = {}
+		for i = 1, #(info) do
+			if type(info[i]) == "table" then
+				local page = "";
+				for j = 1, 10 do
+					if info[i]["text" .. j] then
+						page = page .. info[i]["text" .. j];
+					end
+				end
+				table.insert(pages,page)
+			end
+		end
+
+		return {
+		{
 			actionGuid = "book_01",
 			guid = guidMaker.MakeGUID(),
 			inputs = {
-			  bookTitle = {
-				type = "static",
-				info = title,
-			  },
-			  bookMaterial = {
-				type = "static",
-				info = material    
-			  },
-			  bookFont = {
-				type = "static",
-				info = font,
-			  },
-			  h1Font = {
-				type = "static",
-				info = font,
-			  },
-			  h2Font = {
-				type = "static",
-				info = font,
-			  },
-			  nSize = {
-				type = "static",
-				info = n,
-			  },
-			  h1Size = {
-				type = "static",
-				info = h1,
-			  },
-			  h2Size = {
-				type = "static",
-				info = h2,
-			  },
-			  bookText = {
-				type = "static",
-				info = pages,
-			  },
-			  cover = {
-				type = "static",
-				info = "None",
-			  },
-			  coverLogo = {
-				type = "static",
-				info = "Interface\\Icons\\INV_MISC_FILM_01",
-			  },
-			  coverColor = {
-				type = "static",
-				info = {1,1,1},
-			  },
-			  logoColor = {
-				type = "static",
-				info = {1,1,1},
-			  },
+				bookTitle = {
+					type = "static",
+					info = title,
+				},
+				bookMaterial = {
+					type = "static",
+					info = material
+				},
+				bookFont = {
+					type = "static",
+					info = font,
+				},
+				h1Font = {
+					type = "static",
+					info = font,
+				},
+				h2Font = {
+					type = "static",
+					info = font,
+				},
+				nSize = {
+					type = "static",
+					info = n,
+				},
+				h1Size = {
+					type = "static",
+					info = h1,
+				},
+				h2Size = {
+					type = "static",
+					info = h2,
+				},
+				bookText = {
+					type = "static",
+					info = pages,
+				},
+				cover = {
+					type = "static",
+					info = "None",
+				},
+				coverLogo = {
+					type = "static",
+					info = "Interface\\Icons\\INV_MISC_FILM_01",
+				},
+				coverColor = {
+					type = "static",
+					info = {1,1,1},
+				},
+				logoColor = {
+					type = "static",
+					info = {1,1,1},
+				},
 			},
-		  }
-	  }        
+		}
+	}
 	end,
 	buff = function(info)
 		local buffName = info.buffName or "Unknown";
@@ -802,7 +798,7 @@ local conversionMatrix = {
 	end,
 	random_expression = function(info)
 		local t = {
-		    {
+			{
 				actionGuid = "rand_02",
 				guid = guidMaker.MakeGUID(),
 				inputs = {
@@ -944,7 +940,7 @@ local conversionMatrix = {
 };
 
 local ConvertActionToAdvanced = function(info)
- 	local actionType = info.Type;
+	local actionType = info.Type;
 	if (actionType == "script" or info.dynamic_rc_type) and info.dynamic_rc == true then
 		actionType = info.dynamic_rc_type;
 	end
@@ -976,8 +972,8 @@ function GHI_SimpleAction(info)
 
 	local Initialize = function()
 		script = "";
-        guid = info.guid or GHI_GUID().MakeGUID();
-        info.guid = guid;
+		guid = info.guid or GHI_GUID().MakeGUID();
+		info.guid = guid;
 		icon = info.icon;
 		actionName = info.type_name; -- localized action name
 		details = info.details;
@@ -990,9 +986,9 @@ function GHI_SimpleAction(info)
 			local producedItem = GHI_ItemInfo(itemTable);
 			itemInfoList.UpdateItem(producedItem)
 			dependingItems = { producedItem.GetGUID() };
+		else
+			dependingItems = {}
 		end
-
-		dependingItems = { info.guid or info.id }
 	end
 
 	class.Serialize = function(stype)
@@ -1067,11 +1063,11 @@ function GHI_SimpleAction(info)
 
 	class.GetInfo = function()
 		return info;
-    end
+	end
 
-    class.GetGuid = function()
-        return guid;
-    end
+	class.GetGuid = function()
+		return guid;
+	end
 
 	class.UpdateInfo = function(_info)
 		info = _info;
