@@ -13,11 +13,11 @@
                             <AbsDimension x="0" y="-14"></AbsDimension>
                         </Offset>
                     </Anchor>
-					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
-						<Offset>
-							<AbsDimension x="0" y="14"></AbsDimension>
-						</Offset>
-					</Anchor>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="14"></AbsDimension>
+                        </Offset>
+                    </Anchor>
                 </Anchors>
                 <Layers>
                     <Layer>

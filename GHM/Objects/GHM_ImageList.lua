@@ -129,6 +129,25 @@ function GHM_ImageList(parent, main, profile)
 				end
 			end)
 
+			imgF:SetScript("OnEnter",function(self)
+				imgF.inside = true;
+			end);
+
+			imgF:SetScript("OnLeave",function(self)
+				imgF.inside = false;
+			end);
+
+			imgF:SetScript("OnUpdate",function(self)
+				if imgF.inside and IsShiftKeyDown() then
+					GameTooltip:ClearLines();
+					GameTooltip:SetOwner(imgF, "ANCHOR_BOTTOMLEFT", 0, 0);
+					GameTooltip:SetText("Path: "..p, 1, 0.8196079, 0);
+					GameTooltip:Show();
+				elseif GameTooltip:GetOwner() == imgF then
+					GameTooltip:Hide();
+				end
+			end);
+
 			local icon = _G[imgF:GetName().."IconTexture"];
 			local altText = _G[imgF:GetName().."AltText"];
 			local unavailable

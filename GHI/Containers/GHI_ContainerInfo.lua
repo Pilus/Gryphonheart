@@ -148,8 +148,6 @@ function GHI_ContainerInfo(info)
 	end
 
 	class.UpdateSize = function(_size)
-
-
 		for i = _size+1,size do
 			if stacks[i] then
 				local s = stacks[i];

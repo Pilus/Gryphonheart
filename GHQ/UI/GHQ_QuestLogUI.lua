@@ -40,8 +40,23 @@ local function GHQ_CreateQuestListFrame()
 					local quest = ghqQuestList.GetQuestInfo(t.guid)
 					
 					local _,_,title = quest.GetQuestInfo()
-					local logEntry, logMat, logFont, titleFont = quest.GetLogInfo()					
-				  end
+					local logEntry, logMat, logFont, titleFont = quest.GetLogInfo()	
+					questDisplayFrame.ForceLabel("questTitle",title)
+					questDisplayFrame.ForceLabel("questText",logEntry)
+					
+					local numObjectives = quest.GetNumObjectives()
+					--ojectives are sorted by number
+					--will need to change the infoAPI to do this better.and expand info saved
+					local objString ="";
+					--local objt =  quest.GetObjective(1)
+						--print(numObjectives)
+					--for i=0,numObjectives do
+					--	local objt =  quest.GetObjective(i)
+					--	print(objt.Details)
+					--	objString = objString .. objt.Progress.." "..objt.Details.."/n"
+					--end
+					
+				  end,
 				},
 			}
 		},
@@ -70,7 +85,7 @@ local function GHQ_CreateQuestDisplayFrame()
 			{
 				{
 					type = "Text",
-					text = "Quest Title",
+					text = "",--Quest Title",
 					align = "l",
 					label = "questTitle",
 					fontSize = 18,
@@ -84,7 +99,7 @@ local function GHQ_CreateQuestDisplayFrame()
 			{
 				{
 					type = "Text",
-					text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam enim sapien, cursus vel vestibulum sit amet, feugiat a est. Vivamus rutrum tincidunt ligula, et interdum leo congue condimentum.\n\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia erat ut enim iaculis elementum. In hac habitasse platea dictumst.\n\nCurabitur lacinia enim ut magna viverra id gravida risus fringilla. Vivamus faucibus dictum tellus, nec faucibus augue scelerisque eu.",
+					text = "",--"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam enim sapien, cursus vel vestibulum sit amet, feugiat a est. Vivamus rutrum tincidunt ligula, et interdum leo congue condimentum.\n\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia erat ut enim iaculis elementum. In hac habitasse platea dictumst.\n\nCurabitur lacinia enim ut magna viverra id gravida risus fringilla. Vivamus faucibus dictum tellus, nec faucibus augue scelerisque eu.",
 					align = "l",
 					label = "questText",
 					color = "black",
@@ -109,7 +124,7 @@ local function GHQ_CreateQuestDisplayFrame()
 			{
 				{
 					type = "Text",
-					text = " - 1/0  Lorem ipsum dolor sit amet.\n - 1/0  Nullam enim sapien, cursus vel.    ",
+					text = "",--" - 1/0  Lorem ipsum dolor sit amet.\n - 1/0  Nullam enim sapien, cursus vel.    ",
 					align = "l",
 					label = "objectives",
 					color = "black",

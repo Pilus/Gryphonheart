@@ -194,6 +194,7 @@ function GHQ_QuestInfo(info)
 		obj["Type"] = objType
 		obj["Details"] = details
 		obj["Progress"] = 0
+		--TODO add total needed to save data
 		obj["Complete"] = false
 		if type(number) == "number" then
 			table.insert(objectives, number,obj)

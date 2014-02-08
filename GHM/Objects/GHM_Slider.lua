@@ -64,6 +64,7 @@ function GHM_Slider(parent, main, profile)
 			valueLabel:SetText(val);
 		end
 
+
 		if not(main) then
 			main.SetLabel(self.label,val);
 		end
@@ -91,7 +92,6 @@ function GHM_Slider(parent, main, profile)
 		if (inputType == "attribute" or inputType == "variable") and varAttFrame then
 			slider:SetValue(1);
 			varAttFrame:SetValue(inputType, inputValue);
-
 		else -- static
 			varAttFrame:Clear();
 			slider:SetValue(inputValue);
@@ -99,7 +99,7 @@ function GHM_Slider(parent, main, profile)
 	end
 
 	frame.Force = function(self, ...)
-	if self ~= frame then return frame.Force(frame, self, ...); end
+		if self ~= frame then return frame.Force(frame, self, ...); end
 		local numInput = #({ ... });
 
 		if numInput == 1 then
@@ -113,6 +113,7 @@ function GHM_Slider(parent, main, profile)
 		slider:SetValue(1);
 		OnValueChanged(slider,1)
 	end
+
 
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
 	if not (varAttFrame) then
@@ -133,9 +134,9 @@ function GHM_Slider(parent, main, profile)
 	end
 
 	frame.Disable = function()
-		slider:Disable();
-		valueLabel:SetTextColor(0.5,0.5,0.5);
-		labelFrame:SetTextColor(0.5,0.5,0.5);
+	slider:Disable();
+	valueLabel:SetTextColor(0.5,0.5,0.5);
+	labelFrame:SetTextColor(0.5,0.5,0.5);
 	end
 
 	local originalColor = {valueLabel:GetTextColor()};
@@ -151,6 +152,6 @@ function GHM_Slider(parent, main, profile)
 
 	frame.Clear();
 	frame:Show();
-
+	--GHM_TempBG(frame)
 	return frame;
 end

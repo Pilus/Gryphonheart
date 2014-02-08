@@ -150,6 +150,5 @@ function GHG_GroupList()
 end
 
 GHI_Event("VARIABLES_LOADED",function()
-
 	GHG_GroupList().LoadFromSaved()
 end)
