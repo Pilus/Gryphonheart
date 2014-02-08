@@ -1,7 +1,7 @@
 
 
 
-local worldScale = 15;
+local worldScale = 15.2330122;
 GHI_MapData = {
 	["AzerothBackground"] = {
 		{
@@ -12,13 +12,121 @@ GHI_MapData = {
 				1, -- [4]
 			},
 			["x"] = -2822.734,
-			["height"] = 256*worldScale/1.5,
+			["height"] = 256*worldScale,
 			["path"] = "Interface\\WorldMap\\World\\World1",
 			["y"] = -(-409.958)/1.5,
 			["width"] = 256*worldScale,
 		},
 	},
-	["LowerEasternKingdoms"] = {
+	-- Darkshore
+	["Darkshore"] = {
+		{
+			["texCoord"] = {
+				0, -- [1]
+				0.78125, -- [2]
+				0, -- [3]
+				1, -- [4]
+			},
+			["x"] = -224.3459600000001,
+			["height"] = 404.31936,
+			["path"] = "Interface\\WorldMap\\Darkshore\\RuinsofMathystra1",
+			["y"] = -2466.96343,
+			["width"] = 315.824,
+		}, -- [1]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				0.78125, -- [2]
+				0, -- [3]
+				0.4375, -- [4]
+			},
+			["x"] = -224.3459600000001,
+			["height"] = 11.0556075,
+			["path"] = "Interface\\WorldMap\\Darkshore\\RuinsofMathystra2",
+			["y"] = -2871.28279,
+			["width"] = 315.824,
+		}, -- [2]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				1, -- [2]
+				0, -- [3]
+				1, -- [4]
+			},
+			["x"] = -423.3150800000001,
+			["height"] = 404.31936,
+			["path"] = "Interface\\WorldMap\\Darkshore\\Lordanel1",
+			["y"] = -2508.027115,
+			["width"] = 404.25472,
+		}, -- [3]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				0.65625, -- [2]
+				0, -- [3]
+				1, -- [4]
+			},
+			["x"] = -19.06036000000006,
+			["height"] = 404.31936,
+			["path"] = "Interface\\WorldMap\\Darkshore\\Lordanel2",
+			["y"] = -2508.027115,
+			["width"] = 33.16152,
+		}, -- [4]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				1, -- [2]
+				0, -- [3]
+				0.78125, -- [4]
+			},
+			["x"] = -423.3150800000001,
+			["height"] = 39.4843125,
+			["path"] = "Interface\\WorldMap\\Darkshore\\Lordanel3",
+			["y"] = -2912.346475,
+			["width"] = 404.25472,
+		}, -- [5]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				0.65625, -- [2]
+				0, -- [3]
+				0.78125, -- [4]
+			},
+			["x"] = -19.06036000000006,
+			["height"] = 39.4843125,
+			["path"] = "Interface\\WorldMap\\Darkshore\\Lordanel4",
+			["y"] = -2912.346475,
+			["width"] = 33.16152,
+		}, -- [6]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				1, -- [2]
+				0, -- [3]
+				0.9765625, -- [4]
+			},
+			["x"] = -559.1194,
+			["height"] = 394.843125,
+			["path"] = "Interface\\WorldMap\\Darkshore\\WitheringThicket1",
+			["y"] = -2609.106955,
+			["width"] = 404.25472,
+		}, -- [7]
+		{
+			["texCoord"] = {
+				0, -- [1]
+				0.5625, -- [2]
+				0, -- [3]
+				0.9765625, -- [4]
+			},
+			["x"] = -154.86468,
+			["height"] = 394.843125,
+			["path"] = "Interface\\WorldMap\\Darkshore\\WitheringThicket2",
+			["y"] = -2609.106955,
+			["width"] = 113.69664,
+		}, -- [8]
+	},
+
+	--[[["LowerEasternKingdoms"] = {
 		{
 			["texCoord"] = {
 				0, -- [1]
@@ -6779,9 +6887,10 @@ GHI_MapData = {
 			["y"] = -4762.407776,
 			["width"] = 44.61384399999999,
 		}, -- [520]
-	},
+	},    --]]
 }
 
+-- Automatic calculations for the background
 for i=1,3 do
 	for j=1,4 do
 		if  j==1 then
@@ -6794,9 +6903,9 @@ for i=1,3 do
 						1, -- [4]
 					},
 					["x"] = -2822.734,
-					["height"] = 256*worldScale/1.5,
+					["height"] = 256*worldScale,
 					["path"] = "Interface\\WorldMap\\World\\World"..((i-1)*4+j),
-					["y"] = -(-409.958/1.5 + 256*worldScale*(i-1)/1.5),
+					["y"] = -(-409.958/1.5 + 256*worldScale*(i-1)),
 					["width"] = 256*worldScale,
 				})
 			end
@@ -6809,9 +6918,9 @@ for i=1,3 do
 					1, -- [4]
 				},
 				["x"] = -2822.734 + 256*worldScale*(j-1),
-				["height"] = 256*worldScale/1.5,
+				["height"] = 256*worldScale,
 				["path"] = "Interface\\WorldMap\\World\\World"..((i-1)*4+j),
-				["y"] = -(-409.958/1.5 + 256*worldScale*(i-1)/1.5),
+				["y"] = -(-409.958/1.5 + 256*worldScale*(i-1)),
 				["width"] = 256*worldScale,
 			})
 		end

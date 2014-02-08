@@ -29,7 +29,7 @@ function GHI_MapMenu(info)
 			},
 
 		},
-		title = "Map",
+		title = "Map - From static data",
 		name = "GHI_MapMenu" .. menuIndex,
 		theme = "BlankTheme",
 		height = 500,
@@ -47,12 +47,10 @@ function GHI_MapMenu(info)
 	scrollFrame:SetPoint("LEFT",-3,0);
 	scrollFrame:SetPoint("RIGHT",10,0);
 
-	local mapFrame = CreateFrame("Frame","$parentDoc",scrollFrame);
+	local mapFrame = CreateFrame("Frame","$parentMap",scrollFrame);
 	scrollFrame:SetScrollChild(mapFrame);
 
-	mapFrame:SetHeight(300);
-	mapFrame:SetWidth(300);
-
+	local mapH,mapW = 0,0;
 	local GenerateTexture = function(frame,width,height,x,y,texCoord,path)
 		local texture = frame:CreateTexture(nil,"BACKGROUND")
 		texture:SetWidth(width);
@@ -62,15 +60,34 @@ function GHI_MapMenu(info)
 		texture:SetTexture(path);
 		texture:Show();
 	end
+	local offX,offY = 2822.734,-273.305;
 	for index,v in pairs(GHI_MapData) do
 		for i,t in pairs(v) do
-			GenerateTexture(mapFrame,t.width,t.height,t.x,t.y,t.texCoord,t.path);
+			GenerateTexture(mapFrame, t.width, t.height, offX+t.x, offY+t.y, t.texCoord, t.path);
+			mapW = math.max(mapW, -offX + t.x + t.width);
+			mapH = math.max(mapH, -offY + t.y + t.height);
 		end
+	end                          print(mapH,mapW)
+	mapFrame:SetHeight(mapH);
+	mapFrame:SetWidth(mapW);
+
+	mapFrame:SetScale(0.05*4)
+
+	local player = mapFrame:CreateTexture(nil,"OVERLAY")
+	player:SetWidth(16/mapFrame:GetScale());
+	player:SetHeight(16/mapFrame:GetScale());
+	player:SetTexture("Interface\\MINIMAP\\TRACKING\\Repair");
+	player:Show();
+
+	local UpdatePlayer = function()
+		local pos = GHI_Position();
+		local x,y = pos.GetCoor("player",3);
+		player:SetPoint("TOPLEFT", offX + x, offY - y);
 	end
 
-	mapFrame:SetScale(0.05)
-
 	class.New = function()
+		UpdatePlayer();
+		GHI_Timer(UpdatePlayer,1);
 		menuFrame:AnimatedShow();
 	end
 

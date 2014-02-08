@@ -9,6 +9,14 @@ local zoneData = {
 			offsetY = -409.958,
 		},
 	},
+	[1] = {
+		[8] = { -- Darkshore
+			scaleX = 1579.120,
+			scaleY = 1052.915,
+			offsetX = -1040.751,
+			offsetY = 2422.741,
+		},
+	},
 	[2] = {
 
 		--[[ Lower Eastern Kingdom
@@ -107,7 +115,7 @@ local zoneData = {
 			scaleY = 675.798,
 			offsetX = 9097.411,
 			offsetY = 4146.080,
-		},]]
+		},--]]
 	},
 }
 
@@ -257,7 +265,7 @@ function GHI_MapTest()
 
 	FromAllZones();
 	GHI_MiscData.Map = MapData;
-	for i,t in pairs(MapData) do
+	for i,t in pairs(MapData) do    print(t.x,t.y,t.path)
 		GenerateTexture(mapFrame,t.width,t.height,t.x,t.y,t.texCoord,t.path);
 	end
 
@@ -275,6 +283,18 @@ function GHI_MapTest()
 
 	menuFrame:AnimatedShow();
 end
+
+
+-- ==========  Get the maps from current zone ========
+function GHI_MapsFromCurrentZone()
+	SetMapToCurrentZone();
+	MapData = {};
+	FromZone();
+	GHI_MiscData.Map = GHI_MiscData.Map or {};
+	GHI_MiscData.Map[GetZoneText()] = MapData;
+	print("Map data for",GetZoneText(),"saved")
+end
+
 
 -- /script GHI_MapTest()
 
@@ -302,6 +322,10 @@ end
 	offX = worldX1 - (zoneX1 * scaleX)
 
 --]]
+
+
+
+
 
 local worldX1,worldY1,zoneX1,zoneY1,zone1;
 

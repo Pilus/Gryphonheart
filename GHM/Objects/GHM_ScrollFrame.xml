@@ -75,14 +75,14 @@
                 local max;
                 min, max = scrollbar:GetMinMaxValues();
                 if ( offset == 0 ) then
-                _G[scrollbar:GetName().."ScrollUpButton"]:Disable();
+                    _G[scrollbar:GetName().."ScrollUpButton"]:Disable();
                 else
-                _G[scrollbar:GetName().."ScrollUpButton"]:Enable();
+                    _G[scrollbar:GetName().."ScrollUpButton"]:Enable();
                 end
                 if ((scrollbar:GetValue() - max) == 0) then
-                _G[scrollbar:GetName().."ScrollDownButton"]:Disable();
+                    _G[scrollbar:GetName().."ScrollDownButton"]:Disable();
                 else
-                _G[scrollbar:GetName().."ScrollDownButton"]:Enable();
+                    _G[scrollbar:GetName().."ScrollDownButton"]:Enable();
                 end
             </OnVerticalScroll>
             <OnMouseWheel>
