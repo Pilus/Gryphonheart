@@ -488,7 +488,7 @@ function GHI_SimpleItemMenu()
 			{
 				type = "DropDown",
 				texture = "Tooltip",
-				width = 150,
+				width = 145,
 				label = "bookMaterial",
 				align = "l",
 				text = "Material:",
@@ -512,7 +512,7 @@ function GHI_SimpleItemMenu()
 		{
 			{
 				type = "DropDown",
-				width = 150,
+				width = 145,
 				label = "bookFont",
 				align = "l",
 				text = "Font:",
