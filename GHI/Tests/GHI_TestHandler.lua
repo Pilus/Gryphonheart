@@ -6,10 +6,14 @@ function GHI_RegisterTest(testName, v)
 	testFunctions[testName] = v;
 end
 
+local currentTests;
+local step;
 function GHI_RunTests()
 	print("Running unit tests.")
 	runNum = runNum + 1;
 	for i, v in pairs(testFunctions) do
+		currentTests = i;
+		step = 1;
 		v(i, runNum);
 	end
 end
@@ -27,15 +31,38 @@ function GHI_TestResult(testName, runNum, testStepNum, result, details)
 	local misc = GHI_MiscAPI().GetAPI();
 	local resultStr = misc.GHI_ColorString(unpack(resultStrings[result] or {}));
 	if details then
-		print("Test", testName, "Run", runNum, "Step", testStepNum, "=", resultStr, "(" .. (details or "") .. ")");
+		print(resultStr, testName, "Run", runNum, "Step", testStepNum, "(" .. (details or "") .. ")");
 	else
-		print("Test", testName, "Run", runNum, "Step", testStepNum, "=", resultStr);
+		print(resultStr, testName, "Run", runNum, "Step", testStepNum);
 	end
 end
 
---[[
+local ToString = function(var)
+	if type(var) == "string" or type(var) == "number" or type(var) == "boolean" then
+		return tostring(var).." ["..type(var).."]";
+	end
+	return tostring(var);
+end
+
+GHTest = {
+	AddTest = GHI_RegisterTest,
+	Equals = function(expected, result, comment)
+		if expected == result then
+			GHI_TestResult(currentTests, runNum, step, 2);
+		else
+			GHI_TestResult(currentTests, runNum, step, 4,
+				string.format("\nGot:         %s\nExpected: %s. %s",
+					ToString(result),
+					ToString(expected),
+					comment or ""));
+		end
+		step = step + 1;
+	end,
+}
+
+
 GHI_Timer(function()
-	if UnitName("player") == "Bhitz" then
+	if GetAddOnMetadata("GHI", "X-DevVersion") then
 		GHI_RunTests()
 	end
 end,2,true); --]]

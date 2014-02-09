@@ -5,7 +5,7 @@ local WARNING = 3;
 local FAILED = 4;
 
 local name = "SetLayout_Scenario";
-
+--[[ Out of date test.
 GHI_RegisterTest(name.."1", function(testSetName, runNum)
 	local i=1;
 
@@ -113,4 +113,4 @@ GHI_RegisterTest(name.."2", function(testSetName, runNum)
 
 
 
-end);
+end);             --]]

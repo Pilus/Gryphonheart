@@ -3,10 +3,5 @@
 
     <script file="GHI_TestHandler.lua"></script>
 
-    <script file="GHI_SimpleAction_Test.lua"></script>
-
-    <script file="GHM_CodeField_Test.lua"></script>
-
-    <script file="GHI_DynamicActionLayout_Test.lua"></script>
-
+    <script file="UI\Book\Converters\GHI_BBCodeConverter.lua"></script>
 </Ui>
