@@ -13,7 +13,7 @@ GHTest.AddTest(name.."ShouldConvertPlainTextIntoPlainTextInBothWays", function()
 	local simpleHtml = "First text < 4 \\5 \\> f";
 	local mockup = converter.ToMockup(simpleHtml);
 
-	GHTest.Equals(simpleHtml, mockup)
+	GHTest.Equals("<html><body><p>First text < 4 \\5 \\> f</p></body></html>", mockup)
 
 	local simple2 = converter.ToSimpleHtml(mockup);
 	GHTest.Equals(mockup, simple2);
@@ -22,7 +22,7 @@ end);
 GHTest.AddTest(name.."ShouldConvertNestedTags", function()
 	local converter = GHI_BBCodeConverter();
 
-	GHTest.Equals('<html><body>t<a>x<b>y<c>z</c>æ</b>ø</a>å</body></html>',
+	GHTest.Equals('<html><body><p>t</p><a>x<b>y<c>z</c>æ</b>ø</a><p>å</p></body></html>',
 		converter.ToSimpleHtml("t[a]x[b]y[c]z[/c]æ[/b]ø[/a]å"));
 
 end);
@@ -30,6 +30,7 @@ end);
 GHTest.AddTest(name.."ShouldConvertHnCorrectlyIncludingAlignment", function()
 	local converter = GHI_BBCodeConverter();
 
-	GHTest.Equals('<html><body><p>Some</p><h1 align="c">Head line</h1><p>after</p></body></html>', converter.ToSimpleHtml("Some[h1]Head line[/h1]after"));
+	GHTest.Equals('<html><body><p>Some</p><h1 align="c">Head line</h1><p>after</p></body></html>',
+		converter.ToSimpleHtml("Some[h1]Head line[/h1]after"));
 end);
 

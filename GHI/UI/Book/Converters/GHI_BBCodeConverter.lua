@@ -19,7 +19,7 @@ function GHI_BBCodeConverter()
 	end
 	class = GHClass("GHI_BBCodeConverter");
 
-	local OPEN_REGEX = "%[(%a+)%]";
+	local OPEN_REGEX = "%[([%a%d]+)%]";
 	local CLOSE_REGEX = function(tag) return "%[/"..tag.."%]"; end
 
 	class.ToMockup = function(simpleHtml)
