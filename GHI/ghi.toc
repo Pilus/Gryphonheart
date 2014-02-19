@@ -184,5 +184,6 @@ UI\Book\GHI_BookUI.xml
 UI\Book\GHI_BookObj.lua
 UI\Book\GHI_BookObj_Signature.lua
 UI\Book\Converters\GHI_BBCodeConverter.lua
+UI\Book\Converters\GHI_HtmlDeserializer.lua
 
 Tests\Tests.xml

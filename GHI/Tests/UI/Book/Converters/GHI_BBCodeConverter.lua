@@ -24,7 +24,7 @@ GHTest.AddTest(name.."ShouldConvertNestedTags", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<html><body><p>t</p><a>x<b>y<c>z</c>æ</b>ø</a><p>å</p></body></html>',
-		converter.ToSimpleHtml("t[a]x[b]y[c]z[/c]æ[/b]ø[/a]å"));
+	converter.ToSimpleHtml("t[a]x[b]y[c]z[/c]æ[/b]ø[/a]å"));
 
 end);
 

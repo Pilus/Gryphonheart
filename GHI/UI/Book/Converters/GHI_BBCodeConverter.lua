@@ -19,20 +19,14 @@ function GHI_BBCodeConverter()
 	end
 	class = GHClass("GHI_BBCodeConverter");
 
+	class.ToMockup = function(simpleHtml)
+		return simpleHtml;
+	end
+
 	local MinimumTags;
 
 	local OPEN_REGEX = "%[([%a%d]+)%]";
 	local CLOSE_REGEX = function(tag) return "%[/"..tag.."%]"; end
-
-
-	local HtmlToTable;
-	HtmlToTable = function(html)
-
-	end
-
-	class.ToMockup = function(simpleHtml)
-		return simpleHtml;
-	end
 
 	local BuildOpenTag = function(meta, first)
 		if meta.tag == "left" or meta.tag == "right" or meta.tag == "center" then
