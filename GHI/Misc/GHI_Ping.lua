@@ -32,10 +32,10 @@ function GHI_Ping()
 	end
 
 	local RecievePing = function(sender, version, ...)
-		if pingedPlayer[sender:lower()] then
+		if pingedPlayer[Ambiguate(sender:lower(), "none")] then
 			GHI_Message(loc.PING_REPLY .. (sender or "nil"));
 			GHI_Message(loc.VERSION .. (version or "nil"));
-			pingedPlayer[sender:lower()] = nil;
+			pingedPlayer[Ambiguate(sender:lower(), "none")] = nil;
 		end
 
 		for _, func in pairs(pingCallbackFuncs) do
@@ -56,7 +56,7 @@ function GHI_Ping()
 		comm.Send("ALERT", player, PING);
 
 		if not (silent) then
-			pingedPlayer[player:lower()] = true;
+			pingedPlayer[Ambiguate(player:lower(), "none")] = true;
 		end
 	end
 

@@ -46,6 +46,10 @@ function GHI_Trade()
 	local UpdateTradeInfo, ClearAll, CreateItemTypeTexts, NoTradeResponceError, SetTradeItemDuration, CancelAcceptTrade, GetGhiItemFromCursor, CancelTrade;
 	local GetBagInfoForBagAndSubBags, GetTradeItemBagGuid, SendLinkData, SendLinkDataForAllItemsInBag, LockAllBags;
 
+	local GetRecipientFullName = function()
+		return GHUnitName("npc")
+	end
+
 	RecievePlayerPing = function(player, version)
 		if player == tradePlayer then
 			tradeRecipientGotGHI = true;
@@ -66,7 +70,7 @@ function GHI_Trade()
 
 		elseif (event == "TRADE_SHOW") then
 			ClearAll();
-			tradePlayer = TradeFrameRecipientNameText:GetText();
+			tradePlayer = GetRecipientFullName();
 			ping.SendPing(tradePlayer, true);
 		elseif (event == "TRADE_REQUEST_CANCEL") then
 			CancelTrade();
@@ -144,10 +148,10 @@ function GHI_Trade()
 	_G["ClickTradeButton"] = ClickTradeButton;
 
 	NoTradeResponceError = function()
-		local tradePlayer = TradeFrameRecipientNameText:GetText();
-		if tradePlayer and versionInfo.PlayerGotAddOn(tradePlayer, "GHI") then
+		local player = GetRecipientFullName();
+		if player and versionInfo.PlayerGotAddOn(player, "GHI") then
 			GHI_Message(loc.TRADE_BUSY);
-			ping.SendPing(tradePlayer, true);
+			ping.SendPing(player, true);
 			return
 		end
 		GHI_Message(loc.TRADE_NO_GHI);

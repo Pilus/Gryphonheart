@@ -219,3 +219,8 @@ end
 function GHTimeBasedVersion()
 	return time() -1370000000;
 end
+
+function GHUnitName(unit)
+	local name, realm = UnitName(unit);
+	return name.."-"..(realm or GetRealmName());
+end
