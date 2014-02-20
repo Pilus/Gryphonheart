@@ -12,16 +12,9 @@
 local function CompareNumbers(t1, t2)
 	local v1 = t1[1];
 	local v2 = t2[1];
-	if tostring(tonumber(v1)) == v1 then
-		v1 = tonumber(v1);
-	else
-		v1 = strbyte(v1, 1) + 255;
-	end
-	if tostring(tonumber(v2)) == v2 then
-		v2 = tonumber(v2);
-	else
-		v2 = strbyte(v2, 1) + 255;
-	end
+	v1 = tonumber(v1) or 0;
+	v2 = tonumber(v2) or 0;
+
 	if v1 > v2 then
 		return true;
 	elseif v1 < v2 then
