@@ -47,7 +47,7 @@ function GHI_Trade()
 	local GetBagInfoForBagAndSubBags, GetTradeItemBagGuid, SendLinkData, SendLinkDataForAllItemsInBag, LockAllBags;
 
 	local GetRecipientFullName = function()
-		return GHUnitName("npc")
+		return Ambiguate(GHUnitName("npc"), "none");
 	end
 
 	RecievePlayerPing = function(player, version)

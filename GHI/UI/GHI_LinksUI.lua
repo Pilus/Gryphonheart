@@ -125,6 +125,7 @@ function GHI_LinksUIHandler()
 	end
 
 	OnEvent = function(self, event, msg, author, ...)
+		author = Ambiguate(author, "none");
 		if version.PlayerGotAddOn(author) then
 			if not (IsEventIgnoredChannelEvent(event, ...)) then
 				local linksInText = SubstractSuspectedLinkNames(msg);

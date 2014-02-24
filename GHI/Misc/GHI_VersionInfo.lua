@@ -189,6 +189,9 @@ function GHI_VersionInfo()
 
 	-- return a list of addons the player has
 	class.GetPlayerAddOns = function(player)
+
+		player = Ambiguate(player, "none");
+
 		local result = {};
 		local t = playerAddOns[player] or {};
 
@@ -201,6 +204,9 @@ function GHI_VersionInfo()
 
 	class.GetPlayerAddOnVer = function(player, addOnShort)
 		addOnShort = addOnShort or "GHI"; -- default value for addOn is GHI
+
+		player = Ambiguate(player, "none");
+
 		local t = playerAddOns[player] or {};
 		-- look for the addon
 		for _, addon in pairs(t) do
@@ -214,6 +220,8 @@ function GHI_VersionInfo()
 
 	class.PlayerGotAddOn = function(player, addOnShort, version)
 		addOnShort = addOnShort or "GHI"; -- default value for addOn is GHI
+
+		player = Ambiguate(player, "none");
 
 		-- look for the addon
 		if type(playerAddOns[player]) == "table" then
@@ -235,6 +243,7 @@ function GHI_VersionInfo()
 	end
 
 	class.IsPlayerOnline = function(player)
+		player = Ambiguate(player, "none");
 		return playerOnline[player];
 	end
 
@@ -243,6 +252,8 @@ function GHI_VersionInfo()
 		if not (player) or string.len(player or "") == 0 then
 			return;
 		end
+
+		player = Ambiguate(player, "none");
 
 		playerOnline[player] = true;
 
@@ -271,6 +282,7 @@ function GHI_VersionInfo()
 	end
 
 	class.RemovePlayer = function(player)
+		player = Ambiguate(player, "none");
 		if existingPlayers[player] and existingPlayers[player] > 0 then
 			existingPlayers[player] = 0;
 			event.TriggerEvent("GHI_PLAYER_GONE_OFFLINE",player);
@@ -301,7 +313,8 @@ function GHI_VersionInfo()
 		comm.Send("NORMAL", player, "AddOns", GetAddOnList());
 	end)
 
-	comm.AddRecieveFunc("AddOns", function(player, addons, ...)   --print("confirmed",player)
+	comm.AddRecieveFunc("AddOns", function(player, addons, ...)
+		player = Ambiguate(player, "none");
 		playerAddOns[player] = addons;
 		class.NotifyAll(player)
 	end)
