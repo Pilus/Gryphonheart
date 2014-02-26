@@ -19,7 +19,49 @@ function GHI_BBCodeConverter()
 	end
 	class = GHClass("GHI_BBCodeConverter");
 
+	local htmlDeserial = GHI_HtmlDeserializer();
+
+	local tableToMockup;
+
+	local ConvertAllWithEvtTag = function(t, tag)
+		local s, close = "", "";
+		if tag then
+			s = "["..tag.."]";
+			close = "[/"..tag.."]";
+		end
+		for _,v in pairs(t) do
+			s = s..tableToMockup(v);
+		end
+		return s..close;
+	end
+
+	tableToMockup = function(t)
+		if type(t) == "string" then
+			return t;
+		end
+		if t.tag == "html" then
+			return tableToMockup(t[1] or "");
+		elseif t.tag == "body" then
+			return tableToMockup(t[1] or "");
+		elseif t.tag == "p" then
+			return ConvertAllWithEvtTag(t, t.args.align);
+		elseif t.tag == "br" then
+			return "/n";
+		elseif t.tag == "h1" or t.tag == "h2" or t.tag == "h3" then
+			return ConvertAllWithEvtTag(t, t.tag);
+		elseif t.tag == "img" then
+			return string.format("[img width=%s height=%]%s[/img]", t.args[2], t.args[3], t.args[1]);
+		elseif t.tag == "a" then
+			return string.format("[link=%s]%s[/link]", t.args.href, tableToMockup(t.args[1]))
+		elseif t.tag == "color" then
+			return string.format("[color=#%s]%s[/color]", t.args[1], tableToMockup(t[1]));
+		elseif t.tag == "" then
+		end
+	end
+
 	class.ToMockup = function(simpleHtml)
+		local t = htmlDeserial.HtmlToTable(simpleHtml);
+
 		return simpleHtml;
 	end
 

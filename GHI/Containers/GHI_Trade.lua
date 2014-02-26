@@ -47,7 +47,7 @@ function GHI_Trade()
 	local GetBagInfoForBagAndSubBags, GetTradeItemBagGuid, SendLinkData, SendLinkDataForAllItemsInBag, LockAllBags;
 
 	local GetRecipientFullName = function()
-		return Ambiguate(GHUnitName("npc"), "none");
+		return UnitName("npc");
 	end
 
 	RecievePlayerPing = function(player, version)
@@ -358,7 +358,7 @@ function GHI_Trade()
 		return c;
 	end
 	comm.AddRecieveFunc("ExpectTradeItem", function(player,slot)
-		if player == tradePlayer and tradeItemsPlayer[slot] == nil then
+		if player == tradePlayer then
 			expectTradeItem[slot] = true;
 			CancelAcceptTrade();
 			TradeFrameTradeButton_Disable();
@@ -369,7 +369,7 @@ function GHI_Trade()
 	end);
 
 	RecieveTradeItem = function(player, slot, guid, amount, name, texture, itemType, duration, bagInfo, stack, ...)
-		if player == tradePlayer then
+		if player == tradePlayer and expectTradeItem[slot] then
 			if not (itemType) or itemType == 3 then
 				itemType = 1;
 			end
