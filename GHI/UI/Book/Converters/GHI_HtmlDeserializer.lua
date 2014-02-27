@@ -68,13 +68,22 @@ function GHI_HtmlDeserializer()
 		},
 		{
 			States.htmlElement,
-			"([^<]+)",
+			"([^<\124]+)",
 			States.htmlElement,
 			function(str, pointer, t, arg1)
 				table.insert(t, arg1);
 				return pointer;
 			end,
 		}, -- 5
+		{
+			States.htmlElement,
+			"|T([^:]*):([%d\.]*):([%d\.]*)",
+			States.htmlElement,
+			function(str, pointer, t, tag)
+				table.insert(t, { tag = tag, args = {}});
+				return pointer;
+			end,
+		},
 		{
 			States.isolateArgs,
 			'[ ]*(%a[%a%d]*)="([^"]*)"',

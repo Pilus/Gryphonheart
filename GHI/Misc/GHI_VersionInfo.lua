@@ -377,7 +377,7 @@ function GHI_VersionInfo()
 	local cc = GHI_ChannelComm()
 	cc.AddRecieveFunc("GHI_AddOnsReq",function(player)
 		if not(player == UnitName("player")) then
-			comm.Send("NORMAL", player, "AddOns", GetAddOnList());
+			comm.Send("BULK", player, "AddOns", GetAddOnList());
 		end
 	end);
 	cc.Send("ALERT","GHI_AddOnsReq","");

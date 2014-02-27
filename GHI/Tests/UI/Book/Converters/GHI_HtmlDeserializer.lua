@@ -88,3 +88,16 @@ GHTest.AddTest(name.."ShouldHandlePlainText", function()
 	GHTest.Equals(1, #(r));
 	GHTest.Equals("Testing", r[1]);
 end);
+--[[
+GHTest.AddTest(name.."Should turn t into img.", function()
+	local html2Table = GHI_HtmlDeserializer();
+
+	local r = html2Table.HtmlToTable("Before\124TInterface\\Icons\\INV_Misc_Coin_01:16\124tafter");
+	GHTest.Equals(3, #(r));
+	GHTest.Equals("Testing", r[1]);
+	GHTest.Equals("img", r[2].tag);
+	GHTest.Equals("TexturePath", r[2].args.path);
+	GHTest.Equals(10, r[2].args.w);
+	GHTest.Equals(20, r[2].args.h);
+	GHTest.Equals("After", r[3]);
+end);      --]]
