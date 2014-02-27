@@ -3,7 +3,7 @@
 ## Version: 2.1.7
 ## Notes: Platform for creation of simple items / props for RolePlaying, such as books.
 ## X-CodeTool: true
-## X-DevVersion: True
+## X-DevVersion: true
 ## RequiredDeps: GHM
 ## DefaultState: Enabled
 ## LoadOnDemand: 0

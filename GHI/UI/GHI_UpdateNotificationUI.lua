@@ -16,7 +16,7 @@ if GHI_MiscData["notify_update"] == true then
 else
 	GHI_UpdateNotify = false
 end
-
+local alreadyShown = false;
 local versionInfo
 function GHI_UpdateNotification()
 	local class = GHClass("GHI_UpdateNotification");
@@ -52,6 +52,7 @@ function GHI_UpdateNotification()
 		local log = GHI_Log();
 		local ver, dev = versionInfo.GetPlayerAddOnVer(player, "GHI")
 		local currVersion = GetAddOnMetadata("GHI","Version")
+		local selfDev = GetAddOnMetadata("GHI","X-DevVersion")
 		local v1 = {strsplit(".",currVersion)}
 		local v2 = {strsplit(".",ver)}
 		local newVersion = false
@@ -70,14 +71,23 @@ function GHI_UpdateNotification()
 				return;
 			else
 				if GHI_UpdateNotify ~= true then
-					if dev == "false" or dev == "False" then
+					if alreadyShown == true then
+						return;
+					elseif selfDev:lower() == "true" then
+						return;
+					elseif dev:lower() == "false" then
 						DisplayUpdateWindow(ver)
-					elseif dev == false then
+						alreadyShown = true;
+					elseif dev:lower() == false then
 						DisplayUpdateWindow(ver)
-					elseif dev == nil then
+						alreadyShown = true;
+					elseif dev:lower() == nil then
 						DisplayUpdateWindow(ver)
-					elseif dev == "true" or dev == "True" or  dev == true then
+						alreadyShown = true;
+					elseif dev:lower() == "true" then  
 						return
+					elseif dev:lower() == true then
+						return;
 					end
 				end
 			end
