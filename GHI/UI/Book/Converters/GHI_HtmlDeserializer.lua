@@ -77,10 +77,41 @@ function GHI_HtmlDeserializer()
 		}, -- 5
 		{
 			States.htmlElement,
-			"|T([^:]*):([%d\.]*):([%d\.]*)",
+			"\124T([^:]*):([%d\.]*):?([%d\.]*)\124t",
 			States.htmlElement,
-			function(str, pointer, t, tag)
-				table.insert(t, { tag = tag, args = {}});
+			function(str, pointer, t, texture, w, h)
+				table.insert(t, { tag = "img", args = {
+					texture = texture,
+					w = tonumber(w),
+					h = tonumber(h or w),
+				}});
+				return pointer;
+			end,
+		},
+		{
+			States.htmlElement,
+			"\124C([%x]*)\124c",
+			States.htmlElement,
+			function(str, pointer, t, texture, color)
+				table.insert(t, { tag = "color", args = {
+					color = color,
+				}});
+				return pointer;
+			end,
+		},
+		{
+			States.htmlElement,
+			"\124T:([%d\.]*):([%d\.]*):",
+			States.htmlElement,
+			function(str, pointer, t, w, h)
+				return pointer;
+			end,
+		},
+		{
+			States.htmlElement,
+			"\124t",
+			States.htmlElement,
+			function(str, pointer, t)
 				return pointer;
 			end,
 		},
@@ -163,7 +194,7 @@ function GHI_HtmlDeserializer()
 			end
 
 			if noAction then
-				error("Could not find action for html to table deserialization");
+				error("Could not find action for html to table deserialization. "..(strsub(html, pointer, pointer + 2) or ""));
 			end
 		end
 
