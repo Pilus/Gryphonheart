@@ -20,8 +20,28 @@ function GHI_BBCodeConverter()
 	class = GHClass("GHI_BBCodeConverter");
 
 	local htmlDeserial = GHI_HtmlDeserializer();
+	local bbcodeDeserial = GHI_BBCodeDeserializer();
 
-	local tableToMockup;
+	local EntityEscapeString = function(str)
+		str = gsub(str, "&", "&amp;")
+		str = gsub(str, "<", "&lt;")
+		str = gsub(str, ">", "&gt;")
+		str = gsub(str, '"', "&quot;")
+		str = gsub(str, "\n", "</br>")
+		return str;
+	end
+
+	local RemoveEntityEscapeString = function(str)
+		str = gsub(str, "&lt;", "<")
+		str = gsub(str, "&gt;", ">")
+		str = gsub(str, "&quot;", '"')
+		str = gsub(str, "&amp;", "&")
+		str = gsub(str, "</br>", "\n")
+		return str;
+	end
+
+
+	local tableToMockup, tableToHtml;
 
 	local ConvertAllWithEvtTag = function(t, tag)
 		local s, close = "", "";
@@ -29,8 +49,8 @@ function GHI_BBCodeConverter()
 			s = "["..tag.."]";
 			close = "[/"..tag.."]";
 		end
-		for _,v in pairs(t) do
-			s = s..tableToMockup(v);
+		for i=1,#(t) do
+			s = s..tableToMockup(t[i]);
 		end
 		return s..close;
 	end
@@ -56,129 +76,122 @@ function GHI_BBCodeConverter()
 		elseif t.tag == "color" then
 			return string.format("[color=#%s]%s[/color]", t.args[1], tableToMockup(t[1]));
 		elseif t.tag == "" then
+			-- todo: more tags.
+		elseif t.tag == nil and #(t) == 1 then
+			return tableToMockup(t[1])
+		else
+			local s = string.format("[%s", t.tag);
+			for i,v in pairs(t.args) do
+				if string.find(v, " ") then
+					s = string.format("%s %s=\"%s\"", s, i, v);
+				else
+					s = string.format("%s %s=%s", s, i, v);
+				end
+			end
+
+			if #(t) > 0 then
+				s = s .. "]";
+				for i=1,#(t) do
+					s = s..tableToHtml(t[i]);
+				end
+				s = s .. "[/" .. t.tag .. "]";
+			else
+				s = s .. "/]";
+			end
+			return s;
 		end
 	end
 
 	class.ToMockup = function(simpleHtml)
 		local t = htmlDeserial.HtmlToTable(simpleHtml);
-
-		return simpleHtml;
+		local mock = tableToMockup(t);
+		return RemoveEntityEscapeString(mock);
 	end
 
-	local MinimumTags;
+	local CheckCustomObjSize = function(t)
+		if t.args.x and t.args.y then
+			return t.args.x, t.args.y;
+		end
+		return 0, 0;
+	end
 
-	local OPEN_REGEX = "%[([%a%d]+)%]";
-	local CLOSE_REGEX = function(tag) return "%[/"..tag.."%]"; end
+	local ConvertAllWithEvtTag = function(t, tag)
+		local open, close = "", "";
+		if tag then
+			open = "<"..tag..">";
+			close = "</"..tag..">";
+		end
+		local s = "";
 
-	local BuildOpenTag = function(meta, first)
-		if meta.tag == "left" or meta.tag == "right" or meta.tag == "center" then
-			local actualTag = meta.parent;
-			if MinimumTags[actualTag] then
-				actualTag = MinimumTags[actualTag];
-				return string.format('<%s align="%s">', actualTag, meta.tag);
-			elseif first then
-				return string.format('<%s align="%s">', actualTag, meta.tag), true;
+		for i=1,#(t) do
+			local str, skipOpen, skipClose = tableToHtml(t[i],  t.tag, (t[i-1] or {tag="none"}).tag, (t[i+1] or {tag="none"}).tag);
+			if skipOpen then open = ""; end
+			if skipClose then close = ""; end
+			s = s .. str;
+		end
+		return open..s..close;
+	end
+
+	tableToHtml = function(t, parentTag, prevTag, nextTag)
+		if type(t) == "string" then
+			return t;
+		end
+
+		if t.tag == "h1" or t.tag == "h2" or t.tag == "h3" then
+			local before, after = "", "";
+			if parentTag == "body" and prevTag == nil then before = "</p>"; end
+			if parentTag == "body" and nextTag == nil then after = "<p>"; end
+			return before..ConvertAllWithEvtTag(t, t.tag)..after;
+		elseif t.tag == "body" then
+			local s = "";
+			if t[1] and t[1].tag == nil then
+				s = "<p>";
+			end
+			for i= 1,#(t) do
+				s = s..tableToHtml(t[i], t.tag, (t[i-1] or {tag="none"}).tag, (t[i+1] or {tag="none"}).tag);
+			end
+			if t[#(t)] and t[#(t)].tag == nil then
+				s = s.."</p>";
+			end
+			return s;
+		elseif t.tag == "left" or t.tag == "right" then
+			local tag = parentTag == "body" and "p" or parentTag;
+			local s;
+			if prevTag == "none" then
+				s = string.format("<%s align=\"%s\">", tag, t.tag);
 			else
-				return string.format('</%s><%s align="%s">', actualTag, actualTag, meta.tag);
+				s = string.format("</%s><%s align=\"%s\">", tag, tag, t.tag);
 			end
-		end
-		return "<"..meta.tag..">";
-	end
 
-	local BuildCloseTag = function(meta, last)
-		if meta.tag == "left" or meta.tag == "right" or meta.tag == "center" then
-			local actualTag = meta.parent;
-			if MinimumTags[actualTag] then
-				actualTag = MinimumTags[actualTag];
-				return string.format("</%s>", actualTag, actualTag);
-			elseif last then
-				return string.format("</%s>", actualTag, actualTag), true;
+			for i=1,#(t) do
+				s = s..tableToHtml(t[i]);
+			end
+
+			if nextTag == "none" then
+				s = s..string.format("</%s>", tag);
 			else
-				return string.format("</%s><%s>", actualTag, actualTag);
+				s = s..string.format("</%s><%s>", tag, tag);
 			end
-		end
-		return "</"..meta.tag..">";
-	end
-
-	local ConvertBlocksToText
-	ConvertBlocksToText = function(blocks, first, last)
-		if type(blocks) == "string" then
-			return blocks;
-		end
-		local openTag, closeTag = "", "";
-		local skipFirst, skipLast;
-		if blocks.meta then
-			openTag, skipFirst = BuildOpenTag(blocks.meta, first);
-			closeTag, skipLast = BuildCloseTag(blocks.meta, last);
-		end
-
-		local body = "";
-		for i=1,#(blocks) do
-			local blockBody, skip = ConvertBlocksToText(blocks[i], i==1, i==#(blocks));
-			body = body .. blockBody;
-
-			if skip then
-				if i == 1 then
-					openTag = "";
-				elseif i==#(blocks) then
-					closeTag = "";
-				end
+			return s, prevTag == "none", nextTag == "none";
+		else
+			local x, y = CheckCustomObjSize(t);
+			local inner = string.format("<%s", t.tag);
+			for i,v in pairs(t.args) do
+				inner = string.format("%s %s=\"%s\"", inner, i, v);
 			end
-		end
 
-		return openTag..body..closeTag,
-		(first and skipFirst) or (last and skipLast);
-	end
-
-	MinimumTags = {
-		body = "p",
-	};
-
-	local ConvertTagsToBlocks;
-	ConvertTagsToBlocks = function(text, i, j, meta, parentTag)
-		local blocks = {
-			meta = meta,
-		};
-		local subMeta;
-		if MinimumTags[parentTag] then
-			subMeta = {
-				tag = MinimumTags[parentTag],
-				parent = parentTag,
-			};
-		end
-		while (i) do
-			local tagOpenStart, tagOpenEnd, tag = string.find(text, OPEN_REGEX, i);
-			if not(tagOpenStart) then
-				if i < (j or string.len(text))+1 then
-					table.insert(blocks, {
-						string.sub(text, i, j),
-						meta = subMeta,
-					});
+			if #(t) > 0 then
+				inner = inner .. ">";
+				for i=1,#(t) do
+					inner = inner..tableToHtml(t[i]);
 				end
-				break;
+				inner = inner .. "</" .. t.tag .. ">";
 			else
-				if i < tagOpenStart then
-					table.insert(blocks, {
-						string.sub(text, i, tagOpenStart - 1),
-						meta = subMeta,
-					});
-				end
-
-				local tagCloseStart, tagCloseEnd = string.find(text, CLOSE_REGEX(tag), tagOpenEnd);
-
-				if not(tagCloseStart) then
-					table.insert(blocks, ConvertTagsToBlocks(text, tagOpenEnd, j));
-					break;
-				else
-					table.insert(blocks, ConvertTagsToBlocks(text, tagOpenEnd+1, tagCloseStart-1, {
-						tag = tag,
-						parent = parentTag,
-					}, tag))
-					i = tagCloseEnd+1;
-				end
+				inner = inner .. "/>";
 			end
+
+			return string.format("\124T:%s:%s:%s\124t", x, y, inner);
 		end
-		return blocks;
 	end
 
 	local AppendHtmlAndBodyTags = function(text)
@@ -186,9 +199,13 @@ function GHI_BBCodeConverter()
 	end
 
 	class.ToSimpleHtml = function(mockup)
-		local blocks = ConvertTagsToBlocks(mockup, 0, nil, nil, "body")
-
-		return AppendHtmlAndBodyTags(ConvertBlocksToText(blocks, true));
+		local escaped = EntityEscapeString(mockup);
+		local table = bbcodeDeserial.BBCodeToTable(escaped);
+		table.tag = "body";
+		local text = tableToHtml(table);
+		--local blocks = ConvertTagsToBlocks(escaped, 0, nil, nil, "body")
+		--local text = ConvertBlocksToText(blocks, true);
+		return AppendHtmlAndBodyTags(text);
 	end
 
 	return class;

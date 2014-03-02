@@ -88,16 +88,45 @@ GHTest.AddTest(name.."ShouldHandlePlainText", function()
 	GHTest.Equals(1, #(r));
 	GHTest.Equals("Testing", r[1]);
 end);
---[[
+
 GHTest.AddTest(name.."Should turn t into img.", function()
 	local html2Table = GHI_HtmlDeserializer();
 
-	local r = html2Table.HtmlToTable("Before\124TInterface\\Icons\\INV_Misc_Coin_01:16\124tafter");
+	local r = html2Table.HtmlToTable("Before\124TInterface\\Icons\\INV_Misc_Coin_01:16:20\124tafter");
 	GHTest.Equals(3, #(r));
-	GHTest.Equals("Testing", r[1]);
+	GHTest.Equals("Before", r[1]);
 	GHTest.Equals("img", r[2].tag);
-	GHTest.Equals("TexturePath", r[2].args.path);
-	GHTest.Equals(10, r[2].args.w);
+	GHTest.Equals("Interface\\Icons\\INV_Misc_Coin_01", r[2].args.texture);
+	GHTest.Equals(16, r[2].args.w);
 	GHTest.Equals(20, r[2].args.h);
-	GHTest.Equals("After", r[3]);
-end);      --]]
+	GHTest.Equals("after", r[3]);
+end);
+
+GHTest.AddTest(name.."Should remove object wrapping textures.", function()
+	local html2Table = GHI_HtmlDeserializer();
+
+	local r = html2Table.HtmlToTable("Before\124T:16:20:<objX>in</objX>\124tafter");
+	GHTest.Equals(3, #(r));
+	GHTest.Equals("Before", r[1]);
+	GHTest.Equals("objX", r[2].tag);
+	GHTest.Equals(1, #(r[2]));
+	GHTest.Equals("in", r[2][1]);
+	GHTest.Equals("after", r[3]);
+
+	local r = html2Table.HtmlToTable('<html><body><p>Some\124T:0:0:<obj arg1="A">Text</obj>\124tafter</p></body></html>');
+	r = r[1];
+
+	GHTest.Equals(1, #(r));
+	GHTest.Equals("html", r.tag);
+	GHTest.Equals(1, #(r)[1]);
+	GHTest.Equals("body", r[1].tag);
+	GHTest.Equals(3, #(r)[1][1]);
+	GHTest.Equals("p", r[1][1].tag);
+
+	GHTest.Equals("Some", r[1][1][1]);
+	GHTest.Equals("obj", r[1][1][2].tag);
+	GHTest.Equals("A", r[1][1][2].args.arg1);
+	GHTest.Equals(1, #(r[1][1][2]));
+	GHTest.Equals("Text", r[1][1][2][1]);
+	GHTest.Equals("after", r[1][1][3]);
+end);

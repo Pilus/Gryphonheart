@@ -1,6 +1,6 @@
 ## Interface: 50400
 ## Title: Gryphonheart Items
-## Version: 2.1.6
+## Version: 2.1.7
 ## Notes: Platform for creation of simple items / props for RolePlaying, such as books.
 ## X-CodeTool: true
 ## X-DevVersion: true
@@ -185,5 +185,6 @@ UI\Book\GHI_BookObj.lua
 UI\Book\GHI_BookObj_Signature.lua
 UI\Book\Converters\GHI_BBCodeConverter.lua
 UI\Book\Converters\GHI_HtmlDeserializer.lua
+UI\Book\Converters\GHI_BBCodeDeserializer.lua
 
 Tests\Tests.xml

@@ -60,7 +60,7 @@ function GHI_VersionInfo()
 		CHAT_MSG_PARTY = true,
 		CHAT_MSG_PARTY_LEADER = true,
 		CHAT_MSG_RAID = true,
-		CHAT_MSG_SAY = true,
+		--CHAT_MSG_SAY = true,
 		CHAT_MSG_TEXT_EMOTE = true,
 		CHAT_MSG_WHISPER = true,
 		CHAT_MSG_YELL = true,

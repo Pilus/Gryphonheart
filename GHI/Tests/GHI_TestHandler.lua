@@ -16,6 +16,7 @@ function GHI_RunTests()
 		step = 1;
 		v(i, runNum);
 	end
+	print("Done")
 end
 
 

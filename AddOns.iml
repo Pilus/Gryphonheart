@@ -249,6 +249,21 @@
       <excludeFolder url="file://$MODULE_DIR$/kgPanelsConfig" />
       <excludeFolder url="file://$MODULE_DIR$/nUI" />
       <excludeFolder url="file://$MODULE_DIR$/rBottomBarStyler" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Auras" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Config" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Creation" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_DataBase" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Documents" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Guide" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_ImpExport" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Interface" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Inventaire" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Language" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Packages" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_PlayerInfo" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Quests" />
+      <excludeFolder url="file://$MODULE_DIR$/totalRP2_Registre" />
     </content>
     <orderEntry type="jdk" jdkName="Wow Lua 5.1.4" jdkType="Lua SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

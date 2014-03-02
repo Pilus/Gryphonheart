@@ -1,20 +1,20 @@
 --===================================================
 --
---				GHI_HtmlDeserializer
---  			GHI_HtmlDeserializer.lua
+--				GHI_BBCodeDeserializer
+--  			GHI_BBCodeDeserializer.lua
 --
---	Converts simple html to tables.
+--	Converts simple BBCode to tables.
 --
 -- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
 local class;
-function GHI_HtmlDeserializer()
+function GHI_BBCodeDeserializer()
 	if class then
 		return class;
 	end
-	class = GHClass("GHI_HtmlDeserializer");
+	class = GHClass("GHI_BBCodeDeserializer");
 
 	local ConvertNumberInStringToNumber = function(str)
 		local num = tonumber(str);
@@ -25,33 +25,33 @@ function GHI_HtmlDeserializer()
 	end
 
 	local States = {
-		htmlElement = 1,
+		element = 1,
 		isolateArgs = 2,
-		innerHtml = 3,
+		inner = 3,
 	};
 
 	local TransitionTable = {
 		{
-			States.htmlElement,
-			"<(%a[%a%d]*)[ ]*/>",
-			States.htmlElement,
+			States.element,
+			"%[(%a[%a%d]*)[ ]*/%]",
+			States.element,
 			function(str, pointer, t, tag)
 				table.insert(t, { tag = tag, args = {}});
 				return pointer;
 			end,
 		},
 		{
-			States.htmlElement,
-			"<(%a[%a%d]*)[ ]*>",
-			States.innerHtml,
+			States.element,
+			"%[(%a[%a%d]*)[ ]*%]",
+			States.inner,
 			function(str, pointer, t, tag)
 				table.insert(t, { tag = tag, args = {}});
 				return pointer;
 			end,
 		},
 		{
-			States.htmlElement,
-			"<(%a[%a%d]*)[ ]+%a",
+			States.element,
+			"%[(%a[%a%d]*)[ ]+%a",
 			States.isolateArgs,
 			function(str, pointer, t, tag)
 				table.insert(t, { tag = tag, args = {}});
@@ -59,70 +59,22 @@ function GHI_HtmlDeserializer()
 			end,
 		},
 		{
-			States.htmlElement,
-			"</",
+			States.element,
+			"%[/",
 			nil,
 			function(str, pointer, t)
 				return pointer - 3;
 			end,
 		},
 		{
-			States.htmlElement,
-			"([^<^\124]+)",
-			States.htmlElement,
+			States.element,
+			"([^%[\124]+)",
+			States.element,
 			function(str, pointer, t, arg1)
 				table.insert(t, arg1);
 				return pointer;
 			end,
 		}, -- 5
-		{
-			States.htmlElement,
-			"\124T([^:]*):([%d\.]*):?([%d\.]*)\124t",
-			States.htmlElement,
-			function(str, pointer, t, texture, w, h)
-				table.insert(t, { tag = "img", args = {
-					texture = texture,
-					w = tonumber(w),
-					h = tonumber(h or w),
-				}});
-				return pointer;
-			end,
-		},
-		{
-			States.htmlElement,
-			"\124C([%x]*)\124c",
-			States.htmlElement,
-			function(str, pointer, t, texture, color)
-				table.insert(t, { tag = "color", args = {
-					color = color,
-				}});
-				return pointer;
-			end,
-		},
-		{
-			States.htmlElement,
-			"\124T:([%d\.]+):([%d\.]*):",
-			States.htmlElement,
-			function(str, pointer, t, w, h)
-				return pointer;
-			end,
-		},
-		{
-			States.innerHtml,
-			"\124T:([%d\.]+):([%d\.]*):",
-			States.innerHtml,
-			function(str, pointer, t, w, h)
-				return pointer;
-			end,
-		},
-		{
-			States.htmlElement,
-			"\124t",
-			States.htmlElement,
-			function(str, pointer, t)
-				return pointer;
-			end,
-		},
 		{
 			States.isolateArgs,
 			'[ ]*(%a[%a%d]*)="([^"]*)"',
@@ -134,40 +86,49 @@ function GHI_HtmlDeserializer()
 		},
 		{
 			States.isolateArgs,
-			"[ ]*>",
-			States.innerHtml,
+			'[ ]*(%a[%a%d]*)=([^ ^/^%]]*)[ /%]]',
+			States.isolateArgs,
+			function(str, pointer, t, argName, argValue)
+				t[#(t)].args[argName] = ConvertNumberInStringToNumber(argValue);
+				return pointer - 1;
+			end,
+		},
+		{
+			States.isolateArgs,
+			"[ ]*%]",
+			States.inner,
 			function(str, pointer, t)
 				return pointer;
 			end,
 		},
 		{
 			States.isolateArgs,
-			"[ ]*/>",
-			States.htmlElement,
+			"[ ]*/%]",
+			States.element,
 			function(str, pointer, t)
 				return pointer;
 			end,
 		},
 		{
-			States.innerHtml,
-			"<",
-			States.htmlElement,
+			States.inner,
+			"%[",
+			States.element,
 			function(str, pointer, t)
-				local elements, subLen = class.HtmlToTable(string.sub(str, pointer - 1));
+				local elements, subLen = class.BBCodeToTable(string.sub(str, pointer - 1));
 				for _, element in pairs(elements) do
 					table.insert(t[#(t)], element);
 				end
 
-				local a, b = strfind(str, "</" .. t[#(t)].tag .. ">", pointer - 1 + subLen)
-				if a ~= pointer - 1 + subLen then print("Malformed xml", a, "~=", pointer, "-", 1, "+", subLen); end
+				local a, b = strfind(str, "%[/" .. t[#(t)].tag .. "%]", pointer - 1 + subLen)
+				if a ~= pointer - 1 + subLen then print("Malformed bbcode", a, "~=", pointer, "-", 1, "+", subLen); end
 
 				return b + 1;
 			end,
 		},
 		{
-			States.innerHtml,
-			"([^<^\124]+)",
-			States.innerHtml,
+			States.inner,
+			"([^%[]+)",
+			States.inner,
 			function(str, pointer, t, text)
 				table.insert(t[#(t)], text);
 				return pointer;
@@ -175,9 +136,9 @@ function GHI_HtmlDeserializer()
 		}, -- 10
 	};
 
-	class.HtmlToTable = function(html)
+	class.BBCodeToTable = function(html)
 		local t = {};
-		local state = States.htmlElement;
+		local state = States.element;
 		local pointer = 1;
 
 		while (pointer < string.len(html)) do
@@ -202,7 +163,7 @@ function GHI_HtmlDeserializer()
 			end
 
 			if noAction then
-				error("Could not find action for html to table deserialization. "..(strsub(html, pointer, pointer + 10) or "").. "\nState:".. state);
+				error("Could not find action for html to table deserialization. "..(strsub(html, pointer, pointer + 2) or ""));
 			end
 		end
 
