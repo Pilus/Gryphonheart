@@ -3,7 +3,7 @@
 
     <script file="GHI_TestHandler.lua"></script>
 
-    <script file="UI\Book\Converters\GHI_BBCodeConverter.lua"></script>
-    <script file="UI\Book\Converters\GHI_BBCodeDeserializer.lua"></script>
-    <script file="UI\Book\Converters\GHI_HtmlDeserializer.lua"></script>
+    <script file="Book\Converters\GHI_BBCodeConverter.lua"></script>
+    <script file="Book\Converters\GHI_BBCodeDeserializer.lua"></script>
+    <script file="Book\Converters\GHI_HtmlDeserializer.lua"></script>
 </Ui>

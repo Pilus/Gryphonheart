@@ -105,7 +105,7 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 			obj.GetLabel = function() return profile.label end
 		end
 		--GHM_TempBG(obj);
-		return obj:GetHeight();
+		return obj:GetHeight(), obj;
 	end
 
 	local offsetX = 0;

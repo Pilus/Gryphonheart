@@ -69,7 +69,10 @@ Objects\GHM_Logo.xml
 Objects\GHM_ImageList.lua
 Objects\GHM_ImageList.xml
 
-Toolbar\GHM_Toolbar.lua
+Toolbar\GHM_ToolbarObjectRow.lua
+Toolbar\GHM_ToolbarCategory.lua
+Toolbar\GHM_ToolbarPage.lua
+Toolbar\GHM_MultiPageToolbar.lua
 
 DropDownMenu\GHM_DropDownMenu.lua
 DropDownMenu\GHM_DropDownMenuTemplates.xml

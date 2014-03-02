@@ -177,14 +177,15 @@ UI\GHI_StatusBarUI.lua
 UI\GHI_StatusBarUI.xml
 UI\GHI_ExtraButtonUI.lua
 UI\GHI_ExtraButtonUI.xml
-UI\Book\GHI_TextPositionCalculator.lua
-UI\Book\GHI_TextPositionCalculator.xml
-UI\Book\GHI_BookUI.lua
-UI\Book\GHI_BookUI.xml
-UI\Book\GHI_BookObj.lua
-UI\Book\GHI_BookObj_Signature.lua
-UI\Book\Converters\GHI_BBCodeConverter.lua
-UI\Book\Converters\GHI_HtmlDeserializer.lua
-UI\Book\Converters\GHI_BBCodeDeserializer.lua
+
+Book\GHI_TextPositionCalculator.lua
+Book\GHI_TextPositionCalculator.xml
+Book\GHI_BookUI.lua
+Book\GHI_BookUI.xml
+Book\GHI_BookObj.lua
+Book\GHI_BookObj_Signature.lua
+Book\Converters\GHI_BBCodeConverter.lua
+Book\Converters\GHI_HtmlDeserializer.lua
+Book\Converters\GHI_BBCodeDeserializer.lua
 
 Tests\Tests.xml

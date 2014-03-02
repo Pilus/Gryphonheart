@@ -1,7 +1,7 @@
 --===================================================
 --
---				GHM_Toolbar
---  			GHM_Toolbar.lua
+--				GHM_ToolbarObjectRow
+--  			GHM_ToolbarObjectRow.lua
 --
 --		Creates toolbar with buttons
 --		API:
@@ -13,8 +13,8 @@
 --===================================================
 
 local count = 1;
-function GHM_ToolbarObj(parent, main, profile)
-	local frame = CreateFrame("Frame", "GHM_ToolbarObj" .. count, parent);
+function GHM_ToolbarObjectRow(parent, main, profile)
+	local frame = CreateFrame("Frame", "GHM_ToolbarObjectRow" .. count, parent);
 	count = count + 1;
 
 	local height,width = 0,0;
@@ -28,8 +28,6 @@ function GHM_ToolbarObj(parent, main, profile)
 
 	frame:SetHeight(height);
 	frame:SetWidth(width);
-
-	GHM_FramePositioning(frame,profile,parent);
 
 	return frame;
 end
