@@ -100,7 +100,7 @@ function GHM_SoundSelection(parent, main, profile)
 				local node = self:GetParent();
 				local path = "Sound\\" .. strjoin("", unpack(node:GetFullPath()));
 
-				if strfind(path,"\\Music\\") then
+				if strfind(path,"\\Music\\") or strfind(path,"\\MUSIC\\") then
 					path = path..".mp3"
 				else
 					path = path .. ".ogg";
