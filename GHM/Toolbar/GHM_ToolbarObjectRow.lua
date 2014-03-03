@@ -18,11 +18,9 @@ function GHM_ToolbarObjectRow(parent, main, profile)
 	count = count + 1;
 
 	local height,width = 0,0;
-
 	for i=1,#(profile) do
-		local _height = GHM_CreateObject(i,profile[i],frame,main);
+		local _height, obj = GHM_CreateObject(i, profile[i], frame, main);
 		height = math.max(height,_height);
-		local obj = frame.lastLeft;
 		width = width + obj:GetWidth();
 	end
 

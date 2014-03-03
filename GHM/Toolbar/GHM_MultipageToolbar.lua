@@ -28,12 +28,14 @@ function GHM_MultiPageToolbar(parent, main, profile)
 		lastClicked = self;
 	end
 
+
+	-- todo: use GuildRosterColumnButtonTemplate instead.
 	local buttonRowProfile = {};
 	local firstButton
 	for i = 1,#(profile) do
 		table.insert(buttonRowProfile,{
 			type = "Button",
-			text = profile[i].text,
+			text = profile[i].name,
 			align = "l",
 			compact = true,
 			OnClick = function(self)
@@ -50,10 +52,11 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	end
 
 	local buttonRow = GHM_ToolbarObjectRow(frame, main, buttonRowProfile);
+	buttonRow:SetPoint("TOPLEFT", frame, "TOPLEFT");
 
 	for i=1,#(profile) do
-		local page = GHM_ToolbarObjectRow(frame, main, profile[i]);
-		page:SetPoint("TOPRIGHT","TOPRIGHT");
+		local page = GHM_ToolbarPage(frame, main, profile[i]);
+		page:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, -buttonRow:GetHeight());
 
 		width = math.max(width, page:GetWidth());
 		height = math.max(height, page:GetHeight());
@@ -61,12 +64,8 @@ function GHM_MultiPageToolbar(parent, main, profile)
 		table.insert(pages, page)
 	end
 
-	local h, text = GHM_Text(frame, main, {
-		text = profile.name,
-		align = "c",
-	})
-	text:ClearAllPoints();
-	text:SetPoint("BOTTOM","BOTTOM");
+	height = height + buttonRow:GetHeight()
+	width = math.max(width, buttonRow:GetWidth())
 
 	frame:SetHeight(height);
 	frame:SetWidth(width);

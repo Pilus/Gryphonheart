@@ -183,6 +183,7 @@ Book\GHI_BookUI.lua
 Book\GHI_BookUI.xml
 Book\GHI_BookObj.lua
 Book\GHI_BookObj_Signature.lua
+Book\GHI_BookEditor.lua
 Book\Converters\GHI_BBCodeConverter.lua
 Book\Converters\GHI_HtmlDeserializer.lua
 Book\Converters\GHI_BBCodeDeserializer.lua

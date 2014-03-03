@@ -92,7 +92,7 @@ end
 
 function GHM_CreateObject(num, profile, parent,givenMain)
 	if not (profile.type) then
-		return 0;
+		error(string.format("GHM element %s not found", profile.type or "nil"))
 	end
 
 	local main = givenMain or parent:GetParent():GetParent();
@@ -463,7 +463,7 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 	end
 	obj:Show();
 
-	return height;
+	return height, obj;
 end
 
 function GHM_CreateLine(num, profile, parent, offset)

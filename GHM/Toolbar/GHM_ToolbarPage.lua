@@ -16,22 +16,17 @@ function GHM_ToolbarPage(parent, main, profile)
 
 	local height,width = 0,0;
 
-	local prevRow;
+	local cats = {};
 	for i=1,#(profile) do
-		local row = GHM_ToolbarCategory(frame, main, profile[i]);
-		row:SetPoint("TOP", prevRow or frame, (prevRow == nil) and "TOP" or "BOTTOM")
-		width = math.max(width, row:GetWidth());
-		height = height + row:GetHeight();
-		prevRow = row;
+		local cat = GHM_ToolbarCategory(frame, main, profile[i]);
+		cat:SetPoint("LEFT", cats[i-1] or frame, (cats[i-1] == nil) and "LEFT" or "RIGHT")
+		height = math.max(height, cat:GetHeight());
+		width = width + cat:GetWidth();
+		cats[i] = cat;
 	end
-
-	local h, text = GHM_Text(frame, main, {
-		text = profile.name,
-		align = "c",
-	})
-	text:ClearAllPoints();
-	text:SetPoint("BOTTOM","BOTTOM");
-	height = height + text:GetHeight();
+	for i=1,#(profile) do
+		cats[i]:SetHeight(height);
+	end
 
 	frame:SetHeight(height);
 	frame:SetWidth(width);
