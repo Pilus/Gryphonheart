@@ -1,9 +1,9 @@
 ## Interface: 50400
 ## Title: Gryphonheart Items
-## Version: 2.1.7
+## Version: 2.1.8
 ## Notes: Platform for creation of simple items / props for RolePlaying, such as books.
 ## X-CodeTool: true
-## X-DevVersion: true
+## X-DevVersion: True
 ## RequiredDeps: GHM
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
@@ -172,7 +172,6 @@ UI\GHI_ExportMenu.lua
 UI\GHI_ActionBarUI.lua
 UI\GHI_URLUI.lua
 UI\GHI_CastBarUI.lua
-UI\GHI_UpdateNotificationUI.lua
 UI\GHI_StatusBarUI.lua
 UI\GHI_StatusBarUI.xml
 UI\GHI_ExtraButtonUI.lua
