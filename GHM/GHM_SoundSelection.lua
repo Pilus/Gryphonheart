@@ -229,7 +229,7 @@ function GHM_SoundSelection(parent, main, profile)
 		if type(node.tableValue) == "number" then
 			local path = "Sound\\" .. strjoin("", unpack(node:GetFullPath()));
 
-			if strfind(path,"\\Music\\") or strfind(path,"\\MUSIC\\") then
+			if strfind(path,"\\Music\\") then
 				path = path..".mp3"
 			else
 				path = path .. ".ogg";
