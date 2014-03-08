@@ -16,7 +16,7 @@ function GHI_AnimationInfo()
 	if class then return class end
 	
 	class = {}
-			
+
 	class.GetPositions = function()
 		return {
 			["Full Screen"] = {
@@ -26,10 +26,10 @@ function GHI_AnimationInfo()
 				BOTTOMRIGHT = {"BOTTOMRIGHT"}
 			},
 			["Body"] = {
-				TOP = {"CENTER",0,25}
+				TOP = {"TOP",0,GHI_topPoint}
 			},
 			["Head"] = {
-				BOTTOM = {"CENTER"},
+				BOTTOM = {"TOP",0,GHI_topPoint},
 			},
 		}
 	end
