@@ -2,100 +2,93 @@
 <project version="4">
   <component name="ChangeListManager">
     <list readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
-    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Adjusted the sliders in the simple item menu into using the newer slider. Modified the slider so that the slider graphics is centered vertically.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_HtmlDeserializer.lua" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_HtmlDeserializer.lua" />
+    <list default="true" id="897b78a7-4c84-4398-82e1-51693d427a27" name="Trade work" comment="Missing toolbar changes">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Tests/Tests.xml" afterPath="$PROJECT_DIR$/GHI/Tests/Tests.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_BBCodeConverter.lua" afterPath="$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_BBCodeConverter.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_BBCodeConverter.lua" afterPath="$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_BBCodeConverter.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ghi.toc" afterPath="$PROJECT_DIR$/GHI/ghi.toc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua" afterPath="$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua" />
     </list>
-    <list id="3ef94ea4-8e7f-4eb8-b693-318f2daa3a46" name="Config" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-    </list>
+    <list id="3ef94ea4-8e7f-4eb8-b693-318f2daa3a46" name="Config" comment="" />
     <ignored path="AddOns.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/GHI_SimpleItemMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390755968945" ignored="false" />
-    <file path="/GHG_GroupChat.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386013882694" ignored="false" />
-    <file path="/GHG_ChatEvents.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385928062214" ignored="false" />
-    <file path="/GHG_GroupAdmin_RankMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385587459821" ignored="false" />
-    <file path="/GHM_CheckBox.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385587375346" ignored="false" />
-    <file path="/GHG_GroupFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385588555013" ignored="false" />
-    <file path="/GHG_GroupRank.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385451922137" ignored="false" />
-    <file path="/GHG_PlayerDataList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385206142290" ignored="false" />
-    <file path="/GH_DataSharer.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385415314859" ignored="false" />
-    <file path="/GHI_ChannelComm.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385216479397" ignored="false" />
-    <file path="/GHG_GroupList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386014126117" ignored="false" />
-    <file path="/GHI_Crypt.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385067129474" ignored="false" />
-    <file path="/GHG_GroupInvite.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385058509067" ignored="false" />
-    <file path="/GHI_ExportItem.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384878654415" ignored="false" />
-    <file path="/GHG_LogEvent.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384008481903" ignored="false" />
-    <file path="/GHG_LogEventType.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384900768524" ignored="false" />
-    <file path="/GHG.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384006311174" ignored="false" />
-    <file path="/GHM_ImageList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384000702047" ignored="false" />
-    <file path="/GHG_GroupInfoFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384901431134" ignored="false" />
-    <file path="/GHG_GroupInfoFrame.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384899583504" ignored="false" />
-    <file path="/GHG_AdminAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385617867909" ignored="false" />
-    <file path="/GHG_GroupAdmin.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385623450178" ignored="false" />
-    <file path="/GHG_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384900883265" ignored="false" />
-    <file path="/ghclass.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383512266221" ignored="false" />
-    <file path="/GHG_GroupAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385927647220" ignored="false" />
-    <file path="/GHG_Group.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386014048915" ignored="false" />
-    <file path="/GHI_Compatibility.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383499829639" ignored="false" />
-    <file path="/GHI_CodeEditorOptionsMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380831253981" ignored="false" />
-    <file path="/GHI_ClassAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447910656" ignored="false" />
-    <file path="/ghm.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380831316481" ignored="false" />
-    <file path="/GHM_Time.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378932171377" ignored="false" />
-    <file path="/a.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379444952801" ignored="false" />
-    <file path="/GHI_MiscAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379449553968" ignored="false" />
-    <file path="/GHI_ItemInfo_Basic.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378845530881" ignored="false" />
-    <file path="/GHI_ItemInfo_Advanced.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378846032443" ignored="false" />
-    <file path="/GHI_ItemInfo_Standard.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844695368" ignored="false" />
-    <file path="/GHI_ContainerAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378843484544" ignored="false" />
-    <file path="/a.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885497456" ignored="false" />
-    <file path="/GHI_ContainerUI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383387866252" ignored="false" />
-    <file path="/GHM_Slider.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378588792084" ignored="false" />
-    <file path="/GHI_BagMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587551197" ignored="false" />
-    <file path="/GHI_ContainerInfo.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378650789197" ignored="false" />
-    <file path="/GHI_ContainerList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378649844213" ignored="false" />
-    <file path="/GHI_Trade.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378758799711" ignored="false" />
-    <file path="/GHI_ItemandContainer.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587119433" ignored="false" />
-    <file path="/GHI_StandardItemMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930261951" ignored="false" />
-    <file path="/GHI_BuffUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377723969308" ignored="false" />
-    <file path="/GHI_VersionInfo.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108872094" ignored="false" />
-    <file path="/GHI_Position.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108819485" ignored="false" />
-    <file path="/GHI_ItemInfoList.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377109926735" ignored="false" />
-    <file path="/GHI_LimitedScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108537950" ignored="false" />
-    <file path="/GHI_ExpressionHandler.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108496303" ignored="false" />
-    <file path="/GHI_Stack.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378845660299" ignored="false" />
-    <file path="/GHI_Timer.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377109439951" ignored="false" />
-    <file path="/GHI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376944673017" ignored="false" />
-    <file path="/GHI_MapMaker.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380987156834" ignored="false" />
-    <file path="/GHI_MapMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376860873636" ignored="false" />
-    <file path="/GHI_MapDisplayer.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376848893712" ignored="false" />
-    <file path="/GHI_MapData.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376861151172" ignored="false" />
-    <file path="/GHI_Map.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376859661016" ignored="false" />
-    <file path="/ghm.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378933043687" ignored="false" />
-    <file path="/GHM_Image.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376515360466" ignored="false" />
-    <file path="/GHM_Image.xml" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376514722165" ignored="false" />
-    <file path="/GHI_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930411277" ignored="false" />
-    <file path="/GHM_MultiPageEditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377717826108" ignored="false" />
-    <file path="/GHM_Color2.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376512274108" ignored="false" />
-    <file path="/GHM_Slider.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390756083274" ignored="false" />
-    <file path="/GHI_BuffMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338643231" ignored="false" />
-    <file path="/GHM_DropDown.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376147460379" ignored="false" />
-    <file path="/GHI_ActionAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447100441" ignored="false" />
-    <file path="/GHI_ScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108571829" ignored="false" />
-    <file path="/GHI_BookMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376151893409" ignored="false" />
-    <file path="/a.dummy" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386013991726" ignored="false" />
-    <file path="/GHI_SimpleAction.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338314117" ignored="false" />
-    <file path="/GHI_BookObj_Signature.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079378777" ignored="false" />
-    <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
-    <file path="/ghi.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383389486973" ignored="false" />
-    <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
-    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390756574771" ignored="false" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
+    <file path="/Dummy.txt" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390756574771" ignored="false" />
+    <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
+    <file path="/ghi.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383389486973" ignored="false" />
+    <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
+    <file path="/GHI_BookObj_Signature.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079378777" ignored="false" />
+    <file path="/GHI_SimpleAction.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338314117" ignored="false" />
+    <file path="/a.dummy" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386013991726" ignored="false" />
+    <file path="/GHI_BookMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376151893409" ignored="false" />
+    <file path="/GHI_ScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108571829" ignored="false" />
+    <file path="/GHI_ActionAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447100441" ignored="false" />
+    <file path="/GHM_DropDown.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376147460379" ignored="false" />
+    <file path="/GHI_BuffMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376338643231" ignored="false" />
+    <file path="/GHM_Slider.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390756083274" ignored="false" />
+    <file path="/GHM_Color2.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376512274108" ignored="false" />
+    <file path="/GHM_MultiPageEditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377717826108" ignored="false" />
+    <file path="/GHI_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930411277" ignored="false" />
+    <file path="/GHM_Image.xml" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376514722165" ignored="false" />
+    <file path="/GHM_Image.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376515360466" ignored="false" />
+    <file path="/ghm.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378933043687" ignored="false" />
+    <file path="/GHI_Map.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376859661016" ignored="false" />
+    <file path="/GHI_MapData.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376861151172" ignored="false" />
+    <file path="/GHI_MapDisplayer.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376848893712" ignored="false" />
+    <file path="/GHI_MapMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376860873636" ignored="false" />
+    <file path="/GHI_MapMaker.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380987156834" ignored="false" />
+    <file path="/GHI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376944673017" ignored="false" />
+    <file path="/GHI_Timer.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377109439951" ignored="false" />
+    <file path="/GHI_Stack.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378845660299" ignored="false" />
+    <file path="/GHI_ExpressionHandler.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108496303" ignored="false" />
+    <file path="/GHI_LimitedScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108537950" ignored="false" />
+    <file path="/GHI_ItemInfoList.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377109926735" ignored="false" />
+    <file path="/GHI_Position.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108819485" ignored="false" />
+    <file path="/GHI_VersionInfo.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108872094" ignored="false" />
+    <file path="/GHI_BuffUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377723969308" ignored="false" />
+    <file path="/GHI_StandardItemMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378930261951" ignored="false" />
+    <file path="/GHI_ItemandContainer.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587119433" ignored="false" />
+    <file path="/GHI_Trade.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378758799711" ignored="false" />
+    <file path="/GHI_ContainerList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378649844213" ignored="false" />
+    <file path="/GHI_ContainerInfo.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378650789197" ignored="false" />
+    <file path="/GHI_BagMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587551197" ignored="false" />
+    <file path="/GHM_Slider.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378588792084" ignored="false" />
+    <file path="/GHI_ContainerUI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383387866252" ignored="false" />
+    <file path="/a.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885497456" ignored="false" />
+    <file path="/GHI_ContainerAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378843484544" ignored="false" />
+    <file path="/GHI_ItemInfo_Standard.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844695368" ignored="false" />
+    <file path="/GHI_ItemInfo_Advanced.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378846032443" ignored="false" />
+    <file path="/GHI_ItemInfo_Basic.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378845530881" ignored="false" />
+    <file path="/GHI_MiscAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379449553968" ignored="false" />
+    <file path="/a.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379444952801" ignored="false" />
+    <file path="/GHM_Time.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378932171377" ignored="false" />
+    <file path="/ghm.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380831316481" ignored="false" />
+    <file path="/GHI_ClassAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447910656" ignored="false" />
+    <file path="/GHI_CodeEditorOptionsMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380831253981" ignored="false" />
+    <file path="/GHI_Compatibility.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383499829639" ignored="false" />
+    <file path="/GHG_Group.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386014048915" ignored="false" />
+    <file path="/GHG_GroupAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385927647220" ignored="false" />
+    <file path="/ghclass.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383512266221" ignored="false" />
+    <file path="/GHG_Loc.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384900883265" ignored="false" />
+    <file path="/GHG_GroupAdmin.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385623450178" ignored="false" />
+    <file path="/GHG_AdminAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385617867909" ignored="false" />
+    <file path="/GHG_GroupInfoFrame.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384899583504" ignored="false" />
+    <file path="/GHG_GroupInfoFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384901431134" ignored="false" />
+    <file path="/GHM_ImageList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384000702047" ignored="false" />
+    <file path="/GHG.toc" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384006311174" ignored="false" />
+    <file path="/GHG_LogEventType.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384900768524" ignored="false" />
+    <file path="/GHG_LogEvent.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384008481903" ignored="false" />
+    <file path="/GHI_ExportItem.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1384878654415" ignored="false" />
+    <file path="/GHG_GroupInvite.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385058509067" ignored="false" />
+    <file path="/GHI_Crypt.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385067129474" ignored="false" />
+    <file path="/GHG_GroupList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386014126117" ignored="false" />
+    <file path="/GHI_ChannelComm.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385216479397" ignored="false" />
+    <file path="/GH_DataSharer.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385415314859" ignored="false" />
+    <file path="/GHG_PlayerDataList.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385206142290" ignored="false" />
+    <file path="/GHG_GroupRank.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385451922137" ignored="false" />
+    <file path="/GHG_GroupFrame.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385588555013" ignored="false" />
+    <file path="/GHM_CheckBox.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385587375346" ignored="false" />
+    <file path="/GHG_GroupAdmin_RankMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385587459821" ignored="false" />
+    <file path="/GHG_ChatEvents.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385928062214" ignored="false" />
+    <file path="/GHG_GroupChat.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386013882694" ignored="false" />
+    <file path="/GHI_SimpleItemMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1390755968945" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,46 +150,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GHI_BBCodeConverter.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_BBCodeConverter.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="43" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#708#1209#1" expanded="false" />
-                <element signature="e#1234#1695#1" expanded="false" />
-                <element signature="e#1747#2408#1" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GHI_BBCodeConverter.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_BBCodeConverter.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="4" selection-start="958" selection-end="972" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GHI_HtmlDeserializer.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_HtmlDeserializer.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="158" column="11" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GHI_HtmlDeserializer.lua" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_HtmlDeserializer.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.30242512">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GHI_TestHandler.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/Tests/GHI_TestHandler.lua">
           <provider selected="true" editor-type-id="text-editor">
@@ -209,7 +162,7 @@
       <file leaf-file-name="Tests.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/Tests/Tests.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="57" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+            <state line="6" column="57" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -224,10 +177,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHI_BookUI.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/UI/Book/GHI_BookUI.xml">
+      <file leaf-file-name="GHM_MultiPageToolbar.lua" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="79" column="0" selection-start="1804" selection-end="1804" vertical-scroll-proportion="0.9421769">
               <folding />
             </state>
           </provider>
@@ -251,8 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHG/API/GHG_AdminAPI.lua" />
-        <option value="$PROJECT_DIR$/GHG/GUI/GHG_GroupAdmin.lua" />
         <option value="$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua" />
         <option value="$PROJECT_DIR$/GHG/GUI/GHG_ChatEvents.lua" />
         <option value="$PROJECT_DIR$/GHG/Comm/GHG_GroupChat.lua" />
@@ -267,6 +218,8 @@
         <option value="$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_BBCodeConverter.lua" />
         <option value="$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_HtmlDeserializer.lua" />
         <option value="$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_HtmlDeserializer.lua" />
+        <option value="$PROJECT_DIR$/GHM/Toolbar/GHM_MultipageToolbar.lua" />
+        <option value="$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua" />
       </list>
     </option>
   </component>
@@ -274,10 +227,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="255" />
-    <option name="y" value="89" />
-    <option name="width" value="1413" />
-    <option name="height" value="887" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -305,6 +258,17 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -401,108 +365,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Book" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Book" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Converters" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Book" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Converters" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="151" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="150" />
     <property name="project.structure.proportion" value="0.0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="150" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="151" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="825" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="832" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="825" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="153" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="147" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -551,24 +435,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -594,6 +460,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -894,10 +778,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="255" y="89" width="1413" height="887" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3316913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33079433" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.87027913" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -906,17 +790,17 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3535188" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.74055827" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gryphonheart Unittest" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24332345" sideWeight="0.6565144" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24318546" sideWeight="0.66920567" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34348562" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -959,7 +843,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor book progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="Missing toolbar changes" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -972,7 +856,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
     <MESSAGE value="Re #96. Trading of bags works. Including trading of sub bags. Tested with 4 levels of bags inside each other." />
     <MESSAGE value="Re #96. Almost everything is done with trade." />
     <MESSAGE value="Re #96. Implemented a &quot;Waiting for item data&quot; sign, when trade item data takes longer than expected to transfer." />
@@ -997,6 +880,7 @@
     <MESSAGE value="Fixed issues in GHG regarding communication. Improved sharing of keys, so that players loosing their data would get access again as soon as they are online at the same time as one from their group. Converted the rank data into a number where each rank permission can be extracted, in order to save space and bandwidth when transferring data." />
     <MESSAGE value="Adjusted the sliders in the simple item menu into using the newer slider. Modified the slider so that the slider graphics is centered vertically." />
     <MESSAGE value="Minor book progress." />
+    <MESSAGE value="Missing toolbar changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1046,14 +930,16 @@
         <state line="152" column="17" selection-start="3994" selection-end="3994" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/UI/Book/GHI_BookUI.xml">
+    <entry file="file://$PROJECT_DIR$/GHI/Tests/GHI_TestHandler.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHI/Tests/Tests.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="57" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+        <state line="6" column="57" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1065,41 +951,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_BBCodeConverter.lua">
+    <entry file="file://$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="4" selection-start="958" selection-end="972" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Tests/GHI_TestHandler.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_BBCodeConverter.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="43" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#708#1209#1" expanded="false" />
-            <element signature="e#1234#1695#1" expanded="false" />
-            <element signature="e#1747#2408#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/UI/Book/Converters/GHI_HtmlDeserializer.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="11" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Tests/UI/Book/Converters/GHI_HtmlDeserializer.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.30242512">
+        <state line="79" column="0" selection-start="1804" selection-end="1804" vertical-scroll-proportion="0.9421769">
           <folding />
         </state>
       </provider>
