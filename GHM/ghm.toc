@@ -73,6 +73,7 @@ Toolbar\GHM_ToolbarObjectRow.lua
 Toolbar\GHM_ToolbarCategory.lua
 Toolbar\GHM_ToolbarPage.lua
 Toolbar\GHM_MultiPageToolbar.lua
+Toolbar\GHM_Toolbar.xml
 
 DropDownMenu\GHM_DropDownMenu.lua
 DropDownMenu\GHM_DropDownMenuTemplates.xml

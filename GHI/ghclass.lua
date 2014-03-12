@@ -225,3 +225,7 @@ if not(Ambiguate) then
 		return name;
 	end
 end
+
+function GH_TestFeature()
+	return strlower(GetAddOnMetadata("GHI", "X-DevVersion")) == "true" and IsShiftKeyDown();
+end

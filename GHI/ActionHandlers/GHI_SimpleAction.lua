@@ -257,7 +257,7 @@ local GetActionScript = function(info,oldVersion)
 		else
 			extraMat = nil
 		end
-		
+
 		local script = string.format("GHI_ShowBook(stack.GetContainerGuid(),stack.GetContainerSlot(),\"%s\",%s,\"%s\",\"%s\",%s,%s,%s,nil,nil,%s,nil,\"%s\");",ScriptFormat("%s",info.title or ""), pageScript, material, font, n, h1, h2, extraMat or "nil",info.guid)
 		return script, 0;
 	elseif actionType == "sound" then

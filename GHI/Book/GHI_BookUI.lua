@@ -193,9 +193,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	frame.currentPage = 1
 	
 	frame.pages = {}
-	for i,v in pairs(frame.pages) do
-		table.remove(frame.pages,i)
-	end
+
 	if type(pages) == "string" then
 		table.insert(frame.pages, pages)
 	elseif type(pages) == "table" then
@@ -760,12 +758,16 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 			end
 
 			if action then
-				-- Show the edit book action menu, without any edit item menu.
-				local menu = GHI_BookMenu(function()
-					item.IncreaseVersion(true);
-					itemList.UpdateItem(item);
-					GHI_MiscData.lastUpdateItemTime = GetTime();
-				end,action);
+				if GH_TestFeature() then
+					GHI_MenuList("GHI_BookEditor").Edit(action, item);
+				else
+					-- Show the edit book action menu, without any edit item menu.
+					local menu = GHI_BookMenu(function()
+						item.IncreaseVersion(true);
+						itemList.UpdateItem(item);
+						GHI_MiscData.lastUpdateItemTime = GetTime();
+					end,action);
+				end
 			else
 				print("Book action not found");
 			end

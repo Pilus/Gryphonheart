@@ -27,7 +27,7 @@ function GHI_BBCodeConverter()
 		str = gsub(str, "<", "&lt;")
 		str = gsub(str, ">", "&gt;")
 		str = gsub(str, '"', "&quot;")
-		str = gsub(str, "\n", "</br>")
+		str = gsub(str, "\n", "<BR/>")
 		return str;
 	end
 
@@ -36,7 +36,8 @@ function GHI_BBCodeConverter()
 		str = gsub(str, "&gt;", ">")
 		str = gsub(str, "&quot;", '"')
 		str = gsub(str, "&amp;", "&")
-		str = gsub(str, "</br>", "\n")
+		str = gsub(str, "<BR/>", "\n")
+		str = gsub(str, "<br/>", "\n")
 		return str;
 	end
 
@@ -59,14 +60,19 @@ function GHI_BBCodeConverter()
 		if type(t) == "string" then
 			return t;
 		end
+
+		if t.tag then
+			t.tag = strlower(t.tag);
+		end
+
 		if t.tag == "html" then
 			return tableToMockup(t[1] or "");
 		elseif t.tag == "body" then
-			return tableToMockup(t[1] or "");
+			return ConvertAllWithEvtTag(t);
 		elseif t.tag == "p" then
 			return ConvertAllWithEvtTag(t, t.args.align);
 		elseif t.tag == "br" then
-			return "/n";
+			return "\n";
 		elseif t.tag == "h1" or t.tag == "h2" or t.tag == "h3" then
 			return ConvertAllWithEvtTag(t, t.tag);
 		elseif t.tag == "img" then
@@ -103,6 +109,7 @@ function GHI_BBCodeConverter()
 	end
 
 	class.ToMockup = function(simpleHtml)
+		GHCheck("GHI_BBCodeConverter.ToMockup", {"string"}, {simpleHtml})
 		local t = htmlDeserial.HtmlToTable(simpleHtml);
 		local mock = tableToMockup(t);
 		return RemoveEntityEscapeString(mock);
@@ -118,8 +125,8 @@ function GHI_BBCodeConverter()
 	local ConvertAllWithEvtTag = function(t, tag)
 		local open, close = "", "";
 		if tag then
-			open = "<"..tag..">";
-			close = "</"..tag..">";
+			open = "<"..string.upper(tag)..">";
+			close = "</"..string.upper(tag)..">";
 		end
 		local s = "";
 
@@ -139,28 +146,28 @@ function GHI_BBCodeConverter()
 
 		if t.tag == "h1" or t.tag == "h2" or t.tag == "h3" then
 			local before, after = "", "";
-			if parentTag == "body" and prevTag == nil then before = "</p>"; end
-			if parentTag == "body" and nextTag == nil then after = "<p>"; end
+			if parentTag == "body" and prevTag == nil then before = "</P>"; end
+			if parentTag == "body" and nextTag == nil then after = "<P>"; end
 			return before..ConvertAllWithEvtTag(t, t.tag)..after;
 		elseif t.tag == "body" then
 			local s = "";
 			if t[1] and t[1].tag == nil then
-				s = "<p>";
+				s = "<P>";
 			end
 			for i= 1,#(t) do
 				s = s..tableToHtml(t[i], t.tag, (t[i-1] or {tag="none"}).tag, (t[i+1] or {tag="none"}).tag);
 			end
 			if t[#(t)] and t[#(t)].tag == nil then
-				s = s.."</p>";
+				s = s.."</P>";
 			end
 			return s;
 		elseif t.tag == "left" or t.tag == "right" then
 			local tag = parentTag == "body" and "p" or parentTag;
 			local s;
 			if prevTag == "none" then
-				s = string.format("<%s align=\"%s\">", tag, t.tag);
+				s = string.format("<%s align=\"%s\">", strupper(tag), strupper(t.tag));
 			else
-				s = string.format("</%s><%s align=\"%s\">", tag, tag, t.tag);
+				s = string.format("</%s><%s align=\"%s\">", strupper(tag), strupper(tag), strupper(t.tag));
 			end
 
 			for i=1,#(t) do
@@ -168,14 +175,14 @@ function GHI_BBCodeConverter()
 			end
 
 			if nextTag == "none" then
-				s = s..string.format("</%s>", tag);
+				s = s..string.format("</%s>", string.upper(tag));
 			else
-				s = s..string.format("</%s><%s>", tag, tag);
+				s = s..string.format("</%s><%s>", string.upper(tag), string.upper(tag));
 			end
 			return s, prevTag == "none", nextTag == "none";
 		else
 			local x, y = CheckCustomObjSize(t);
-			local inner = string.format("<%s", t.tag);
+			local inner = string.format("<%s", string.upper(t.tag));
 			for i,v in pairs(t.args) do
 				inner = string.format("%s %s=\"%s\"", inner, i, v);
 			end
@@ -185,7 +192,7 @@ function GHI_BBCodeConverter()
 				for i=1,#(t) do
 					inner = inner..tableToHtml(t[i]);
 				end
-				inner = inner .. "</" .. t.tag .. ">";
+				inner = inner .. "</" .. string.upper(t.tag) .. ">";
 			else
 				inner = inner .. "/>";
 			end
@@ -195,10 +202,11 @@ function GHI_BBCodeConverter()
 	end
 
 	local AppendHtmlAndBodyTags = function(text)
-		return "<html><body>"..text.."</body></html>";
+		return "<HTML><BODY>"..text.."</BODY></HTML>";
 	end
 
 	class.ToSimpleHtml = function(mockup)
+		GHCheck("GHI_BBCodeConverter.ToSimpleHtml", {"string"}, {mockup})
 		local escaped = EntityEscapeString(mockup);
 		local table = bbcodeDeserial.BBCodeToTable(escaped);
 		table.tag = "body";
