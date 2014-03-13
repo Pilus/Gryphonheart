@@ -63,7 +63,7 @@ GHTest = {
 
 
 GHI_Timer(function()
-	if GetAddOnMetadata("GHI", "X-DevVersion") then
+	if strlower(GetAddOnMetadata("GHI", "X-DevVersion")) == "true" then
 		GHI_RunTests()
 	end
 end,2,true); --]]

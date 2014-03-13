@@ -17,14 +17,50 @@ function GHI_BookEditor()
 	local inUse = false;
 	local menuFrame
 	local loc = GHI_Loc();
+	local converter = GHI_BBCodeConverter();
+	local itemList = GHI_ItemInfoList();
+
+	local action, textFrame, info, item, currentPageShown;
+
+	local SaveCurrentPage = function()
+		if currentPageShown then
+			info[currentPageShown] = info[currentPageShown] or {};
+			local bbcode = textFrame.GetValue();
+			local simpleHtml = converter.ToSimpleHtml(bbcode);
+			info[currentPageShown].text1 = simpleHtml;
+		end
+	end
+
+	local ShowPage = function(i)
+		SaveCurrentPage();
+		currentPageShown = i;
+
+		local mockup = converter.ToMockup(info[i].text1);
+		textFrame.Force(mockup);
+	end
 
 	class.New = function(...)
+		--inUse = true;
+		--menuFrame:AnimatedShow();
+	end
+
+	class.Edit = function(bookAction, _item, ...)
+		action = bookAction;
+		item = _item;
+		info = action.GetInfo();
 		inUse = true;
+		ShowPage(1);
 		menuFrame:AnimatedShow();
 	end
 
-	class.Edit = function(...)
+	local OnOk = function()
+		SaveCurrentPage();
+		action.UpdateInfo(info);
+		item.IncreaseVersion(true);
+		itemList.UpdateItem(item);
+		GHI_MiscData.lastUpdateItemTime = GetTime();
 
+		menuFrame:Hide();
 	end
 
 	class.IsInUse = function() return inUse; end
@@ -79,12 +115,24 @@ function GHI_BookEditor()
 								},
 							}
 						},
+					},
+					{
+						name = "Some other page",
+						{
+							name = "Category X",
+							{
+								{
+									type = "TextButton",
+									text = "H1",
+								},
+							}
+						}
 					}
 				}
 			},
 			{
 				{
-					type = "MultiPageEditField",
+					type = "EditField",
 					align = "c",
 					width = 400,
 					height = 400,
@@ -128,6 +176,8 @@ function GHI_BookEditor()
 			end
 		end,
 	});
+
+	textFrame = menuFrame.GetLabelFrame("text");
 
 	return class;
 end
