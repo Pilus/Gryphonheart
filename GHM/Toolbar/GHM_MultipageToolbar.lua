@@ -70,8 +70,6 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	frame:SetHeight(height);
 	frame:SetWidth(width);
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	TogglePage(firstButton);
 
 	return frame;

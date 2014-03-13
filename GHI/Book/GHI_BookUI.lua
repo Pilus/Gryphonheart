@@ -445,7 +445,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 		local text = frame.pages[p]
 		text = CheckForIconsInPage(text)
 		-- Handle objects in the page
-		HandleObjectsInPage(text);
+		--HandleObjectsInPage(text); -- Broken
 
 		local logoCount = frame.IconsInPage.count
 		GHI_Timer(function()
