@@ -16,6 +16,7 @@ Libs\AceSerializer-3.0\AceSerializer-3.0.xml
 Libs\LibCompress\LibCompress.lua
 ghclass.lua
 GHI_MenuList.lua
+GH_DebugMenu.lua
 
 Localization\GHI_Loc.lua
 
