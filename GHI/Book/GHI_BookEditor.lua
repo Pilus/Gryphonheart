@@ -65,17 +65,31 @@ function GHI_BookEditor()
 
 	class.IsInUse = function() return inUse; end
 
+	local bookIconsPath = "Interface\\addons\\GHI\\Texture\\BookIcons";
+	local fractionPrIcon = 0.25;
+	local GetTexCoord = function(x, y)
+		local l = (x-1) * fractionPrIcon;
+		local r = x * fractionPrIcon;
+		local t = (y-1) * fractionPrIcon;
+		local b = y * fractionPrIcon;
+		return {l, t, l, b, r, t, r, b};
+	end
+
 	local SetUpXXCat = function()
 		return {
 			name = "???",
 			{
-				{
-					type = "TextButton",
-					text = "Undo",
+				{ -- undo
+					type = "StandardButtonWithTexture",
+					tooltip = "Undo",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(2, 2);
 				},
 				{
-					type = "TextButton",
-					text = "Redo",
+					type = "StandardButtonWithTexture",
+					tooltip = "Redo",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(3, 2);
 				},
 				{
 					type = "TextButton",
