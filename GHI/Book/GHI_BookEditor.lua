@@ -65,70 +65,126 @@ function GHI_BookEditor()
 
 	class.IsInUse = function() return inUse; end
 
+	local SetUpXXCat = function()
+		return {
+			name = "???",
+			{
+				{
+					type = "TextButton",
+					text = "Undo",
+				},
+				{
+					type = "TextButton",
+					text = "Redo",
+				},
+				{
+					type = "TextButton",
+					text = "Save",
+				},
+				{
+					type = "TextButton",
+					text = "Revert",
+				},
+			},
+		};
+	end
+
+	local SetFontCat = function()
+		return {
+			name = "Font",
+			{
+				{
+					type = "TextButton",
+					text = "Font color",
+				}
+			}
+		}
+	end
+
+	local SetLayoutCat = function()
+		return {
+			name = "Layout",
+			{
+				{
+					type = "TextButton",
+					text = "L",
+				},
+				{
+					type = "TextButton",
+					text = "C",
+				},
+				{
+					type = "TextButton",
+					text = "R",
+				}
+			}
+		}
+	end
+
+	local SetStylesCat = function()
+		return {
+			name = "Styles",
+			{
+				{
+					type = "TextButton",
+					text = "H1",
+				},
+				{
+					type = "TextButton",
+					text = "H2",
+				},
+				{
+					type = "TextButton",
+					text = "H3",
+				}
+			}
+		}
+	end
+
+	local SetAppearanceCat = function()
+		return {
+			name = "Appearance",
+			{
+				{
+					type = "TextButton",
+					text = "Background style",
+				},
+				{
+					type = "TextButton",
+					text = "Default font",
+				},
+				{
+					type = "TextButton",
+					text = "Default color",
+				}
+			}
+		}
+	end
+
+	local SetUpFormattingPage = function()
+		return	{
+			name = "Formatting",
+			SetUpXXCat(),
+			SetFontCat(),
+			SetLayoutCat(),
+			SetStylesCat(),
+			SetAppearanceCat(),
+		};
+	end
+
+	local SetUpToolbar = function()
+		return {
+			type = "MultiPageToolbar",
+			align = "l",
+			SetUpFormattingPage(),
+		}
+	end
+
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
 		{
 			{
-				{
-					type = "MultiPageToolbar",
-					align = "l",
-					{
-						name = "Page A",
-						{
-							name = "Category B",
-							{
-								{
-									type = "TextButton",
-									text = "H1",
-								},
-								{
-									type = "TextButton",
-									text = "H2",
-								},
-							},
-						},
-						{
-							name = "Cat 2",
-							{
-								{
-									type = "TextButton",
-									text = "H3",
-								},
-								{
-									type = "TextButton",
-									text = "H4",
-								},
-							},
-							{
-								{
-									type = "TextButton",
-									text = "H5",
-								},
-							},
-						},
-						{
-							name = "Cat 3",
-							{
-								{
-									type = "TextButton",
-									text = "X",
-								},
-							}
-						},
-					},
-					{
-						name = "Some other page",
-						{
-							name = "Category X",
-							{
-								{
-									type = "TextButton",
-									text = "H1",
-								},
-							}
-						}
-					}
-				}
+				SetUpToolbar();
 			},
 			{
 				{
