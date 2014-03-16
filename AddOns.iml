@@ -222,12 +222,12 @@
       <excludeFolder url="file://$MODULE_DIR$/Tongues" />
       <excludeFolder url="file://$MODULE_DIR$/WIM" />
       <excludeFolder url="file://$MODULE_DIR$/WoWPro" />
+      <excludeFolder url="file://$MODULE_DIR$/WoWPro/Libraries" />
+      <excludeFolder url="file://$MODULE_DIR$/WoWPro/Textures" />
       <excludeFolder url="file://$MODULE_DIR$/WoWPro_Achievements" />
       <excludeFolder url="file://$MODULE_DIR$/WoWPro_Dailies" />
       <excludeFolder url="file://$MODULE_DIR$/WoWPro_Leveling" />
       <excludeFolder url="file://$MODULE_DIR$/WoWPro_WorldEvents" />
-      <excludeFolder url="file://$MODULE_DIR$/WowPro/Libraries" />
-      <excludeFolder url="file://$MODULE_DIR$/WowPro/Textures" />
       <excludeFolder url="file://$MODULE_DIR$/WowPro_Profession" />
       <excludeFolder url="file://$MODULE_DIR$/XBar" />
       <excludeFolder url="file://$MODULE_DIR$/XBuffBar" />

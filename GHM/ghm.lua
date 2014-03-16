@@ -344,6 +344,9 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 			if profile.width then
 				obj:SetWidth(profile.width);
 			end
+			if profile.height then
+				obj:SetHeight(profile.height);
+			end
 		end
 		if profile.tooltip then
 			obj.tooltip = profile.tooltip;
