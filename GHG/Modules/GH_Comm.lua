@@ -88,7 +88,7 @@ function GH_Comm()
 
 		-- Deserialize the decompressed data
 		local success, data = libSerial:Deserialize(message)
-		if (not success) then
+		if not(success) then
 			print("Error deserializing data from " .. sender, { data });
 			return
 		end

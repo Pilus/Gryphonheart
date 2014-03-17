@@ -26,12 +26,13 @@ end
 
 local DATAPIECE_SIZE = 1024;
 
-function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamicPieceSizeChange)
+function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamicPieceSizeChange,addonVersion)
 	assert(type(setGuid)=="string","SetGuid must be a string");
 	assert(type(addonShort)=="string","addonShort must be a string");
 	assert(type(getFunc)=="function","getFunc must be a function");
 	assert(type(setFunc)=="function","setFunc must be a function");
 	assert(type(getAllGuidFunc)=="function","getAllGuidFunc must be a function");
+	assert(type(addonVersion)=="nil" or type(addonVersion)=="string","A provided addon version must be a version string")
 
 	local class = GHClass("GH_DataSharer");
 
@@ -57,7 +58,7 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		local version = obj.GetVersion();
 		local data = obj.Serialize();
 
-		local players = versionInfo.GetAllPlayers(addonShort);
+		local players = versionInfo.GetAllPlayers(addonShort,addonVersion);
 		for i,v in pairs(players) do
 			if v == UnitName("player") then
 				table.remove(players,i);
@@ -115,12 +116,12 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		---DEBUG3 = (DEBUG3 or "").." Received piece "..pieceIndex.." of "..numPiecesTotal;
 
 		if AreAllPiecesReceived(incommingData[subsetGuid],numPiecesTotal) then -- All pieces are received
-			--
 
 			local str = "";
 			for i=1,#(incommingData[subsetGuid]) do
 				str = str..incommingData[subsetGuid][i];
 			end
+
 			local success,dataSet = serializer:Deserialize(str)
 			if success then
 				settingData = true;
@@ -128,10 +129,14 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 				settingData = false;
 				incommingData[subsetGuid] = nil;
 			else
-				error(strsub(tostring(dataSet),0,128));
+				--[[
+				local s = "guid: "..subsetGuid;
+				s=s.."\n".."total "..numPiecesTotal;
+				s=s.."\n"..str;
+				GHI_MenuList("GH_DebugMenu").New(s);
+				print("error")   --]]
+				--error(strsub(tostring(dataSet),0,128));
 			end
-
-
 		end
 	end
 
@@ -164,6 +169,7 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		local obj = getFunc(subsetGuid);
 		if not(obj) or obj.GetVersion() <= version then
 			if not(obj) or obj.GetVersion() < version then
+				--print(subsetGuid,"from",sender,pieceIndex,"of",numPiecesTotal)
 				ReceivePiece(subsetGuid,data,pieceIndex,numPiecesTotal)
 			end
 
@@ -425,7 +431,7 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		end
 
 		for i=a,b do
-
+			--if subsetGuid == "257_42D041A" then GHI_MenuList("GH_DebugMenu").New("orig\n"..subsetGuid.."\n"..serializedData); end
 			comm.Send("BULK",player,"GH_UpdatedData_"..setGuid,subsetGuid,version,players,pieces[i],i,#(pieces));
 		end
 	end
