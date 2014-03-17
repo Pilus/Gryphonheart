@@ -22,7 +22,7 @@ function GHI_TargetUI:OnEvent(event)
 	local versionInfo = GHI_VersionInfo();
 
 	if self.mainButton then
-		if UnitExists("target") and UnitIsPlayer("target") and UnitFactionGroup("target") == UnitFactionGroup("player") then
+		if not(GHI_MiscData["hide_target_button"]) and UnitExists("target") and UnitIsPlayer("target") and UnitFactionGroup("target") == UnitFactionGroup("player") then
 			local displayMethod = GHI_MiscData.target_icon_display_method or 1;
 
 			if displayMethod == 1 then
@@ -76,6 +76,7 @@ function GHI_TargetUI:AddButton(refID, icon, tooltipFunc, clickFunc, targetType)
 
 	assert(type(refID) == "string" or type(refID) == "number", "RefID must be a number or string.");
 	assert(self.buttons[refID] == nil, format("Button %s already made", refID));
+
 
 	self:SetUpMainButton();
 

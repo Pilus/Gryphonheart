@@ -65,6 +65,30 @@ function GHI_BookEditor()
 
 	class.IsInUse = function() return inUse; end
 
+	local GetHighlightedText = function(frame)
+		if not (frame) then return nil end
+		local origText = frame:GetText();
+		if not (origText) then return nil end
+
+		frame:Insert("\127");
+		local a = string.find(frame:GetText(), "\127");
+		local dLen = math.max(0,string.len(origText)-string.len(frame:GetText())-1);
+		frame:SetText(origText);
+		frame:HighlightText(a - 1, a + dLen + 1);
+		return a - 1, a + dLen + 1;
+	end
+
+	local InsertTag = function(tag)
+		local tFrame = textFrame:GetFieldFrame();
+		local hi1, hi2 = GetHighlightedText(tFrame);
+		local inner = "";
+		if hi1 and hi2 then
+			inner = string.sub(tFrame:GetText(), hi1 + 1, hi2);
+		end
+		local s = string.format("[%s]%s[/%s]", tag, inner, tag);
+		tFrame:Insert(s);
+	end
+
 	local bookIconsPath = "Interface\\addons\\GHI\\Texture\\BookIcons";
 	local fractionPrIcon = 0.25;
 	local GetTexCoord = function(x, y)
@@ -79,7 +103,7 @@ function GHI_BookEditor()
 		return {
 			name = "???",
 			{
-				{ -- undo
+				{
 					type = "StandardButtonWithTexture",
 					tooltip = "Undo",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
@@ -120,17 +144,26 @@ function GHI_BookEditor()
 			name = "Layout",
 			{
 				{
-					type = "TextButton",
-					text = "L",
+					type = "StandardButtonWithTexture",
+					tooltip = "Left",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(1, 1);
+					onClick = function() InsertTag("left") end,
 				},
 				{
-					type = "TextButton",
-					text = "C",
+					type = "StandardButtonWithTexture",
+					tooltip = "Center",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(2, 1);
+					onClick = function() InsertTag("center") end,
 				},
 				{
-					type = "TextButton",
-					text = "R",
-				}
+					type = "StandardButtonWithTexture",
+					tooltip = "Right",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(3, 1);
+					onClick = function() InsertTag("right") end,
+				},
 			}
 		}
 	end
@@ -140,16 +173,28 @@ function GHI_BookEditor()
 			name = "Styles",
 			{
 				{
-					type = "TextButton",
+					type = "Button",
 					text = "H1",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() InsertTag("h1") end,
 				},
 				{
-					type = "TextButton",
+					type = "Button",
 					text = "H2",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() InsertTag("h2") end,
 				},
 				{
-					type = "TextButton",
+					type = "Button",
 					text = "H3",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() InsertTag("h3") end,
 				}
 			}
 		}

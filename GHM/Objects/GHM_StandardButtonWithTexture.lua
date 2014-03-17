@@ -30,8 +30,8 @@ function GHM_StandardButtonWithTexture(parent, main, profile)
 		frame.texture = texture;
 	end
 
-	if type(profile.OnClick) == "function" then
-		frame:SetScript("OnClick", profile.OnClick);
+	if type(profile.onClick) == "function" then
+		frame:SetScript("OnClick", profile.onClick);
 	end
 
 	local OrigUpdateTheme = frame.UpdateTheme;

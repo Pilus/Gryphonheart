@@ -1558,7 +1558,7 @@ function GHI_EqDisplayEvent(event, ...)
 			end
 
 			GameTooltip:Show()
-		end, GHI_ToggleTargetEqDisplay, "FriendlyPlayer")
+		end, function() end, "FriendlyPlayer")
 
 		--GHI_DoScript("GHI_ShowPlayerEquipmentDisplay(); GHI_GetPlayerEquipmentDisplay():Hide()",3);
 		--GHI_DoScript("GHI_ShowPlayerEquipmentDisplay();  GHI_ShowPlayerEquipmentDisplay()",3);

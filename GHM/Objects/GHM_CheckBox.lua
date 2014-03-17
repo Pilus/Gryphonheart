@@ -31,7 +31,7 @@ function GHM_CheckBox(parent, main, profile)
 	else
 		frame:SetWidth(math.min(label:GetWidth(),160)+checkBox:GetWidth()+10)
 	end
-	label:GetParent():SetWidth(frame:GetWidth())
+	label:GetParent():SetWidth(frame:GetWidth() - 10 - checkBox:GetWidth())
 
     GHM_FramePositioning(frame,profile,parent);
 
