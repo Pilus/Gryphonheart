@@ -196,6 +196,22 @@ function GHI_ContainerList()
 		end
 	end
 
+	local WillBackBeOpenableAfterInsertingItem;
+	WillBackBeOpenableAfterInsertingItem = function(cursorStackGuid, containerGuid)
+		local container = containers[containerGuid];
+		local ownerItemGuid = container.GetOwnerItem();
+		if not(ownerItemGuid) then
+			return true;
+		end
+		local stacks = class.FindAllStacks(ownerItemGuid);
+		for _,stack in pairs(stacks) do
+			if stack.GetGuid() ~= cursorStackGuid and WillBackBeOpenableAfterInsertingItem(cursorStackGuid, stack.GetParentContainer()) then
+				return true;
+			end
+		end
+		return false;
+	end
+
 	class.PickupContainerItem = function(containerGuid, slotID)
 		if containers[containerGuid] then
 			local container = containers[containerGuid];
@@ -214,7 +230,10 @@ function GHI_ContainerList()
 				return;
 			end
 
-
+			if not(WillBackBeOpenableAfterInsertingItem(cursorStack.GetGuid(),containerGuid)) then
+				UIErrorsFrame:AddMessage("You cannnot place that bag there.", 1, 0, 0, 53, 5);
+				return
+			end
 
 			local slotIsEmpty = (container.GetContainerItemInfo(slotID) == nil);
 			local cursorGotValidItem = (containers[cursorContainerGuid] and cursorType == "GHI_ITEM");
