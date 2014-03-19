@@ -1,6 +1,6 @@
 local name = "GHI_HtmlDeserializer";
 
-GHTest.AddTest(name.."ShouldHandleSingleTagsWithoutArguments", function()
+GHTest.AddTest(name, "ShouldHandleSingleTagsWithoutArguments", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("<br/>");
@@ -8,7 +8,7 @@ GHTest.AddTest(name.."ShouldHandleSingleTagsWithoutArguments", function()
 	GHTest.Equals("br", r[1].tag);
 end);
 
-GHTest.AddTest(name.."ShouldHandleSingleTagsWithArguments", function()
+GHTest.AddTest(name, "ShouldHandleSingleTagsWithArguments", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable('<map x="14.23" text="abc"/>');
@@ -20,7 +20,7 @@ GHTest.AddTest(name.."ShouldHandleSingleTagsWithArguments", function()
 	GHTest.Equals("abc", r[1].args.text);
 end);
 
-GHTest.AddTest(name.."ShouldHandleNestedSimpleTags", function()
+GHTest.AddTest(name, "ShouldHandleNestedSimpleTags", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("<something><br/></something>");
@@ -30,7 +30,7 @@ GHTest.AddTest(name.."ShouldHandleNestedSimpleTags", function()
 	GHTest.Equals("br", r[1][1].tag);
 end);
 
-GHTest.AddTest(name.."ShouldHandleNestedTagsWithArgs", function()
+GHTest.AddTest(name, "ShouldHandleNestedTagsWithArgs", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable('<something a="b"><sub c="d"></sub><test/></something>');
@@ -44,7 +44,7 @@ GHTest.AddTest(name.."ShouldHandleNestedTagsWithArgs", function()
 end);
 
 
-GHTest.AddTest(name.."ShouldHandleTextInsideTags", function()
+GHTest.AddTest(name, "ShouldHandleTextInsideTags", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("<h1>Testing text</h1>");
@@ -53,7 +53,7 @@ GHTest.AddTest(name.."ShouldHandleTextInsideTags", function()
 	GHTest.Equals("Testing text", r[1][1]);
 end);
 
-GHTest.AddTest(name.."ShouldHandleTextInsideTagsMixedWithTags", function()
+GHTest.AddTest(name, "ShouldHandleTextInsideTagsMixedWithTags", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("<h1>Testing <br/>text<p>Of something</p>doom</h1>");
@@ -68,7 +68,7 @@ GHTest.AddTest(name.."ShouldHandleTextInsideTagsMixedWithTags", function()
 	GHTest.Equals("doom", r[1][5]);
 end);
 
-GHTest.AddTest(name.."ShouldHandleMultipleObjects", function()
+GHTest.AddTest(name, "ShouldHandleMultipleObjects", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("Before<h1>Testing text</h1>After<br/>Last");
@@ -81,7 +81,7 @@ GHTest.AddTest(name.."ShouldHandleMultipleObjects", function()
 	GHTest.Equals("Last", r[5]);
 end);
 
-GHTest.AddTest(name.."ShouldHandlePlainText", function()
+GHTest.AddTest(name, "ShouldHandlePlainText", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("Testing");
@@ -89,7 +89,7 @@ GHTest.AddTest(name.."ShouldHandlePlainText", function()
 	GHTest.Equals("Testing", r[1]);
 end);
 
-GHTest.AddTest(name.."Should turn t into img.", function()
+GHTest.AddTest(name, "Should turn t into img.", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("Before\124TInterface\\Icons\\INV_Misc_Coin_01:16:20\124tafter");
@@ -102,7 +102,7 @@ GHTest.AddTest(name.."Should turn t into img.", function()
 	GHTest.Equals("after", r[3]);
 end);
 
-GHTest.AddTest(name.."Should remove object wrapping textures.", function()
+GHTest.AddTest(name, "Should remove object wrapping textures.", function()
 	local html2Table = GHI_HtmlDeserializer();
 
 	local r = html2Table.HtmlToTable("Before\124T:16:20:<objX>in</objX>\124tafter");

@@ -1,6 +1,6 @@
 local name = "GHI_BBCodeConverter_";
 
-GHTest.AddTest(name.."ShouldImplementTheCorrectInterface", function()
+GHTest.AddTest(name, "ShouldImplementTheCorrectInterface", function()
 	GHTest.Equals("function",type(GHI_BBCodeConverter),"GHI_BBCodeConverter should be a class")
 	local converter = GHI_BBCodeConverter();
 
@@ -8,7 +8,7 @@ GHTest.AddTest(name.."ShouldImplementTheCorrectInterface", function()
 	GHTest.Equals("function",type(converter.ToSimpleHtml),"It should implement a .ToSimpleHtml function");
 end);
 
-GHTest.AddTest(name.."ShouldConvertPlainTextIntoPlainTextInBothWays", function()
+GHTest.AddTest(name, "ShouldConvertPlainTextIntoPlainTextInBothWays", function()
 	local converter = GHI_BBCodeConverter();
 	local mockup = "First text < 4 \\5 \\> f";
 
@@ -19,7 +19,7 @@ GHTest.AddTest(name.."ShouldConvertPlainTextIntoPlainTextInBothWays", function()
 	GHTest.Equals(mockup, mockup2);
 end);
 
-GHTest.AddTest(name.."ShouldConvertNestedTags", function()
+GHTest.AddTest(name, "ShouldConvertNestedTags", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<HTML><BODY><P>t</P><H1>x</H1><P>å</P></BODY></HTML>',
@@ -29,14 +29,14 @@ GHTest.AddTest(name.."ShouldConvertNestedTags", function()
 		converter.ToSimpleHtml("[h1]x[/h1]"));
 end);
 
-GHTest.AddTest(name.."ShouldConvertNestedTagsNotBreakingP", function()
+GHTest.AddTest(name, "ShouldConvertNestedTagsNotBreakingP", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<HTML><BODY><P>t\124T:0:0:<A>x\124T:0:0:<B>y\124T:0:0:<C>z</C>\124tæ</B>\124tø</A>\124tå</P></BODY></HTML>',
 	converter.ToSimpleHtml("t[a]x[b]y[c]z[/c]æ[/b]ø[/a]å"));
 end);
 
-GHTest.AddTest(name.."ShouldConvertH1Correctly", function()
+GHTest.AddTest(name, "ShouldConvertH1Correctly", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<HTML><BODY><P>Some</P><H1>Head line</H1><P>after</P></BODY></HTML>',
@@ -44,7 +44,7 @@ GHTest.AddTest(name.."ShouldConvertH1Correctly", function()
 end);
 
 
-GHTest.AddTest(name.."ShouldConvertAlignmentCorrectly", function()
+GHTest.AddTest(name, "ShouldConvertAlignmentCorrectly", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<HTML><BODY><P>Before</P><P align="LEFT">To the left</P><P>after</P></BODY></HTML>',
@@ -58,14 +58,14 @@ GHTest.AddTest(name.."ShouldConvertAlignmentCorrectly", function()
 end);     --]]
 
 
-GHTest.AddTest(name.."ShouldConvertH1Correctly", function()
+GHTest.AddTest(name, "ShouldConvertH1Correctly", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<HTML><BODY><P>Some</P><H1>Head line</H1><P>after</P></BODY></HTML>',
 		converter.ToSimpleHtml("Some[h1]Head line[/h1]after"));
 end);
 
-GHTest.AddTest(name.."ShouldConvertArgumentsCorrectly", function()
+GHTest.AddTest(name, "ShouldConvertArgumentsCorrectly", function()
 	local converter = GHI_BBCodeConverter();
 
 	local bbCode = "Some[obj arg1=A]Text[/obj]after";
