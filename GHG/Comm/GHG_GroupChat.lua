@@ -41,7 +41,7 @@ function GHG_GroupChat(groupGuid,keys)
 		active = false;
 	end
 
-	channelComm.AddRecieveFunc("GHG_Chat_"..groupGuid,function(sender,senderGuid,cryptText,chatFlag) print(sender,active)
+	channelComm.AddRecieveFunc("GHG_Chat_"..groupGuid,function(sender,senderGuid,cryptText,chatFlag)
 		if active then
 			local decryptedText = crypt.Decrypt(cryptText);
 			local text = crypt.Deswap(decryptedText);

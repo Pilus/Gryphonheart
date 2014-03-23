@@ -176,7 +176,6 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 						miscAPI.GHI_SetSelectItemCursor(function(guid)
 							menuFrame.ForceLabel("ItemInfo", GetItemTextLine(guid))
 							menuFrame.produceGuid = guid;
-						--print("selecting",guid);
 						end);
 					end
 				},

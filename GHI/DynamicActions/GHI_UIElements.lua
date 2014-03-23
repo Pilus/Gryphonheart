@@ -142,7 +142,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 					dyn.SetOutput("userString",text)
 				end
 				dyn.TriggerOutPort("onOK")
-				--print(text)
 		  end,
 		  OnCancel = function(self)
 			  dyn.TriggerOutPort("onCancel")

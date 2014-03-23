@@ -66,7 +66,6 @@ function GHI_Packer()
 		for index, value in pairs(t) do
 			if value == "!first" then
 				index = format("\"%s\"", index);
-				print("!first check")
 			end
 			if type(index) == "string" then
 				index = format("\"%s\"", index);

@@ -62,7 +62,7 @@ local function AdjustScrollFrameArea(self, vBarShown, hBarShown)
 	end
 end
 
-function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)    print("range changed")
+function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
 	local scrollbarV = _G[self:GetName() .. "ScrollBar"];
 	local scrollbarH = _G[self:GetName() .. "ScrollBar2"];
 	local child = self:GetScrollChild();
@@ -78,8 +78,7 @@ function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)    print("ra
 		yrange = math.max(child:GetHeight(), self:GetVerticalScrollRange());
 		xrange = math.max(child:GetWidth(), self:GetHorizontalScrollRange());
 	end
-	print("child",child)
-    print("y before",yrange)
+
 	local yvalue = scrollbarV:GetValue();
 	if (yvalue > yrange) then
 		yvalue = yrange;
@@ -88,7 +87,7 @@ function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)    print("ra
 	if (xvalue > xrange) then
 		xvalue = xrange;
 	end
-	print("yrange",yrange)
+
 	scrollbarV:SetMinMaxValues(0, yrange);
 	scrollbarV:SetValue(yvalue);
 
