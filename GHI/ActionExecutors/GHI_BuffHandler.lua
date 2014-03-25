@@ -37,6 +37,8 @@ function GHI_BuffHandler()
 		end
 		for i, v in pairs(delayedRemoveBuffs) do
 			if type(v) == "table" and (v.time or 0) <= time() then
+			   print(v.time)
+			   print(time())
 				class.RemoveBuff(unpack(v));
 				delayedRemoveBuffs[i] = nil;
 			end
@@ -156,8 +158,9 @@ function GHI_BuffHandler()
 			t.time = time();
 			table.insert(delayedRemoveBuffs,t);
 			return;
+		else
+			buff:RemoveBuff(name, UnitGUID("player"), count or 1,filter)
 		end
-		buff:RemoveBuff(name, UnitGUID("player"), count or 1,filter)
 	end
 
 	class.RemoveAllBuffs = function()
