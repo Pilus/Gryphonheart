@@ -98,14 +98,7 @@ function GHM_SoundSelection(parent, main, profile)
 			playBtn:SetPushedTexture("Interface\\BUTTONS\\UI-SpellbookIcon-NextPage-Down");
 			playBtn:SetScript("OnClick", function(self)
 				local node = self:GetParent();
-				local path = "Sound\\" .. strjoin("", unpack(node:GetFullPath()));
-
-				if strfind(path,"\\Music\\") or strfind(path,"\\MUSIC\\") then
-					path = path..".mp3"
-				else
-					path = path .. ".ogg";
-				end
-				PlaySoundFile(path);
+				PlaySoundFile(strjoin("", unpack(node:GetFullPath())));
 			end);
 			playBtn:RegisterForClicks("AnyUp");
 			playBtn:SetFrameLevel(subTree.Title:GetFrameLevel() + 1)
@@ -194,7 +187,7 @@ function GHM_SoundSelection(parent, main, profile)
 		EnvokeExpandOnAllExpanded(tree);
 	end)
 
-	tree.tableValue = GHM_SoundList["Sound\\"];
+	tree.tableValue = GHM_SoundList[""];
 	local loaded = false;
 	tree:SetScript("OnShow", function()
 		tree:SetWidth(main:GetWidth() - 20);
@@ -227,16 +220,8 @@ function GHM_SoundSelection(parent, main, profile)
 
 	tree:AddScript("OnSelectionChange", function(node)
 		if type(node.tableValue) == "number" then
-			local path = "Sound\\" .. strjoin("", unpack(node:GetFullPath()));
-
-			if strfind(path,"\\Music\\") or strfind(path,"\\MUSIC\\") then
-				path = path..".mp3"
-			else
-				path = path .. ".ogg";
-			end
-
-			currentSound = path;
-			Change(path,node.tableValue);
+			currentSound = strjoin("", unpack(node:GetFullPath()));
+			Change(currentSound,node.tableValue);
 		end
 	end);
 
