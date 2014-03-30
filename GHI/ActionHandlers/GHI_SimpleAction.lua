@@ -125,7 +125,7 @@ local GetActionScript = function(info,oldVersion)
 			local amount = info.amount or 1
 			local delay = info.delay or 0
 
-			return ScriptFormat("GHI_RemoveBuff(\"%s\",\"%s\",%s,%s)", name, filter, amount, delay or "nil");
+			return ScriptFormat("GHI_RemoveBuff(\"%s\",\"%s\",%s,%s)", name, filter, amount, delay);
 		elseif dynamicTypeName == "consume_item" then
 			local amount = info.amount or 1
 			local guid = info.id or ""

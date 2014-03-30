@@ -53,6 +53,7 @@ function GHM_RadioButtonSet(parent, main, profile)
 
 
 	local Select = function(index)
+		assert(type(index)=="number")
 		selectedIndex = index;
 		frame.UpdateButtons();
 	end
