@@ -234,7 +234,7 @@ function GHI_AttributeMenu()
 				end
 			end
 
-			local modifyVals = { "allItems", "myItems" }
+			local modifyVals = { "myItems","allItems"  }
 			for index, modify in pairs(modifyVals) do
 				if modify == data.modifyAccess then
 					menuFrame.ForceLabel("modify", index);
