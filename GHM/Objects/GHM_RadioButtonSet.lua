@@ -23,6 +23,7 @@ function GHM_RadioButtonSet(parent, main, profile)
 	local area = _G[frame:GetName().."Area"];
 
 	local label = _G[frame:GetName().."Label"];
+	label:SetWidth(frame:GetWidth());
 	label:SetText(profile.text or "");
 
 	local GetData = function()
@@ -65,7 +66,7 @@ function GHM_RadioButtonSet(parent, main, profile)
 		local fname = frame:GetName();
 		local data = GetData();
 		local prevRadio;
-		local height = 23;
+		local height = label:GetHeight() + 5;
 		for i=1,#(data) do
 			local radio = _G[fname .. "Radio"..i];
 			if not(radio) then
@@ -74,7 +75,7 @@ function GHM_RadioButtonSet(parent, main, profile)
 				if prevRadio then
 					radio:SetPoint("TOP",prevRadio,"BOTTOM");
 				else
-					radio:SetPoint("TOPLEFT",frame,"TOPLEFT",5,-15);
+					radio:SetPoint("TOPLEFT",frame,"TOPLEFT",5,-height);
 				end
 
 				local button = _G[radio:GetName().. "Button"];
@@ -176,16 +177,12 @@ function GHM_RadioButtonSet(parent, main, profile)
 		end
 	end
 
-
-
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end
 
 	frame.Clear();
 	frame:Show();
-
-
 
 	return frame;
 end

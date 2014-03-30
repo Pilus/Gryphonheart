@@ -140,7 +140,7 @@ function GHI_AttributeMenu()
 		title = loc.ATTRIBUTE_TITLE,
 		name = "GHI_AttributeMenu" .. count,
 		theme = "BlankTheme",
-		width = 380,
+		width = 420,
 		height = 250,
 		useWindow = true,
 		lineSpacing = 20,
