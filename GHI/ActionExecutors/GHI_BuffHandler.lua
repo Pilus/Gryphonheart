@@ -37,8 +37,6 @@ function GHI_BuffHandler()
 		end
 		for i, v in pairs(delayedRemoveBuffs) do
 			if type(v) == "table" and (v.time or 0) <= time() then
-			   print(v.time)
-			   print(time())
 				class.RemoveBuff(unpack(v));
 				delayedRemoveBuffs[i] = nil;
 			end
@@ -63,7 +61,7 @@ function GHI_BuffHandler()
 			alwaysCastOnSelf=alwaysCastOnSelf,
 		});
 
-          if type(delay) == "number" and delay > 0 then
+		if type(delay) == "number" and delay > 0 then
 			local packedBuffInfo = PackBuffInfo(buffName, buffDetails, buffIcon, untilCanceled, filter, buffType, buffDuration, cancelable, stackable, count, delay, range, alwaysCastOnSelf)
 			packedBuffInfo.time = time() + delay;
 			table.insert(delayedBuffs, packedBuffInfo);
@@ -155,7 +153,7 @@ function GHI_BuffHandler()
 	class.RemoveBuff = function(name, filter, count, delay)
 		if delay and delay > 0 then
 			local t = {name, filter, count, 0};
-			t.time = time();
+			t.time = time() + delay;
 			table.insert(delayedRemoveBuffs,t);
 			return;
 		else
