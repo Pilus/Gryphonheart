@@ -62,21 +62,16 @@ local function AdjustScrollFrameArea(self, vBarShown, hBarShown)
 	end
 end
 
-function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
+function GHM_ScrollFrame_OnScrollRangeChanged(self) --, xrange, yrange)
 	local scrollbarV = _G[self:GetName() .. "ScrollBar"];
 	local scrollbarH = _G[self:GetName() .. "ScrollBar2"];
 	local child = self:GetScrollChild();
 
-	if not(yrange) then
-		yrange = 0;
-	end
-	if not(xrange) then
-		xrange = 0;
-	end
+	local xrange, yrange = 0, 0;
 
 	if (child) then
-		yrange = math.max(child:GetHeight(), self:GetVerticalScrollRange());
-		xrange = math.max(child:GetWidth(), self:GetHorizontalScrollRange());
+		yrange = child:GetHeight() - self:GetHeight();
+		xrange = child:GetWidth() - self:GetWidth();
 	end
 
 	local yvalue = scrollbarV:GetValue();
@@ -88,33 +83,34 @@ function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
 		xvalue = xrange;
 	end
 
-	scrollbarV:SetMinMaxValues(0, yrange);
-	scrollbarV:SetValue(yvalue);
-
-	scrollbarH:SetMinMaxValues(0, xrange);
-	scrollbarH:SetValue(xvalue);
-
 	local VScrollBarShown, HScrollBarShown = false, false;
 
 	if (floor(yrange) > 0) and (yrange - yvalue > 0.005) then
 		VScrollBarShown = true;
+		scrollbarV:SetMinMaxValues(0, yrange);
+		scrollbarV:SetValue(yvalue);
 	end
 	if (floor(xrange) > 0) and (xrange - xvalue > 0.005) then
 		HScrollBarShown = true;
+		scrollbarH:SetMinMaxValues(0, xrange);
+		scrollbarH:SetValue(xvalue);
 	end
 
 	-- adjust accordingly
 	AdjustScrollFrameArea(self, VScrollBarShown, HScrollBarShown);
 
 	-- show the bars
+	scrollbarV:Show();
 	if VScrollBarShown then
-		scrollbarV:Show();
+		scrollbarV:Enable();
 	else
-		scrollbarV:Hide();
+		scrollbarV:Disable();
 	end
+
+	scrollbarH:Show();
 	if HScrollBarShown then
-		scrollbarH:Show();
+		scrollbarH:Enable();
 	else
-		scrollbarH:Hide();
+		scrollbarH:Disable();
 	end
 end

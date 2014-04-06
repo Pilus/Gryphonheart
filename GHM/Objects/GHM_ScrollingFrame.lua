@@ -33,7 +33,7 @@ function GHM_ScrollingFrame(parent, main, profile)
 		
 	local function CreateScrollChild(scrollData)
 		if scrollFrame then
-		scrollFrame = nil
+			scrollFrame = nil
 		end
 		scrollFrame = GHM_NewFrame(CreateFrame("frame"), scrollData);
 		scrollFrame:SetParent(frame)
@@ -46,7 +46,7 @@ function GHM_ScrollingFrame(parent, main, profile)
 	end
 	
 	if profile.child then
-	CreateScrollChild(scrollPage)
+		CreateScrollChild(profile.child)
 	end
 	
     -- All help functions and any further setup needed goes here
