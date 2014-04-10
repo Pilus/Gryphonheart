@@ -932,6 +932,9 @@ function GHI_ScriptEnviroment(ownerGuid)
 			ClearLines = function(_,...) GameTooltip:ClearLines(...); end,
 			AddTexture = function(_,...) GameTooltip:AddTexture(...); end,
 		},
+
+		GH_TestFeature = GH_TestFeature,
+		GHI_BookDisplay = GHI_BookDisplay,
 	}
 
 

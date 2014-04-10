@@ -210,6 +210,24 @@ local GetActionScript = function(info,oldVersion)
 
 		return ScriptFormat("GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),%s,\"%s\",%s);", info.size, info.texture or "", tostring(info.tradeable)), 0;
 	elseif actionType == "book" then
+		if (GetAddOnMetadata("GHI", "X-DevVersion") == "True") then -- use the new book display for development
+			local s = "GHI_BookDisplay()";
+
+			for i = 1, #(info) do
+				if type(info[i]) == "table" then
+					local page = "";
+					for j = 1, 10 do
+						if info[i]["text" .. j] then
+							page = page .. info[i]["text" .. j];
+						end
+					end
+					s = string.format("%s.AddPage([[%s]], 'SimpleHTML')", s, page);
+				end
+			end
+
+			s = s..".Show()";
+			return s, 0;
+		end
 
 		local pageScript = "{";
 
