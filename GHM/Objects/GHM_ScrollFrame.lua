@@ -37,8 +37,25 @@ function GHM_ScrollFrame_OnLoad(self)
 			yOfs = yOfs,
 		}
 	end
-	--GHM_TempBG(self);
+
 	GHM_ScrollFrame_OnScrollRangeChanged(self);
+
+	--Create textures
+	local bg1 = CreateFrame("Frame", nil, self);
+	self.bg1 = bg1;
+	bg1:SetPoint("TOPLEFT", self, "TOPRIGHT", -2, 0);
+	bg1:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", scrollbar:GetWidth()-2, -scrollbar:GetWidth()-2);
+	local t = bg1:CreateTexture(nil,"BACKGROUND");
+	t:SetTexture(0, 0, 0, 1);
+	t:SetAllPoints(bg1);
+
+	local bg2 = CreateFrame("Frame", nil, self);
+	self.bg2 = bg2;
+	bg2:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, 0);
+	bg2:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", scrollbar:GetWidth()-2, -scrollbar:GetWidth()-2);
+	local t = bg2:CreateTexture(nil,"BACKGROUND");
+	t:SetTexture(0, 0, 0, 1);
+	t:SetAllPoints(bg2);
 end
 
 local function AdjustScrollFrameArea(self, vBarShown, hBarShown)
@@ -84,7 +101,7 @@ function GHM_ScrollFrame_OnScrollRangeChanged(self) --, xrange, yrange)
 	end
 
 	local VScrollBarShown, HScrollBarShown = false, false;
-
+	--print(floor(yrange) ,">", 0," and ",yrange ,"-", yvalue,">",0.005 )
 	if (floor(yrange) > 0) and (yrange - yvalue > 0.005) then
 		VScrollBarShown = true;
 		scrollbarV:SetMinMaxValues(0, yrange);

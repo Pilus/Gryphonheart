@@ -820,6 +820,7 @@ function GHM_NewFrame(self, profile)
 			window:SetTitle(profile.title);
 			window:SetIcon(profile.icon);
 
+
 			if type(profile.menuBar) == "table" then
 				for i=1,#(profile.menuBar) do
 					GHM_Toolbar(window.MenuBar, main, profile.menuBar[i]);
@@ -885,6 +886,7 @@ function GHM_NewFrame(self, profile)
 			end;
 			main.HideOrig = main.Hide;
 			main.Hide = function(self) window:Hide(); main:HideOrig() end;
+			main.SetTitle = function(_, t) window:SetTitle(t) end;
 
 			main.AnimatedShow = function(self)
 				self:Show();

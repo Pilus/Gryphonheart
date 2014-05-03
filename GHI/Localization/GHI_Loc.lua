@@ -699,6 +699,9 @@ function GHI_Loc()
 			deDE = "F" .. uu .. "ge Linktext ein",
 			frFR = "Indiquer le lien textuel",
 		},
+		PAGE_OF_PAGES = {
+			enUS = "%s of %s"
+		},
 	};
 
 	local textsPosInput = {--GHM_Position

@@ -13,14 +13,15 @@ function GHI_BookPage()
 	local class = GHClass("GHI_BookPage");
 	local useSpecialSize = false;
 	local useSpecialBackground = false;
+	local pageText = "";
+	local margin = 20;
 
-	local textFrame = CreateFrame("SimpleHTML");
-	textFrame:SetParent(class);
-	textFrame:SetPoint("TOPLEFT", 10, -10);
-	textFrame:SetPoint("BOTTOMRIGHT", -10, 10);
+	local textFrame = CreateFrame("SimpleHTML", nil, class);
+	textFrame:SetPoint("TOPLEFT", class, "TOPLEFT", margin, -margin);
 
 	class.SetText = function(text, format)
-		textFrame:SetText(text);
+		pageText = text;
+		textFrame:SetText(pageText);
 		return class;
 	end
 
@@ -29,16 +30,25 @@ function GHI_BookPage()
 		return class;
 	end
 
+	class.SetTextColor = function(r, g, b, a)
+		textFrame:SetTextColor(r, g, b, a);
+		return class;
+	end
+
 	class.SetSize = function(width, height, isSpecial)
 		if (isSpecial == true or useSpecialSize == isSpecial) then
 			class:SetWidth(width);
 			class:SetHeight(height);
+			textFrame:SetWidth(width - margin*2);
+			textFrame:SetHeight(height - margin*2);
+			textFrame:SetText(pageText); -- Set the text again to get correct line breaks.
+
 			useSpecialSize = isSpecial;
 		end
 		return class;
 	end
 
-	class.SetBackground = function(pathOrColor, isSpecial)
+	class.SetBackground = function(pathOrColor, isSpecial, texCoord)
 		if (isSpecial == true or useSpecialBackground == isSpecial) then
 			if not(class.texture) then
 				class.texture = class:CreateTexture(nil,"BACKGROUND");
@@ -47,6 +57,9 @@ function GHI_BookPage()
 
 			if type(pathOrColor) == "string" then
 				class.texture:SetTexture(pathOrColor);
+				if texCoord then
+					class.texture:SetTexCoord(unpack(texCoord));
+				end
 			elseif type(pathOrColor) == "table" and type(pathOrColor.r) == "number" and type(pathOrColor.g) == "number" and type(pathOrColor.b) == "number" then
 				class.texture:SetTexture(pathOrColor.r, pathOrColor.g, pathOrColor.b);
 			end
@@ -55,7 +68,6 @@ function GHI_BookPage()
 		return class;
 	end
 
-	GHM_TempBG(class);
 	return class;
 end
 

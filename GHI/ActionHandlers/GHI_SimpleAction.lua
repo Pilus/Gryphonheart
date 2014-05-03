@@ -224,7 +224,7 @@ local GetActionScript = function(info,oldVersion)
 					s = string.format("%s.AddPage([[%s]], 'SimpleHTML')", s, page);
 				end
 			end
-
+			s = s..string.format(".SetTitle(\"%s\")", info.title);
 			s = s..".Show()";
 			return s, 0;
 		end
