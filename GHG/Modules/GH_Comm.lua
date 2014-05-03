@@ -130,6 +130,28 @@ function GH_Comm()
 
 	libComm:RegisterComm(addOnPrefix, receive);
 
+
+	local ready = false;
+	local i = 0;
+	--if UnitName("player") == "Quzelda" then
+		GHI_Timer(function()
+			if ready == false then
+				i = i + 1;
+				-- addOnPrefix, finalMsg, channel, target, prio
+				libComm:SendCommMessage(addOnPrefix.."Ready", tostring(i), channel, "Larischa", "ALERT");
+				libComm:SendCommMessage(addOnPrefix.."Ready", tostring(i), channel, "Quzelda", "ALERT");
+				print("send", i);
+			end
+		end, 1)
+	--end
+
+	libComm:RegisterComm(addOnPrefix.."Ready", function(prefix, data, channel, sender)
+		print("receive", sender, data)
+		--ready = true;
+	end);
+
+
+
 	return class;
 end
 

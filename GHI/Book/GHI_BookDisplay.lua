@@ -162,9 +162,10 @@ function GHI_BookDisplay()
 	return class;
 end
 
+--[[
 GHI_Event("GHI_LOADED", function()
 	GHI_BookDisplay()
 	.AddPage("<html><body><p>Test text</p></body></html>","none")
 	.Show();
 
-end);
+end);--]]

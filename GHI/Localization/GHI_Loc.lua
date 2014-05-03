@@ -250,9 +250,6 @@ function GHI_Loc()
 		HIDE_MOD_ATT_TOOLTIP = {
 			enUS = "Hide modify attribute text in the item tooltip",
 		},
-		HIDE_TARGET_BUTTON = {
-			enUS = "Hide the target button, displaying GHI version",
-		},
 	};
 
 	local textsOptionsWhitelist = {

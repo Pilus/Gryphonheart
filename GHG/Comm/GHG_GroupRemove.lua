@@ -36,6 +36,19 @@ function GHG_GroupRemove()
 		end
 	end);
 
+	class.LeaveGroup = function(playerName,group)
+		local groupName = group.GetName();
+		channelComm.Send("ALERT","GHG_PlayerLeft",group.GetGuid(),playerName);
+	end
+
+	channelComm.AddRecieveFunc("GHG_PlayerLeft",function(sender,groupGuid,playerName)
+		local group = groupList.GetGroup(groupGuid);
+		if group and group.IsPlayerMemberOfGuild(UnitGUID("player")) then
+			local groupName = group.GetName();
+			event.TriggerEvent("GHG_PLAYER_LEFT",playerName,groupName);
+		end
+	end);
+
 	return class;
 end
 

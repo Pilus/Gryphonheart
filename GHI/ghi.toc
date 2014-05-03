@@ -166,7 +166,6 @@ UI\GHI_EquipmentDisplayUI.lua
 UI\GHI_EquipmentDisplayUI.xml
 UI\GHI_FrameAnchors.lua
 UI\GHI_SlashCmdUI.lua
-UI\GHI_TargetUI.lua
 UI\GHI_UnitTooltipUI.lua
 UI\GHI_ImportMenu.lua
 UI\GHI_ExportMenu.lua

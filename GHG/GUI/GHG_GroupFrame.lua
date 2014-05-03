@@ -43,7 +43,7 @@ end
 local api;
 
 local function UpdateSelectedContent()
-	local name = api.GetGroupInfo(groupFrame.selectedSideTab);
+	local name, icon, ready, loaded = api.GetGroupInfo(groupFrame.selectedSideTab);
 	_G[groupFrame:GetName().."TitleText"]:SetText(name);
 
 	local contentFrame = _G[groupFrame:GetName().."Content"];

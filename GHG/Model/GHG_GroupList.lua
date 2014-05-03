@@ -49,6 +49,12 @@ function GHG_GroupList()
 		end
 	end
 
+	class.GetGroupDataStatus = function(...)
+		if sharer then
+			return sharer.GetStatus(...);
+		end
+	end
+
 	class.GetAllGroupGuids = function()
 		local t = {};
 		for i,_ in pairs(groups) do

@@ -1578,8 +1578,8 @@ function GHI_EqDisplayEvent(event, ...)
 	end
 end
 
-GHI_Event("VARIABLES_LOADED", GHI_EqDisplayEvent);
-GHI_Event("PLAYER_TARGET_CHANGED", GHI_EqDisplayEvent);
+--GHI_Event("VARIABLES_LOADED", GHI_EqDisplayEvent);
+--GHI_Event("PLAYER_TARGET_CHANGED", GHI_EqDisplayEvent);
 
 function GHI_ToggleTargetEqDisplay()
 	targetToggled = not (targetToggled);

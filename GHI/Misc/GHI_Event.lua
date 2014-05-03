@@ -47,7 +47,7 @@ function GHI_Event(event, func, priority)
 						identical = false;
 					end
 				end
-				if identical == true then
+				if identical == true and not(class.allowIdentical == true) then
 					return;
 				end
 			end

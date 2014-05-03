@@ -155,6 +155,9 @@ function GHG_Loc()
 		PLAYER_REMOVED = {
 			enUS = "%3$s have kicked %1$s from the group: %2$s",
 		},
+		PLAYER_LEFT = {
+			enUS = "%1$s have left the group: %2$s",
+		},
 
 		-- Admin
 		GROUP_NAME = {
