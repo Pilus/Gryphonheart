@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CrystalMpq;
 using CrystalMpq.Utility;
+using System.Reflection;
 
 namespace GH_SoundFileGenerator
 {
@@ -14,14 +15,34 @@ namespace GH_SoundFileGenerator
             try {
                 Console.WriteLine("Gryphonheart AddOns - Sound File Generator");
 
-                var wowInstallation = WoWInstallation.Find();
-                if (wowInstallation == null)
+                var wowPath = "";
+                var wowDataPath = "";
+                try
                 {
-                    throw new Exception("No wow installation found");
+                    var wowInstallation = WoWInstallation.Find();
+                    wowPath = wowInstallation.Path;
+                    wowDataPath = wowInstallation.DataPath;
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception when locating wow installation");
+                    Console.WriteLine(ex.Message);
+
+                    var WOWString = "World of Warcraft";
+                    var exePath = Assembly.GetExecutingAssembly().Location;
+                    if (!exePath.Contains(WOWString))
+                    {
+                        throw new Exception("Could not locate wow installation. Try executing the program within the wow directory");
+                    }
+
+                    wowPath = exePath.Substring(0, exePath.IndexOf(WOWString) + WOWString.Length);
+                    wowDataPath = wowPath + @"\\Data";
+
+                    Console.WriteLine("Assuming wow installation to be at " + wowPath);
+                }               
 
                 Console.WriteLine("Loading archieves.");
-                var archieves = MPQLoader.LoadArchieves(wowInstallation.DataPath);
+                var archieves = MPQLoader.LoadArchieves(wowDataPath);
 
                 Console.WriteLine("Generating sound structure from MPQ.");
                 var mpqReader = new MPQReader();
@@ -41,7 +62,7 @@ namespace GH_SoundFileGenerator
                 fr.OptimizeStructure(soundFolder);
 
                 Console.WriteLine("Writing sound list.");
-                var soundListWriter = new SoundListWriter(wowInstallation.Path);
+                var soundListWriter = new SoundListWriter(wowPath);
                 soundListWriter.WriteToFile(soundFolder);
 
                 Console.WriteLine("Sound list file created.");
@@ -50,6 +71,7 @@ namespace GH_SoundFileGenerator
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception:");
                 Console.WriteLine(ex.Message);
             }
             Console.WriteLine("Press any key to exit.");
