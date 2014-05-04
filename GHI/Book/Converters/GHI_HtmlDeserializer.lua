@@ -159,8 +159,10 @@ function GHI_HtmlDeserializer()
 				end
 
 				local a, b = strfind(str, "</" .. t[#(t)].tag .. ">", pointer - 1 + subLen)
-				if a ~= pointer - 1 + subLen then print("Malformed xml", a, "~=", pointer, "-", 1, "+", subLen); end
-
+				--if a ~= pointer - 1 + subLen then print("Malformed xml", a, "~=", pointer, "-", 1, "+", subLen); end
+				if a ~= pointer - 1 + subLen then
+					return pointer + 1;
+				end
 				return b + 1;
 			end,
 		},
