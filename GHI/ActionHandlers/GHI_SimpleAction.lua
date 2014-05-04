@@ -225,6 +225,7 @@ local GetActionScript = function(info,oldVersion)
 				end
 			end
 			s = s..string.format(".SetTitle(\"%s\")", info.title);
+			s = s..string.format(".SetEditFunction(function() GHI_EditBook(stack.GetItemGuid(), \"%s\") end)", info.guid)
 			s = s..".Show()";
 			return s, 0;
 		end
@@ -995,7 +996,7 @@ function GHI_SimpleAction(info)
 		icon = info.icon;
 		actionName = info.type_name; -- localized action name
 		details = info.details;
-		script, delay = GetActionScript(info)
+		script, delay = GetActionScript(info, false)
 		executionOrder = info.req or 1;
 		actionType = info.Type;
 

@@ -56,6 +56,13 @@ function GHM_ScrollFrame_OnLoad(self)
 	local t = bg2:CreateTexture(nil,"BACKGROUND");
 	t:SetTexture(0, 0, 0, 1);
 	t:SetAllPoints(bg2);
+
+	bg1:Hide();
+	bg2:Hide();
+	self.ShowScrollBarBackgrounds = function()
+		bg1:Show();
+		bg2:Show();
+	end
 end
 
 local function AdjustScrollFrameArea(self, vBarShown, hBarShown)

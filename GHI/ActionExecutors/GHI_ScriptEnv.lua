@@ -934,7 +934,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		},
 
 		GH_TestFeature = GH_TestFeature,
-		GHI_BookDisplay = GHI_BookDisplay,
+
 	}
 
 

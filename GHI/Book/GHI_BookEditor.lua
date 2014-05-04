@@ -32,11 +32,13 @@ function GHI_BookEditor()
 	end
 
 	local ShowPage = function(i)
-		SaveCurrentPage();
-		currentPageShown = i;
+		if info[i] then
+			SaveCurrentPage();
+			currentPageShown = i;
 
-		local mockup = converter.ToMockup(info[i].text1);
-		textFrame.Force(mockup);
+			local mockup = converter.ToMockup(info[i].text1);
+			textFrame.Force(mockup);
+		end
 	end
 
 	class.New = function(...)
@@ -53,14 +55,19 @@ function GHI_BookEditor()
 		menuFrame:AnimatedShow();
 	end
 
-	local OnOk = function()
+	local Revert = function()
+		info = action.GetInfo();
+		ShowPage(1);
+	end
+
+	local Save = function()
 		SaveCurrentPage();
 		action.UpdateInfo(info);
 		item.IncreaseVersion(true);
 		itemList.UpdateItem(item);
 		GHI_MiscData.lastUpdateItemTime = GetTime();
 
-		menuFrame:Hide();
+		--menuFrame:Hide();
 	end
 
 	class.IsInUse = function() return inUse; end
@@ -70,17 +77,25 @@ function GHI_BookEditor()
 		local origText = frame:GetText();
 		if not (origText) then return nil end
 
+		local cPos = frame:GetCursorPosition();
+
 		frame:Insert("\127");
 		local a = string.find(frame:GetText(), "\127");
-		local dLen = math.max(0,string.len(origText)-string.len(frame:GetText())-1);
+		local dLen = math.max(0,string.len(origText)-(string.len(frame:GetText())-1));
 		frame:SetText(origText);
-		frame:HighlightText(a - 1, a + dLen + 1);
-		return a - 1, a + dLen + 1;
+
+		frame:SetCursorPosition(cPos);
+		local hs, he = a - 1, a + dLen - 1;
+		if hs < he then
+			frame:HighlightText(hs, he);
+			return hs, he;
+		end
 	end
 
 	local InsertTag = function(tag)
 		local tFrame = textFrame:GetFieldFrame();
 		local hi1, hi2 = GetHighlightedText(tFrame);
+
 		local inner = "";
 		if hi1 and hi2 then
 			inner = string.sub(tFrame:GetText(), hi1 + 1, hi2);
@@ -107,21 +122,33 @@ function GHI_BookEditor()
 					type = "StandardButtonWithTexture",
 					tooltip = "Undo",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
-					texCoord = GetTexCoord(2, 2);
+					texCoord = GetTexCoord(2, 2),
 				},
 				{
 					type = "StandardButtonWithTexture",
 					tooltip = "Redo",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
-					texCoord = GetTexCoord(3, 2);
+					texCoord = GetTexCoord(3, 2),
 				},
 				{
-					type = "TextButton",
-					text = "Save",
+					type = "StandardButtonWithTexture",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(4, 2),
+					onClick = Revert,
+				},
+			},
+			{
+				{
+					type = "StandardButtonWithTexture",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(4, 1),
+					onClick = Save,
 				},
 				{
-					type = "TextButton",
-					text = "Revert",
+					type = "StandardButtonWithTexture",
+					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					texCoord = GetTexCoord(1, 3),
+					onClick = Preview,
 				},
 			},
 		};
@@ -247,44 +274,82 @@ function GHI_BookEditor()
 			},
 			{
 				{
-					type = "EditField",
+					type = "Button",
+					text = PREV,
+					align = "l",
+					compact = true,
+					height = 24,
+					onClick = function() ShowPage(currentPageShown - 1); end,
+					tooltip = loc.PREV_BOOK_PAGE,
+				},
+				{
+					type = "Button",
+					text = "+",
+					align = "l",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() end,
+					tooltip = loc.INSERT_PAGE_BEFORE,
+				},
+				{
+					type = "Editbox",
+					text = loc.TITLE,
 					align = "c",
-					width = 400,
-					height = 400,
-					label = "text",
+					label = "title",
+					texture = "Tooltip",
+					width = 200,
+					xOff = 0,
+					defaultValue = "",
+				},
+				{
+					type = "Button",
+					text = NEXT,
+					align = "r",
+					compact = true,
+					height = 24,
+					onClick = function() ShowPage(currentPageShown + 1); end,
+					tooltip = loc.NEXT_BOOK_PAGE,
+				},
+				{
+					type = "Button",
+					text = "+",
+					align = "r",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() end,
+					tooltip = loc.INSERT_PAGE_AFTER,
+				},
+				{
+					type = "Button",
+					text = "-",
+					align = "r",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() end,
+					tooltip = loc.DELETE_PAGE,
 				},
 			},
 			{
 				{
-					type = "Button",
-					text = OKAY,
+					type = "EditField",
 					align = "c",
-					label = "ok",
-					compact = false,
-					OnClick = OnOk,
-					xOff = -100,
-				},
-				{
-					type = "Button",
-					text = CANCEL,
-					align = "c",
-					label = "cancel",
-					compact = false,
-					xOff = 100,
-					OnClick = function(obj)
-						menuFrame:Hide();
-					end,
+					width = 600,
+					height = 450,
+					label = "text",
 				},
 			},
 		},
 		title = loc.BOOK,
 		name = "GHI_BookEditor" .. count,
 		theme = "BlankTheme",
-		width = 400,
+		width = 600,
 		height = 600,
 		useWindow = true,
 		icon = "Interface\\Icons\\INV_Misc_Book_09",
-		lineSpacing = 0,
+		lineSpacing = -5,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then
 				inUse = false;

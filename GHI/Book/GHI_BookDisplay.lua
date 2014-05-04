@@ -89,16 +89,18 @@ function GHI_BookDisplay()
 	local currentPageLabel = topBarFrame:CreateFontString("$parentFont", "ARTWORK", "GameFontNormal");
 	currentPageLabel:SetPoint("CENTER", topBarFrame, "CENTER", -30, 0);
 
-	local btn = menuFrame.GetLabelFrame("edit");
-	btn:ClearAllPoints();
-	btn:SetParent(topBarFrame);
-	btn:SetPoint("RIGHT", topBarFrame, "RIGHT", -10, 0)
+	local editButton = menuFrame.GetLabelFrame("edit");
+	editButton:ClearAllPoints();
+	editButton:SetParent(topBarFrame);
+	editButton:SetPoint("RIGHT", topBarFrame, "RIGHT", -10, 0)
+	editButton:Hide();
 
 	local scrollFrame = CreateFrame("ScrollFrame","$parentScroll",menuFrame,"GHM_ScrollFrameTemplate")
 	scrollFrame:SetPoint("TOP", topBarFrame, "BOTTOM", 0, 3);
 	scrollFrame:SetPoint("BOTTOM",0,8);
 	scrollFrame:SetPoint("LEFT",-3,0);
 	scrollFrame:SetPoint("RIGHT", 10, 0);
+	scrollFrame.ShowScrollBarBackgrounds();
 
 	local backgroundFrame = CreateFrame("Frame");
 	scrollFrame:SetScrollChild(backgroundFrame);
@@ -139,7 +141,10 @@ function GHI_BookDisplay()
 
 		table.insert(pages, page);
 		page:SetParent(backgroundFrame);
-		page:SetPoint("CENTER", 0, 0); -- temp.
+
+		-- temp stuff
+		page:SetPoint("CENTER", 0, 0);
+		-- end of temp
 
 		if #(pages) == 1 and currentPage == 1 then
 			page:Show();
@@ -262,6 +267,14 @@ function GHI_BookDisplay()
 
 	class.SetTitle = function(title)
 		menuFrame:SetTitle(title);
+		return class;
+	end
+
+	class.SetEditFunction = function(func)
+		editButton:SetScript("OnClick", function()
+			func();
+		end)
+		editButton:Show();
 		return class;
 	end
 

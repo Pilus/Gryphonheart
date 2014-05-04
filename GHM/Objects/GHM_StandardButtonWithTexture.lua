@@ -19,7 +19,7 @@ function GHM_StandardButtonWithTexture(parent, main, profile)
 	frame:SetWidth(profile.width or 24);
 
 	if profile.texture then
-		local texture = frame:CreateTexture("ARTWORK");
+		local texture = frame:CreateTexture(nil,"OVERLAY");
 		texture:SetPoint("TOPLEFT", frame, "TOPLEFT", 5, -5);
 		texture:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -5, 5);
 		texture:SetTexture(profile.texture);

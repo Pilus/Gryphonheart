@@ -510,6 +510,20 @@ function GHI_ActionAPI()
 	end
 	GHI_Message = api.GHI_Message;
 
+	api.GHI_BookDisplay = GHI_BookDisplay;
+	api.GHI_EditBook = function(itemGuid, actionGuid)
+		local item = itemList.GetItemInfo(itemGuid);
+		local action;
+		for i=1,item.GetSimpleActionCount() do
+			local a = item.GetSimpleAction(i);
+			if a.GetGuid() == actionGuid then
+				action = a;
+			end
+		end
+		GHI_MenuList("GHI_BookEditor").Edit(action, item);
+	end
+
+
 	local effectFrame = CreateFrame("Frame");
 	effectFrame:SetAllPoints(UIParent);
 	effectFrame.GetParent = nil;

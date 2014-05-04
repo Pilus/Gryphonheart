@@ -21,7 +21,7 @@ function GHG_GroupList()
 
 	local groups = {};
 
-	local savedGroupInfo = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName());
+	local savedGroupInfo = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName(),true);
 	local event = GHI_Event();
 	local comm = GH_Comm();
 	local channelComm = GHI_ChannelComm();

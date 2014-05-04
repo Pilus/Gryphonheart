@@ -7,7 +7,7 @@
 ## RequiredDeps: GHM
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
-## SavedVariables: GHI_SavedDynamicActions
+## SavedVariables: GHI_SavedDynamicActions,GHI_CS2
 ## SavedVariablesPerCharacter: GHI_ContainerData,GHI_ItemData,GHI_CooldownData,GHI_MiscData,GHI_CS,GHI_ActionBarData,GHI_ChatData,GHI_EquipmentDisplayData
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
