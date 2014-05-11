@@ -41,7 +41,7 @@ function GHM_ToolbarCategory(parent, main, profile)
 	text:ClearAllPoints();
 	text:SetPoint("BOTTOM", frame, "BOTTOM", 0, 5);
 
-	width = math.max(width, text:GetWidth() + 10)
+	width = math.max(width + 10, text:GetWidth() + 10)
 
 	frame:SetHeight(height + text:GetHeight() + 5);
 	frame:SetWidth(width);

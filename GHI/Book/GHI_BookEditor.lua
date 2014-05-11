@@ -130,20 +130,20 @@ function GHI_BookEditor()
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
 					texCoord = GetTexCoord(3, 2),
 				},
+			},
+			{
 				{
 					type = "StandardButtonWithTexture",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
 					texCoord = GetTexCoord(4, 2),
 					onClick = Revert,
 				},
-			},
-			{
-				{
+				--[[{
 					type = "StandardButtonWithTexture",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
 					texCoord = GetTexCoord(4, 1),
 					onClick = Save,
-				},
+				},--]]
 				{
 					type = "StandardButtonWithTexture",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
@@ -266,6 +266,7 @@ function GHI_BookEditor()
 		}
 	end
 
+	local yOff = -10;
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
 		{
@@ -281,6 +282,7 @@ function GHI_BookEditor()
 					height = 24,
 					onClick = function() ShowPage(currentPageShown - 1); end,
 					tooltip = loc.PREV_BOOK_PAGE,
+					yOff = yOff,
 				},
 				{
 					type = "Button",
@@ -301,6 +303,7 @@ function GHI_BookEditor()
 					width = 200,
 					xOff = 0,
 					defaultValue = "",
+					yOff = yOff,
 				},
 				{
 					type = "Button",
@@ -310,6 +313,7 @@ function GHI_BookEditor()
 					height = 24,
 					onClick = function() ShowPage(currentPageShown + 1); end,
 					tooltip = loc.NEXT_BOOK_PAGE,
+					yOff = yOff,
 				},
 				{
 					type = "Button",
@@ -337,7 +341,7 @@ function GHI_BookEditor()
 					type = "EditField",
 					align = "c",
 					width = 600,
-					height = 450,
+					height = 480,
 					label = "text",
 				},
 			},
@@ -349,7 +353,7 @@ function GHI_BookEditor()
 		height = 600,
 		useWindow = true,
 		icon = "Interface\\Icons\\INV_Misc_Book_09",
-		lineSpacing = -5,
+		lineSpacing = -15,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then
 				inUse = false;
