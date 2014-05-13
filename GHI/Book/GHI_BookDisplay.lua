@@ -154,6 +154,13 @@ function GHI_BookDisplay()
 		return class;
 	end
 
+	class.SetFont = function(font, size) print(font)
+		for i=1,#(pages) do
+			pages[i].SetFont(font, size);
+		end
+		return class;
+	end
+
 	class.SetBackgroundSize = function(width, height)
 		GHCheck("SetBackgroundSize", {"number", "number"}, {width, height});
 

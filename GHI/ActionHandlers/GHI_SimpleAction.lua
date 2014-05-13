@@ -224,6 +224,7 @@ local GetActionScript = function(info,oldVersion)
 					s = string.format("%s.AddPage([[%s]], 'SimpleHTML')", s, page);
 				end
 			end
+			s = s..string.format(".SetFont('%s', %s)", info.font, info.n or 15)
 			s = s..string.format(".SetTitle(\"%s\")", info.title);
 			s = s..string.format(".SetEditFunction(function() GHI_EditBook(stack.GetItemGuid(), \"%s\") end)", info.guid)
 			s = s..".Show()";

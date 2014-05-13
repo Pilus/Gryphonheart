@@ -21,6 +21,7 @@ function GHI_BookEditor()
 	local itemList = GHI_ItemInfoList();
 
 	local action, textFrame, info, item, currentPageShown;
+	local prevButton, nextButton, addBeforeButton, addAfterButton, deleteButton;
 
 	local SaveCurrentPage = function()
 		if currentPageShown then
@@ -31,6 +32,26 @@ function GHI_BookEditor()
 		end
 	end
 
+	local UpdateNavigationButtons = function()
+		if currentPageShown == 1 then
+			prevButton:Disable();
+		else
+			prevButton:Enable();
+		end
+
+		if currentPageShown == #(info) then
+			nextButton:Disable();
+		else
+			nextButton:Enable();
+		end
+
+		if #(info) == 1 then
+			deleteButton:Disable();
+		else
+			deleteButton:Enable();
+		end
+	end
+
 	local ShowPage = function(i)
 		if info[i] then
 			SaveCurrentPage();
@@ -38,6 +59,7 @@ function GHI_BookEditor()
 
 			local mockup = converter.ToMockup(info[i].text1);
 			textFrame.Force(mockup);
+			UpdateNavigationButtons();
 		end
 	end
 
@@ -71,6 +93,18 @@ function GHI_BookEditor()
 	end
 
 	class.IsInUse = function() return inUse; end
+
+	local Preview = function()
+		local display = GHI_BookDisplay()
+		.SetTitle(info.title)
+		.SetFont(info.font or "Frizqt", info.n or 15)
+
+		for i=1,#(info) do
+			display.AddPage(info[i].text1,"SimpleHTML")
+		end
+
+		display.Show();
+	end
 
 	local GetHighlightedText = function(frame)
 		if not (frame) then return nil end
@@ -114,9 +148,21 @@ function GHI_BookEditor()
 		return {l, t, l, b, r, t, r, b};
 	end
 
-	local SetUpXXCat = function()
+	local fonts = {}
+	local fontIndex = 1
+	for i,v in pairs(GHI_FontList) do
+		local newFont = {}
+		newFont.value = fontIndex
+		newFont.font = v
+		newFont.fontSize = 14
+		newFont.text = i
+		tinsert(fonts, newFont)
+		fontIndex = fontIndex + 1
+	end
+
+	local SetUpMetaCat = function()
 		return {
-			name = "???",
+			name = "Meta",
 			{
 				{
 					type = "StandardButtonWithTexture",
@@ -191,13 +237,7 @@ function GHI_BookEditor()
 					texCoord = GetTexCoord(3, 1);
 					onClick = function() InsertTag("right") end,
 				},
-			}
-		}
-	end
-
-	local SetStylesCat = function()
-		return {
-			name = "Styles",
+			},
 			{
 				{
 					type = "Button",
@@ -227,9 +267,63 @@ function GHI_BookEditor()
 		}
 	end
 
-	local SetAppearanceCat = function()
+	local SetStyleCat = function()
 		return {
-			name = "Appearance",
+			name = "Style",
+			{
+				{
+					type = "DropDown",
+					texture = "Tooltip",
+					width = 120,
+					label = "bookMaterial",
+					text = "Background material:",
+					data = {
+						{ text = "Parchment",  index=1},
+						{ text = "Bronze",  index=2},
+						{ text = "Marble",  index=3},
+						{ text = "Silver",  index=4},
+						{ text = "Stone",  index=5},
+						{ text = "Vellum",  index=6},
+						{ text = "Auction",  index=7},
+						{ text = "Orc",  index=8},
+						{ text = "Tauren",  index=9},
+						{ text = "Forsaken",  index=10},
+						{ text = "Illidari",  index=11},
+						{ text = "Winter",  index=12},
+						{ text = "Valentine",  index=13},
+					},
+
+				},
+				{
+					type = "DropDown",
+					width = 145,
+					label = "bookFont",
+					align = "l",
+					text = "Font:",
+					data = fonts,
+					OnSelect = function(index, value)
+						if info then
+							info.font = value;
+						end
+					end,
+				},
+			}
+		}
+	end
+
+	local SetUpFormattingPage = function()
+		return	{
+			name = "Formatting",
+			SetUpMetaCat(),
+			SetFontCat(),
+			SetLayoutCat(),
+			SetStyleCat(),
+		};
+	end
+
+	local SetAllPagesCat = function()
+		return {
+			name = "Default - All pages",
 			{
 				{
 					type = "TextButton",
@@ -241,21 +335,17 @@ function GHI_BookEditor()
 				},
 				{
 					type = "TextButton",
-					text = "Default color",
-				}
+					text = "Text color",
+				},
 			}
 		}
 	end
 
-	local SetUpFormattingPage = function()
+	local SetUpAppearancePage = function()
 		return	{
 			name = "Formatting",
-			SetUpXXCat(),
-			SetFontCat(),
-			SetLayoutCat(),
-			SetStylesCat(),
-			SetAppearanceCat(),
-		};
+			SetAllPagesCat(),
+		}
 	end
 
 	local SetUpToolbar = function()
@@ -263,6 +353,7 @@ function GHI_BookEditor()
 			type = "MultiPageToolbar",
 			align = "l",
 			SetUpFormattingPage(),
+			SetUpAppearancePage(),
 		}
 	end
 
@@ -280,9 +371,10 @@ function GHI_BookEditor()
 					align = "l",
 					compact = true,
 					height = 24,
-					onClick = function() ShowPage(currentPageShown - 1); end,
+					onclick = function() ShowPage(currentPageShown - 1); end,
 					tooltip = loc.PREV_BOOK_PAGE,
 					yOff = yOff,
+					label = "prevButton"
 				},
 				{
 					type = "Button",
@@ -291,8 +383,13 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onClick = function() end,
+					onclick = function()
+						table.insert(info, currentPageShown, {text1 = converter.ToSimpleHtml("")});
+						currentPageShown = currentPageShown + 1;
+						UpdateNavigationButtons();
+					end,
 					tooltip = loc.INSERT_PAGE_BEFORE,
+					label = "addBeforeButton",
 				},
 				{
 					type = "Editbox",
@@ -311,9 +408,10 @@ function GHI_BookEditor()
 					align = "r",
 					compact = true,
 					height = 24,
-					onClick = function() ShowPage(currentPageShown + 1); end,
+					onclick = function() ShowPage(currentPageShown + 1); end,
 					tooltip = loc.NEXT_BOOK_PAGE,
 					yOff = yOff,
+					label = "nextButton"
 				},
 				{
 					type = "Button",
@@ -322,8 +420,9 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onClick = function() end,
+					onclick = function() end,
 					tooltip = loc.INSERT_PAGE_AFTER,
+					label = "addAfterButton",
 				},
 				{
 					type = "Button",
@@ -332,8 +431,12 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onClick = function() end,
+					onclick = function()
+						table.insert(info, currentPageShown, {text1 = converter.ToSimpleHtml("")});
+						UpdateNavigationButtons();
+					end,
 					tooltip = loc.DELETE_PAGE,
+					label = "deleteButton",
 				},
 			},
 			{
@@ -362,6 +465,11 @@ function GHI_BookEditor()
 	});
 
 	textFrame = menuFrame.GetLabelFrame("text");
+	prevButton = menuFrame.GetLabelFrame("prevButton");
+	nextButton = menuFrame.GetLabelFrame("nextButton");
+	addBeforeButton = menuFrame.GetLabelFrame("addBeforeButton");
+	addAfterButton = menuFrame.GetLabelFrame("addAfterButton");
+	deleteButton = menuFrame.GetLabelFrame("deleteButton");
 
 	return class;
 end
