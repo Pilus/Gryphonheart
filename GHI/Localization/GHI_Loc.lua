@@ -267,7 +267,7 @@ function GHI_Loc()
 		},
 	};
 
-     local textsOptionsDebug = {
+	local textsOptionsDebug = {
 		DEBUG_EVENT_LOG = {
 			enUS = "GHI Debug Event Log",
 		},
@@ -483,8 +483,7 @@ function GHI_Loc()
 		EDIT_BOOK = {
 			enUS = "Edit Book",
 		},
-		EDIT_INFO_TEXT =
-{
+		EDIT_INFO_TEXT = {
 			enUS = "The book information can only be edited by you, unless the item is flagged as 'Editable by others",
 		},
 		MARK_TEXT = {
@@ -526,6 +525,12 @@ function GHI_Loc()
 			enUS = "Insert Page:",
 			deDE = "Seite einf" .. uu .. "gen:",
 			frFR = "Insérer la page :",
+		},
+		INSERT_PAGE_BEFORE = {
+			enUS = "Insert page before this page",
+		},
+		INSERT_PAGE_AFTER = {
+			enUS = "Insert page after this page",
 		},
 		MATERIAL = {
 			enUS = "Material:",
@@ -637,8 +642,6 @@ function GHI_Loc()
 		},
 		RIGHT = {
 			enUS = "Right",
---deDE = "Right", --missing in localdede.lua
---frFR = "",
 		},
 		INSERT = {
 			enUS = "Insert",
@@ -702,16 +705,21 @@ function GHI_Loc()
 			deDE = "F" .. uu .. "ge Linktext ein",
 			frFR = "Indiquer le lien textuel",
 		},
-
-
-
+		PAGE_OF_PAGES = {
+			enUS = "%s of %s"
+		},
+		NEXT_BOOK_PAGE = {
+			enUS = "Go to next page",
+		},
+		PREV_BOOK_PAGE = {
+			enUS = "Go to previous page",
+		},
 	};
 
 	local textsPosInput = {--GHM_Position
 		SET_CURRENT = {
 			enUS = "Set to current loc.",
 		},
-
 	};
 
 	local textsSoundSelection = {
@@ -945,7 +953,6 @@ function GHI_Loc()
 
 		QUALITY_TT = {
 			enUS ="Quality Color of the item.",
-
 		},
 
 		WHITE_TEXT_1 = {
@@ -953,7 +960,6 @@ function GHI_Loc()
 			deDE = "Wei" .. ss .. "er Text 1:",
 			frFR = "Texte en blanc 1:",
 		},
-
 
 		WHITE_TEXT_1_TT = {
 			enUS = "White text 1, EX: Soulbound, Hat,Pants,Armor",
@@ -974,7 +980,6 @@ function GHI_Loc()
 		},
 		YELLOW_QUOTE_TT = {
 			enUS = "Yellow quoted text for 'flavor' or description.",
-
 		},
 
 		STACK_SIZE = {
@@ -1058,13 +1063,11 @@ function GHI_Loc()
 			enUS = "Edit",
 			deDE = "Editieren",
 			frFR = "Éditer",
-
 		},
 		DETAILS = {
 			enUS = "Details",
 			deDE = "Details",
 			frFR = "Détails",
-
 		},
 		TYPE_U = {
 			enUS = "Type",
@@ -1078,12 +1081,10 @@ function GHI_Loc()
 		},
 		CAN_NOT_EDIT = {
 			enUS = "You do not have permission to edit that item.",
-
 		},
 		PREVIEW = {
 			enUS = "Item Preview:",
 		},
-
 		ITEMTYPE_CUSTOM_MADE = {
 			enUS = "Custom Made Item",
 		},
@@ -1099,7 +1100,6 @@ function GHI_Loc()
 		ACTION_NOTE = {
 			enUS = "Press 'Add new action' to add one or more actions to the item.",
 		},
-
 	};
 	local textsSTDBagMenu = {
 		BAG = {
@@ -1174,9 +1174,9 @@ function GHI_Loc()
 			frFR = "Livre",
 		},
 		TITLE = {
-			enUS = "Title",
+			enUS = "Title:",
 			deDE = "Titel:",
-			frFR = "Titre :",
+			frFR = "Titre:",
 
 		},
 		TITLE_TEXT = {
@@ -1649,10 +1649,6 @@ function GHI_Loc()
 		DAYS = {
 			enUS = "days",
 		},
-
-
-
-
 	};
 
 	local textsColors = {
@@ -1715,6 +1711,66 @@ function GHI_Loc()
 		},
 		COLOR_CUSTOM = {
 			enUS = "Custom Color",
+		},
+		COLOR_PALADIN = {
+			enUS = "Paladin",
+		},
+		COLOR_MAGE = {
+			enUS = "Mage",
+		},
+		COLOR_WARRIOR = {
+			enUS = "Warrior",
+		},
+		COLOR_HUNTER = {
+			enUS = "Hunter",
+		},
+		COLOR_ROGUE = {
+			enUS = "Rogue",
+		},
+		COLOR_MONK = {
+			enUS = "Monk",
+		},
+		COLOR_SHAMAN = {
+			enUS = "Shaman",
+		},
+		COLOR_PRIEST = {
+			enUS = "Priest",
+		},
+		COLOR_DRUID = {
+			enUS = "Druid",
+		},
+		COLOR_WARLOCK = {
+			enUS = "Warlock",
+		},
+		COLOR_DEATHKNIGHT = {
+			enUS = "Death knight",
+		},
+		COLOR_POOR = {
+			enUS = "Poor",
+		},
+		COLOR_COMMON = {
+			enUS = "Common",
+		},
+		COLOR_UNCOMMON = {
+			enUS = "Uncommon",
+		},
+		COLOR_RARE = {
+			enUS = "Rare",
+		},
+		COLOR_EPIC = {
+			enUS = "Epic",
+		},
+		COLOR_LEGENDARY = {
+			enUS = "Legendary",
+		},
+		COLOR_ALLIANCE = {
+			enUS = "Alliance",
+		},
+		COLOR_HORDE = {
+			enUS = "Horde",
+		},
+		COLOR_HEIRLOOM = {
+			enUS = "Heirloom",
 		},
 	};
 
@@ -1951,93 +2007,56 @@ function GHI_Loc()
 
 		MERGE_RULE_NONE = {
 			enUS = "none",
-
 		},
-
 		MERGE_RULE_CONCAT = {
 			enUS = "concat",
-
 		},
-
 		MERGE_RULE_AVERAGE = {
 			enUS = "average",
-
 		},
-
 		MERGE_RULE_AVERAGE_ROUNDED = {
 			enUS = "average rounded",
-
 		},
-
-
 		MERGE_RULE_SUM= {
 			enUS = "sum",
-
 		},
-
-
 		MERGE_RULE_MIN = {
 			enUS = "min",
-
 		},
-
 		MERGE_RULE_MAX = {
 			enUS = "max",
-
 		},
-
 		MERGE_RULE_AND = {
 			enUS = "and",
-
 		},
-
 		MERGE_RULE_OR = {
 			enUS = "or",
-
 		},
-
 		MERGE_RULE_NOR = {
 			enUS = "nor",
-
 		},
-
-
 		MERGE_RULE_MAJORITY = {
 			enUS = "majority",
-
 		},
-
 		MERGE_RULE_MINORITY = {
 			enUS = "minority",
-
 		},
-
-
 	};
 
 	local textsChatConfirm = {
 		CHATCONFIRM = {
-
 			enUS = "Confirm Chat Permission",
 		},
 
-
 		CHATCONFIRM_INSTRUCTION_TOP = {
-
 			enUS = "GHI is calling a function that will make you say or emote the following text:",
-
 		},
-
 		CHATCONFIRM_INSTRUCTION_BOTTOM ={
 			enUS = "Do you wish to continue?",
-
 		},
 
-
 		CHATCONFIRM_TYPE = {
-
 			enUS = "Message type",
-
 		},
 
 	};

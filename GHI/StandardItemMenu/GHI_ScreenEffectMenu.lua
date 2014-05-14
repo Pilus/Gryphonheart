@@ -141,13 +141,15 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 				{
 					type = "Color2",
 					text = loc.COLOR,
-					align = "l",
+					align = "c",
 					label = "color",
 				},
+			},
+			{
 				{
 					type = "Time",
 					text = loc.SCREEN_EFFECT_FADEOUT,
-					align = "c",
+					align = "l",
 					label = "fade_out",
 					width = 130,
 					texture = "Tooltip",
@@ -156,7 +158,7 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 				{
 					type = "Time",
 					text = loc.SCREEN_EFFECT_FADEIN,
-					align = "r",
+					align = "c",
 					label = "fade_in",
 					texture = "Tooltip",
 					xOff = -5,
@@ -184,8 +186,7 @@ function GHI_ScreenEffectMenu(_OnOkCallback, _editAction)
 					width = 130,
 					values = {0,0.5,1,2,3,4,5,10,15,20,25,30},
 				},
-			},
-			{	
+			
 				{
 					type = "Time",
 					text = loc.DELAY,

@@ -1,4 +1,4 @@
---===================================================
+	--===================================================
 --
 --				GHI_ContainerUI
 --				GHI_ContainerUI.lua
@@ -17,7 +17,7 @@ local api;
 local miscApi;
 local loc;
 
-local ALLOWED_SIZES = {1,2,4,6,8,10,12,14,16,18,20,24,26,28,30,32,34}
+local ALLOWED_SIZES = {1,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34}
 
 local function SetUpMainBagFrame()
 	mainBagFrame = CreateFrame("Frame", "GHI_ContainerFrame1", UIParent, "GHI_ContainerFrameTemplate");
@@ -246,6 +246,7 @@ end);
 
 GHI_Event("GHI_CONTAINER_UPDATE", function(e, guid)
 	if mainBagFrame then
+		api = api or GHI_ContainerAPI().GetAPI();
 		mainBagFrame.guid = api.GHI_GetCurrentMainBagGUID();
 		UpdateMainBagPageButtons();
 		for _, frame in pairs(bags) do
@@ -286,7 +287,6 @@ GHI_Event("GHI_BAG_OPEN", function(e, guid)
 	local bagFrame = GetFreeBagFrame();
 	local size, name, icon, texture = api.GHI_GetContainerInfo(guid);
 
-	if size == 35 then size = 34 end --fix for some bags
 	if not(tContains(ALLOWED_SIZES,size)) then
 		return
 	end

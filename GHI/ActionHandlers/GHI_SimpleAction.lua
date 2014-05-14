@@ -125,7 +125,7 @@ local GetActionScript = function(info,oldVersion)
 			local amount = info.amount or 1
 			local delay = info.delay or 0
 
-			return ScriptFormat("GHI_RemoveBuff(\"%s\",\"%s\",%s,%s)", name, filter, amount, delay or "nil");
+			return ScriptFormat("GHI_RemoveBuff(\"%s\",\"%s\",%s,%s)", name, filter, amount, delay);
 		elseif dynamicTypeName == "consume_item" then
 			local amount = info.amount or 1
 			local guid = info.id or ""
@@ -210,6 +210,26 @@ local GetActionScript = function(info,oldVersion)
 
 		return ScriptFormat("GHI_OpenBag(stack.GetContainerGuid(),stack.GetContainerSlot(),%s,\"%s\",%s);", info.size, info.texture or "", tostring(info.tradeable)), 0;
 	elseif actionType == "book" then
+		if (GetAddOnMetadata("GHI", "X-DevVersion") == "True") then -- use the new book display for development
+			local s = "GHI_BookDisplay()";
+
+			for i = 1, #(info) do
+				if type(info[i]) == "table" then
+					local page = "";
+					for j = 1, 10 do
+						if info[i]["text" .. j] then
+							page = page .. info[i]["text" .. j];
+						end
+					end
+					s = string.format("%s.AddPage([[%s]], 'SimpleHTML')", s, page);
+				end
+			end
+			s = s..string.format(".SetFont('%s', %s)", info.font, info.n or 15)
+			s = s..string.format(".SetTitle(\"%s\")", info.title);
+			s = s..string.format(".SetEditFunction(function() GHI_EditBook(stack.GetItemGuid(), \"%s\") end)", info.guid)
+			s = s..".Show()";
+			return s, 0;
+		end
 
 		local pageScript = "{";
 
@@ -257,7 +277,7 @@ local GetActionScript = function(info,oldVersion)
 		else
 			extraMat = nil
 		end
-		
+
 		local script = string.format("GHI_ShowBook(stack.GetContainerGuid(),stack.GetContainerSlot(),\"%s\",%s,\"%s\",\"%s\",%s,%s,%s,nil,nil,%s,nil,\"%s\");",ScriptFormat("%s",info.title or ""), pageScript, material, font, n, h1, h2, extraMat or "nil",info.guid)
 		return script, 0;
 	elseif actionType == "sound" then
@@ -977,7 +997,7 @@ function GHI_SimpleAction(info)
 		icon = info.icon;
 		actionName = info.type_name; -- localized action name
 		details = info.details;
-		script, delay = GetActionScript(info)
+		script, delay = GetActionScript(info, false)
 		executionOrder = info.req or 1;
 		actionType = info.Type;
 
@@ -986,9 +1006,9 @@ function GHI_SimpleAction(info)
 			local producedItem = GHI_ItemInfo(itemTable);
 			itemInfoList.UpdateItem(producedItem)
 			dependingItems = { producedItem.GetGUID() };
+		else
+			dependingItems = {}
 		end
-
-		dependingItems = { info.guid or info.id }
 	end
 
 	class.Serialize = function(stype)

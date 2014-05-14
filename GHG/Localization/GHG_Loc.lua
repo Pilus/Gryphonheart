@@ -152,6 +152,12 @@ function GHG_Loc()
 		INVITATION_TEXT = {
 			enUS = "%2$s invites you to join the group: %1$s.",
 		},
+		PLAYER_REMOVED = {
+			enUS = "%3$s have kicked %1$s from the group: %2$s",
+		},
+		PLAYER_LEFT = {
+			enUS = "%1$s have left the group: %2$s",
+		},
 
 		-- Admin
 		GROUP_NAME = {
@@ -220,7 +226,21 @@ function GHG_Loc()
 		MOVE_DOWN = {
 			enUS = "Move down",
 		},
-
+		CHAT_NAME = {
+			enUS = "Chat name",
+		},
+		CHAT_HEADER = {
+			enUS = "Chat header",
+		},
+		CHAT_COLOR = {
+			enUS = "Chat color",
+		},
+		CHAT_SLASH = {
+			enUS = "Chat slash cmd",
+		},
+		CHAT_INFO_TEXT = {
+			enUS = "Group chat (%s) accessible through /%s",
+		},
 
 		-- Promote demote
 		PLAYER_PROMOTED = {
@@ -236,6 +256,27 @@ function GHG_Loc()
 		LEAVE_CONFIRM = {
 			enUS = "Are you sure that you want to leave the group: %s.",
 		},
+
+		-- Event log
+		LOG = {
+			enUS = "Log",
+		},
+		CLOSE = {
+			enUS = "Close",
+		},
+		LOGEVENT_GROUP_CREATED = {
+			enUS = "%s: %s created the group.",
+		},
+		LOGEVENT_MEMBER_INVITED = {
+			enUS = "%s: %s invited %s to the group.",
+		},
+		TIME_AGO = {
+			enUS = "%s ago",
+		},
+		JUST_NOW = {
+			enUS = "Just now",
+		},
+
 	}
 
 

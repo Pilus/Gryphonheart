@@ -68,8 +68,13 @@ Objects\GHM_Logo.lua
 Objects\GHM_Logo.xml
 Objects\GHM_ImageList.lua
 Objects\GHM_ImageList.xml
+Objects\GHM_StandardButtonWithTexture.lua
 
-Toolbar\GHM_Toolbar.lua
+Toolbar\GHM_ToolbarObjectRow.lua
+Toolbar\GHM_ToolbarCategory.lua
+Toolbar\GHM_ToolbarPage.lua
+Toolbar\GHM_MultiPageToolbar.lua
+Toolbar\GHM_Toolbar.xml
 
 DropDownMenu\GHM_DropDownMenu.lua
 DropDownMenu\GHM_DropDownMenuTemplates.xml

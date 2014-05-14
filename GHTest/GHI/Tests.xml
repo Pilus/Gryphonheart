@@ -1,0 +1,9 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+
+    <script file="GHI_TestHandler.lua"></script>
+
+    <script file="Book\Converters\GHI_BBCodeConverter.lua"></script>
+    <script file="Book\Converters\GHI_BBCodeDeserializer.lua"></script>
+    <script file="Book\Converters\GHI_HtmlDeserializer.lua"></script>
+</Ui>

@@ -14,7 +14,7 @@ function GHM_IconPicker()
 	local miscApi = GHI_MiscAPI().GetAPI();
 	local loc = GHI_Loc()
 
-	local selectedIcon -- Path of selected icon
+	local selectedIcon,currentIcon; -- Path of selected icon
 	local OnOkCallback
 	
 	GHM_LoadIconList()
@@ -187,7 +187,7 @@ function GHM_IconPicker()
 						tinsert(chosenIcons,path)
 						currentIcon = #chosenIcons
 						selectedIcon = chosenIcons[currentIcon]
-						menuFrame.ForceLabel("current", chosenIcons[currentIcon]) 
+						menuFrame.ForceLabel("current", chosenIcons[currentIcon])
 					end,
 				},
 			},
@@ -240,20 +240,21 @@ function GHM_IconPicker()
 
 	menuFrame = GHM_NewFrame(class, t );
 
-	class.New = function(_OnOkCallback)
+	local Initialize = function(icon, _OnOkCallback)
 		OnOkCallback = _OnOkCallback;
-		defaultIcon = "Interface\\Icons\\INV_Misc_QuestionMark"
-		menuFrame.ForceLabel("current", defaultIcon)
+		defaultIcon = icon
+		menuFrame.ForceLabel("current", icon);
 		menuFrame.ForceLabel("category","Ability")
 		menuFrame:Show();
 		inUse = true;
 	end
+
+	class.New = function(_OnOkCallback)
+		Initialize("Interface\\Icons\\INV_Misc_QuestionMark", _OnOkCallback);
+	end
 	
-	class.Edit = function(iconPath, _OnOKCallback)
-		defaultIcon = iconPath
-		selectedIcon = defaultIcon
-		menuFrame:Show()
-		menuFrame.ForceLabel("current", defaultIcon)
+	class.Edit = function(iconPath, _OnOkCallback)
+		Initialize(iconPath, _OnOkCallback);
 	end
 		
 	class.IsInUse = function()

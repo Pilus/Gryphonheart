@@ -92,7 +92,7 @@ end
 
 function GHM_CreateObject(num, profile, parent,givenMain)
 	if not (profile.type) then
-		return 0;
+		error(string.format("GHM element %s not found", profile.type or "nil"))
 	end
 
 	local main = givenMain or parent:GetParent():GetParent();
@@ -105,7 +105,7 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 			obj.GetLabel = function() return profile.label end
 		end
 		--GHM_TempBG(obj);
-		return obj:GetHeight();
+		return obj:GetHeight(), obj;
 	end
 
 	local offsetX = 0;
@@ -344,6 +344,9 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 			if profile.width then
 				obj:SetWidth(profile.width);
 			end
+			if profile.height then
+				obj:SetHeight(profile.height);
+			end
 		end
 		if profile.tooltip then
 			obj.tooltip = profile.tooltip;
@@ -463,7 +466,7 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 	end
 	obj:Show();
 
-	return height;
+	return height, obj;
 end
 
 function GHM_CreateLine(num, profile, parent, offset)
@@ -817,6 +820,7 @@ function GHM_NewFrame(self, profile)
 			window:SetTitle(profile.title);
 			window:SetIcon(profile.icon);
 
+
 			if type(profile.menuBar) == "table" then
 				for i=1,#(profile.menuBar) do
 					GHM_Toolbar(window.MenuBar, main, profile.menuBar[i]);
@@ -882,6 +886,7 @@ function GHM_NewFrame(self, profile)
 			end;
 			main.HideOrig = main.Hide;
 			main.Hide = function(self) window:Hide(); main:HideOrig() end;
+			main.SetTitle = function(_, t) window:SetTitle(t) end;
 
 			main.AnimatedShow = function(self)
 				self:Show();

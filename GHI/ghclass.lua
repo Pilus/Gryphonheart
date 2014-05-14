@@ -71,8 +71,8 @@ function GHInheritNext(className,object)
 end
 
 function GHCheck(name, expected, acual)
-	if not (type(expected) == "table" and type(acual) == "table") then
-		error("GHCheck used incorrectly in code. Useage: GHCheck(table,table) got " .. type(expected) .. " " .. type(acual), 2)
+	if not (type(name) == "string" and type(expected) == "table" and type(acual) == "table") then
+		error("GHCheck used incorrectly in code. Useage: GHCheck(string,table,table) got " ..type(name) .." " .. type(expected) .. " " .. type(acual), 2)
 	end
 
 	local passed = true;
@@ -182,6 +182,17 @@ string.endsWith = function(str,pattern)
 	return false;
 end
 
+string.count = function(str,pattern)
+	local last = 0;
+	local count;
+	local _;
+	while (last) do
+		_,last = string.find(str,pattern,last);
+		count = (count or -1) + 1;
+	end
+	return count;
+end
+
 local _,_,_,tocNum = GetBuildInfo();
 if tocNum >= 30000 and tocNum < 40000 then
 	local orig = PlaySoundFile;
@@ -207,4 +218,14 @@ end
 
 function GHTimeBasedVersion()
 	return time() -1370000000;
+end
+
+if not(Ambiguate) then
+	Ambiguate = function(name,...)
+		return name;
+	end
+end
+
+function GH_TestFeature()
+	return strlower(GetAddOnMetadata("GHI", "X-DevVersion")) == "true" and IsShiftKeyDown();
 end

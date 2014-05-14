@@ -504,7 +504,7 @@
    				</Anchors>
    				<Scripts>
    					<OnClick>
-   						--StaticPopup_Show("REMOVE_GROUPMEMBER");
+   						StaticPopup_Show("GHG_REMOVE_MEMBER");
    					</OnClick>
    					<OnEnter>
    						GameTooltip_AddNewbieTip(self, REMOVE, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_GROUPREMOVE, 1);

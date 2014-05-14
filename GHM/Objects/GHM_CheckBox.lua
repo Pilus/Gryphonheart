@@ -26,9 +26,12 @@ function GHM_CheckBox(parent, main, profile)
 		checkBox:SetScript("OnClick",profile.OnClick);
 	end
 
-	frame:SetWidth(math.min(label:GetWidth(),160)+checkBox:GetWidth()+10)
-	label:GetParent():SetWidth(frame:GetWidth())
-	--GHM_TempBG(label:GetParent());
+	if profile.width then
+		frame:SetWidth(profile.width);
+	else
+		frame:SetWidth(math.min(label:GetWidth(),160)+checkBox:GetWidth()+10)
+	end
+	label:GetParent():SetWidth(frame:GetWidth() - 10 - checkBox:GetWidth())
 
     GHM_FramePositioning(frame,profile,parent);
 

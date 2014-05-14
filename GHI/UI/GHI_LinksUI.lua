@@ -129,16 +129,16 @@ function GHI_LinksUIHandler()
 			if not (IsEventIgnoredChannelEvent(event, ...)) then
 				local linksInText = SubstractSuspectedLinkNames(msg);
 				if #(linksInText) > 0 then
-				if event == "CHAT_MSG_WHISPER_INFORM" then
-					StoreEvent(event, msg, author, linksInText, ...);
-					SendSuspectedLinkName(playerName, linksInText, event);
-				else
-					StoreEvent(event, msg, author, linksInText, ...);
-					SendSuspectedLinkName(author, linksInText, event);
+					if event == "CHAT_MSG_WHISPER_INFORM" then
+						StoreEvent(event, msg, author, linksInText, ...);
+						SendSuspectedLinkName(playerName, linksInText, event);
+					else
+						StoreEvent(event, msg, author, linksInText, ...);
+						SendSuspectedLinkName(author, linksInText, event);
+					end
+					return;
 				end
-				return;
 			end
-		 end
 		end
 		ParseEventToFrames(event, msg, author, ...)
 	end
@@ -250,7 +250,7 @@ function GHI_LinksUIHandler()
 	InsertLinkInStoredEvent = function(author, chatType, linkText, newLink)
 		log.Add(3, "Insert item link in event", { author, chatType, linkText, newLink });
 		for i, event in pairs(incommingEvents) do
-			if ((event.event ~= "CHAT_MSG_WHISPER_INFORM"  and event.author == author) or (event.event == "CHAT_MSG_WHISPER_INFORM" and author == playerName)) and chatType == ConvertEventNameToChatType(event.event) then
+			if ((event.event ~= "CHAT_MSG_WHISPER_INFORM" and Ambiguate(event.author, "none") == author) or (event.event == "CHAT_MSG_WHISPER_INFORM" and author == playerName)) and chatType == ConvertEventNameToChatType(event.event) then
 				if TableContainsValue(event.linkNames, linkText) then
 					event.msg = gsub(event.msg, "%[" .. ClearRegexControlcharsFromString(linkText) .. "%]([^|]?)", function(followingChar)
 						return newLink .. followingChar;

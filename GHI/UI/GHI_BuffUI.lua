@@ -208,7 +208,7 @@ function GHI_BuffUIDisplay:DisplayTooltip(button)
 		if suffix == "m" then s2 = SPELL_TIME_REMAINING_MIN; end
 		if suffix == "h" then s2 = SPELL_TIME_REMAINING_HOURS; end
 		if suffix == "d" then s2 = SPELL_TIME_REMAINING_DAYS; end
-		--print(format(s2,n))
+
 		GameTooltip:AddLine(format(s2, n), 1, 0.8196079, 0);
 	end
 

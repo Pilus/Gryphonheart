@@ -52,7 +52,7 @@ function GHI_RemoveBuffMenu(_OnOkCallback, _editAction)
 		else
 			class.editAction = nil;
 			menuFrame.ForceLabel("name", "");
-			menuFrame.ForceLabel("filter", "");
+			menuFrame.ForceLabel("filter", 1);
 			menuFrame.ForceLabel("amount", "");
 			menuFrame.ForceLabel("delay", "");
 		end

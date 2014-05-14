@@ -37,8 +37,32 @@ function GHM_ScrollFrame_OnLoad(self)
 			yOfs = yOfs,
 		}
 	end
-	--GHM_TempBG(self);
+
 	GHM_ScrollFrame_OnScrollRangeChanged(self);
+
+	--Create textures
+	local bg1 = CreateFrame("Frame", nil, self);
+	self.bg1 = bg1;
+	bg1:SetPoint("TOPLEFT", self, "TOPRIGHT", -2, 0);
+	bg1:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", scrollbar:GetWidth()-2, -scrollbar:GetWidth()-2);
+	local t = bg1:CreateTexture(nil,"BACKGROUND");
+	t:SetTexture(0, 0, 0, 1);
+	t:SetAllPoints(bg1);
+
+	local bg2 = CreateFrame("Frame", nil, self);
+	self.bg2 = bg2;
+	bg2:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, 0);
+	bg2:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", scrollbar:GetWidth()-2, -scrollbar:GetWidth()-2);
+	local t = bg2:CreateTexture(nil,"BACKGROUND");
+	t:SetTexture(0, 0, 0, 1);
+	t:SetAllPoints(bg2);
+
+	bg1:Hide();
+	bg2:Hide();
+	self.ShowScrollBarBackgrounds = function()
+		bg1:Show();
+		bg2:Show();
+	end
 end
 
 local function AdjustScrollFrameArea(self, vBarShown, hBarShown)
@@ -62,15 +86,18 @@ local function AdjustScrollFrameArea(self, vBarShown, hBarShown)
 	end
 end
 
-function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
+function GHM_ScrollFrame_OnScrollRangeChanged(self) --, xrange, yrange)
 	local scrollbarV = _G[self:GetName() .. "ScrollBar"];
 	local scrollbarH = _G[self:GetName() .. "ScrollBar2"];
-	if (not yrange) then
-		yrange = self:GetVerticalScrollRange();
+	local child = self:GetScrollChild();
+
+	local xrange, yrange = 0, 0;
+
+	if (child) then
+		yrange = child:GetHeight() - self:GetHeight();
+		xrange = child:GetWidth() - self:GetWidth();
 	end
-	if (not xrange) then
-		xrange = self:GetHorizontalScrollRange();
-	end
+
 	local yvalue = scrollbarV:GetValue();
 	if (yvalue > yrange) then
 		yvalue = yrange;
@@ -80,33 +107,34 @@ function GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
 		xvalue = xrange;
 	end
 
-	scrollbarV:SetMinMaxValues(0, yrange);
-	scrollbarV:SetValue(yvalue);
-
-	scrollbarH:SetMinMaxValues(0, xrange);
-	scrollbarH:SetValue(xvalue);
-
 	local VScrollBarShown, HScrollBarShown = false, false;
-
+	--print(floor(yrange) ,">", 0," and ",yrange ,"-", yvalue,">",0.005 )
 	if (floor(yrange) > 0) and (yrange - yvalue > 0.005) then
 		VScrollBarShown = true;
+		scrollbarV:SetMinMaxValues(0, yrange);
+		scrollbarV:SetValue(yvalue);
 	end
 	if (floor(xrange) > 0) and (xrange - xvalue > 0.005) then
 		HScrollBarShown = true;
+		scrollbarH:SetMinMaxValues(0, xrange);
+		scrollbarH:SetValue(xvalue);
 	end
 
 	-- adjust accordingly
 	AdjustScrollFrameArea(self, VScrollBarShown, HScrollBarShown);
 
 	-- show the bars
+	scrollbarV:Show();
 	if VScrollBarShown then
-		scrollbarV:Show();
+		scrollbarV:Enable();
 	else
-		scrollbarV:Hide();
+		scrollbarV:Disable();
 	end
+
+	scrollbarH:Show();
 	if HScrollBarShown then
-		scrollbarH:Show();
+		scrollbarH:Enable();
 	else
-		scrollbarH:Hide();
+		scrollbarH:Disable();
 	end
 end

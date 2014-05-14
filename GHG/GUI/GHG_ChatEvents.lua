@@ -32,12 +32,14 @@ function GHG_ChatEvents()
 	msg("GHG_SEND_INVITE_ACCEPTED",msgType,loc.SEND_INVITE_ACCEPTED);
 	msg("GHG_SEND_INVITE_DECLINED",msgType,loc.SEND_INVITE_DECLINED);
 	msg("GHG_PLAYER_JOINED",msgType,loc.PLAYER_JOINED);
+	msg("GHG_PLAYER_LEFT",msgType,loc.PLAYER_LEFT);
 	msg("GHG_PLAYER_PROMOTED",msgType,loc.PLAYER_PROMOTED);
 	msg("GHG_PLAYER_DEMOTED",msgType,loc.PLAYER_DEMOTED);
 
 	local msgType = "GHG_GROUP_TOASTS";
-	msg("GHG_PLAYER_ONLINE",msgType,ERR_FRIEND_ONLINE_SS)
-	msg("GHG_PLAYER_OFFLINE",msgType,ERR_FRIEND_OFFLINE_S)
+	msg("GHG_PLAYER_ONLINE",msgType,ERR_FRIEND_ONLINE_SS);
+	msg("GHG_PLAYER_OFFLINE",msgType,ERR_FRIEND_OFFLINE_S);
+	msg("GHG_PLAYER_REMOVED",msgType,loc.PLAYER_REMOVED);
 
 	msg("GHG_DEBUG","GHG_DEBUG","%s");
 
@@ -60,6 +62,9 @@ function GHG_ChatEvents()
 		local groupIndex = api.GetIndexOfGroupByGuid(guid);
 		if groupIndex then
 			local name,header,defaultColor,chatSlashCmds = api.GetGroupChatInfo(groupIndex);
+			if not(type(name)=="string" and type(header)=="string" and type(defaultColor)=="table" and type(chatSlashCmds)=="table") then
+				return
+			end
 			chat.DefineChatType(guid,header,defaultColor,name,chatSlashCmds);
 
 			local orig = SendChatMessage;

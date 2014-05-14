@@ -1558,7 +1558,7 @@ function GHI_EqDisplayEvent(event, ...)
 			end
 
 			GameTooltip:Show()
-		end, GHI_ToggleTargetEqDisplay, "FriendlyPlayer")
+		end, function() end, "FriendlyPlayer")
 
 		--GHI_DoScript("GHI_ShowPlayerEquipmentDisplay(); GHI_GetPlayerEquipmentDisplay():Hide()",3);
 		--GHI_DoScript("GHI_ShowPlayerEquipmentDisplay();  GHI_ShowPlayerEquipmentDisplay()",3);
@@ -1578,8 +1578,8 @@ function GHI_EqDisplayEvent(event, ...)
 	end
 end
 
-GHI_Event("VARIABLES_LOADED", GHI_EqDisplayEvent);
-GHI_Event("PLAYER_TARGET_CHANGED", GHI_EqDisplayEvent);
+--GHI_Event("VARIABLES_LOADED", GHI_EqDisplayEvent);
+--GHI_Event("PLAYER_TARGET_CHANGED", GHI_EqDisplayEvent);
 
 function GHI_ToggleTargetEqDisplay()
 	targetToggled = not (targetToggled);

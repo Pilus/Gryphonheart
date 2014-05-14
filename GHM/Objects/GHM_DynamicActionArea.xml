@@ -14,7 +14,7 @@
                     </Anchor>
                     <Anchor point="BOTTOM">
                         <Offset>
-                            <AbsDimension x="0" y="5"/>
+                            <AbsDimension x="0" y="20"/>
                         </Offset>
                     </Anchor>
                     <Anchor point="LEFT">
@@ -24,7 +24,7 @@
                     </Anchor>
                     <Anchor point="RIGHT">
                         <Offset>
-                            <AbsDimension x="-5" y="0"/>
+                            <AbsDimension x="-20" y="0"/>
                         </Offset>
                     </Anchor>
 

@@ -5,7 +5,7 @@
 --
 --	          (description)
 --
--- 	  (c)2013 The Gryphonheart Team
+-- 	 chatinfo (c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 

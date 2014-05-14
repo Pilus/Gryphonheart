@@ -17,7 +17,7 @@
 --GHM_TempBG(AdminFrame);
 
 local api,OnHide,loc,rankUI,SetRank,UpdateRanksList;
-
+local active = false;
 local init = false;
 local Initialize = function()
 	init = true;
@@ -42,7 +42,6 @@ local Initialize = function()
 					fontSize = 14,
 					texture = "Tooltip",
 					OnTextChanged = function(self)
-
 					end,
 				},
 				{
@@ -183,6 +182,50 @@ local Initialize = function()
 					end,
 				},
 			},
+			{
+				{
+					align = "l",
+					type = "Editbox",
+					text = loc.CHAT_NAME..":";
+					label = "chatName";
+					width = 120,
+					fontSize = 14,
+					texture = "Tooltip",
+					OnTextChanged = function(self)
+					end,
+				},
+				{
+					align = "r",
+					type = "Editbox",
+					text = loc.CHAT_HEADER..":";
+					label = "chatHeader";
+					width = 120,
+					fontSize = 14,
+					texture = "Tooltip",
+					OnTextChanged = function(self)
+					end,
+				},
+			},
+			{
+				{
+					type = "Color",
+					text = loc.CHAT_COLOR,
+					align = "l",
+					label = "chatColor",
+					texture = "Tooltip",
+				},
+				{
+					align = "r",
+					type = "Editbox",
+					text = loc.CHAT_SLASH..":";
+					label = "chatSlash";
+					width = 120,
+					fontSize = 14,
+					texture = "Tooltip",
+					OnTextChanged = function(self)
+					end,
+				},
+			},
 		},
 		title = "",
 		height = 295,
@@ -206,8 +249,13 @@ OnHide = function()
 
 	api.Admin_SetGroupName(menuFrame.GetLabel("name"));
 	api.Admin_SetGroupIcon(menuFrame.GetLabel("icon"));
+	api.Admin_SetChatName(menuFrame.GetLabel("chatName"));
+	api.Admin_SetChatHeader(menuFrame.GetLabel("chatHeader"));
+	api.Admin_SetChatColor(menuFrame.GetLabel("chatColor"));
+	api.Admin_SetChatSlashCommand(menuFrame.GetLabel("chatSlash"));
 
 	api.SaveGroupAdministration();
+	active = false;
 end
 
 local FormPermissionIcons = function(i)
@@ -359,10 +407,18 @@ UpdateRanksList = function()
 
 end
 
+
+
 GHG_UpdateAdminFrame = function()
 	if not(init) then
 		Initialize();
 	end
+
+	if (active == true) then
+		return
+	end
+
+	active = true;
 
 	local menuFrame = GHG_AdminFrame.menuFrame;
 
@@ -373,6 +429,11 @@ GHG_UpdateAdminFrame = function()
 	local name,icon = api.Admin_GetGroupInfo();
 	menuFrame.ForceLabel("name",name);
 	menuFrame.ForceLabel("icon",icon);
+	local chatName,chatHeader,chatColor,chatSlashCmds = api.Admin_GetGroupChatInfo();
+	menuFrame.ForceLabel("chatName",chatName);
+	menuFrame.ForceLabel("chatHeader",chatHeader);
+	menuFrame.ForceLabel("chatColor",chatColor);
+	menuFrame.ForceLabel("chatSlash",(chatSlashCmds or {})[1]);
 
 	UpdateRanksList();
 

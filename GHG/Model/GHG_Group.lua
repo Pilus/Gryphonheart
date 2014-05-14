@@ -8,56 +8,13 @@
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
-local TrimForSpaces = function(text)
-	return string.gsub(text,".",function(s) if not(s==" ") then return s; end return ""; end);
-end
-
---[[
- Some thing => St
- Something => Something
- Some of a Thing => SoaT
-]]
-local GenerateHeaderFromName = function(name)
-	if name:len() <= 8 and not(string.find(name," ")) then
-		return name;
-	end
-
-
-	local header = name:sub(0,1);
-	string.gsub(name,"%s.",function(s)
-		s = string.sub(s,s:len())
-		if not(s==" ") then
-			header = header..s;
-		end
-		return "";
-	end);
-
-	if header:len() < 2 then
-		return string.sub(name,0,8);
-	end
-
-	return header;
-end
-
-assert("St"==GenerateHeaderFromName("Some thing"))
-assert("Somethin"==GenerateHeaderFromName("Something"))
-assert("SoaT"==GenerateHeaderFromName("Some of a Thing"))
-
-
-local RandomChatColor;
-RandomChatColor = function()
-	local c = {r = random(100)/100, g = random(100)/100, b = random(100)/100 }
-	if (c.r + c.g + c.b) < 0.90 then -- too dark
-		return RandomChatColor();
-	end
-	return c;
-end
-
 
 function GHG_Group(info)
 	local class = GHClass("GHG_Group");
 
+	local deleted;
 	local guid,name,version,icon;
+	local logEvents;
 	local members = {};
 	local ranks = {};
 	local chatName,chatHeader,chatColor,chatSlashCmds;
@@ -73,11 +30,11 @@ function GHG_Group(info)
 	Encrypt = function(v)
 		if type(v) == "string" then
 			local swap = crypt.Swap(v);
-			return crypt.Encrypt(swap);
+			return crypt.Encrypt(swap,true);
 		elseif type(v) == "table" then
 			local t = {}
 			for i,vv in pairs(v) do
-				t[i] = Encrypt(vv);
+				t[i] = Encrypt(vv); if GH_DEBUG then print(i,vv,"=>",t[i]); end
 			end
 			return t;
 		else
@@ -102,7 +59,7 @@ function GHG_Group(info)
 
 
 	class.CanRead = function()
-		return cryptatedDataInitialized;
+		return cryptatedDataInitialized and not(deleted);
 	end
 
 	class.GetGuid = function()
@@ -171,18 +128,25 @@ function GHG_Group(info)
 			rankGuid = rankGuid,
 		})
 		table.insert(members,member);
+
+		local event = GHG_LogEvent();
+		event.CreateEvent(GHG_LogEventType.INVITE, UnitName("PLAYER"), {name});
+		table.insert(logEvents, event);
 	end
 
 	class.RemoveMember = function(guid)
 		for i,member in pairs(members) do
 			if member.GetGuid() == guid then
 				table.remove(members,i);
+
+				local event = GHG_LogEvent();
+				event.CreateEvent(GHG_LogEventType.REMOVE, UnitName("PLAYER"), {name});
+				table.insert(logEvents, event);
+
 				return
 			end
 		end
 	end
-
-
 
 	-- Rank
 	local GetRankByGuid = function(guid)
@@ -228,7 +192,13 @@ function GHG_Group(info)
 	class.SetRankOfMember = function(guid,rankGuid)
 		local member = GetMemberByGuid(guid);
 		if member then
+			local oldRankGuid = member.GetRankGuid();
 			member.SetRankGuid(rankGuid);
+
+			local eventType = (GHG_LogEventType.PROMOTE and class.GetRankIndex(oldRankGuid) >= class.GetRankIndex(rankGuid)) or GHG_LogEventType.DEMOTE;
+			local event = GHG_LogEvent();
+			event.CreateEvent(eventType, UnitName("PLAYER"), {name});
+			table.insert(logEvents, event);
 		end
 	end
 
@@ -252,6 +222,21 @@ function GHG_Group(info)
 
 	end
 
+	class.SetChatName = function(_chatName)
+		chatName = _chatName;
+	end
+
+	class.SetChatHeader = function(_chatHeader)
+		chatHeader = _chatHeader;
+	end
+
+	class.SetChatColor = function(_chatColor)
+		chatColor = _chatColor;
+	end
+
+	class.SetChatSlashCommand = function(_slashCommand)
+		chatSlashCmds = {_slashCommand};
+	end
 
 	class.GetGroupChatInfo = function()
 		return chatName,chatHeader,chatColor,chatSlashCmds;
@@ -260,7 +245,6 @@ function GHG_Group(info)
 	class.SendChatMessage = function(msg)
 		chat.SendChatMessage(msg)
 	end
-
 
 	class.Activate = function()
 		active = true;
@@ -280,10 +264,27 @@ function GHG_Group(info)
 		return GHG_Group(class.Serialize());
 	end
 
+	class.GetLogEvents = function()
+		return logEvents;
+	end
+
+	class.Delete = function()
+		deleted = true;
+	end
+
 	-- Serialization
 	local OtherSerialize = class.Serialize;
 	class.Serialize = function(stype, t)
 		t = t or info or {};
+
+		if deleted == true then
+			return {
+				guid = guid,
+				version = version,
+				deleted = true,
+			};
+		end
+
 		if not(cryptatedDataInitialized) then
 			return info;
 		end
@@ -306,10 +307,11 @@ function GHG_Group(info)
 			t.members = SaveNested(members);
 			t.ranks = SaveNested(ranks);
 
-			t.chatName = chatName;
-			t.chatHeader = chatHeader;
+			t.logEvents = SaveNested(logEvents);
+			t.chatName = Encrypt(chatName);
+			t.chatHeader = Encrypt(chatHeader);
 			t.chatColor = chatColor;
-			t.chatSlashCmds = chatSlashCmds;
+			t.chatSlashCmds = Encrypt(chatSlashCmds);
 		end
 
 		if OtherSerialize then
@@ -326,6 +328,11 @@ function GHG_Group(info)
 	class.InitializeCryptatedData = function()
 		local keys = GHG_GroupKeys[guid];
 		if not(keys) then
+			return
+		end
+
+		if info.deleted == true then
+			deleted = true;
 			return
 		end
 
@@ -349,13 +356,21 @@ function GHG_Group(info)
 			return info2;
 		end
 
+		if info.logEvents then
+			logEvents = LoadNestedCryptated(info.logEvents, GHG_LogEvent);
+		else
+			local event = GHG_LogEvent();
+			event.CreateEvent(GHG_LogEventType.CREATE, UnitName("PLAYER"), {});
+			logEvents = {event};
+		end
+
 		members = LoadNestedCryptated(info.members or {},GHG_GroupMember);
 		ranks = LoadNestedCryptated(info.ranks or {},GHG_GroupRank,true);
 
-		chatName = info.chatName or name;
-		chatHeader = info.chatHeader or GenerateHeaderFromName(name);
-		chatColor = info.chatColor or RandomChatColor();
-		chatSlashCmds = info.chatSlashCmds or {GenerateHeaderFromName(name)};
+		chatName = Decrypt(info.chatName) or name;
+		chatHeader = Decrypt(info.chatHeader) or "";
+		chatColor = info.chatColor or {r=1.0, g=1.0, b=1.0};
+		chatSlashCmds = Decrypt(info.chatSlashCmds) or {};
 
 		chat = GHG_GroupChat(guid,keys);
 		if active and class.IsPlayerMemberOfGuild(UnitGUID("player")) then
@@ -371,20 +386,3 @@ function GHG_Group(info)
 
 	return class;
 end
-
--- [[
-TEST = function(text)
-
-	local crypt = GHI_Crypt(random(100),random(100))
-
-	local swapped = crypt.Swap(text);
-
-	print(swapped);
-
-	local deswapped = crypt.Deswap(swapped);
-
-	print(deswapped == text)
-
-	print(deswapped);
-
-end --]]

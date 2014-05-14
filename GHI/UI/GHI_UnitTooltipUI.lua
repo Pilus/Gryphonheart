@@ -19,12 +19,9 @@ function GHI_UnitTooltip()
 
 	local update;
 	local updateTooltip = function()
-		if GameTooltip:GetOwner() then
-			local unit = GameTooltip:GetOwner().unit or "MOUSEOVER";
-			local legalPlayerUnit = not (strlower(unit) == "player") and UnitIsPlayer(unit);
-			local factionAvailability = UnitIsFriend(unit, "PLAYER") or (UnitIsPlayer(unit) and #(versionInfo.GetPlayerAddOns(UnitName(unit))) > 0);
-			local isNotItem = (GameTooltip:GetOwner().hasItem == nil)
-			if legalPlayerUnit and factionAvailability and not (GameTooltip:GetOwner() == GHU_MainTargetButton) and isNotItem then
+		local _, unit = GameTooltip:GetUnit();
+		if unit then
+			if UnitIsPlayer(unit) and UnitIsFriend(unit, "PLAYER") then
 				local ver = versionInfo.GetPlayerAddOnVer(UnitName(unit), "GHI")
 				if ver then
 					GameTooltip:AddLine("GHI v." .. ver, 0.2, 1.0, 0.2);

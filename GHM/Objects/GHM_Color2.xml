@@ -2,7 +2,7 @@
     xsi:schemaLocation="http://www.blizzard.com/wow/ui">
     <Frame name="GHM_Color2_Template" virtual="true">
         <Size>
-            <AbsDimension x="226" y="170"/>
+            <AbsDimension x="180" y="170"/>
         </Size>
         <Frames>
 			<Frame name="$parentText" inherits="GHM_TextLabel_Template">

@@ -41,13 +41,14 @@ function GHG_GroupAdmin_RankMenu()
 					text = loc.CAN_RANKS_PERM,
 					align = "l",
 					label = "canEditRanksAndPermissions",
-
+					width = 150,
 				},
 				{
 					type = "CheckBox",
 					text = loc.CAN_PROMOTE_DEMOTE,
-					align = "l",
+					align = "r",
 					label = "canPromoteDemote",
+					width = 150,
 				},
 			},
 			{
@@ -56,14 +57,14 @@ function GHG_GroupAdmin_RankMenu()
 					text = loc.CAN_INVITE,
 					align = "l",
 					label = "canInvite",
-
+					width = 150,
 				},
 				{
 					type = "CheckBox",
 					text = loc.CAN_KICK,
 					align = "r",
 					label = "canKickMember",
-
+					width = 150,
 				},
 			},
 			{
@@ -72,14 +73,14 @@ function GHG_GroupAdmin_RankMenu()
 					text = loc.CAN_EDIT_OFFICER_NOTE,
 					align = "l",
 					label = "canEditOfficersNote",
-
+					width = 150,
 				},
 				{
 					type = "CheckBox",
 					text = loc.CAN_VIEW_OFFICER_NOTE,
 					align = "r",
 					label = "canViewOfficersNote",
-
+					width = 150,
 				},
 			},
 			{
@@ -88,14 +89,14 @@ function GHG_GroupAdmin_RankMenu()
 					text = loc.CAN_EDIT_PUBLIC_NOTE,
 					align = "l",
 					label = "canEditPublicNote",
-
+					width = 150,
 				},
 				{
 					type = "CheckBox",
 					text = loc.CAN_VIEW_PUBLIC_NOTE,
 					align = "r",
 					label = "canViewPublicNote",
-
+					width = 150,
 				},
 			},
 			{
@@ -104,21 +105,21 @@ function GHG_GroupAdmin_RankMenu()
 					text = loc.CAN_TALK_IN_CHAT,
 					align = "l",
 					label = "canTalkInChat",
-
+					width = 150,
 				},
 				{
 					type = "CheckBox",
 					text = loc.CAN_HEAR_CHAT,
 					align = "r",
 					label = "canHearChat",
-
+					width = 150,
 				},
 			},
 			{
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
+					width = 70,
 					align = "l",
 				},
 				{
@@ -133,7 +134,7 @@ function GHG_GroupAdmin_RankMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
+					width = 70,
 					align = "r",
 				},
 				{
@@ -150,7 +151,7 @@ function GHG_GroupAdmin_RankMenu()
 		title = loc.RANK,
 		name = "GHG_RankMenu",
 		theme = "BlankTheme",
-		width = 380,
+		width = 340,
 		--height = 250,
 		useWindow = true,
 		lineSpacing = 0,

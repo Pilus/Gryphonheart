@@ -1,0 +1,12 @@
+## Interface: 50400
+## Title: Gryphonheart Test
+## Notes: Tests for Gryphonheart AddOns
+## X-CodeTool: true
+## X-DevVersion: True
+## RequiredDeps: GHI
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables:
+## SavedVariablesPerCharacter:
+GHTest_TestHandler.lua
+GHI\Tests.xml

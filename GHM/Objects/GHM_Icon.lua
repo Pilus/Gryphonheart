@@ -62,7 +62,7 @@ function GHM_Icon(parent, main, profile)
 	
 		
 	button:SetScript("OnClick", function()
-		if not (iconPath) == defaultIcon then
+		if not(iconPath == defaultIcon) then
 			GHM_IconPickerList().Edit(iconPath, function(selectedIcon)
 				iconPath = selectedIcon
 				SetItemButtonTexture(button,iconPath)

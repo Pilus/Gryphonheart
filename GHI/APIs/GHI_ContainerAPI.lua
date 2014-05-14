@@ -69,7 +69,7 @@ function GHI_ContainerAPI()
 	end
 
 	api.GHI_UseItem = containerList.UseItem;
-	GHI_UseItem = function(guid)-- Global shortcut for macros etc
+		GHI_UseItem = function(guid)-- Global shortcut for macros etc
 		api.GHI_UseItem(api.GHI_FindOneItem(guid));
 	end
 	api.GHI_NextMainBagPage = containerList.NextMainBagPage;

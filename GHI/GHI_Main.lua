@@ -36,10 +36,6 @@ function GHI_Main()
 		slashCmd.SetDefaultFunc(function(x) GHI_ToggleBackpack(); end);
 		slashCmd.RegisterSubPrefix("ping", ghiPing.SendPing);
 		slashCmd.RegisterSubPrefix("reload", function(x) GHI_ReloadUI() end);
-		
-		
-		local currentVersion = GetAddOnMetadata("GHI","version")
-		GHI_VersionInfo().RegNotifyFunc(GHI_UpdateNotification().CheckForUpdate, "GHI", currentVersion)
 
 	end
 

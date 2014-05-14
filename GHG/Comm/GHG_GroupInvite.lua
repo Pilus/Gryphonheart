@@ -16,7 +16,7 @@ function GHG_GroupInvite()
 	end
 	class = GHClass("GHG_GroupInvite");
 
-	local comm = GHI_Comm();
+	local comm = GH_Comm();
 	local channelComm = GHI_ChannelComm();
 	local event = GHI_Event();
 	local groupList = GHG_GroupList();
@@ -65,7 +65,6 @@ function GHG_GroupInvite()
 
 	comm.AddRecieveFunc("GHG_InviteAccepted",function(playerName,groupGuid,playerGuid)
 		if invitedPlayers[groupGuid..playerName] then
-			event.TriggerEvent("GHG_SEND_INVITE_ACCEPTED",playerName);
 
 			groupList.SendKeyTo(groupGuid,playerName);
 
@@ -76,10 +75,11 @@ function GHG_GroupInvite()
 			groupList.SetGroup(group);
 
 			invitedPlayers[groupGuid..playerName] = nil;
+			event.TriggerEvent("GHG_SEND_INVITE_ACCEPTED",playerName);
+		else
+			event.TriggerEvent("GHG_DEBUG",string.format("GHG_InviteAccepted - No invite had been send to target matching %s.",groupGuid..playerName));
 		end
 	end);
-
-
 
 	class.DeclineGroupInvitation = function()
 		if currentInvitation then

@@ -3,7 +3,7 @@
 
     <Frame name="GHM_Slider_Template" virtual="true">
         <Size>
-            <AbsDimension x="140" y="32"/>
+            <AbsDimension x="140" y="46"/>
         </Size>
         <Frames>
             <Slider name="$parentSlider" minValue="1" maxValue="10" defaultValue="1" valueStep="1" orientation="Horizontal" virtual="true">
@@ -13,7 +13,11 @@
                             <AbsDimension x="0" y="-14"></AbsDimension>
                         </Offset>
                     </Anchor>
-                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="14"></AbsDimension>
+                        </Offset>
+                    </Anchor>
                 </Anchors>
                 <Layers>
                     <Layer>
