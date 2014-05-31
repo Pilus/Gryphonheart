@@ -819,6 +819,11 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GHI_GET_LOOT = loc.GET_LOOT,
 
 		NumbersToWords = NumbersToWords,
+		GetNumLootItems = GetNumLootItems,
+		GetLootSlotInfo = GetLootSlotInfo,
+		GetLootSlotType = GetLootSlotType,
+		GetLootSlotLink = GetLootSlotLink,
+		IsEquippableItem = IsEquippableItem,
 
 		-- classes
 		GHI_Timer = GHI_Timer,
