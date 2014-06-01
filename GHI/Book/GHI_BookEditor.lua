@@ -337,6 +337,27 @@ function GHI_BookEditor()
 					type = "TextButton",
 					text = "Text color",
 				},
+				{
+					type = "MultiNumberEditBox",
+					text = "Font sizes:",
+					editboxes = {
+						{
+							text = "N:",
+							label = "n",
+							digits = 2,
+						},
+						{
+							text = "H1:",
+							label = "h1",
+							digits = 2,
+						},
+						{
+							text = "H2:",
+							label = "h2",
+							digits = 2,
+						},
+					},
+				},
 			}
 		}
 	end
