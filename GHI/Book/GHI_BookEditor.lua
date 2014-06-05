@@ -10,6 +10,7 @@
 --===================================================
 
 local count = 0;
+
 function GHI_BookEditor()
 	local class = GHClass("GHI_BookEditor");
 	count = count + 1;
@@ -19,6 +20,7 @@ function GHI_BookEditor()
 	local loc = GHI_Loc();
 	local converter = GHI_BBCodeConverter();
 	local itemList = GHI_ItemInfoList();
+	local materials = GHI_BookMaterials();
 
 	local action, textFrame, info, item, currentPageShown;
 	local prevButton, nextButton, addBeforeButton, addAfterButton, deleteButton;
@@ -88,20 +90,22 @@ function GHI_BookEditor()
 		item.IncreaseVersion(true);
 		itemList.UpdateItem(item);
 		GHI_MiscData.lastUpdateItemTime = GetTime();
-
 		--menuFrame:Hide();
 	end
 
 	class.IsInUse = function() return inUse; end
 
 	local Preview = function()
-		local display = GHI_BookDisplay()
+		local display = GHI_BookDisplay(materials)
 		.SetTitle(info.title)
 		.SetFont(info.font or "Frizqt", info.n or 15)
+		.SetDefaultPageBackgroud(info.material or "Parchment")
 
 		for i=1,#(info) do
 			display.AddPage(info[i].text1,"SimpleHTML")
 		end
+
+
 
 		display.Show();
 	end
@@ -274,9 +278,9 @@ function GHI_BookEditor()
 				{
 					type = "DropDown",
 					texture = "Tooltip",
-					width = 120,
+					width = 100,
 					label = "bookMaterial",
-					text = "Background material:",
+					text = "Theme:",
 					data = {
 						{ text = "Parchment",  index=1},
 						{ text = "Bronze",  index=2},
@@ -292,7 +296,46 @@ function GHI_BookEditor()
 						{ text = "Winter",  index=12},
 						{ text = "Valentine",  index=13},
 					},
+					OnSelect = function(index, value)
+						if info then
+							info.material = value;
+						end
+					end,
+					onMouseEnter = function(element)
+						if not(element.previewFrame) then
+							local pf = CreateFrame("Frame");
+							pf:SetBackdrop({--bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+								edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+								tile = true, tileSize = 16, edgeSize = 16,
+								insets = { left = 4, right = 4, top = 4, bottom = 4 }});
+							--pf:SetBackdropColor(0,0,0,1);
+							pf:SetParent(element);
+							pf:SetPoint("TOPLEFT", element, "TOPRIGHT", 10, 5);
+							pf:SetWidth(100);
+							pf:SetHeight(120);
+							element.previewFrame = pf;
+						end
 
+						if not(element.value == element.previewFrame.value) then
+							if element.previewFrame.image then
+								element.previewFrame.image:Hide();
+							end
+							local image = materials.GetImage(element.value, element.previewFrame);
+							image:SetPoint("CENTER", element.previewFrame, "CENTER");
+							image:SetWidth(96);
+							image:SetHeight(116);
+							image:SetParent(element.previewFrame);
+							image:Show();
+							element.previewFrame.image = image;
+							element.previewFrame.value = element.value;
+						end
+						element.previewFrame:Show();
+					end,
+					onMouseLeave = function(element)
+						if element.previewFrame then
+							element.previewFrame:Hide();
+						end
+					end,
 				},
 				{
 					type = "DropDown",
@@ -479,6 +522,7 @@ function GHI_BookEditor()
 		icon = "Interface\\Icons\\INV_Misc_Book_09",
 		lineSpacing = -15,
 		OnHide = function()
+			Save();
 			if not (menuFrame.window:IsShown()) then
 				inUse = false;
 			end

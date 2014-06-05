@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHI_BookDisplay()
+function GHI_BookDisplay(materials)
 	local class = GHClass("GHI_BookDisplay");
 	local loc = GHI_Loc();
 
@@ -112,6 +112,7 @@ function GHI_BookDisplay()
 	local currentPage = 1;
 	local standardPageWidth = 0;
 	local standardPageHeight = 0;
+	local pageBackground = "Parchment";
 
 	local UpdatePrevNext = function()
 		currentPageLabel:SetText(string.format(loc.PAGE_OF_PAGES, currentPage, #(pages)));
@@ -131,10 +132,10 @@ function GHI_BookDisplay()
 	class.AddPage = function(text, format)
 		GHCheck("AddPage", {"string", "string"}, {text, format});
 
-		local page = GHI_BookPage()
+		local page = GHI_BookPage(materials)
 			.SetText(text, format)
 			.SetSize(standardPageWidth, standardPageHeight, false)
-			.SetBackground("Interface\\QuestFrame\\QuestBG", false, {0, 0.58, 0, 0.65})
+			.SetBackground(pageBackground)
 			.SetFont('Fonts\\FRIZQT__.TTF', 13)
 			.SetTextColor(0, 0, 0)
 		page:Hide();
@@ -228,6 +229,7 @@ function GHI_BookDisplay()
 		for _, page in pairs(pages) do
 			page.SetBackground(pathOrColor, false);
 		end
+		pageBackground = pathOrColor;
 
 		return class;
 	end

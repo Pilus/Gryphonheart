@@ -14,8 +14,8 @@ function GHI_MultiTextureImage()
 
 	local textures = {};
 
-	class.AddTexture = function(texturePath, height, width, xoff, yoff, texCoord)
-		GHCheck("AddTexture", {"string", "number", "number", "number", "number", "tableNil"}, {texturePath, height, width, xoff, yoff, texCoord});
+	class.AddTexture = function(texturePath, width, height, xoff, yoff, texCoord)
+		GHCheck("AddTexture", {"string", "number", "number", "number", "number", "tableNil"}, {texturePath, width, height, xoff, yoff, texCoord});
 		table.insert(textures,{
 			texturePath = texturePath,
 			height = height,
@@ -24,6 +24,7 @@ function GHI_MultiTextureImage()
 			yoff = yoff,
 			texCoord = texCoord,
 		});
+		return class;
 	end
 
 	local GetNativeImageSize = function()
@@ -35,7 +36,7 @@ function GHI_MultiTextureImage()
 		return width, height;
 	end
 
-	class.GenerateImageFrame = function()
+	class.GenerateImageFrame = function(parent)
 		local frame = CreateFrame("frame");
 		local nativeWidth, nativeHeight = GetNativeImageSize();
 
@@ -44,11 +45,15 @@ function GHI_MultiTextureImage()
 
 		local textureObjects = {};
 		for id, texture in pairs(textures) do
-			local t = frame:CreateTexture();
+			local t = frame:CreateTexture(nil, "BACKGROUND");
 			t:SetTexture(texture.texturePath);
+			if texture.texCoord then
+				t:SetTexCoord(unpack(texture.texCoord));
+			end
 			t:SetWidth(texture.width);
 			t:SetHeight(texture.height);
-			t:SetPoghcheckint("TOPLEFT", frame, "TOPLEFT", texture.xoff, texture.yoff);
+			t:SetPoint("TOPLEFT", frame, "TOPLEFT", texture.xoff, texture.yoff);
+			t:SetParent(parent);
 			textureObjects[id] = t;
 		end
 
@@ -59,10 +64,10 @@ function GHI_MultiTextureImage()
 				local texture = textures[id];
 				t:SetWidth(texture.width * xScale);
 				t:SetHeight(texture.height * yScale);
-				t:SetPoint("TOPLEFT", frame, "TOPLEFT", texture.xoff * xScale, texture.yoff * yScale);
+				t:SetPoint("TOPLEFT", frame, "TOPLEFT", texture.xoff * xScale, -texture.yoff * yScale);
 			end
 		end
-		frame:SetScript("OnSizeChange", OnSizeChange);
+		frame:SetScript("OnSizeChanged", OnSizeChange);
 
 		return frame;
 	end
@@ -70,10 +75,3 @@ function GHI_MultiTextureImage()
 	return class;
 end
 
-AA = function()
-	local tex = GHI_MultiTextureImage();
-	tex.AddTexture("Interface\\EncounterJournal\\UI-EJ-BOSS-Hogger", 128, 64, 0, 0);
-	local f = tex.GenerateImageFrame();
-	f:SetParent(UIParent);
-	f:SetPoint("CENTER", UIParent, "CENTER", 0, 0);
-end

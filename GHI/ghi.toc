@@ -187,6 +187,7 @@ Book\GHI_BookEditor.lua
 Book\GHI_BookDisplay.lua
 Book\GHI_BookPage.lua
 Book\GHI_MultiTextureImage.lua
+Book\GHI_BookMaterials.lua
 Book\Converters\GHI_BBCodeConverter.lua
 Book\Converters\GHI_HtmlDeserializer.lua
 Book\Converters\GHI_BBCodeDeserializer.lua

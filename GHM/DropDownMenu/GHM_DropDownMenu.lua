@@ -403,6 +403,8 @@ GHM_DropDownMenu = function()
 		button.tooltipOnButton = info.tooltipOnButton;
 		button.noClickSound = info.noClickSound;
 		button.padding = info.padding;
+		button.onMouseEnter = info.onMouseEnter;
+		button.onMouseLeave = info.onMouseLeave;
 		
 		if ( info.value ) then
 			button.value = info.value;

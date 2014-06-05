@@ -130,6 +130,8 @@ function GHM_DropDown(parent, main, profile)
 						dropDownMenu.CloseDropDownMenus()
 					end
 				end
+				info.onMouseEnter = profile.onMouseEnter;
+				info.onMouseLeave = profile.onMouseLeave;
 				table.insert(menuData, info)
 			end
 		end

@@ -9,7 +9,7 @@
 --			All rights reserved
 --===================================================
 
-function GHI_BookPage()
+function GHI_BookPage(materials)
 	local class = GHClass("GHI_BookPage");
 	local useSpecialSize = false;
 	local useSpecialBackground = false;
@@ -49,20 +49,36 @@ function GHI_BookPage()
 	end
 
 	class.SetBackground = function(pathOrColor, isSpecial, texCoord)
-		if (isSpecial == true or useSpecialBackground == isSpecial) then
-			if not(class.texture) then
-				class.texture = class:CreateTexture(nil,"BACKGROUND");
-				class.texture:SetAllPoints(class);
+		if (isSpecial == true or useSpecialBackground == false) then
+			if (class.bgImage) then
+				class.bgImage:Hide();
 			end
 
-			if type(pathOrColor) == "string" then
-				class.texture:SetTexture(pathOrColor);
-				if texCoord then
-					class.texture:SetTexCoord(unpack(texCoord));
-				end
-			elseif type(pathOrColor) == "table" and type(pathOrColor.r) == "number" and type(pathOrColor.g) == "number" and type(pathOrColor.b) == "number" then
-				class.texture:SetTexture(pathOrColor.r, pathOrColor.g, pathOrColor.b);
+			if (class.texture) then
+				class.texture:Hide();
 			end
+
+			if not(string.find(pathOrColor,"/")) and not(string.find(pathOrColor,"\\")) then
+				class.bgImage = materials.GetImage(pathOrColor, textFrame);
+				class.bgImage:SetAllPoints(class);
+				--class.bgImage:SetParent(textFrame);
+			else
+				if not(class.texture) then
+					class.texture = class:CreateTexture(nil,"BACKGROUND");
+					class.texture:SetAllPoints(class);
+				end
+
+				class.texture:Show();
+				if type(pathOrColor) == "string" then
+					class.texture:SetTexture(pathOrColor);
+					if texCoord then
+						class.texture:SetTexCoord(unpack(texCoord));
+					end
+				elseif type(pathOrColor) == "table" and type(pathOrColor.r) == "number" and type(pathOrColor.g) == "number" and type(pathOrColor.b) == "number" then
+					class.texture:SetTexture(pathOrColor.r, pathOrColor.g, pathOrColor.b);
+				end
+			end
+
 			useSpecialBackground = isSpecial;
 		end
 		return class;

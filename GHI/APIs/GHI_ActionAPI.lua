@@ -510,7 +510,7 @@ function GHI_ActionAPI()
 	end
 	GHI_Message = api.GHI_Message;
 
-	api.GHI_BookDisplay = GHI_BookDisplay;
+	api.GHI_BookDisplay = function() return GHI_BookDisplay(GHI_BookMaterials()); end
 	api.GHI_EditBook = function(itemGuid, actionGuid)
 		local item = itemList.GetItemInfo(itemGuid);
 		local action;

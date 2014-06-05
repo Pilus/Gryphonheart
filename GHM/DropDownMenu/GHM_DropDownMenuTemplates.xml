@@ -145,12 +145,18 @@
 						GameTooltip_AddNewbieTip(self, self.tooltipTitle, 1.0, 1.0, 1.0, self.tooltipText, 1);
 					end
 				end
+				if self.onMouseEnter then
+					self.onMouseEnter(self);
+				end
 			</OnEnter>
 			<OnLeave>
 				local dropDownMenu = GHM_DropDownMenu()
 				_G[self:GetName().."Highlight"]:Hide();
 				dropDownMenu.DropDownMenu_StartCounting(self:GetParent());
 				GameTooltip:Hide();
+				if self.onMouseLeave then
+					self.onMouseLeave(self);
+				end
 			</OnLeave>
 		</Scripts>
 		<ButtonText name="$parentNormalText">
