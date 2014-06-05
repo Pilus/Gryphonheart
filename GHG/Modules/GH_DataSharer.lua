@@ -3,13 +3,29 @@
 --				GH_DataSharer
 --  			GH_DataSharer.lua
 --
---	          (description)
+--	Shares data between players.
+--	Covers two scenarios.
 --
--- 	  (c)2013 The Gryphonheart Team
+--	Scenario A: A player updates data and shares it with all.
+--	1) .DatasetChanged is called on the client having the update data.
+--	2) SendUpdatedData to one or more players.
+--	3) The receiving players (receiving GH_UpdatedData_) relays the pieces to others if needed.
+--	4) When the receiving players have gotten all pieces, the set function is called.
+--
+--	Scenario B: A players comes online and needs to get updated version of data sets.
+--	1) .RequestUpdateOnAllSets is called.
+--	2) GH_DataVersions_ is send to the channel with version info.
+--	3) All players sends back offers and or requests.
+--	4) After 10 seconds the player determines what offers are the best and sends out requests.
+--	5) When a request is received SendData is called with the data send to one or more players (send with GH_UpdatedData_).
+--	6) The receiving players (receiving GH_UpdatedData_) relays the pieces to others if needed.
+--	7) When the receiving players have gotten all pieces, the set function is called.
+--
+-- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
 --===================================================
 
-local libversion = 1498; -- Version determined by subversion revision
+local libversion = 1500; -- Version determined by subversion revision
 local QUEUE_TRESHOLD = 4096;
 
 if GH_DataSharer_Version and GH_DataSharer_Version >= libversion then
@@ -26,12 +42,13 @@ end
 
 local DATAPIECE_SIZE = 1024;
 
-function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamicPieceSizeChange)
+function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamicPieceSizeChange,addonVersion)
 	assert(type(setGuid)=="string","SetGuid must be a string");
 	assert(type(addonShort)=="string","addonShort must be a string");
 	assert(type(getFunc)=="function","getFunc must be a function");
 	assert(type(setFunc)=="function","setFunc must be a function");
 	assert(type(getAllGuidFunc)=="function","getAllGuidFunc must be a function");
+	assert(type(addonVersion)=="nil" or type(addonVersion)=="string","A provided addon version must be a version string")
 
 	local class = GHClass("GH_DataSharer");
 
@@ -40,6 +57,39 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 	local versionInfo = GHI_VersionInfo();
 	local serializer = LibStub("AceSerializer-3.0");
 	local settingData = false;
+	local event = GHI_Event();
+	event.allowIdentical = true;
+
+	local events = {};
+	local state = {};
+	local stateData = {};
+	local AddEvent = function(guid, event, ...)
+		events[guid] = events[guid] or {};
+		table.insert(events[guid], {event, ...});
+
+		local s = state[guid] or "UpToDate";
+		if event == "ReceivePiece" then
+			local piece, num, total = ...;
+			if s == "UpToDate" or s == "ReceivingPieces" then
+				stateData[guid] = {num, total};
+				state[guid] = "ReceivingPieces";
+			end
+		elseif event == "ErrorDeserializing" then
+			state[guid] = "Error";
+			stateData[guid] = {...}
+		elseif event == "DataReceived" then
+			state[guid] = "UpToDate";
+			stateData[guid] = {};
+		end
+	end
+
+	class.GetStatus = function(guid)
+		return (state[guid] or "UpToDate") == "UpToDate", state[guid], unpack(stateData[guid] or {});
+	end
+
+	local NameIsTheNameOfPlayer = function(name)
+		return name == UnitName("player") or Ambiguate(name, "none") == UnitName("player");
+	end
 
 	local SendUpdatedData = function(players,subsetGuid,version,pieces)
 		local firstPlayer = table.remove(players,1);
@@ -53,13 +103,15 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 			return
 		end
 
+		AddEvent(subsetGuid, "DatasetChanged")
+
 		local obj = getFunc(subsetGuid);
 		local version = obj.GetVersion();
 		local data = obj.Serialize();
 
-		local players = versionInfo.GetAllPlayers(addonShort);
+		local players = versionInfo.GetAllPlayers(addonShort,addonVersion);
 		for i,v in pairs(players) do
-			if v == UnitName("player") then
+			if NameIsTheNameOfPlayer(v) then
 				table.remove(players,i);
 				break;
 			end
@@ -108,30 +160,48 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		return true;
 	end
 
-	local ReceivePiece = function(subsetGuid,data,pieceIndex,numPiecesTotal)    --
+	local GetNumberOfPiecesReceived = function(t)
+		local c = 0;
+		for i,v in pairs(t) do
+			if type(i) == "number" then
+				c = c + 1;
+			end
+		end
+		return c;
+	end
+
+	local ReceivePiece = function(subsetGuid,data,pieceIndex,numPiecesTotal)
 		incommingData[subsetGuid] = incommingData[subsetGuid] or {};
 		incommingData[subsetGuid][pieceIndex] = data;
 
 		---DEBUG3 = (DEBUG3 or "").." Received piece "..pieceIndex.." of "..numPiecesTotal;
+		local numReceived = GetNumberOfPiecesReceived(incommingData[subsetGuid])
+		AddEvent(subsetGuid, "ReceivePiece", pieceIndex, numReceived, numPiecesTotal);
 
 		if AreAllPiecesReceived(incommingData[subsetGuid],numPiecesTotal) then -- All pieces are received
-			--
 
 			local str = "";
 			for i=1,#(incommingData[subsetGuid]) do
 				str = str..incommingData[subsetGuid][i];
 			end
+
 			local success,dataSet = serializer:Deserialize(str)
 			if success then
+				AddEvent(subsetGuid, "DataReceived")
 				settingData = true;
 				setFunc(subsetGuid,dataSet);
 				settingData = false;
 				incommingData[subsetGuid] = nil;
 			else
-				error(strsub(tostring(dataSet),0,128));
+				AddEvent(subsetGuid, "ErrorDeserializing", str)
+				--[[
+				local s = "guid: "..subsetGuid;
+				s=s.."\n".."total "..numPiecesTotal;
+				s=s.."\n"..str;
+				GHI_MenuList("GH_DebugMenu").New(s);
+				print("error")   --]]
+				--error(strsub(tostring(dataSet),0,128));
 			end
-
-
 		end
 	end
 
@@ -164,6 +234,7 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		local obj = getFunc(subsetGuid);
 		if not(obj) or obj.GetVersion() <= version then
 			if not(obj) or obj.GetVersion() < version then
+				--print(subsetGuid,"from",sender,pieceIndex,"of",numPiecesTotal)
 				ReceivePiece(subsetGuid,data,pieceIndex,numPiecesTotal)
 			end
 
@@ -236,9 +307,10 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 	end
 
 	channelComm.AddRecieveFunc("GH_DataVersions_"..setGuid,function(sender,versions)
-		if sender == UnitName("player") then
+		if NameIsTheNameOfPlayer(sender) then
 			return
 		end
+		event.TriggerEvent("GHG_DEBUG",string.format("Addressing versions received from %s.",sender));
 		local offerVersions,requests,offerSizes = {},{},{};
 
 		for guid,version in pairs(versions) do
@@ -269,9 +341,10 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 
 		--local allGuids = getAllGuidFunc
 
-
+		event.TriggerEvent("GHG_DEBUG",string.format("Versions addressed. Sending offers: %s. Sending requests: %s.", tostring(not(IsTableEmpty(offerVersions))), tostring(not(IsTableEmpty(requests)))));
 		if IsTableEmpty(offerVersions) == false then
 			comm.Send("ALERT",sender,"GH_DataOffer_"..setGuid,offerVersions,offerSizes);
+			LAST_OFFER_SEND = {"ALERT",sender,"GH_DataOffer_"..setGuid,offerVersions,offerSizes};
 		end
 		if IsTableEmpty(requests) == false then
 			comm.Send("ALERT",sender,"GH_DataRequest_"..setGuid,requests);
@@ -425,12 +498,13 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 		end
 
 		for i=a,b do
-
+			--if subsetGuid == "257_42D041A" then GHI_MenuList("GH_DebugMenu").New("orig\n"..subsetGuid.."\n"..serializedData); end
 			comm.Send("BULK",player,"GH_UpdatedData_"..setGuid,subsetGuid,version,players,pieces[i],i,#(pieces));
 		end
 	end
 
 	local FollowUpOnRequestsReceived = function(t)
+		event.TriggerEvent("GHG_DEBUG",string.format("Following up on all datarequests received."));
 		local requestsPrGuid = {}
 		for sender,requests in pairs(t) do
 			for _,request in pairs(requests) do
@@ -474,6 +548,7 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 	end
 
 	comm.AddRecieveFunc("GH_DataRequest_"..setGuid,function(sender,guids)
+		event.TriggerEvent("GHG_DEBUG",string.format("Received one data requeest from %s.",sender));
 		if followUpDone then
 			local t = {};
 			t[sender]=guids;
@@ -510,14 +585,14 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 			};
 
 			if lockFuncs[guid] then
-				lockFuncs[guid](UnitName("player")==sender);
+				lockFuncs[guid](NameIsTheNameOfPlayer(sender));
 				lockFuncs[guid] = nil;
 			end
 		end
 	end);
 
 	class.ReleaseLock = function(guid)
-		if (activeLocks[guid] or {}).player == UnitName("player") then
+		if NameIsTheNameOfPlayer((activeLocks[guid] or {}).player) then
 			channelComm.Send("ALERT","GH_DataUnlock_"..setGuid,guid);
 		end
 	end

@@ -18,7 +18,7 @@ GHI_Event("VARIABLES_LOADED", function()
 	VARS_LOADED = true;
 end)
 
-function GHI_SavedData(saveTableName,subTableName)
+function GHI_SavedData(saveTableName,subTableName,shared)
 	GHCheck("GHI_SavedData(saveTableName)", { "string" }, { saveTableName });
 	local class = GHClass("GHI_SavedData")
 	local data = {};
@@ -78,10 +78,17 @@ function GHI_SavedData(saveTableName,subTableName)
 
 		cs_n = GenerateCS(saveTableName) + GenerateCS(UnitName("player")) + GenerateCS(GetRealmName());
 		GHI_CS = GHI_CS or {};
+		GHI_CS2 = GHI_CS2 or {}
 		local cr = false;
 
 		if not (UPGRADE_DETECTED) then
-			local cs = GHI_CS[cs_n] or {};
+			local cs;
+			if shared then
+				cs = GHI_CS2[cs_n] or GHI_CS[cs_n] or {};
+			else
+				cs = GHI_CS[cs_n] or {};
+			end
+
 			for i, v in pairs(data) do
 				if not (GenerateCS(v) == cs[UCS(i)]) then
 					data[i] = nil;
@@ -93,7 +100,11 @@ function GHI_SavedData(saveTableName,subTableName)
 			for i, v in pairs(data) do
 				cs[UCS(i)] = GenerateCS(v);
 			end
-			GHI_CS[cs_n] = cs;
+			if shared then
+				GHI_CS2[cs_n] = cs;
+			else
+				GHI_CS[cs_n] = cs;
+			end
 		end
 		loaded = true;
 		if cr == true then
@@ -111,11 +122,20 @@ function GHI_SavedData(saveTableName,subTableName)
 		if not (VARS_LOADED) then error("Variables not loaded yet.") end
 		if not (loaded) then Load(); end
 		data[index] = var;
-		GHI_CS[cs_n] = GHI_CS[cs_n] or {};
-		if var ~= nil then
-			GHI_CS[cs_n][UCS(index)] = GenerateCS(var);
+		if shared then
+			GHI_CS2[cs_n] = GHI_CS2[cs_n] or {};
+			if var ~= nil then
+				GHI_CS2[cs_n][UCS(index)] = GenerateCS(var);
+			else
+				GHI_CS2[cs_n][UCS(index)] = nil;
+			end
 		else
-			GHI_CS[cs_n][UCS(index)] = nil;
+			GHI_CS[cs_n] = GHI_CS[cs_n] or {};
+			if var ~= nil then
+				GHI_CS[cs_n][UCS(index)] = GenerateCS(var);
+			else
+				GHI_CS[cs_n][UCS(index)] = nil;
+			end
 		end
 	end
 

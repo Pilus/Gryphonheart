@@ -140,7 +140,7 @@ function GHI_AttributeMenu()
 		title = loc.ATTRIBUTE_TITLE,
 		name = "GHI_AttributeMenu" .. count,
 		theme = "BlankTheme",
-		width = 380,
+		width = 420,
 		height = 250,
 		useWindow = true,
 		lineSpacing = 20,
@@ -234,7 +234,7 @@ function GHI_AttributeMenu()
 				end
 			end
 
-			local modifyVals = { "allItems", "myItems" }
+			local modifyVals = { "myItems","allItems"  }
 			for index, modify in pairs(modifyVals) do
 				if modify == data.modifyAccess then
 					menuFrame.ForceLabel("modify", index);

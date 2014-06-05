@@ -56,7 +56,6 @@ function GHI_ItemInstance(info)
 	local meta = getmetatable(class) or {};
 	meta.__newindex = function(self,key,value)
 		if key == "amount" and type(value) == "number" then
-			--print(key,value);
 			if value < 0 then
 				error("Amount lower than 0")
 			end

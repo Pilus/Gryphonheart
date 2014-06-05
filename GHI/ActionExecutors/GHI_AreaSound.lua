@@ -34,7 +34,6 @@ function GHI_AreaSound()
 			return
 		end
 		if type(range) == "number" and range > 0 and not (GHI_MiscData["block_area_sound"]) then
-		 --print("send sound")---ok
 			Send(soundPath, range);
 		else
 			soundPath = gsub(soundPath, "\\\\", "/");
@@ -68,7 +67,6 @@ function GHI_AreaSound()
 		local playSound = GHI_MiscData.soundPermission or 1;
 		
 		if GHI_MiscData["block_area_sound"] then
-			--print("block sound")
 			return
 		end
 

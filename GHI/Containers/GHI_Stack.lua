@@ -200,7 +200,7 @@ function GHI_Stack(parentContainer, info1, info2, tempItemInfo)
 			if item.GetAllCustomTooltips then
 				InsertLines(lines, item.GetAllCustomTooltips())
 			end
-			--print(i,"to",#(lines));
+
 			if showInspectionDetails then
 				InsertLines(lines, item.GetInspectionLines());
 			end

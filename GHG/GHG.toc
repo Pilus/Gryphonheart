@@ -1,6 +1,6 @@
 ## Interface: 50400
 ## Title: Gryphonheart Groups
-## Version: 0.0.3
+## Version: 0.0.5
 ## Notes: Support for guild like groups, which are invisible to other players. E.g. a secret lodge, a tradesman guild or a subguild to an existing guild.
 ## X-CodeTool: true
 ## RequiredDeps: GHI,GHM

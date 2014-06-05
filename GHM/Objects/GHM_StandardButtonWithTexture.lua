@@ -19,19 +19,27 @@ function GHM_StandardButtonWithTexture(parent, main, profile)
 	frame:SetWidth(profile.width or 24);
 
 	if profile.texture then
-		local texture = frame:CreateTexture("ARTWORK");
-		texture:SetPoint("TOPLEFT", frame, "TOPLEFT", 5, -5);
-		texture:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -5, 5);
+		local texture = frame:CreateTexture(nil,"OVERLAY");
+		texture:SetPoint("CENTER", frame, "CENTER", 0, 0);
+		texture:SetWidth(frame:GetWidth() - 10);
+		texture:SetHeight(frame:GetHeight() - 10);
 		texture:SetTexture(profile.texture);
 		if profile.texCoord then
 			texture:SetTexCoord(unpack(profile.texCoord));
 		end
 
+		frame:SetScript("OnMouseDown", function()
+			texture:SetPoint("CENTER", 1, -1);
+		end);
+		frame:SetScript("OnMouseUp", function()
+			texture:SetPoint("CENTER", 0, 0);
+		end);
+
 		frame.texture = texture;
 	end
 
-	if type(profile.OnClick) == "function" then
-		frame:SetScript("OnClick", profile.OnClick);
+	if type(profile.onClick) == "function" then
+		frame:SetScript("OnClick", profile.onClick);
 	end
 
 	local OrigUpdateTheme = frame.UpdateTheme;

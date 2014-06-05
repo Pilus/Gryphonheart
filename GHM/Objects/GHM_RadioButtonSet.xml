@@ -59,17 +59,20 @@
         </Size>
         <Layers>
             <Layer level="BACKGROUND">
-                <FontString name="$parentLabel" inherits="GHM_GameFontSmall" text="" justifyH="RIGHT">
+                <FontString name="$parentLabel" justifyH="LEFT" justifyV="TOP" font="Fonts\FRIZQT__.TTF" text="" parentKey="label">
                     <Anchors>
-                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
-                            <Offset>
-                                <AbsDimension x="0" y="0"/>
-                            </Offset>
-                        </Anchor>
+                        <Anchor point="TOPLEFT"/>
                     </Anchors>
                     <FontHeight>
                         <AbsValue val="11"/>
                     </FontHeight>
+                    <Color r="1" g="0.8196079" b="0"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset>
+                            <AbsDimension x="1" y="-1"/>
+                        </Offset>
+                    </Shadow>
                 </FontString>
             </Layer>
         </Layers>

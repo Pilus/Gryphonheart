@@ -403,6 +403,10 @@ function GHI_ContainerInfo(info)
 		ownerItemGuid = _ownerItem.GetGUID();
 	end
 
+	class.GetOwnerItem = function()
+		return ownerItemGuid;
+	end
+
 	class.CanHoldItem = function(stack)
 		local item = stack.GetItemInfo();
 		local _,_,_,_,itemType = item.GetItemInfo();

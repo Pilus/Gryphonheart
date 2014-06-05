@@ -71,8 +71,8 @@ function GHInheritNext(className,object)
 end
 
 function GHCheck(name, expected, acual)
-	if not (type(expected) == "table" and type(acual) == "table") then
-		error("GHCheck used incorrectly in code. Useage: GHCheck(table,table) got " .. type(expected) .. " " .. type(acual), 2)
+	if not (type(name) == "string" and type(expected) == "table" and type(acual) == "table") then
+		error("GHCheck used incorrectly in code. Useage: GHCheck(string,table,table) got " ..type(name) .." " .. type(expected) .. " " .. type(acual), 2)
 	end
 
 	local passed = true;

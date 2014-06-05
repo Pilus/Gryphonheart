@@ -78,7 +78,9 @@ function GHM_EditField(parent, main, profile)
 		end
 	end
 
-
+	frame.GetFieldFrame = function()
+		return fieldFrame
+	end
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);

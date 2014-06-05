@@ -20,7 +20,7 @@ function GHG_PlayerDataList()
 
 	local playerData = {};
 
-	local savedPlayerData = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName());
+	local savedPlayerData = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName(),true);
 	local event = GHI_Event();
 	local sharer;
 	local msp = GHI_MarySueAPI().GetAPI();

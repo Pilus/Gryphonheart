@@ -526,6 +526,12 @@ function GHI_Loc()
 			deDE = "Seite einf" .. uu .. "gen:",
 			frFR = "Insérer la page :",
 		},
+		INSERT_PAGE_BEFORE = {
+			enUS = "Insert page before this page",
+		},
+		INSERT_PAGE_AFTER = {
+			enUS = "Insert page after this page",
+		},
 		MATERIAL = {
 			enUS = "Material:",
 			deDE = "Material:",
@@ -698,6 +704,15 @@ function GHI_Loc()
 			enUS = "Enter link text",
 			deDE = "F" .. uu .. "ge Linktext ein",
 			frFR = "Indiquer le lien textuel",
+		},
+		PAGE_OF_PAGES = {
+			enUS = "%s of %s"
+		},
+		NEXT_BOOK_PAGE = {
+			enUS = "Go to next page",
+		},
+		PREV_BOOK_PAGE = {
+			enUS = "Go to previous page",
 		},
 	};
 
@@ -1159,9 +1174,9 @@ function GHI_Loc()
 			frFR = "Livre",
 		},
 		TITLE = {
-			enUS = "Title",
+			enUS = "Title:",
 			deDE = "Titel:",
-			frFR = "Titre :",
+			frFR = "Titre:",
 
 		},
 		TITLE_TEXT = {

@@ -47,6 +47,7 @@ function GHI_BBCodeConverter()
 	local ConvertAllWithEvtTag = function(t, tag)
 		local s, close = "", "";
 		if tag then
+			tag = strlower(tag);
 			s = "["..tag.."]";
 			close = "[/"..tag.."]";
 		end
@@ -161,7 +162,7 @@ function GHI_BBCodeConverter()
 				s = s.."</P>";
 			end
 			return s;
-		elseif t.tag == "left" or t.tag == "right" then
+		elseif t.tag == "left" or t.tag == "right" or t.tag == "center" then
 			local tag = parentTag == "body" and "p" or parentTag;
 			local s;
 			if prevTag == "none" then

@@ -72,7 +72,7 @@ function GHI_ExportItem()
 			s = packer.TableToString(t);
 			e = crypt.Encrypt(s);
 			c = c + 1;
-			if c > 100 then
+			if c > 20 then
 				break;
 			end
 		end

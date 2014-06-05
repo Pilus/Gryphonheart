@@ -16,6 +16,8 @@
                         t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75 );
                         local t = self:GetPushedTexture();
                         t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75 );
+                        local t = self:GetDisabledTexture();
+                        t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75 );
                     </OnLoad>
                     <OnClick>
                         local parent = self:GetParent();
@@ -35,6 +37,8 @@
                         t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75);
                         local t = self:GetPushedTexture();
                         t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75);
+                        local t = self:GetDisabledTexture();
+                        t:SetTexCoord(0.8,0.20, 0.25,0.20, 0.8,0.75, 0.25,0.75 );
                     </OnLoad>
                     <OnClick>
                         local parent = self:GetParent();
@@ -49,6 +53,14 @@
             <OnValueChanged>
                 self:GetParent():SetHorizontalScroll(value);
             </OnValueChanged>
+            <OnEnable>
+                _G[self:GetName().."ScrollLeftButton"]:Enable();
+                _G[self:GetName().."ScrollRightButton"]:Enable();
+            </OnEnable>
+            <OnDisable>
+                _G[self:GetName().."ScrollLeftButton"]:Disable();
+                _G[self:GetName().."ScrollRightButton"]:Disable();
+            </OnDisable>
         </Scripts>
         <ThumbTexture name="$parentThumbTexture" inherits="UIPanelScrollBarButton" urgency="5"
                       file="Interface\Buttons\UI-ScrollBar-Knob">
@@ -94,12 +106,12 @@
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
                         <Offset>
-                            <AbsDimension x="0" y="-16"/>
+                            <AbsDimension x="-1" y="-16"/>
                         </Offset>
                     </Anchor>
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
                         <Offset>
-                            <AbsDimension x="0" y="16"/>
+                            <AbsDimension x="-1" y="16"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -113,7 +125,7 @@
                     </Anchor>
                     <Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
                         <Offset>
-                            <AbsDimension x="-16" y="0"/>
+                            <AbsDimension x="-20" y="0"/>
                         </Offset>
                     </Anchor>
                 </Anchors>

@@ -111,7 +111,12 @@ function GHG_GroupAPI(userGuid)
 		GHCheck("GetGroupInfo", { "number" }, { index });
 		local group = GetGroupByIndex(index);
 		if group then
-			return group.GetName(),group.GetIcon();
+			local isReady, state, arg1, arg2 = groupList.GetGroupDataStatus(group.GetGuid());
+			local loaded = isReady and 1 or 0;
+			if state == "ReceivingPieces" then
+				loaded = arg1/arg2;
+			end
+			return group.GetName(),group.GetIcon(), isReady, loaded;
 		end
 	end
 
@@ -266,6 +271,7 @@ function GHG_GroupAPI(userGuid)
 		invite.DeclineGroupInvitation();
 	end
 
+	local remove = GHG_GroupRemove();
 	class.LeaveGroup = function(index)
 		GHCheck("LeaveGroup", { "number" }, { index });
 
@@ -273,6 +279,9 @@ function GHG_GroupAPI(userGuid)
 		if not(group) then
 			return;
 		end
+
+		remove.LeaveGroup(UnitName("player"), group.GetName());
+
 		group = group.Clone();
 		group.RemoveMember(userGuid);
 		if group.GetNumMembers() == 0 then
@@ -282,7 +291,6 @@ function GHG_GroupAPI(userGuid)
 		groupList.SetGroup(group);
 	end
 
-	local remove = GHG_GroupRemove();
 	class.KickMemberFromGroup = function(index,i)
 		GHCheck("KickMemberFromGroup", { "number","number" }, { index, i });
 		local group = GetGroupByIndex(index);

@@ -69,6 +69,7 @@ Objects\GHM_Logo.xml
 Objects\GHM_ImageList.lua
 Objects\GHM_ImageList.xml
 Objects\GHM_StandardButtonWithTexture.lua
+Objects\GHM_MultiNumberEditBox.lua
 
 Toolbar\GHM_ToolbarObjectRow.lua
 Toolbar\GHM_ToolbarCategory.lua

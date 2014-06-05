@@ -33,7 +33,7 @@ function GHM_ImageList(parent, main, profile)
 	
 	local scaleX = 1
 	local scaleY = 1
-	local sizeX = 72		
+	local sizeX = 72
 	local sizeY = 72
 	local selected = 0
 	
@@ -65,7 +65,7 @@ function GHM_ImageList(parent, main, profile)
 			sizeX = profile.sizeY
 		end
 	end
-			
+
 	if profile.OnSelect then
 		frame.OnSelect = profile.OnSelect
 	elseif profile.onSelect then
@@ -83,9 +83,8 @@ function GHM_ImageList(parent, main, profile)
 	-- functions
 	frame.images = {};
 	frame.numFramesCreated = 0;	
-	frame.SetImages = function(imgList) --print("Total of ",#(imgList))
+	frame.SetImages = function(imgList)
 
-		-- list:ClearAllPoints();
 		local prevImgF
 		frame.images = imgList;
 		
@@ -93,10 +92,6 @@ function GHM_ImageList(parent, main, profile)
 		local buttonWidth = (sizeX * scaleX)
 		local numPrLine = floor(width / buttonWidth);
 
-		--[[if numPrLine * sizeX * scaleX + (numPrLine - 1) * 10 > width then
-			numPrLine = numPrLine - 1;
-		end]]
-		
 		local numLines = ceil(#(imgList)/numPrLine)
 		
 		scroll:SetWidth(list:GetWidth());
@@ -118,10 +113,9 @@ function GHM_ImageList(parent, main, profile)
 			imgF:SetChecked(false);
 			
 			imgF:SetScript("OnClick", function(self)
-				 if not(self:GetChecked()) then
+				if not(self:GetChecked()) then
 					self.f.Clear()
 				else
-					--self.f.main.SetLabel(self.f.label,self.path);
 					self.f.Force(self.i);
 					if self.f.OnSelect then
 						self.f:OnSelect(self, selectedPath, selectedIndex, selectedX, selectedY);
@@ -241,7 +235,6 @@ function GHM_ImageList(parent, main, profile)
 	
 	-- Standard functions
 	local Force1 = function(data)
-		list:SetVerticalScroll(0)
 		if type(data) == "string" or type(data)== "number" then
 			for i,img in pairs(frame.images) do
 				local imgF = _G[frame:GetName().."Img"..i];
@@ -260,7 +253,8 @@ function GHM_ImageList(parent, main, profile)
 				end
 			end
 		elseif type(data) == "table" then
-			imageData = {}			
+			list:SetVerticalScroll(0)
+			imageData = {}
 			if type(data[1]) == "table" then
 				imageData = data
 				frame.SetImages(imageData)

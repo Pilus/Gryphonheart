@@ -21,14 +21,14 @@ function GHG_GroupList()
 
 	local groups = {};
 
-	local savedGroupInfo = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName());
+	local savedGroupInfo = GHI_SavedData(DATA_SAVE_TABLE,GetRealmName(),true);
 	local event = GHI_Event();
 	local comm = GH_Comm();
 	local channelComm = GHI_ChannelComm();
 	local sharer;
 
 	class.LoadFromSaved = function()
-		sharer = GH_DataSharer("GHG","GHG_GroupData2",class.GetGroup,class.SetGroup,class.GetAllGroupGuids,true);
+		sharer = GH_DataSharer("GHG","GHG_GroupData2",class.GetGroup,class.SetGroup,class.GetAllGroupGuids,true,"0.0.3");
 
 		local data = savedGroupInfo.GetAll();
 		groups = {};
@@ -46,6 +46,12 @@ function GHG_GroupList()
 	class.GetGroup = function(guid)
 		if groups[guid] then
 			return groups[guid];
+		end
+	end
+
+	class.GetGroupDataStatus = function(...)
+		if sharer then
+			return sharer.GetStatus(...);
 		end
 	end
 
@@ -69,8 +75,6 @@ function GHG_GroupList()
 					existingGroup.Deactivate();
 				end
 				newGroup.Activate();
-			else
-				--print("do not activate?")
 			end
 
 			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(UnitGUID("player"))) then
@@ -79,7 +83,7 @@ function GHG_GroupList()
 		end
 	end
 
-	class.SetGroup = function(guid,value)   print("set group")
+	class.SetGroup = function(guid,value)
 		if value == nil and type(guid) == "table" then
 			value = guid;
 		end
@@ -87,7 +91,7 @@ function GHG_GroupList()
 			if type(value.IsClass) == "function" then
 				if value.IsClass("GHG_Group") then
 					assert(value.ReadyForModification(),"Group write access error");
-					SetGroup(value); print("update",value.GetGuid())
+					SetGroup(value);
 					sharer.DatasetChanged(value.GetGuid());
 				end
 			else

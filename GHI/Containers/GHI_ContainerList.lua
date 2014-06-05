@@ -196,6 +196,22 @@ function GHI_ContainerList()
 		end
 	end
 
+	local WillBackBeOpenableAfterInsertingItem;
+	WillBackBeOpenableAfterInsertingItem = function(cursorStackGuid, containerGuid)
+		local container = containers[containerGuid];
+		local ownerGuid = container.GetOwnerItem();
+		if not(ownerGuid) then
+			return true;
+		end
+		local stacks = class.FindAllStacks(ownerGuid);
+		for _,stack in pairs(stacks) do
+			if stack.GetGUID() ~= cursorStackGuid and WillBackBeOpenableAfterInsertingItem(cursorStackGuid, stack.GetParentContainer().GetGUID()) then
+				return true;
+			end
+		end
+		return false;
+	end
+
 	class.PickupContainerItem = function(containerGuid, slotID)
 		if containers[containerGuid] then
 			local container = containers[containerGuid];
@@ -214,7 +230,10 @@ function GHI_ContainerList()
 				return;
 			end
 
-
+			if cursorStack and not(WillBackBeOpenableAfterInsertingItem(cursorStack.GetGUID(),containerGuid)) then
+				UIErrorsFrame:AddMessage("You cannnot place that bag there.", 1, 0, 0, 53, 5);
+				return
+			end
 
 			local slotIsEmpty = (container.GetContainerItemInfo(slotID) == nil);
 			local cursorGotValidItem = (containers[cursorContainerGuid] and cursorType == "GHI_ITEM");
@@ -317,16 +336,17 @@ function GHI_ContainerList()
 	end
 
 	class.OpenBag = function(containerGuid, openedByStack, size, texture, name, icon)
+		local containerInfo;
 		if containers[containerGuid] then
+			containerInfo = containers[containerGuid];
 			if size then
-				containers[containerGuid].UpdateSize(size);
+				containerInfo.UpdateSize(size);
 			end
-			containers[containerGuid].SetName(name);
-			containers[containerGuid].SetTexture(texture);
-			containers[containerGuid].SetIcon(icon);
-			containers[containerGuid].Open();
+			containerInfo.SetName(name);
+			containerInfo.SetTexture(texture);
+			containerInfo.SetIcon(icon);
 		else
-			local containerInfo = GHI_ContainerInfo({
+			containerInfo = GHI_ContainerInfo({
 				guid = containerGuid,
 				name = name,
 				size = size,
@@ -334,8 +354,10 @@ function GHI_ContainerList()
 				texture = texture,
 			});
 			containers[containerInfo.GetGUID()] = containerInfo;
-			containerInfo.Open();
 		end
+
+		containerInfo.Open();
+		containerInfo.SetOwnerItem(openedByStack.GetItemInfo());
 	end
 
 

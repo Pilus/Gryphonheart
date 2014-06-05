@@ -251,6 +251,7 @@ function GHI_MainOptionsMenu()
 		GHI_MiscData["soundPermission"] = menuFrame.GetLabel("soundPermission") or 1;
 		GHI_MiscData["hide_mod_att_tooltip"] = menuFrame.GetLabel("hide_mod_att_tooltip") or false;
 		GHI_MiscData["allow_camera_move"] = menuFrame.GetLabel("allow_camera_move") or false;
+
 		if menuFrame.GetLabel("soundPermission") == 3 then --block
 			GHI_MiscData["block_area_sound"]  = true;
 		else
