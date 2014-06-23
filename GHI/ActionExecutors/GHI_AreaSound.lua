@@ -20,14 +20,15 @@ function GHI_AreaSound()
 	local comm = GHI_ChannelComm();
 	local RecieveAreaSound, Send;
 	local MAX_RANGE = 50;
-	local ALLOWED_SOUND_PR_MIN = 3; --for spam prevention
+	local ALLOWED_SOUND_PR_MIN = 5; --for spam prevention
 	soundspamCount = 0;
 	local log = GHI_Log();
+	local loc = GHI_Loc();
 	local delayedSounds = {};
 	local lastDisallowedSound = 0;
 	
 	GHI_Timer(function()
-		soundspamCounter = max(0, spamCounter - 1);
+		soundspamCount = max(0, soundspamCount - 1);
 	end, 60 / ALLOWED_SOUND_PR_MIN);
 
 	class.PlaySound = function(soundPath, range, delay)
@@ -62,7 +63,7 @@ function GHI_AreaSound()
 			soundPath = soundPath,
 			delay = 0,
 		};
-
+		
 		local playerPos = position.GetPlayerPos();
 		playerPos.continent = playerPos.world;
 		if soundspamCount == ALLOWED_SOUND_PR_MIN then
