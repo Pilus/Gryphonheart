@@ -113,6 +113,7 @@ function GHI_BookDisplay(materials)
 	local standardPageWidth = 0;
 	local standardPageHeight = 0;
 	local pageBackground = "Parchment";
+	local fontName, fontSizes = 'Fonts\\FRIZQT__.TTF', {15, 24, 19, 17};
 
 	local UpdatePrevNext = function()
 		currentPageLabel:SetText(string.format(loc.PAGE_OF_PAGES, currentPage, #(pages)));
@@ -135,8 +136,8 @@ function GHI_BookDisplay(materials)
 		local page = GHI_BookPage(materials)
 			.SetText(text, format)
 			.SetSize(standardPageWidth, standardPageHeight, false)
-			.SetBackground(pageBackground)
-			.SetFont('Fonts\\FRIZQT__.TTF', 13)
+			.SetBackground(pageBackground, false)
+			.SetFont(fontName, unpack(fontSizes))
 			.SetTextColor(0, 0, 0)
 		page:Hide();
 
@@ -155,9 +156,12 @@ function GHI_BookDisplay(materials)
 		return class;
 	end
 
-	class.SetFont = function(font, size) print(font)
+	class.SetFont = function(font, sizeN, sizeH1, sizeH2, sizeH3)
+		GHCheck("SetFont", {"string", "number", "numberNil", "numberNil", "numberNil"}, {font, sizeN, sizeH1, sizeH2, sizeH3});
+		fontName = font;
+		fontSizes = {sizeN, sizeH1 or sizeN, sizeH2 or sizeN, sizeH3 or sizeN};
 		for i=1,#(pages) do
-			pages[i].SetFont(font, size);
+			pages[i].SetFont(font, unpack(fontSizes));
 		end
 		return class;
 	end

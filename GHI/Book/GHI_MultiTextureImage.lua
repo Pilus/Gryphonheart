@@ -43,7 +43,7 @@ function GHI_MultiTextureImage()
 		frame:SetWidth(nativeWidth);
 		frame:SetHeight(nativeHeight);
 
-		local textureObjects = {};
+		frame.textureObjects = {};
 		for id, texture in pairs(textures) do
 			local t = frame:CreateTexture(nil, "BACKGROUND");
 			t:SetTexture(texture.texturePath);
@@ -54,13 +54,13 @@ function GHI_MultiTextureImage()
 			t:SetHeight(texture.height);
 			t:SetPoint("TOPLEFT", frame, "TOPLEFT", texture.xoff, texture.yoff);
 			t:SetParent(parent);
-			textureObjects[id] = t;
+			frame.textureObjects[id] = t;
 		end
 
 		local OnSizeChange = function(self, width, height)
 			local xScale = width/nativeWidth;
 			local yScale = height/nativeHeight;
-			for id, t in pairs(textureObjects) do
+			for id, t in pairs(frame.textureObjects) do
 				local texture = textures[id];
 				t:SetWidth(texture.width * xScale);
 				t:SetHeight(texture.height * yScale);

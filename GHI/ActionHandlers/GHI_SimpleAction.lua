@@ -1083,7 +1083,7 @@ function GHI_SimpleAction(info)
 	end
 
 	class.GetInfo = function()
-		return info;
+		return GHClone(info);
 	end
 
 	class.GetGuid = function()

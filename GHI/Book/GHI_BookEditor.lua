@@ -54,9 +54,14 @@ function GHI_BookEditor()
 		end
 	end
 
+	local UpdateToolbar = function()
+		menuFrame.GetLabelFrame("bookTheme").Force(info.material);
+		menuFrame.GetLabelFrame("bookFont").Force(info.font);
+		menuFrame.GetLabelFrame("title").Force(info.title);
+	end
+
 	local ShowPage = function(i)
 		if info[i] then
-			SaveCurrentPage();
 			currentPageShown = i;
 
 			local mockup = converter.ToMockup(info[i].text1);
@@ -76,12 +81,14 @@ function GHI_BookEditor()
 		info = action.GetInfo();
 		inUse = true;
 		ShowPage(1);
+		UpdateToolbar();
 		menuFrame:AnimatedShow();
 	end
 
 	local Revert = function()
 		info = action.GetInfo();
 		ShowPage(1);
+		UpdateToolbar();
 	end
 
 	local Save = function()
@@ -96,9 +103,11 @@ function GHI_BookEditor()
 	class.IsInUse = function() return inUse; end
 
 	local Preview = function()
+		SaveCurrentPage();
+
 		local display = GHI_BookDisplay(materials)
 		.SetTitle(info.title)
-		.SetFont(info.font or "Frizqt", info.n or 15)
+		.SetFont(info.font or "Frizqt", info.n or 15, info.h1 or 24, info.h2 or 19, info.h3 or 17)
 		.SetDefaultPageBackgroud(info.material or "Parchment")
 
 		for i=1,#(info) do
@@ -185,6 +194,7 @@ function GHI_BookEditor()
 				{
 					type = "StandardButtonWithTexture",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					tooltip = "Revert",
 					texCoord = GetTexCoord(4, 2),
 					onClick = Revert,
 				},
@@ -197,6 +207,7 @@ function GHI_BookEditor()
 				{
 					type = "StandardButtonWithTexture",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
+					tooltip = "Preview",
 					texCoord = GetTexCoord(1, 3),
 					onClick = Preview,
 				},
@@ -279,7 +290,7 @@ function GHI_BookEditor()
 					type = "DropDown",
 					texture = "Tooltip",
 					width = 100,
-					label = "bookMaterial",
+					label = "bookTheme",
 					text = "Theme:",
 					data = {
 						{ text = "Parchment",  index=1},
@@ -407,7 +418,7 @@ function GHI_BookEditor()
 
 	local SetUpAppearancePage = function()
 		return	{
-			name = "Formatting",
+			name = "Appearance",
 			SetAllPagesCat(),
 		}
 	end
@@ -435,7 +446,10 @@ function GHI_BookEditor()
 					align = "l",
 					compact = true,
 					height = 24,
-					onclick = function() ShowPage(currentPageShown - 1); end,
+					onclick = function()
+						SaveCurrentPage();
+						ShowPage(currentPageShown - 1);
+					end,
 					tooltip = loc.PREV_BOOK_PAGE,
 					yOff = yOff,
 					label = "prevButton"
@@ -465,6 +479,9 @@ function GHI_BookEditor()
 					xOff = 0,
 					defaultValue = "",
 					yOff = yOff,
+					OnTextChanged = function(self)
+						info.title = self:GetText();
+					end,
 				},
 				{
 					type = "Button",
@@ -472,7 +489,10 @@ function GHI_BookEditor()
 					align = "r",
 					compact = true,
 					height = 24,
-					onclick = function() ShowPage(currentPageShown + 1); end,
+					onclick = function()
+						SaveCurrentPage();
+						ShowPage(currentPageShown + 1);
+					end,
 					tooltip = loc.NEXT_BOOK_PAGE,
 					yOff = yOff,
 					label = "nextButton"
@@ -508,7 +528,7 @@ function GHI_BookEditor()
 					type = "EditField",
 					align = "c",
 					width = 600,
-					height = 480,
+					height = 430,
 					label = "text",
 				},
 			},
@@ -517,7 +537,7 @@ function GHI_BookEditor()
 		name = "GHI_BookEditor" .. count,
 		theme = "BlankTheme",
 		width = 600,
-		height = 600,
+		height = 550,
 		useWindow = true,
 		icon = "Interface\\Icons\\INV_Misc_Book_09",
 		lineSpacing = -15,

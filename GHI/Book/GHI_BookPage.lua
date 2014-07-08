@@ -25,8 +25,13 @@ function GHI_BookPage(materials)
 		return class;
 	end
 
-	class.SetFont = function(font, size)
-		textFrame:SetFont(font, size);
+	class.SetFont = function(font, sizeN, sizeH1, sizeH2, sizeH3)
+		local fontPath = GHI_FontList[font] or font;
+		textFrame:SetFont(fontPath, sizeN);
+		textFrame:SetFont("H1", "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF", sizeH1);  print("H1", fontPath, sizeH1)
+		textFrame:SetFont("H2", fontPath, sizeH2);
+		textFrame:SetFont("H3", fontPath, sizeH3);
+
 		return class;
 	end
 
@@ -52,6 +57,11 @@ function GHI_BookPage(materials)
 		if (isSpecial == true or useSpecialBackground == false) then
 			if (class.bgImage) then
 				class.bgImage:Hide();
+				if class.bgImage.textureObjects then
+					for _,v in pairs(class.bgImage.textureObjects) do
+						v:Hide();
+					end
+				end
 			end
 
 			if (class.texture) then
@@ -61,7 +71,6 @@ function GHI_BookPage(materials)
 			if not(string.find(pathOrColor,"/")) and not(string.find(pathOrColor,"\\")) then
 				class.bgImage = materials.GetImage(pathOrColor, textFrame);
 				class.bgImage:SetAllPoints(class);
-				--class.bgImage:SetParent(textFrame);
 			else
 				if not(class.texture) then
 					class.texture = class:CreateTexture(nil,"BACKGROUND");

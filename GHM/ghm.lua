@@ -357,6 +357,9 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		if type(profile.onclick) == "function" then
 			obj:SetScript("OnClick", profile.onclick);
 		end
+		if type(profile.onClick) == "function" then
+			obj:SetScript("OnClick", profile.onClick);
+		end
 		if type(profile.OnClick) == "function" then
 			obj:SetScript("OnClick", profile.OnClick);
 		end
