@@ -69,12 +69,6 @@ function GHI_BagOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 20,
-					type = "Dummy",
-					align = "l",
-					width = 20,
-				},
-				{
 					type = "RadioButtonSet",
 					text = loc.ICON_SHAPE,
 					align = "l",
@@ -83,15 +77,9 @@ function GHI_BagOptionsMenu(parentName)
 					data = { loc.ICON_SHAPE_SQUARED, loc.ICON_SHAPE_ROUND },
 				},
 				{
-					height = 20,
-					type = "Dummy",
-					align = "r",
-					width = 60,
-				},
-				{
 					type = "Icon",
 					text = loc.ICON,
-					align = "r",
+					align = "c",
 					label = "icon",
 					framealign = "r",
 					CloseOnChoosen = true,
@@ -107,12 +95,6 @@ function GHI_BagOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 20,
-					type = "Dummy",
-					align = "l",
-					width = 30,
-				},
-				{
 					type = "CustomSlider",
 					values = { 0.25, 0.5, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00 },
 					label = "icon_scale",
@@ -120,15 +102,9 @@ function GHI_BagOptionsMenu(parentName)
 					text = loc.SCALE,
 				},
 				{
-					height = 20,
-					type = "Dummy",
-					align = "r",
-					width = 40,
-				},
-				{
 					type = "Button",
 					label = "center_icon",
-					align = "r",
+					align = "c",
 					text = loc.CENTER_ICON,
 					compact = false,
 					onclick = function(self)

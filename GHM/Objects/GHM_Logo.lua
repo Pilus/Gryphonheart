@@ -12,7 +12,7 @@ local DEFAULT_WIDTH = 128;
 local DEFAULT_HEIGHT = 128;
 local count = 1;
 
-function GHM_Logo(parent, main, profile)
+function GHM_Logo(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Logo" .. count, parent, "GHM_Logo_Template");
 	count = count + 1;
 

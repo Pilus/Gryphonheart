@@ -10,11 +10,10 @@
 --===================================================
 
 local count = 1;
-function GHM_List(parent, main, profile)
+function GHM_List(profile, parent, settings)
 	local f = CreateFrame("Frame", "GHM_List" .. count, parent, "GHM_List_Template");
 	count = count + 1;
 
-	f.main = main;
 	f.data = {};
 	
 	local fontStringNote
@@ -492,7 +491,6 @@ function GHM_List(parent, main, profile)
 			f.data = t;
 
 			f.UpdateAll()
-			f.main.SetLabel(f.label, f.data);
 		end
 	end
 
@@ -501,7 +499,6 @@ function GHM_List(parent, main, profile)
 		f.data = {};
 
 		f.UpdateAll()
-		main.SetLabel(f.label, f.data);
 	end
 
 

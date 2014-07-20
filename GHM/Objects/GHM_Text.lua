@@ -13,7 +13,7 @@ local DEFAULT_WIDTH = 300;
 local DEFUALT_HEIGHT = 20;
 local count = 1;
 
-function GHM_Text(parent, main, profile)
+function GHM_Text(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Text" .. count, parent, "GHM_Text_Template");
 	count = count + 1;
 

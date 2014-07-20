@@ -12,7 +12,7 @@ local DEFAULT_WIDTH = 128;
 local DEFAULT_HEIGHT = 40;
 local count = 1;
 
-function GHM_Time(parent, main, profile)
+function GHM_Time(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Time" .. count, parent, "GHM_Time_Template");
 	count = count + 1;
 

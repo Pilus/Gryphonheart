@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_Book(parent, main, profile)
+function GHM_Book(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Book" .. count, parent, "GHM_Book_Template"); -- Create the frame from the xml template
 	count = count + 1; -- Increment the counter to give the next frame of this type a unique name
 
@@ -25,12 +25,6 @@ function GHM_Book(parent, main, profile)
 
 
 	local area = _G[frame:GetName() .. "Area"]; -- Get the area, in which the elements are placed
-
-	-- Help functions and further setup
-	-- All help functions and any further setup needed goes here
-
-	-- Position the frame
-	GHM_FramePositioning(frame, profile, parent);
 
 	-- Public functions
 	local varAttFrame;

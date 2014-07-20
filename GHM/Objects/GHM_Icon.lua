@@ -18,14 +18,13 @@ end)
 
 local count = 1;
 
-function GHM_Icon(parent, main, profile)
+function GHM_Icon(profile, parent, settings)
      local loc = GHI_Loc();
 	local frame = CreateFrame("Frame", "GHM_Icon" .. count, parent, "GHM_Icon_Template");
 	local button = _G[frame:GetName().."Button"];
 	count = count + 1;
 
 	profile = profile or {};
-	button.main = main;
 	button.iconFrameParent = profile.iconFrameParent;
 	if profile.framealign then
 		button.framealign = profile.framealign;

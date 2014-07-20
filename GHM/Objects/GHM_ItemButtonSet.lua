@@ -21,7 +21,7 @@ profile.data = {
 ]]
 
 local count = 1;
-function GHM_ItemButtonSet(parent, main, profile)
+function GHM_ItemButtonSet(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_ItemButton" .. count, parent, "GHM_ItemButtonSet_Template");
     count = count + 1;
 	local loc = GHI_Loc();

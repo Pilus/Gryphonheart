@@ -1,0 +1,184 @@
+--===================================================
+--
+--				GHM_Line
+--  			GHM_Line.lua
+--
+--	          (description)
+--
+-- 	  (c)2014 The Gryphonheart Team
+--			All rights reserved
+--===================================================
+
+
+function GHM_Line(profile, parent, settings)
+	local class = GHClass("GHM_Line");
+
+	local OPrint = print;
+	local print = function(...)
+		if string.startsWith(parent:GetName(),"GHI_OptionsDebug") then
+			OPrint(...);
+		end
+	end
+
+	local parentName = parent:GetName();
+	local lineNumber = 1;
+	while (_G[parentName.."_L".. lineNumber]) do
+		lineNumber = lineNumber + 1;
+	end
+	local lineName = parentName.."_L".. lineNumber;
+
+	local line = CreateFrame("Frame", lineName, parent);
+
+	local objects = Linq();
+	for i=1,#(profile) do
+		objects[i] = GHM_BaseObject(profile[i], line, settings);
+	end
+
+	local objectsWithFlexibleWidth = objects.Where(function(obj) return obj.GetPreferredDimensions() == nil; end);
+	local objectsWithFlexibleHeight = objects.Where(function(obj) return ({obj.GetPreferredDimensions()})[2] == nil; end);
+
+	local leftObjects = objects.Where(function(obj) return obj.GetAlignment() == GHM_Alignment.Left; end);
+	local centerObjects = objects.Where(function(obj) return obj.GetAlignment() == GHM_Alignment.Center; end);
+	local rightObjects = objects.Where(function(obj) return obj.GetAlignment() == GHM_Alignment.Right; end);
+
+	class.GetPreferredDimensions = function()
+		local objectSpacing = settings.objectSpacing;
+		local width, height;
+
+		if objectsWithFlexibleWidth.None() then
+			local leftWidth = leftObjects.Sum(function(obj) return obj.GetPreferredDimensions() + objectSpacing; end);
+			local centerWidth = centerObjects.Sum(function(obj) return obj.GetPreferredDimensions() + objectSpacing; end);
+			local rightWidth = rightObjects.Sum(function(obj) return obj.GetPreferredDimensions() + objectSpacing; end);
+
+			if (leftObjects.Any() and centerObjects.None() and rightObjects.None()) then
+				leftWidth = leftWidth - objectSpacing;
+			end
+
+			if (centerObjects.Any()) then
+				centerWidth = centerWidth - objectSpacing;
+			end
+
+			if (rightObjects.Any() and centerObjects.None()) then
+				rightWidth = rightWidth - objectSpacing;
+			end
+			width = leftWidth + centerWidth + rightWidth;
+		end
+
+		if objectsWithFlexibleHeight.None() and objects.Any() then
+			local _;
+			local largestObject = objects.MaxBy(function(obj) return ({obj.GetPreferredDimensions()})[2]; end);
+			_, height = largestObject.GetPreferredDimensions();
+		end
+
+		return width, height;
+	end
+
+	class.SetPosition = function(xOff, yOff, width, height)
+		--print(line:GetName(),"SetPosition(",width,",",height,")")
+		GHCheck("Line.SetPosition", {"number", "number", "number", "number"}, {xOff, yOff, width, height})
+		line:SetWidth(width);
+		line:SetHeight(height);
+		line:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		--GHM_TempBG(line);
+
+		local objectSpacing = settings.objectSpacing;
+
+		local leftWidth = leftObjects.Sum(function(obj) return (obj.GetPreferredDimensions() or 0) + objectSpacing; end);
+		local centerWidth = centerObjects.Sum(function(obj) return (obj.GetPreferredDimensions() or 0) + objectSpacing; end);
+		local rightWidth = rightObjects.Sum(function(obj) return (obj.GetPreferredDimensions() or 0) + objectSpacing; end);
+
+		if (leftObjects.Any() and centerObjects.None() and rightObjects.None()) then
+			leftWidth = leftWidth - objectSpacing;
+		end
+
+		if (centerObjects.Any()) then
+			centerWidth = centerWidth - objectSpacing;
+		end
+
+		if (rightObjects.Any() and centerObjects.None()) then
+			rightWidth = rightWidth - objectSpacing;
+		end
+
+		if (centerObjects.Any()) then
+			local leftObjectsWithFlixibleWidth = leftObjects.Intersection(objectsWithFlexibleWidth)
+			local centerObjectsWithFlixibleWidth = centerObjects.Intersection(objectsWithFlexibleWidth)
+			local rightObjectsWithFlixibleWidth = rightObjects.Intersection(objectsWithFlexibleWidth)
+			local centerFlexUnitSize;
+
+			if centerObjectsWithFlixibleWidth.Any() then
+				local widthAvailableLeft = (width/2) - leftWidth - (centerWidth/2);
+				local widthAvailableRight = (width/2) - rightWidth - (centerWidth/2);
+				local leftFlexUnitSize = widthAvailableLeft / (leftObjectsWithFlixibleWidth.Count() + (centerObjectsWithFlixibleWidth.Count()/2));
+				local rightFlexUnitSize = widthAvailableRight / (rightObjectsWithFlixibleWidth.Count() + (centerObjectsWithFlixibleWidth.Count()/2));
+				centerFlexUnitSize = math.min(leftFlexUnitSize, rightFlexUnitSize);
+
+				--print("centerFlexUnitSize", centerFlexUnitSize)
+				-- Update center width
+				centerWidth = centerWidth + centerFlexUnitSize * centerObjectsWithFlixibleWidth.Count();
+			end
+
+			--print("num center objects", centerObjects.Count(), "Out of", objects.Count())
+
+			-- Position the center objects
+			local x = (width - centerWidth)/2;
+			centerObjects.Foreach(function(obj)
+				local w, h = obj.GetPreferredDimensions();
+				--print("Center object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());
+				obj.SetPosition(x, (height - (h or height))/2,  w or centerFlexUnitSize, h or height);
+				x = x + (w or centerFlexUnitSize) + objectSpacing;
+			end);
+
+			-- Set up left side
+			local widthAvailableLeft = (width - centerWidth)/2;
+			local leftFlexUnitSize = (widthAvailableLeft - leftWidth) / leftObjectsWithFlixibleWidth.Count();
+			local x = 0;
+			leftObjects.Foreach(function(obj)
+				local w, h = obj.GetPreferredDimensions();
+				--print("Left object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());
+				obj.SetPosition(x, (height - (h or height))/2,  w or leftFlexUnitSize, h or height);
+				x = x + (w or leftFlexUnitSize) + objectSpacing;
+			end);
+
+			-- Set up right side
+			local widthAvailableRight = (width - centerWidth)/2;
+			local rightFlexUnitSize = (widthAvailableRight - rightWidth) / rightObjectsWithFlixibleWidth.Count();
+			local x = width - widthAvailableRight;
+			rightObjects.Foreach(function(obj)
+				local w, h = obj.GetPreferredDimensions();
+				--print("Right object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());
+				obj.SetPosition(x, (height - (h or height))/2,  w or rightFlexUnitSize, h or height);
+				x = x + (w or rightFlexUnitSize) + objectSpacing;
+			end);
+		else
+			-- set up left side and right side
+			local flexUnitSize = 0;
+			if objectsWithFlexibleWidth.Count() > 0 then
+				flexUnitSize = (width - leftWidth - rightWidth) / objectsWithFlexibleWidth.Count();
+			end
+			--print("flex unit size",flexUnitSize,"=(",width ,"-", leftWidth ,"-", rightWidth,") /",objectsWithFlexibleWidth.Count())
+			local x = 0;
+			leftObjects.Foreach(function(obj)
+				local w, h = obj.GetPreferredDimensions();
+				--print(line:GetName(), obj:GetName(),"Left.SetPosition",x)
+				obj.SetPosition(x, (height - (h or height))/2,  w or flexUnitSize, h or height);
+				x = x + (w or flexUnitSize) + objectSpacing;
+			end);
+
+			local rightObjectsWithFlixibleWidth = rightObjects.Intersection(objectsWithFlexibleWidth)
+			local x = width - rightWidth - flexUnitSize * rightObjectsWithFlixibleWidth.Count();
+			--print(line:GetName(), "Right x start", x, "=", width ,"-", rightWidth ,"-", flexUnitSize ,"*", rightObjectsWithFlixibleWidth.Count());
+			rightObjects.Foreach(function(obj)
+				local w, h = obj.GetPreferredDimensions();
+				obj.SetPosition(x, (height - (h or height))/2,  w or flexUnitSize, h or height);
+				x = x + (w or flexUnitSize) + objectSpacing;
+			end);
+		end
+	end
+
+	class.GetLabelFrame = function(label)
+		return objects.Where(function(obj) return obj.GetLabel() == label; end).First();
+	end
+
+	return class;
+end
+

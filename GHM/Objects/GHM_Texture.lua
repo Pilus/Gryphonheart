@@ -9,7 +9,7 @@
 --			All rights reserved
 --===================================================
 local count = 1;
-function GHM_Texture(parent, main, profile)
+function GHM_Texture(profile, parent, settings)
 
 	local miscAPI = GHI_MiscAPI().GetAPI();
     local loc = GHI_Loc();	

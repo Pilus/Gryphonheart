@@ -11,7 +11,7 @@
 
 local count = 1;
 
-function GHM_DropDown(parent, main, profile)
+function GHM_DropDown(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_DropDown" .. count, parent,"GHM_DropDown_Template"); -- Create the frame from the xml template
     count = count + 1; -- Increment the counter to give the next frame of this type a unique name
 	

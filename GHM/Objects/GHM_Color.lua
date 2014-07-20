@@ -157,7 +157,7 @@ function GHM_BuildColorDD(dropDownMenu, GetValue, Force)
 	return GHM_COLOR_MENU_DATA
 end
 
-function GHM_Color(parent, main, profile)
+function GHM_Color(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Color" .. count, parent, "GHM_Color_Template");
 	count = count + 1;
 

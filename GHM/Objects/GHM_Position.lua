@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_Position(parent, main, profile)
+function GHM_Position(profile, parent, settings)
 	local loc = GHI_Loc();
 	local frame = CreateFrame("Frame", "GHM_Position" .. count, parent, "GHM_Position_Template");
 	count = count + 1;

@@ -472,22 +472,28 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 	return height, obj;
 end
 
-function GHM_CreateLine(num, profile, parent, offset)
-	if type(profile) == "table" and type(offset) == "number" then
+function GHM_CreateLine(num, profile, parent, lineSpacing, prevLine)
+	if type(profile) == "table" then
 		local tallest = 0;
 		local line = CreateFrame("Frame", parent:GetName() .. "_L" .. num, parent);
 		local main = parent:GetParent();
-		Warning("Inserted line " .. num .. " Start at " .. offset);
-		line:SetPoint("TOPLEFT", parent:GetParent(), "TOPLEFT", main.frame_offset_x, offset);
+		Warning("Inserted line " .. num);
+		if prevLine then
+			line:SetPoint("TOP", prevLine, "BOTTOM", main.frame_offset_x, main.lineDistance);
+		else
+			line:SetPoint("TOP", parent, "TOP", main.frame_offset_x, main.frame_offset_y);
+		end
 		line:SetWidth(main.frame_x);
 		line:SetHeight(20);
+		local objects = {};
 
 		if ShowLines == true then
 			GHM_TempBG(line);
 		end
 		local i = 1;
 		while type(profile[i]) == "table" do
-			local height = GHM_CreateObject(i, profile[i], line);
+			local height, obj = GHM_CreateObject(i, profile[i], line);
+			table.insert(objects, obj);
 			if height > tallest then
 				tallest = height;
 			end
@@ -498,57 +504,23 @@ function GHM_CreateLine(num, profile, parent, offset)
 		end
 		line:Show();
 		line:SetHeight(tallest);
-		if main.lineDistance then
-			offset = offset - tallest - main.lineDistance;
-		else
-			offset = offset - tallest - 3;
-		end
-	end
-	return offset;
-end
 
-local urlMenuList;
-local function CreatePage(num, profile, parent, lineSpacing)
-	if type(profile) == "table" then
-		local page = CreateFrame("Frame", parent:GetName() .. "_P" .. num, parent); Warning("Inserted page " .. num);
-		local i = 1;
-		local offset = -(parent.frame_offset_y or 0);
-		lastestEditbox = nil
-		while type(profile[i]) == "table" do
-
-			offset = GHM_CreateLine(i, profile[i], page, offset);
-			i = i + 1;
-			offset = offset - lineSpacing;
-		end
-		parent.pageHeight = max(-(offset + lineSpacing), parent.pageHeight or 0);
-		Warning("End of page after " .. (i - 1) .. " lines. " .. #(profile) .. " planned")
-		if num == 1 then
-			page:Show();
-
-		else
-			page:Hide();
-		end
-
-		-- help button
-		if profile.help then
-			if not(urlMenuList) then
-				urlMenuList = GHI_MenuList("GHI_URLUI");
+		line.GetPreferredHeight = function()
+			-- Go trough each object and use GetBottom and compare it with GetTop on line.
+			local preferredHeight = 20;
+			for _, obj in pairs(objects) do
+				local objHeight = line:GetTop() - obj:GetBottom();
+				preferredHeight = math.max(preferredHeight, objHeight);
 			end
-			local loc = GHI_Loc();
-			local button = CreateFrame("Button","$parentHelpButton",page,"GHM_Button_Template");
-			button:SetPoint("BOTTOMLEFT",page:GetParent(),"BOTTOMLEFT",15,15);
-			button:SetText(loc.HELP);
-			button:SetScript("OnClick",function()
-				local url = string.format("http://pilus.info/index.php?title=%s",profile.help);
-				urlMenuList.New(url);
-			end)
-
+			return preferredHeight;
 		end
 
-		page.active = true;
-		return page;
+		return line, tallest;
 	end
+
 end
+
+
 
 local highest = -10;
 local layerFrames = {};
@@ -617,7 +589,7 @@ function GHM_NewFrame(self, profile)
 		end;
 		main.GetLabel = function(label)
 			if not (label == nil) then
-				local frame = main.LabelFrame[label];
+				local frame = main.GetLabelFrame(label);
 				if frame and frame.GetValue and not(frame.IgnoreGetValueFunc) then
 					return frame:GetValue();
 				else
@@ -626,7 +598,7 @@ function GHM_NewFrame(self, profile)
 			end;
 		end;
 		main.ForceLabel = function(label, ...) if not (label == nil) then
-			local f = main.LabelFrame[label];
+			local f = main.GetLabelFrame(label);
 			if f and type(f.Force) == "function" then
 				f.Force(...);
 			else print("Could not force label: ",label);
@@ -635,7 +607,11 @@ function GHM_NewFrame(self, profile)
 		end
 		end;
 		main.GetLabelFrame = function(label)
-			return main.LabelFrame[label];
+			local frame;
+			for _, page in pairs(main.pages) do
+				frame = frame or page.GetLabelFrame(label);
+			end
+			return frame;
 		end;
 		main.ClearAll = function(self)
 			for index, value in pairs(main.LabelFrame) do
@@ -660,7 +636,7 @@ function GHM_NewFrame(self, profile)
 
 		local i = 1;
 		while type(profile[i]) == "table" do
-			main.pages[i] = CreatePage(i, profile[i], main, profile.lineSpacing or 0);
+			main.pages[i] = GHM_Page(profile[i], main, {lineSpacing = profile.lineSpacing or 5, objectSpacing = 5});
 			i = i + 1;
 		end
 		main.numPages = i - 1;
@@ -910,6 +886,10 @@ function GHM_NewFrame(self, profile)
 			main:SetScript("OnShow", function(self) GHM_LayerHandle(self); end);
 		end
 		main:SetScript("OnHide", function(self) GHM_LayerHandle(self); end);
+
+		for _, page in pairs(main.pages) do
+			page.SetPosition(10, 10, profile.width, profile.height)
+		end
 
 		return main;
 	end

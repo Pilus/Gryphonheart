@@ -5,7 +5,7 @@
 -- profile.height
 
 local count = 1;
-function GHM_ScrollingFrame(parent, main, profile)
+function GHM_ScrollingFrame(profile, parent, settings)
     local frame = CreateFrame("ScrollFrame", "GHM_ScrollingFrame" .. count, parent, "GHM_ScrollFrameTemplate"); -- Create the frame from the xml template
     count = count + 1; -- Increment the counter to give the next frame of this type a unique name
 

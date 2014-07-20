@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_ButtonWithIcon(parent, main, profile)
+function GHM_ButtonWithIcon(profile, parent, settings)
 	local frame = CreateFrame("Button","GHM_ButtonWithIcon" .. count, parent);
 	count = count + 1;
 
@@ -18,7 +18,6 @@ function GHM_ButtonWithIcon(parent, main, profile)
 	frame:SetHeight(32);
 
 	frame:SetNormalTexture(profile.path);
-	--frame:GetNormalTexture():SetVertexColor(GHM_GetButtonColor());
 
 	frame:SetPushedTexture(profile.path);
 	frame:GetPushedTexture():SetVertexColor(0.5,0.5,0.5,1);
@@ -48,22 +47,6 @@ function GHM_ButtonWithIcon(parent, main, profile)
 	frame:SetScript("OnLeave", function(self)
 		GameTooltip:Hide();
 	end);
-
-
-	-- Frame positioning
-	local extraX = profile.xOff or 0;
-	local extraY = profile.yOff or 0;
-
-	if profile.align == "c" then
-		frame:SetPoint("CENTER", parent, "CENTER", extraX, extraY);
-	elseif profile.align == "r" then
-		frame:SetPoint("RIGHT", parent.lastRight or parent, "RIGHT", extraX, extraY);
-		parent.lastRight = frame;
-	else
-		if parent.lastLeft then frame:SetPoint("LEFT", parent.lastLeft, "RIGHT", extraX, extraY); else frame:SetPoint("LEFT", parent, "LEFT", extraX, extraY); end
-		parent.lastLeft = frame;
-	end
-
 
 	return frame;
 end

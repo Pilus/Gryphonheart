@@ -14,6 +14,7 @@ Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 Libs\AceComm-3.0\AceComm-3.0.xml
 Libs\AceSerializer-3.0\AceSerializer-3.0.xml
 Libs\LibCompress\LibCompress.lua
+Libs\Linq\Linq.lua
 ghclass.lua
 GHI_MenuList.lua
 GH_DebugMenu.lua

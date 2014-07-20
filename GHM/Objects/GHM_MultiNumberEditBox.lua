@@ -13,7 +13,7 @@ local DEFAULT_WIDTH_PR_BOX = 25;
 local DEFAULT_WIDTH_PR_PR_DIGIT = 7;
 
 local count = 1;
-function GHM_MultiNumberEditBox(parent, main, profile)
+function GHM_MultiNumberEditBox(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_MultiNumberEditBox" .. count, parent);
 	count = count + 1;
 
@@ -26,12 +26,12 @@ function GHM_MultiNumberEditBox(parent, main, profile)
 	-- setup
 	frame:SetHeight(38);
 
-	local textLabel = GHM_Text(frame, main, {
+	local textLabel = GHM_Text({
 		text = profile.text,
 		color = "yellow",
 		fontSize = 11,
 		align = "c",
-	});
+	}, frame, settings);
 	textLabel:ClearAllPoints();
 	textLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0);
 

@@ -11,7 +11,7 @@
 
 local count = 1;
 local info; -- Placed here to use less memory for dd initialization
-function GHM_CustomDD(parent, main, profile)
+function GHM_CustomDD(profile, parent, settings)
     local frame = CreateFrame("Frame", "GHM_CustomDD" .. count, parent,"GHM_CustomDD_Template"); -- Create the frame from the xml template
     count = count + 1; -- Increment the counter to give the next frame of this type a unique name
 

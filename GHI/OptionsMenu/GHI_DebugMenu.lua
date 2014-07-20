@@ -36,8 +36,8 @@ function GHI_DebugMenu(parentName)
 				{
 					type = "EditField",
 					align = "c",
-					height = parentHeight - 30,
-					width = parentWidth - 50,
+					--height = parentHeight - 30,
+					--width = parentWidth - 50,
 					label = "log",
 				},
 			},
@@ -46,7 +46,7 @@ function GHI_DebugMenu(parentName)
 			menuFrame.ForceLabel("log", log.ToText());
 		end,
 		title = loc.DEBUG_EVENT_LOG,
-		height = 400,
+		height = parentHeight,
 		name = "GHI_OptionsDebugFrame",
 		theme = "BlankTheme",
 		width = parentWidth,

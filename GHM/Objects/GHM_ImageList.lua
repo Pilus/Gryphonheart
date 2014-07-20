@@ -19,7 +19,7 @@ local count = 1;
 	profile.data
 	profile.OnSelect
 ]]
-function GHM_ImageList(parent, main, profile)
+function GHM_ImageList(profile, parent, settings)
     local loc = GHI_Loc()
 	local frame = CreateFrame("Frame", "GHM_ImageList" .. count, parent, "GHM_ImageList_Template")
 	local area = _G[frame:GetName().."Area"]

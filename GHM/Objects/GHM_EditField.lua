@@ -9,7 +9,7 @@
 --			All rights reserved
 --===================================================
 local count = 1;
-function GHM_EditField(parent, main, profile)
+function GHM_EditField(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_EditField" .. count, parent, "GHM_EditField_Template");
 	count = count + 1;
 
@@ -80,6 +80,10 @@ function GHM_EditField(parent, main, profile)
 
 	frame.GetFieldFrame = function()
 		return fieldFrame
+	end
+
+	frame.GetPreferredDimensions = function()
+		return profile.width, profile.height;
 	end
 
 	if type(profile.OnLoad) == "function" then

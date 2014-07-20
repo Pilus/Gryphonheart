@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_Sound(parent, main, profile)
+function GHM_Sound(profile, parent, settings)
 	local loc = GHI_Loc();
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local frame = CreateFrame("Frame", "GHM_Sound" .. count, parent, "GHM_Sound_Template");

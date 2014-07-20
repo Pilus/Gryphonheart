@@ -56,7 +56,7 @@ function GHI_MainOptionsMenu()
 					text = loc.ADDON_INFO,
 					align = "l",
 					type = "Text",
-					width = parentWidth/2 - 10,
+					--width = parentWidth/2 - 10,
 				},
 			},
 			{
@@ -82,12 +82,6 @@ function GHI_MainOptionsMenu()
 					type = "CheckBox",
 					text = loc.HIDE_EMPTY_SLOTS,
 					label = "hide_empty_slots",
-				},
-				{
-					height = 12,
-					type = "Dummy",
-					align = "r",
-					width = 20,
 				},
 				{
 					type = "Button",
@@ -121,12 +115,6 @@ function GHI_MainOptionsMenu()
 					width = 170,
 				},
 				{
-					height = 10,
-					type = "Dummy",
-					align = "l",
-					width = 60,
-				},
-				{
 					type = "RadioButtonSet",
 					text = loc.CHAT_PERMISSONS,
 					align = "c",
@@ -134,12 +122,6 @@ function GHI_MainOptionsMenu()
 					returnIndex = true,
 					data = { loc.CHAT_PERMISSONS_ALLOW, loc.CHAT_PERMISSONS_PROMT, loc.CHAT_PERMISSONS_BLOCK},
 					width = 170,
-				},
-				{
-					height = 10,
-					type = "Dummy",
-					align = "l",
-					width = 60,
 				},
 				{
 					type = "RadioButtonSet",

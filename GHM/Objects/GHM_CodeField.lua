@@ -13,7 +13,7 @@ local DEFAULT_WIDTH = 170;
 local DEFAULT_HEIGHT = 80;
 
 local count = 1;
-function GHM_CodeField(parent, main, profile)
+function GHM_CodeField(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_CodeField" .. count, parent, "GHM_CodeField_Template");
 	count = count + 1;
 	
@@ -78,11 +78,8 @@ function GHM_CodeField(parent, main, profile)
 	end)
 	
 	fieldFrame:SetScript("OnTextChanged", function(self,userInput)
-		local f = self:GetParent():GetParent();
-		if f and f.main then
-			f.main.SetLabel(f.label,self:GetText());
-		end
-	end)
+
+	end);
 
 	-- toolbar buttons
 	local toolbar = GHM_Toolbar(area,fieldFrame);

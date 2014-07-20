@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_RadioButtonSet(parent, main, profile)
+function GHM_RadioButtonSet(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_RadioButton" .. count, parent, "GHM_RadioButtonSet_Template");
     count = count + 1;
 	local loc = GHI_Loc();

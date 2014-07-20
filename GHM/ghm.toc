@@ -9,6 +9,13 @@ Libs\ForAllIndentsAndPurposes\indent.lua
 
 ghm.lua
 
+GHM_Page.lua
+GHM_Line.lua
+GHM_BaseObject.lua
+
+Enums\GHM_Alignment.lua
+
+Objects\GHM_Dummy.lua
 Objects\GHM_ButtonWithIcon.lua
 Objects\GHM_VarAttInput.lua
 Objects\GHM_VarAttInput.xml
@@ -70,6 +77,11 @@ Objects\GHM_ImageList.lua
 Objects\GHM_ImageList.xml
 Objects\GHM_StandardButtonWithTexture.lua
 Objects\GHM_MultiNumberEditBox.lua
+Objects\GHM_Button.lua
+Objects\GHM_CustomSlider.lua
+Objects\GHM_Hbar.lua
+Objects\GHM_QualityDD.lua
+
 
 Toolbar\GHM_ToolbarObjectRow.lua
 Toolbar\GHM_ToolbarCategory.lua

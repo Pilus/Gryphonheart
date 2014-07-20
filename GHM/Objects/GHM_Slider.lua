@@ -11,7 +11,7 @@
 
 local count = 1;
 
-function GHM_Slider(parent, main, profile)
+function GHM_Slider(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Slider" .. count, parent, "GHM_Slider_Template");
 	count = count + 1;
 

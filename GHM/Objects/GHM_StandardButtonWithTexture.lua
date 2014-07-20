@@ -11,7 +11,7 @@
 --===================================================
 
 local count = 1;
-function GHM_StandardButtonWithTexture(parent, main, profile)
+function GHM_StandardButtonWithTexture(profile, parent, settings)
 	local frame = CreateFrame("Button","GHM_StandardButtonWithTexture" .. count, parent, "GHM_Button_Template");
 	count = count + 1;
 

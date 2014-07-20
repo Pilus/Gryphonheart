@@ -607,7 +607,7 @@ end
 
 
 local count = 1;
-function GHM_DynamicActionArea(parent, main, profile)
+function GHM_DynamicActionArea(profile, parent, settings)
 	
 	local frame = CreateFrame("Frame", "GHM_DynamicActionArea" .. count, parent, "GHM_DynamicActionArea_Template");
 	count = count + 1;
@@ -634,8 +634,6 @@ function GHM_DynamicActionArea(parent, main, profile)
 
 	area.specialActionCategory = profile.specialActionCategory;
 	area.IsDynamicActionArea = true;
-	frame.main = main;
-	area.main = main;
 	area:Show();
 	frame.SetDynamicActionInstanceSet = function(set) area.set = set; UpdateActionArea(area); end
 	frame:SetBackdrop({

@@ -11,8 +11,8 @@
 
 local count = 1;
 
-function GHM_Image(parent, main, profile)
-     local loc = GHI_Loc();
+function GHM_Image(profile, parent, settings)
+	local loc = GHI_Loc();
 	local frame = CreateFrame("Frame", "GHM_Image" .. count, parent, "GHM_Image_Template");
 	local area = _G[frame:GetName().."Area"];
 	local button = _G[area:GetName().."Button"];

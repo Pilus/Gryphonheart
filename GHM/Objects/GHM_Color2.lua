@@ -13,7 +13,7 @@ local DEFAULT_WIDTH = 160;
 local DEFAULT_HEIGHT = 180;
 local count = 1;
 
-function GHM_Color2(parent, main, profile)
+function GHM_Color2(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Color2" .. count, parent, "GHM_Color2_Template");
 	count = count + 1;
 

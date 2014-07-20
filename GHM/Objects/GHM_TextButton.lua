@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_TextButton(parent, main, profile)
+function GHM_TextButton(profile, parent, settings)
 	local frame = CreateFrame("Button","GHM_TextButton" .. count, parent);
 	count = count + 1;
 	local miscApi = GHI_MiscAPI().GetAPI()

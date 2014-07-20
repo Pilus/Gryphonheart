@@ -13,7 +13,7 @@ local DEFUALT_HEIGHT = 40;
 
 local count = 1;
 
-function GHM_Editbox(parent, main, profile)
+function GHM_Editbox(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_EditBox" .. count, parent, "GHM_EditBox_Template");
 	count = count + 1;
 
@@ -73,11 +73,11 @@ function GHM_Editbox(parent, main, profile)
 	end
 
 
-	if not (main.lastestEditbox == nil) then
-		main.lastestEditbox.next = editBox;
-		main.lastestEditbox:SetScript("OnTabPressed", function(self) self:ClearFocus(); self.next:SetFocus(); end);
+	if not (settings.lastestEditbox == nil) then
+		settings.lastestEditbox.next = editBox;
+		settings.lastestEditbox:SetScript("OnTabPressed", function(self) self:ClearFocus(); self.next:SetFocus(); end);
 	end
-	main.lastestEditbox = editBox;
+	settings.lastestEditbox = editBox;
 
 	if type(profile.startText) == "string" then
 		editBox:SetText(profile.startText)

@@ -12,7 +12,7 @@
 
 local codeFields = {};
 local count = 1;
-function GHM_MultiPageEditField(parent, main, profile)
+function GHM_MultiPageEditField(profile, parent, settings)
 	
 	local miscApi = GHI_MiscAPI().GetAPI();
 	local actAPI = GHI_ActionAPI().GetAPI();

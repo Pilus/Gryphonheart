@@ -2,12 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Book/GHI_BookDisplay.lua" afterPath="$PROJECT_DIR$/GHI/Book/GHI_BookDisplay.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Book/GHI_BookEditor.lua" afterPath="$PROJECT_DIR$/GHI/Book/GHI_BookEditor.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Book/GHI_BookPage.lua" afterPath="$PROJECT_DIR$/GHI/Book/GHI_BookPage.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Book/GHI_MultiTextureImage.lua" afterPath="$PROJECT_DIR$/GHI/Book/GHI_MultiTextureImage.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ActionHandlers/GHI_SimpleAction.lua" afterPath="$PROJECT_DIR$/GHI/ActionHandlers/GHI_SimpleAction.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/Enums/GHM_Alignment.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/GHM_BaseObject.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Button.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_CustomSlider.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Dummy.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Hbar.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/GHM_Line.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/GHM_Page.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_QualityDD.lua" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GHI/Libs/Linq/Linq.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/OptionsMenu/GHI_BagOptionsMenu.lua" afterPath="$PROJECT_DIR$/GHI/OptionsMenu/GHI_BagOptionsMenu.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/OptionsMenu/GHI_DebugMenu.lua" afterPath="$PROJECT_DIR$/GHI/OptionsMenu/GHI_DebugMenu.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/OptionsMenu/GHI_MainOptionsMenu.lua" afterPath="$PROJECT_DIR$/GHI/OptionsMenu/GHI_MainOptionsMenu.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Book.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Book.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_ButtonWithIcon.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_ButtonWithIcon.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_CheckBox.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_CheckBox.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_CodeField.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_CodeField.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Color.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Color.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Color2.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Color2.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_CustomDD.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_CustomDD.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_DropDown.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_DropDown.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_DynamicActionArea.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_DynamicActionArea.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_EditBox.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_EditBox.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Icon.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Icon.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Image.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Image.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_ImageList.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_ImageList.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Item.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Item.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_ItemButtonSet.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_ItemButtonSet.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_List.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_List.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Logo.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Logo.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_MultiNumberEditBox.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_MultiNumberEditBox.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_MultiPageEditField.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_MultiPageEditField.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Position.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Position.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_RadioButtonSet.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_RadioButtonSet.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_ScrollingFrame.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_ScrollingFrame.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Slider.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Slider.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Sound.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Sound.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_StandardButtonWithTexture.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_StandardButtonWithTexture.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Text.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Text.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_TextButton.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_TextButton.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Texture.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Texture.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_Time.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_Time.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/ghi.toc" afterPath="$PROJECT_DIR$/GHI/ghi.toc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/ghm.lua" afterPath="$PROJECT_DIR$/GHM/ghm.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/ghm.toc" afterPath="$PROJECT_DIR$/GHM/ghm.toc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="3ef94ea4-8e7f-4eb8-b693-318f2daa3a46" name="Config" comment="">
@@ -42,9 +82,9 @@
     <file path="/GHG_GroupAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1385927647220" ignored="false" />
     <file path="/GHG_Group.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1386014048915" ignored="false" />
     <file path="/GHI_Compatibility.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383499829639" ignored="false" />
-    <file path="/GHI_CodeEditorOptionsMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1380831253981" ignored="false" />
+    <file path="/GHI_CodeEditorOptionsMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405632328891" ignored="false" />
     <file path="/GHI_ClassAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379447910656" ignored="false" />
-    <file path="/ghm.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404852768281" ignored="false" />
+    <file path="/ghm.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405717518260" ignored="false" />
     <file path="/GHM_Time.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378932171377" ignored="false" />
     <file path="/a.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379444952801" ignored="false" />
     <file path="/GHI_MiscAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379449553968" ignored="false" />
@@ -52,7 +92,7 @@
     <file path="/GHI_ItemInfo_Advanced.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378846032443" ignored="false" />
     <file path="/GHI_ItemInfo_Standard.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378844695368" ignored="false" />
     <file path="/GHI_ContainerAPI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378843484544" ignored="false" />
-    <file path="/a.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1379885497456" ignored="false" />
+    <file path="/a.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405620312365" ignored="false" />
     <file path="/GHI_ContainerUI.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1383387866252" ignored="false" />
     <file path="/GHM_Slider.xml" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378588792084" ignored="false" />
     <file path="/GHI_BagMenu.lua" changelist="897b78a7-4c84-4398-82e1-51693d427a27" time="1378587551197" ignored="false" />
@@ -87,13 +127,13 @@
     <file path="/GHI_ActionAPI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1401990366226" ignored="false" />
     <file path="/GHI_ScriptEnv.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1377108571829" ignored="false" />
     <file path="/GHI_BookMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376151893409" ignored="false" />
-    <file path="/a.dummy" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404849256045" ignored="false" />
+    <file path="/a.dummy" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405632221965" ignored="false" />
     <file path="/GHI_SimpleAction.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1402041695700" ignored="false" />
     <file path="/GHI_BookObj_Signature.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079378777" ignored="false" />
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
-    <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1401983329212" ignored="false" />
+    <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405459094467" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
-    <file path="/Dummy.txt" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404841717128" ignored="false" />
+    <file path="/Dummy.txt" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405530702477" ignored="false" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
     <file path="/GHI_BookEditor.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404854052371" ignored="false" />
     <file path="/GHI_MultiTextureImage.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404845014689" ignored="false" />
@@ -102,6 +142,21 @@
     <file path="/GHI_BookPage.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404854268002" ignored="false" />
     <file path="/GHM_DropDownMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1401999275489" ignored="false" />
     <file path="/GHM_DropDownMenuTemplates.xml" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1401999768212" ignored="false" />
+    <file path="/GHM_Page.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405854811482" ignored="false" />
+    <file path="/Linq.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405664745760" ignored="false" />
+    <file path="/ghm.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405629689684" ignored="false" />
+    <file path="/GHM_Line.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405855226016" ignored="false" />
+    <file path="/GHM_BaseObject.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405718485225" ignored="false" />
+    <file path="/GHM_Alignment.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405532896773" ignored="false" />
+    <file path="/GHM_CodeField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405535137987" ignored="false" />
+    <file path="/GHM_MultiNumberEditBox.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405537340305" ignored="false" />
+    <file path="/GHM_Dummy.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405718360753" ignored="false" />
+    <file path="/GHM_Hbar.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405631982780" ignored="false" />
+    <file path="/GHM_QualityDD.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405631242701" ignored="false" />
+    <file path="/GHM_CustomSlider.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405631251337" ignored="false" />
+    <file path="/GHM_Button.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405718945155" ignored="false" />
+    <file path="/GHI_BagOptionsMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405854285624" ignored="false" />
+    <file path="/GHM_EditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405855397855" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,52 +222,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GHI_BookEditor.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookEditor.lua">
+      <file leaf-file-name="ghm.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/ghm.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="80" selection-start="2450" selection-end="2450" vertical-scroll-proportion="-72.76">
-              <folding>
-                <element signature="e#2755#3260#1" expanded="false" />
-                <element signature="e#3281#3573#1" expanded="false" />
-                <element signature="e#3695#3885#1" expanded="false" />
-                <element signature="e#6549#8886#1" expanded="false" />
-                <element signature="e#7346#8493#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GHI_BookDisplay.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookDisplay.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="48" selection-start="4403" selection-end="4403" vertical-scroll-proportion="-67.32">
-              <folding>
-                <element signature="e#430#850#0" expanded="false" />
-                <element signature="e#3821#4097#1" expanded="false" />
-                <element signature="e#5090#5512#1" expanded="false" />
-                <element signature="e#5537#6239#1" expanded="false" />
-                <element signature="e#6269#6633#1" expanded="false" />
-                <element signature="e#6663#6922#1" expanded="false" />
-                <element signature="e#6957#7474#1" expanded="false" />
-                <element signature="e#7509#8057#1" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GHI_BookPage.lua" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookPage.lua">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="26" selection-start="801" selection-end="801" vertical-scroll-proportion="0.4586331">
+            <state line="890" column="28" selection-start="24618" selection-end="24629" vertical-scroll-proportion="-7.24">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHI_BookUI.lua" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookUI.lua">
+      <file leaf-file-name="GHM_Line.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/GHM_Line.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="648" column="48" selection-start="21162" selection-end="21164" vertical-scroll-proportion="-5.72">
+            <state line="119" column="19" selection-start="4673" selection-end="4678" vertical-scroll-proportion="-5.02">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHI_BagOptionsMenu.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHI/OptionsMenu/GHI_BagOptionsMenu.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="106" column="30" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHI_DebugMenu.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHI/OptionsMenu/GHI_DebugMenu.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="28" selection-start="610" selection-end="622" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHM_EditField.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="13" selection-start="2165" selection-end="2166" vertical-scroll-proportion="-7.52">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHM_Page.lua" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GHM/GHM_Page.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="56" column="68" selection-start="1598" selection-end="1603" vertical-scroll-proportion="0.30078125">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHM_Button.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Button.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="4" selection-start="923" selection-end="923" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GHM_BaseObject.lua" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GHM/GHM_BaseObject.lua">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="30" selection-start="991" selection-end="1013" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -243,22 +319,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHI/UI/GHI_BuffUI.lua" />
-        <option value="$PROJECT_DIR$/GHM/Objects/GHM_ScrollFrame.lua" />
-        <option value="$PROJECT_DIR$/GHM/GHM_SoundSelection.lua" />
-        <option value="$PROJECT_DIR$/GHI/AdvancedItemMenu/GHI_AttributeMenu.lua" />
-        <option value="$PROJECT_DIR$/GHI/ghi.toc" />
-        <option value="$PROJECT_DIR$/GHI/APIs/GHI_ActionAPI.lua" />
-        <option value="$PROJECT_DIR$/GHI/Book/GHI_BookMaterials.lua" />
-        <option value="$PROJECT_DIR$/GHM/DropDownMenu/GHM_DropDownMenu.lua" />
-        <option value="$PROJECT_DIR$/GHM/Objects/GHM_DropDown.lua" />
-        <option value="$PROJECT_DIR$/GHM/DropDownMenu/GHM_DropDownMenuTemplates.xml" />
-        <option value="$PROJECT_DIR$/GHI/Book/GHI_MultiTextureImage.lua" />
-        <option value="$PROJECT_DIR$/GHI/ActionHandlers/GHI_SimpleAction.lua" />
+        <option value="$PROJECT_DIR$/GHM/ghm.toc" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_QualityDD.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_CustomSlider.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_Hbar.lua" />
+        <option value="$PROJECT_DIR$/GHI/OptionsMenu/GHI_CodeEditorOptionsMenu.lua" />
+        <option value="$PROJECT_DIR$/GHI/Libs/Linq/Linq.lua" />
         <option value="$PROJECT_DIR$/GHM/ghm.lua" />
-        <option value="$PROJECT_DIR$/GHI/Book/GHI_BookEditor.lua" />
-        <option value="$PROJECT_DIR$/GHI/Book/GHI_BookDisplay.lua" />
-        <option value="$PROJECT_DIR$/GHI/Book/GHI_BookPage.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_Dummy.lua" />
+        <option value="$PROJECT_DIR$/GHM/GHM_BaseObject.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_Button.lua" />
+        <option value="$PROJECT_DIR$/GHI/OptionsMenu/GHI_MainOptionsMenu.lua" />
+        <option value="$PROJECT_DIR$/GHI/OptionsMenu/GHI_BagOptionsMenu.lua" />
+        <option value="$PROJECT_DIR$/GHI/OptionsMenu/GHI_DebugMenu.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua" />
+        <option value="$PROJECT_DIR$/GHM/GHM_Line.lua" />
+        <option value="$PROJECT_DIR$/GHM/GHM_Page.lua" />
       </list>
     </option>
   </component>
@@ -266,9 +342,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="330" />
-    <option name="width" value="1034" />
-    <option name="height" value="728" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -387,24 +464,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Toolbar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Objects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -423,7 +482,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DropDownMenu" />
+              <option name="myItemId" value="Enums" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -473,7 +532,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Containers" />
+              <option name="myItemId" value="OptionsMenu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -491,7 +550,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Book" />
+              <option name="myItemId" value="Libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Linq" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -509,43 +572,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="APIs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ActionHandlers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AddOns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GHI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ActionExecutors" />
+              <option name="myItemId" value="Libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -581,7 +608,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.sourceCode.Lua" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Lua" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -921,7 +948,11 @@
       <created>1402003381160</created>
       <updated>1402003381160</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Progress on book editing.">
+      <created>1404856267673</created>
+      <updated>1404856267673</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -945,13 +976,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="330" y="0" width="1034" height="728" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3218391" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.87027913" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34117648" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33990148" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3316913" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -962,7 +993,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.74055827" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gryphonheart Unittest" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2664609" sideWeight="0.65882355" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19621213" sideWeight="0.6600985" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1056,136 +1087,123 @@
     <MESSAGE value="Progress on book editing." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_ContainerAPI.lua">
+    <entry file="file://$PROJECT_DIR$/GHM/ghm.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="33" selection-start="3437" selection-end="3449" vertical-scroll-proportion="0.0">
+        <state line="33" column="28" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Containers/GHI_Stack.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="573" column="30" selection-start="15759" selection-end="15759" vertical-scroll-proportion="0.38636363">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHM/Toolbar/GHM_MultipageToolbar.lua">
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_CheckBox.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHM/Toolbar/GHM_ToolbarPage.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/OptionsMenu/GHI_CodeEditorOptionsMenu.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="192" column="59" selection-start="4684" selection-end="4684" vertical-scroll-proportion="-6.96">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookMaterials.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/UI/GHI_ContainerUI.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="75" selection-start="840" selection-end="843" vertical-scroll-proportion="-7.08">
+        <state line="146" column="0" selection-start="3774" selection-end="3774" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_MultiTextureImage.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/Libs/Linq/Linq.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="22" selection-start="2004" selection-end="2005" vertical-scroll-proportion="-19.04">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHG/API/GHG_GroupAPI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="234" column="68" selection-start="6443" selection-end="6443" vertical-scroll-proportion="0.33144477">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/APIs/GHI_CreateItemAPI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="29" selection-start="7205" selection-end="7205" vertical-scroll-proportion="0.0">
+        <state line="90" column="26" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHI/ghclass.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="16" selection-start="3754" selection-end="3761" vertical-scroll-proportion="-4.36">
+        <state line="170" column="17" selection-start="4055" selection-end="4065" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/ActionHandlers/GHI_SimpleAction.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/OptionsMenu/GHI_MainOptionsMenu.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1087" column="36" selection-start="25990" selection-end="25990" vertical-scroll-proportion="-5.04">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_EditBox.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="37" selection-start="1649" selection-end="1662" vertical-scroll-proportion="-13.88">
+        <state line="111" column="16" selection-start="2134" selection-end="2134" vertical-scroll-proportion="0.9376147">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHM/ghm.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="360" column="48" selection-start="10120" selection-end="10120" vertical-scroll-proportion="-53.32">
+        <state line="890" column="28" selection-start="24618" selection-end="24629" vertical-scroll-proportion="-7.24">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookDisplay.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/OptionsMenu/GHI_BagOptionsMenu.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="48" selection-start="4403" selection-end="4403" vertical-scroll-proportion="-67.32">
-          <folding>
-            <element signature="e#430#850#0" expanded="false" />
-            <element signature="e#3821#4097#1" expanded="false" />
-            <element signature="e#5090#5512#1" expanded="false" />
-            <element signature="e#5537#6239#1" expanded="false" />
-            <element signature="e#6269#6633#1" expanded="false" />
-            <element signature="e#6663#6922#1" expanded="false" />
-            <element signature="e#6957#7474#1" expanded="false" />
-            <element signature="e#7509#8057#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookUI.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="648" column="48" selection-start="21162" selection-end="21164" vertical-scroll-proportion="-5.72">
+        <state line="106" column="30" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookEditor.lua">
+    <entry file="file://$PROJECT_DIR$/GHI/OptionsMenu/GHI_DebugMenu.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="80" selection-start="2450" selection-end="2450" vertical-scroll-proportion="-72.76">
-          <folding>
-            <element signature="e#2755#3260#1" expanded="false" />
-            <element signature="e#3281#3573#1" expanded="false" />
-            <element signature="e#3695#3885#1" expanded="false" />
-            <element signature="e#6549#8886#1" expanded="false" />
-            <element signature="e#7346#8493#0" expanded="false" />
-          </folding>
+        <state line="23" column="28" selection-start="610" selection-end="622" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Book/GHI_BookPage.lua">
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Button.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="26" selection-start="801" selection-end="801" vertical-scroll-proportion="0.4586331">
+        <state line="35" column="4" selection-start="923" selection-end="923" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_Dummy.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/GHM_BaseObject.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="30" selection-start="991" selection-end="1013" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="13" selection-start="2165" selection-end="2166" vertical-scroll-proportion="-7.52">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/GHM_Line.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="19" selection-start="4673" selection-end="4678" vertical-scroll-proportion="-5.02">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/GHM_Page.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="68" selection-start="1598" selection-end="1603" vertical-scroll-proportion="0.30078125">
           <folding />
         </state>
       </provider>

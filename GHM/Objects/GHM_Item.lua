@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_Item(parent, main, profile)
+function GHM_Item(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_Item" .. count, parent, "GHM_Item_Template");
     count = count + 1;
 	local loc = GHI_Loc();
@@ -123,31 +123,7 @@ function GHM_Item(parent, main, profile)
 		else
 			return currentGuid;
 		end
-     end
-
-     --frame.UpdateTheme = function()
-     -- Update the theme using the theme functions
-     -- Example:
-     -- local color = GHM_GetDetailsTextColor();
-     --  someLabel:SetTextColor(color.r,color.g,color.b);
-          --local background = GHM_GetBackground();
-	    -- local titleBarColor = GHM_GetTitleBarColor();
-	     --local titleBarTextColor = GHM_GetTitleBarTextColor();
-		--local backgroundColor = GHM_SetBackgroundColor();
-		--local buttonColor = GHM_GetButtonColor();
-		--local mainTextColor = GHM_GetHeadTextColor();
-		--local detailsTextColor = GHM_GetDetailsTextColor();
-
-          --button:SetVertexColor(buttonColor.r,buttonColor.g,buttonColor.b)
-          --frame:SetTexture(background);
-          --local label = _G[frame:GetName() .. "TextLabel"];
-          --label:SetTextColor(mainTextColor.r,mainTextColor.g,mainTextColor.b)
-
-    -- end
-
-     --GHM_AddThemedObject(frame)
-
-
+	end
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
