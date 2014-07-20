@@ -43,16 +43,16 @@ table.insert(GHI_ProvidedDynamicActions, {
 	]],
 	ports = {
 		summon = {
-			name = "Summon Companion",
+			name = "After the Companion is summoned",
 			order = 1,
 			direction = "out",
-			description = "If the player does not have the companion summoned, summon it",
+			description = "Action to perform after companion is summoned.",
 		},
 		issummon = {
-			name = "Has a Companion",
+			name = "Companion Already Out",
 			direction = "out",
 			order = 2,
-			description = "If the player has pet Summoned",
+			description = "Action to Perform if named Companion is already summoned",
 		},
 	},
 	inputs = {
@@ -86,7 +86,11 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-		DismissCompanion("CRITTER")
+		---DismissCompanion("CRITTER")
+		p = C_PetJournal.GetSummonedPetGUID()
+		if p then
+			C_PetJournal.SummonPetByGUID(p)
+		end
 		dyn.TriggerOutPort("dismiss");
 	]],
 	ports = {
@@ -94,7 +98,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 			name = "Dismiss Companion",
 			order = 1,
 			direction = "out",
-			description = "Dismisses a currently summoned companion",
+			description = "When the Companion is Dismissed",
 		},
 	},
 	inputs = {},
