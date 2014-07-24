@@ -13,6 +13,9 @@ function GHM_HBar(profile, parent, settings)
 	num = num + 1;
 	local obj = CreateFrame("Frame", "GHM_HBar"..num, parent, "GHM_HBar_Template");
 
+	obj:SetWidth(profile.width);
+
+	obj:Show();
 	return obj;
 end
 

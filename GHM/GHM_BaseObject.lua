@@ -34,7 +34,7 @@ function GHM_BaseObject(profile, parent, settings)
 		obj:SetWidth(width);
 		obj:SetHeight(height);
 		obj:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
-		GHM_TempBG(obj);
+		--GHM_TempBG(obj);
 	end
 
 	obj.GetPreferredDimensions = obj.GetPreferredDimensions or function()

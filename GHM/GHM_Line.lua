@@ -142,7 +142,11 @@ function GHM_Line(profile, parent, settings)
 			-- Set up right side
 			local widthAvailableRight = (width - centerWidth)/2;
 			local rightFlexUnitSize = (widthAvailableRight - rightWidth) / rightObjectsWithFlixibleWidth.Count();
-			local x = width - widthAvailableRight;
+			local rightFlexSize = 0;
+			if rightObjectsWithFlixibleWidth.Count() > 0 then
+				rightFlexSize = rightFlexUnitSize * rightObjectsWithFlixibleWidth.Count();
+			end
+			local x = width - rightWidth - rightFlexSize;
 			rightObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
 				--print("Right object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());

@@ -510,12 +510,17 @@ function GHM_List(profile, parent, settings)
 		end
 	end
 
+	local value;
+	f.GetValue = function()
+		return value;
+	end
+
 	f.SetTuble = function(number, tuble)
 		if type(number) == "number" and type(tuble) == "table" then
 
 			f.data[number] = tuble;
 			f.UpdateAll()
-			main.SetLabel(f.label, f.data);
+			value = f.data;
 		end
 	end
 

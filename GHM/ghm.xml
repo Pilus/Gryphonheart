@@ -1483,7 +1483,7 @@
 						if color then
 							label2:SetText("|CFF" ..string.format("%.2x",color.r*255) .. string.format("%.2x",color.g*255) ..
 							string.format("%.2x",color.b*255) .." ".._G["ITEM_QUALITY"..data.."_DESC"].."|r");
-							f.main.SetLabel(f.label,data);
+							--f.main.SetLabel(f.label,data);
 						end
 					end
 				end
@@ -1494,7 +1494,7 @@
 					if color then
 						label2:SetText("|CFF" ..string.format("%.2x",color.r*255) .. string.format("%.2x",color.g*255) ..
 						string.format("%.2x",color.b*255) .." ".._G["ITEM_QUALITY1_DESC"].."|r");
-						f.main.SetLabel(f.label,1);
+						--f.main.SetLabel(f.label,1);
 					end
 				end
 
@@ -1512,7 +1512,7 @@
 							local hex = ITEM_QUALITY_COLORS[self.value].hex;
 							_G[ self.owner:GetName().."TextLabel"]:SetText(hex .." ".._G["ITEM_QUALITY" ..self.value..
 							"_DESC"].."|r");
-							self.owner.main.SetLabel(self.owner.label,self.value);
+							--self.owner.main.SetLabel(self.owner.label,self.value);
 							if self.owner.OnValueChanged then
 								self.owner.OnValueChanged(self.value);
 							end

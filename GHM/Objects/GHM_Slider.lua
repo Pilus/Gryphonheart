@@ -64,10 +64,6 @@ function GHM_Slider(profile, parent, settings)
 			valueLabel:SetText(val);
 		end
 
-
-		if not(main) then
-			main.SetLabel(self.label,val);
-		end
 		if profile.OnValueChanged then
 			profile.OnValueChanged(self,val)
 		end

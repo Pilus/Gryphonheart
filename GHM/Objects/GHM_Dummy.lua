@@ -11,10 +11,12 @@
 local num = 0;
 function GHM_Dummy(profile, parent, settings)
 	num = num + 1;
-	local class = CreateFrame("Frame", "GHM_Dummy"..num, parent);
+	local obj = CreateFrame("Frame", "GHM_Dummy"..num, parent);
 
-
-
-	return class;
+	obj.GetPreferredDimensions = function()
+		return profile.width, profile.height;
+	end
+	--GHM_TempBG(obj);
+	return obj;
 end
 

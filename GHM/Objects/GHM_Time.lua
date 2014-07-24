@@ -49,6 +49,14 @@ function GHM_Time(profile, parent, settings)
 	editBox:SetWidth(width);
 	_G[editBox:GetName() .. "Left"]:SetWidth(width - 10);
 
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height);
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		editBox:SetWidth(width);
+		_G[editBox:GetName() .. "Left"]:SetWidth(width - 10);
+	end
+
 	slider:SetScript("OnLoad", function(self)
 		self:SetValueStep(1)
 		local f = self;
@@ -126,11 +134,11 @@ function GHM_Time(profile, parent, settings)
 	
 	editBox:SetScript("OnTextChanged", OnEditBoxTextChanged)
 	
-	if not (main.lastestEditbox == nil) then
-		main.lastestEditbox.next = editBox;
-		main.lastestEditbox:SetScript("OnTabPressed", function(self) self:ClearFocus(); self.next:SetFocus(); end);
+	if not (settings.lastestEditbox == nil) then
+		settings.lastestEditbox.next = editBox;
+		settings.lastestEditbox:SetScript("OnTabPressed", function(self) self:ClearFocus(); self.next:SetFocus(); end);
 	end
-	main.lastestEditbox = editBox;
+	settings.lastestEditbox = editBox;
 
 	if type(profile.startText) == "string" then
 		editBox:SetText(profile.startText)

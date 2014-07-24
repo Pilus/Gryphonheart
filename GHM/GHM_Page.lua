@@ -33,6 +33,8 @@ function GHM_Page(profile, parent, settings)
 		page.active = false;
 	end
 
+	page.active = true;
+
 	page.GetPreferredDimensions = function()
 		local lineSpacing = settings.lineSpacing or 0;
 		local width, height;

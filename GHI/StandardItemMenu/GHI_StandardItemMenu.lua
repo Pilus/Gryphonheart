@@ -508,7 +508,7 @@ function GHI_StandardItemMenu()
 					end,
 				},
 				{
-					type = "TimeSlider",
+					type = "Time",
 					text = loc.ITEM_CD,
 					align = "r",
 					label = "cooldown",
@@ -538,7 +538,6 @@ function GHI_StandardItemMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
 					align = "l",
 				},
 				{
@@ -552,7 +551,11 @@ function GHI_StandardItemMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
+					align = "l",
+				},
+				{
+					type = "Dummy",
+					height = 10,
 					align = "r",
 				},
 				{
@@ -564,6 +567,11 @@ function GHI_StandardItemMenu()
 					OnClick = function(obj)
 						menuFrame:Hide();
 					end,
+				},
+				{
+					type = "Dummy",
+					height = 10,
+					align = "r",
 				},
 			},
 		},

@@ -279,7 +279,7 @@ function GHI_AdvancedItemMenu()
 					end,
 				},
 				{
-					type = "TimeSlider",
+					type = "Time",
 					text = loc.ITEM_CD,
 					align = "r",
 					label = "cooldown",

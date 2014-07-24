@@ -9,11 +9,32 @@
 --			All rights reserved
 --===================================================
 
+local num = 0;
 function GHM_CustomSlider(profile, parent, settings)
-	local class = GHClass("GHM_CustomSlider");
+	num = num + 1;
+	local obj = CreateFrame("Slider", "GHM_CustomSlider"..num, parent, "GHM_CustomSlider_Template");
 
-	print("Custom slider pending")
+	local label = _G[obj:GetName() .. "Label1"];
+	if type(profile.text) == "string" then
+		label:SetText(profile.text);
+	end
 
-	return class;
+	obj:SetValue(2);
+	obj:SetValue(1);
+	if type(profile.values) == "table" then
+		obj.SliderValues = profile.values;
+		obj:SetMinMaxValues(1, #(profile.values));
+		obj:SetValue(2);
+		obj:SetValue(1);
+	end
+	if type(profile.width) == "number" then
+		obj:SetWidth(profile.width);
+	end
+	obj.OnValueChanged = profile.OnValueChanged;
+	obj.IgnoreGetValueFunc = true;
+
+	obj:Show();
+
+	return obj;
 end
 

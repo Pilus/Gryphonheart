@@ -21,6 +21,7 @@ end)
 
 
 function GHM_FramePositioning(frame,profile,parent)
+	if true then return end
 	-- Frame positioning
 	local extraX = profile.xOff or 0;
 	local extraY = profile.yOff or 0;
@@ -412,7 +413,7 @@ function GHM_CreateObject(num, profile, parent,givenMain)
 		end
 		height = profile.height;
 		obj.OnSelect = profile.OnSelect;
-	elseif profile.type == "HBar" then
+	elseif profile.type == "Q" then
 		height = 5;
 		obj:SetWidth(profile.width);
 	end
@@ -645,10 +646,6 @@ function GHM_NewFrame(self, profile)
 		--print(main.currentPage)
 		main.madeBy = self;
 
-		if not (profile.height) then
-			main:SetHeight(main.pageHeight);
-		end
-
 		-- function handling
 		main.OnOk = function() end;
 		if type(profile.OnOk) == "function" then
@@ -873,6 +870,20 @@ function GHM_NewFrame(self, profile)
 			end
 
 			window.settingUp = false;
+
+			local pagesWidth, pagesHeight = 0, 0;
+			for _, page in pairs(main.pages) do
+				local w, h = page.GetPreferredDimensions();
+				pagesWidth = math.max(pagesWidth, w or 0);
+				pagesHeight = math.max(pagesHeight, h or 0);
+			end
+
+			for _, page in pairs(main.pages) do
+				page.SetPosition(10, 10, profile.width or pagesWidth, profile.height or pagesHeight)
+			end
+
+			main:SetHeight(profile.height or pagesHeight);
+
 			return main;
 		end
 
@@ -887,9 +898,17 @@ function GHM_NewFrame(self, profile)
 		end
 		main:SetScript("OnHide", function(self) GHM_LayerHandle(self); end);
 
+		local pagesWidth, pagesHeight = 0, 0;
 		for _, page in pairs(main.pages) do
-			page.SetPosition(10, 10, profile.width, profile.height)
+			local w, h = page.GetPreferredDimensions();
+			pagesWidth = math.max(pagesWidth, w or 0);
+			pagesHeight = math.max(pagesHeight, h or 0);
 		end
+
+		for _, page in pairs(main.pages) do
+			page.SetPosition(10, 10, profile.width or pagesWidth, profile.height or pagesHeight)
+		end
+		main:SetHeight(profile.height or pagesHeight);
 
 		return main;
 	end
