@@ -544,7 +544,7 @@ function GHM_LayerHandle(frame)
 	end
 end
 
-function GHM_NewFrame(self, profile)
+function OldGHM_NewFrame(self, profile)
 	local loc = GHI_Loc()
 	if type(profile) == "table" and type(profile.name) == "string" then
 		local theme = profile.theme

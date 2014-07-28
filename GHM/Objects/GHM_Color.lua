@@ -260,7 +260,7 @@ function GHM_Color(profile, parent, settings)
 				table.insert(rgb,round(g1,3))
 				table.insert(rgb,round(b1,3))
 				table.insert(rgb,round(a1,3))
-				return rgb				
+				return rgb
 			else
 				local r1,g1,b1, a1 = colorTexture:GetVertexColor()
 				local rgb = {
@@ -272,6 +272,10 @@ function GHM_Color(profile, parent, settings)
 				return rgb
 			end
 		end
+	end
+
+	frame.GetPreferredDimensions = function()
+		return profile.width, profile.height or frame:GetHeight();
 	end
 
 	if type(profile.OnLoad) == "function" then

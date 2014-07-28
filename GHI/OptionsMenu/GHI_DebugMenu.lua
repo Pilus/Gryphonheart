@@ -15,8 +15,6 @@ function GHI_DebugMenu(parentName)
 		return class;
 	end
 	class = GHClass("GHI_DebugMenu");
-	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
-	local parentHeight = InterfaceOptionsFramePanelContainer:GetHeight() - 20;
 	local loc = GHI_Loc();
 	local log = GHI_Log();
 
@@ -36,8 +34,6 @@ function GHI_DebugMenu(parentName)
 				{
 					type = "EditField",
 					align = "c",
-					--height = parentHeight - 30,
-					--width = parentWidth - 50,
 					label = "log",
 				},
 			},
@@ -46,10 +42,11 @@ function GHI_DebugMenu(parentName)
 			menuFrame.ForceLabel("log", log.ToText());
 		end,
 		title = loc.DEBUG_EVENT_LOG,
-		height = parentHeight,
+		lineSpacing = 10,
 		name = "GHI_OptionsDebugFrame",
 		theme = "BlankTheme",
-		width = parentWidth,
+		width = InterfaceOptionsFramePanelContainer:GetWidth(),
+		height = InterfaceOptionsFramePanelContainer:GetHeight(),
 	});
 
 	_G[menuFrame.GetLabelFrame("log"):GetName() .. "AreaScrollText"]:SetMaxLetters(50000);

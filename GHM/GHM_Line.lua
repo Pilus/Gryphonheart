@@ -13,13 +13,6 @@
 function GHM_Line(profile, parent, settings)
 	local class = GHClass("GHM_Line");
 
-	local OPrint = print;
-	local print = function(...)
-		if string.startsWith(parent:GetName(),"GHI_OptionsDebug") then
-			OPrint(...);
-		end
-	end
-
 	local parentName = parent:GetName();
 	local lineNumber = 1;
 	while (_G[parentName.."_L".. lineNumber]) do
@@ -74,7 +67,6 @@ function GHM_Line(profile, parent, settings)
 	end
 
 	class.SetPosition = function(xOff, yOff, width, height)
-		--print(line:GetName(),"SetPosition(",width,",",height,")")
 		GHCheck("Line.SetPosition", {"number", "number", "number", "number"}, {xOff, yOff, width, height})
 		line:SetWidth(width);
 		line:SetHeight(height);
@@ -112,18 +104,14 @@ function GHM_Line(profile, parent, settings)
 				local rightFlexUnitSize = widthAvailableRight / (rightObjectsWithFlixibleWidth.Count() + (centerObjectsWithFlixibleWidth.Count()/2));
 				centerFlexUnitSize = math.min(leftFlexUnitSize, rightFlexUnitSize);
 
-				--print("centerFlexUnitSize", centerFlexUnitSize)
 				-- Update center width
 				centerWidth = centerWidth + centerFlexUnitSize * centerObjectsWithFlixibleWidth.Count();
 			end
-
-			--print("num center objects", centerObjects.Count(), "Out of", objects.Count())
 
 			-- Position the center objects
 			local x = (width - centerWidth)/2;
 			centerObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				--print("Center object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());
 				obj.SetPosition(x, (height - (h or height))/2,  w or centerFlexUnitSize, h or height);
 				x = x + (w or centerFlexUnitSize) + objectSpacing;
 			end);
@@ -134,7 +122,6 @@ function GHM_Line(profile, parent, settings)
 			local x = 0;
 			leftObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				--print("Left object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());
 				obj.SetPosition(x, (height - (h or height))/2,  w or leftFlexUnitSize, h or height);
 				x = x + (w or leftFlexUnitSize) + objectSpacing;
 			end);
@@ -149,7 +136,6 @@ function GHM_Line(profile, parent, settings)
 			local x = width - rightWidth - rightFlexSize;
 			rightObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				--print("Right object", line:GetName(),"yOff", (height - (h or height))/2, h, obj:GetName());
 				obj.SetPosition(x, (height - (h or height))/2,  w or rightFlexUnitSize, h or height);
 				x = x + (w or rightFlexUnitSize) + objectSpacing;
 			end);
@@ -159,18 +145,15 @@ function GHM_Line(profile, parent, settings)
 			if objectsWithFlexibleWidth.Count() > 0 then
 				flexUnitSize = (width - leftWidth - rightWidth) / objectsWithFlexibleWidth.Count();
 			end
-			--print("flex unit size",flexUnitSize,"=(",width ,"-", leftWidth ,"-", rightWidth,") /",objectsWithFlexibleWidth.Count())
 			local x = 0;
 			leftObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				--print(line:GetName(), obj:GetName(),"Left.SetPosition",x)
 				obj.SetPosition(x, (height - (h or height))/2,  w or flexUnitSize, h or height);
 				x = x + (w or flexUnitSize) + objectSpacing;
 			end);
 
 			local rightObjectsWithFlixibleWidth = rightObjects.Intersection(objectsWithFlexibleWidth)
 			local x = width - rightWidth - flexUnitSize * rightObjectsWithFlixibleWidth.Count();
-			--print(line:GetName(), "Right x start", x, "=", width ,"-", rightWidth ,"-", flexUnitSize ,"*", rightObjectsWithFlixibleWidth.Count());
 			rightObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
 				obj.SetPosition(x, (height - (h or height))/2,  w or flexUnitSize, h or height);

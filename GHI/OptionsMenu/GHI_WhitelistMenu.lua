@@ -64,7 +64,9 @@ function GHI_WhitelistMenu(parentName)
 		OnShow = function()
 		end,
 		title = loc.WHITELIST_TITLE,
-		height = 400,
+		width = InterfaceOptionsFramePanelContainer:GetWidth(),
+		height = InterfaceOptionsFramePanelContainer:GetHeight(),
+		lineSpacing = 10,
 		name = "GHI_OptionsWhiteListFrame",
 		theme = "BlankTheme",
 		width = parentWidth,

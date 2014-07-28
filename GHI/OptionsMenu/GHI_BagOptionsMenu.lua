@@ -116,7 +116,9 @@ function GHI_BagOptionsMenu(parentName)
 		OnShow = function()
 		end,
 		title = "",
-		height = 400,
+		width = InterfaceOptionsFramePanelContainer:GetWidth(),
+		height = InterfaceOptionsFramePanelContainer:GetHeight(),
+		lineSpacing = 10,
 		name = "GHI_OptionsButtonFrame",
 		theme = "BlankTheme",
 		width = parentWidth,

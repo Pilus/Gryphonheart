@@ -40,6 +40,18 @@ function Linq(lt)
 		return lt[1];
 	end
 
+	lt.Last = function()
+		return lt[#(lt)];
+	end
+
+	lt.GetIndexOf = function(v)
+		for i = 1, #(lt) do
+			if (lt[i] == v) then
+				return i;
+			end
+		end
+	end
+
 	lt.MaxBy = function(f)
 		local maxIndex = 1;
 		local maxValue;

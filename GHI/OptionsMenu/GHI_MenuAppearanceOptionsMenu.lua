@@ -93,8 +93,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 	class = GHClass("GHI_MenuAppearanceOptionsMenu");
 	GHI_MiscData = GHI_MiscData or {};
 
-	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
-
 	local themes = GHI_MiscData.UI_Themes or {};
 
 	local GetNumPredefinedThemes = function()
@@ -165,7 +163,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		menuFrame.ForceLabel("backgroundColor" , theme.backgroundColor)
 		menuFrame.ForceLabel("buttonColor" , theme.buttonColor)
 		menuFrame.ForceLabel("mainTextColor" , theme.mainTextColor)
-		menuFrame.ForceLabel("detailsTextColor" , theme.detailsTextColor)		
+		menuFrame.ForceLabel("detailsTextColor" , theme.detailsTextColor)
 	end	
 				
 	local t = {
@@ -184,7 +182,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					align = "l",
 					type = "Text",
 					color = "white",
-					width = parentWidth - 20,
 					text = loc.MENU_APPEARANCE_TEXT,
 					fontSize = 11,
 				},
@@ -317,15 +314,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 30,
-					type = "Dummy",
-					align = "l",
-					width = 20,
-				},
-				{
 					type = "HBar",
 					align = "c",
-					width = parentWidth-100,
 				},
 			},
 			{
@@ -400,23 +390,14 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 50,
-					type = "Dummy",
-					align = "l",
-					width = 10,
-				},
-				{
 					type = "HBar",
 					align = "c",
-					width = parentWidth-100,
 				},
 			},
 			{
 				{
 					type = "ImageList",
 					align = "l",
-					height = 200,
-					width = parentWidth,
 					label = "background",
 					text = loc.BACKGROUND,
 					data = BACKGROUNDS,
@@ -433,7 +414,6 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					align = "l",
 					type = "Text",
 					color = "white",
-					width = parentWidth / 2,
 					text = loc.MENU_WARN_RELOG,
 					fontSize = 11,
 				},
@@ -442,10 +422,11 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		OnShow = function()
 		end,
 		title = loc.MENU_APPEARANCE,
-		height = 800,
+		width = InterfaceOptionsFramePanelContainer:GetWidth(),
+		height = InterfaceOptionsFramePanelContainer:GetHeight(),
+		lineSpacing = 10,
 		name = "GHI_OptionsMenuAppearanceFrame",
 		theme = "BlankTheme",
-		width = parentWidth,
 	}
 
 	menuFrame = GHM_NewFrame(CreateFrame("frame"), t)
@@ -541,8 +522,8 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 		local titleBarColor = menuFrame.GetLabel("titleBar");
 		local titleBarTextColor = menuFrame.GetLabel("titleBarTextColor");
 		local backgroundColor = menuFrame.GetLabel("backgroundColor");
-		local alpha = menuFrame.GetLabel("bg_alpha")
-		table.insert(backgroundColor,alpha)
+		--local alpha = menuFrame.GetLabel("bg_alpha")
+		--table.insert(backgroundColor,alpha)
 		local buttonColor = menuFrame.GetLabel("buttonColor")
 		local mainTextColor = menuFrame.GetLabel("mainTextColor")
 		local detailsTextColor = menuFrame.GetLabel("detailsTextColor")

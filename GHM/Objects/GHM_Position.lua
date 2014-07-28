@@ -103,7 +103,7 @@ function GHM_Position(profile, parent, settings)
 	end
 
 	frame.Clear();
-	frame:Show(); -- print(_G[toCurrentButton:GetName().."Text"]:GetText()); AA = _G[toCurrentButton:GetName().."Text"];
+	frame:Show();
 	_G[toCurrentButton:GetName().."Text"].SetText = error;
 	return frame;
 end

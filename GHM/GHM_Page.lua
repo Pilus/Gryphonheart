@@ -56,7 +56,7 @@ function GHM_Page(profile, parent, settings)
 		return width, height;
 	end
 
-	page.SetPosition = function(xOff, yOff, width, height)   --print(page:GetName(),"SetPosition(",width,",",height,")")
+	page.SetPosition = function(xOff, yOff, width, height)
 		GHCheck("Page.SetPosition", {"number", "number", "number", "number"}, {xOff, yOff, width, height})
 		local lineSpacing = settings.lineSpacing or 0;
 

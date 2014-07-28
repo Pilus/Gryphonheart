@@ -109,8 +109,6 @@ function GHM_Color2(profile, parent, settings)
 		if type(data) == "table" then
 			colorPick:SetColorRGB(data.r or data[1], data.g or data[2], data.b or data[3])
 			alphaSlider:SetValue(data.a or data[4] or 1)
-		else
-			print(tostring(data))
 		end
 	end
 

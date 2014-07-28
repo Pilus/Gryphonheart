@@ -9,6 +9,10 @@ Libs\ForAllIndentsAndPurposes\indent.lua
 
 ghm.lua
 
+GHM_BaseMenu.lua
+GHM_WizardMenu.lua
+GHM_WindowedMenu.lua
+GHM_NewFrame.lua
 GHM_Page.lua
 GHM_Line.lua
 GHM_BaseObject.lua

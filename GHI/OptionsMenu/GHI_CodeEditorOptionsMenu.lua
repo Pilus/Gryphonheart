@@ -17,7 +17,6 @@ function GHI_CodeEditorOptionsMenu(parentName)
 
 	local loc = GHI_Loc()
 	class = GHClass("GHI_CodeEditorOptionsMenu");
-	local parentWidth = InterfaceOptionsFramePanelContainer:GetWidth() - 20;
 
 	local miscAPI = GHI_MiscAPI().GetAPI();
 	local LoadSyntaxColors;
@@ -34,7 +33,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 			{
 				alight = "l",
 				type = "Color",
-				width = 100,
+				--width = 100,
 				text = loc["SYNTAX_" .. string.upper(cata)] or cata,
 				tooltip = loc.SYNTAX_TT_1..loc["SYNTAX_" .. string.upper(cata)]..loc.SYNTAX_TT_2,
 				label = cata,
@@ -73,15 +72,8 @@ function GHI_CodeEditorOptionsMenu(parentName)
 			},
 			{
 				{
-					height = 15,
-					type = "Dummy",
-					align = "l",
-					width = 20,
-				},
-				{
 					type = "HBar",
 					align = "c",
-					width = parentWidth-100,
 				},
 			},
 			{
@@ -120,8 +112,7 @@ function GHI_CodeEditorOptionsMenu(parentName)
 				{
 					height = 170,
 					type = "Dummy",
-					align = "r",
-					yOff = -20,
+					align = "c",
 					width = 300,
 					label = "SyntaxColorAnchor"
 				},
@@ -132,9 +123,11 @@ function GHI_CodeEditorOptionsMenu(parentName)
 		end,
 		title = loc.SCRIPT_CODE_EDITOR_SETTINGS,
 		height = 400,
+		lineSpacing = 10,
 		name = "GHI_OptionsCodeEditorSettingsFrame",
 		theme = "BlankTheme",
-		width = parentWidth,
+		width = InterfaceOptionsFramePanelContainer:GetWidth(),
+		height = InterfaceOptionsFramePanelContainer:GetHeight(),
 	}
 	
 	local menuFrame = GHM_NewFrame(CreateFrame("frame"), t);
@@ -147,7 +140,6 @@ function GHI_CodeEditorOptionsMenu(parentName)
 
 	syntaxColorPreview.title:SetText(loc.OPT_SYNTAX_PREVIEW)
 	syntaxColorPreview.title:SetPoint("TOPLEFT", 0, 10)
-	syntaxColorPreview:SetWidth(parentWidth - 250)
 
 	syntaxColorPreview.text = syntaxColorPreview:CreateFontString();
 	syntaxColorPreview.text:SetFontObject(GameFontHighlight);

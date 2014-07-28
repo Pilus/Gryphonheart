@@ -97,7 +97,6 @@ function GHM_MultiNumberEditBox(profile, parent, settings)
 		--GHM_TempBG(box);
 		table.insert(editboxes, box);
 	end
-	--print(#(editboxes), "width:", widthFromBoxes);
 
 	frame:SetWidth(widthFromBoxes);
 

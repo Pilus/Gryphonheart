@@ -681,7 +681,9 @@ function GHI_AdvancedItemMenu()
 			end
 			attributeList.data = newData;
 			attributeList.UpdateAll()
-			menuFrame.SetLabel(attributeList.label, attributeList.data);
+			if attributeList.label then
+				menuFrame.SetLabel(attributeList.label, attributeList.data);
+			end
 		end
 	end
 
@@ -737,7 +739,9 @@ function GHI_AdvancedItemMenu()
 			end
 			updateSequenceList.data = newData;
 			updateSequenceList.UpdateAll()
-			menuFrame.SetLabel(updateSequenceList.label, updateSequenceList.data);
+			if updateSequenceList.label then
+				menuFrame.SetLabel(updateSequenceList.label, updateSequenceList.data);
+			end
 		end
 	end
 

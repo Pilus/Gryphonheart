@@ -162,7 +162,9 @@ function GHI_StandardItemMenu()
 			end
 			actionList.data = newData;
 			actionList.UpdateAll()
-			menuFrame.SetLabel(actionList.label, actionList.data);
+			if actionList.label then
+				menuFrame.SetLabel(actionList.label, actionList.data);
+			end
 
 			local marked = actionList.GetMarked();
 			if marked then

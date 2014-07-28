@@ -159,19 +159,16 @@ function GHM_ImageList(profile, parent, settings)
 
 			imgF:ClearAllPoints()
 			
-			if i == 1 then --print("first");
-			
+			if i == 1 then
 				imgF:SetPoint("TOPLEFT",scroll, "TOPLEFT", 0, 0);
 				
-			elseif mod(i,numPrLine) == 1 then --print("new line");
-			
+			elseif mod(i,numPrLine) == 1 then
 				imgF:SetPoint("TOP",_G[frame:GetName().."Img"..(i-numPrLine)], "BOTTOM", 0, -2);
 				
-			else --print("next");
-			
+			else
 				imgF:SetPoint("LEFT",_G[frame:GetName().."Img"..(i-1)], "RIGHT", 2, 0);
 				
-			end			
+			end
 			
 			if p == "" then
 			
@@ -315,7 +312,11 @@ function GHM_ImageList(profile, parent, settings)
 		else
 			return selectedPath, selectedIndex, selectedX, selectedY
 		end
-     end
+	end
+
+	frame.GetPreferredDimensions = function()
+		return profile.width, profile.height;
+	end
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
