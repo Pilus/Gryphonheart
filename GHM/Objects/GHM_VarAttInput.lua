@@ -309,8 +309,6 @@ function GHM_OutputBox(parent, main, profile)
 
 	local varAttFrame;
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	frame.Force = function(self, data)
 	--error("Not implemented")
 	end

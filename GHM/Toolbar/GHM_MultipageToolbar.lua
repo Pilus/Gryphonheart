@@ -81,8 +81,6 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	bg:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, -buttonHeight);
 	bg:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0);
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	TogglePage(1);
 
 	return frame;

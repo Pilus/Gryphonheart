@@ -78,7 +78,6 @@ function GHM_ImageList(profile, parent, settings)
 	if profile.height then
 		frame:SetHeight(profile.height)
 	end
-	GHM_FramePositioning(frame,profile,parent);
 
 	-- functions
 	frame.images = {};

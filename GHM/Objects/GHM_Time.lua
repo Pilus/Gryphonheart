@@ -151,7 +151,6 @@ function GHM_Time(profile, parent, settings)
 	end);
 
 	editBox:SetTextureTheme("Tooltip")
-	GHM_FramePositioning(frame,profile,parent);
 
 	-- functions
 	local varAttFrame;

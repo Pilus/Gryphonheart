@@ -51,8 +51,6 @@ function GHM_Slider(profile, parent, settings)
 	local width = profile.width or frame:GetWidth();
 	frame:SetWidth(width);
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	local OnValueChanged = function(self,value)
 		local val = sliderValues[math.floor(self:GetValue())];
 

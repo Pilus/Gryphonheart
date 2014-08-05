@@ -45,6 +45,11 @@ function GHM_BaseObject(profile, parent, settings)
 		return profile.label;
 	end
 
+	obj.GetPreferredCenterOffset = obj.GetPreferredCenterOffset or function()
+		local w, h = obj.GetPreferredDimensions();
+		return 0, 0;
+	end
+
 	local origGetValue = obj.GetValue;
 	if origGetValue then
 		obj.GetValue = function(self)

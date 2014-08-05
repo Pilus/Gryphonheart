@@ -38,9 +38,6 @@ function GHM_Position(profile, parent, settings)
 		SetPosition(GHI_Position().GetPlayerPos(2));
 	end)
 
-
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- functions
 	local varAttFrame;
 

@@ -52,9 +52,6 @@ function GHM_Image(profile, parent, settings)
 		end)
 	end)
 
-	-- positioning
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- functions
 	
 	local Force1 = function(data)

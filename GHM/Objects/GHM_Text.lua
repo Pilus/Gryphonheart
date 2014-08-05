@@ -98,8 +98,6 @@ function GHM_Text(profile, parent, settings)
 		end
 	end
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end

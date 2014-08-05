@@ -49,9 +49,6 @@ function GHM_Icon(profile, parent, settings)
 	frame:SetWidth(37);
 	frame:SetHeight(37);
 	frame.OnChanged = profile.OnChanged;
-
-	-- positioning
-	GHM_FramePositioning(frame,profile,parent);
 	
 	-- functions
 	local varAttFrame;

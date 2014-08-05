@@ -55,8 +55,6 @@ function GHM_DropDown(profile, parent, settings)
 		frame:SetWidth(profile.width+6);
 	end
 	
-    GHM_FramePositioning(frame,profile,parent);
-
 	-- Drop down initialize
 
 	local Force1;
@@ -230,6 +228,9 @@ function GHM_DropDown(profile, parent, settings)
         end
     end
 
+	frame.GetPreferredCenterOffset = function()
+		return 0, -5;
+	end
 
     -- Trigger evt onLoad function
     if type(profile.OnLoad) == "function" then

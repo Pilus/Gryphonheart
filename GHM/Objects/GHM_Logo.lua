@@ -74,11 +74,8 @@ function GHM_Logo(profile, parent, settings)
 	end
 
 	editBox:SetTextureTheme("Tooltip")
-	
-	GHM_FramePositioning(frame,profile,parent);
 
-
-	-- functions	
+	-- functions
 	
 	local varAttFrame;
 

@@ -59,8 +59,6 @@ function GHM_CustomDD(profile, parent, settings)
 	end
 	frame:SetHeight(ddFrame:GetHeight()+label:GetHeight()+5);
 
-    GHM_FramePositioning(frame,profile,parent);
-
 	-- Drop down initialize
 
 	local Force1;

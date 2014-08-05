@@ -100,8 +100,6 @@ function GHM_Color2(profile, parent, settings)
 		end
 	end)
 
-	GHM_FramePositioning(frame,profile,parent)
-	
 	-- functions
 	local varAttFrame;
 

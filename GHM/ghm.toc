@@ -7,8 +7,6 @@
 ## RequiredDeps: GHI
 Libs\ForAllIndentsAndPurposes\indent.lua
 
-ghm.lua
-
 GHM_BaseMenu.lua
 GHM_WizardMenu.lua
 GHM_WindowedMenu.lua

@@ -48,12 +48,9 @@ function GHM_Texture(profile, parent, settings)
 	if profile.blend then
 		frame.texture:SetBlendMode(profile.blend)
 	end
-			
-    -- Position the frame
-    GHM_FramePositioning(frame,profile,parent);
 
-    -- Public functions
-    local varAttFrame;
+	-- Public functions
+	local varAttFrame;
 	
 	local Force1 = function(path, width, height, alpha)
 		if type(path) == "string" then

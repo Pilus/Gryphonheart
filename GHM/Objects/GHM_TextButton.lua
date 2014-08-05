@@ -84,8 +84,6 @@ function GHM_TextButton(profile, parent, settings)
 		GameTooltip:Hide();
 	end);
 
-	-- Frame positioning
-	GHM_FramePositioning(frame,profile,parent);
 	frame:Show()
 	
 	return frame;

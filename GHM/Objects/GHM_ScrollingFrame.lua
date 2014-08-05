@@ -48,18 +48,12 @@ function GHM_ScrollingFrame(profile, parent, settings)
 	if profile.child then
 		CreateScrollChild(profile.child)
 	end
-	
-    -- All help functions and any further setup needed goes here
 
-    -- Position the frame
-    GHM_FramePositioning(frame,profile,parent);
-
-    -- Public functions
-
-    frame.Force = function(self, data) -- Calls Force1 or Force2 depending on the number of inputs. Either Force(value) or Force(Type,value)
-        if type(data) == "table" then
-		frame.Clear()
-		CreateScrollChild(data)
+	-- Public functions
+	frame.Force = function(self, data) -- Calls Force1 or Force2 depending on the number of inputs. Either Force(value) or Force(Type,value)
+		if type(data) == "table" then
+			frame.Clear()
+			CreateScrollChild(data)
 		end
     end
 

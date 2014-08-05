@@ -19,7 +19,6 @@ function GHM_EditField(profile, parent, settings)
 	local areaFrame = _G[frame:GetName().."Area"];
 	local fieldFrame = _G[frame:GetName().."AreaScrollText"];
 
-	GHM_FramePositioning(frame,profile,parent);
 	if profile.height then
 		frame:SetHeight(profile.height);
 	end

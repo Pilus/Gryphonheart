@@ -187,9 +187,6 @@ function GHM_Color(profile, parent, settings)
 		frame:SetWidth(profile.width)
 	end
 
-	-- positioning
-	GHM_FramePositioning(frame,profile,parent);
-			
 	local ddMenuFrame
 
 	button:SetScript("OnClick", function()		

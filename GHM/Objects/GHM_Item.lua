@@ -74,8 +74,6 @@ function GHM_Item(profile, parent, settings)
 		miscApi.GHI_SetSelectItemCursor(SetItem);
 	end);
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- functions
 	local varAttFrame;
 

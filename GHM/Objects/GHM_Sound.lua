@@ -70,9 +70,6 @@ function GHM_Sound(profile, parent, settings)
 		end
 	end)
 
-
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- functions
 	local varAttFrame;
 

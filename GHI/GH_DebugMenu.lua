@@ -32,7 +32,7 @@ function GH_DebugMenu()
 		{
 			{
 				{
-					type = "CodeField",
+					type = "EditField",
 					height = 430,
 					text = "",
 					width = 780,

@@ -478,7 +478,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 	
 	
 	frame.field = fieldFrame;
-	GHM_FramePositioning(frame,profile,parent);
+
 	if profile.height then
 		frame:SetHeight(profile.height);
 	end

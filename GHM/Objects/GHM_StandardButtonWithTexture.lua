@@ -50,7 +50,6 @@ function GHM_StandardButtonWithTexture(profile, parent, settings)
 		end
 	end
 
-	GHM_FramePositioning(frame,profile,parent);
 	frame:Show();
 
 	return frame;

@@ -158,8 +158,6 @@ function GHM_ItemButtonSet(profile, parent, settings)
 
 	selectItem(profile.defaultSelected or 0);
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- functions
 	local varAttFrame;
 

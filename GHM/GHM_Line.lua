@@ -34,6 +34,17 @@ function GHM_Line(profile, parent, settings)
 	local centerObjects = objects.Where(function(obj) return obj.GetAlignment() == GHM_Alignment.Center; end);
 	local rightObjects = objects.Where(function(obj) return obj.GetAlignment() == GHM_Alignment.Right; end);
 
+	local GetTopAndBottom = function()
+		local top, bottom = 0, 0;
+		objects.Foreach(function(obj)
+			local w, h = obj.GetPreferredDimensions();
+			local ox, oy = obj.GetPreferredCenterOffset();
+			top = math.max(top, (h/2) - oy);
+			bottom = math.max(bottom, (h/2) + oy);
+		end);
+		return top, bottom;
+	end
+
 	class.GetPreferredDimensions = function()
 		local objectSpacing = settings.objectSpacing;
 		local width, height;
@@ -58,12 +69,21 @@ function GHM_Line(profile, parent, settings)
 		end
 
 		if objectsWithFlexibleHeight.None() and objects.Any() then
-			local _;
-			local largestObject = objects.MaxBy(function(obj) return ({obj.GetPreferredDimensions()})[2]; end);
-			_, height = largestObject.GetPreferredDimensions();
+			local top, bottom = GetTopAndBottom();
+			height = top + bottom;
 		end
 
 		return width, height;
+	end
+
+	local GetYPosition = function(obj, top, bottom)
+		local _, h = obj.GetPreferredDimensions();
+		local _, oy = obj.GetPreferredCenterOffset();
+		if h then
+			return top + oy - (h/2);
+		else
+			return 0;
+		end
 	end
 
 	class.SetPosition = function(xOff, yOff, width, height)
@@ -72,6 +92,13 @@ function GHM_Line(profile, parent, settings)
 		line:SetHeight(height);
 		line:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
 		--GHM_TempBG(line);
+
+		local top, bottom;
+		if height then
+			top, bottom = height/2, height/2;
+		else
+			top, bottom = GetTopAndBottom();
+		end
 
 		local objectSpacing = settings.objectSpacing;
 
@@ -112,7 +139,7 @@ function GHM_Line(profile, parent, settings)
 			local x = (width - centerWidth)/2;
 			centerObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				obj.SetPosition(x, (height - (h or height))/2,  w or centerFlexUnitSize, h or height);
+				obj.SetPosition(x, GetYPosition(obj, top, bottom),  w or centerFlexUnitSize, h or height);
 				x = x + (w or centerFlexUnitSize) + objectSpacing;
 			end);
 
@@ -122,7 +149,7 @@ function GHM_Line(profile, parent, settings)
 			local x = 0;
 			leftObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				obj.SetPosition(x, (height - (h or height))/2,  w or leftFlexUnitSize, h or height);
+				obj.SetPosition(x, GetYPosition(obj, top, bottom),  w or leftFlexUnitSize, h or height);
 				x = x + (w or leftFlexUnitSize) + objectSpacing;
 			end);
 
@@ -136,7 +163,7 @@ function GHM_Line(profile, parent, settings)
 			local x = width - rightWidth - rightFlexSize;
 			rightObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				obj.SetPosition(x, (height - (h or height))/2,  w or rightFlexUnitSize, h or height);
+				obj.SetPosition(x, GetYPosition(obj, top, bottom),  w or rightFlexUnitSize, h or height);
 				x = x + (w or rightFlexUnitSize) + objectSpacing;
 			end);
 		else
@@ -148,7 +175,7 @@ function GHM_Line(profile, parent, settings)
 			local x = 0;
 			leftObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				obj.SetPosition(x, (height - (h or height))/2,  w or flexUnitSize, h or height);
+				obj.SetPosition(x, GetYPosition(obj, top, bottom),  w or flexUnitSize, h or height);
 				x = x + (w or flexUnitSize) + objectSpacing;
 			end);
 
@@ -156,7 +183,7 @@ function GHM_Line(profile, parent, settings)
 			local x = width - rightWidth - flexUnitSize * rightObjectsWithFlixibleWidth.Count();
 			rightObjects.Foreach(function(obj)
 				local w, h = obj.GetPreferredDimensions();
-				obj.SetPosition(x, (height - (h or height))/2,  w or flexUnitSize, h or height);
+				obj.SetPosition(x, GetYPosition(obj, top, bottom),  w or flexUnitSize, h or height);
 				x = x + (w or flexUnitSize) + objectSpacing;
 			end);
 		end

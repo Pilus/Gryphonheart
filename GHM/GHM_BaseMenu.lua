@@ -102,3 +102,39 @@ function GHM_BaseMenu(owner, profile)
 	return class;
 end
 
+function GHM_TempBG(f)
+	f:SetBackdrop({
+		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background",
+		tile = false,
+		tileSize = 0,
+		edgeSize = 32,
+		insets = { left = 0, right = 0, top = 0, bottom = 0 }
+	});
+	local color = { r = 0.4, g = 0.5, b = 0.8 }
+	if GHI_EffectColors then
+		color = GHI_EffectColors[GHI_ColorList[random(1, 6)]];
+	end
+	f:SetBackdropColor(color.r, color.g, color.b, 1);
+end
+
+local highest = -10;
+local layerFrames = {};
+
+function GHM_LayerHandle(frame)
+	if frame:IsShown() then
+		local i = 1;
+		while i <= #(layerFrames) do
+			local f = layerFrames[i];
+			if f == frame or not (frame:IsShown()) then
+				table.remove(layerFrames, i);
+			else
+				i = i + 1;
+			end
+		end
+		table.insert(layerFrames, frame);
+		for i, f in pairs(layerFrames) do
+			f:SetFrameLevel(i * 10)
+		end
+	end
+end
+

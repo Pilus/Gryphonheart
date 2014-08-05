@@ -1,5 +1,6 @@
-﻿if not (GHM_OptionsData) then GHM_OptionsData = {}; end;
+﻿--if not (GHM_OptionsData) then GHM_OptionsData = {}; end;
 
+--[[
 local framesToLocalize = {};
 function GH_Localize(frame)
 	if GHI_Loc then
@@ -18,9 +19,9 @@ frame:SetScript("OnEvent",function()
 		loc.LocalizeFrame(frame);
 	end
 end)
+--]]
 
-
-function GHM_FramePositioning(frame,profile,parent)
+--[[ function GHM_FramePositioning(frame,profile,parent)
 	if true then return end
 	-- Frame positioning
 	local extraX = profile.xOff or 0;
@@ -46,23 +47,12 @@ function GHM_FramePositioning(frame,profile,parent)
 	end
 end
 
+--]]
+
+
+--[[
 local GiveWarnings = false;
 local ShowLines = false;
-
-function GHM_TempBG(f)
-	f:SetBackdrop({
-		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background",
-		tile = false,
-		tileSize = 0,
-		edgeSize = 32,
-		insets = { left = 0, right = 0, top = 0, bottom = 0 }
-	});
-	local color = { r = 0.4, g = 0.5, b = 0.8 }
-	if GHI_EffectColors then
-		color = GHI_EffectColors[GHI_ColorList[random(1, 6)]];
-	end
-	f:SetBackdropColor(color.r, color.g, color.b, 1);
-end
 
 local function Warning(msg)
 	if GiveWarnings == true then
@@ -913,16 +903,16 @@ function OldGHM_NewFrame(self, profile)
 		return main;
 	end
 end
+--]]
 
+--[[
 local GetColorDiff = function(r1, g1, b1, r2, g2, b2)
 	return abs(r1 - r2) + abs(g1 - g2) + abs(b1 - b2);
 end
+--]]
 
---[[ Profile structure
-For wizard:
-	profile[x][y][z]   =  Info table about page x, line y, object z
+--[[
 
-]]
 local iconSearchString = nil;
 local iconTypeShown = 1; -- 1 SHOW_BOTH, 2 SHOW_STOCK, 3 SHOW_GHI
 local iconCategory = 1;
@@ -932,7 +922,7 @@ local icons = {};
 function GHM_UpdateIconList()
 	local searches = nil;
 	wipe(icons);
-	local subcategoryName = GHM_IconSubcategories[GHM_IconCategories[iconCategory]][iconSubCategory];
+	local subcategoryName = GHM_IconSubcategories[GHM_IconCategories[iconCategory] ][iconSubCategory];
 	local stockIconSelection = {};
 	local customIconSelection = {}
 
@@ -1066,7 +1056,11 @@ function GHM_SetIconType(iconFrame, iconType)
 	end
 end
 
-function GHM_SetUpRoundIcon(self, halfSize) --- Current issue
+--]]
+
+--[[
+
+function GHM_SetUpRoundIcon(self, halfSize)
 	local m = 1;
 	if halfSize then m = 1.8; end
 	local res = 20
@@ -1186,7 +1180,7 @@ function GHM_SetUpRoundIcon(self, halfSize) --- Current issue
 	info.y = 1;
 	table.insert(cir, info);
 
-	--]]
+
 
 	for i = 1, #(cir) do
 		local f = CreateFrame("Frame", self:GetName() .. i, self, "GHM_RoundIconPiece_Template");
@@ -1225,8 +1219,9 @@ function GHM_SetUpRoundIcon(self, halfSize) --- Current issue
 
 end
 
+--]]
 
-
+--[[
 function GHM_ChatConfig_CreateCheckboxes(frame, checkBoxTable, checkBoxTemplate, title)
 	local checkBoxNameString = frame:GetName() .. "CheckBox";
 	local checkBoxName, checkBox, check;
@@ -1297,4 +1292,4 @@ function GHM_ChatConfig_CreateCheckboxes(frame, checkBoxTable, checkBoxTemplate,
 		frame:SetHeight(#checkBoxTable * height + padding);
 	end
 end
-
+--]]

@@ -281,7 +281,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 			},
 			{
 				{
-					align = "l",
+					align = "r",
 					type = "Text",
 					text = loc.MENU_WINDOW_COLORS,
 					fontSize = 10,

@@ -29,6 +29,163 @@ local function SetUpMainBagFrame()
 	table.insert(bags, mainBagFrame);
 end
 
+GHM_SetUpRoundIcon = function(self, halfSize)
+	local m = 1;
+	if halfSize then m = 1.8; end
+	local res = 20
+
+	local tex_x1 = 0.06;
+	local tex_x2 = 0.94;
+	local tex_y1 = 0.06;
+	local tex_y2 = 0.94;
+	local diameter = 58 / m;
+	local fsize = diameter / res;
+	local xunit = (tex_x2 - tex_x1) / res;
+	local yunit = (tex_y2 - tex_y1) / res;
+
+	self:SetHeight(diameter);
+	self:SetWidth(diameter);
+	self:SetFrameLevel(0);
+
+	--[ [ New
+	local cir = {};
+	local info = {};
+
+	info = {};
+	info.x_o = 3;
+	info.x = 14;
+	info.y_o = 3;
+	info.y = 14;
+	table.insert(cir, info);
+
+	-- top
+	info = {};
+	info.x_o = 5;
+	info.x = 10;
+	info.y_o = 0;
+	info.y = 1;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 4;
+	info.x = 12;
+	info.y_o = 1;
+	info.y = 1;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 3;
+	info.x = 14;
+	info.y_o = 2;
+	info.y = 1;
+	table.insert(cir, info);
+
+
+
+	-- left
+	info = {};
+	info.x_o = 2;
+	info.x = 1;
+	info.y_o = 3;
+	info.y = 14;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 1;
+	info.x = 1;
+	info.y_o = 4;
+	info.y = 12;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 0;
+	info.x = 1;
+	info.y_o = 5;
+	info.y = 10;
+	table.insert(cir, info);
+
+
+	-- right
+	info = {};
+	info.x_o = 17;
+	info.x = 1;
+	info.y_o = 3;
+	info.y = 14;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 18;
+	info.x = 1;
+	info.y_o = 4;
+	info.y = 12;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 19;
+	info.x = 1;
+	info.y_o = 5;
+	info.y = 10;
+	table.insert(cir, info);
+
+	-- buttom
+	info = {};
+	info.x_o = 5;
+	info.x = 10;
+	info.y_o = 19;
+	info.y = 1;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 4;
+	info.x = 12;
+	info.y_o = 18;
+	info.y = 1;
+	table.insert(cir, info);
+
+	info = {};
+	info.x_o = 3;
+	info.x = 14;
+	info.y_o = 17;
+	info.y = 1;
+	table.insert(cir, info);
+
+
+
+	for i = 1, #(cir) do
+		local f = CreateFrame("Frame", self:GetName() .. i, self, "GHM_RoundIconPiece_Template");
+		local icon = _G[f:GetName() .. "Icon"];
+		local x = cir[i].x;
+		local y = cir[i].y;
+		local x_off = cir[i].x_o;
+		local y_off = cir[i].y_o;
+
+
+		f:SetHeight(fsize * y);
+		f:SetWidth(fsize * x);
+		f:SetPoint("TOPLEFT", self, "TOPLEFT", fsize * x_off, -fsize * y_off);
+
+		icon:SetHeight(fsize * y);
+		icon:SetWidth(fsize * x);
+		icon:SetTexCoord(tex_x1 + xunit * x_off, tex_x1 + xunit * (x_off + x), tex_y1 + yunit * y_off, tex_y1 + yunit * (y_off + y));
+	end
+	self.numPieces = #(cir);
+
+	self.SetIcon = function(icon, path)
+		if not (path) then
+			path = "Interface\\Icons\\INV_Misc_QuestionMark";
+		end
+
+		if icon then
+			local n = icon:GetName();
+			for i = 1, icon.numPieces do
+				local f = _G[n .. i .. "Icon"];
+				f:SetTexture(path);
+			end
+		end
+	end
+
+end
+
 local function UpdateMainBagPageButtons()
 	if menuButtons.next then
 		if api.GHI_GotNextMainBagPage() then

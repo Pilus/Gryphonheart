@@ -33,8 +33,6 @@ function GHM_CheckBox(profile, parent, settings)
 	end
 	label:GetParent():SetWidth(frame:GetWidth() - 10 - checkBox:GetWidth())
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- Public functions
 	local varAttFrame;
 

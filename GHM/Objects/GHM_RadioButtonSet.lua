@@ -112,8 +112,6 @@ function GHM_RadioButtonSet(profile, parent, settings)
 
 	Select(1);
 
-	GHM_FramePositioning(frame,profile,parent);
-
 	-- functions
 	local varAttFrame;
 
