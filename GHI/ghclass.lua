@@ -229,3 +229,10 @@ end
 function GH_TestFeature()
 	return strlower(GetAddOnMetadata("GHI", "X-DevVersion")) == "true" and IsShiftKeyDown();
 end
+
+function GHTry(try, catch)
+	local noError, details = pcall(try);
+	if not(noError) then
+		catch(details);
+	end
+end

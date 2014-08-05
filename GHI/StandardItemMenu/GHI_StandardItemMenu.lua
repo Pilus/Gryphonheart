@@ -442,11 +442,11 @@ function GHI_StandardItemMenu()
 				},
 				{
 					type = "Button",
-					text = loc.DELETE_ACTION,
+					text = loc.EDIT_ACTION,
 					align = "r",
-					label = "deleteActionButton",
+					label = "editActionButton",
 					compact = true,
-					OnClick = DeleteMarkedAction,
+					OnClick = EditMarkedAction,
 				},
 				{
 					type = "Dummy",
@@ -454,13 +454,14 @@ function GHI_StandardItemMenu()
 					width = 10,
 					align = "r",
 				},
+
 				{
 					type = "Button",
-					text = loc.EDIT_ACTION,
+					text = loc.DELETE_ACTION,
 					align = "r",
-					label = "editActionButton",
+					label = "deleteActionButton",
 					compact = true,
-					OnClick = EditMarkedAction,
+					OnClick = DeleteMarkedAction,
 				},
 			},
 			{
@@ -486,7 +487,7 @@ function GHI_StandardItemMenu()
 						{
 							type = "Text",
 							catagory = loc.DETAILS,
-							width = 302,
+							width = 285,
 							label = "details",
 						},
 					},

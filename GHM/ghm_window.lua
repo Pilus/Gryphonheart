@@ -186,7 +186,7 @@ function GHM_Window_OnLoad(self)
 	function self:SetContent(frame)
 		frame:SetParent(self.ContentFrame);
 		frame:ClearAllPoints();
-		frame:SetPoint("TOPLEFT", 5, 0);
+		frame:SetPoint("TOPLEFT", 2, -4);
 		self.Content = frame;
 		self.ContentFrame:Update();
 		self:UpdateScrollBarsVisibility();

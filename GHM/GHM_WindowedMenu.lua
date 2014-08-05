@@ -15,9 +15,9 @@ function GHM_WindowedMenu(owner, profile)
 	local window = CreateFrame("Frame", nil, UIParent, "GHM_Window");
 	window.settingUp = true;
 	class.window = window;
-	window:SetWidth(class:GetWidth() + 30);
+	window:SetWidth(class:GetWidth() + 4);
 	window.menu = class;
-	window:SetHeight(class:GetHeight() + 30);
+	window:SetHeight(class:GetHeight() + 25);
 
 	window:SetDevMode(false);
 	window:SetContent(class);

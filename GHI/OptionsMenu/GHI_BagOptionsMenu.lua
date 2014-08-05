@@ -141,13 +141,19 @@ function GHI_BagOptionsMenu(parentName)
 			menuFrame.ForceLabel("icon", "Interface\\Icons\\INV_Misc_Bag_07_Blue");
 		end
 	end
+
 	menuFrame.okay = function()
-        if GHI_OptionsButtonFrame:IsShown() then
-		GHI_MiscData["BackpackScale"] = menuFrame.GetLabel("icon_scale");
-		GHI_MiscData["BackpackIcon"] = menuFrame.GetLabel("icon");
-		GHI_MiscData["BackpackType"] = menuFrame.GetLabel("shape");
-		UpdateButton();
-        end
+		GHTry(function()
+			if GHI_OptionsButtonFrame:IsShown() then
+				GHI_MiscData["BackpackScale"] = menuFrame.GetLabel("icon_scale");
+				GHI_MiscData["BackpackIcon"] = menuFrame.GetLabel("icon");
+				GHI_MiscData["BackpackType"] = menuFrame.GetLabel("shape");
+				UpdateButton();
+			end
+		end,
+		function(err)
+			print(err);
+		end);
 	end;
 
 	InterfaceOptions_AddCategory(menuFrame);

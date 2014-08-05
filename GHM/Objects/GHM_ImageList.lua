@@ -25,7 +25,7 @@ function GHM_ImageList(profile, parent, settings)
 	local area = _G[frame:GetName().."Area"]
 	local label = _G[frame:GetName() .. "Label"]
 	local list = _G[area:GetName().."Scroll"]
-	local scroll = _G[list:GetName().."Child"]
+	local child = _G[list:GetName().."Child"]
 	
 	count = count + 1
 	
@@ -82,20 +82,21 @@ function GHM_ImageList(profile, parent, settings)
 
 	-- functions
 	frame.images = {};
-	frame.numFramesCreated = 0;	
+	frame.numFramesCreated = 0;
 	frame.SetImages = function(imgList)
 
 		local prevImgF
 		frame.images = imgList;
-		
-		local width = floor(frame:GetWidth())
+
+
+		local width = floor(child:GetWidth())
 		local buttonWidth = (sizeX * scaleX)
-		local numPrLine = floor(width / buttonWidth);
+		local numPrLine = math.max(floor(width / buttonWidth), 1);
 
 		local numLines = ceil(#(imgList)/numPrLine)
 		
-		scroll:SetWidth(list:GetWidth());
-		scroll:SetHeight((numLines*(sizeY)));
+		child:SetWidth(list:GetWidth());
+		child:SetHeight((numLines*(sizeY)));
 
 		for i=1,#(imgList) do
 			local imgF;
@@ -104,10 +105,10 @@ function GHM_ImageList(profile, parent, settings)
 			if i <= frame.numFramesCreated then
 				imgF =_G[frame:GetName().."Img"..i]
 			else
-				imgF = CreateFrame("CheckButton",frame:GetName().."Img"..i,scroll,"GHM_ImageButton_Template")
+				imgF = CreateFrame("CheckButton",frame:GetName().."Img"..i,child,"GHM_ImageButton_Template")
 				imgF.i = i
 				imgF.f = frame
-				frame.numFramesCreated = i
+				frame.numFramesCreated = i;
 			end
 
 			imgF:SetChecked(false);
@@ -160,13 +161,13 @@ function GHM_ImageList(profile, parent, settings)
 			imgF:ClearAllPoints()
 			
 			if i == 1 then
-				imgF:SetPoint("TOPLEFT",scroll, "TOPLEFT", 0, 0);
+				imgF:SetPoint("TOPLEFT",child, "TOPLEFT", 0, 0);
 				
 			elseif mod(i,numPrLine) == 1 then
-				imgF:SetPoint("TOP",_G[frame:GetName().."Img"..(i-numPrLine)], "BOTTOM", 0, -2);
+				imgF:SetPoint("TOP",_G[frame:GetName().."Img"..(i-numPrLine)], "BOTTOM", 0, 0);
 				
 			else
-				imgF:SetPoint("LEFT",_G[frame:GetName().."Img"..(i-1)], "RIGHT", 2, 0);
+				imgF:SetPoint("LEFT",_G[frame:GetName().."Img"..(i-1)], "RIGHT", 0, 0);
 				
 			end
 			
@@ -316,6 +317,13 @@ function GHM_ImageList(profile, parent, settings)
 
 	frame.GetPreferredDimensions = function()
 		return profile.width, profile.height;
+	end
+
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height);
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		frame.SetImages(frame.images);
 	end
 
 	if type(profile.OnLoad) == "function" then

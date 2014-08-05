@@ -55,7 +55,7 @@ function GHM_IconPicker()
 				{
 					type = "DropDown",
 					align = "l",
-					width = 140,
+					width = 131,
 					text = loc.ICON_CATAGORY,
 					label = "category",
 					data = iconCatMenu,
@@ -100,7 +100,7 @@ function GHM_IconPicker()
 				{
 					type = "Editbox",
 					align = "l",
-					width = 140,
+					width = 136,
 					text = loc.ICON_SEARCH,
 					tooltip = loc.ICON_SEARCH_TT,
 					texture = "Tooltip",      
@@ -177,10 +177,8 @@ function GHM_IconPicker()
 				{
 					type = "ImageList",
 					align = "c",
-					height = 250,
-					width = 230,
-					sizeX = 48,
-					sizeY = 48,
+					sizeX = 40,
+					sizeY = 40,
 					label = "icons",
 					OnSelect = function(self)
 						local path, index = menuFrame.GetLabel("icons")
@@ -229,7 +227,7 @@ function GHM_IconPicker()
 		name = "GHM_Icon_Picker"..menuIndex,
 		theme = "BlankTheme",
 		height = 400,
-		width = 200,
+		width = 211,
 		useWindow = true,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then

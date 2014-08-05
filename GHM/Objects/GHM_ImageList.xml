@@ -7,8 +7,8 @@
             <Layer level="ARTWORK">
                 <Texture name="$parentIconTexture">
                     <Anchors>
-                        <Anchor point="TOPLEFT" x="4" y="-4"/>
-						<Anchor point="BOTTOMRIGHT" x="-4" y="4"/>
+                        <Anchor point="TOPLEFT" x="0" y="0"/>
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
                     </Anchors>
                 </Texture>
             </Layer>
@@ -32,7 +32,7 @@
 				<AbsValue val="16"/>
 			</TileSize>
 			<BackgroundInsets>
-				<AbsInset left="4" right="4" top="4" bottom="4"/>
+				<AbsInset left="0" right="0" top="0" bottom="0"/>
 			</BackgroundInsets>
 		</Backdrop>
         <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>

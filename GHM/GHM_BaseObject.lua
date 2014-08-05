@@ -45,6 +45,13 @@ function GHM_BaseObject(profile, parent, settings)
 		return profile.label;
 	end
 
+	local origGetValue = obj.GetValue;
+	if origGetValue then
+		obj.GetValue = function(self)
+			return origGetValue(self or obj);
+		end
+	end
+
 	return obj;
 end
 

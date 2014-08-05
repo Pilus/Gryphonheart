@@ -27,11 +27,19 @@ function GHM_CustomSlider(profile, parent, settings)
 		obj:SetValue(2);
 		obj:SetValue(1);
 	end
+
 	if type(profile.width) == "number" then
 		obj:SetWidth(profile.width);
 	end
+
 	obj.OnValueChanged = profile.OnValueChanged;
 	obj.IgnoreGetValueFunc = true;
+
+
+
+	obj.GetValue = function(self)
+		return self.val;
+	end
 
 	obj:Show();
 

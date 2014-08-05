@@ -48,7 +48,11 @@ function GHM_BaseMenu(owner, profile)
 	class.GetLabel = function(label)
 		local obj = class.GetLabelFrame(label);
 		if obj then
-			return obj.GetValue();
+			if type(obj.GetValue) == "function" then
+				return obj.GetValue();
+			else
+				print("object for", label, "does not have a GetValue function");
+			end
 		else
 			print("Could not get label for", label)
 		end

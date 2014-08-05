@@ -172,7 +172,7 @@ function GHM_Editbox(profile, parent, settings)
 
 
 	frame:Show();
-	--GHM_TempBG(frame);
+	GHM_TempBG(frame);
 
 	return frame;
 end
