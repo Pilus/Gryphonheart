@@ -275,6 +275,10 @@ function GHM_Color(profile, parent, settings)
 		return profile.width, profile.height or frame:GetHeight();
 	end
 
+	frame.GetPreferredCenterOffset = function()
+		return 0, -5;
+	end
+
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end

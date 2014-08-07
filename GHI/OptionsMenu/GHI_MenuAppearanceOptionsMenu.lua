@@ -430,7 +430,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 	}
 
 	menuFrame = GHM_NewFrame(CreateFrame("frame"), t)
-	
+
 	local OnColor = function()
 		local i = menuFrame.GetLabel("preset");
 		if i <= GetNumPredefinedThemes() then

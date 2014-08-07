@@ -243,6 +243,8 @@ function GHI_MainOptionsMenu()
 		end
 		GHI_BuffHandler().UpdateBuffSticking();
 	end;
+
+	menuFrame.SetFrameLevel = function() end; -- Disable changes to frame level.
 	InterfaceOptions_AddCategory(menuFrame);
 
 	if not (GHI_MiscData["tooltip_version"] == false) then

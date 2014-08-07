@@ -29,11 +29,11 @@ function GHM_IconPickerList()
 		return menu;
 	end
 
-	class.New = function(_callback)
-		GetMenu().New(_callback);
+	class.New = function(_callback, strata)
+		return GetMenu().New(_callback);
 	end
-	class.Edit = function(icon,_callback)
-		GetMenu().Edit(icon,_callback);
+	class.Edit = function(icon, _callback, strata)
+		return GetMenu().Edit(icon, _callback, strata);
 	end
 	class.IsBeingEdited = function()
 		for i, menu in pairs(menus) do

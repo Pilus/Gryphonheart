@@ -59,21 +59,27 @@ function GHM_Icon(profile, parent, settings)
 		
 	button:SetScript("OnClick", function()
 		if not(iconPath == defaultIcon) then
-			GHM_IconPickerList().Edit(iconPath, function(selectedIcon)
+			local picker = GHM_IconPickerList().Edit(iconPath, function(selectedIcon)
 				iconPath = selectedIcon
 				SetItemButtonTexture(button,iconPath)
 				if frame.OnChanged then
 					frame.OnChanged(iconPath);
 				end
-			end)
+			end, button:GetFrameStrata());
+			frame:SetScript("OnHide", function()
+				picker.Hide();
+			end);
 		else
-			GHM_IconPickerList().New(function(selectedIcon)
+			local picker = GHM_IconPickerList().New(function(selectedIcon)
 				iconPath = selectedIcon
 				SetItemButtonTexture(button,iconPath)
 				if frame.OnChanged then
 					frame.OnChanged(iconPath);
 				end
-			end)
+			end, button:GetFrameStrata());
+			frame:SetScript("OnHide", function()
+				picker.Hide();
+			end);
 		end
 	end)
 

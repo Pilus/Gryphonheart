@@ -1,29 +1,29 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	<CheckButton name="GHM_ImageButton_Template" checked="false" virtual="true">
-        <Size>
-            <AbsDimension x="74" y="74"/>
-        </Size>
-        <Layers>
-            <Layer level="ARTWORK">
-                <Texture name="$parentIconTexture">
-                    <Anchors>
-                        <Anchor point="TOPLEFT" x="0" y="0"/>
+		<Size>
+			<AbsDimension x="74" y="74"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIconTexture">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="0"/>
 						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
-                    </Anchors>
-                </Texture>
-            </Layer>
-            <Layer level="BACKGROUND">
-                <FontString name="$parentAltText" justifyH="CENTER" font="Fonts\FRIZQT__.TTF" text="">
-                    <Anchors>
-                        <Anchor point="CENTER"/>
-                    </Anchors>
-                    <FontHeight>
-                        <AbsValue val="11"/>
-                    </FontHeight>
-                    <Color r="1" g="1" b="1"/>
-                </FontString>
-            </Layer>
-        </Layers>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentAltText" justifyH="CENTER" font="Fonts\FRIZQT__.TTF" text="">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<FontHeight>
+						<AbsValue val="11"/>
+					</FontHeight>
+					<Color r="1" g="1" b="1"/>
+				</FontString>
+			</Layer>
+		</Layers>
 		<Backdrop bgFile="" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
 			<EdgeSize>
 				<AbsValue val="16"/>
@@ -35,32 +35,32 @@
 				<AbsInset left="0" right="0" top="0" bottom="0"/>
 			</BackgroundInsets>
 		</Backdrop>
-        <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
-        <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
 		<CheckedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
-    </CheckButton>
+	</CheckButton>
 
-    <Frame name="GHM_ImageList_Template" virtual="true">
-        <Size>
-            <AbsDimension x="180" y="180"/>
-        </Size>
+	<Frame name="GHM_ImageList_Template" virtual="true">
+		<Size>
+			<AbsDimension x="180" y="180"/>
+		</Size>
 		<Layers>
-            <Layer level="BACKGROUND">
-                <FontString name="$parentLabel" inherits="GHM_TextLabel_Template" font="GHM_GameFontSmall" text="" justifyH="LEFT">
-                    <Anchors>
-                        <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
-                            <Offset>
-                                <AbsDimension x="0" y="0"/>
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                    <FontHeight>
-                        <AbsValue val="11"/>
-                    </FontHeight>
-                </FontString>
-            </Layer>
-        </Layers>
-        <Frames>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentLabel" inherits="GHM_TextLabel_Template" font="GHM_GameFontSmall" text="" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<FontHeight>
+						<AbsValue val="11"/>
+					</FontHeight>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
 			<Frame name="$parentArea">
 				<Anchors>
 					<Anchor point="TOPLEFT"/>
@@ -79,7 +79,6 @@
 				</Backdrop>
 				<Frames>
 					<ScrollFrame name="$parentScroll" inherits="UIPanelScrollFrameTemplate">
-						<Size x="10" y="10"/>
 						<Anchors>
 							<Anchor point="TOPLEFT" x="5" y="-5"/>
 							<Anchor point="BOTTOMRIGHT" x="-26" y="5"/>
@@ -88,15 +87,13 @@
 							<Frame name="$parentChild">
 								<Anchors>
 									<Anchor point="TOPLEFT"/>
+									<Anchor point="BOTTOMRIGHT"/>
 								</Anchors>
-								<Size>
-									<AbsDimension x="10" y="10"/>
-								</Size>
 							</Frame>
 						</ScrollChild>
 					</ScrollFrame>
 				</Frames>
 			</Frame>
-        </Frames>
-    </Frame>
+		</Frames>
+	</Frame>
 </Ui>

@@ -97,7 +97,6 @@ function GHM_CheckBox(profile, parent, settings)
 		end
 	end
 
-	GHM_TempBG(frame)
 	-- Trigger evt onLoad function
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);

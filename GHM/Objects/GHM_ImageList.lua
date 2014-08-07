@@ -30,7 +30,9 @@ function GHM_ImageList(profile, parent, settings)
 	count = count + 1
 	
 	local selectedIndex, selectedPath, selectedX, selectedY;
-	
+
+	local varAttFrame;
+
 	local scaleX = 1
 	local scaleY = 1
 	local sizeX = 72
@@ -91,7 +93,7 @@ function GHM_ImageList(profile, parent, settings)
 		local width = floor(child:GetWidth())
 		local buttonWidth = (sizeX * scaleX)
 		local numPrLine = math.max(floor(width / buttonWidth), 1);
-
+		print("child width", child:GetWidth(), "list", list:GetWidth());
 		local numLines = ceil(#(imgList)/numPrLine)
 		
 		child:SetWidth(list:GetWidth());
@@ -271,12 +273,12 @@ function GHM_ImageList(profile, parent, settings)
 
 	local Force2 = function(inputType, inputValue)
 		if (inputType == "attribute" or inputType == "variable") and varAttFrame then -- Handles input to var/Att frame
-            varAttFrame:SetValue(inputType, inputValue);
+			varAttFrame:SetValue(inputType, inputValue);
 
-        else -- static
-            varAttFrame:Clear();
-            Force1(inputValue);
-        end
+		else -- static
+			varAttFrame:Clear();
+			Force1(inputValue);
+		end
 	end
 
 	frame.Force = function(self, ...)
@@ -322,8 +324,11 @@ function GHM_ImageList(profile, parent, settings)
 		frame:SetWidth(width);
 		frame:SetHeight(height);
 		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
-		frame.SetImages(frame.images);
 	end
+
+	frame:SetScript("OnShow", function()
+		frame.SetImages(frame.images);
+	end);
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);

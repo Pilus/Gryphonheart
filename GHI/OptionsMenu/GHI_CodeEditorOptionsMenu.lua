@@ -110,6 +110,14 @@ function GHI_CodeEditorOptionsMenu(parentName)
 			},
 			{
 				{
+					height = 10,
+					type = "Dummy",
+					align = "l",
+					width = 10,
+				},
+			},
+			{
+				{
 					height = 170,
 					type = "Dummy",
 					align = "c",
@@ -160,25 +168,25 @@ function GHI_CodeEditorOptionsMenu(parentName)
 	
 	local function ToggleSyntaxHighlight(on)
 		if on == false then
-				local butt = menuFrame.GetLabelFrame("ResetColors")
-				local title = menuFrame.GetLabelFrame("color_title")
-				for i,v in pairs(colorCatObjs) do
-					local f = menuFrame.GetLabelFrame(v.label)
-					f:Hide()
-				end
-				butt:Hide()
-				syntaxColorPreview:Hide()
-				title:Hide()
+			local butt = menuFrame.GetLabelFrame("ResetColors")
+			local title = menuFrame.GetLabelFrame("color_title")
+			for i,v in pairs(colorCatObjs) do
+				local f = menuFrame.GetLabelFrame(v.label)
+				f:Hide()
+			end
+			butt:Hide()
+			syntaxColorPreview:Hide()
+			title:Hide()
 		elseif on == true then
-				local butt = menuFrame.GetLabelFrame("ResetColors")
-				local title = menuFrame.GetLabelFrame("color_title")
-				for i,v in pairs(colorCatObjs) do
-					local f = menuFrame.GetLabelFrame(v.label)
-					f:Show()
-				end
-				butt:Show()
-				syntaxColorPreview:Show()
-				title:Show()
+			local butt = menuFrame.GetLabelFrame("ResetColors")
+			local title = menuFrame.GetLabelFrame("color_title")
+			for i,v in pairs(colorCatObjs) do
+				local f = menuFrame.GetLabelFrame(v.label)
+				f:Show()
+			end
+			butt:Show()
+			syntaxColorPreview:Show()
+			title:Show()
 		end
 	end
 	

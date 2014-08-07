@@ -238,25 +238,37 @@ function GHM_IconPicker()
 
 	menuFrame = GHM_NewFrame(class, t );
 
-	local Initialize = function(icon, _OnOkCallback)
+	local Initialize = function(icon, _OnOkCallback, strata)
 		OnOkCallback = _OnOkCallback;
 		defaultIcon = icon
 		menuFrame.ForceLabel("current", icon);
 		menuFrame.ForceLabel("category","Ability")
+		if strata then
+			menuFrame.window:SetFrameStrata(strata);
+			menuFrame.window:SetFrameLevel(100);
+		end
+
 		menuFrame:Show();
 		inUse = true;
 	end
 
-	class.New = function(_OnOkCallback)
-		Initialize("Interface\\Icons\\INV_Misc_QuestionMark", _OnOkCallback);
+	class.New = function(_OnOkCallback, strata)
+		Initialize("Interface\\Icons\\INV_Misc_QuestionMark", _OnOkCallback, strata);
+		return class;
 	end
 	
-	class.Edit = function(iconPath, _OnOkCallback)
-		Initialize(iconPath, _OnOkCallback);
+	class.Edit = function(iconPath, _OnOkCallback, strata)
+		Initialize(iconPath, _OnOkCallback, strata);
+		return class;
 	end
 		
 	class.IsInUse = function()
 		 return inUse;
+	end
+
+	class.Hide = function()
+		menuFrame:Hide();
+		inUse = false;
 	end
 	
 	menuFrame:Hide();
