@@ -164,7 +164,9 @@ function GHM_Editbox(profile, parent, settings)
 		end
 	end
 
-
+	frame.GetPreferredCenterOffset = function()
+		return 0, -4;
+	end
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);

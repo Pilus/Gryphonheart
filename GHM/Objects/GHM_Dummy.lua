@@ -16,6 +16,7 @@ function GHM_Dummy(profile, parent, settings)
 	obj.GetPreferredDimensions = function()
 		return profile.width, profile.height;
 	end
+
 	--GHM_TempBG(obj);
 	return obj;
 end

@@ -22,11 +22,16 @@ function GHM_EditField(profile, parent, settings)
 	if profile.height then
 		frame:SetHeight(profile.height);
 	end
+
+	local OrigSetWidth = frame.SetWidth;
+	frame.SetWidth = function(self, width)
+		OrigSetWidth(self, width);
+		fieldFrame:SetWidth(width-33);
+	end
+
 	if profile.width then
 		frame:SetWidth(profile.width);
 	end
-
-	fieldFrame:SetWidth(frame:GetWidth()-33);
 
 	-- functions
 	local varAttFrame;

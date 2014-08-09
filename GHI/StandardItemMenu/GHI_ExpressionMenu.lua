@@ -115,7 +115,6 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 					type = "Editbox",
 					text = loc.TEXT;
 					label = "text",
-					width = 400,
 					texture = "Tooltip",
 					OnTextChanged = function(self)
 					end,
@@ -143,7 +142,7 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 				{
 					type = "Text",
 					fontSize = 11,
-					width = 390,
+					width = 380,
 					text = string.gsub(loc.EXPRESSION_TIP,"|CFFFFD100",string.format("|CFF%s",GHM_ColorToHex(GHM_GetHeadTextColor()))),
 					color = "white",
 					align = "l",

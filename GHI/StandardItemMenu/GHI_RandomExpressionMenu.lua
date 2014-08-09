@@ -110,7 +110,6 @@ function GHI_RandomExpressionMenu(_OnOkCallback, _editAction)
 				type = "Editbox",
 				text = loc.TEXT;
 				label = "text" .. index,
-				width = 250,
 				texture = "Tooltip",
 				OnTextChanged = function(self)
 				end,

@@ -401,6 +401,7 @@ function GHI_MenuAppearanceOptionsMenu(parentName)
 					label = "background",
 					text = loc.BACKGROUND,
 					data = BACKGROUNDS,
+					sizeX = 70,
 					OnSelect = function(self, path)
 						local i = menuFrame.GetLabel("preset");
 						if i <= GetNumPredefinedThemes() then

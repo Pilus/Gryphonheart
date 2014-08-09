@@ -1214,29 +1214,15 @@
 		</Size>
 		<Scripts>
 			<OnLoad>
-				self:SetValueStep(1)
 				local f = self;
-				f.Force = function(data)
-				if type(data) == "number" and f.StackSliderValues then
-				for i=1,#(f.StackSliderValues) do
-				if f.StackSliderValues[i] == data then
-				f:SetValue(i);
-				break;
-				end
-				end
-				end
-				end
-				f.Clear = function(self)
-				f:SetValue(1);
-				end
+
 			</OnLoad>
 			<OnValueChanged>
-				self.StackSliderValues = {1,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36};
-				self.amount = self.StackSliderValues[math.floor(self:GetValue()+0.5)];
-				_G[self:GetName().."Label2"]:SetText(self.amount..GHI_Loc().SLOTS)
-				if not(self.main == nil) then
-					self.main.SetLabel(self.label,self.amount);
+				if not(self.StackSliderValues) or not(self:OrigGetValue()) then
+					return
 				end
+				self.amount = self.StackSliderValues[math.floor(self:OrigGetValue()+0.5)];
+				_G[self:GetName().."Label2"]:SetText(self.amount..GHI_Loc().SLOTS)
 				if self.OnValueChanged then
 					self.OnValueChanged(self.amount)
 				end

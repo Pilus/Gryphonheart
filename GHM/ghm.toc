@@ -83,7 +83,7 @@ Objects\GHM_Button.lua
 Objects\GHM_CustomSlider.lua
 Objects\GHM_Hbar.lua
 Objects\GHM_QualityDD.lua
-
+Objects\GHM_SlotSlider.lua
 
 Toolbar\GHM_ToolbarObjectRow.lua
 Toolbar\GHM_ToolbarCategory.lua

@@ -303,6 +303,18 @@ function GHI_StandardItemMenu()
 						UpdateTooltip();
 					end,
 				},
+				{
+					type = "Dummy",
+					height = 24,
+					width = 30,
+					align = "l",
+				},
+				{
+					type = "Dummy",
+					height = 30,
+					align = "r",
+					label = "TooltipAnchor",
+				}
 			},
 			{
 				{
@@ -511,6 +523,15 @@ function GHI_StandardItemMenu()
 					end,
 				},
 				{
+					type = "CheckBox",
+					text = loc.CONSUMED,
+					align = "l",
+					label = "consumed",
+					OnClick = function(self)
+						item.SetConsumed(self:GetChecked());
+					end
+				},
+				{
 					type = "Time",
 					text = loc.ITEM_CD,
 					align = "r",
@@ -518,15 +539,6 @@ function GHI_StandardItemMenu()
 					OnValueChanged = function(cd)
 						item.SetCooldown(cd);
 					end,
-				},
-				{
-					type = "CheckBox",
-					text = loc.CONSUMED,
-					align = "c",
-					label = "consumed",
-					OnClick = function(self)
-						item.SetConsumed(self:GetChecked());
-					end
 				},
 			},
 			{
@@ -624,7 +636,10 @@ function GHI_StandardItemMenu()
 	itemTooltip = CreateFrame("GameTooltip", "GHI_StandardItemMenuItemTooltip" .. menuIndex, menuFrame, "GHI_StandardItemMenuItemTooltip");
 	_G["GHI_StandardItemMenuItemTooltip" .. menuIndex .. "TextLabel"]:SetText(loc.PREVIEW)
 
-	itemTooltip:SetPoint("TOPRIGHT", 10, -19)
+	local anchor = menuFrame.GetLabelFrame("TooltipAnchor");
+	itemTooltip:SetPoint("TOPRIGHT", anchor, "TOPLEFT");
+	itemTooltip:SetPoint("TOPRIGHT", anchor, "TOPRIGHT");
+
 	menuFrame.window:AddScript("OnMinimize", function()
 		if menuFrame.iconFrame then
 			menuFrame.iconFrame:Hide();

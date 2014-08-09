@@ -87,8 +87,9 @@ function GHM_BaseMenu(owner, profile)
 	end
 
 	-- layer handling
-	if profile.onShow then
-		class:SetScript("OnShow", function(f) GHM_LayerHandle(f); profile.onShow(f); end);
+	local onShow = profile.onShow or profile.OnShow;
+	if onShow then
+		class:SetScript("OnShow", function(f) GHM_LayerHandle(f); onShow(f); end);
 	else
 		class:SetScript("OnShow", function(f) GHM_LayerHandle(f); end);
 	end

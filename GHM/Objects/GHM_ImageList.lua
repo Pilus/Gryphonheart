@@ -89,14 +89,13 @@ function GHM_ImageList(profile, parent, settings)
 		local prevImgF
 		frame.images = imgList;
 
-
-		local width = floor(child:GetWidth())
+		local width = frame:GetWidth() - 29;
 		local buttonWidth = (sizeX * scaleX)
 		local numPrLine = math.max(floor(width / buttonWidth), 1);
-		print("child width", child:GetWidth(), "list", list:GetWidth());
+
 		local numLines = ceil(#(imgList)/numPrLine)
 		
-		child:SetWidth(list:GetWidth());
+		child:SetWidth(width);
 		child:SetHeight((numLines*(sizeY)));
 
 		for i=1,#(imgList) do
@@ -316,14 +315,25 @@ function GHM_ImageList(profile, parent, settings)
 		end
 	end
 
+	local GetHeightForLabel = function()
+		if label:GetText() == nil then
+			return 0;
+		end
+		return label:GetHeight();
+	end
+
 	frame.GetPreferredDimensions = function()
-		return profile.width, profile.height;
+		local h = profile.height;
+		if h then
+			h = h + GetHeightForLabel();
+		end
+		return profile.width, h;
 	end
 
 	frame.SetPosition = function(xOff, yOff, width, height)
 		frame:SetWidth(width);
-		frame:SetHeight(height);
-		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		frame:SetHeight(height - GetHeightForLabel());
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -(yOff + GetHeightForLabel()));
 	end
 
 	frame:SetScript("OnShow", function()
