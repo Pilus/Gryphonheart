@@ -72,23 +72,23 @@ function GHM_MultiNumberEditBox(profile, parent, settings)
 		box.label = info.label;
 		box.digits = info.digits;
 
-		local text = GHM_Text(frame, main, {
+		local text = GHM_Text({
 			text = info.text,
 			color = "white",
 			fontSize = 11,
 			align = "c",
-		})
+		}, frame, settings)
 		text:ClearAllPoints();
 		text:SetPoint("RIGHT", box, "LEFT")
 
 		box:SetScript("OnTextChanged", OnEditBoxTextChanged);
 		box:SetScript("OnEscapePressed", function(self) self:ClearFocus(); end);
 
-		if not (main.lastestEditbox == nil) then
-			main.lastestEditbox.next = box;
-			main.lastestEditbox:SetScript("OnTabPressed", function(self) self:ClearFocus(); self.next:SetFocus(); end);
+		if not (settings.lastestEditbox == nil) then
+			settings.lastestEditbox.next = box;
+			settings.lastestEditbox:SetScript("OnTabPressed", function(self) self:ClearFocus(); self.next:SetFocus(); end);
 		end
-		main.lastestEditbox = box;
+		settings.lastestEditbox = box;
 
 		box:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", widthFromBoxes + text:GetWidth(), 0);
 		widthFromBoxes = widthFromBoxes + text:GetWidth() + box:GetWidth();

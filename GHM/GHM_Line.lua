@@ -190,7 +190,19 @@ function GHM_Line(profile, parent, settings)
 	end
 
 	class.GetLabelFrame = function(label)
-		return objects.Where(function(obj) return obj.GetLabel() == label; end).First();
+		local frame = objects.Where(function(obj) return obj.GetLabel() == label; end).First();
+		if not(frame) then
+			objects.Foreach(function(obj)
+				if obj.GetLabelFrame and not(frame) then
+					frame = obj.GetLabelFrame(label);
+				end
+			end)
+		end
+		return frame;
+	end
+
+	class.GetPage = function()
+		return parent;
 	end
 
 	return class;

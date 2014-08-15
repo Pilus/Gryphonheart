@@ -56,8 +56,16 @@ function GHM_Page(profile, parent, settings)
 		return width, height;
 	end
 
+	local lastPosition = {};
 	page.SetPosition = function(xOff, yOff, width, height)
-		GHCheck("Page.SetPosition", {"number", "number", "number", "number"}, {xOff, yOff, width, height})
+		GHCheck("Page.SetPosition", {"numberNil", "numberNil", "numberNil", "numberNil"}, {xOff, yOff, width, height});
+
+		if not(xOff) and not(yOff) and not(width) and not(height) then
+			xOff, yOff, width, height = unpack(lastPosition);
+		else
+			lastPosition = {xOff, yOff, width, height};
+		end
+
 		local lineSpacing = settings.lineSpacing or 0;
 
 		local preferredWidth, preferredHeight = page.GetPreferredDimensions();

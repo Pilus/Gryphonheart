@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_MultiPageToolbar(parent, main, profile)
+function GHM_MultiPageToolbar(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_MultiPageToolbar" .. count, parent);
 	count = count + 1;
 
@@ -19,7 +19,7 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	local backgroundColor2 = {0.8, 0.8, 0.8, 0.6};
 
 	local height,width = 0,0;
-	local pages = {};
+	local pages = Linq();
 	local pageButtons = {};
 
 	local currentShown;
@@ -61,7 +61,7 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	end
 
 	for i=1,#(profile) do
-		local page = GHM_ToolbarPage(frame, main, profile[i]);
+		local page = GHM_ToolbarPage(profile[i], frame, settings);
 		page:SetPoint("TOPLEFT", frame, "TOPLEFT", 2, - (buttonHeight + 2));
 		page:Hide();
 		width = math.max(width, page:GetWidth());
@@ -80,6 +80,15 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	bg:SetTexture(unpack(backgroundColor));
 	bg:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, -buttonHeight);
 	bg:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0);
+
+
+	frame.GetLabelFrame = function(label)
+		local frame;
+		pages.Foreach(function(page)
+			frame = frame or page.GetLabelFrame(label);
+		end);
+		return frame;
+	end
 
 	TogglePage(1);
 

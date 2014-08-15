@@ -50,6 +50,14 @@ function GHM_BaseObject(profile, parent, settings)
 		return 0, 0;
 	end
 
+	obj.GetLine = function()
+		return parent;
+	end
+
+	obj.GetPage = function()
+		return obj.GetLine().GetPage();
+	end
+
 	local origGetValue = obj.GetValue;
 	if origGetValue then
 		obj.GetValue = function(self)

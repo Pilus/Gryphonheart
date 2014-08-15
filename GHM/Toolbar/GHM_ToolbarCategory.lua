@@ -10,20 +10,22 @@
 --===================================================
 
 local count = 1;
-function GHM_ToolbarCategory(parent, main, profile)
+function GHM_ToolbarCategory(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_ToolbarCategory" .. count, parent);
 	count = count + 1;
 
 	local height,width = 0,0;
+	local rows = Linq();
 
 	local area = CreateFrame("Frame", frame:GetName().."Area", frame)
 	for i=1,#(profile) do
-		local row = GHM_ToolbarObjectRow(area, main, profile[i]);
+		local row = GHM_ToolbarObjectRow(profile[i], area, settings);
 
 		row:SetPoint("TOP", area, "TOP", 0, -height)
 
 		width = math.max(width, row:GetWidth());
 		height = height + row:GetHeight();
+		table.insert(rows, row);
 	end
 
 	area:SetHeight(height);
@@ -52,6 +54,14 @@ function GHM_ToolbarCategory(parent, main, profile)
 		edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
 		tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 0, right = 0, top = 0, bottom = 0 }});
+
+	frame.GetLabelFrame = function(label)
+		local frame;
+		rows.Foreach(function(row)
+			frame = frame or row.GetLabelFrame(label);
+		end);
+		return frame;
+	end
 
 	return frame;
 end

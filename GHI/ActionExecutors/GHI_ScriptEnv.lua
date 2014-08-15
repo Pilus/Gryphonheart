@@ -963,7 +963,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 			for i=math.max(1,l-5),math.min(#(t),l+5) do
 				print(i..":",t[i]);
 			end
-		end
+		end --GH_DebugMenu().New(code)
 	end
 
 	local headers = {};

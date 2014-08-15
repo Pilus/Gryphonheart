@@ -13,15 +13,27 @@
 --===================================================
 
 local count = 1;
-function GHM_ToolbarObjectRow(parent, main, profile)
+function GHM_ToolbarObjectRow(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_ToolbarObjectRow" .. count, parent);
 	count = count + 1;
 
 	local height,width = 0,0;
+	local objects = Linq();
 	for i=1,#(profile) do
-		local _height, obj = GHM_CreateObject(i, profile[i], frame, main);
-		height = math.max(height,_height);
-		width = width + obj:GetWidth();
+		local obj = GHM_BaseObject(profile[i], frame, settings);
+		local objWidth, objHeight = obj.GetPreferredDimensions();
+
+		obj.SetPosition(width, 0, objWidth, objWidth);
+
+		height = math.max(height, objHeight);
+		width = width + objWidth;
+
+
+		table.insert(objects, obj);
+	end
+
+	frame.GetLabelFrame = function(label)
+		return objects.Where(function(obj) return obj.GetLabel() == label; end).First();
 	end
 
 	frame:SetHeight(height);
