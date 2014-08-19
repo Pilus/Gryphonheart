@@ -418,6 +418,7 @@ function GHI_AdvancedItemMenu()
 					end,
 					OnMarked = UpdateAttributeList,
 				},
+
 				{
 					type = "RadioButtonSet",
 					texture = "Tooltip",
@@ -615,7 +616,7 @@ function GHI_AdvancedItemMenu()
 		title = loc.CREATE_TITLE_ADV,
 		name = "GHI_Advanced_Item_Menu" .. menuIndex,
 		theme = "BlankWizardTheme",
-		width = 500,
+		width = 520,
 		height = 440,
 		useWindow = true,
 		OnShow = UpdateTooltip,
