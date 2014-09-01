@@ -32,7 +32,7 @@ function GHG_GroupAdmin_RankMenu()
 					text = loc.NAME;
 					label = "name",
 					texture = "Tooltip",
-					--width = 100,
+					width = 200,
 				},
 			},
 			{

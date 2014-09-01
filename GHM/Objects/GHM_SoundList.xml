@@ -5,10 +5,6 @@
         <Size>
             <AbsDimension x="170" y="80"/>
         </Size>
-
-        <Scripts>
-
-        </Scripts>
         <Frames>
             <EditBox name="$parentEditbox" letters="127" hidden="false" autoFocus="false" historyLines="1">
                 <Size>

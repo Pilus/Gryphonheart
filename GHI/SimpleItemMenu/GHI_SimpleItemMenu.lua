@@ -90,14 +90,14 @@ function GHI_SimpleItemMenu()
 		inUse = true;
 		edit = false;
 		actionSelection = {"none",loc.NONE}
-		menuFrame.ForceLabel("name", nil);
-		menuFrame.ForceLabel("white1", nil);
-		menuFrame.ForceLabel("white2", nil);
-		menuFrame.ForceLabel("comment", nil);
-		menuFrame.ForceLabel("quality", nil);
+		menuFrame.ForceLabel("name", "");
+		menuFrame.ForceLabel("white1", "");
+		menuFrame.ForceLabel("white2", "");
+		menuFrame.ForceLabel("comment", "");
+		menuFrame.ForceLabel("quality", 2);
 		menuFrame.ForceLabel("icon", nil);
 		menuFrame.ForceLabel("stackSize", 1);
-		menuFrame.ForceLabel("useText", nil);
+		menuFrame.ForceLabel("useText", "");
 		menuFrame.ForceLabel("consumed", false);
 		menuFrame.ForceLabel("cooldown", 1);
 		for i,v in pairs(buttonList) do
@@ -282,6 +282,7 @@ function GHI_SimpleItemMenu()
 						item.SetName(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -296,6 +297,7 @@ function GHI_SimpleItemMenu()
 						item.SetWhite1(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -310,6 +312,7 @@ function GHI_SimpleItemMenu()
 						item.SetWhite2(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -324,6 +327,7 @@ function GHI_SimpleItemMenu()
 						item.SetComment(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -337,6 +341,7 @@ function GHI_SimpleItemMenu()
 						item.SetUseText(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 				{
 					align = "r",
@@ -406,6 +411,15 @@ function GHI_SimpleItemMenu()
 		height = 360,
 		useWindow = true,
 		OnShow = UpdateTooltip,
+		OnPageChange = function(num)
+			if itemTooltip then
+				if num == 2 then
+					UpdateTooltip();
+				else
+					itemTooltip:Hide();
+				end
+			end
+		end,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then
 				inUse = false;
@@ -449,7 +463,7 @@ function GHI_SimpleItemMenu()
 					label = "bag_size",
 					isSlotSlider = true,
 					align = "l",
-					text = loc.SLOTS,
+					text = loc.SLOTS..":",
 					width = 150,
 				},
 				{
@@ -457,7 +471,7 @@ function GHI_SimpleItemMenu()
 					texture = "Tooltip",
 					label = "bag_texture",
 					align = "r",
-					text = loc.TEXTURE,
+					text = loc.TEXTURE..":",
 					data = textures_loc,
 					returnIndex = true,
 				},
@@ -596,22 +610,16 @@ function GHI_SimpleItemMenu()
 				align = "l",
 				fontSize = 16,
 				color = "yellow",
-				width = 490,
-			},
-		},
-		{
-			{
-				type = "Dummy",
-				height = 25,
-				width = 1,
-				align = "l",
+				height = 20,
+				--width = 490,
 			},
 		},
 		{
 			{
 				type = "Text",
 				fontSize = 11,
-				width = 490,
+				height = 60,
+				--width = 490,
 				text = loc.SM_SPEACH_TEXT,
 				color = "white",
 				align = "l",
@@ -623,7 +631,7 @@ function GHI_SimpleItemMenu()
 				type = "Editbox",
 				text = loc.TEXT;
 				label = "say_text",
-				width = 390,
+				--width = 390,
 				texture = "Tooltip",
 				OnTextChanged = function(self)
 				end,
@@ -646,7 +654,7 @@ function GHI_SimpleItemMenu()
 			{
 				type = "Text",
 				fontSize = 11,
-				width = 490,
+				--width = 490,
 				text = loc.EXPRESSION_TIP,
 				color = "white",
 				align = "l",
@@ -741,12 +749,6 @@ function GHI_SimpleItemMenu()
 		},
 		{
 			{
-				type = "Dummy",
-				height = 20,
-				width = 10,
-				align = "l",
-			},
-			{
 				type = "Text",
 				fontSize = 11,
 				width = 490,
@@ -760,8 +762,7 @@ function GHI_SimpleItemMenu()
 				align = "l",
 				type = "SoundSelection",
 				label = "simplesoundTree",
-				width = 400,
-				height = 180,
+				--height = 180,
 				texture = "Tooltip",
 				OnSelect = function(path,duration)
 					if not(menuFrame) then return end
@@ -777,14 +778,6 @@ function GHI_SimpleItemMenu()
 					menuFrame.ForceLabel("simple_soundDuration", coloredTimeString);
 
 				end,
-			},
-			{
-				align = "r",
-				type = "Time",
-				text = loc.DELAY;
-				label = "sound_delay",
-				width = 80,
-				yOff = 60,
 			},
 		},
 		{
@@ -822,13 +815,21 @@ function GHI_SimpleItemMenu()
 				width = 60,
 				yOff = 40
 			},
+			{
+				align = "r",
+				type = "Time",
+				text = loc.DELAY;
+				label = "sound_delay",
+				width = 80,
+				yOff = 60,
+			},
 		},
 		{
 			{
 				type = "Text",
 				fontSize = 11,
 				width = 400,
-				height = 50,
+				--height = 50,
 				text = loc.NONE,
 				color = "white",
 				align = "l",
@@ -1362,7 +1363,7 @@ function GHI_SimpleItemMenu()
 	itemTooltip = CreateFrame("GameTooltip", "GHI_SimpleItemMenuItemTooltip" .. menuIndex, menuFrame, "GHI_StandardItemMenuItemTooltip");
 	_G["GHI_SimpleItemMenuItemTooltip" .. menuIndex .. "TextLabel"]:SetText(loc.PREVIEW)
 
-	itemTooltip:SetPoint("TOPRIGHT", 10, -20)
+	itemTooltip:SetPoint("TOPRIGHT", -10, -15)
 
 	menuFrame.OnPageChange = function(page)
 		UpdateTooltip();

@@ -73,9 +73,9 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
                menuFrame.ForceLabel("delay", info.delay);
 		else
 			class.editAction = nil;
-			menuFrame.ForceLabel("amount", "");
+			menuFrame.ForceLabel("amount", 1);
 			menuFrame.ForceLabel("ItemInfo", loc.NO_ITEM_SELECTED);
-                menuFrame.ForceLabel("delay", 0);
+			menuFrame.ForceLabel("delay", 0);
 		end
 		menuFrame:AnimatedShow();
 	end
@@ -120,15 +120,9 @@ function GHI_ConsumeItemMenu(_OnOkCallback, _editAction)
 		{
 			{
 				{
-					type = "Dummy",
-					height = 30,
-					width = 10,
-					align = "l",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
-					width = 390,
+					height = 30,
 					text = loc.CONSUME_TEXT,
 					color = "white",
 					align = "l",

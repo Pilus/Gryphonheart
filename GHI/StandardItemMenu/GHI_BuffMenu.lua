@@ -146,15 +146,9 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 		{
 			{
 				{
-					type = "Dummy",
-					height = 40,
-					width = 10,
-					align = "l",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
-					width = 390,
+					height = 40,
 					text = loc.BUFF_TEXT,
 					color = "white",
 					align = "l",
@@ -164,34 +158,10 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 				{
 					align = "l",
 					type = "Editbox",
+					width = 220,
 					texture = "Tooltip",
 					text = loc.BUFF_NAME,
 					label = "buff_name",
-				},
-			},
-			{
-				{
-					align = "l",
-					type = "Editbox",
-					texture = "Tooltip",
-					text = loc.BUFF_DETAILS,
-					label = "buff_details",
-				},
-			},
-			{
-				{
-					type = "Dummy",
-					height = 20,
-					width = 10,
-					align = "c",
-				},
-			},
-			{
-				{
-					align = "r",
-					type = "Time",
-					text = loc.BUFF_DURATION,
-					label = "buff_duration",
 				},
 				{
 					align = "l",
@@ -203,29 +173,38 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 			{
 				{
 					align = "l",
+					type = "Editbox",
+					width = 220,
+					texture = "Tooltip",
+					text = loc.BUFF_DETAILS,
+					label = "buff_details",
+				},
+				{
+					align = "l",
 					type = "CheckBox",
 					text = loc.BUFF_ON_SELF,
 					label = "castOnSelf",
+				},
+			},
+			{
+				{
+					type = "Icon",
+					label = "buff_icon",
+					align = "l",
+					text = loc.ICON,
+					CloseOnChoosen = true,
 				},
 				{
 					type = "RadioButtonSet",
 					texture = "Tooltip",
 					width = 155,
 					label = "filter",
-					align = "r",
+					align = "c",
 					text = loc.BUFF_DEBUFF,
 					data = {
 						{ value = "Helpful", text = loc.HELPFUL},
 						{ value = "Harmful", text = loc.HARMFUL},
 					},
-				},
-			},
-			{
-				{
-					align = "l",
-					type = "CheckBox",
-					text = loc.STACKABLE,
-					label = "stackable",
 				},
 				{
 					type = "DropDown",
@@ -241,18 +220,22 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 						{ text = loc.TYPE_DISEASE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Disease")},
 						{ text = loc.TYPE_POISON, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Poison")},
 						{ text = loc.TYPE_PHYSICAL, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("none")},
-					  },
-				},
-				{
-					framealign = "r",
-					type = "Icon",
-					label = "buff_icon",
-					align = "c",
-					text = loc.ICON,
-					CloseOnChoosen = true,
+					},
 				},
 			},
 			{
+				{
+					align = "l",
+					type = "CheckBox",
+					text = loc.STACKABLE,
+					label = "stackable",
+				},
+				{
+					align = "c",
+					type = "Time",
+					text = loc.BUFF_DURATION,
+					label = "buff_duration",
+				},
 				{
 					type = "Time",
 					texture = "Tooltip",
@@ -260,6 +243,9 @@ function GHI_BuffMenu(_OnOkCallback, _editAction)
 					align = "r",
 					text = loc.DELAY,
 				},
+			},
+			{
+
 				{
 					type = "Editbox",
 					texture = "Tooltip",

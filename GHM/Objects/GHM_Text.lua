@@ -98,6 +98,20 @@ function GHM_Text(profile, parent, settings)
 		end
 	end
 
+	frame.GetValue = function()
+		return labelFrame:GetText();
+	end
+
+	frame.GetPreferredDimensions = function()
+		return profile.width, profile.height or frame:GetHeight();
+	end
+
+	local origSetWidth = frame.SetWidth;
+	frame.SetWidth = function(self, width)
+		origSetWidth(self, width);
+		labelFrame:SetWidth(width);
+	end
+
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end

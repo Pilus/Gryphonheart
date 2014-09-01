@@ -75,8 +75,8 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 		else
 			class.editAction = nil;
 			menuFrame.ForceLabel("loot_text", loc.LOOT);
-			menuFrame.ForceLabel("amount", "");
-			menuFrame.ForceLabel("delay", "");
+			menuFrame.ForceLabel("amount", 1);
+			menuFrame.ForceLabel("delay", 0);
 			menuFrame.ForceLabel("ItemInfo", loc.NO_ITEM_SELECTED);
 		end
 		menuFrame:AnimatedShow();
@@ -125,15 +125,9 @@ function GHI_ProduceItemMenu(_OnOkCallback, _editAction)
 		{
 			{
 				{
-					type = "Dummy",
-					height = 30,
-					width = 10,
-					align = "l",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
-					width = 390,
+					height = 30,
 					text = loc.PRODUCE_TEXT,
 					color = "white",
 					align = "l",

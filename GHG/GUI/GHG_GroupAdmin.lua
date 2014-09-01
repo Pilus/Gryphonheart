@@ -43,6 +43,7 @@ local Initialize = function()
 					texture = "Tooltip",
 					OnTextChanged = function(self)
 					end,
+					width = 200,
 				},
 				{
 					type = "Dummy",

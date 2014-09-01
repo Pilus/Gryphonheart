@@ -168,10 +168,21 @@ function GHM_Editbox(profile, parent, settings)
 		return 0, -4;
 	end
 
+	frame.GetPreferredDimensions = function()
+		return profile.width, (profile.height or frame:GetHeight());
+	end
+
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height);
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		editBox:SetWidth(width);
+		_G[editBox:GetName() .. "Left"]:SetWidth(width - 10);
+	end
+
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);
 	end
-
 
 	frame:Show();
 

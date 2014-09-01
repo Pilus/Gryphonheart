@@ -10,7 +10,7 @@
 --===================================================
 
 local count = 1;
-function GHM_SoundSelection(parent, main, profile)
+function GHM_SoundSelection(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_SoundSelection" .. count, parent, "GHM_SoundSelection_Template");
 	count = count + 1;
 	local list = _G[frame:GetName().."ListScrollList"];
@@ -190,7 +190,6 @@ function GHM_SoundSelection(parent, main, profile)
 	tree.tableValue = GHM_SoundList[""];
 	local loaded = false;
 	tree:SetScript("OnShow", function()
-		tree:SetWidth(main:GetWidth() - 20);
 		OnExpand(tree);
 	end)
 
@@ -273,7 +272,18 @@ function GHM_SoundSelection(parent, main, profile)
 		end
 	end
 
+	--tree:SetWidth(main:GetWidth() - 20);
 
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height);
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		--tree:SetWidth(width)
+	end
+
+	frame.GetPreferredDimensions = function()
+		return profile.width, profile.height;
+	end
 
 	if type(profile.OnLoad) == "function" then
 		profile.OnLoad(frame);

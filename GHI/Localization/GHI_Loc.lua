@@ -593,9 +593,9 @@ function GHI_Loc()
 			frFR = "H2 :",
 		},
 		NORMAL = {
-			enUS = "Normal:",
-			deDE = "Normal:",
-			frFR = "Normal :",
+			enUS = "Normal",
+			deDE = "Normal",
+			frFR = "Normal",
 		},
 		FONT_SIZE2 = {
 			enUS = "Font Size:",

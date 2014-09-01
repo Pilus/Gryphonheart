@@ -91,6 +91,7 @@ function GHI_MacroMenu()
 					text = loc.NAME;
 					label = "macroName",
 					texture = "Tooltip",
+					width = 200,
 				},
 			},
 			{

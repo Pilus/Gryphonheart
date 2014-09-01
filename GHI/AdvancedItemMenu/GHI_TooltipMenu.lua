@@ -30,6 +30,7 @@ function GHI_TooltipMenu()
 					text = loc.NAME;
 					label = "name",
 					texture = "Tooltip",
+					width = 200,
 				},
 				{
 					align = "r",

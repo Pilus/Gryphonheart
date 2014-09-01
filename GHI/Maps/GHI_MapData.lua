@@ -1,10 +1,10 @@
 
 
 
-local worldScale = 15.2330122;
+local worldScale = 14.65; -- TODO: Adjust this number to give better acuracy to the azeroth background
 GHI_MapData = {
 	["AzerothBackground"] = {
-		{
+		{ -- The remaining textures are inserted automatically by script in the end of this file.
 			["texCoord"] = {
 				0, -- [1]
 				1, -- [2]
@@ -126,7 +126,8 @@ GHI_MapData = {
 		}, -- [8]
 	},
 
-	--[[["LowerEasternKingdoms"] = {
+	---[[
+	["LowerEasternKingdoms"] = {
 		{
 			["texCoord"] = {
 				0, -- [1]

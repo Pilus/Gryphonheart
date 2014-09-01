@@ -118,6 +118,7 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 					texture = "Tooltip",
 					OnTextChanged = function(self)
 					end,
+					width = 200,
 				},
 			},
 			{

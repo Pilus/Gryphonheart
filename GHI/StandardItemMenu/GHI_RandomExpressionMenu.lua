@@ -113,6 +113,7 @@ function GHI_RandomExpressionMenu(_OnOkCallback, _editAction)
 				texture = "Tooltip",
 				OnTextChanged = function(self)
 				end,
+				width = 200,
 			},
 			{
 				type = "RadioButtonSet",

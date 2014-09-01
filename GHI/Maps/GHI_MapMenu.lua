@@ -60,6 +60,7 @@ function GHI_MapMenu(info)
 		texture:SetTexture(path);
 		texture:Show();
 	end
+
 	local offX,offY = 2822.734,-273.305;
 	for index,v in pairs(GHI_MapData) do
 		for i,t in pairs(v) do
@@ -67,11 +68,13 @@ function GHI_MapMenu(info)
 			mapW = math.max(mapW, -offX + t.x + t.width);
 			mapH = math.max(mapH, -offY + t.y + t.height);
 		end
-	end                          print(mapH,mapW)
+	end
 	mapFrame:SetHeight(mapH);
 	mapFrame:SetWidth(mapW);
 
-	mapFrame:SetScale(0.05*4)
+	--print("map size", mapW, mapH)
+
+	mapFrame:SetScale(0.1)
 
 	local player = mapFrame:CreateTexture(nil,"OVERLAY")
 	player:SetWidth(16/mapFrame:GetScale());

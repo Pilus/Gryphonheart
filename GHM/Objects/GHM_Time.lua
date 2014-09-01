@@ -76,8 +76,8 @@ function GHM_Time(profile, parent, settings)
 		_G[self:GetName().."ValueLabel"]:SetJustifyH("Right");
 	end
 	);
-	
-	slider:SetScript("OnValueChanged", function(self,value)
+
+	local SliderValueChanged = function(self,value)
 		local val = math.floor(self:GetValue()+0.5)
 		local secs = SliderValues[val];
 		if not(self.main == nil) then
@@ -88,16 +88,17 @@ function GHM_Time(profile, parent, settings)
 		end
 
 		local labelText
-		if self:GetValue() == #(SliderValues) then
-		labelText = secs
+		if secs == 0 then
+			labelText = "0";
 		else
-		labelText = SecondsToTime(secs)
-		_G[self:GetParent():GetName().."Box"]:SetText(secs)
+			labelText = SecondsToTime(secs)
 		end
+		_G[self:GetParent():GetName().."Box"]:SetText(secs);
 		_G[self:GetName().."ValueLabel"]:SetText(labelText)
 
 	end
-	);
+
+	slider:SetScript("OnValueChanged", SliderValueChanged);
 	editBox.numbersOnly = true
 	editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus(); end)
 	local OnEditBoxTextChanged = function(self)
@@ -185,6 +186,8 @@ function GHM_Time(profile, parent, settings)
 
 	frame.Clear = function(self)
 		editBox:SetText(0);
+		slider:SetValue(1);
+		SliderValueChanged(slider, 1)
 	end
 
 	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)

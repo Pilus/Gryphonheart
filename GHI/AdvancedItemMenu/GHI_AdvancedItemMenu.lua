@@ -154,6 +154,7 @@ function GHI_AdvancedItemMenu()
 						item.SetName(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 				{
 					type = "Dummy",
@@ -174,6 +175,7 @@ function GHI_AdvancedItemMenu()
 						item.SetWhite1(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -187,6 +189,7 @@ function GHI_AdvancedItemMenu()
 						item.SetWhite2(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -200,6 +203,7 @@ function GHI_AdvancedItemMenu()
 						item.SetComment(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -277,6 +281,7 @@ function GHI_AdvancedItemMenu()
 						item.SetUseText(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 				{
 					type = "Time",

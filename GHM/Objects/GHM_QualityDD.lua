@@ -28,6 +28,7 @@ function GHM_QualityDD(profile, parent, settings)
 	end
 
 	obj.Force = function(num)
+		GHCheck("GHM_QualityDD.Force(num)", {"number"}, {num})
 		local color = ITEM_QUALITY_COLORS[num];
 		label2:SetText("|CFF" .. string.format("%.2x", color.r * 255) .. string.format("%.2x", color.g * 255) .. string.format("%.2x", color.b * 255) .. " " .. _G["ITEM_QUALITY" .. num .. "_DESC"] .. "|r");
 		value = num;

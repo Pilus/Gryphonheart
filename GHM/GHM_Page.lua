@@ -75,7 +75,6 @@ function GHM_Page(profile, parent, settings)
 		page:SetWidth(width);
 		page:SetHeight(height);
 		page:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
-		--GHM_TempBG(page);
 
 		local linesWithNoHeightLimit = lines.Where(function(line) return ({line.GetPreferredDimensions()})[2] == nil; end);
 		local linesWithHeightLimit = lines.Where(function(line) return not(linesWithNoHeightLimit.Contains(line)); end)

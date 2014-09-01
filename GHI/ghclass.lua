@@ -236,3 +236,13 @@ function GHTry(try, catch)
 		catch(details);
 	end
 end
+
+
+function GHTemp()
+	local statusbar = GHI_StatusBarUI()
+	statusbar.ChangeValue(100)
+	statusbar.SetTextures("","INTERFACE/UNITPOWERBARALT/Murozond_Horizontal_Fill","INTERFACE/UNITPOWERBARALT/Murozond_Horizontal_Bgnd","")
+	statusvalue = statusbar.GetValue()
+	statusbar.SetText(date("!%X",1))
+	statusbar.Toggle("show")
+end

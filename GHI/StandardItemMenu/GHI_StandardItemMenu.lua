@@ -302,6 +302,7 @@ function GHI_StandardItemMenu()
 						item.SetName(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 				{
 					type = "Dummy",
@@ -328,6 +329,7 @@ function GHI_StandardItemMenu()
 						item.SetWhite1(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -342,6 +344,7 @@ function GHI_StandardItemMenu()
 						item.SetWhite2(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -356,6 +359,7 @@ function GHI_StandardItemMenu()
 						item.SetComment(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 			},
 			{
@@ -521,6 +525,7 @@ function GHI_StandardItemMenu()
 						item.SetUseText(self:GetText())
 						UpdateTooltip();
 					end,
+					width = 200,
 				},
 				{
 					type = "CheckBox",

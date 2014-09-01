@@ -90,6 +90,11 @@ function GHM_WizardMenu(owner, profile)
 		class.UpdatePages();
 	end
 
+	class.GetPreferredInsert = function()
+		return 10, 10, 10, 20 + backButton:GetHeight();
+	end
+	class.UpdatePosition();
+
 	class.UpdatePages();
 
 	return class;

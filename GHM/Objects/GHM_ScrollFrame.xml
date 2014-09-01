@@ -79,7 +79,6 @@
             <OnScrollRangeChanged>
                 GHM_ScrollFrame_OnScrollRangeChanged(self, xrange, yrange);
             </OnScrollRangeChanged>
-            <!--  The code to disable the ScrollDownButton is pretty hacked, but it works -->
             <OnVerticalScroll>
                 local scrollbar = _G[self:GetName().."ScrollBar"];
                 scrollbar:SetValue(offset);
