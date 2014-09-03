@@ -16,7 +16,7 @@ function GHI_AreaSound()
 	end
 
 	class = GHClass("AreaSound");
-	local position = GHI_Position();
+	local position = GHI_Position(true);
 	local comm = GHI_ChannelComm();
 	local RecieveAreaSound, Send;
 	local MAX_RANGE = 50;

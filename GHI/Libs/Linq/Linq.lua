@@ -86,6 +86,18 @@ function Linq(lt)
 		return sum;
 	end
 
+	lt.OrderBy = function(f)
+		local t = {};
+		for i=1,#(lt) do
+			local j = 1;
+			while (t[j] and not(f(t[j], lt[i]))) do
+				j = j + 1;
+			end
+			table.insert(t, j, lt[i]);
+		end
+		return t;
+	end
+
 	lt.Contains = function(v)
 		for i=1,#(lt) do
 			if v == lt[i] then

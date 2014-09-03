@@ -40,6 +40,12 @@ function GHI_MapMenu(info)
 	menuIndex = menuIndex + 1;
 
 	menuFrame:Hide();
+
+	local mapFrame = GHI_MapDisplayer(300, 200);
+	mapFrame:SetParent(menuFrame);
+	mapFrame:SetPoint("CENTER", menuFrame, "CENTER");
+
+	--[[
 	local scrollFrame = CreateFrame("ScrollFrame","$parentScroll",menuFrame,"GHM_ScrollFrameTemplate")
 
 	scrollFrame:SetPoint("TOP",0,-3);
@@ -61,36 +67,35 @@ function GHI_MapMenu(info)
 		texture:Show();
 	end
 
-	local offX,offY = 2822.734,-273.305;
-	for index,v in pairs(GHI_MapData) do
-		for i,t in pairs(v) do
-			GenerateTexture(mapFrame, t.width, t.height, offX+t.x, offY+t.y, t.texCoord, t.path);
-			mapW = math.max(mapW, -offX + t.x + t.width);
-			mapH = math.max(mapH, -offY + t.y + t.height);
-		end
+	local mapData = Linq(GHI_MapData).OrderBy(function(p1, p2) return p1.order < p2.order; end);
+	for index,t in pairs(mapData) do
+		GenerateTexture(mapFrame, t.width, t.height, t.x, t.y, t.texCoord, t.path);
+		mapW = math.max(mapW, t.x + t.width);
+		mapH = math.max(mapH, -t.y + t.height);
 	end
 	mapFrame:SetHeight(mapH);
 	mapFrame:SetWidth(mapW);
 
-	--print("map size", mapW, mapH)
+	print("map size", mapW, mapH)
 
 	mapFrame:SetScale(0.1)
 
 	local player = mapFrame:CreateTexture(nil,"OVERLAY")
-	player:SetWidth(16/mapFrame:GetScale());
-	player:SetHeight(16/mapFrame:GetScale());
-	player:SetTexture("Interface\\MINIMAP\\TRACKING\\Repair");
+	player:SetWidth(32/mapFrame:GetScale());
+	player:SetHeight(32/mapFrame:GetScale());
+	player:SetTexture("Interface\\CURSOR\\Item");
 	player:Show();
 
 	local UpdatePlayer = function()
 		local pos = GHI_Position();
 		local x,y = pos.GetCoor("player",3);
-		player:SetPoint("TOPLEFT", offX + x, offY - y);
+		player:SetPoint("TOPLEFT", x, -y);  -- print(x, -y)
 	end
+	--]]
 
 	class.New = function()
-		UpdatePlayer();
-		GHI_Timer(UpdatePlayer,1);
+		--UpdatePlayer();
+		--GHI_Timer(UpdatePlayer,1);
 		menuFrame:AnimatedShow();
 	end
 

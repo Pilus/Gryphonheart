@@ -9,12 +9,9 @@
 --				All rights reserved
 --===================================================
 
-local class
-function GHI_Position()
-	if class then
-		return class
-	end
-	class = GHClass("GHI_Position")
+
+function GHI_Position(useVersion1Coor)
+	local class = GHClass("GHI_Position")
 
 	--local variables
 	local continent
@@ -120,20 +117,23 @@ function GHI_Position()
 		if floorLevel then
 			level = floorLevel.GetCurrentFloorLevel();
 		end
-
+		--print("raw", x, y)
 		if currentContinent == 3 then
 			x = x * 2228.61382 -- scale for Outland
 			y = y * 1485.74255
 			ResetMap();
 			return Round(x,decimals), Round(y,decimals), 2, level
-		else
-			x = x * 11698.9534 -- scale for Azeroth
-			y = y * 7799.30229
-			ResetMap();
-
-			if IsMopClient() then
-				x,y = ConvertMopToCata(x,y);
+		else  -- scale for Azeroth
+			if IsMopClient() and not(useVersion1Coor) then
+				x = x * 14545.7650
+				y = y * 9697.1767
+			elseif IsMopClient() and useVersion1Coor then
+				x,y = ConvertMopToCata(x * 11698.9534, y * 7799.30229);
+			else
+				x = x * 11698.9534
+				y = y * 7799.30229
 			end
+			ResetMap();
 
 			return Round(x,decimals), Round(y,decimals), 1, level
 		end

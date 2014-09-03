@@ -16,7 +16,7 @@ function GHI_AreaBuff()
 	end
 
 	class = GHClass("AreaBuff");
-	local position = GHI_Position();
+	local position = GHI_Position(true);
 	local comm = GHI_ChannelComm();
 	local RecieveAreaBuff, applyBuffFunc;
 	local MAX_RANGE = 50;
