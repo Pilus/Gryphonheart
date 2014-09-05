@@ -129,13 +129,7 @@ function GHI_ChatConfirm()
 				},
 				{
 					{
-						height = 8,
-						type = "Dummy",
-						align = "l",
-						width = 70,
-					},
-					{
-						align = "l",
+						align = "c",
 						type = "Button",
 						text = "OK",
 						label = "send",
@@ -147,11 +141,11 @@ function GHI_ChatConfirm()
 					{
 						height = 8,
 						type = "Dummy",
-						align = "r",
+						align = "c",
 						width = 70,
 					},
 					{
-						align = "r",
+						align = "c",
 						type = "Button",
 						text = "Cancel",
 						label = "nosend",

@@ -10,11 +10,16 @@
 --			All rights reserved
 --===================================================
 
+local AZEROTH_WIDTH = 14545.7650;
+local AZEROTH_HEIGHT = 9697.1767;
+
 function GHI_MapDisplayer(width, height)
 	local scrollFrame = CreateFrame("ScrollFrame");
 
 	scrollFrame:SetWidth(width);
 	scrollFrame:SetHeight(height);
+
+	local scaleLimit = math.max(width / AZEROTH_WIDTH, height / AZEROTH_HEIGHT);
 
 	local scrollFrameButtonOverlay = CreateFrame("Button");
 	scrollFrameButtonOverlay:SetParent(scrollFrame);
@@ -42,35 +47,50 @@ function GHI_MapDisplayer(width, height)
 		mapH = math.max(mapH, -t.y + t.height);
 	end
 
-	mapFrame:SetHeight(mapH);
-	mapFrame:SetWidth(mapW);
+	mapFrame:SetHeight(AZEROTH_HEIGHT);
+	mapFrame:SetWidth(AZEROTH_WIDTH);
+
+	local SetMapCoordinatesForPosition = function(posX, posY, mapX, mapY)
+		local scale = mapFrame:GetScale();
+		scrollFrame:SetHorizontalScroll(math.max(0, math.min(AZEROTH_WIDTH - width/scale, mapX - posX/scale)));
+		scrollFrame:SetVerticalScroll(math.max(0, math.min(AZEROTH_HEIGHT - height/scale, mapY - posY/scale)));
+	end
 
 	local SetCenter = function(x, y)
-		local scale = mapFrame:GetScale();
-		--print("Set", scale)
-		scrollFrame:SetVerticalScroll(x - (width / 2) );
-		scrollFrame:SetHorizontalScroll(y - (width / 2) );
+		SetMapCoordinatesForPosition(width / 2, height / 2, x, y);
 	end
-	--AA = SetCenter;
 
-	local GetCenter = function()
+	local GetMapCoordinatesForPosition = function(posX, posY)
 		local scale = mapFrame:GetScale();
-		--print("Get",scale)
-		local x = scrollFrame:GetVerticalScroll() + (width / 2);
-		local y = scrollFrame:GetHorizontalScroll() + (width / 2) ;
+		local x = scrollFrame:GetHorizontalScroll() + posX / scale;
+		local y = scrollFrame:GetVerticalScroll() + posY / scale;
 		return x, y;
 	end
 
+	local GetCenter = function()
+		return GetMapCoordinatesForPosition(width / 2, height / 2);
+	end
+
+	local GetMousePositionOnMap = function()
+		local x, y = GetCursorPosition();
+		local s = scrollFrameButtonOverlay:GetEffectiveScale();
+		local yTop = (UIParent:GetHeight() - scrollFrameButtonOverlay:GetTop()) - y;
+		return (x / s) - scrollFrameButtonOverlay:GetLeft(), -((y / s) - scrollFrameButtonOverlay:GetTop());
+	end
+
 	local SetScale = function(scale)
-		--local cx, cy = GetCenter();
+		local cx, cy = GetCenter();
 		mapFrame:SetScale(scale);
-		--SetCenter(cx, cy);
+		SetCenter(cx, cy);
 	end
 
 	scrollFrame:SetScript("OnMouseWheel",function(self, dir)
+		local cursorX, cursorY = GetMousePositionOnMap();
+		local mapX, mapY = GetMapCoordinatesForPosition(cursorX, cursorY);
 		local scale = mapFrame:GetScale();
 		local newScale = scale + scale*0.1*dir;
-		SetScale(newScale);
+		mapFrame:SetScale(math.max(scaleLimit, newScale));
+		SetMapCoordinatesForPosition(cursorX, cursorY, mapX, mapY);
 	end)
 
 	scrollFrameButtonOverlay:RegisterForDrag("LeftButton")
@@ -78,19 +98,15 @@ function GHI_MapDisplayer(width, height)
 	scrollFrameButtonOverlay:SetScript("OnDragStop", function(b) b.drag = false; b.prev = nil; end)
 	scrollFrameButtonOverlay:SetScript("OnUpdate", function(b)
 		if b.drag then
-			local _x, _y = GetCursorPosition();
-			local s = b:GetEffectiveScale();
-
-			local x, y = _x / s, _y / s;
+			local x, y = GetMousePositionOnMap();
 
 			if b.prev then
 				local prevX, prevY = unpack(b.prev);
 				local dX, dY = x - prevX, y - prevY;
 
 				local scale = mapFrame:GetScale();
-				scrollFrame:SetHorizontalScroll(scrollFrame:GetHorizontalScroll() - dX/scale);
-				scrollFrame:SetVerticalScroll(scrollFrame:GetVerticalScroll() + dY/scale);
-
+				scrollFrame:SetHorizontalScroll(math.max(0, math.min(AZEROTH_WIDTH - width/scale, scrollFrame:GetHorizontalScroll() - dX/scale)));
+				scrollFrame:SetVerticalScroll(math.max(0, math.min(AZEROTH_HEIGHT - height/scale, scrollFrame:GetVerticalScroll() - dY/scale)));
 			end
 
 			b.prev = {x, y};
