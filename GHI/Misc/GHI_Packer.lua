@@ -61,7 +61,7 @@ function GHI_Packer()
 		return s;
 	end
 
-	class.TableToString = function(t, addCheck)
+	class.TableToString = function(t, addCheck, skipNumberIndexes)
 		local s = "{";
 		for index, value in pairs(t) do
 			if value == "!first" then
@@ -71,7 +71,11 @@ function GHI_Packer()
 				index = format("\"%s\"", index);
 			end
 			if type(value) == "table" then
-				s = format("%s[%s]=%s,", s, index, class.TableToString(value, false));
+				if skipNumberIndexes and type(index) == "number" then
+					s = format("%s%s,", s, class.TableToString(value, false, skipNumberIndexes));
+				else
+					s = format("%s[%s]=%s,", s, index, class.TableToString(value, false, skipNumberIndexes));
+				end
 			elseif type(value) == "number" then
 				s = format("%s[%s]=%s,", s, index, value);
 			elseif type(value) == "nil" then

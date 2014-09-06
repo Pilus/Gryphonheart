@@ -12,10 +12,10 @@
 local count = 1;
 local info; -- Placed here to use less memory for dd initialization
 function GHM_CustomDD(profile, parent, settings)
-    local frame = CreateFrame("Frame", "GHM_CustomDD" .. count, parent,"GHM_CustomDD_Template"); -- Create the frame from the xml template
-    count = count + 1; -- Increment the counter to give the next frame of this type a unique name
+	local frame = CreateFrame("Frame", "GHM_CustomDD" .. count, parent,"GHM_CustomDD_Template"); -- Create the frame from the xml template
+	count = count + 1; -- Increment the counter to give the next frame of this type a unique name
 
-    -- Initialize variables and reference objects
+	-- Initialize variables and reference objects
 	local label = _G[frame:GetName().."Label"];
 	local area = _G[frame:GetName().."Area"];
 	local ddFrame = _G[area:GetName().."DD"];
@@ -27,12 +27,12 @@ function GHM_CustomDD(profile, parent, settings)
 
 	-- Set the label
 
-    label:SetText(profile.text or "");
+	label:SetText(profile.text or "");
 
 	local OnSelect = profile.OnSelect;
 
-    -- Help functions and further setup
-    -- All help functions and any further setup needed goes here
+	-- Help functions and further setup
+	-- All help functions and any further setup needed goes here
 
 	local GetData = function()
 		if type(profile.dataFunc) == "function" then
@@ -47,7 +47,7 @@ function GHM_CustomDD(profile, parent, settings)
 		return {};
 	end
 
-    -- Position the frame
+	-- Position the frame
 
 	if profile.width then
 		ddFrame:SetWidth(profile.width);
@@ -101,11 +101,11 @@ function GHM_CustomDD(profile, parent, settings)
 		end
 	end);
 
-    -- Public functions
-    local varAttFrame;
+	-- Public functions
+	local varAttFrame;
 
-    Force1 = function(data)
-        -- Set the value and ui to 'data', evt using help functions
+	Force1 = function(data)
+		-- Set the value and ui to 'data', evt using help functions
 		if returnIndex then
 			index = data;
 			value = GetData()[index];
@@ -124,31 +124,31 @@ function GHM_CustomDD(profile, parent, settings)
 		if OnSelect then
 			OnSelect(index);
 		end
-    end
+	end
 
-    local Force2 = function(inputType, inputValue)
-        if (inputType == "attribute" or inputType == "variable") and varAttFrame then -- Handles input to var/Att frame
-            varAttFrame:SetValue(inputType, inputValue);
+	local Force2 = function(inputType, inputValue)
+		if (inputType == "attribute" or inputType == "variable") and varAttFrame then -- Handles input to var/Att frame
+			varAttFrame:SetValue(inputType, inputValue);
 
-        else -- static
-            varAttFrame:Clear();
-            Force1(inputValue);
-        end
-    end
+		else -- static
+			varAttFrame:Clear();
+			Force1(inputValue);
+		end
+	end
 
-    frame.Force = function(self, ...) -- Calls Force1 or Force2 depending on the number of inputs. Either Force(value) or Force(Type,value)
-        if self ~= frame then return frame.Force(frame, self, ...); end
-        local numInput = #({ ... });
+	frame.Force = function(self, ...) -- Calls Force1 or Force2 depending on the number of inputs. Either Force(value) or Force(Type,value)
+		if self ~= frame then return frame.Force(frame, self, ...); end
+		local numInput = #({ ... });
 
-        if numInput == 1 then
-            Force1(...);
-        elseif numInput == 2 then
-            Force2(...);
-        end
-    end
+		if numInput == 1 then
+			Force1(...);
+		elseif numInput == 2 then
+			Force2(...);
+		end
+	end
 
-    frame.Clear = function(self)
-        -- Clear the value / ui to a default state
+	frame.Clear = function(self)
+		-- Clear the value / ui to a default state
 		local t = GetData();
 		value = t[1];
 		index = 1;
@@ -156,36 +156,36 @@ function GHM_CustomDD(profile, parent, settings)
 		if OnSelect then
 			OnSelect(1);
 		end
-    end
+	end
 
 
-    frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
-        if not (varAttFrame) then
-            varAttFrame = GHM_VarAttInput(frame, area, frame:GetWidth());
-            frame:SetHeight(frame:GetHeight());
-        end
-        varAttFrame:EnableVariableAttributeInput(scriptingEnv, item, profile.outputOnly)
-    end
+	frame.EnableVariableAttributeInput = function(self, scriptingEnv, item)
+		if not (varAttFrame) then
+			varAttFrame = GHM_VarAttInput(frame, area, frame:GetWidth());
+			frame:SetHeight(frame:GetHeight());
+		end
+		varAttFrame:EnableVariableAttributeInput(scriptingEnv, item, profile.outputOnly)
+	end
 
-    frame.GetValue = function(self) -- Get the current value
-        if (varAttFrame and not (varAttFrame:IsStaticTabShown())) then
-            return varAttFrame:GetValue();
-        else
-            if returnIndex then
+	frame.GetValue = function(self) -- Get the current value
+		if (varAttFrame and not (varAttFrame:IsStaticTabShown())) then
+			return varAttFrame:GetValue();
+		else
+			if returnIndex then
 				return index;
 			end
 			return value;
-        end
-    end
+		end
+	end
 
 
-    -- Trigger evt onLoad function
-    if type(profile.OnLoad) == "function" then
-        profile.OnLoad(frame);
-    end
+	-- Trigger evt onLoad function
+	if type(profile.OnLoad) == "function" then
+		profile.OnLoad(frame);
+	end
 
-    frame.Clear();
-    frame:Show();
-    return frame;
+	frame.Clear();
+	frame:Show();
+	return frame;
 end
 

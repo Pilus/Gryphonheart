@@ -14,6 +14,8 @@ local AZEROTH_WIDTH = 14545.7650;
 local AZEROTH_HEIGHT = 9697.1767;
 
 function GHI_MapDisplayer(width, height)
+	local class = GHClass("GHI_MapDisplayer");
+
 	local scrollFrame = CreateFrame("ScrollFrame");
 
 	scrollFrame:SetWidth(width);
@@ -26,11 +28,12 @@ function GHI_MapDisplayer(width, height)
 	scrollFrameButtonOverlay:SetAllPoints(scrollFrame);
 
 	local GenerateTexture = function(frame,width,height,x,y,texCoord,path)
+		local left, right, top, bottom = unpack(texCoord);
 		local texture = frame:CreateTexture(nil,"BACKGROUND")
-		texture:SetWidth(width);
-		texture:SetHeight(height);
-		texture:SetTexCoord(unpack(texCoord));
-		texture:SetPoint("TOPLEFT", x,y);
+		texture:SetWidth(width * (right - left));
+		texture:SetHeight(height * (bottom - top));
+		texture:SetTexCoord(left, right, top, bottom);
+		texture:SetPoint("TOPLEFT", x + (width * left), y + (height * top));
 		texture:SetTexture(path);
 		texture:Show();
 	end
@@ -38,17 +41,42 @@ function GHI_MapDisplayer(width, height)
 	local mapFrame = CreateFrame("Frame","$parentMap",scrollFrame);
 	scrollFrame:SetScrollChild(mapFrame);
 
+	local mapLevelContainers = {};
+
 	local mapH,mapW = 0,0;
-	local mapData = Linq(GHI_MapData).OrderBy(function(p1, p2) return p1.order < p2.order; end);
+	local mapData = Linq(GHI_MapData).OrderBy(function(p1, p2) return p1.order > p2.order; end);
 
 	for index,t in pairs(mapData) do
-		GenerateTexture(mapFrame, t.width, t.height, t.x, t.y, t.texCoord, t.path);
+		local order = t.order or 1;
+		local levelContainer = mapLevelContainers[order];
+		if not(levelContainer) then
+			levelContainer = CreateFrame("Frame");
+			local levelParent = mapLevelContainers[order - 1] or mapFrame;
+			levelContainer:SetParent(levelParent);
+			levelContainer:SetAllPoints(levelParent);
+			mapLevelContainers[order] = levelContainer;
+		end
+
+		GenerateTexture(levelContainer, t.width, t.height, t.x, t.y, t.texCoord, t.path);
 		mapW = math.max(mapW, t.x + t.width);
 		mapH = math.max(mapH, -t.y + t.height);
 	end
 
 	mapFrame:SetHeight(AZEROTH_HEIGHT);
 	mapFrame:SetWidth(AZEROTH_WIDTH);
+
+	local HideLayersWhenScaling = function(scale)
+		--if scale < 0.12 then
+			mapLevelContainers[2]:SetAlpha((scale - 0.05)/0.12);
+		--else
+		--	mapLevelContainers[2]:SetAlpha(1);
+		--end
+	end
+
+	local SetMapScale = function(scale)
+		mapFrame:SetScale(scale);
+		HideLayersWhenScaling(scale);
+	end
 
 	local SetMapCoordinatesForPosition = function(posX, posY, mapX, mapY)
 		local scale = mapFrame:GetScale();
@@ -80,7 +108,7 @@ function GHI_MapDisplayer(width, height)
 
 	local SetScale = function(scale)
 		local cx, cy = GetCenter();
-		mapFrame:SetScale(scale);
+		SetMapScale(scale);
 		SetCenter(cx, cy);
 	end
 
@@ -89,7 +117,7 @@ function GHI_MapDisplayer(width, height)
 		local mapX, mapY = GetMapCoordinatesForPosition(cursorX, cursorY);
 		local scale = mapFrame:GetScale();
 		local newScale = scale + scale*0.1*dir;
-		mapFrame:SetScale(math.max(scaleLimit, newScale));
+		SetMapScale(math.max(scaleLimit, newScale));
 		SetMapCoordinatesForPosition(cursorX, cursorY, mapX, mapY);
 	end)
 
@@ -113,11 +141,49 @@ function GHI_MapDisplayer(width, height)
 		end
 	end)
 
-	mapFrame:SetScale(0.1);
+	SetMapScale(0.1);
 	scrollFrame:SetVerticalScroll(1000)
 	scrollFrame:SetHorizontalScroll(1000)
 
-	return scrollFrame;
+	class.SetPoint = function(p1, parent, p2)
+		scrollFrame:SetParent(parent);
+		scrollFrame:SetPoint(p1, parent, p2);
+	end
+
+	class.AddFrameToMap = function(frame, xOff, yOff, dragable, onDrag)
+		frame:SetParent(mapFrame);
+		frame:SetPoint("TOPLEFT", mapFrame, "TOPLEFT", xOff, -yOff);
+
+		if dragable then
+			frame.pos = {xOff, -yOff};
+			frame:RegisterForDrag("LeftButton")
+			frame:SetScript("OnDragStart", function(b) b.drag = true end)
+			frame:SetScript("OnDragStop", function(b) b.drag = false; b.prev = nil; end)
+			frame:SetScript("OnUpdate", function(b)
+				if b.drag then
+					local x, y = GetMousePositionOnMap();
+
+					if b.prev then
+						local prevX, prevY = unpack(b.prev);
+						local dX, dY = x - prevX, y - prevY;
+						local scale = mapFrame:GetScale();
+						local xOff, yOff = unpack(frame.pos);
+
+						frame:ClearAllPoints();
+						frame:SetPoint("TOPLEFT", mapLevelContainers[#(mapLevelContainers)], "TOPLEFT", xOff + dX/scale, yOff - dY/scale);
+						frame.pos = {xOff + dX/scale, yOff - dY/scale};
+						if onDrag then
+							onDrag(xOff + dX/scale, yOff - dY/scale);
+						end
+					end
+
+					b.prev = {x, y};
+				end
+			end)
+		end
+	end
+
+	return class;
 end
 
 -- /script

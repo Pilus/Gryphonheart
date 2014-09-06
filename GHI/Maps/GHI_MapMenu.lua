@@ -41,7 +41,7 @@ function GHI_MapMenu(info)
 
 	menuFrame:Hide();
 
-	local mapFrame = GHI_MapDisplayer(300, 200);
+	local mapFrame = GHI_MapDisplayer(900, 500);
 	mapFrame:SetParent(menuFrame);
 	mapFrame:SetPoint("CENTER", menuFrame, "CENTER");
 
