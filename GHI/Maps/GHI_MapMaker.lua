@@ -9,7 +9,7 @@ function GHI_MapTest()
 	local menuPage;
 
 	local FromMapZone = function()
-		local zoneOverlays = {};
+		local zoneOverlays = Linq();
 
 		for i=1, GetNumMapOverlays() do
 			local textureName, textureWidth, textureHeight, offsetX, offsetY = GetMapOverlayInfo(i);
@@ -47,7 +47,6 @@ function GHI_MapTest()
 								textureFileWidth = textureFileWidth * 2;
 							end
 						end
-
 
 						local t = {
 							width = texturePixelWidth,
@@ -105,7 +104,78 @@ function GHI_MapTest()
 	mapFrame.SetPoint("TOPLEFT", menuFrame, "TOPLEFT")
 
 	local Insert = function(continent, zone)
-		local textures = FromZone(continent, zone)
+
+		if fittingObject and fittingObject.frame then
+			fittingObject.frame:Hide();
+		end
+
+		fittingObject = {
+			x = 5000,
+			y = 5000,
+			scale = 1,
+			textures = Linq(),
+			order = 1,
+			level = 3,
+		}
+
+		local frame = CreateFrame("Button");
+
+		frame:SetAlpha(0.5)
+		frame.x = 0;
+		frame.y = 0;
+
+		local textureData = FromZone(continent, zone)
+
+		textureData.Foreach(function(tex)
+			local texture = frame:CreateTexture(nil,"BACKGROUND")
+			texture.width = tex.width;
+			texture.height = tex.height;
+			texture:SetWidth(texture.width);
+			texture:SetHeight(texture.height);
+			texture.xOff = tex.x;
+			texture.yOff = tex.y;
+			texture:SetPoint("TOPLEFT", texture.xOff, texture.yOff);
+			texture.path = tex.path;
+			texture:SetTexture(texture.path);
+			texture.texCoord = tex.texCoord;
+			texture:SetTexCoord(unpack(texture.texCoord));
+			texture:Show();
+			table.insert(fittingObject.textures, texture);
+
+			frame.x = math.max(frame.x, tex.x + tex.width);
+			frame.y = math.max(frame.y, -tex.y + tex.height);
+		end)
+
+		frame:SetWidth(frame.x);
+		frame:SetHeight(frame.y);
+		GHM_TempBG(frame);
+
+		frame:SetScript("OnMouseWheel",function(self, dir)
+			local scale = fittingObject.scale;
+
+			local modifier = 0.01;
+			if IsShiftKeyDown() then
+				modifier = 0.001;
+			end
+			local newScale = scale + scale*modifier*dir;
+
+			frame:SetWidth(frame.x * newScale);
+			frame:SetHeight(frame.y * newScale);
+			fittingObject.textures.Foreach(function(tex)
+				tex:SetWidth(tex.width * newScale);
+				tex:SetHeight(tex.height * newScale);
+				tex:SetPoint("TOPLEFT", tex.xOff * newScale, tex.yOff * newScale)
+			end)
+
+			fittingObject.scale = newScale;
+		end)
+
+		fittingObject.frame = frame;
+
+		mapFrame.AddFrameToMap(frame, fittingObject.x, fittingObject.y, true, function(posX, posY)
+			fittingObject.x = posX;
+			fittingObject.y = posY;
+		end)
 
 	end
 
@@ -114,15 +184,15 @@ function GHI_MapTest()
 	local InsertContinent = function(continent)
 		if fittingObject and fittingObject.frame then
 			fittingObject.frame:Hide();
-
 		end
 
 		fittingObject = {
-			x = 3000,
-			y = 3000,
+			x = 5000,
+			y = 5000,
 			scale = 1,
 			textures = Linq(),
-			order = 2,
+			order = 1,
+			level = 2,
 		}
 
 		local name = continents[continent];
@@ -175,6 +245,10 @@ function GHI_MapTest()
 			fittingObject.y = posY;
 		end)
 
+	end
+
+	local Round = function(num)
+		return tonumber(string.format("%.3f",num));
 	end
 
 	local resultFrame;
@@ -237,11 +311,43 @@ function GHI_MapTest()
 			{
 				type = "Button",
 				text = "Continent",
-				align = "c",
+				align = "l",
 				label = "insertContinent",
 				compact = false,
 				OnClick = function()
 					InsertContinent(currentContinent)
+				end,
+			},
+			{
+				type = "Button",
+				text = "Location",
+				align = "l",
+				label = "location",
+				compact = false,
+				OnClick = function()
+					--[[
+					for i = 1, 5 do
+						local frame = CreateFrame("Frame");
+						frame:SetWidth(1000);
+						frame:SetHeight(7000);
+						GHM_TempBG(frame);
+						local pos = GHI_Position().GetPlayerPos();
+						mapFrame.AddFrameToMap(frame, (i-1)*2000, 0); -- pos.x, pos.y
+					end
+					for i = 1, 5 do
+						local frame = CreateFrame("Frame");
+						frame:SetWidth(100);
+						frame:SetHeight(7000);
+						GHM_TempBG(frame);
+						mapFrame.AddFrameToMap(frame, ((i-1)*200) + 4000, 0);
+					end
+					--]]
+					local frame = CreateFrame("Frame");
+					frame:SetWidth(4);
+					frame:SetHeight(4);
+					GHM_TempBG(frame);
+					local pos = GHI_Position().GetPlayerPos();
+					mapFrame.AddFrameToMap(frame, pos.x, pos.y);
 				end,
 			},
 		},
@@ -257,14 +363,26 @@ function GHI_MapTest()
 					local scale = fittingObject.scale;
 
 					fittingObject.textures.Foreach(function(tex)
+						local texCoord, width, height;
+						if tex.texCoord then
+							texCoord = tex.texCoord;
+							local left, right, top, bottom = unpack(texCoord);
+							width = tex:GetWidth()/(right - left);
+							height = tex:GetHeight()/(bottom - top);
+						else
+							texCoord = { 0, 1, 0, 1 }
+							width = tex:GetWidth();
+							height = tex:GetHeight();
+						end
 						table.insert(t, {
-							x = math.floor(fittingObject.x + (tex.xOff * scale)),
-							y = math.floor(fittingObject.y + (tex.yOff * scale)),
+							x = Round(fittingObject.x + (tex.xOff * scale)),
+							y = Round(fittingObject.y + (tex.yOff * scale)),
 							path = tex.path,
-							texCoord = { 0, 1, 0, 1},
-							width = math.floor(tex:GetWidth());
-							height = math.floor(tex:GetHeight());
-							order = fittingObject.order;
+							texCoord = texCoord,
+							width = Round(width),
+							height = Round(height),
+							order = fittingObject.order,
+							level = fittingObject.level,
 						});
 					end);
 

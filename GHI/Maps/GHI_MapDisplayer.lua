@@ -27,37 +27,76 @@ function GHI_MapDisplayer(width, height)
 	scrollFrameButtonOverlay:SetParent(scrollFrame);
 	scrollFrameButtonOverlay:SetAllPoints(scrollFrame);
 
-	local GenerateTexture = function(frame,width,height,x,y,texCoord,path)
+	local GenerateTexture = function(frame, width, height, x, y, texCoord, path, alpha)
 		local left, right, top, bottom = unpack(texCoord);
 		local texture = frame:CreateTexture(nil,"BACKGROUND")
 		texture:SetWidth(width * (right - left));
 		texture:SetHeight(height * (bottom - top));
 		texture:SetTexCoord(left, right, top, bottom);
-		texture:SetPoint("TOPLEFT", x + (width * left), y + (height * top));
+		texture:SetPoint("TOPLEFT", x + (width * left), y - (height * top));
 		texture:SetTexture(path);
+		if alpha then
+			texture:SetAlpha(alpha)
+		end
 		texture:Show();
 	end
 
 	local mapFrame = CreateFrame("Frame","$parentMap",scrollFrame);
 	scrollFrame:SetScrollChild(mapFrame);
 
-	local mapLevelContainers = {};
+	local layerContainers = {};
 
 	local mapH,mapW = 0,0;
-	local mapData = Linq(GHI_MapData).OrderBy(function(p1, p2) return p1.order > p2.order; end);
+	local mapData = GHI_MapData; --.OrderBy(function(p1, p2) return p1.order > p2.order; end);
 
-	for index,t in pairs(mapData) do
-		local order = t.order or 1;
-		local levelContainer = mapLevelContainers[order];
-		if not(levelContainer) then
-			levelContainer = CreateFrame("Frame");
-			local levelParent = mapLevelContainers[order - 1] or mapFrame;
-			levelContainer:SetParent(levelParent);
-			levelContainer:SetAllPoints(levelParent);
-			mapLevelContainers[order] = levelContainer;
+	local CreateContainersForLevel = function(level)
+		for i = 1, level do
+			if not(layerContainers[i]) then
+				local container = CreateFrame("Frame");
+				local levelParent;
+				if i > 1 then
+					local orderContainers = layerContainers[i - 1];
+					levelParent = orderContainers[#(orderContainers)];
+				else
+					levelParent = mapFrame;
+				end
+				container:SetParent(levelParent);
+				container:SetAllPoints(levelParent);
+				layerContainers[i] = { container };
+			end
 		end
+	end
 
-		GenerateTexture(levelContainer, t.width, t.height, t.x, t.y, t.texCoord, t.path);
+	local CreateContainerForLevelAndOrder = function(level, order)
+		CreateContainersForLevel(level);
+
+		for i = 2, order do
+			if not(layerContainers[level][i]) then
+				local container = CreateFrame("Frame");
+				local levelParent = layerContainers[level][i-1];
+				container:SetParent(levelParent);
+				container:SetAllPoints(levelParent);
+				layerContainers[level][i] = container;
+
+				if i == order and layerContainers[level + 1] then
+					layerContainers[level + 1][1]:ClearAllPoints();
+					layerContainers[level + 1][1]:SetParent(container);
+					layerContainers[level + 1][1]:SetAllPoints(container);
+				end
+			end
+		end
+	end
+
+	local GetOrderContainer = function(level, order)
+		CreateContainerForLevelAndOrder(level, order);
+		return layerContainers[level][order]
+	end
+
+	for index = 1,#(mapData) do
+		local t = mapData[index];
+		local order = t.order or 1;
+
+		GenerateTexture(GetOrderContainer(t.level or 1, t.order or 1), t.width, t.height, t.x, t.y, t.texCoord, t.path, t.alpha);
 		mapW = math.max(mapW, t.x + t.width);
 		mapH = math.max(mapH, -t.y + t.height);
 	end
@@ -66,11 +105,9 @@ function GHI_MapDisplayer(width, height)
 	mapFrame:SetWidth(AZEROTH_WIDTH);
 
 	local HideLayersWhenScaling = function(scale)
-		--if scale < 0.12 then
-			mapLevelContainers[2]:SetAlpha((scale - 0.05)/0.12);
-		--else
-		--	mapLevelContainers[2]:SetAlpha(1);
-		--end
+		layerContainers[2][1]:SetAlpha((scale - 0.05)/0.12);
+		layerContainers[3][1]:SetAlpha((scale - 0.16)/0.28);
+		-- todo: do for all orders in the level
 	end
 
 	local SetMapScale = function(scale)
@@ -170,7 +207,7 @@ function GHI_MapDisplayer(width, height)
 						local xOff, yOff = unpack(frame.pos);
 
 						frame:ClearAllPoints();
-						frame:SetPoint("TOPLEFT", mapLevelContainers[#(mapLevelContainers)], "TOPLEFT", xOff + dX/scale, yOff - dY/scale);
+						frame:SetPoint("TOPLEFT", layerContainers[#(layerContainers)][1], "TOPLEFT", xOff + dX/scale, yOff - dY/scale);
 						frame.pos = {xOff + dX/scale, yOff - dY/scale};
 						if onDrag then
 							onDrag(xOff + dX/scale, yOff - dY/scale);
