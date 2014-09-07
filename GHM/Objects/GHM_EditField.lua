@@ -13,6 +13,7 @@ function GHM_EditField(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_EditField" .. count, parent, "GHM_EditField_Template");
 	count = count + 1;
 
+	local textFrame = _G[frame:GetName().."Text"];
 	local label = _G[frame:GetName().."TextLabel"];
 	label:SetText(profile.text or "");
 
@@ -87,7 +88,18 @@ function GHM_EditField(profile, parent, settings)
 	end
 
 	frame.GetPreferredDimensions = function()
-		return profile.width, profile.height;
+		local h = profile.height;
+		if h then
+			h = h + textFrame:GetHeight();
+		end
+		return profile.width, h;
+	end
+
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height - textFrame:GetHeight());
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, - (yOff + textFrame:GetHeight()));
+		--GHM_TempBG(obj);
 	end
 
 	if type(profile.OnLoad) == "function" then

@@ -148,7 +148,7 @@ function GHI_MapTest()
 
 		frame:SetWidth(frame.x);
 		frame:SetHeight(frame.y);
-		GHM_TempBG(frame);
+		--GHM_TempBG(frame);
 
 		frame:SetScript("OnMouseWheel",function(self, dir)
 			local scale = fittingObject.scale;

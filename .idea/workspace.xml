@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="f1eea4b9-5271-409b-96fb-c9abe52563ce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Maps/GHI_MapData.lua" afterPath="$PROJECT_DIR$/GHI/Maps/GHI_MapData.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Maps/GHI_MapDisplayer.lua" afterPath="$PROJECT_DIR$/GHI/Maps/GHI_MapDisplayer.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHI/Maps/GHI_MapMaker.lua" afterPath="$PROJECT_DIR$/GHI/Maps/GHI_MapMaker.lua" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua" afterPath="$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua" afterPath="$PROJECT_DIR$/GHM/Toolbar/GHM_MultiPageToolbar.lua" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -91,7 +91,7 @@
     <file path="/GHI_BookObj.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376077206362" ignored="false" />
     <file path="/ghi.toc" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405459094467" ignored="false" />
     <file path="/GHI_BookUI.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376508689908" ignored="false" />
-    <file path="/Dummy.txt" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1410032245990" ignored="false" />
+    <file path="/Dummy.txt" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1410117027182" ignored="false" />
     <file path="/GHI_TextPositionCalculator.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1376079987578" ignored="false" />
     <file path="/GHI_BookEditor.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404854052371" ignored="false" />
     <file path="/GHI_MultiTextureImage.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1404845014689" ignored="false" />
@@ -114,7 +114,7 @@
     <file path="/GHM_CustomSlider.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1406977764391" ignored="false" />
     <file path="/GHM_Button.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1405718945155" ignored="false" />
     <file path="/GHI_BagOptionsMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1406971873125" ignored="false" />
-    <file path="/GHM_EditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1407599862857" ignored="false" />
+    <file path="/GHM_EditField.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1410124788174" ignored="false" />
     <file path="/GHM_List.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1407012973613" ignored="false" />
     <file path="/GHM_BaseMenu.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1407599651763" ignored="false" />
     <file path="/GHM_NewFrame.lua" changelist="f1eea4b9-5271-409b-96fb-c9abe52563ce" time="1406579234695" ignored="false" />
@@ -205,10 +205,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GHI_MapMaker.lua" pinned="true" current="true" current-in-tab="true">
+      <file leaf-file-name="GHI_MapMaker.lua" pinned="true" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/Maps/GHI_MapMaker.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="17" selection-start="2697" selection-end="2697" vertical-scroll-proportion="0.7258065">
+            <state line="150" column="10" selection-start="3644" selection-end="3644" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -226,16 +226,16 @@
       <file leaf-file-name="GHI_Position.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_Position.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="34" selection-start="4376" selection-end="4376" vertical-scroll-proportion="-3.36">
+            <state line="182" column="34" selection-start="4376" selection-end="4376" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GHI_MapData.lua" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GHI_MapData.lua" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GHI/Maps/GHI_MapData.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="216" selection-start="5557" selection-end="5557" vertical-scroll-proportion="-7.0">
+            <state line="127" column="105" selection-start="24057" selection-end="24057" vertical-scroll-proportion="0.64176244">
               <folding />
             </state>
           </provider>
@@ -244,7 +244,7 @@
       <file leaf-file-name="GHM_EditField.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="9" selection-start="2071" selection-end="2085" vertical-scroll-proportion="0.0">
+            <state line="93" column="56" selection-start="2295" selection-end="2295" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -253,7 +253,7 @@
       <file leaf-file-name="GHI_Packer.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_Packer.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="65" selection-start="1870" selection-end="1870" vertical-scroll-proportion="-3.16">
+            <state line="63" column="65" selection-start="1870" selection-end="1870" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -293,7 +293,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GHM/Toolbar/GHM_MultipageToolbar.lua" />
         <option value="$PROJECT_DIR$/GHM/Toolbar/GHM_ToolbarPage.lua" />
         <option value="$PROJECT_DIR$/GHM/Toolbar/GHM_ToolbarCategory.lua" />
         <option value="$PROJECT_DIR$/GHM/Toolbar/GHM_ToolbarObjectRow.lua" />
@@ -307,8 +306,9 @@
         <option value="$PROJECT_DIR$/GHI/Misc/GHI_Packer.lua" />
         <option value="$PROJECT_DIR$/GHI/Misc/GHI_Position.lua" />
         <option value="$PROJECT_DIR$/GHI/Maps/GHI_MapDisplayer.lua" />
-        <option value="$PROJECT_DIR$/GHI/Maps/GHI_MapData.lua" />
+        <option value="$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua" />
         <option value="$PROJECT_DIR$/GHI/Maps/GHI_MapMaker.lua" />
+        <option value="$PROJECT_DIR$/GHI/Maps/GHI_MapData.lua" />
       </list>
     </option>
   </component>
@@ -619,12 +619,12 @@
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="151" />
-    <property name="project.structure.proportion" value="0.0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="150" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WTF/Account/PINGUCHRESTEN/Argent Dawn/Quzelda/SavedVariables" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="151" />
@@ -669,6 +669,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -694,19 +707,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1028,7 +1028,11 @@
       <created>1410032252368</created>
       <updated>1410032252368</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="More on maps.">
+      <created>1410047988701</created>
+      <updated>1410047988702</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1058,13 +1062,11 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3207856" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.87027913" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44334975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3316913" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3502455" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.7356322" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.74055827" order="4" side_tool="false" content_ui="tabs" />
@@ -1075,7 +1077,9 @@
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44334975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1122,7 +1126,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="A lot of progress on the maps. World map for Azeroth is done and Kalimdor is in progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="More on maps." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1136,7 +1140,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Solution for the export problem. Including a safety switch." />
     <MESSAGE value="Progress on GHG group log. This code got into the wrong branch." />
     <MESSAGE value="Progress on GHG event log." />
     <MESSAGE value="Fixed encryption bug for GHG." />
@@ -1161,6 +1164,7 @@
     <MESSAGE value="Map progress" />
     <MESSAGE value="Progress on the maps. Navigation is done." />
     <MESSAGE value="A lot of progress on the maps. World map for Azeroth is done and Kalimdor is in progress." />
+    <MESSAGE value="More on maps." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1172,13 +1176,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_ScrollFrame.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="63" selection-start="2786" selection-end="2786" vertical-scroll-proportion="0.66312057">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GHI/ActionHandlers/GHI_DynamicAction.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state line="496" column="12" selection-start="10544" selection-end="10692" vertical-scroll-proportion="0.13793103">
@@ -1244,21 +1241,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_Packer.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="65" selection-start="1870" selection-end="1870" vertical-scroll-proportion="-3.16">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="9" selection-start="2071" selection-end="2085" vertical-scroll-proportion="0.0">
+        <state line="63" column="65" selection-start="1870" selection-end="1870" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GHI/Misc/GHI_Position.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="34" selection-start="4376" selection-end="4376" vertical-scroll-proportion="-3.36">
+        <state line="182" column="34" selection-start="4376" selection-end="4376" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/GHM_BaseObject.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="780" selection-end="986" vertical-scroll-proportion="0.21631205">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHM/Objects/GHM_EditField.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="56" selection-start="2295" selection-end="2295" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GHI/Maps/GHI_MapMaker.lua">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="10" selection-start="3644" selection-end="3644" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1272,14 +1283,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GHI/Maps/GHI_MapData.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="216" selection-start="5557" selection-end="5557" vertical-scroll-proportion="-7.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GHI/Maps/GHI_MapMaker.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="17" selection-start="2697" selection-end="2697" vertical-scroll-proportion="0.7258065">
+        <state line="127" column="105" selection-start="24057" selection-end="24057" vertical-scroll-proportion="0.64176244">
           <folding />
         </state>
       </provider>
