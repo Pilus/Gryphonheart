@@ -15,7 +15,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	guid = "companion_01",
 	authorName = "The Gryphonheart Team",
 	authorGuid = "00x1",
-	version = 2,
+	version = 3,
 	order = 1,
 	category = category,
 	description = "This action summons a companion based on a provided input.",
@@ -57,7 +57,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	},
 	inputs = {
 		companion = {
-			name = "companion",
+			name = "Companion",
 			description = "The Companion name to summon",
 			type = "string",
 			defaultValue = "",

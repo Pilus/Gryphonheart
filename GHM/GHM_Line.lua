@@ -205,6 +205,8 @@ function GHM_Line(profile, parent, settings)
 		return parent;
 	end
 
+
+
 	return class;
 end
 

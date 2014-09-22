@@ -30,7 +30,15 @@ function GHI_UpdateSequenceMenu()
 		{
 			{
 				{
+					type = "Text",
+					text = loc.SEQM_TEXT,
 					align = "l",
+					color = "white",
+				},
+			},
+			{
+				{
+					align = "r",
 					type = "DropDown",
 					text = loc.SEQ_FREQUENCY,
 					label = "frequency",
@@ -42,13 +50,6 @@ function GHI_UpdateSequenceMenu()
 						end
 						return t;
 					end,
-				},
-				{
-					type = "Text",
-					text = loc.SEQM_TEXT,
-					align = "r",
-					color = "white",
-					width = 230,
 				},
 			},
 			{
@@ -65,7 +66,6 @@ function GHI_UpdateSequenceMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
 					align = "l",
 				},
 				{
@@ -79,18 +79,22 @@ function GHI_UpdateSequenceMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
-					align = "r",
+					align = "l",
 				},
 				{
 					type = "Button",
 					text = CANCEL,
-					align = "r",
+					align = "l",
 					label = "cancel",
 					compact = false,
 					OnClick = function(obj)
 						menuFrame:Hide();
 					end,
+				},
+				{
+					type = "Dummy",
+					height = 10,
+					align = "l",
 				},
 			},
 		},

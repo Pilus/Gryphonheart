@@ -359,7 +359,7 @@ local function SetUpContainerMenuButtons()
 		f:SetHeight(20);
 		f:SetPoint("TOPLEFT", info.x, info.y);
 		f:SetText(info.text);
-		f:SetFrameLevel(5)
+		--f:SetFrameLevel(5)
 		f:SetScript("OnEnter", function(self)
 			GameTooltip:SetOwner(self, "ANCHOR_LEFT");
 			GameTooltip:ClearLines()

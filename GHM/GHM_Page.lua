@@ -122,6 +122,8 @@ function GHM_Page(profile, parent, settings)
 
 	end
 
+	--GHM_TempBG(page);
+
 	return page;
 end
 

@@ -58,7 +58,7 @@ function GHI_TooltipMenu()
 				{
 					type = "Text",
 					text = loc.TT_TEXT,
-					align = "c",
+					align = "l",
 					color = "white",
 					width = 340,
 				},
@@ -67,7 +67,6 @@ function GHI_TooltipMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
 					align = "l",
 				},
 				{
@@ -81,18 +80,22 @@ function GHI_TooltipMenu()
 				{
 					type = "Dummy",
 					height = 10,
-					width = 100,
-					align = "r",
+					align = "l",
 				},
 				{
 					type = "Button",
 					text = CANCEL,
-					align = "r",
+					align = "l",
 					label = "cancel",
 					compact = false,
 					OnClick = function(obj)
 						menuFrame:Hide();
 					end,
+				},
+				{
+					type = "Dummy",
+					height = 10,
+					align = "l",
 				},
 			},
 		},

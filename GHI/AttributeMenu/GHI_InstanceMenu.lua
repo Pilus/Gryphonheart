@@ -23,15 +23,8 @@ function GHI_InstanceMenu()
 		{
 			{
 				{
-					type = "Dummy",
-					height = 30,
-					width = 1,
-					align = "c",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
-					width = 200,
 					text = "",
 					color = "white",
 					align = "l",

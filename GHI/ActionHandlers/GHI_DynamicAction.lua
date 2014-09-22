@@ -491,7 +491,6 @@ function GHI_DynamicAction(dataTable)
 			{
 				type = "Dummy",
 				height = 10,
-				width = 100,
 				align = "l",
 			},
 			{
@@ -505,18 +504,22 @@ function GHI_DynamicAction(dataTable)
 			{
 				type = "Dummy",
 				height = 10,
-				width = 100,
-				align = "r",
+				align = "l",
 			},
 			{
 				type = "Button",
 				text = CANCEL,
-				align = "r",
+				align = "l",
 				label = "cancel",
 				compact = false,
 				OnClick = function(obj)
 					menuFrame:Hide();
 				end,
+			},
+			{
+				type = "Dummy",
+				height = 10,
+				align = "l",
 			},
 		});
 

@@ -158,11 +158,16 @@ function GHI_AdvancedItemMenu()
 				},
 				{
 					type = "Dummy",
-					height = 10,
-					width = 10,
+					height = 24,
+					width = 30,
+					align = "l",
+				},
+				{
+					type = "Dummy",
+					height = 30,
 					align = "r",
 					label = "itemTooltipAnchor",
-				},
+				}
 			},
 			{
 				{
@@ -306,15 +311,6 @@ function GHI_AdvancedItemMenu()
 					OnClick = function(self)
 						item.SetConsumed(self:GetChecked());
 					end
-				},
-			},
-			{
-				{
-					type = "Text",
-					text = loc.ADV_DESCRIPTIONS,
-					align = "l",
-					color = "white",
-					width = 500,
 				},
 			},
 		},
@@ -813,10 +809,13 @@ function GHI_AdvancedItemMenu()
 		SetupWithEditItem();
 	end
 
-	itemTooltip = CreateFrame("GameTooltip", "GHI_AdvancedItemMenuItemTooltip" .. menuIndex, menuFrame.GetLabelFrame("itemTooltipAnchor"), "GHI_StandardItemMenuItemTooltip");
+	local anchor = menuFrame.GetLabelFrame("itemTooltipAnchor");
+	itemTooltip = CreateFrame("GameTooltip", "GHI_AdvancedItemMenuItemTooltip" .. menuIndex, anchor, "GHI_StandardItemMenuItemTooltip");
 	_G["GHI_AdvancedItemMenuItemTooltip" .. menuIndex .. "TextLabel"]:SetText(loc.PREVIEW)
 
-	itemTooltip:SetPoint("TOPRIGHT", 0, 0)
+	itemTooltip:SetPoint("TOPRIGHT", anchor, "TOPLEFT");
+	itemTooltip:SetPoint("TOPRIGHT", anchor, "TOPRIGHT");
+
 	itemTooltip:GetParent():SetScript("OnShow", function() UpdateTooltip(); end)
 	menuFrame.window:AddScript("OnMinimize", function()
 		if menuFrame.iconFrame then

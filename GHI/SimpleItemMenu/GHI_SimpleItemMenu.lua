@@ -495,14 +495,12 @@ function GHI_SimpleItemMenu()
 				align = "l",
 				label = "bookTitle",
 				texture = "Tooltip",
-				width = 150,
+				width = 120,
 			},
-		},
-		{
 			{
 				type = "DropDown",
 				texture = "Tooltip",
-				width = 145,
+				width = 105,
 				label = "bookMaterial",
 				align = "l",
 				text = "Material:",
@@ -522,25 +520,21 @@ function GHI_SimpleItemMenu()
 					{ text = "Valentine",  index=13},
 				},
 			},
-		},
-		{
 			{
 				type = "DropDown",
-				width = 145,
+				width = 105,
 				label = "bookFont",
 				align = "l",
 				text = "Font:",
 				data = fonts,
 			},
-		},
-		{
 			{
 				type = "Editbox",
 				text = "N Size:",
 				align = "l",
 				label = "nSize",
 				texture = "Tooltip",
-				width = 50,
+				width = 40,
 				startText = "15",
 			},
 			{
@@ -549,7 +543,7 @@ function GHI_SimpleItemMenu()
 				align = "l",
 				label = "h1Size",
 				texture = "Tooltip",
-				width = 50,
+				width = 40,
 				startText = "24",
 			},
 			{
@@ -558,17 +552,16 @@ function GHI_SimpleItemMenu()
 				align = "l",
 				label = "h2Size",
 				texture = "Tooltip",
-				width = 50,
+				width = 40,
 				startText = "19",
 			},
 		},
 		{
 			{
 				type = "MultiPageEditField",
-				align = "r",
-				width = 345,
-				height = 300,
-				yOff = 200,
+				align = "c",
+				--width = 335,
+				--height = 300,
 				label = "bookText",
 				HTMLtools = true,
 				toolbarButtons = {
@@ -645,12 +638,6 @@ function GHI_SimpleItemMenu()
 			},
 		},
 		{
-			{
-				type = "Dummy",
-				height = 60,
-				width = 10,
-				align = "l",
-			},
 			{
 				type = "Text",
 				fontSize = 11,
@@ -746,16 +733,6 @@ function GHI_SimpleItemMenu()
 				color = "yellow",
 				width = 400,
 			},
-		},
-		{
-			{
-				type = "Text",
-				fontSize = 11,
-				width = 490,
-				text = loc.SOUND_SEL,
-				color = "white",
-				align = "l",
-					},
 		},
 		{
 			{
@@ -954,13 +931,20 @@ function GHI_SimpleItemMenu()
 				width = 300,
 			},
 			{
-				type = "Editbox",
+				type = "DropDown",
 				texture = "Tooltip",
-				label = "buff_range",
-				align = "r",
-				text = loc.RANGE,
-				numbersOnly = true,
-				width = 60,
+				width = 100,
+				label = "buff_type",
+				align = "l",
+				text = loc.BUFF_TYPE,
+				returnIndex = true,
+				data = {
+				{ text = loc.TYPE_MAGIC, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Magic")},
+				{ text = loc.TYPE_CURSE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Curse")},
+				{ text = loc.TYPE_DISEASE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Disease")},
+				{ text = loc.TYPE_POISON, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Poison")},
+				{ text = loc.TYPE_PHYSICAL, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("none")},
+				},
 			},
 			{
 				align = "r",
@@ -985,6 +969,15 @@ function GHI_SimpleItemMenu()
 			{
 				type = "Editbox",
 				texture = "Tooltip",
+				label = "buff_range",
+				align = "r",
+				text = loc.RANGE,
+				numbersOnly = true,
+				width = 60,
+			},
+			{
+				type = "Editbox",
+				texture = "Tooltip",
 				label = "buff_amount",
 				align = "r",
 				text = loc.AMOUNT,
@@ -994,33 +987,17 @@ function GHI_SimpleItemMenu()
 		},
 		{
 			{
-				type = "DropDown",
-				texture = "Tooltip",
-				width = 155,
-				label = "buff_type",
-				align = "l",
-				text = loc.BUFF_TYPE,
-				returnIndex = true,
-				data = {
-				{ text = loc.TYPE_MAGIC, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Magic")},
-				{ text = loc.TYPE_CURSE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Curse")},
-				{ text = loc.TYPE_DISEASE, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Disease")},
-				{ text = loc.TYPE_POISON, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("Poison")},
-				{ text = loc.TYPE_PHYSICAL, colorCode = "\124c"..miscAPI.GHI_GetDebuffColor("none")},
-				},
-			},
-			{
 				type = "RadioButtonSet",
 				texture = "Tooltip",
-				width = 155,
+				width = 110,
 				label = "filter",
-				align = "c",
+				align = "l",
 				text = loc.BUFF_DEBUFF,
 				data = {
 					{ value = "Helpful", text = loc.HELPFUL},
 					{ value = "Harmful", text = loc.HARMFUL},
 				},
-				yOff = -10,
+				--yOff = -10,
 			},
 			{
 				align = "c",
@@ -1028,6 +1005,23 @@ function GHI_SimpleItemMenu()
 				text = loc.BUFF_ON_SELF,
 				label = "castOnSelf",
 				xOff = 100,
+			},
+			{
+				align = "c",
+				type = "CheckBox",
+				text = loc.STACKABLE,
+				label = "stackable",
+				xOff = 92,
+				yOff = 27,
+			},
+			{
+				align = "c",
+				type = "CheckBox",
+				text = loc.BUFF_UNTIL_CANCELED,
+				label = "until_canceled",
+				xOff = 120,
+				yOff = 20,
+				frameAlign = "c",
 			},
 		},
 		{
@@ -1039,33 +1033,18 @@ function GHI_SimpleItemMenu()
 				yOff = -10,
 			},
 			{
-				align = "c",
+				align = "r",
 				type = "Time",
 				text = loc.DELAY;
 				label = "buff_delay",
-				width = 80,
+				--width = 80,
 				yOff = -10,
 				xOff = -20,
 			},
-			{
-				align = "c",
-				type = "CheckBox",
-				text = loc.BUFF_UNTIL_CANCELED,
-				label = "until_canceled",
-				xOff = 120,
-				yOff = 20,
-				frameAlign = "l",
-			},
+
 		},
 		{
-			{
-				align = "c",
-				type = "CheckBox",
-				text = loc.STACKABLE,
-				label = "stackable",
-				xOff = 92,
-				yOff = 27,
-			},
+
 		},
 	}
 	local editEquipPage = {
@@ -1134,14 +1113,6 @@ function GHI_SimpleItemMenu()
 		},
 		{
 			{
-				type = "Dummy",
-				height = 25,
-				width = 10,
-				align = "l",
-			},
-		},
-		{
-			{
 				type = "Text",
 				fontSize = 11,
 				width = 490,
@@ -1150,13 +1121,13 @@ function GHI_SimpleItemMenu()
 				align = "l",
 			},
 		},
-		{		
+		{
 			{
-					type = "Color",
-					text = loc.COLOR,
-				   align = "l",
-					label = "se_color",
-				},				
+				type = "Color",
+				text = loc.COLOR,
+			   align = "l",
+				label = "se_color",
+			},
 			{
 				type = "Time",
 				align = "c",
@@ -1175,12 +1146,6 @@ function GHI_SimpleItemMenu()
 			},
 		},
 		{
-			{
-				type = "Dummy",
-					height = 150,
-				width = 10,
-					align = "l",
-			},
 			{
 				type = "Time",
 				align = "c",

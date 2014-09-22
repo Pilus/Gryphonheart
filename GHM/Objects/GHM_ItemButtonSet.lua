@@ -87,7 +87,7 @@ function GHM_ItemButtonSet(profile, parent, settings)
 		local data = GetData();
 		local numButtons = #data
 		local prevItem
-		local height = 54
+		local height = 49
 		
 		for i, v in pairs(data) do
 			local item = _G[parentFrame.."Item"..i]
@@ -230,8 +230,6 @@ function GHM_ItemButtonSet(profile, parent, settings)
 
 	frame.Clear();
 	frame:Show();
-
-
 
 	return frame;
 end

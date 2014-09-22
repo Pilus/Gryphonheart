@@ -79,7 +79,7 @@ function GHI_MenuAPI()
 			menuFrame:Hide();
 		end
 		f.IsShown = function()
-			return menuFrame:IsShown() and menuFrame.window:IsShown();
+			return menuFrame:IsShown();
 		end
 
 		return f;

@@ -1987,7 +1987,7 @@ function GHI_Loc()
 
 	local textsTTMenu = {
 		TT_TEXT = {
-			enUS =  "~Description and instructions for the tooltip~",
+			enUS =  "Custom tooltips allows you to create tooltip lines that changes its text depending on attributes, functions and other things inside the dynamic actions above.\n\nEnd the dynamic action chain with a \"Set Tooltip Line\" action to display the text.",
 		},
 		TT_TITLE = {
 			enUS = "Custom Tooltip",

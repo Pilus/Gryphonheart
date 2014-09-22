@@ -79,6 +79,7 @@ function GHI_AttributeMenu()
 					end,
 					returnIndex = true,
 					OnSelect = SelectArea,
+					width = 100,
 				},
 				{
 					type = "RadioButtonSet",

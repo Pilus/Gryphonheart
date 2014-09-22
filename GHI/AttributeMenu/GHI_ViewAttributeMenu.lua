@@ -25,15 +25,9 @@ function GHI_ViewAttributeMenu()
 		{
 			{
 				{
-					type = "Dummy",
-					height = 30,
-					width = 1,
-					align = "c",
-				},
-				{
 					type = "Text",
 					fontSize = 11,
-					width = 335,
+					height = 20,
 					text = "",
 					color = "white",
 					align = "l",
@@ -96,7 +90,7 @@ function GHI_ViewAttributeMenu()
 		title = loc.VIEW_ATTRIBUTE_MENU_TITLE,
 		name = "GHI_ViewAttribute_Menu" .. menuIndex,
 		theme = "BlankTheme",
-		width = 365,
+		width = 385,
 		useWindow = true,
 		OnHide = function()
 			if not (menuFrame.window:IsShown()) then

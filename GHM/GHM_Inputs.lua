@@ -274,6 +274,7 @@ return {
 		ghm = {
 			type = "EditField",
 			width = 130,
+			height = 120,
 		},
 		validate = function(value)
 			return (type(value) == "string");

@@ -486,6 +486,10 @@ function GHM_MultiPageEditField(profile, parent, settings)
 		frame:SetWidth(profile.width);
 	end
 
+	frame.GetPreferredDimensions = function()
+		return profile.width, profile.height;
+	end
+
 	fieldFrame:SetWidth(frame:GetWidth()-33);
 
 	-- toolbar buttons
