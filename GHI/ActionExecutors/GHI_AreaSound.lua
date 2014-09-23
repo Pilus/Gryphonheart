@@ -20,9 +20,16 @@ function GHI_AreaSound()
 	local comm = GHI_ChannelComm();
 	local RecieveAreaSound, Send;
 	local MAX_RANGE = 50;
+	local ALLOWED_SOUND_PR_MIN = 10; --for spam prevention
+	local soundspamCount = 0;
 	local log = GHI_Log();
+	local loc = GHI_Loc();
 	local delayedSounds = {};
 	local lastDisallowedSound = 0;
+	
+	GHI_Timer(function()
+		soundspamCount = max(0, soundspamCount - 1);
+	end, 60 / ALLOWED_SOUND_PR_MIN);
 
 	class.PlaySound = function(soundPath, range, delay)
 		if type(delay) == "number" and delay > 0 then
@@ -56,10 +63,18 @@ function GHI_AreaSound()
 			soundPath = soundPath,
 			delay = 0,
 		};
-
+		
 		local playerPos = position.GetPlayerPos();
 		playerPos.continent = playerPos.world;
-		comm.Send(nil, "AreaSound", playerPos, range or 0, soundData)
+		if soundspamCount == ALLOWED_SOUND_PR_MIN then
+			GHI_Message(loc.ERR_SPAM_BLOCK);
+			return;
+		elseif soundspamCount > ALLOWED_SOUND_PR_MIN then
+			return;
+		else
+			comm.Send(nil, "AreaSound", playerPos, range or 0, soundData)
+			soundspamCount = soundspamCount+1;
+		end
 	end
 
 	RecieveAreaSound = function(sender, playerPos, range, data, ...)
