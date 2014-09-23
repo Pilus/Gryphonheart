@@ -20,8 +20,8 @@ function GHI_AreaSound()
 	local comm = GHI_ChannelComm();
 	local RecieveAreaSound, Send;
 	local MAX_RANGE = 50;
-	local ALLOWED_SOUND_PR_MIN = 5; --for spam prevention
-	soundspamCount = 0;
+	local ALLOWED_SOUND_PR_MIN = 10; --for spam prevention
+	local soundspamCount = 0;
 	local log = GHI_Log();
 	local loc = GHI_Loc();
 	local delayedSounds = {};
