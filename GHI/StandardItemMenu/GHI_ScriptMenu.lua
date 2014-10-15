@@ -28,7 +28,7 @@ local icon = "Interface\\Icons\\Trade_Engineering";
 local soundMenuList,iconMenuList,imageMenuList;
 function GHI_ScriptMenu(_OnOkCallback, _editAction)
 	if not (miscAPI) then miscAPI = GHI_MiscAPI().GetAPI(); end
-	local playerGUID = UnitGUID("player");
+	local playerGUID = GHUnitGUID("player");
 
 	for i, menu in pairs(menus) do
 		if _editAction and menu.IsInUse() and menu.editAction == _editAction then

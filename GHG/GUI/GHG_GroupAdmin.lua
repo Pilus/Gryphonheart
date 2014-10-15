@@ -240,7 +240,7 @@ local Initialize = function()
 	GHG_AdminFrame.menuFrame = menuFrame;
 
 	GHG_AdminFrame:SetScript("OnHide",OnHide);
-	api = GHG_AdminAPI(UnitGUID("player"));
+	api = GHG_AdminAPI(GHUnitGUID("player"));
 
 end
 

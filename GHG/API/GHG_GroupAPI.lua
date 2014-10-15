@@ -74,7 +74,7 @@ function GHG_GroupAPI(userGuid)
 		group.AddRank("Member");
 
 		local pName = "Unknown";
-		if userGuid == UnitGUID("player") then
+		if GHCompareGUIDs(userGuid, GHUnitGUID("player")) then
 			pName = UnitName("player");
 		end
 		group.AddMember(userGuid,pName,leaderRank.GetGuid());

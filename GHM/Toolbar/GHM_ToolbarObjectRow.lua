@@ -23,7 +23,7 @@ function GHM_ToolbarObjectRow(profile, parent, settings)
 		local obj = GHM_BaseObject(profile[i], frame, settings);
 		local objWidth, objHeight = obj.GetPreferredDimensions();
 
-		obj.SetPosition(width, 0, objWidth, objWidth);
+		obj.SetPosition(width, 0, objWidth, objHeight);
 
 		height = math.max(height, objHeight);
 		width = width + objWidth;

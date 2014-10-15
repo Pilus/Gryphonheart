@@ -84,7 +84,7 @@ function GHI_BuffHandler()
 	end
 
 	ApplyBuff = function(name, text, texture, untilCancelled, filter, debuffType, duration, cancelable, stackable, count)
-		buff:CastBuff(string.lower(filter), name, UnitGUID("player"), name, text, texture, (not (untilCancelled) and duration) or 0, (not (untilCancelled) and GetTime() + duration) or 0, count, debuffType, stackable)
+		buff:CastBuff(string.lower(filter), name, GHUnitGUID("player"), name, text, texture, (not (untilCancelled) and duration) or 0, (not (untilCancelled) and GetTime() + duration) or 0, count, debuffType, stackable)
 	end
 
 	PackBuffInfo = function(buffName, buffDetails, buffIcon, untilCanceled, filter, buffType, buffDuration, cancelable, stackable, count, delay, range, alwaysCastOnSelf)
@@ -147,7 +147,7 @@ function GHI_BuffHandler()
 
 	class.CountBuffs = function(name, unit)
 		unit = unit or "player";
-		return buff:CountBuff(name, UnitGUID(unit))
+		return buff:CountBuff(name, GHUnitGUID(unit))
 	end
 
 	class.RemoveBuff = function(name, filter, count, delay)
@@ -157,12 +157,12 @@ function GHI_BuffHandler()
 			table.insert(delayedRemoveBuffs,t);
 			return;
 		else
-			buff:RemoveBuff(name, UnitGUID("player"), count or 1,filter)
+			buff:RemoveBuff(name, GHUnitGUID("player"), count or 1,filter)
 		end
 	end
 
 	class.RemoveAllBuffs = function()
-		buff:ClearAllBuffs(UnitGUID("player"));
+		buff:ClearAllBuffs(GHUnitGUID("player"));
 		delayedBuffs = {};
 	end
 
@@ -190,7 +190,7 @@ function GHI_BuffHandler()
 	comm.AddRecieveFunc("BuffSubscribe", BuffRecieveSubscription)
 
 	SendBuffInfo = function(players)
-		local guid = UnitGUID("player");
+		local guid = GHUnitGUID("player");
 		local buffs, debuffs = buff:Serialize(guid);
 
 		if type(players) == "string" then
@@ -214,7 +214,7 @@ function GHI_BuffHandler()
 	comm.AddRecieveFunc("BuffInfo", BuffRecieveInfo)
 
 	BuffChanged = function(guid)
-		if UnitGUID("player") == guid then
+		if GHUnitGUID("player") == guid then
 			UpdateBuffSubscriptions()
 			SendBuffInfo(subscribedPlayers)
 		end

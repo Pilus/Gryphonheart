@@ -57,7 +57,7 @@ function GHG_GroupInvite()
 	class.AcceptGroupInvitation = function()
 		if currentInvitation then
 			local groupGuid,sender,groupName = unpack(currentInvitation);
-			comm.Send("ALERT",sender,"GHG_InviteAccepted",groupGuid,UnitGUID("player"));
+			comm.Send("ALERT",sender,"GHG_InviteAccepted",groupGuid,GHUnitGUID("player"));
 			expectedGroupInfoForJoinedGroups[groupGuid] = true;
 			currentInvitation = nil;
 		end
@@ -98,7 +98,7 @@ function GHG_GroupInvite()
 
 	GHI_Event("GHG_GROUP_UPDATED",function(e,groupGuid)
 		local group = groupList.GetGroup(groupGuid);
-		if expectedGroupInfoForJoinedGroups[groupGuid] and group and group.IsPlayerMemberOfGuild(UnitGUID("player")) then
+		if expectedGroupInfoForJoinedGroups[groupGuid] and group and group.IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 			channelComm.Send("ALERT","GHG_PlayerJoined",groupGuid,UnitName("player"));
 			expectedGroupInfoForJoinedGroups[groupGuid] = nil;
 		end
@@ -106,7 +106,7 @@ function GHG_GroupInvite()
 
 	channelComm.AddRecieveFunc("GHG_PlayerJoined",function(sender,groupGuid,playerName)
 		local group = groupList.GetGroup(groupGuid);
-		if group and group.IsPlayerMemberOfGuild(UnitGUID("player")) then
+		if group and group.IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 			local groupName = group.GetName();
 			event.TriggerEvent("GHG_PLAYER_JOINED",playerName,groupName);
 		end

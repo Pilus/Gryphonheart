@@ -936,7 +936,7 @@ function GHI_TranscribeTextItem()
 		
 	local item = GHI_ItemInfo({
 			authorName = UnitName("player"),
-			authorGuid = UnitGUID("player"),
+			authorGuid = GHUnitGUID("player"),
 			guid = guidCreator.MakeGUID();
 		});
 
@@ -1042,7 +1042,7 @@ function GHI_TranscribeMailboxLetter()
 
 	local item = GHI_ItemInfo({
 				authorName = UnitName("player"),
-				authorGuid = UnitGUID("player"),
+				authorGuid = GHUnitGUID("player"),
 				guid = guidCreator.MakeGUID();
 			});
 			

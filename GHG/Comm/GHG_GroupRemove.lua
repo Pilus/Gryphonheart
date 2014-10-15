@@ -30,7 +30,7 @@ function GHG_GroupRemove()
 
 	channelComm.AddRecieveFunc("GHG_PlayerRemoved",function(sender,groupGuid,playerName,adminName)
 		local group = groupList.GetGroup(groupGuid);
-		if group and group.IsPlayerMemberOfGuild(UnitGUID("player")) then
+		if group and group.IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 			local groupName = group.GetName();
 			event.TriggerEvent("GHG_PLAYER_REMOVED",playerName,groupName,adminName);
 		end
@@ -43,7 +43,7 @@ function GHG_GroupRemove()
 
 	channelComm.AddRecieveFunc("GHG_PlayerLeft",function(sender,groupGuid,playerName)
 		local group = groupList.GetGroup(groupGuid);
-		if group and group.IsPlayerMemberOfGuild(UnitGUID("player")) then
+		if group and group.IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 			local groupName = group.GetName();
 			event.TriggerEvent("GHG_PLAYER_LEFT",playerName,groupName);
 		end

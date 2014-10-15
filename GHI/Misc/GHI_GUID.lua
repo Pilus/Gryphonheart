@@ -26,7 +26,7 @@ function GHI_GUID()
 
 	class.MakeGUID = function()
 		if not (guid) then
-			guid = string.gsub(string.gsub(UnitGUID("player"), "0x..", ""), "00[0]*", "")
+			guid = string.gsub(string.gsub(GHUnitGUID("player"), "0x..", ""), "00[0]*", "")
 		end
 
 		local t = time();

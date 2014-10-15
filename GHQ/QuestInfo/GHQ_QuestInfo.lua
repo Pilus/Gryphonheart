@@ -56,7 +56,7 @@ function GHQ_QuestInfo(info)
 	end
 	 
 	 class.IsCreatedByPlayer = function()
-		return authorGUID == UnitGUID("player");
+		return authorGUID == GHUnitGUID("player");
 	end
 	  
 	 class.GetAuthor = function()
@@ -355,7 +355,7 @@ function GHQ_QuestInfo(info)
 	
 	 info = info or {};
 	 author = info.author or UnitName("player")
-	 authorGUID = info.authorGUID or UnitGUID("player")
+	 authorGUID = info.authorGUID or GHUnitGUID("player")
 	 guid = info.GUID or GHI_GUID().MakeGUID()
 	 questVersion = info.Version or questVersion
 	 completed = info.Completed or completed

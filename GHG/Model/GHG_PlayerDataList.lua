@@ -41,7 +41,7 @@ function GHG_PlayerDataList()
 		end
 		return guid;
 	end
-	local g = UnitGUID("player");
+	local g = GHUnitGUID("player");
 
 	class.GetPlayerData = function(guid)
 		guid = DecompressGuid(guid);
@@ -80,7 +80,7 @@ function GHG_PlayerDataList()
 
 	local lastUpdate = 0;
 	local UpdateOwnPlayerData = function()
-		local guid = UnitGUID("player");
+		local guid = GHUnitGUID("player");
 		local current = class.GetPlayerData(guid);
 		local version = 0;
 		if current then

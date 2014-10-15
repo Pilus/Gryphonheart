@@ -428,7 +428,7 @@ end
 
 local Initialize = function()
 	frame = GHG_GroupRosterFrame;
-	api = GHG_GroupAPI(UnitGUID("player"));
+	api = GHG_GroupAPI(GHUnitGUID("player"));
 
 	-- column headers size
 	local containerFrame = _G[frame:GetName().."Container"]

@@ -120,7 +120,7 @@ describe("GHP_Ability",function()
 	it("must implement IsCreatedByPlayer",function()
 		assert.are.same("function",type(ability.IsCreatedByPlayer));
 		local PGUID = AUTHOR_GUID;
-		UnitGUID = function(u) if string.lower(u) == "player" then return PGUID; end end;
+		GHUnitGUID = function(u) if string.lower(u) == "player" then return PGUID; end end;
 
 		assert.are.same(true,ability.IsCreatedByPlayer());
 

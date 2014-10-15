@@ -11,7 +11,7 @@
 --===================================================
 
 local UnitName = UnitName;
-local UnitGUID = UnitGUID;
+local GHUnitGUID = GHUnitGUID;
   local loc = GHI_Loc()
 local simpleActions = {
 	{ "expression", "GHI_ExpressionMenu", loc.EXPRESSION },
@@ -79,7 +79,7 @@ function GHI_StandardItemMenu()
 		edit = false;
 		item = GHI_ItemInfo({
 			authorName = UnitName("player"),
-			authorGuid = UnitGUID("player"),
+			authorGuid = GHUnitGUID("player"),
 			guid = guidCreator.MakeGUID();
 		});
 		UpdateMenu();

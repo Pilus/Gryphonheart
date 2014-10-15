@@ -30,7 +30,7 @@ function GHG_GroupChat(groupGuid,keys)
 		local swap = crypt.Swap(text);
 		local cryptText = crypt.Encrypt(swap);
 
-		channelComm.Send("ALERT","GHG_Chat_"..groupGuid,UnitGUID("player"),cryptText,chatFlag)
+		channelComm.Send("ALERT","GHG_Chat_"..groupGuid,GHUnitGUID("player"),cryptText,chatFlag)
 	end
 
 	class.Activate = function()

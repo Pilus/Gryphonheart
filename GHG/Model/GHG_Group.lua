@@ -373,7 +373,7 @@ function GHG_Group(info)
 		chatSlashCmds = Decrypt(info.chatSlashCmds) or {};
 
 		chat = GHG_GroupChat(guid,keys);
-		if active and class.IsPlayerMemberOfGuild(UnitGUID("player")) then
+		if active and class.IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 			chat.Activate();
 		end
 	end

@@ -32,7 +32,7 @@ function GHI_ItemInfo_Access(info)
 	end
 
 	class.IsCreatedByPlayer = function()
-		return (authorGuid == UnitGUID("player")) or (authorGuid == UnitName("player"));
+		return GHCompareGUIDs(authorGuid, GHUnitGUID("player")) or (authorGuid == UnitName("player"));
 	end
 
 	class.IsCreatedByUser = function(otherGuid)

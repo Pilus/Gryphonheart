@@ -35,7 +35,7 @@ function GHG_GroupList()
 
 		for index,value in pairs(data) do
 			groups[index] = GHG_Group(value);
-			if groups[index].IsPlayerMemberOfGuild(UnitGUID("player")) then
+			if groups[index].IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 				groups[index].Activate();
 			end
 			event.TriggerEvent("GHG_GROUP_LOADED",index);
@@ -70,14 +70,14 @@ function GHG_GroupList()
 			groups[guid] = newGroup;
 			savedGroupInfo.SetVar(guid,newGroup.Serialize())
 
-			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) then
+			if newGroup.IsPlayerMemberOfGuild(GHUnitGUID("player")) then
 				if existingGroup then
 					existingGroup.Deactivate();
 				end
 				newGroup.Activate();
 			end
 
-			if newGroup.IsPlayerMemberOfGuild(UnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(UnitGUID("player"))) then
+			if newGroup.IsPlayerMemberOfGuild(GHUnitGUID("player")) or (existingGroup and existingGroup.IsPlayerMemberOfGuild(GHUnitGUID("player"))) then
 				event.TriggerEvent("GHG_GROUP_UPDATED",guid);
 			end
 		end

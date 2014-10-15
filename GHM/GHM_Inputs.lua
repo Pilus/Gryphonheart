@@ -126,7 +126,7 @@ return {
 					tooltip = loc.SCRIPT_TEST,
 					func = function(f)
 						local code = f:GetText();
-						local env = GHI_ScriptEnvList().GetEnv(UnitGUID("player"));
+						local env = GHI_ScriptEnvList().GetEnv(GHUnitGUID("player"));
 						env.ExecuteScript(code)
 					end,
 				},
@@ -135,7 +135,7 @@ return {
 					tooltip = loc.SCRIPT_RELOAD_ENV,
 					func = function(f)
 						local code = f:GetText();
-						local env = GHI_ScriptEnvList().ReloadEnv(UnitGUID("player"));
+						local env = GHI_ScriptEnvList().ReloadEnv(GHUnitGUID("player"));
 					end,
 				},
 				{

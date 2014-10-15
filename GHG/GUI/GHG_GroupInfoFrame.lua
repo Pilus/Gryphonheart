@@ -10,7 +10,7 @@
 --===================================================
 local api;
 GHI_Event("VARIABLES_LOADED",function()
-	api = GHG_GroupAPI(UnitGUID("player"))
+	api = GHG_GroupAPI(GHUnitGUID("player"))
 end);
 local loc = GHG_Loc();
 

@@ -9,7 +9,7 @@
 --			All rights reserved
 --===================================================
 local UnitName = UnitName;
-local UnitGUID = UnitGUID;
+local GHUnitGUID = GHUnitGUID;
 local stackOrders = {"last","first","biggest","smallest"};
 
 function GHI_AdvancedItemMenu()
@@ -77,7 +77,7 @@ function GHI_AdvancedItemMenu()
 		if not(item) then
 			item = GHI_ItemInfo({
 				authorName = UnitName("player"),
-				authorGuid = UnitGUID("player"),
+				authorGuid = GHUnitGUID("player"),
 				guid = guidCreator.MakeGUID(),
 				itemComplexity = "advanced",
 			});

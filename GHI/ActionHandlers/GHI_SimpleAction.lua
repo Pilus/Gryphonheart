@@ -1069,7 +1069,7 @@ function GHI_SimpleAction(info)
 			local oldDoScript = nil;
 			_SetActionAPIItemGuid(stack.GetItemGuid());
 		]];
-		preScript = string.gsub(preScript, "DYN_GUID", combinedGuid);
+		preScript = string.gsub(preScript, "DYN_GUID", combinedGuid);   GHI_MiscData.test = preScript;
 		scriptingEnv.SetHeaderApi(combinedGuid, preScript, "")
 
 		return scriptingEnv.ExecuteScript(script, delay,combinedGuid)

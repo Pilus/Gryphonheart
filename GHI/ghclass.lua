@@ -246,3 +246,32 @@ function GHTemp()
 	statusbar.SetText(date("!%X",1))
 	statusbar.Toggle("show")
 end
+
+function Namespace(name, t)
+	local namespace = _G[name] or {};
+
+	for i,v in pairs(t) do
+		namespace[i] = v;
+	end
+
+	_G[name] = namespace;
+end
+
+GHUnitGUID = function(unit)
+	local guid = UnitGUID(unit);
+	if not(guid) then
+		return;
+	end
+	if not(string.find(guid, "-")) then
+		return guid;
+	end
+
+	local guidType, realmId, unitId = strsplit("-", guid);
+	return unitId
+end
+
+GHCompareGUIDs = function(guidA, guidB)
+	return guidA == guidB or string.endsWith(guidA, guidB) or string.endsWith(guidB, guidA);
+end
+
+

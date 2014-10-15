@@ -18,7 +18,7 @@ function GHG_ChatEvents()
 
 	local loc = GHG_Loc();
 	local chat = GHG_ChatDisplayer();
-	local api = GHG_GroupAPI(UnitGUID("player"));
+	local api = GHG_GroupAPI(GHUnitGUID("player"));
 
 	local msg = function(event,msgType,text)
 		GHI_Event(event,function(e,...)

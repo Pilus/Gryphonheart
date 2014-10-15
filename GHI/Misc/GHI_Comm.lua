@@ -344,12 +344,12 @@ function GHI_Comm()
 			if type(arg1) == "number" then
 				return "BuffInfo", arg1, arg2, arg3;
 			elseif UnitName("target") == sender and type(arg1) == "table" then
-				return "BuffInfo", UnitGUID("target"), ConvertBuffInfoOldToNew(arg1);
+				return "BuffInfo", GHUnitGUID("target"), ConvertBuffInfoOldToNew(arg1);
 			end
 			return "";
 		elseif prefix == "DebuffInfo" then
 			if UnitName("target") == sender and type(arg1) == "table" then
-				return "BuffInfo", UnitGUID("target"), false, ConvertBuffInfoOldToNew(arg1);
+				return "BuffInfo", GHUnitGUID("target"), false, ConvertBuffInfoOldToNew(arg1);
 			end
 			return "";
 		elseif prefix == "ApplyBuff" then

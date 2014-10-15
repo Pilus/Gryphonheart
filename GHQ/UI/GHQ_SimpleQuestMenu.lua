@@ -11,7 +11,7 @@
 ---Mockup to be refined
 
 local UnitName = UnitName;
-local UnitGUID = UnitGUID;
+local GHUnitGUID = GHUnitGUID;
 local loc = GHI_Loc()
 
 function GHQ_SimpleQuestMenu()
@@ -50,7 +50,7 @@ function GHQ_SimpleQuestMenu()
 		edit = false;
 		quest = GHQ_QuestInfo({
 			author = UnitName("player"),
-			authorGUID = UnitGUID("player"),
+			authorGUID = GHUnitGUID("player"),
 			GUID = guidCreator.MakeGUID()
 		});
 		UpdateMenu()

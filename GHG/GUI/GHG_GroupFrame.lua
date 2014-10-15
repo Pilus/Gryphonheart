@@ -194,7 +194,7 @@ local function Initialize(self)
 	self.initialized = true;
 	tinsert(UISpecialFrames, self:GetName());
 	Localize(groupFrame);
-	api = GHG_GroupAPI(UnitGUID("player"));
+	api = GHG_GroupAPI(GHUnitGUID("player"));
 
 
 

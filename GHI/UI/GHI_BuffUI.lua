@@ -104,7 +104,7 @@ function GHI_BuffUIDisplay:CheckUpdate()
 end
 
 function GHI_BuffUIDisplay:UpdateDB(unit) -- remember to call this on target change etc.
-	local guid = UnitGUID(unit);
+	local guid = GHUnitGUID(unit);
 	local nextUp
 
 	self.buffs = self.buffs or {};
@@ -120,7 +120,7 @@ function GHI_BuffUIDisplay:UpdateDB(unit) -- remember to call this on target cha
 
 				if b.expirationTime and not (b.expirationTime == 0) and b.expirationTime <= GetTime() then
 					-- remove buff
-					buffObj:RemoveBuff(b.refID, UnitGUID(unit), 0);
+					buffObj:RemoveBuff(b.refID, GHUnitGUID(unit), 0);
 					return;
 				else
 					if b.expirationTime then
@@ -143,7 +143,7 @@ function GHI_BuffUIDisplay:UpdateDB(unit) -- remember to call this on target cha
 				b.buffObj = buffObj;
 				if b.expirationTime and not (b.expirationTime == 0) and b.expirationTime <= GetTime() then
 					-- remove buff
-					buffObj:RemoveBuff(b.refID, UnitGUID(unit), 0);
+					buffObj:RemoveBuff(b.refID, GHUnitGUID(unit), 0);
 					return;
 				else
 					if b.expirationTime then
@@ -492,7 +492,7 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 			if (helpful) then
 				buff:SetScript("OnClick", function()
 					if type(buff.buffObj) == "table" and unit == "player" then
-						buff.buffObj:RemoveBuff(buff.refID, UnitGUID(buff.unit), 1);
+						buff.buffObj:RemoveBuff(buff.refID, GHUnitGUID(buff.unit), 1);
 					end
 				end);
 			end
@@ -908,7 +908,7 @@ function GHI_BuffUI:CastBuff(filter, refID, guid, name, description, icon, total
 
 	-- if the guid is a supported unit for displaying, th en update DB
 	for _, unit in pairs(supportedUnits) do
-		if UnitGUID(unit) == guid then
+		if GHUnitGUID(unit) == guid then
 			self.display:UpdateDB(unit);
 		end
 	end
@@ -927,7 +927,7 @@ function GHI_BuffUI:SetBuffs(guid, buffType, info) -- overwrites buffs from othe
 	if buffType == 1 then self.buffs[guid] = info; end
 	if buffType == 2 then self.debuffs[guid] = info; end;
 	for _, unit in pairs(supportedUnits) do
-		if UnitGUID(unit) == guid then
+		if GHUnitGUID(unit) == guid then
 			self.display:UpdateDB(unit);
 		end
 	end
@@ -1041,7 +1041,7 @@ function GHI_BuffUI:RemoveBuff(refID, guid, count, filter) --API
 
 	-- if the guid is a supported unit for displaying, th en update DB
 	for _, unit in pairs(supportedUnits) do
-		if UnitGUID(unit) == guid then
+		if GHUnitGUID(unit) == guid then
 			self.display:UpdateDB(unit);
 		end
 	end
@@ -1056,8 +1056,8 @@ function GHI_BuffUI:ClearAllBuffs(guid) --API
 
 	-- if the guid is a supported unit for displaying, th en update DB
 	for _, unit in pairs(supportedUnits) do
-		--print("%s == %s",UnitGUID(unit),guid);
-		if UnitGUID(unit) == guid then
+		--print("%s == %s",GHUnitGUID(unit),guid);
+		if GHUnitGUID(unit) == guid then
 			self.display:UpdateDB(unit);
 		end
 	end

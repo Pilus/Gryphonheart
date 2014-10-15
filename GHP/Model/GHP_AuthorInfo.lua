@@ -18,7 +18,7 @@ function GHP_AuthorInfo(info,className)
 	end
 
 	class.IsCreatedByPlayer = function()
-		return UnitGUID("player") == guid;
+		return GHUnitGUID("player") == guid;
 	end
 
 	class.IsCreatedByUser = function(otherGuid)

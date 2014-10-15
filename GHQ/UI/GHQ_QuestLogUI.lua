@@ -303,7 +303,7 @@ GHQ_EditMarkedQuest = function()
 		local quest = questList.GetQuestInfo(guid)
 		local simpleMenuList = GHQ_SimpleQuestMenuList()
 		
-		if quest.GetAuthorGUID() == UnitGUID("player") then
+		if quest.GetAuthorGUID() == GHUnitGUID("player") then
 			simpleMenuList.Edit(guid)
 		else
 			print("You do not have permission to edit this quest.")
