@@ -54,7 +54,10 @@ namespace GH_SoundFileGenerator
                         sound.duration = (0.00005 * size) + 1.1362;
                         break;
                     default:
-                        throw new Exception(string.Format("Can not determine duration of type {0}.", GetExtensionFromPath(sound.name)));
+                        //throw new Exception(string.Format("Can not determine duration of type {0}.", GetExtensionFromPath(sound.name)));
+                        //Console.WriteLine(string.Format("Can not determine duration of type {0}.", GetExtensionFromPath(sound.name)));
+                        sound.duration = (0.0005 * size);
+                        break;
                 }                
             }
             progressFunc();

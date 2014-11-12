@@ -75,7 +75,7 @@ function GHM_SoundSelection(profile, parent, settings)
 			subTree.Value = nodeValue;
 			subTree.Title.Text:SetText(text);
 		else
-			subTree = pTree:AddNode(text, nodeValue, pTree:GetWidth() - 15, 15)
+			subTree = pTree:AddNode(text, nodeValue, width, 15) -- pTree:GetWidth() - 15
 			subTree:AddScript("OnExpand", OnExpand);
 		end
 

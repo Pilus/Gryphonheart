@@ -46,8 +46,8 @@ function GHI_BookDisplay(materials)
 	count = count + 1;
 
 	local topBarFrame = CreateFrame("Frame", "$parentTopBar", menuFrame);
-	topBarFrame:SetPoint("TOPLEFT", -3, -3);
-	topBarFrame:SetPoint("TOPRIGHT", 24, -3);
+	topBarFrame:SetPoint("TOPLEFT", -1, 1);
+	topBarFrame:SetPoint("TOPRIGHT", 2, 1);
 	topBarFrame:SetHeight(50);
 	topBarFrame:SetBackdrop({bgFile = "Interface\\FrameGeneral\\UI-Background-Rock",
 		edgeFile = "",
@@ -97,9 +97,9 @@ function GHI_BookDisplay(materials)
 
 	local scrollFrame = CreateFrame("ScrollFrame","$parentScroll",menuFrame,"GHM_ScrollFrameTemplate")
 	scrollFrame:SetPoint("TOP", topBarFrame, "BOTTOM", 0, 3);
-	scrollFrame:SetPoint("BOTTOM",0,8);
-	scrollFrame:SetPoint("LEFT",-3,0);
-	scrollFrame:SetPoint("RIGHT", 10, 0);
+	scrollFrame:SetPoint("BOTTOM",0, 16);
+	scrollFrame:SetPoint("LEFT",-1, 0);
+	scrollFrame:SetPoint("RIGHT", -13, 0);
 	scrollFrame.ShowScrollBarBackgrounds();
 
 	local backgroundFrame = CreateFrame("Frame");

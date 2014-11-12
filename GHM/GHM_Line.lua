@@ -11,20 +11,17 @@
 
 
 function GHM_Line(profile, parent, settings)
-	local class = GHClass("GHM_Line");
-
 	local parentName = parent:GetName();
 	local lineNumber = 1;
 	while (_G[parentName.."_L".. lineNumber]) do
 		lineNumber = lineNumber + 1;
 	end
 	local lineName = parentName.."_L".. lineNumber;
-
-	local line = CreateFrame("Frame", lineName, parent);
+	local class = CreateFrame("Frame", lineName, parent);
 
 	local objects = Linq();
 	for i=1,#(profile) do
-		objects[i] = GHM_BaseObject(profile[i], line, settings);
+		objects[i] = GHM_BaseObject(profile[i], class, settings);
 	end
 
 	local objectsWithFlexibleWidth = objects.Where(function(obj) return obj.GetPreferredDimensions() == nil; end);
@@ -88,9 +85,9 @@ function GHM_Line(profile, parent, settings)
 
 	class.SetPosition = function(xOff, yOff, width, height)
 		GHCheck("Line.SetPosition", {"number", "number", "number", "number"}, {xOff, yOff, width, height})
-		line:SetWidth(width);
-		line:SetHeight(height);
-		line:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		class:SetWidth(width);
+		class:SetHeight(height);
+		class:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
 		--GHM_TempBG(line);
 
 		local top, bottom;
@@ -205,7 +202,7 @@ function GHM_Line(profile, parent, settings)
 		return parent;
 	end
 
-
+	--GHM_TempBG(line);
 
 	return class;
 end

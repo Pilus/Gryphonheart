@@ -15,7 +15,12 @@ function GHM_EditField(profile, parent, settings)
 
 	local textFrame = _G[frame:GetName().."Text"];
 	local label = _G[frame:GetName().."TextLabel"];
-	label:SetText(profile.text or "");
+	if (profile.text) then
+		label:SetText(profile.text or "");
+		textFrame:Show();
+	else
+		textFrame:Hide();
+	end
 
 	local areaFrame = _G[frame:GetName().."Area"];
 	local fieldFrame = _G[frame:GetName().."AreaScrollText"];
@@ -87,18 +92,25 @@ function GHM_EditField(profile, parent, settings)
 		return fieldFrame
 	end
 
+	local GetLabelHeight = function()
+		if textFrame:IsShown() then
+			return textFrame:GetHeight();
+		end
+		return 0;
+	end
+
 	frame.GetPreferredDimensions = function()
 		local h = profile.height;
 		if h then
-			h = h + textFrame:GetHeight();
+			h = h + GetLabelHeight();
 		end
 		return profile.width, h;
 	end
 
 	frame.SetPosition = function(xOff, yOff, width, height)
 		frame:SetWidth(width);
-		frame:SetHeight(height - textFrame:GetHeight());
-		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, - (yOff + textFrame:GetHeight()));
+		frame:SetHeight(height - GetLabelHeight());
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, - (yOff + GetLabelHeight()));
 		--GHM_TempBG(obj);
 	end
 

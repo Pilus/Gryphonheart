@@ -111,7 +111,7 @@ function GHM_TempBG(f)
 		edgeSize = 32,
 		insets = { left = 0, right = 0, top = 0, bottom = 0 }
 	});
-	local color = { r = 0.4, g = 0.5, b = 0.8 }
+	local color = { r = math.random(100)/100, g = 0.5, b = 0.8 }
 	if GHI_EffectColors then
 		color = GHI_EffectColors[GHI_ColorList[random(1, 6)]];
 	end

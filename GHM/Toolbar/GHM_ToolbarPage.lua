@@ -19,7 +19,12 @@ function GHM_ToolbarPage(profile, parent, settings)
 	local cats = Linq();
 	for i=1,#(profile) do
 		local cat = GHM_ToolbarCategory(profile[i], frame, settings);
-		cat:SetPoint("LEFT", cats[i-1] or frame, (cats[i-1] == nil) and "LEFT" or "RIGHT")
+		cat:SetPoint("TOPLEFT", cats[i-1] or frame, (cats[i-1] == nil) and "TOPLEFT" or "TOPRIGHT");
+
+		if i == #(profile) then
+			cat:SetPoint("TOPRIGHT", frame, "TOPRIGHT");
+		end
+
 		height = math.max(height, cat:GetHeight());
 		width = width + cat:GetWidth();
 		cats[i] = cat;
@@ -34,6 +39,15 @@ function GHM_ToolbarPage(profile, parent, settings)
 			frame = frame or cat.GetLabelFrame(label);
 		end);
 		return frame;
+	end
+
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height);
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		for i=1,#(profile) do
+			cats[i]:SetHeight(height);
+		end
 	end
 
 	frame:SetHeight(height);

@@ -17,29 +17,18 @@ namespace GH_SoundFileGenerator
 
                 var wowPath = "";
                 var wowDataPath = "";
-                try
+
+                var WOWString = "World of Warcraft";
+                var exePath = Assembly.GetExecutingAssembly().Location;
+                if (!exePath.Contains(WOWString))
                 {
-                    var wowInstallation = WoWInstallation.Find();
-                    wowPath = wowInstallation.Path;
-                    wowDataPath = wowInstallation.DataPath;
+                    throw new Exception("Could not locate wow installation. Try executing the program within the wow directory");
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Exception when locating wow installation");
-                    Console.WriteLine(ex.Message);
 
-                    var WOWString = "World of Warcraft";
-                    var exePath = Assembly.GetExecutingAssembly().Location;
-                    if (!exePath.Contains(WOWString))
-                    {
-                        throw new Exception("Could not locate wow installation. Try executing the program within the wow directory");
-                    }
+                wowPath = exePath.Substring(0, exePath.IndexOf(WOWString) + WOWString.Length);
+                wowDataPath = wowPath + @"\\Data";
 
-                    wowPath = exePath.Substring(0, exePath.IndexOf(WOWString) + WOWString.Length);
-                    wowDataPath = wowPath + @"\\Data";
-
-                    Console.WriteLine("Assuming wow installation to be at " + wowPath);
-                }               
+                Console.WriteLine("Assuming wow installation to be at " + wowPath);               
 
                 Console.WriteLine("Loading archieves.");
                 var archieves = MPQLoader.LoadArchieves(wowDataPath);

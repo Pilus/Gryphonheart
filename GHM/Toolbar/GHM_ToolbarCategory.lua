@@ -34,12 +34,12 @@ function GHM_ToolbarCategory(profile, parent, settings)
 	-- Top spacing
 	height = height + 5;
 
-	local text = GHM_Text(frame, main, {
+	local text = GHM_Text({
 		text = profile.name,
 		color = "yellow",
 		fontSize = 11,
 		align = "c",
-	})
+	}, frame, {})
 	text:ClearAllPoints();
 	text:SetPoint("BOTTOM", frame, "BOTTOM", 0, 5);
 

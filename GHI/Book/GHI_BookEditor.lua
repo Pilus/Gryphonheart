@@ -432,7 +432,7 @@ function GHI_BookEditor()
 		}
 	end
 
-	local yOff = -10;
+	local yOff = 0;
 	menuFrame = GHM_NewFrame(class, {
 		onOk = function(self) end,
 		{
@@ -475,7 +475,7 @@ function GHI_BookEditor()
 					align = "c",
 					label = "title",
 					texture = "Tooltip",
-					width = 200,
+					width = 260,
 					xOff = 0,
 					defaultValue = "",
 					yOff = yOff,
@@ -527,8 +527,6 @@ function GHI_BookEditor()
 				{
 					type = "EditField",
 					align = "c",
-					width = 600,
-					height = 430,
 					label = "text",
 				},
 			},
@@ -540,7 +538,7 @@ function GHI_BookEditor()
 		height = 550,
 		useWindow = true,
 		icon = "Interface\\Icons\\INV_Misc_Book_09",
-		lineSpacing = -15,
+		lineSpacing = 5,
 		OnHide = function()
 			Save();
 			if not (menuFrame.window:IsShown()) then

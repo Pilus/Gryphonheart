@@ -294,6 +294,7 @@ function GHM_Window_OnLoad(self)
 
 	titleBar.Window = self;
 
+	self:SetMovable(true);
 	titleBar:SetScript("OnMouseDown", function(self) if self.Window then
 		local w = self.Window
 		local _, _, _, x, y = w:GetPoint();

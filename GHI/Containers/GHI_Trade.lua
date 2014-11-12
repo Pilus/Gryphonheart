@@ -59,7 +59,7 @@ function GHI_Trade()
 
 	OnEvent = function(self, event, arg1, arg2, ...)
 		if (event == "TRADE_CLOSED") then
-			if (playerAcceptState == 1 and recipientAcceptState == 1) then
+			if (playerAcceptState and recipientAcceptState) then
 
 				comm.Send(nil, tradePlayer, "TradeAccepted", nil);
 				AcceptTrade(tradePlayer);
@@ -67,7 +67,6 @@ function GHI_Trade()
 		elseif (event == "TRADE_ACCEPT_UPDATE") then
 			playerAcceptState = TradeHighlightPlayer:IsShown();
 			recipientAcceptState = TradeHighlightRecipient:IsShown();
-
 		elseif (event == "TRADE_SHOW") then
 			ClearAll();
 			tradePlayer = GetRecipientFullName();

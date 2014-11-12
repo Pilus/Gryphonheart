@@ -143,7 +143,6 @@ function GHI_SoundMenu(_OnOkCallback, _editAction)
 					width = 150,
 					text = loc.CURRENTLY_SELECTED,
 					color = "yellow",
-					yOff = 15,
 					align = "c",
 					singleLine = true,
 				},

@@ -24,12 +24,12 @@
                 <Anchors>
                     <Anchor point="TOPLEFT"  relativePoint="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="0" y="-18" />
+                            <AbsDimension x="0" y="0" />
                         </Offset>
                     </Anchor>
                     <Anchor point="BOTTOMRIGHT"  relativePoint="BOTTOMRIGHT">
                         <Offset>
-                            <AbsDimension x="0" y="5" />
+                            <AbsDimension x="0" y="0" />
                         </Offset>
                     </Anchor>
                 </Anchors>
