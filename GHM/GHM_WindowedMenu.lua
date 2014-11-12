@@ -81,8 +81,9 @@ function GHM_WindowedMenu(owner, profile)
 	window:SetFrameStrata("MEDIUM");
 
 	local onShow = profile.onShow or profile.OnShow;
+	local onHide = profile.onHide or profile.OnHide;
 	class:SetScript("OnShow", function(self) GHM_LayerHandle(self.window or self); if onShow then onShow(self); end end);
-	class:SetScript("OnHide", function(self) GHM_LayerHandle(self.window or self); end);
+	class:SetScript("OnHide", function(self) GHM_LayerHandle(self.window or self); if onHide then onHide(self); end end);
 
 	class.ShowOrig = class.Show;
 	class.Show = function(self) window:Show();
@@ -93,7 +94,8 @@ function GHM_WindowedMenu(owner, profile)
 
 	class.HideOrig = class.Hide;
 	class.Hide = function(self)
-		window:Hide(); class:HideOrig()
+		window:Hide();
+		class:HideOrig()
 	end;
 
 	class.SetTitle = function(_, t)
