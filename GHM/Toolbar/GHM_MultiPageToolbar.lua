@@ -10,28 +10,42 @@
 --===================================================
 
 local count = 1;
-function GHM_MultiPageToolbar(parent, main, profile)
+function GHM_MultiPageToolbar(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_MultiPageToolbar" .. count, parent);
 	count = count + 1;
 
 	local buttonHeight = 19;
+	local margin = 2;
 	local backgroundColor = {0.5, 0.5, 0.5, 0.5};
 	local backgroundColor2 = {0.8, 0.8, 0.8, 0.6};
 
 	local height,width = 0,0;
-	local pages = {};
+	local pages = Linq();
 	local pageButtons = {};
 
 	local currentShown;
+	local lastClickTime = 0;
 	local TogglePage = function(i)
-		if currentShown then
+		if GetTime() - lastClickTime < 1 and (not(currentShown) or currentShown == i) then
+			if currentShown then
+				pages[currentShown]:Hide();
+				currentShown = nil;
+				frame.GetPage().SetPosition();
+			end
+			lastClickTime = GetTime();
+			return
+		elseif currentShown then
 			pages[currentShown]:Hide();
-			pageButtons[currentShown].SetBGTextureColor(unpack(backgroundColor2))
+			pageButtons[currentShown].SetBGTextureColor(unpack(backgroundColor2));
+			currentShown = i;
+		else
+			currentShown = i;
+			frame.GetPage().SetPosition();
 		end
 
 		pages[i]:Show();
 		pageButtons[i].SetBGTextureColor(unpack(backgroundColor));
-		currentShown = i;
+		lastClickTime = GetTime();
 	end
 
 	for i = 1,#(profile) do
@@ -61,14 +75,15 @@ function GHM_MultiPageToolbar(parent, main, profile)
 	end
 
 	for i=1,#(profile) do
-		local page = GHM_ToolbarPage(frame, main, profile[i]);
-		page:SetPoint("TOPLEFT", frame, "TOPLEFT", 2, - (buttonHeight + 2));
+		local page = GHM_ToolbarPage(profile[i], frame, settings);
+		page:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, - (buttonHeight - margin));
 		page:Hide();
 		width = math.max(width, page:GetWidth());
 		height = math.max(height, page:GetHeight());
 
 		table.insert(pages, page)
 	end
+
 
 	height = height + buttonHeight + 4;
 	width = width + 4;
@@ -78,12 +93,35 @@ function GHM_MultiPageToolbar(parent, main, profile)
 
 	local bg = frame:CreateTexture()
 	bg:SetTexture(unpack(backgroundColor));
-	bg:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, -buttonHeight);
-	bg:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0);
+	bg:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, -buttonHeight - margin);
+	bg:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, margin);
 
-	GHM_FramePositioning(frame,profile,parent);
+	frame.GetLabelFrame = function(label)
+		local frame;
+		pages.Foreach(function(page)
+			frame = frame or page.GetLabelFrame(label);
+		end);
+		return frame;
+	end
 
-	TogglePage(1);
+	frame.GetPreferredDimensions = function()
+		local height = 0;
+		if currentShown then
+			height = pages.MaxBy(function(page) return page:GetHeight(); end):GetHeight();
+		end
+		return nil, height + buttonHeight - margin;
+	end
+
+	frame.SetPosition = function(xOff, yOff, width, height)
+		frame:SetWidth(width);
+		frame:SetHeight(height);
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", xOff, -yOff);
+		if currentShown then
+			pages.Foreach(function(page) page.SetPosition(0, (buttonHeight - margin), width, height - (buttonHeight - margin)); end)
+		end
+	end
+
+	--TogglePage(1);
 
 	return frame;
 end
