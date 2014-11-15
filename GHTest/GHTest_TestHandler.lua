@@ -22,15 +22,22 @@ GHTest_TestHandler = function()
 
 	GHTest.Equals = function(expected, result, comment)
 		if not(expected == result) then
-			failureDetails = string.format("\nGot: %s\nExpected: %s. %s",
-				ToString(result),
-				ToString(expected),
+			local res = ToString(result);
+			local exp = ToString(expected);
+			failureDetails = string.format("\nGot:\n%s (len: %s)\nExpected:\n%s (len: %s)\n%s",
+				res,
+				strlen(res),
+				exp,
+				strlen(exp),
 				comment or "");
 			error("Test failed");
 		end
 	end
 
 	GHTest.AddTest = function(cat, name, func)
+		if tests[cat..name] then
+			error("Duplicated test name: "..cat..name);
+		end
 		tests[cat..name] = {
 			func = func,
 			name = name,
@@ -47,7 +54,7 @@ GHTest_TestHandler = function()
 		if result == true then
 			results[name] = true;
 		else
-			results[name] = failureDetails;
+			results[name] = failureDetails or msg;
 		end
 	end
 
@@ -65,7 +72,7 @@ GHTest_TestHandler = function()
 				failed = failed + 1;
 			end
 		end
-		print(string.format("%s tests run. %s failed", total, failed))
+		print(string.format("%s tests run. %s failed.", total, failed))
 	end
 
 	GHI_Timer(RunAllTests, 2, true);

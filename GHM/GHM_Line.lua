@@ -115,9 +115,20 @@ function GHM_Line(profile, parent, settings)
 			rightWidth = rightWidth - objectSpacing;
 		end
 
-		if (centerObjects.Any()) then
+		local centerObjectsWithFlixibleWidth = centerObjects.Intersection(objectsWithFlexibleWidth)
+		if (centerObjects.Any() and leftObjects.None() and rightObjects.None() and centerObjectsWithFlixibleWidth.None()) then
+
+			local gabWidth = (width - centerWidth) / (centerObjects.Count() * 2);
+			local x = gabWidth;
+			centerObjects.Foreach(function(obj)
+				local w, h = obj.GetPreferredDimensions();
+				obj.SetPosition(x, GetYPosition(obj, top, bottom),  w , h or height);
+				x = x + w + gabWidth * 2;
+			end);
+
+		elseif (centerObjects.Any()) then
 			local leftObjectsWithFlixibleWidth = leftObjects.Intersection(objectsWithFlexibleWidth)
-			local centerObjectsWithFlixibleWidth = centerObjects.Intersection(objectsWithFlexibleWidth)
+
 			local rightObjectsWithFlixibleWidth = rightObjects.Intersection(objectsWithFlexibleWidth)
 			local centerFlexUnitSize;
 

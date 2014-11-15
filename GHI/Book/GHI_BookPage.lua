@@ -28,7 +28,7 @@ function GHI_BookPage(materials)
 	class.SetFont = function(font, sizeN, sizeH1, sizeH2, sizeH3)
 		local fontPath = GHI_FontList[font] or font;
 		textFrame:SetFont(fontPath, sizeN);
-		textFrame:SetFont("H1", "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF", sizeH1);  print("H1", fontPath, sizeH1)
+		textFrame:SetFont("H1", "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF", sizeH1);
 		textFrame:SetFont("H2", fontPath, sizeH2);
 		textFrame:SetFont("H3", fontPath, sizeH3);
 

@@ -43,12 +43,12 @@ function GHM_ToolbarCategory(profile, parent, settings)
 	text:ClearAllPoints();
 	text:SetPoint("BOTTOM", frame, "BOTTOM", 0, 5);
 
-	width = math.max(width + 10, text:GetWidth() + 10)
+	local frameWidth = math.max(width + 10, text:GetWidth() + 10)
 
 	frame:SetHeight(height + text:GetHeight() + 5);
-	frame:SetWidth(width);
+	frame:SetWidth(frameWidth);
 
-	area:SetPoint("CENTER", frame, "CENTER", 0, text:GetHeight()/2);
+	area:SetPoint("LEFT", frame, "LEFT", (frameWidth - width) / 2, text:GetHeight()/2);
 
 	frame:SetBackdrop({bgFile = "",
 		edgeFile = "Interface/Tooltips/UI-Tooltip-Border",

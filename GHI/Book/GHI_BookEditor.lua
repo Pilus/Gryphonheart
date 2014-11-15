@@ -25,6 +25,9 @@ function GHI_BookEditor()
 	local action, textFrame, info, item, currentPageShown;
 	local prevButton, nextButton, addBeforeButton, addAfterButton, deleteButton;
 
+	local imageMenuList = GHM_ImagePickerList()
+	local iconMenuList = GHM_IconPickerList()
+
 	local SaveCurrentPage = function()
 		if currentPageShown then
 			info[currentPageShown] = info[currentPageShown] or {};
@@ -365,6 +368,66 @@ function GHI_BookEditor()
 		}
 	end
 
+	local SetUpGraphicsCat = function()
+		return {
+			name = "Graphics",
+			{
+				{
+					type = "Button",
+					text = "Img",
+					compact = true,
+					height = 24,
+					width = 24,
+					tooltip = loc.INSERT_IMAGE,
+					onClick = function()
+						imageMenuList.New(function(path, width, height)
+							local imageText = string.format("[img width=%s height=%s]%s[/img]", width, height, path)
+							textFrame:GetFieldFrame():Insert(imageText);
+						end);
+					end,
+				},
+				{
+					type = "Button",
+					text = "Icon",
+					compact = true,
+					height = 24,
+					width = 24,
+					tooltip = loc.INSERT_ICON,
+					onClick = function()
+						iconMenuList.New(function(icon)
+							local imageText = string.format("[img width=%s height=%s]%s[/img]", 32, 32, icon)
+							textFrame:GetFieldFrame():Insert(imageText);
+						end);
+					end,
+				},
+			}
+		}
+	end
+
+	local SetUpInteractiveObjectsCat = function()
+		return {
+			name = "Interactive Objects",
+			{
+				{
+					type = "Button",
+					text = "Link",
+					compact = true,
+					height = 24,
+					width = 24,
+					onClick = function() end,
+				},
+			}
+		}
+	end
+
+	local SetUpInsertPage = function()
+		return	{
+			name = "Insert",
+			SetUpGraphicsCat(),
+			SetUpInteractiveObjectsCat(),
+		};
+	end
+
 	local SetUpFormattingPage = function()
 		return	{
 			name = "Formatting",
@@ -429,6 +492,7 @@ function GHI_BookEditor()
 			align = "l",
 			SetUpFormattingPage(),
 			SetUpAppearancePage(),
+			SetUpInsertPage(),
 		}
 	end
 
@@ -440,20 +504,6 @@ function GHI_BookEditor()
 				SetUpToolbar();
 			},
 			{
-				{
-					type = "Button",
-					text = PREV,
-					align = "l",
-					compact = true,
-					height = 24,
-					onclick = function()
-						SaveCurrentPage();
-						ShowPage(currentPageShown - 1);
-					end,
-					tooltip = loc.PREV_BOOK_PAGE,
-					yOff = yOff,
-					label = "prevButton"
-				},
 				{
 					type = "Button",
 					text = "+",
@@ -468,6 +518,20 @@ function GHI_BookEditor()
 					end,
 					tooltip = loc.INSERT_PAGE_BEFORE,
 					label = "addBeforeButton",
+				},
+				{
+					type = "Button",
+					text = PREV,
+					align = "l",
+					compact = true,
+					height = 24,
+					onclick = function()
+						SaveCurrentPage();
+						ShowPage(currentPageShown - 1);
+					end,
+					tooltip = loc.PREV_BOOK_PAGE,
+					yOff = yOff,
+					label = "prevButton"
 				},
 				{
 					type = "Editbox",
@@ -504,7 +568,10 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onclick = function() end,
+					onclick = function()
+						table.insert(info, currentPageShown + 1, {text1 = converter.ToSimpleHtml("")});
+						UpdateNavigationButtons();
+					end,
 					tooltip = loc.INSERT_PAGE_AFTER,
 					label = "addAfterButton",
 				},
@@ -516,8 +583,9 @@ function GHI_BookEditor()
 					height = 24,
 					width = 24,
 					onclick = function()
-						table.insert(info, currentPageShown, {text1 = converter.ToSimpleHtml("")});
-						UpdateNavigationButtons();
+						table.remove(info, currentPageShown);
+						currentPageShown = currentPageShown - 1;
+						ShowPage(math.max(currentPageShown, 1));
 					end,
 					tooltip = loc.DELETE_PAGE,
 					label = "deleteButton",

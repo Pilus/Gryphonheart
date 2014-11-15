@@ -141,7 +141,7 @@ function GHI_BBCodeDeserializer()
 		local state = States.element;
 		local pointer = 1;
 
-		while (pointer < string.len(html)) do
+		while (pointer <= string.len(html)) do
 			local noAction = true;
 			for i, transition in pairs(TransitionTable) do
 				if transition[1] == state then
@@ -149,7 +149,6 @@ function GHI_BBCodeDeserializer()
 					if a == pointer then
 						local arg1, arg2, arg3, arg4 = strmatch(html, transition[2], pointer);
 						pointer = transition[4](html, pointer + (b - a) + 1, t, arg1, arg2, arg3, arg4);
-
 						if transition[3] then
 							state = transition[3];
 						else

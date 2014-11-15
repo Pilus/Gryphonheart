@@ -77,7 +77,7 @@ function GHI_BBCodeConverter()
 		elseif t.tag == "h1" or t.tag == "h2" or t.tag == "h3" then
 			return ConvertAllWithEvtTag(t, t.tag);
 		elseif t.tag == "img" then
-			return string.format("[img width=%s height=%]%s[/img]", t.args[2], t.args[3], t.args[1]);
+			return string.format("[img width=%s height=%s]%s[/img]", t.args.width, t.args.height, t.args.src);
 		elseif t.tag == "a" then
 			return string.format("[link=%s]%s[/link]", t.args.href, tableToMockup(t.args[1]))
 		elseif t.tag == "color" then
@@ -181,6 +181,18 @@ function GHI_BBCodeConverter()
 				s = s..string.format("</%s><%s>", string.upper(tag), string.upper(tag));
 			end
 			return s, prevTag == "none", nextTag == "none";
+		elseif t.tag == "img" then
+			local s = "";
+			if not(prevTag) then
+				s = s .. "</P>";
+			elseif not(prevTag == "h1" or  prevTag == "h2" or prevTag == "h3") then
+				s = s .. "<P></P>";
+			end
+			s = s .. string.format("\<img src\=\"%s\" width\=%q height\=%q \/\>",t[1],t.args.width,t.args.height)
+			if not(nextTag) then
+				s = s .. "<P>";
+			end
+			return s;
 		else
 			local x, y = CheckCustomObjSize(t);
 			local inner = string.format("<%s", string.upper(t.tag));

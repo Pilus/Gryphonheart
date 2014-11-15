@@ -132,7 +132,6 @@ function GHI_BookDisplay(materials)
 
 	class.AddPage = function(text, format)
 		GHCheck("AddPage", {"string", "string"}, {text, format});
-
 		local page = GHI_BookPage(materials)
 			.SetText(text, format)
 			.SetSize(standardPageWidth, standardPageHeight, false)
@@ -157,8 +156,13 @@ function GHI_BookDisplay(materials)
 	end
 
 	class.SetFont = function(font, sizeN, sizeH1, sizeH2, sizeH3)
-		GHCheck("SetFont", {"string", "number", "numberNil", "numberNil", "numberNil"}, {font, sizeN, sizeH1, sizeH2, sizeH3});
+		GHCheck("SetFont", {"string", "numberString", "numberStringNil", "numberStringNil", "numberStringNil"}, {font, sizeN, sizeH1, sizeH2, sizeH3});
 		fontName = font;
+		if sizeN then sizeN = tonumber(sizeN); end
+		if sizeH1 then sizeN = tonumber(sizeH1); end
+		if sizeH2 then sizeN = tonumber(sizeH2); end
+		if sizeH3 then sizeN = tonumber(sizeH3); end
+
 		fontSizes = {sizeN, sizeH1 or sizeN, sizeH2 or sizeN, sizeH3 or sizeN};
 		for i=1,#(pages) do
 			pages[i].SetFont(font, unpack(fontSizes));

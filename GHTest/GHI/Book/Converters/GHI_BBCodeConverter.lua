@@ -58,7 +58,7 @@ GHTest.AddTest(name, "ShouldConvertAlignmentCorrectly", function()
 end);     --]]
 
 
-GHTest.AddTest(name, "ShouldConvertH1Correctly", function()
+GHTest.AddTest(name, "ShouldConvertH1Correctly2", function()
 	local converter = GHI_BBCodeConverter();
 
 	GHTest.Equals('<HTML><BODY><P>Some</P><H1>Head line</H1><P>after</P></BODY></HTML>',
@@ -72,6 +72,70 @@ GHTest.AddTest(name, "ShouldConvertArgumentsCorrectly", function()
 
 	local html = converter.ToSimpleHtml(bbCode);
 	GHTest.Equals('<HTML><BODY><P>Some\124T:0:0:<OBJ arg1="A">Text</OBJ>\124tafter</P></BODY></HTML>', html);
+
+	local bbCode2 = converter.ToMockup(html);
+	GHTest.Equals(bbCode, bbCode2);
+end);
+
+GHTest.AddTest(name, "ShouldConvertImgCorrectly", function()
+	local converter = GHI_BBCodeConverter();
+
+	local bbCode = "[img width=32 height=32]Interface/Icons/Ability_Ambush[/img]";
+
+	local html = converter.ToSimpleHtml(bbCode);
+	GHTest.Equals('<HTML><BODY><P></P><img src="Interface/Icons/Ability_Ambush" width="32" height="32" /></BODY></HTML>', html);
+
+	local bbCode2 = converter.ToMockup(html);
+	GHTest.Equals(bbCode, bbCode2);
+
+end);
+
+GHTest.AddTest(name, "ShouldConvertImgCorrectlyInText", function()
+	local converter = GHI_BBCodeConverter();
+
+	local bbCode = "Text[img width=32 height=32]Interface/Icons/Ability_Ambush[/img]";
+
+	local html = converter.ToSimpleHtml(bbCode);
+	GHTest.Equals('<HTML><BODY><P>Text</P><img src="Interface/Icons/Ability_Ambush" width="32" height="32" /></BODY></HTML>', html);
+
+	local bbCode2 = converter.ToMockup(html);
+	GHTest.Equals(bbCode, bbCode2);
+
+end);
+
+GHTest.AddTest(name, "ShouldConvertImgCorrectlyInText2", function()
+	local converter = GHI_BBCodeConverter();
+
+	local bbCode = "Text[img width=32 height=32]Interface/Icons/Ability_Ambush[/img]After";
+
+	local html = converter.ToSimpleHtml(bbCode);
+	GHTest.Equals('<HTML><BODY><P>Text</P><img src="Interface/Icons/Ability_Ambush" width="32" height="32" /><P>After</P></BODY></HTML>', html);
+
+	local bbCode2 = converter.ToMockup(html);
+	GHTest.Equals(bbCode, bbCode2);
+
+end);
+
+GHTest.AddTest(name, "ShouldConvertImgCorrectlyInText3", function()
+	local converter = GHI_BBCodeConverter();
+
+	local bbCode = "[h1]Before[/h1][img width=32 height=32]Interface/Icons/Ability_Ambush[/img]After";
+
+	local html = converter.ToSimpleHtml(bbCode);
+	GHTest.Equals('<HTML><BODY><H1>Before</H1><img src="Interface/Icons/Ability_Ambush" width="32" height="32" /><P>After</P></BODY></HTML>', html);
+
+	local bbCode2 = converter.ToMockup(html);
+	GHTest.Equals(bbCode, bbCode2);
+
+end);
+
+GHTest.AddTest(name, "ShouldConvertImgPathCorrectly", function()
+	local converter = GHI_BBCodeConverter();
+
+	local bbCode = "Text\\x[img width=32 height=32]Interface\\Icons\\Ability_Ambush2[/img]";
+
+	local html = converter.ToSimpleHtml(bbCode);
+	GHTest.Equals('<HTML><BODY><P>Text\\x</P><img src="Interface\\Icons\\Ability_Ambush2" width="32" height="32" /></BODY></HTML>', html);
 
 	local bbCode2 = converter.ToMockup(html);
 	GHTest.Equals(bbCode, bbCode2);
