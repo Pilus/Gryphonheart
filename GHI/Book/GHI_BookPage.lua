@@ -15,13 +15,34 @@ function GHI_BookPage(materials)
 	local useSpecialBackground = false;
 	local pageText = "";
 	local margin = 20;
-
+	local positionCalculator;
 	local textFrame = CreateFrame("SimpleHTML", nil, class);
 	textFrame:SetPoint("TOPLEFT", class, "TOPLEFT", margin, -margin);
+
+	local function HandleObjectsInPage(text)
+		local ptrn = "\124T:[^\124]*\124t";
+		local i = string.find(text,ptrn);
+		while i do
+
+			local match = string.match(strsub(text,i), ptrn)
+			local obj = GHI_BookObjGenerator().FromTextCode(match);
+
+			if obj then
+				local h,w = obj.GetSize();
+				positionCalculator.CalculatePos(strsub(text,0,i-1),w,h,function(x,y)
+					obj:SetParent(textFrame);
+					obj:SetPoint("BOTTOMLEFT",textFrame,"TOPLEFT",x,y);
+				end);
+			end
+			-- Find next
+			i = string.find(text,ptrn,i+1);
+		end
+	end
 
 	class.SetText = function(text, format)
 		pageText = text;
 		textFrame:SetText(pageText);
+		HandleObjectsInPage(pageText);
 		return class;
 	end
 
@@ -31,6 +52,8 @@ function GHI_BookPage(materials)
 		textFrame:SetFont("H1", "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF", sizeH1);
 		textFrame:SetFont("H2", fontPath, sizeH2);
 		textFrame:SetFont("H3", fontPath, sizeH3);
+
+		positionCalculator = GHI_TextPositionCalculator(textFrame:GetWidth(), font, sizeN, font, sizeH1, font, sizeH2);
 
 		return class;
 	end

@@ -9,16 +9,10 @@
 --			All rights reserved
 --===================================================
 
-function GHI_BookObj_Signature(width, height, attributeName)
+function GHI_BookObj_Signature(data)
 	local class = GHClass("GHI_BookObj_Signature");
 
-	local frame,currentStack;
-
-	if type(width) == "table" then
-		class = width;
-	else
-		class = GHI_BookObj(width, height,"Signature");
-	end
+	local frame;
 
 	class.GetData = function()
 		return attributeName;

@@ -25,6 +25,7 @@ function GHM_ImagePicker()
 	local defaultImage = "Interface\\Icons\\INV_MISC_FILM_01"
 	
 	local menuFrame
+	local inUse;
 	
 	if not (GHM_IMGLIST) then
 			GHM_LoadImageList()
@@ -207,6 +208,10 @@ local t = {
 	
 	class.New = function(_OnOkCallback)
 		OnOkCallback = _OnOkCallback;
+		for i, v in pairs(GHM_IMGLIST) do
+			menuFrame.ForceLabel("images",v);
+			break;
+		end
 		menuFrame:Show();
 		inUse = true;
 	end

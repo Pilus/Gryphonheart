@@ -15,30 +15,28 @@
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
 --===================================================
-
-function GHI_BookObj(...)
-	local class = GHClass("GHI_BookObj");
-
-	local height,width,objType = ...;
-
-	class.GetData = function()
-		-- This function should be overridden by the class inheriting this class.
-		error((objType or "nil").." have not implemented .GetData");
+local class
+function GHI_BookObjGenerator()
+	if class then
+		return class;
 	end
+	class = GHClass("GHI_BookObjGenerator");
 
-	class.GetFrame = function()
-		-- This function should be overridden by the class inheriting this class.
-		error((objType or "nil").." have not implemented .GetFrame");
-	end
+	local deserializer = GHI_HtmlDeserializer();
 
-	class.InitializeFromTextCode = function(code)
-		-- Format: \124T:width:height:GHI;TYPE;DATA1;DATA2\124t
-		local data;
-		width,height,objType,data = string,match(code,"^\124T:(%d):(%d):GHI;(%a*);(.*)\124t$");
-		assert(height and width,"Could not initialize from code");
+	class.FromTextCode = function(code)
+		GHCheck("GHI_BookObj.InitializeFromTextCode",{"string"},{code})
+		-- Format: \124T:width:height:InnerHtml\124t
+		local innerHtml;
+		width,height,innerHtml = string.match(code,"^\124T:(%d):(%d):(.*)\124t$");
+		assert(height and width and innerHtml,"Could not initialize from code. Object contains no size information.");
 
-		if _G["GHI_BookObj_"..objType] then
-			_G["GHI_BookObj_"..objType](class,nil,strsplit(";",data))
+		local data = deserializer.HtmlToTable(innerHtml);
+
+		if data[1] and _G["GHI_BookObj_"..data[1].tag] then
+			return _G["GHI_BookObj_"..data[1].tag](data)
+		else
+			return nil;
 		end
 	end
 
