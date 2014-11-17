@@ -39,15 +39,7 @@ function GHI_BookObjGenerator()
 			return nil;
 		end
 	end
-
-	class.GetSize = function()
-		return width,height;
-	end
-
-	class.GenerateCode = function()
-		return string.format("\124T:%d:%d:GHI;%s;%s\124t", width, height, objType, string.join(";",class.GetData()));
-	end
-
+	
 	return class;
 end
 
