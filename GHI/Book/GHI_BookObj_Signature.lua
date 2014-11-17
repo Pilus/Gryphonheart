@@ -31,6 +31,10 @@ function GHI_BookObj_Signature(width, height, data)
 	class.SetPosition = function(parent, x, y)
 		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y);
 	end
+	
+	class.GetSize = function()
+		return width, height;
+	end 
 
 	return class;
 end
