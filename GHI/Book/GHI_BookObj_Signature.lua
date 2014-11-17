@@ -12,19 +12,12 @@
 GHI_BookObj_Signature_Width = 130;
 GHI_BookObj_Signature_Height = 40;
 
-function GHI_BookObj_Signature(data)
+function GHI_BookObj_Signature(width, height, data)
 	local class = GHClass("GHI_BookObj_Signature");
 
-	local frame;
-
-	class.GetData = function()
-		return attributeName;
-	end
-
-	frame = CreateFrame("Frame")
-	local w,h = class.GetSize();
-	frame:SetWidth(w);
-	frame:SetHeight(h);
+	local frame = CreateFrame("Frame")
+	frame:SetWidth(width);
+	frame:SetHeight(height);
 
 	local font = frame:CreateFontString();
 	font:SetParent(frame);
@@ -35,12 +28,8 @@ function GHI_BookObj_Signature(data)
 	font:SetFont("Fonts\\FRIZQT__.TTF", 11);
 	font:SetText("Test")
 
-	class.GetFrame = function()
-		return frame;
-	end
-
-	class.SetCurrentStack = function(stack)
-		currentStack = stack;
+	class.SetPosition = function(parent, x, y)
+		frame:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y);
 	end
 
 	return class;
