@@ -27,8 +27,8 @@ function GHI_BookObjGenerator()
 	class.FromTextCode = function(code)
 		GHCheck("GHI_BookObj.InitializeFromTextCode",{"string"},{code})
 		-- Format: \124T:width:height:InnerHtml\124t
-		local innerHtml;
-		width,height,innerHtml = string.match(code,"^\124T:(%d):(%d):(.*)\124t$");
+
+		local width,height,innerHtml = string.match(code,"^\124T:(%d):(%d):(.*)\124t$");
 		assert(height and width and innerHtml,"Could not initialize from code. Object contains no size information.");
 
 		local data = deserializer.HtmlToTable(innerHtml);
