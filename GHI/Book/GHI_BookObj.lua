@@ -34,7 +34,7 @@ function GHI_BookObjGenerator()
 		local data = deserializer.HtmlToTable(innerHtml);
 
 		if data[1] and _G["GHI_BookObj_"..data[1].tag] then
-			return _G["GHI_BookObj_"..data[1].tag](data)
+			return _G["GHI_BookObj_"..data[1].tag](width, height, data)
 		else
 			return nil;
 		end
