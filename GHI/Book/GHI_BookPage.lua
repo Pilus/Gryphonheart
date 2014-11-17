@@ -28,10 +28,9 @@ function GHI_BookPage(materials)
 			local obj = GHI_BookObjGenerator().FromTextCode(match);
 
 			if obj then
-				local h,w = obj.GetSize();
+				local w, h = obj.GetSize();
 				positionCalculator.CalculatePos(strsub(text,0,i-1),w,h,function(x,y)
-					obj:SetParent(textFrame);
-					obj:SetPoint("BOTTOMLEFT",textFrame,"TOPLEFT",x,y);
+					obj.SetPosition(textFrame, x, y);
 				end);
 			end
 			-- Find next
