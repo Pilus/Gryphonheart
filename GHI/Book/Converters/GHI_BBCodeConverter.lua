@@ -120,6 +120,12 @@ function GHI_BBCodeConverter()
 		if t.args.x and t.args.y then
 			return t.args.x, t.args.y;
 		end
+		if t.args.w and t.args.h then
+			return t.args.w, t.args.h;
+		end
+		if _G["GHI_BookObj_"..t.tag.."_Width"] and _G["GHI_BookObj_"..t.tag.."_Height"] then
+			return _G["GHI_BookObj_"..t.tag.."_Width"], _G["GHI_BookObj_"..t.tag.."_Height"];
+		end
 		return 0, 0;
 	end
 
