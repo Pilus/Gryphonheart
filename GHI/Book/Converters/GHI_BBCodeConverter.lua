@@ -21,6 +21,7 @@ function GHI_BBCodeConverter()
 
 	local htmlDeserial = GHI_HtmlDeserializer();
 	local bbcodeDeserial = GHI_BBCodeDeserializer();
+	local objGenerator = GHI_BookObjGenerator();
 
 	local EntityEscapeString = function(str)
 		str = gsub(str, "&", "&amp;")
@@ -116,19 +117,6 @@ function GHI_BBCodeConverter()
 		return RemoveEntityEscapeString(mock);
 	end
 
-	local CheckCustomObjSize = function(t)
-		if t.args.x and t.args.y then
-			return t.args.x, t.args.y;
-		end
-		if t.args.w and t.args.h then
-			return t.args.w, t.args.h;
-		end
-		if _G["GHI_BookObj_"..t.tag.."_Width"] and _G["GHI_BookObj_"..t.tag.."_Height"] then
-			return _G["GHI_BookObj_"..t.tag.."_Width"], _G["GHI_BookObj_"..t.tag.."_Height"];
-		end
-		return 0, 0;
-	end
-
 	local ConvertAllWithEvtTag = function(t, tag)
 		local open, close = "", "";
 		if tag then
@@ -200,7 +188,7 @@ function GHI_BBCodeConverter()
 			end
 			return s;
 		else
-			local x, y = CheckCustomObjSize(t);
+			local x, y = objGenerator.GetSize(t);
 			local inner = string.format("<%s", string.upper(t.tag));
 			for i,v in pairs(t.args) do
 				inner = string.format("%s %s=\"%s\"", inner, i, v);
