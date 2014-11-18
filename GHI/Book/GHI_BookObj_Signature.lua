@@ -9,8 +9,9 @@
 --			All rights reserved
 --===================================================
 
-GHI_BookObj_Signature_Width = 130;
-GHI_BookObj_Signature_Height = 40;
+function GHI_BookObj_Signature_GetSize(data)
+	return 130, 40;
+end
 
 function GHI_BookObj_Signature(width, height, data)
 	local class = GHClass("GHI_BookObj_Signature");
