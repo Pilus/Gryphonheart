@@ -23,7 +23,19 @@ function GHI_BookObjGenerator()
 	class = GHClass("GHI_BookObjGenerator");
 
 	local deserializer = GHI_HtmlDeserializer();
-
+	local sizeMap = {
+		"SIGNATURE" = GHI_BookObj_Signature_Size;
+	};
+	local objMap = {
+		"SIGNATURE" = GHI_BookObj_Signature;
+	};
+	
+	class.GetSize(data)
+		if sizeMap[data.tag] then
+			return sizeMap[data.tag](data);
+		end
+	end
+	
 	class.FromTextCode = function(code)
 		GHCheck("GHI_BookObj.InitializeFromTextCode",{"string"},{code})
 		-- Format: \124T:width:height:InnerHtml\124t
@@ -33,8 +45,8 @@ function GHI_BookObjGenerator()
 
 		local data = deserializer.HtmlToTable(innerHtml);
 
-		if data[1] and _G["GHI_BookObj_"..data[1].tag] then
-			return _G["GHI_BookObj_"..data[1].tag](width, height, data)
+		if data[1] and objMap[data[1].tag] then
+			return objMap[data[1].tag](width, height, data)
 		else
 			return nil;
 		end
