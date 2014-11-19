@@ -18,24 +18,38 @@ function GHM_StandardButtonWithTexture(profile, parent, settings)
 	frame:SetHeight(profile.height or 24);
 	frame:SetWidth(profile.width or 24);
 
-	if profile.texture then
+	local textures = {};
+
+	local CreateTexture = function(width, height, texturePath, x, y, texCoord)
 		local texture = frame:CreateTexture(nil,"OVERLAY");
-		texture:SetPoint("CENTER", frame, "CENTER", 0, 0);
-		texture:SetWidth(frame:GetWidth() - 10);
-		texture:SetHeight(frame:GetHeight() - 10);
-		texture:SetTexture(profile.texture);
-		if profile.texCoord then
-			texture:SetTexCoord(unpack(profile.texCoord));
+		texture:SetWidth(width);
+		texture:SetHeight(height);
+		texture:SetTexture(texturePath);
+		if texCoord then
+			texture:SetTexCoord(unpack(texCoord));
 		end
 
+		texture:SetPoint("CENTER", frame, "CENTER", x, y);
 		frame:SetScript("OnMouseDown", function()
-			texture:SetPoint("CENTER", 1, -1);
+			texture:SetPoint("CENTER", frame, "CENTER", x + 1, y - 1);
 		end);
 		frame:SetScript("OnMouseUp", function()
-			texture:SetPoint("CENTER", 0, 0);
+			texture:SetPoint("CENTER", frame, "CENTER", x, y);
 		end);
 
-		frame.texture = texture;
+		table.insert(textures, texture)
+	end
+
+	if type(profile.texture) == "string" then
+		CreateTexture(frame:GetWidth() - 10, frame:GetHeight() - 10, profile.texture, 0, 0, profile.texCoord);
+	elseif type(profile.texture) == "table" then
+		local coords = profile.texCoord or {};
+		if #(profile.texture) == 2 then
+			local w = frame:GetWidth();
+			local h = frame:GetHeight();
+			CreateTexture((w - 10)/2, (h - 10), profile.texture[1], -(w - 10)/4, 0, coords[1]);
+			CreateTexture((w - 10)/2, (h - 10), profile.texture[2], (w - 10)/4, 0, coords[2]);  --]]
+		end
 	end
 
 	if type(profile.onClick) == "function" then
@@ -45,10 +59,24 @@ function GHM_StandardButtonWithTexture(profile, parent, settings)
 	local OrigUpdateTheme = frame.UpdateTheme;
 	frame.UpdateTheme = function()
 		OrigUpdateTheme();
-		if frame.texture then
-			frame.texture:SetVertexColor(GHM_GetButtonTextColor());
+		for _,tex in pairs(textures) do
+			tex:SetVertexColor(GHM_GetButtonTextColor());
 		end
 	end
+
+	frame:SetScript("OnEnter", function(self)
+		if profile.tooltip then
+			GameTooltip:SetOwner(self, "ANCHOR_LEFT");
+			GameTooltip:ClearLines()
+			GameTooltip:AddLine(profile.tooltip, 1, 0.8196079, 0);
+			GameTooltip:Show()
+		end
+	end);
+	frame:SetScript("OnLeave", function(self)
+		if profile.tooltip then
+			GameTooltip:Hide();
+		end
+	end);
 
 	frame:Show();
 

@@ -59,7 +59,14 @@ function GHI_BookEditor()
 
 	local UpdateToolbar = function()
 		menuFrame.GetLabelFrame("bookTheme").Force(info.material);
-		menuFrame.GetLabelFrame("bookFont").Force(info.font);
+		local fontName = 1;
+		for i, v in pairs(GHI_FontList) do
+			if v == info.font then
+				fontName = i;
+				break;
+			end
+		end
+		menuFrame.GetLabelFrame("bookFont").Force(fontName);
 		menuFrame.GetLabelFrame("title").Force(info.title);
 	end
 
@@ -110,7 +117,7 @@ function GHI_BookEditor()
 
 		local display = GHI_BookDisplay(materials)
 		.SetTitle(info.title)
-		.SetFont(info.font or "Frizqt", info.n or 15, info.h1 or 24, info.h2 or 19, info.h3 or 17)
+		.SetFont(info.font or "Frizqt", info.n or 15, info.h1 or info.n or 15, info.h2 or info.n or 15, info.h3 or info.n or 15)
 		.SetDefaultPageBackgroud(info.material or "Parchment")
 
 		for i=1,#(info) do
@@ -218,13 +225,13 @@ function GHI_BookEditor()
 		};
 	end
 
-	local SetFontCat = function()
+	local SetTextCat = function()
 		return {
-			name = "Font",
+			name = "Text",
 			{
 				{
 					type = "TextButton",
-					text = "Font color",
+					text = "Color",
 				}
 			}
 		}
@@ -260,6 +267,7 @@ function GHI_BookEditor()
 				{
 					type = "Button",
 					text = "H1",
+					tooltip = "Headline 1",
 					compact = true,
 					height = 24,
 					width = 24,
@@ -268,6 +276,7 @@ function GHI_BookEditor()
 				{
 					type = "Button",
 					text = "H2",
+					tooltip = "Headline 2",
 					compact = true,
 					height = 24,
 					width = 24,
@@ -276,6 +285,7 @@ function GHI_BookEditor()
 				{
 					type = "Button",
 					text = "H3",
+					tooltip = "Headline 3",
 					compact = true,
 					height = 24,
 					width = 24,
@@ -360,12 +370,21 @@ function GHI_BookEditor()
 					data = fonts,
 					OnSelect = function(index, value)
 						if info then
-							info.font = value;
+							info.font = GHI_FontList[value];
 						end
 					end,
 				},
 			}
 		}
+	end
+
+	local GetGuildEmblemTextures = function()
+		local t = {GetGuildTabardFileNames()};
+		if t then
+			local tex = string.match(t[3],"[^_]*_[^_]*");
+			return {tex, tex};
+		end
+		return {"Textures\\GuildEmblems\\Emblem_00", "Textures\\GuildEmblems\\Emblem_00"};
 	end
 
 	local SetUpGraphicsCat = function()
@@ -376,8 +395,8 @@ function GHI_BookEditor()
 					type = "Button",
 					text = "Img",
 					compact = true,
-					height = 24,
-					width = 24,
+					height = 48,
+					width = 48,
 					tooltip = loc.INSERT_IMAGE,
 					onClick = function()
 						imageMenuList.New(function(path, width, height)
@@ -390,8 +409,8 @@ function GHI_BookEditor()
 					type = "Button",
 					text = "Icon",
 					compact = true,
-					height = 24,
-					width = 24,
+					height = 48,
+					width = 48,
 					tooltip = loc.INSERT_ICON,
 					onClick = function()
 						iconMenuList.New(function(icon)
@@ -399,6 +418,15 @@ function GHI_BookEditor()
 							textFrame:GetFieldFrame():Insert(imageText);
 						end);
 					end,
+				},
+				{
+					type = "StandardButtonWithTexture",
+					tooltip = "Guild Emblem",
+					height = 48,
+					width = 48,
+					texture = GetGuildEmblemTextures(),
+					texCoord = {{0.5, 0, 0.25, 0.75}, {0, 0.5, 0.25, 0.75}},
+					onClick = function() InsertTag("left") end,
 				},
 			}
 		}
@@ -432,7 +460,7 @@ function GHI_BookEditor()
 		return	{
 			name = "Formatting",
 			SetUpMetaCat(),
-			SetFontCat(),
+			SetTextCat(),
 			SetLayoutCat(),
 			SetStyleCat(),
 		};

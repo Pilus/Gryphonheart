@@ -221,13 +221,13 @@ local GetActionScript = function(info,oldVersion)
 							page = page .. info[i]["text" .. j];
 						end
 					end
-					s = string.format("%s.AddPage([[%s]], 'SimpleHTML')", s, page);
+					s = string.format("%s.AddPage(%q, 'SimpleHTML')", s, page);
 				end
 			end
-			s = s..string.format(".SetFont('%s', %s)", info.font, info.n or 15)
-			s = s..string.format(".SetTitle([[%s]])", info.title);
+			s = s..string.format(".SetFont(%q, %s)", info.font, info.n or 15)
+			s = s..string.format(".SetTitle(%q)", info.title);
 			s = s..string.format(".SetEditFunction(function() GHI_EditBook(stack.GetItemGuid(), '%s') end)", info.guid)
-			s = s..string.format(".SetDefaultPageBackgroud('%s')", info.material or "Parchment")
+			s = s..string.format(".SetDefaultPageBackgroud(%q)", info.material or "Parchment")
 			s = s..".Show()";
 			return s, 0;
 		end
