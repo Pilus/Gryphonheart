@@ -30,7 +30,7 @@ function GHI_BookPage(materials)
 			if obj then
 				local w, h = obj.GetSize();
 				positionCalculator.CalculatePos(strsub(text,0,i-1),w,h,function(x,y)
-					obj.SetPosition(textFrame, x, y);
+					obj.SetPosition(textFrame, x, -y);
 				end);
 			end
 			-- Find next
@@ -41,8 +41,21 @@ function GHI_BookPage(materials)
 	class.SetText = function(text, format)
 		pageText = text;
 		textFrame:SetText(pageText);
-		HandleObjectsInPage(pageText);
 		return class;
+	end
+
+	local origShow = class.Show
+	class.Show = function()
+		if not(positionCalculator) then
+			error("Font not set for page.");
+		end
+		HandleObjectsInPage(pageText);
+		origShow(class);
+	end
+
+	local origHide = class.Hide
+	class.Hide = function()
+		origHide(class);
 	end
 
 	class.SetFont = function(font, sizeN, sizeH1, sizeH2, sizeH3)

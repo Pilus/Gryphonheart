@@ -204,7 +204,8 @@ function GHI_BBCodeConverter()
 				inner = inner .. "/>";
 			end
 
-			return string.format("\124T:%s:%s:%s\124t", x, y, inner);
+			--if true then return string.format("\124TInterface\\Icons\\INV_Misc_Coin_01:%s:%s:%s\124t ", y, x, inner); end
+			return string.format("\124T:%s:%s:%s\124t ", y, x, inner);
 		end
 	end
 

@@ -11,13 +11,19 @@
 --===================================================
 local i = 1;
 function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
-	GHCheck("GHI_TextPositionCalculator",{"number","string","number","string","number","string","number"},{width, font, n, h1Font, h1, h2Font, h2});
+	GHCheck("GHI_TextPositionCalculator",{"number","string","numberstring","string","numberstring","string","numberstring"},{width, font, n, h1Font, h1, h2Font, h2});
+
 	local class = GHClass("GHI_TextPositionCalculator");
+	n = tonumber(n);
+	h1 = tonumber(h1);
+	h2 = tonumber(h2);
 
 	local frame = CreateFrame("ScrollFrame","GHI_TextPositionCalculatorFrame"..i,nil,"GHI_TextPositionCalculatorTemplate");
 	i = i + 1;
+	frame:SetHeight(10);
+
 	local page = _G[frame:GetName().."ChildPage"];
-	page:SetHeight(0.0001);
+	page:SetHeight(0.001);
 	page:SetWidth(width);
 
 	frame:SetPoint("CENTER")
@@ -42,9 +48,9 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 	local GetLastActiveFormatTag = function(text)
 		local lastTag = "P";
 
-		if FindLast(text,"<h1>") > FindLast(text,"</h1>") then
+		if (FindLast(text,"<h1>") or 0) > (FindLast(text,"</h1>") or 0) then
 			lastTag = "h1";
-		elseif FindLast(text,"<h2>") > FindLast(text,"</h2>") then
+		elseif (FindLast(text,"<h2>") or 0) > (FindLast(text,"</h2>") or 0) then
 			lastTag = "h2";
 		end
 
@@ -69,7 +75,7 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 		end
 	end,0.01);
 
-	class.CalculatePos = function(text,h,w,resultFunc)
+	class.CalculatePos = function(text,w,h,resultFunc)
 		if busy == true then
 			table.insert(queue,1,{text,resultFunc});
 			return
@@ -88,7 +94,8 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 		local CalcX;
 		GHI_Timer(function()
 			-- Determine Y
-			y = frame:GetVerticalScrollRange();
+			y = Round(frame:GetVerticalScrollRange())-10;
+
 			-- Prepare X for first calculation
 			CalcX();
 		end,0.0001,true);
@@ -97,20 +104,20 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 			-- Setup X calculation by using ' s to find the space left on the line
 			modifier = modifier or 0;
 
-			page:SetText(text..newObj.." "..strrep("'",modifier).."</"..lastTag.."></BODY></HTML>")
+			page:SetText(text..newObj..""..strrep("'",modifier).."</"..lastTag.."></BODY></HTML>")
 			frame:UpdateScrollChildRect();
 
 			-- Call a delayed analysis of the result to happen in the next frame
 			GHI_Timer(function()
-				if frame:GetVerticalScrollRange() <= y then -- no change = The line is not yet full
+				if Round(frame:GetVerticalScrollRange())-10 <= y and modifier < 100 then -- no change = The line is not yet full
 					-- Run the calculations again with one more '
 					CalcX(modifier + 1);
 				else -- The line is full.
 					-- Get result
-					label:SetText(" "..strrep("'",modifier-1))
+					label:SetText(""..strrep("'",modifier-1))
 					x = width - label:GetWidth();
 					frame:Hide();
-					resultFunc(Round(x),Round(y));
+					resultFunc(Round(x - w),Round(y - h));
 				end
 			end,0.0001,true);
 		end

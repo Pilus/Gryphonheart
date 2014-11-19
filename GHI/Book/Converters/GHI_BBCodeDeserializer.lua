@@ -120,7 +120,7 @@ function GHI_BBCodeDeserializer()
 				end
 
 				local a, b = strfind(str, "%[/" .. t[#(t)].tag .. "%]", pointer - 1 + subLen)
-				if a ~= pointer - 1 + subLen then print("Malformed bbcode", a, "~=", pointer, "-", 1, "+", subLen); end
+				--if a ~= pointer - 1 + subLen then print("Malformed bbcode", a, "~=", pointer, "-", 1, "+", subLen); end
 
 				return b + 1;
 			end,

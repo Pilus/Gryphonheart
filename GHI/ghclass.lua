@@ -274,4 +274,28 @@ GHCompareGUIDs = function(guidA, guidB)
 	return guidA == guidB or string.endsWith(guidA, guidB) or string.endsWith(guidB, guidA);
 end
 
+GHRuler = function()
+	local f = CreateFrame("Frame")
+	local w = 200;
+	f:SetParent(UIParent);
+	f:SetWidth(w);
+	f:SetHeight(10);
+	f:SetPoint("CENTER",0,200)
+	f:SetFrameLevel(1000)
 
+	for i=0,(w/10)-1 do
+		local t = f:CreateTexture();
+		t:SetTexture(mod(i,2),1 - mod(i,2),0)
+		t:SetHeight(5);
+		t:SetWidth(10);
+		t:SetPoint("TOPLEFT", f, "TOPLEFT", i * 10, 0)
+	end
+
+	for i=0,(w/50)-1 do
+		local t = f:CreateTexture();
+		t:SetTexture(mod(i,2),1 - mod(i,2),1)
+		t:SetHeight(5);
+		t:SetWidth(50);
+		t:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", i * 50, 0)
+	end
+end

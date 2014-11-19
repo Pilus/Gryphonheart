@@ -24,24 +24,27 @@ function GHI_BookObjGenerator()
 
 	local deserializer = GHI_HtmlDeserializer();
 	local sizeMap = {
-		"SIGNATURE" = GHI_BookObj_Signature_Size;
+		SIGNATURE = GHI_BookObj_Signature_GetSize,
 	};
 	local objMap = {
-		"SIGNATURE" = GHI_BookObj_Signature;
+		SIGNATURE = GHI_BookObj_Signature,
 	};
 	
-	class.GetSize(data)
-		if sizeMap[data.tag] then
-			return sizeMap[data.tag](data);
+	class.GetSize = function(data)
+		local tag = string.upper(data.tag);
+		if sizeMap[tag] then
+			return sizeMap[tag](data);
 		end
+
+		return 0, 0;
 	end
 	
 	class.FromTextCode = function(code)
 		GHCheck("GHI_BookObj.InitializeFromTextCode",{"string"},{code})
 		-- Format: \124T:width:height:InnerHtml\124t
 
-		local width,height,innerHtml = string.match(code,"^\124T:(%d):(%d):(.*)\124t$");
-		assert(height and width and innerHtml,"Could not initialize from code. Object contains no size information.");
+		local height, width, innerHtml = string.match(code,"^\124T:(%d*):(%d*):(.*)\124t$");
+		assert(height and width and innerHtml,"Could not initialize from code. Object contains no size information. ");
 
 		local data = deserializer.HtmlToTable(innerHtml);
 

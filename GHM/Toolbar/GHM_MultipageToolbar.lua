@@ -17,7 +17,7 @@ function GHM_MultiPageToolbar(profile, parent, settings)
 	local buttonHeight = 19;
 	local margin = 2;
 	local backgroundColor = {0.5, 0.5, 0.5, 0.5};
-	local backgroundColor2 = {0.8, 0.8, 0.8, 0.6};
+	local backgroundColor2 = {0.2, 0.2, 0.2, 0.6};
 
 	local height,width = 0,0;
 	local pages = Linq();

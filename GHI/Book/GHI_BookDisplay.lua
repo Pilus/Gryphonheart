@@ -37,7 +37,7 @@ function GHI_BookDisplay(materials)
 			},
 		},
 		title = "",
-		name = "GHI_TooltipMenu" .. count,
+		name = "GHI_BookDisplay" .. count,
 		theme = "BlankTheme",
 		width = 350,
 		useWindow = true,
