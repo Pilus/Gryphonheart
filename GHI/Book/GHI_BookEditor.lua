@@ -25,8 +25,7 @@ function GHI_BookEditor()
 	local action, textFrame, info, item, currentPageShown;
 	local prevButton, nextButton, addBeforeButton, addAfterButton, deleteButton;
 
-	local imageMenuList = GHM_ImagePickerList()
-	local iconMenuList = GHM_IconPickerList()
+
 
 	local SaveCurrentPage = function()
 		if currentPageShown then
@@ -59,7 +58,7 @@ function GHI_BookEditor()
 
 	local UpdateToolbar = function()
 		menuFrame.GetLabelFrame("bookTheme").Force(info.material);
-		local fontName = 1;
+		local fontName = "Frizqt";
 		for i, v in pairs(GHI_FontList) do
 			if v == info.font then
 				fontName = i;
@@ -80,6 +79,13 @@ function GHI_BookEditor()
 		end
 	end
 
+	local FillMissingInfoValues = function(t)
+		t.n = tonumber(t.n) or 15;
+		t.h1 = tonumber(t.h1) or 24;
+		t.h2 = tonumber(t.h2) or 21;
+		t.h3 = tonumber(t.h3) or 17;
+	end
+
 	class.New = function(...)
 		--inUse = true;
 		--menuFrame:AnimatedShow();
@@ -89,14 +95,21 @@ function GHI_BookEditor()
 		action = bookAction;
 		item = _item;
 		info = action.GetInfo();
+		FillMissingInfoValues(info);
 		inUse = true;
 		ShowPage(1);
 		UpdateToolbar();
 		menuFrame:AnimatedShow();
 	end
 
+	class.Insert = function(text)
+		textFrame:GetFieldFrame():Insert(text);
+	end
+
+
 	local Revert = function()
 		info = action.GetInfo();
+		FillMissingInfoValues(info);
 		ShowPage(1);
 		UpdateToolbar();
 	end
@@ -149,7 +162,7 @@ function GHI_BookEditor()
 		end
 	end
 
-	local InsertTag = function(tag)
+	class.InsertTag = function(tag)
 		local tFrame = textFrame:GetFieldFrame();
 		local hi1, hi2 = GetHighlightedText(tFrame);
 
@@ -246,21 +259,21 @@ function GHI_BookEditor()
 					tooltip = "Left",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
 					texCoord = GetTexCoord(1, 1);
-					onClick = function() InsertTag("left") end,
+					onClick = function() class.InsertTag("left") end,
 				},
 				{
 					type = "StandardButtonWithTexture",
 					tooltip = "Center",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
 					texCoord = GetTexCoord(2, 1);
-					onClick = function() InsertTag("center") end,
+					onClick = function() class.InsertTag("center") end,
 				},
 				{
 					type = "StandardButtonWithTexture",
 					tooltip = "Right",
 					texture = "Interface\\addons\\GHI\\Texture\\BookIcons",
 					texCoord = GetTexCoord(3, 1);
-					onClick = function() InsertTag("right") end,
+					onClick = function() class.InsertTag("right") end,
 				},
 			},
 			{
@@ -271,7 +284,7 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onClick = function() InsertTag("h1") end,
+					onClick = function() class.InsertTag("h1") end,
 				},
 				{
 					type = "Button",
@@ -280,7 +293,7 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onClick = function() InsertTag("h2") end,
+					onClick = function() class.InsertTag("h2") end,
 				},
 				{
 					type = "Button",
@@ -289,7 +302,7 @@ function GHI_BookEditor()
 					compact = true,
 					height = 24,
 					width = 24,
-					onClick = function() InsertTag("h3") end,
+					onClick = function() class.InsertTag("h3") end,
 				}
 			}
 		}
@@ -378,83 +391,6 @@ function GHI_BookEditor()
 		}
 	end
 
-	local GetGuildEmblemTextures = function()
-		local t = {GetGuildTabardFileNames()};
-		if t then
-			local tex = string.match(t[3],"[^_]*_[^_]*");
-			return {tex, tex};
-		end
-		return {"Textures\\GuildEmblems\\Emblem_00", "Textures\\GuildEmblems\\Emblem_00"};
-	end
-
-	local SetUpGraphicsCat = function()
-		return {
-			name = "Graphics",
-			{
-				{
-					type = "Button",
-					text = "Img",
-					compact = true,
-					height = 48,
-					width = 48,
-					tooltip = loc.INSERT_IMAGE,
-					onClick = function()
-						imageMenuList.New(function(path, width, height)
-							local imageText = string.format("[img width=%s height=%s]%s[/img]", width, height, path)
-							textFrame:GetFieldFrame():Insert(imageText);
-						end);
-					end,
-				},
-				{
-					type = "Button",
-					text = "Icon",
-					compact = true,
-					height = 48,
-					width = 48,
-					tooltip = loc.INSERT_ICON,
-					onClick = function()
-						iconMenuList.New(function(icon)
-							local imageText = string.format("[img width=%s height=%s]%s[/img]", 32, 32, icon)
-							textFrame:GetFieldFrame():Insert(imageText);
-						end);
-					end,
-				},
-				{
-					type = "StandardButtonWithTexture",
-					tooltip = "Guild Emblem",
-					height = 48,
-					width = 48,
-					texture = GetGuildEmblemTextures(),
-					texCoord = {{0.5, 0, 0.25, 0.75}, {0, 0.5, 0.25, 0.75}},
-					onClick = function() InsertTag("left") end,
-				},
-			}
-		}
-	end
-
-	local SetUpInteractiveObjectsCat = function()
-		return {
-			name = "Interactive Objects",
-			{
-				{
-					type = "Button",
-					text = "Link",
-					compact = true,
-					height = 24,
-					width = 24,
-					onClick = function() end,
-				},
-			}
-		}
-	end
-
-	local SetUpInsertPage = function()
-		return	{
-			name = "Insert",
-			SetUpGraphicsCat(),
-			SetUpInteractiveObjectsCat(),
-		};
-	end
 
 	local SetUpFormattingPage = function()
 		return	{
@@ -520,7 +456,7 @@ function GHI_BookEditor()
 			align = "l",
 			SetUpFormattingPage(),
 			SetUpAppearancePage(),
-			SetUpInsertPage(),
+			GHI_BookEditor_InsertPage(class).GetProfile(),
 		}
 	end
 
