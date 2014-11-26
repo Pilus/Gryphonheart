@@ -43,7 +43,7 @@ GHI_BookEditor_InsertPage = function(editor)
 	end
 
 	local SIZE = 40;
-	local COLUMNS = 20;
+	local COLUMNS = 10;
 
 	local emblemPicker;
 	local ClickEmblemPicker = function(button)
@@ -57,7 +57,7 @@ GHI_BookEditor_InsertPage = function(editor)
 				edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
 				tile = true, tileSize = 16, edgeSize = 16,
 				insets = { left = 4, right = 4, top = 4, bottom = 4 }});
-			for i=0,195 do
+			for i=0,10 do
 				local column = mod(i, COLUMNS);
 				local row = math.floor(i / COLUMNS)
 				local b = CreateEmblemTexturedButton(emblemPicker, i);

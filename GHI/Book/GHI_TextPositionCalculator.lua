@@ -77,7 +77,7 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 
 	class.CalculatePos = function(text,w,h,resultFunc)
 		if busy == true then
-			table.insert(queue,1,{text,resultFunc});
+			table.insert(queue,1,{text,w,h,resultFunc});
 			return
 		end
 
@@ -104,7 +104,7 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 			-- Setup X calculation by using ' s to find the space left on the line
 			modifier = modifier or 0;
 
-			page:SetText(text..newObj..""..strrep("'",modifier).."</"..lastTag.."></BODY></HTML>")
+			page:SetText(text..newObj.." "..strrep("'",modifier).."</"..lastTag.."></BODY></HTML>")
 			frame:UpdateScrollChildRect();
 
 			-- Call a delayed analysis of the result to happen in the next frame
@@ -114,10 +114,11 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 					CalcX(modifier + 1);
 				else -- The line is full.
 					-- Get result
-					label:SetText(""..strrep("'",modifier-1))
+					label:SetText(" "..strrep("'",modifier-1))
 					x = width - label:GetWidth();
 					frame:Hide();
-					resultFunc(Round(x - w),Round(y - h));
+					resultFunc(Round(x - w),Round(y - h), x);
+					busy = false;
 				end
 			end,0.0001,true);
 		end
@@ -125,3 +126,46 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 
 	return class;
 end
+
+local ShowResult = function(result)
+	local s = "";
+	for fontSize, r in pairs(result) do
+		local v = 0;
+		local c = 0;
+		for width,resultingWidth in pairs(r) do
+			v = v + (resultingWidth/width);
+			c = c + 1;
+		end
+		--print(fontSize,v/c);
+		s = string.format("%s%s\t%.3f\n",s,fontSize,v/c)
+	end
+	GH_DebugMenu().New(s);
+end
+
+AnalyseSizeInpact = function()
+	local font = "Interface\\Addons\\GHI\\Fonts\\bdrenais.TTF" --"Fonts\\FRIZQT__.TTF";
+
+
+	local fontSizes = {8,10,12,14,16,18,20,22,24}
+
+	local sizes = {20,30,40,50,60,70,80,90}
+	local result = {};
+
+	local c = 0;
+	for _,fontSize in pairs(fontSizes) do
+		local calc = GHI_TextPositionCalculator(200, font, fontSize, font, 24, font, 24);
+		result[fontSize] = {};
+		for _,size in pairs(sizes) do
+			calc.CalculatePos("<HTML><BODY><P>",size,10,function(x,y,resultingWidth)
+				--print(size,"=",resultingWidth,"Ratio:",size/resultingWidth);
+				result[fontSize][size] = resultingWidth;
+
+				c = c + 1;
+				if c == #(sizes) * #(fontSizes) then
+					ShowResult(result);
+				end
+			end);
+		end
+	end
+end
+--GHI_Timer(function() AnalyseSizeInpact() end,1,true)

@@ -10,7 +10,7 @@
 --===================================================
 
 function GHI_BookObj_Signature_GetSize(data)
-	return 30, 20;
+	return 60, 20;
 end
 
 function GHI_BookObj_Signature(width, height, data)

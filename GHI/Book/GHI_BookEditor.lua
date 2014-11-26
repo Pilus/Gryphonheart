@@ -31,7 +31,7 @@ function GHI_BookEditor()
 		if currentPageShown then
 			info[currentPageShown] = info[currentPageShown] or {};
 			local bbcode = textFrame.GetValue();
-			local simpleHtml = converter.ToSimpleHtml(bbcode);
+			local simpleHtml = converter.ToSimpleHtml(bbcode, info.n);
 			info[currentPageShown].text1 = simpleHtml;
 		end
 	end
@@ -73,7 +73,7 @@ function GHI_BookEditor()
 		if info[i] then
 			currentPageShown = i;
 
-			local mockup = converter.ToMockup(info[i].text1);
+			local mockup = converter.ToMockup(info[i].text1, info.n);
 			textFrame.Force(mockup);
 			UpdateNavigationButtons();
 		end

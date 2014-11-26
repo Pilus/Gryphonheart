@@ -43,7 +43,7 @@ function GHI_BBCodeConverter()
 	end
 
 
-	local tableToMockup, tableToHtml;
+	local tableToMockup, tableToHtml, currentFontSize;
 
 	local ConvertAllWithEvtTag = function(t, tag)
 		local s, close = "", "";
@@ -110,8 +110,9 @@ function GHI_BBCodeConverter()
 		end
 	end
 
-	class.ToMockup = function(simpleHtml)
-		GHCheck("GHI_BBCodeConverter.ToMockup", {"string"}, {simpleHtml})
+	class.ToMockup = function(simpleHtml, fontSize)
+		GHCheck("GHI_BBCodeConverter.ToMockup", {"string","number"}, {simpleHtml, fontSize})
+		currentFontSize = fontSize;
 		local t = htmlDeserial.HtmlToTable(simpleHtml);
 		local mock = tableToMockup(t);
 		return RemoveEntityEscapeString(mock);
@@ -204,8 +205,10 @@ function GHI_BBCodeConverter()
 				inner = inner .. "/>";
 			end
 
+			local ratio = 0.1676*currentFontSize + 0.5127;
+
 			--if true then return string.format("\124TInterface\\Icons\\INV_Misc_Coin_01:%s:%s:%s\124t ", y, x, inner); end
-			return string.format("\124T:%s:%s:%s\124t ", y, x, inner);
+			return string.format("\124T:%d:%d:%s\124t ", y/ratio, x/ratio, inner);
 		end
 	end
 
@@ -213,8 +216,9 @@ function GHI_BBCodeConverter()
 		return "<HTML><BODY>"..text.."</BODY></HTML>";
 	end
 
-	class.ToSimpleHtml = function(mockup)
-		GHCheck("GHI_BBCodeConverter.ToSimpleHtml", {"string"}, {mockup})
+	class.ToSimpleHtml = function(mockup, fontSize)
+		GHCheck("GHI_BBCodeConverter.ToSimpleHtml", {"string", "number"}, {mockup, fontSize})
+		currentFontSize = fontSize;
 		local escaped = EntityEscapeString(mockup);
 		local table = bbcodeDeserial.BBCodeToTable(escaped);
 		table.tag = "body";
