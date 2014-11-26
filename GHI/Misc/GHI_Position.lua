@@ -101,7 +101,7 @@ function GHI_Position(useVersion1Coor)
 		-- Move map
 		SetMapToCurrentZone()
 		currentContinent = GetCurrentMapContinent()
-		if currentContinent < 0 or currentContinent > 6 or currentContinent == 5 then --6 is pandaria, 5 is maelstrom
+		if currentContinent < 0 or currentContinent > 7 or currentContinent == 5 then --7 is draenor,6 is pandaria, 5 is maelstrom
 			ResetMap()
 			return 0.0, 0.0, 0
 		end
