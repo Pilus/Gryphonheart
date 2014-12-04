@@ -24,18 +24,18 @@ GHI_BookEditor_InsertPage = function(editor)
 		button:SetHeight(50);
 
 		local left = button:CreateTexture();
-		left:SetPoint("TOPLEFT", button, "TOPLEFT");
-		left:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT");
-		left:SetPoint("TOPRIGHT", button, "TOP");
-		left:SetPoint("BOTTOMRIGHT", button, "BOTTOM");
+		left:SetPoint("TOPLEFT", button, "TOPLEFT", 15, -15);
+		left:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 15, 15);
+		left:SetPoint("TOPRIGHT", button, "TOP", 0, -15);
+		left:SetPoint("BOTTOMRIGHT", button, "BOTTOM", 0, 15);
 		left:SetTexture("Textures\\GuildEmblems\\Emblem_"..idString);
 		left:SetTexCoord(0.5, 0, 0.25, 0.75);
 
 		local right = button:CreateTexture();
-		right:SetPoint("TOPLEFT", button, "TOP");
-		right:SetPoint("BOTTOMLEFT", button, "BOTTOM");
-		right:SetPoint("TOPRIGHT", button, "TOPRIGHT");
-		right:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT");
+		right:SetPoint("TOPLEFT", button, "TOP", 0, -15);
+		right:SetPoint("BOTTOMLEFT", button, "BOTTOM", 0, 15);
+		right:SetPoint("TOPRIGHT", button, "TOPRIGHT", -15, -15);
+		right:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -15, 15);
 		right:SetTexture("Textures\\GuildEmblems\\Emblem_"..idString);
 		right:SetTexCoord(0, 0.5, 0.25, 0.75);
 

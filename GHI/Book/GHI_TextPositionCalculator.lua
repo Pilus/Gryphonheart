@@ -73,7 +73,7 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 			class.CalculatePos(unpack(queue[#(queue)]));
 			table.remove(queue,#(queue));
 		end
-	end,0.01);
+	end,0.001);
 
 	class.CalculatePos = function(text,w,h,resultFunc)
 		if busy == true then
@@ -98,7 +98,7 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 
 			-- Prepare X for first calculation
 			CalcX();
-		end,0.0001,true);
+		end,0.00001,true);
 
 		CalcX = function(modifier)
 			-- Setup X calculation by using ' s to find the space left on the line
@@ -120,7 +120,7 @@ function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 					resultFunc(Round(x - w),Round(y - h), x);
 					busy = false;
 				end
-			end,0.0001,true);
+			end,0.00001,true);
 		end
 	end
 
