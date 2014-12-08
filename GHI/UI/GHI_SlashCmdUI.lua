@@ -20,7 +20,7 @@ function GHI_SlashCmd(mainSlashPrefix)
 		end
 	end
 
-	local RunCmdFunc = function(prefix, arg1)  print("'"..prefix.."'")
+	local RunCmdFunc = function(prefix, arg1)
 		local lprefix = strlower(prefix);
 		if type(commandFunctions[lprefix]) == "function" then
 			commandFunctions[lprefix](arg1);

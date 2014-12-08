@@ -17,11 +17,13 @@ function GHI_UnitTooltip()
 		versionInfo = GHI_VersionInfo();
 	end
 
-	local update;
+	local currentName;
 	local updateTooltip = function()
 		local _, unit = GameTooltip:GetUnit();
-		if unit then
-			if UnitIsPlayer(unit) and UnitIsFriend(unit, "PLAYER") then
+
+		if GHI_MiscData["tooltip_version"] and unit and UnitIsPlayer(unit) and not(currentName == UnitName(unit)) then
+			currentName = UnitName(unit)
+			if UnitIsFriend(unit, "PLAYER") then
 				local ver = versionInfo.GetPlayerAddOnVer(UnitName(unit), "GHI")
 				if ver then
 					GameTooltip:AddLine("GHI v." .. ver, 0.2, 1.0, 0.2);
@@ -29,22 +31,17 @@ function GHI_UnitTooltip()
 				end
 			end
 		end
-		update = false;
 	end
 
 	local origShow = GameTooltip:GetScript("OnShow");
 	GameTooltip:SetScript("OnShow", function(...)
 		if origShow then origShow(...) end
 		if GHI_MiscData["tooltip_version"] then
-			update = true
+			currentName = nil
 		end
 	end);
 
-	class:SetScript("OnUpdate", function(...)
-		if update == true then
-			updateTooltip();
-		end
-	end);
+	class:SetScript("OnUpdate", updateTooltip);
 
 	return class;
 end
