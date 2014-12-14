@@ -37,7 +37,7 @@ function GHI_GroupComm(channelName)
 	local groupReceive, groupSend
 	
 	-- Register special recieve func
-	class.AddRecFunc = function(_prefix, _recieveFunc)
+	class.AddRecieveFunc = function(_prefix, _recieveFunc)
 		recieveFuncs[_prefix] = _recieveFunc;
 	end
 
@@ -45,6 +45,9 @@ function GHI_GroupComm(channelName)
 	local cache = {};
 	local cachePointer = 1;
 	
+	---Usage notes: This was copied from Channel come but made to be used with group formats such as:
+	--PARTY,RAID,INSTANCE,GUILD,CHANNEL(Added in WoD)
+	---so set up would be as local comm = GHI_GroupComm("GUILD")
 	class.Send = function(prio, prefix, ...)--class.send changed to take channelName(channel) arugment
 		assert(not (target == "WHISPER"), "Non updated sending of info");
 		GHCheck("GHI_GroupComm.Send", { "StringNil", "String" }, { prio, prefix })
