@@ -36,16 +36,17 @@ function GHM_CustomDD(profile, parent, settings)
 
 	local GetData = function()
 		if type(profile.dataFunc) == "function" then
-			return profile.dataFunc() or {};
+			return GHM_1IndexedTable(profile.dataFunc() or {});
 		elseif type(profile.data) == "table" then
-			return profile.data;
+			return GHM_1IndexedTable(profile.data);
 		elseif type(frame.dataFunc) == "function" then
-			return frame.dataFunc() or {};
+			return GHM_1IndexedTable(frame.dataFunc() or {});
 		elseif type(frame.data) == "table" then
-			return frame.data;
+			return GHM_1IndexedTable(frame.data);
 		end
 		return {};
 	end
+
 
 	-- Position the frame
 
@@ -83,7 +84,7 @@ function GHM_CustomDD(profile, parent, settings)
 					local returnValue;
 					if type(t[self.value]) == "table" then
 						text = t[self.value].text;
-						returnValue = t[self.value].value;
+					returnValue = t[self.value].value;
 					else
 						text = t[self.value];
 					end

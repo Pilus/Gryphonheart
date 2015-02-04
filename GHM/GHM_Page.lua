@@ -21,8 +21,10 @@ function GHM_Page(profile, parent, settings)
 	local page = CreateFrame("Frame", pageName, parent);
 
 	local lines = Linq();
-	for i=1,#(profile) do
-		lines[i] = GHM_Line(profile[i], page, settings);
+	local i = profile[0] and 0 or 1;
+	while type(profile[i]) == "table" do
+		table.insert(lines, GHM_Line(profile[i], page, settings));
+		i = i + 1;
 	end
 
 	if pageNumber == 1 then
@@ -107,7 +109,7 @@ function GHM_Page(profile, parent, settings)
 	end
 
 	-- help button
-	if profile.help then
+	if profile.help and not(profile.help == "") then
 		if not(urlMenuList) then
 			urlMenuList = GHI_MenuList("GHI_URLUI");
 		end
@@ -121,6 +123,8 @@ function GHM_Page(profile, parent, settings)
 		end)
 
 	end
+
+	page.Name = profile.name;
 
 	--GHM_TempBG(page);
 

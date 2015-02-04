@@ -100,7 +100,7 @@ function GHM_SetBackgroundColor(r, g, b, a)
 end
 
 function GHM_GetBackgroundColor()
-	local c = DEFAULT_BACKGROUND_COLOR;
+	local c = { r = 0.3, g = 0.3, b = 0.3, a = 0.5 };
 	if (values.backgroundColor) then
 		c = values.backgroundColor;
 	end

@@ -10,14 +10,17 @@
 --===================================================
 
 function GHM_BaseMenu(owner, profile)
+	assert(profile.width, "No width given")
+	assert(profile.width > 40, "Width too narrow")
+
 	local theme = profile.theme or "StdTheme";
 	local class = CreateFrame("Frame", profile.name, UIParent, "GHM_" .. theme .. "_Template");
 
 	class.Pages = Linq();
 
-	local i = 1;
+	local i = profile[0] and 0 or 1;
 	while type(profile[i]) == "table" do
-		class.Pages[i] = GHM_Page(profile[i], class, {lineSpacing = profile.lineSpacing or 0, objectSpacing = 5});
+		table.insert(class.Pages, GHM_Page(profile[i], class, {lineSpacing = profile.lineSpacing or 0, objectSpacing = 5}));
 		i = i + 1;
 	end
 
@@ -137,5 +140,15 @@ function GHM_LayerHandle(frame)
 			f:SetFrameLevel(i * 10)
 		end
 	end
+end
+
+function GHM_1IndexedTable(t)
+	local r = {};
+	local i = t[0] and 0 or 1;
+	while (t[i]) do
+		table.insert(r, t[i]);
+		i = i + 1;
+	end
+	return r;
 end
 

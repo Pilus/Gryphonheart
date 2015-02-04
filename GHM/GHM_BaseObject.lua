@@ -15,6 +15,8 @@ function GHM_BaseObject(profile, parent, settings)
 	local obj;
 	if type(_G["GHM_" .. objType]) == "function" then
 		obj = _G["GHM_" .. objType](profile, parent, settings);
+	elseif GH and GH.Menu and GH.Menu.MenuObjects and GH.Menu.MenuObjects[objType.."Object"] then
+		return GH.Menu.MenuObjects[objType.."Object"](profile, parent, settings);
 	else
 		print(string.format("Unknown object %s",objType));
 		obj = CreateFrame("Frame")

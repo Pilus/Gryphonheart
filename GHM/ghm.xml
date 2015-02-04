@@ -658,6 +658,38 @@
 				self.frame_offset_y = 10;</OnLoad>
 		</Scripts>
 	</Frame>
+	<Frame name="GHM_TabTheme_Template" inherits="GHM_Window" movable="true" enableMouse="true" hidden="true" virtual="true">
+			<Size>
+				<AbsDimension x="600" y="500" />
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Frames>
+				<Button name="$parentBar" inherits="GHM_TopBar_Template">
+					<Size>
+						<AbsDimension x="200" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Button>
+			</Frames>
+			<Scripts>
+				<OnLoad>self.frame_x = self:GetWidth() - 100;
+					self.frame_y = self:GetHeight() - 100;
+					self.frame_offset_x = 50;
+					self.frame_offset_y = 30;</OnLoad>
+			</Scripts>
+		</Frame>
 	<!--  Object templates -->
 	<Frame name="GHM_TreeViewNode_Template" virtual="true">
 		<Scripts>

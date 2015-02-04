@@ -20,8 +20,10 @@ function GHM_Line(profile, parent, settings)
 	local class = CreateFrame("Frame", lineName, parent);
 
 	local objects = Linq();
-	for i=1,#(profile) do
-		objects[i] = GHM_BaseObject(profile[i], class, settings);
+	local i = profile[0] and 0 or 1;
+	while type(profile[i]) == "table" do
+		table.insert(objects, GHM_BaseObject(profile[i], class, settings));
+		i = i + 1;
 	end
 
 	local objectsWithFlexibleWidth = objects.Where(function(obj) return obj.GetPreferredDimensions() == nil; end);
@@ -45,6 +47,10 @@ function GHM_Line(profile, parent, settings)
 	class.GetPreferredDimensions = function()
 		local objectSpacing = settings.objectSpacing;
 		local width, height;
+
+		if objects.None() then
+			return 0, 0;
+		end
 
 		if objectsWithFlexibleWidth.None() then
 			local leftWidth = leftObjects.Sum(function(obj) return obj.GetPreferredDimensions() + objectSpacing; end);
