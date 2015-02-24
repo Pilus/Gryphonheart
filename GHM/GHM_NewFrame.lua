@@ -14,7 +14,7 @@ function GHM_NewFrame(owner, profile)
 
 	if theme == "WizardTheme" or theme == "BlankWizardTheme" then
 		return GHM_WizardMenu(owner, profile);
-	elseif theme == "BlankTheme" then
+	elseif theme == "BlankTheme" and not(profile.useWindow) then
 		return GHM_BaseMenu(owner, profile);
 	elseif theme == "TabTheme" then
 		return GHM_TabMenu(owner, profile);
