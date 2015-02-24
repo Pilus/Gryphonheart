@@ -16,6 +16,11 @@ function GHM_BaseMenu(owner, profile)
 	local theme = profile.theme or "StdTheme";
 	local class = CreateFrame("Frame", profile.name, UIParent, "GHM_" .. theme .. "_Template");
 
+	if (SetSelf) then
+		-- Access to the frame with self provider for CsLua.
+		class.Frame = SetSelf(class);
+	end
+
 	class.Pages = Linq();
 
 	local i = profile[0] and 0 or 1;
