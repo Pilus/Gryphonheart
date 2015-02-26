@@ -170,14 +170,10 @@ local GetActionScript = function(info,oldVersion)
 		return script, 0; -- the buff handler handles the delay
 	elseif actionType == "equip_item" then
 		return ScriptFormat("EquipItemByName(\"%s\");", info.item_name), info.delay or 0;
-	elseif actionType == "expression" then
-		local script;
-
-		if string.lower(info.expression_type) == "say" then
-			return ScriptFormat("GHI_Say(\"%s\",%s)", info.text, info.delay or "nil"),0;
-		elseif string.lower(info.expression_type) == "emote" then
-			return ScriptFormat("GHI_Emote(\"%s\",%s)", info.text, info.delay or "nil"),0;
-		end
+	elseif (actionType == "expression" and string.lower(info.expression_type) == "say") or actionType == "say" then
+		return ScriptFormat("GHI_Say(\"%s\",%s)", info.text, info.delay or "nil"),0;
+	elseif (actionType == "expression" and string.lower(info.expression_type) == "emote") or actionType == "emote" then
+		return ScriptFormat("GHI_Emote(\"%s\",%s)", info.text, info.delay or "nil"),0;
 	elseif actionType == "random_expression" then
 		local strings = {};
 		for i, text in pairs(info.text) do
