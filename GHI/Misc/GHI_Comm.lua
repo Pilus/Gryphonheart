@@ -28,7 +28,7 @@ function GHI_Comm()
 
 	local versionInfo;
 
-	local channel = "WHISPER";
+	local channelName = "xtensionxtooltip2";
 	local recieveFuncs = {};
 	local playersCommunicatedWith = {};
 	local registeredFrames, OnEvent, ParseEventToFrames;
@@ -40,11 +40,20 @@ function GHI_Comm()
 	local OLD_PROTOCOL = 1;
 	local WRATH_PROTOCOL = 0; --v.1.3 change
 
+	local channelComm;
+	local _,_,_,tocNum = GetBuildInfo();
+	if tocNum >= 30000 and tocNum < 40000 then
+		channelComm = GHI_ChannelComm();
+	end
+
 	-- Register special recieve func
 
 	-- see http://www.wowace.com/addons/libcompress/#c1
 	class.AddRecieveFunc = function(_prefix, _recieveFunc)
 		recieveFuncs[_prefix] = _recieveFunc;
+		if channelComm then
+			channelComm.AddRecieveFunc(_prefix, _recieveFunc);
+		end
 	end
 
 	-- SendAddonMessage
@@ -76,6 +85,16 @@ function GHI_Comm()
 				sendNew(prio, target, prefix, ...);
 				sendOld(prio, target, prefix, ...);
 			end
+		end
+	end
+
+	class.SendToChannel = function(prio, prefix, ...)
+		GHCheck("GHI_Comm.SendToChannel", { "StringNil", "String" }, { prio, prefix })
+
+		if not(channelComm) then
+			sendNew(prio, nil, prefix, ...);
+		else
+			channelComm.Send(prio, prefix);
 		end
 	end
 
@@ -126,6 +145,12 @@ function GHI_Comm()
 			end
 		end
 
+		local channel = "WHISPER";
+		if not(target) then
+			channel = "CHANNEL";
+			target = tostring(GetChannelName(channelName));
+		end
+
 		local finalMsg = libEncode:Encode(b);
 		libComm:SendCommMessage(addOnPrefix, finalMsg, channel, target, prio)
 
@@ -138,7 +163,7 @@ function GHI_Comm()
 		if #(data) > 0 then
 			for _, set in pairs(data) do
 				if #(set) > 0 then
-					libCommOld:SendCommMessage(oldAddOnPrefix, libSerial:Serialize(set), channel, target, prio);
+					libCommOld:SendCommMessage(oldAddOnPrefix, libSerial:Serialize(set), "WHISPER", target, prio);
 				end
 			end
 		end

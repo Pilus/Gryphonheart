@@ -17,7 +17,9 @@ function GHM_ToolbarPage(profile, parent, settings)
 	local height,width = 0,0;
 
 	local cats = Linq();
-	for i=1,#(profile) do
+
+	local i = profile[0] and 0 or 1;
+	while type(profile[i]) == "table" do
 		local cat = GHM_ToolbarCategory(profile[i], frame, settings);
 		cat:SetPoint("TOPLEFT", cats[i-1] or frame, (cats[i-1] == nil) and "TOPLEFT" or "TOPRIGHT");
 
@@ -28,9 +30,9 @@ function GHM_ToolbarPage(profile, parent, settings)
 		height = math.max(height, cat:GetHeight());
 		width = width + cat:GetWidth();
 		cats[i] = cat;
-	end
-	for i=1,#(profile) do
+
 		cats[i]:SetHeight(height);
+		i = i + 1;
 	end
 
 	frame.GetLabelFrame = function(label)

@@ -19,7 +19,8 @@ function GHM_ToolbarObjectRow(profile, parent, settings)
 
 	local height,width = 0,0;
 	local objects = Linq();
-	for i=1,#(profile) do
+	local i = profile[0] and 0 or 1;
+	while type(profile[i]) == "table" do
 		local obj = GHM_BaseObject(profile[i], frame, settings);
 		local objWidth, objHeight = obj.GetPreferredDimensions();
 
@@ -30,6 +31,7 @@ function GHM_ToolbarObjectRow(profile, parent, settings)
 
 
 		table.insert(objects, obj);
+		i = i + 1;
 	end
 
 	frame.GetLabelFrame = function(label)

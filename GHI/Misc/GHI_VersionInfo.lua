@@ -374,13 +374,13 @@ function GHI_VersionInfo()
 	GHI_Timer(InitializeChannelScan, 30 * 5 , true); -- when logging in, the channel information might first be available after a few minutes
 
 	-- request via channel
-	local cc = GHI_ChannelComm()
+	local cc = GHI_Comm()
 	cc.AddRecieveFunc("GHI_AddOnsReq",function(player)
 		if not(player == UnitName("player")) then
 			comm.Send("BULK", player, "AddOns", GetAddOnList());
 		end
 	end);
-	cc.Send("ALERT","GHI_AddOnsReq","");
+	cc.SendToChannel("ALERT","GHI_AddOnsReq","");
 
 	return class;
 end

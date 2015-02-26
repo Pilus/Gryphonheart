@@ -18,7 +18,8 @@ function GHM_ToolbarCategory(profile, parent, settings)
 	local rows = Linq();
 
 	local area = CreateFrame("Frame", frame:GetName().."Area", frame)
-	for i=1,#(profile) do
+	local i = profile[0] and 0 or 1;
+	while type(profile[i]) == "table" do
 		local row = GHM_ToolbarObjectRow(profile[i], area, settings);
 
 		row:SetPoint("TOP", area, "TOP", 0, -height)
@@ -26,6 +27,7 @@ function GHM_ToolbarCategory(profile, parent, settings)
 		width = math.max(width, row:GetWidth());
 		height = height + row:GetHeight();
 		table.insert(rows, row);
+		i = i + 1;
 	end
 
 	area:SetHeight(height);

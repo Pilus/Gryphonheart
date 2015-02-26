@@ -17,7 +17,7 @@ function GHI_AreaSound()
 
 	class = GHClass("AreaSound");
 	local position = GHI_Position(true);
-	local comm = GHI_ChannelComm();
+	local comm = GHI_Comm();
 	local RecieveAreaSound, Send;
 	local MAX_RANGE = 50;
 	local ALLOWED_SOUND_PR_MIN = 10; --for spam prevention
@@ -72,7 +72,7 @@ function GHI_AreaSound()
 		elseif soundspamCount > ALLOWED_SOUND_PR_MIN then
 			return;
 		else
-			comm.Send(nil, "AreaSound", playerPos, range or 0, soundData)
+			comm.SendToChannel(nil, "AreaSound", playerPos, range or 0, soundData)
 			soundspamCount = soundspamCount+1;
 		end
 	end

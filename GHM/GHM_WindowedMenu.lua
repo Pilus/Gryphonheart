@@ -102,9 +102,9 @@ function GHM_WindowedMenu(owner, profile)
 		window:SetTitle(t)
 	end;
 
-	class.AnimatedShow = function(self)
-		self:Show();
-		self.window:AnimatedShow();
+	class.AnimatedShow = function()
+		class:Show();
+		window:AnimatedShow();
 	end
 
 	window.settingUp = false;

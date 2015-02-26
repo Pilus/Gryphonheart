@@ -17,7 +17,7 @@ function GHI_AreaBuff()
 
 	class = GHClass("AreaBuff");
 	local position = GHI_Position(true);
-	local comm = GHI_ChannelComm();
+	local comm = GHI_Comm();
 	local RecieveAreaBuff, applyBuffFunc;
 	local MAX_RANGE = 50;
 
@@ -46,7 +46,7 @@ function GHI_AreaBuff()
 
 		local playerPos = position.GetPlayerPos();
 		playerPos.continent = playerPos.world;
-		comm.Send(nil, "AreaBuff", playerPos, range or 0, buffData)
+		comm.SendToChannel(nil, "AreaBuff", playerPos, range or 0, buffData)
 	end
 
 	RecieveAreaBuff = function(player, playerPos, range, data, ...)

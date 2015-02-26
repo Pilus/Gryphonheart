@@ -186,8 +186,8 @@ table.insert(GHI_ProvidedDynamicActions, {
 		local arg1 = dyn.GetInput("arg1");
 		local arg2 = dyn.GetInput("arg2");
 		local arg3 = dyn.GetInput("arg3");
-		local comm = GHI_ChannelComm();
-		comm.Send(priority,prefix,arg1,arg2,arg3);
+		local comm = GHI_Comm();
+		comm.SendToChannel(priority,prefix,arg1,arg2,arg3);
 		dyn.TriggerOutPort("send");
 	]],
 	ports = {

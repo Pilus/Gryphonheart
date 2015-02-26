@@ -48,7 +48,9 @@ function GHM_MultiPageToolbar(profile, parent, settings)
 		lastClickTime = GetTime();
 	end
 
-	for i = 1,#(profile) do
+	local i = profile[0] and 0 or 1;
+	local c = 1;
+	while type(profile[i]) == "table" do
 		local f = CreateFrame("Button", frame:GetName().."PageButton"..i, frame, "GHM_ToolbarPageButtonTemplate");
 		local textFrame = _G[f:GetName().."Text"];
 		textFrame:SetText(profile[i].name);
@@ -61,20 +63,20 @@ function GHM_MultiPageToolbar(profile, parent, settings)
 		end
 		f.SetBGTextureColor(unpack(backgroundColor2));
 
-		if pageButtons[i-1] then
-			f:SetPoint("LEFT", pageButtons[i-1], "RIGHT");
+		if pageButtons[c-1] then
+			f:SetPoint("LEFT", pageButtons[c-1], "RIGHT");
 		else
 			f:SetPoint("TOPLEFT", frame, "TOPLEFT");
 		end
 
+		f.index = c;
 		f:SetScript("OnClick",function()
-			TogglePage(i);
+			TogglePage(f.index);
 		end);
 
-		pageButtons[i] = f;
-	end
+		pageButtons[c] = f;
 
-	for i=1,#(profile) do
+
 		local page = GHM_ToolbarPage(profile[i], frame, settings);
 		page:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, - (buttonHeight - margin));
 		page:Hide();
@@ -82,6 +84,9 @@ function GHM_MultiPageToolbar(profile, parent, settings)
 		height = math.max(height, page:GetHeight());
 
 		table.insert(pages, page)
+
+		i = i + 1;
+		c = c + 1;
 	end
 
 

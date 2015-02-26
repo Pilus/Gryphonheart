@@ -20,13 +20,20 @@ function GHM_StandardButtonWithTexture(profile, parent, settings)
 
 	local textures = {};
 
+	local unpack0Based = function(t)
+		if t[0] then
+			return t[0], unpack(t);
+		end
+		return unpack(t);
+	end
+
 	local CreateTexture = function(width, height, texturePath, x, y, texCoord)
 		local texture = frame:CreateTexture(nil,"OVERLAY");
 		texture:SetWidth(width);
 		texture:SetHeight(height);
 		texture:SetTexture(texturePath);
 		if texCoord then
-			texture:SetTexCoord(unpack(texCoord));
+			texture:SetTexCoord(unpack0Based(texCoord));
 		end
 
 		texture:SetPoint("CENTER", frame, "CENTER", x, y);

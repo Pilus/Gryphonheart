@@ -1,4 +1,4 @@
-## Interface: 60000
+## Interface: 60100
 ## Title: Gryphonheart Menu
 ## Notes: Dynamic Menu System for GHI.
 ## SavedVariablesPerCharacter: GHM_OptionsData

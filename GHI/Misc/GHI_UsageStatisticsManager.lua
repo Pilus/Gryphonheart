@@ -19,7 +19,6 @@ function GHI_UsageStatisticsManager()
 
 	local itemInfo = GHI_ItemInfoList();
 	local comm = GHI_Comm();
-	local channelComm = GHI_ChannelComm();
 
 	local sendPlayer;
 	local SendStatistics = function(player)
@@ -27,7 +26,7 @@ function GHI_UsageStatisticsManager()
 	end
 
 	comm.AddRecieveFunc("ReqUsageStatistics",SendStatistics)
-	channelComm.AddRecieveFunc("ReqUsageStatistics",SendStatistics)
+	comm.AddRecieveFunc("ReqUsageStatisticsChannel",SendStatistics)
 
 	local expectingStatisticsFunc;
 	comm.AddRecieveFunc("UsageStatistics",function(player,statistics)
@@ -41,7 +40,7 @@ function GHI_UsageStatisticsManager()
 		expectingStatisticsFunc = function(statistics)
 			table.insert(recievedStats,statistics)
 		end;
-		channelComm.Send("BULK","ReqUsageStatistics");
+		comm.SendToChannel("BULK","ReqUsageStatisticsChannel");
 		GHI_RecievedStatistics = recievedStats;
 	end
 
