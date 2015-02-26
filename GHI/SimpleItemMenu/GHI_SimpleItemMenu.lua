@@ -647,6 +647,28 @@ function GHI_SimpleItemMenu()
 			},
 		},
 	}
+
+	local IsCommandAStdEmote = function(command)
+		if not (type(command) == "string") then return false end
+		if command == "" then return false end;
+
+		local i = 1;
+		for i = 1, 600 do
+			local j = 1;
+
+			local cmdString = _G["EMOTE" .. i .. "_CMD" .. j];
+			while (cmdString) do
+
+				if cmdString == "/" .. command then
+					return true, i;
+				end
+
+				j = j + 1;
+				cmdString = _G["EMOTE" .. i .. "_CMD" .. j];
+			end
+		end
+		return false, 0;
+	end
 	local editEmotePage = {
 		{
 			{
@@ -683,13 +705,7 @@ function GHI_SimpleItemMenu()
 				yOff = -3,
 				onclick = function()
 					local selEmote = menuFrame.GetLabel("emote_text");
-					local isStdEmote
-					for key,value in pairs(GHIemoteList) do
-						if value ==  string.upper(selEmote) then
-							isStdEmote = true
-						end
-					end
-					if isStdEmote then
+					if IsCommandAStdEmote(selEmote) then
 						DoEmote(string.upper(selEmote));
 					else
 						SendChatMessage(selEmote, EMOTE)
