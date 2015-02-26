@@ -187,7 +187,7 @@ function GHM_SoundSelection(profile, parent, settings)
 		EnvokeExpandOnAllExpanded(tree);
 	end)
 
-	tree.tableValue = GHM_SoundList[""];
+	tree.tableValue = GHM_SoundList;
 	local loaded = false;
 	tree:SetScript("OnShow", function()
 		OnExpand(tree);
