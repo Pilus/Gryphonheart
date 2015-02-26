@@ -459,9 +459,8 @@ function GHI_SimpleItemMenu()
 			},
 			{
 				{
-					type = "Slider",
+					type = "SlotSlider",
 					label = "bag_size",
-					isSlotSlider = true,
 					align = "l",
 					text = loc.SLOTS..":",
 					width = 150,
