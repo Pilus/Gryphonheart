@@ -118,7 +118,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-		local numPets = GetNumCompanions("mount");
+		local numPets = C_MountJournal.GetNumMounts()
 
 		local targetCompanion
 		local mountInput = dyn.GetInput("mountCustom") or nil
@@ -131,7 +131,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 
 		local cName,active;
 		for i=1,numPets do
-			local _, cName, _, _, active,_ = GetCompanionInfo("MOUNT", i)
+			local cName, spellID, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfo(i)
 
 			if strlower(cName) == strlower(targetCompanion) then
 				if active then
@@ -139,7 +139,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 				else
 					--dyn.SetOutput("currentPet",cName);
 					dyn.TriggerOutPort("summon");
-					CallCompanion("MOUNT", i)
+					 C_MountJournal.Summon(i)
 				end
 			end
 		end
