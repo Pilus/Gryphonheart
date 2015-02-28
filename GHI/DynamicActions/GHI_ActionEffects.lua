@@ -110,7 +110,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	guid = "mount_01",
 	authorName = "The Gryphonheart Team",
 	authorGuid = "00x1",
-	version = 1,
+	version = 2,
 	category = category,
 	description = "This action summons a mount based on a provided input.",
 	icon = "Interface\\Icons\\ability_mount_ridinghorse",
@@ -186,7 +186,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	guid = "mount_02",
 	authorName = "The Gryphonheart Team",
 	authorGuid = "00x1",
-	version = 1,
+	version = 2,
 	category = category,
 	description = "This action dismisses a summoned Mount.",
 	icon = "Interface\\Icons\\ability_mount_ridinghorse",
@@ -194,10 +194,10 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-		local numPets = GetNumCompanions("MOUNT");
+		local numPets = C_MountJournal.GetNumMounts()
 		 local cName,active;
 		for i=1,numPets do
-			_, cName, _, _, active,_ = GetCompanionInfo("MOUNT", i)
+		   local cName, spellID, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfo(i)
 			if active then
 				if not(IsFlying()) then
 					DismissCompanion("MOUNT")
@@ -211,7 +211,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 			name = "Dismiss Mount",
 			order = 1,
 			direction = "out",
-			description = "Dismisses a currently summoned companion",
+			description = "Action after the mount is Dismissed",
 		},
 	},
 	inputs = {},
@@ -790,7 +790,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	guid = "buff_01",
 	authorName = "The Gryphonheart Team",
 	authorGuid = "00x1",
-	version = 1,
+	version = 2,
 	category = category,
 	description = "Casts a buff",
 	icon = "Interface\\Icons\\Spell_Holy_WordFortitude",
@@ -836,7 +836,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 			description = "Icon of the buff",
 			order = 3,
 			type = "icon",
-			defaultValue = "",
+			defaultValue = "Interface\\Icons\\INV_Misc_QuestionMark",
 		},
 		filter = {
 			name = "Buff/debuff",
@@ -870,6 +870,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 					};
 				end
 			]],
+			defaultValue = "Magic",
 		},
 		untilCanceled = {
 			name = "Until canceled",

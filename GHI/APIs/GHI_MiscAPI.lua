@@ -364,18 +364,19 @@ function GHI_MiscAPI()
 			LoadAddOn("Blizzard_PetJournal")
 		end
 		
-		for i=1,GetNumCompanions("mount") do
-		local _, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
-			
+		for i=1,C_MountJournal.GetNumMounts() do
+		--local _, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
+			local mountName, mountSpellID, icon,_, _,_,_,_,_,_, isCollected = C_MountJournal.GetMountInfo(i)
 			local firstLetter = strsub(mountName,1,1)
 			local info = {}
-			
-			if not(mounts[firstLetter]) then
-				mounts[firstLetter] = {}
-				mounts[firstLetter].text = firstLetter
-				mounts[firstLetter].notCheckable = true
-				mounts[firstLetter].hasArrow = true
-				mounts[firstLetter].menuList = {}
+			if isCollected == true then
+				if not(mounts[firstLetter]) then
+					mounts[firstLetter] = {}
+					mounts[firstLetter].text = firstLetter
+					mounts[firstLetter].notCheckable = true
+					mounts[firstLetter].hasArrow = true
+					mounts[firstLetter].menuList = {}
+				end
 			end
 			
 			info.text = mountName
@@ -405,6 +406,7 @@ function GHI_MiscAPI()
 		
 		return tempMounts
 	end
+	
 		
 	api.GHI_GetDebuffColor = function(debuffType)
 		return api.RGBAPercToHex(DebuffTypeColor[debuffType].r, DebuffTypeColor[debuffType].g, DebuffTypeColor[debuffType].b, 1)
