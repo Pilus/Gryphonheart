@@ -690,6 +690,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		end,
 		
 		C_PetJournal = C_PetJournal,
+		C_MountJournal = C_MountJournal,
 
 		-- ===========  GHI API ===============
 		-- General

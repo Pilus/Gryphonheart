@@ -366,10 +366,10 @@ function GHI_MiscAPI()
 		
 		for i=1,C_MountJournal.GetNumMounts() do
 		--local _, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
-			local mountName, mountSpellID, icon,_, _,_,_,_,_,_, isCollected = C_MountJournal.GetMountInfo(i)
+			local mountName, mountSpellID, icon,_, _,_,_,_,_,hideOnChar , isCollected = C_MountJournal.GetMountInfo(i)
 			local firstLetter = strsub(mountName,1,1)
 			local info = {}
-			if isCollected == true then
+			if isCollected == true and hideOnChar == false then
 				if not(mounts[firstLetter]) then
 					mounts[firstLetter] = {}
 					mounts[firstLetter].text = firstLetter
@@ -377,15 +377,16 @@ function GHI_MiscAPI()
 					mounts[firstLetter].hasArrow = true
 					mounts[firstLetter].menuList = {}
 				end
+			
+			
+				info.text = mountName
+				info.value = i
+				info.index = i
+				info.icon = icon
+				info.notCheckable = true
+				
+				tinsert(mounts[firstLetter].menuList, info)
 			end
-			
-			info.text = mountName
-			info.value = i
-			info.index = i
-			info.icon = icon
-			info.notCheckable = true
-			
-			tinsert(mounts[firstLetter].menuList, info)
 		end
 		
 		local tempMounts = {}
