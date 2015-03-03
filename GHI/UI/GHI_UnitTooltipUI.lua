@@ -27,15 +27,16 @@ function GHI_UnitTooltip()
 				local ver = versionInfo.GetPlayerAddOnVer(UnitName(unit), "GHI")
 				if ver then
 					GameTooltip:AddLine("GHI v." .. ver, 0.2, 1.0, 0.2);
-					GameTooltip:SetHeight(GameTooltip:GetHeight() + 12);
+						--GameTooltip:SetHeight(GameTooltip:GetHeight() + 12);
+					GameTooltip:Show() 
 				end
 			end
 		end
 	end
 
-	local origShow = GameTooltip:GetScript("OnTooltipSetUnit");
-	GameTooltip:SetScript("OnTooltipSetUnit", function(...)
-		if origShow then origShow(...) end
+	--local origShow = GameTooltip:GetScript("OnTooltipSetUnit");
+	GameTooltip:HookScript("OnTooltipSetUnit", function(...)
+		--if origShow then origShow(...) end
 		if GHI_MiscData["tooltip_version"] then
 			currentName = nil
 		end
