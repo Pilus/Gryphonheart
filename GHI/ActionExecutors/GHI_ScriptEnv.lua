@@ -691,6 +691,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		
 		C_PetJournal = C_PetJournal,
 		C_MountJournal = C_MountJournal,
+		C_Timer = C_Timer,
 
 		-- ===========  GHI API ===============
 		-- General

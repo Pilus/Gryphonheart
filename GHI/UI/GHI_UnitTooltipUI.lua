@@ -33,8 +33,8 @@ function GHI_UnitTooltip()
 		end
 	end
 
-	local origShow = GameTooltip:GetScript("OnShow");
-	GameTooltip:SetScript("OnShow", function(...)
+	local origShow = GameTooltip:GetScript("OnTooltipSetUnit");
+	GameTooltip:SetScript("OnTooltipSetUnit", function(...)
 		if origShow then origShow(...) end
 		if GHI_MiscData["tooltip_version"] then
 			currentName = nil
