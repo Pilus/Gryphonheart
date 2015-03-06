@@ -166,12 +166,12 @@ function GHI_ChannelComm()
 		log.Add(2, "Joined communication channel");
 	end
 
-	GHI_Timer(function()
+	--[[GHI_Timer(function()
 		if not(chatIsReady) then
 			local channelNum = GetChannelName(channelName);
 			CTL:SendChatMessage("ALERT", ADDON_PREFIX,ADDON_PREFIX .. MSG_SINGLE .. "ChannelReadyCheck", "CHANNEL", nil, channelNum);
 		end
-	end,1);
+	end,1);]]--
 
 	local GetIndexOf = function(t,v)
 		for i,v2 in pairs(t) do
@@ -209,10 +209,10 @@ function GHI_ChannelComm()
 			JoinChannel()
 		end
 	end);
-	class:RegisterEvent("CHAT_MSG_CHANNEL");
-	class:RegisterEvent("CHAT_MSG_CHANNEL_NOTICE");
+	--class:RegisterEvent("CHAT_MSG_CHANNEL");
+	--class:RegisterEvent("CHAT_MSG_CHANNEL_NOTICE");
 
-	GHI_Event("PLAYER_ENTERING_WORLD",function() GHI_Timer(function() class:GetScript("OnEvent")(class,"CHAT_MSG_CHANNEL_NOTICE") end,30,true); end)
+	--GHI_Event("PLAYER_ENTERING_WORLD",function() GHI_Timer(function() class:GetScript("OnEvent")(class,"CHAT_MSG_CHANNEL_NOTICE") end,30,true); end)
 
 	return class;
 end

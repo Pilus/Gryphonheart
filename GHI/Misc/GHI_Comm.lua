@@ -45,7 +45,17 @@ function GHI_Comm()
 	if tocNum >= 30000 and tocNum < 40000 then
 		channelComm = GHI_ChannelComm();
 	end
+	local CTL = ChatThrottleLib;
+	local setUp = false;
 
+	local chatIsReady = false;
+
+
+	local ChatReady = function()
+		chatIsReady = true;
+		log.Add(2,"Communication channel ready");
+	end
+	
 	-- Register special recieve func
 
 	-- see http://www.wowace.com/addons/libcompress/#c1
@@ -416,6 +426,49 @@ function GHI_Comm()
 			log.Add(3, "CHAT_MSG_SYSTEM not blocked", { msg, ... });
 		end
 	end);
+	
+	local JoinChannel = function()
+		JoinChannelByName(channelName);
+		local i = 1;
+		while _G["ChatWindow" .. i] do
+			ChatFrame_RemoveChannel(_G["ChatWindow" .. i], channelName);
+		end
+		log.Add(2, "Joined communication channel");
+	end
+	
+	GHI_Timer(function()
+		if not(chatIsReady) then
+			local channelNum = GetChannelName(channelName);
+			CTL:SendChatMessage("ALERT", addOnPrefix,addOnPrefix .. "ChannelReadyCheck", "CHANNEL", nil, channelNum);
+		end
+	end,1);
+	
+	local GetIndexOf = function(t,v)
+		for i,v2 in pairs(t) do
+			if v2 == v then
+				return i;
+			end
+		end
+	end
+
+	class:SetScript("OnEvent", function(self, event, msg, sender, arg3, arg4, arg5, arg6, arg7, channelNumber)
+		if event == "CHAT_MSG_CHANNEL" and channelNumber == GetChannelName(channelName) and strsub(msg, 0, addOnPrefix:len()) == addOnPrefix then
+			if not(chatIsReady) then
+				ChatReady();
+			end
+			if msg == addOnPrefix .."ChannelReadyCheck" then
+				return
+			end
+		end	
+		if setUp == false then
+			setUp = true;
+			JoinChannel()
+		end
+	end);
+	class:RegisterEvent("CHAT_MSG_CHANNEL");
+	class:RegisterEvent("CHAT_MSG_CHANNEL_NOTICE");
+    GHI_Event("PLAYER_ENTERING_WORLD",function() GHI_Timer(function() class:GetScript("OnEvent")(class,"CHAT_MSG_CHANNEL_NOTICE") end,30,true); end)
+
 
 	libComm:RegisterComm(addOnPrefix, recieveNew);
 	libCommOld:RegisterComm(oldAddOnPrefix, recieveOld);

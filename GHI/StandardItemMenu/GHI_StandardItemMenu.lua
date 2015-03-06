@@ -221,6 +221,10 @@ function GHI_StandardItemMenu()
 			local action = t.action;
 			if action then
 				local actionType = action.GetType();
+				--Simple action Check
+				if string.lower(actionType) == "say" or string.lower(actionType) == "emote"  then
+					actionType = "expression"
+				end
 				for _, actionMenu in pairs(simpleActions) do
 					if actionType == actionMenu[1] then
 						_G[actionMenu[2]](function()

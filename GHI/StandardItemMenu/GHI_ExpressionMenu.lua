@@ -49,6 +49,7 @@ function GHI_ExpressionMenu(_OnOkCallback, _editAction)
 			menuFrame.ForceLabel("type", 1);
 
 			for i, eType in pairs(expressionTypes) do
+				if info.expression_type == nil then info.expression_type = "say" end --Simple Action Fix, Defualt to say if nil
 				if string.lower(eType) == string.lower(info.expression_type) then
 					menuFrame.ForceLabel("type", i);
 				end
