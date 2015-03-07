@@ -362,7 +362,9 @@ function GHI_VersionInfo()
 		for i = 1, 20 do
 			local n1, isHeader = GetChannelDisplayInfo("" .. i);
 			if not (isHeader) and n1 then
-				table.insert(channels, i .. "");
+				if not(n1 == "WorldDefense" or n1 == "Trade") then --might need to localize this
+					table.insert(channels, i .. "");
+				end
 			end
 		end
 		channelScanNum = 1;

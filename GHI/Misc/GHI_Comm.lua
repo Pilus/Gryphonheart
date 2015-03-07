@@ -53,7 +53,12 @@ function GHI_Comm()
 
 	local ChatReady = function()
 		chatIsReady = true;
-		log.Add(2,"Communication channel ready");
+		if not(GHI_MiscData["no_channel_comm"]) then
+			chatIsReady = true;
+			log.Add(2,"Communication channel ready");
+		else
+			log.Add(2,"Communication channel not joined due to option setting");
+		end
 	end
 	
 	-- Register special recieve func
@@ -437,7 +442,7 @@ function GHI_Comm()
 	end
 	
 	GHI_Timer(function()
-		if not(chatIsReady) then
+		if not(chatIsReady) and not(GHI_MiscData["no_channel_comm"]) then
 			local channelNum = GetChannelName(channelName);
 			CTL:SendChatMessage("ALERT", addOnPrefix,addOnPrefix .. "ChannelReadyCheck", "CHANNEL", nil, channelNum);
 		end
@@ -453,6 +458,7 @@ function GHI_Comm()
 
 	class:SetScript("OnEvent", function(self, event, msg, sender, arg3, arg4, arg5, arg6, arg7, channelNumber)
 		if event == "CHAT_MSG_CHANNEL" and channelNumber == GetChannelName(channelName) and strsub(msg, 0, addOnPrefix:len()) == addOnPrefix then
+			
 			if not(chatIsReady) then
 				ChatReady();
 			end
@@ -460,7 +466,7 @@ function GHI_Comm()
 				return
 			end
 		end	
-		if setUp == false then
+		if setUp == false and not(GHI_MiscData["no_channel_comm"]) then
 			setUp = true;
 			JoinChannel()
 		end
