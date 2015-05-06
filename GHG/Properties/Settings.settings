@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GHG.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Title" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Gryphonheart Groups</Value>
+    </Setting>
+    <Setting Name="Version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.0.5</Value>
+    </Setting>
+    <Setting Name="Notes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Support for guild like groups, which are invisible to other players. E.g. a secret lodge, a tradesman guild or a subguild to an existing guild.</Value>
+    </Setting>
+    <Setting Name="SavedVariables" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GHG_GroupData,GHG_GroupKeys,GHG_SavedPlayerData</Value>
+    </Setting>
+    <Setting Name="SavedVariablesPerCharacter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GHG_MiscData</Value>
+    </Setting>
+    <Setting Name="Interface" Type="System.String" Scope="User">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

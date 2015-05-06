@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AF929778-D501-43D1-892D-3D92278D2C3F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GHI</RootNamespace>
+    <AssemblyName>GHI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="APIs\GHI_AnimationAPI.xml" />
+    <Content Include="Bindings.xml" />
+    <Content Include="Book\GHI_BookUI.xml" />
+    <Content Include="Book\GHI_TextPositionCalculator.xml" />
+    <Content Include="Fonts\OFL.txt" />
+    <Content Include="Libs\AceComm-3.0\AceComm-3.0.xml" />
+    <Content Include="Libs\AceSerializer-3.0\AceSerializer-3.0.xml" />
+    <Content Include="Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml" />
+    <Content Include="Libs\LibCompress\Changelog-LibCompress-r49-release.txt" />
+    <Content Include="Libs\LibCompress\lib.xml" />
+    <Content Include="SimpleItemMenu\GHI_SimpleItemMenu.xml" />
+    <Content Include="terms of use.txt" />
+    <Content Include="UI\GHI_Compatibility.xml" />
+    <Content Include="UI\GHI_ContainerUI.xml" />
+    <Content Include="UI\GHI_EquipmentDisplayUI.xml" />
+    <Content Include="UI\GHI_ExtraButtonUI.xml" />
+    <Content Include="UI\GHI_StatusBarUI.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ActionExecutors\GHI_AreaBuff.lua" />
+    <None Include="ActionExecutors\GHI_AreaSound.lua" />
+    <None Include="ActionExecutors\GHI_BuffHandler.lua" />
+    <None Include="ActionExecutors\GHI_ExpressionHandler.lua" />
+    <None Include="ActionExecutors\GHI_LimitedScriptEnv.lua" />
+    <None Include="ActionExecutors\GHI_ScriptEnv.lua" />
+    <None Include="ActionExecutors\GHI_ScriptEnvList.lua" />
+    <None Include="ActionHandlers\GHI_DynamicAction.lua" />
+    <None Include="ActionHandlers\GHI_DynamicActionInstance.lua" />
+    <None Include="ActionHandlers\GHI_DynamicActionInstanceSet.lua" />
+    <None Include="ActionHandlers\GHI_DynamicActionList.lua" />
+    <None Include="ActionHandlers\GHI_SimpleAction.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_ActionsLocationInfo.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_ActionsPositionInfo.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_ActionTreeStructure.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_ConnectionsLayoutInfo.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_ConnectionsPositionInfo.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_HorizontalChannel.lua" />
+    <None Include="ActionHandlers\SetLayout\GHI_VerticalChannel.lua" />
+    <None Include="AdvancedItemMenu\GHI_AdvancedItemMenu.lua" />
+    <None Include="AdvancedItemMenu\GHI_AdvancedItemMenuList.lua" />
+    <None Include="AdvancedItemMenu\GHI_AttributeMenu.lua" />
+    <None Include="AdvancedItemMenu\GHI_TooltipMenu.lua" />
+    <None Include="AdvancedItemMenu\GHI_UpdateSequenceMenu.lua" />
+    <None Include="APIs\GHI_ActionAPI.lua" />
+    <None Include="APIs\GHI_AnimationAPI.lua" />
+    <None Include="APIs\GHI_ClassAPI.lua" />
+    <None Include="APIs\GHI_ContainerAPI.lua" />
+    <None Include="APIs\GHI_CreateItemAPI.lua" />
+    <None Include="APIs\GHI_GameWorldData.lua" />
+    <None Include="APIs\GHI_MarySueAPI.lua" />
+    <None Include="APIs\GHI_MenuAPI.lua" />
+    <None Include="APIs\GHI_MiscAPI.lua" />
+    <None Include="AttributeMenu\GHI_InstanceMenu.lua" />
+    <None Include="AttributeMenu\GHI_ModifyAttributeMenu.lua" />
+    <None Include="AttributeMenu\GHI_ViewAttributeMenu.lua" />
+    <None Include="Book\Converters\GHI_BBCodeConverter.lua" />
+    <None Include="Book\Converters\GHI_BBCodeDeserializer.lua" />
+    <None Include="Book\Converters\GHI_HtmlDeserializer.lua" />
+    <None Include="Book\GHI_BookDisplay.lua" />
+    <None Include="Book\GHI_BookEditor.lua" />
+    <None Include="Book\GHI_BookMaterials.lua" />
+    <None Include="Book\GHI_BookObj.lua" />
+    <None Include="Book\GHI_BookObj_Signature.lua" />
+    <None Include="Book\GHI_BookPage.lua" />
+    <None Include="Book\GHI_BookUI.lua" />
+    <None Include="Book\GHI_MultiTextureImage.lua" />
+    <None Include="Book\GHI_TextPositionCalculator.lua" />
+    <None Include="Containers\GHI_ContainerInfo.lua" />
+    <None Include="Containers\GHI_ContainerList.lua" />
+    <None Include="Containers\GHI_ExportItem.lua" />
+    <None Include="Containers\GHI_ItemInstance.lua" />
+    <None Include="Containers\GHI_Stack.lua" />
+    <None Include="Containers\GHI_Trade.lua" />
+    <None Include="DynamicActions\GHI_ActionEffects.lua" />
+    <None Include="DynamicActions\GHI_Attributes.lua" />
+    <None Include="DynamicActions\GHI_Communication.lua" />
+    <None Include="DynamicActions\GHI_ItemandContainer.lua" />
+    <None Include="DynamicActions\GHI_Location.lua" />
+    <None Include="DynamicActions\GHI_Logic.lua" />
+    <None Include="DynamicActions\GHI_MarySueActions.lua" />
+    <None Include="DynamicActions\GHI_NumberFormat.lua" />
+    <None Include="DynamicActions\GHI_Other.lua" />
+    <None Include="DynamicActions\GHI_PlayerRequirement.lua" />
+    <None Include="DynamicActions\GHI_StringFormat.lua" />
+    <None Include="DynamicActions\GHI_TargetRequirement.lua" />
+    <None Include="DynamicActions\GHI_UIElements.lua" />
+    <None Include="DynamicActions\GHI_VisualEffects.lua" />
+    <None Include="Fonts\Alakob.ttf" />
+    <None Include="Fonts\ALFABET_.ttf" />
+    <None Include="Fonts\Allura-Regular.ttf" />
+    <None Include="Fonts\Astloch-Regular.ttf" />
+    <None Include="Fonts\Audiowide-Regular.ttf" />
+    <None Include="Fonts\BadScript-Regular.ttf" />
+    <None Include="Fonts\bdrenais.ttf" />
+    <None Include="Fonts\blkchcry.ttf" />
+    <None Include="Fonts\Butcherman-Regular.ttf" />
+    <None Include="Fonts\Condiment-Regular.ttf" />
+    <None Include="Fonts\FrederickatheGreat-Regular.ttf" />
+    <None Include="Fonts\Frijole-Regular.ttf" />
+    <None Include="Fonts\GochiHand-Regular.ttf" />
+    <None Include="Fonts\GreatVibes-Regular.ttf" />
+    <None Include="Fonts\HOLY.TTF" />
+    <None Include="Fonts\IMFeENsc28P.ttf" />
+    <None Include="Fonts\JimNightshade-Regular.ttf" />
+    <None Include="Fonts\Killig.ttf" />
+    <None Include="Fonts\LovedbytheKing.ttf" />
+    <None Include="Fonts\LoversQuarrel-Regular.ttf" />
+    <None Include="Fonts\Metamorphous-Regular.ttf" />
+    <None Include="Fonts\Miltonian-Regular.ttf" />
+    <None Include="Fonts\Miniver-Regular.ttf" />
+    <None Include="Fonts\Norican-Regular.ttf" />
+    <None Include="Fonts\Nosifer-Regular.ttf" />
+    <None Include="Fonts\NovaCut.ttf" />
+    <None Include="Fonts\OleoScript-Regular.ttf" />
+    <None Include="Fonts\rayando.ttf" />
+    <None Include="Fonts\Sarina-Regular.ttf" />
+    <None Include="Fonts\Shojumaru-Regular.ttf" />
+    <None Include="Fonts\Sniglet-Regular.ttf" />
+    <None Include="Fonts\TradeWinds-Regular.ttf" />
+    <None Include="ghclass.lua" />
+    <None Include="ghi.toc" />
+    <None Include="GHI_Main.lua" />
+    <None Include="GHI_MenuList.lua" />
+    <None Include="GH_DebugMenu.lua" />
+    <None Include="Items\GHI_Attribute.lua" />
+    <None Include="Items\GHI_ItemDataTransfer.lua" />
+    <None Include="Items\GHI_ItemInfo.lua" />
+    <None Include="Items\GHI_ItemInfoList.lua" />
+    <None Include="Items\GHI_ItemInfo_Access.lua" />
+    <None Include="Items\GHI_ItemInfo_Advanced.lua" />
+    <None Include="Items\GHI_ItemInfo_AdvTooltip.lua" />
+    <None Include="Items\GHI_ItemInfo_Attributes.lua" />
+    <None Include="Items\GHI_ItemInfo_Basic.lua" />
+    <None Include="Items\GHI_ItemInfo_Cooldown.lua" />
+    <None Include="Items\GHI_ItemInfo_Standard.lua" />
+    <None Include="Items\GHI_ItemInfo_Version.lua" />
+    <None Include="Items\GHI_ItemUpdater.lua" />
+    <None Include="Libs\AceComm-3.0\AceComm-3.0.6.lua" />
+    <None Include="Libs\AceComm-3.0\AceComm-3.0.lua" />
+    <None Include="Libs\AceComm-3.0\ChatThrottleLib.lua" />
+    <None Include="Libs\AceSerializer-3.0\AceSerializer-3.0.lua" />
+    <None Include="Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua" />
+    <None Include="Libs\LibCompress\LibCompress.lua" />
+    <None Include="Libs\LibCompress\LibCompress.toc" />
+    <None Include="Libs\LibCompress\lib\LibStub\LibStub.lua" />
+    <None Include="Libs\LibCompress\lib\LibStub\LibStub.toc" />
+    <None Include="Libs\LibStub\LibStub.lua" />
+    <None Include="Libs\Linq\Linq.lua" />
+    <None Include="Localization\GHI_Loc.lua" />
+    <None Include="MacroMenu\GHI_MacroMenu.lua" />
+    <None Include="MacroMenu\GHI_MacroMenuList.lua" />
+    <None Include="Maps\GHI_MapData.lua" />
+    <None Include="Maps\GHI_MapDisplayer.lua" />
+    <None Include="Maps\GHI_MapMaker.lua" />
+    <None Include="Maps\GHI_MapMenu.lua" />
+    <None Include="Misc\GHI_ChannelComm.lua" />
+    <None Include="Misc\GHI_Comm.lua" />
+    <None Include="Misc\GHI_Crypt.lua" />
+    <None Include="Misc\GHI_CursorHandler.lua" />
+    <None Include="Misc\GHI_ErrorThrower.lua" />
+    <None Include="Misc\GHI_Event.lua" />
+    <None Include="Misc\GHI_GroupComm.lua" />
+    <None Include="Misc\GHI_GUID.lua" />
+    <None Include="Misc\GHI_Log.lua" />
+    <None Include="Misc\GHI_Packer.lua" />
+    <None Include="Misc\GHI_Ping.lua" />
+    <None Include="Misc\GHI_PopupMenu.lua" />
+    <None Include="Misc\GHI_Position.lua" />
+    <None Include="Misc\GHI_SavedDataHandler.lua" />
+    <None Include="Misc\GHI_Timer.lua" />
+    <None Include="Misc\GHI_UsageStatisticsManager.lua" />
+    <None Include="Misc\GHI_UsageStatisticsSet.lua" />
+    <None Include="Misc\GHI_VersionInfo.lua" />
+    <None Include="OptionsMenu\GHI_BagOptionsMenu.lua" />
+    <None Include="OptionsMenu\GHI_CodeEditorOptionsMenu.lua" />
+    <None Include="OptionsMenu\GHI_DebugMenu.lua" />
+    <None Include="OptionsMenu\GHI_MainOptionsMenu.lua" />
+    <None Include="OptionsMenu\GHI_MenuAppearanceOptionsMenu.lua" />
+    <None Include="OptionsMenu\GHI_WhitelistMenu.lua" />
+    <None Include="SimpleItemMenu\GHI_SimpleItemMenu.lua" />
+    <None Include="SimpleItemMenu\GHI_SimpleItemMenuList.lua" />
+    <None Include="StandardItemMenu\GHI_BagMenu.lua" />
+    <None Include="StandardItemMenu\GHI_BookMenu.lua" />
+    <None Include="StandardItemMenu\GHI_BuffMenu.lua" />
+    <None Include="StandardItemMenu\GHI_ConsumeItemMenu.lua" />
+    <None Include="StandardItemMenu\GHI_EquipItemMenu.lua" />
+    <None Include="StandardItemMenu\GHI_ExpressionMenu.lua" />
+    <None Include="StandardItemMenu\GHI_MessageMenu.lua" />
+    <None Include="StandardItemMenu\GHI_ProduceItemMenu.lua" />
+    <None Include="StandardItemMenu\GHI_RandomExpressionMenu.lua" />
+    <None Include="StandardItemMenu\GHI_RemoveBuffMenu.lua" />
+    <None Include="StandardItemMenu\GHI_ScreenEffectMenu.lua" />
+    <None Include="StandardItemMenu\GHI_ScriptMenu.lua" />
+    <None Include="StandardItemMenu\GHI_SoundMenu.lua" />
+    <None Include="StandardItemMenu\GHI_StandardItemMenu.lua" />
+    <None Include="StandardItemMenu\GHI_StandardItemMenuList.lua" />
+    <None Include="temp.lua" />
+    <None Include="texture\2%28sick%29.tga" />
+    <None Include="texture\4%28dying%29.tga" />
+    <None Include="texture\6.tga" />
+    <None Include="texture\Alliance.blp" />
+    <None Include="texture\blackPixel.tga" />
+    <None Include="texture\BookIcons.tga" />
+    <None Include="texture\Covers\GHI_Cover_Fabric1.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Fabric2.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Fabric3.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Hide.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Leather1.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Leather2.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Leather3.BLP" />
+    <None Include="texture\Covers\GHI_Cover_Reptile.BLP" />
+    <None Include="texture\drunk1.tga" />
+    <None Include="texture\drunk1bw.tga" />
+    <None Include="texture\flash1.tga" />
+    <None Include="texture\Forsaken.blp" />
+    <None Include="texture\GH_RoundIcon.blp" />
+    <None Include="texture\HordeBgs.blp" />
+    <None Include="texture\logo.blp" />
+    <None Include="texture\Lordo.blp" />
+    <None Include="texture\MiniMapArrow0.blp" />
+    <None Include="texture\Scarlet.blp" />
+    <None Include="texture\ScreenTextures\EdgeColor_White.tga" />
+    <None Include="texture\ScreenTextures\Swirl_White.tga" />
+    <None Include="texture\ScreenTextures\Vertical_Gradient_White.tga" />
+    <None Include="texture\white.tga" />
+    <None Include="texture\whitePixel.tga" />
+    <None Include="texture\ZoomInDown.blp" />
+    <None Include="texture\ZoomInUp.blp" />
+    <None Include="texture\ZoomOutDown.blp" />
+    <None Include="texture\ZoomOutUp.blp" />
+    <None Include="UI\GHI_ActionBarUI.lua" />
+    <None Include="UI\GHI_BuffUI.lua" />
+    <None Include="UI\GHI_ButtonUI.lua" />
+    <None Include="UI\GHI_CastBarUI.lua" />
+    <None Include="UI\GHI_ChatConfirmUI.lua" />
+    <None Include="UI\GHI_Compatibility.lua" />
+    <None Include="UI\GHI_ContainerUI.lua" />
+    <None Include="UI\GHI_EquipmentDisplayUI.lua" />
+    <None Include="UI\GHI_ExportMenu.lua" />
+    <None Include="UI\GHI_ExtraButtonUI.lua" />
+    <None Include="UI\GHI_FrameAnchors.lua" />
+    <None Include="UI\GHI_ImportMenu.lua" />
+    <None Include="UI\GHI_LinksUI.lua" />
+    <None Include="UI\GHI_SlashCmdUI.lua" />
+    <None Include="UI\GHI_SoundConfirmUI.lua" />
+    <None Include="UI\GHI_StatusBarUI.lua" />
+    <None Include="UI\GHI_UnitTooltipUI.lua" />
+    <None Include="UI\GHI_URLUI.lua" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

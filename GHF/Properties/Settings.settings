@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GHF.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Title" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Gryphonheart Flag</Value>
+    </Setting>
+    <Setting Name="Notes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lets you specify roleplay details about your character, such as last name and appearance. Also  displays the details of other roleplayers.</Value>
+    </Setting>
+    <Setting Name="Interface" Type="System.String" Scope="User">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+    <Setting Name="SavedVariables" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GHF_AccountProfiles</Value>
+    </Setting>
+    <Setting Name="Dependencies" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GH</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

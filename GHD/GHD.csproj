@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E16CBA7-81AC-4B92-BCDE-EE72E5687BAD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GHD</RootNamespace>
+    <AssemblyName>GHD</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Document\Buffer\BufferElement.cs" />
+    <Compile Include="Document\Buffer\DocumentBuffer.cs" />
+    <Compile Include="Document\Containers\ContainerBase.cs" />
+    <Compile Include="Document\Containers\DimensionConstraint.cs" />
+    <Compile Include="Document\Containers\ILinkedElement.cs" />
+    <Compile Include="Document\Containers\Line.cs" />
+    <Compile Include="Document\Containers\LinkedElement.cs" />
+    <Compile Include="Document\Containers\NavigationType.cs" />
+    <Compile Include="Document\Containers\Page.cs" />
+    <Compile Include="Document\Containers\PageCollection.cs" />
+    <Compile Include="Document\Data\IPageProperties.cs" />
+    <Compile Include="Document\Data\PageProperties.cs" />
+    <Compile Include="Document\Data\Default\DefaultFlag.cs" />
+    <Compile Include="Document\Data\Default\DefaultMerger.cs" />
+    <Compile Include="Document\Data\Default\Defaults.cs" />
+    <Compile Include="Document\Data\IRangedData.cs" />
+    <Compile Include="Document\Data\IRangedFlagData.cs" />
+    <Compile Include="Document\Elements\Cursor.cs" />
+    <Compile Include="Document\Elements\CursorException.cs" />
+    <Compile Include="Document\Elements\FormattedText.cs" />
+    <Compile Include="Document\Elements\FormattedTextFrame.cs" />
+    <Compile Include="Document\Flags\Flags.cs" />
+    <Compile Include="Document\Flags\FlagsManager.cs" />
+    <Compile Include="Document\KeyboardInput\IKeyboardInputProvider.cs" />
+    <Compile Include="Model\IModelProvider.cs" />
+    <Compile Include="Model\ModelProvider.cs" />
+    <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Document\Buffer\IDocumentBuffer.cs" />
+    <Compile Include="Document\Buffer\IDocumentDeleter.cs" />
+    <Compile Include="Document\Containers\IContainer.cs" />
+    <Compile Include="Document\Containers\IDimensionConstraint.cs" />
+    <Compile Include="Document\Data\ElementType.cs" />
+    <Compile Include="Document\Data\FlagType.cs" />
+    <Compile Include="Document\Data\IDocumentData.cs" />
+    <Compile Include="Document\Data\IElementData.cs" />
+    <Compile Include="Document\Data\IFlagData.cs" />
+    <Compile Include="Document\Document.cs" />
+    <Compile Include="Document\Elements\ICursor.cs" />
+    <Compile Include="Document\Elements\IElement.cs" />
+    <Compile Include="Document\Flags\Alignment.cs" />
+    <Compile Include="Document\Flags\IFlags.cs" />
+    <Compile Include="Document\TextScoper.cs" />
+    <Compile Include="Document\KeyboardInput\EditInputType.cs" />
+    <Compile Include="Document\KeyboardInput\TextBoxBase.cs" />
+    <Compile Include="Document\KeyboardInput\TextBoxFeedbackFilter.cs" />
+    <Compile Include="Document\KeyboardInput\TextBoxInputInterpreter.cs" />
+    <Compile Include="Document\KeyboardInput\TextBoxWithHighlightedText.cs" />
+    <Compile Include="Document\KeyboardInput\TextBoxWithMarkAllDetection.cs" />
+    <Compile Include="Presenter\Document\DocumentMenu.cs" />
+    <Compile Include="View\DocumentMenu\DocumentMenuLabels.cs" />
+    <Compile Include="View\DocumentMenu\DocumentMenuProfileGenerator.cs" />
+    <Compile Include="View\DocumentMenu\ToolbarCatagories\ButtonTexCoordProvider.cs" />
+    <Compile Include="View\DocumentMenu\ToolbarCatagories\ICatagoryProfileGenerator.cs" />
+    <Compile Include="View\DocumentMenu\ToolbarCatagories\MetaCatagoryProfileGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Textures\ButtonIcons.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
+      <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
+      <Name>BlizzardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CsLua\CsLua.csproj">
+      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
+      <Name>CsLua</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH\GH.csproj">
+      <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
+      <Name>GH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lua\Lua.csproj">
+      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
+      <Name>Lua</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

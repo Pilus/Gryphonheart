@@ -1,0 +1,79 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+    http://wowprogramming.com/FrameXML/UI.xsd">
+
+  <Frame name="GH_EditBoxFrame_Template" virtual="true">
+    <Size>
+      <AbsDimension x="10" y="40"/>
+    </Size>
+    <Frames>
+      <EditBox name="$parentBox" inherits="GH_EditBoxWithFilters_Template" parentKey="box">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-10"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </EditBox>
+      <Frame name="$parentText" inherits="GH_TextLabel_Template" parentKey="text">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="5"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="0" y="5"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+    </Frames>
+    <Scripts>
+      <OnLoad>
+        self.Text = SetSelf(self.text);
+        self.Box = SetSelf(self.box);
+      </OnLoad>
+    </Scripts>
+  </Frame>
+  
+  <EditBox name="GH_EditBoxWithFilters_Template" virtual="true" letters="128" hidden="false" autoFocus="false" historyLines="10">
+    <Size>
+      <AbsDimension x="10" y="26"/>
+    </Size>
+    <FontString inherits="ChatFontNormal"/>
+    <Scripts>
+      <OnLoad>
+        self:SetBackdrop({
+          bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+          edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+          tile = true, tileSize = 16, edgeSize = 16,
+          insets = { left = 4, right = 4, top = 4, bottom = 4 },
+        });
+        self:SetBackdropColor(0,0,0,0.5);
+        self:SetTextInsets(10,10,5,5);
+      </OnLoad>
+      <OnChar>
+        if self.VariablesOnly then
+        local text = self:GetText();
+        if not(string.match(text, "^%a[%w_]*$") == text) then
+        self:SetText(self.t or "");
+        else
+        self.t = self:GetText();
+        end
+        elseif self.NumbersOnly then
+          local text = self:GetText();
+          if not(string.match(text,  "^%d*%.?%d*$") == text) then
+          self:SetText(self.t or "");
+        else
+          self.t = self:GetText();
+        end
+        end
+      </OnChar>
+      <OnEscapePressed>
+        self:ClearFocus();
+      </OnEscapePressed>
+    </Scripts>
+  </EditBox>
+</Ui>

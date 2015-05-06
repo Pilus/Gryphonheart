@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5933B9F8-E802-41A9-AE65-FAF31DD3D5DD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GH</RootNamespace>
+    <AssemblyName>GH</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Color.cs" />
+    <Compile Include="Integration\AddOnReference.cs" />
+    <Compile Include="Integration\AddOnRegister.cs" />
+    <Compile Include="Menu\GHMStub.cs" />
+    <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
+    <Compile Include="Menu\Menus\WindowWrapper.cs" />
+    <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.cs" />
+    <Compile Include="Menu\Objects\DropDown\CustomDropDown\ICustomDropDownFrame.cs" />
+    <Compile Include="Menu\Objects\Dummy\DummyObject.cs" />
+    <Compile Include="Menu\Objects\EditBox\EditBoxObject.cs" />
+    <Compile Include="Menu\Objects\EditBox\IEditBoxFrame.cs" />
+    <Compile Include="Menu\Objects\EditBox\IEditBoxWithFilters.cs" />
+    <Compile Include="Menu\Objects\ITabableObject.cs" />
+    <Compile Include="Menu\Objects\ITextLabelWithTooltip.cs" />
+    <Compile Include="Menu\Objects\LayoutSettings.cs" />
+    <Compile Include="Menu\Objects\Line\ILine.cs" />
+    <Compile Include="Menu\Menus\BaseMenu.cs" />
+    <Compile Include="Menu\Menus\IGHM_Window.cs" />
+    <Compile Include="Menu\Menus\IMenu.cs" />
+    <Compile Include="Menu\Objects\IMenuContainer.cs" />
+    <Compile Include="Menu\Menus\Inserts.cs" />
+    <Compile Include="Menu\Menus\TabMenu.cs" />
+    <Compile Include="Menu\Menus\WindowedMenu.cs" />
+    <Compile Include="Menu\Objects\Line\Line.cs" />
+    <Compile Include="Menu\Objects\Page\IPage.cs" />
+    <Compile Include="Menu\Objects\IMenuRegion.cs" />
+    <Compile Include="Menu\Objects\DropDown\ButtonWithDropDown\ButtonWithDropDownProfile.cs" />
+    <Compile Include="Menu\Objects\Dummy\DummyProfile.cs" />
+    <Compile Include="Menu\Objects\IObjectProfile.cs" />
+    <Compile Include="Menu\Objects\Line\LineProfile.cs" />
+    <Compile Include="Menu\Objects\BaseObject.cs" />
+    <Compile Include="Menu\Objects\IMenuObject.cs" />
+    <Compile Include="Menu\Objects\Page\Page.cs" />
+    <Compile Include="Menu\Objects\Panel\PanelObject.cs" />
+    <Compile Include="Menu\Menus\MenuProfile.cs" />
+    <Compile Include="Menu\Menus\MenuTheme.cs" />
+    <Compile Include="Menu\Objects\Text\ITextObjectFrame.cs" />
+    <Compile Include="Menu\Objects\Text\TextObject.cs" />
+    <Compile Include="Menu\Objects\Toolbar\MultiPageToolbarProfile.cs" />
+    <Compile Include="Menu\Objects\ObjectAlign.cs" />
+    <Compile Include="Menu\Objects\Button\ButtonProfile.cs" />
+    <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownProfile.cs" />
+    <Compile Include="Menu\Objects\DropDown\DropDownData.cs" />
+    <Compile Include="Menu\Objects\EditBox\EditBoxProfile.cs" />
+    <Compile Include="Menu\Objects\EditField\EditFieldProfile.cs" />
+    <Compile Include="Menu\Objects\Panel\PanelProfile.cs" />
+    <Compile Include="Menu\Objects\StandardButtonWithTexture\StandardButtonWithTextureProfile.cs" />
+    <Compile Include="Menu\Objects\Text\TextProfile.cs" />
+    <Compile Include="Menu\Objects\Toolbar\ToolbarCatagoryProfile.cs" />
+    <Compile Include="Menu\Objects\Toolbar\ToolbarLineProfile.cs" />
+    <Compile Include="Menu\Objects\Toolbar\ToolbarPageProfile.cs" />
+    <Compile Include="Menu\Objects\Page\PageProfile.cs" />
+    <Compile Include="Menu\Objects\TextColor.cs" />
+    <Compile Include="Misc\ISavedDataHandler.cs" />
+    <Compile Include="Misc\Misc.cs" />
+    <Compile Include="Model\Defaults\DefaultQuickButtons.cs" />
+    <Compile Include="Model\Defaults\DefaultSettings.cs" />
+    <Compile Include="Model\ISetting.cs" />
+    <Compile Include="Model\QuickButton.cs" />
+    <Compile Include="Model\IQuickButton.cs" />
+    <Compile Include="Model\IModelProvider.cs" />
+    <Compile Include="Model\QuickButtons\QuickButton.cs" />
+    <Compile Include="Model\Setting.cs" />
+    <Compile Include="Model\SettingIds.cs" />
+    <Compile Include="ObjectHandling\GuidObjectList.cs" />
+    <Compile Include="ObjectHandling\IdObjectList.cs" />
+    <Compile Include="ObjectHandling\IdObjectListWithDefaults.cs" />
+    <Compile Include="ObjectHandling\IGuidObjectList.cs" />
+    <Compile Include="ObjectHandling\IIdObject.cs" />
+    <Compile Include="ObjectHandling\IIdObjectList.cs" />
+    <Compile Include="ObjectHandling\IIdObjectListWithDefaults.cs" />
+    <Compile Include="ObjectHandling\ISingleObjectContainer.cs" />
+    <Compile Include="ObjectHandling\IVersionedObject.cs" />
+    <Compile Include="Model\ModelProvider.cs" />
+    <Compile Include="ObjectHandling\SingleObjectContainer.cs" />
+    <Compile Include="Presenter\ButtonCluster.cs" />
+    <Compile Include="Presenter\ButtonOptionsMenu.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\AnimationBase.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\ClusterButtonAnimationFactory.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\ClusterButtonAnimationType.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\FadeAnimation.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\InstantAnimation.cs" />
+    <Compile Include="Presenter\DragableButton.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\IClusterButtonAnimation.cs" />
+    <Compile Include="Presenter\ClusterButtonAnimation\IClusterButtonAnimationFactory.cs" />
+    <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Presenter\RoundButton.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\SavedDataHandler.cs" />
+    <Compile Include="UIModules\SlashCommand.cs" />
+    <Compile Include="View\ButtonOptionsMenuProfileGenerator.cs" />
+    <Compile Include="Menu\Menus\IMenuProfileGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
+      <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
+      <Name>BlizzardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CsLua\CsLua.csproj">
+      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
+      <Name>CsLua</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lua\Lua.csproj">
+      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
+      <Name>Lua</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.xml" />
+    <Content Include="Menu\Objects\EditBox\EditBoxFrame.xml" />
+    <Content Include="Menu\Objects\EditField\EditFieldFrame.xml" />
+    <Content Include="Menu\Objects\TextLabelWithTooltip.xml" />
+    <Content Include="Menu\Objects\Text\TextObject.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaConverter\CsToLua.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
