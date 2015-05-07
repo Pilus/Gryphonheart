@@ -4,7 +4,7 @@ namespace GH.Menu.Objects.EditBox
 {
     using System;
 
-    public class EditBoxProfile : IObjectProfile
+    public class EditBoxProfile : IObjectProfileWithText
     {
         public string type { get { return EditBoxObject.Type; } }
 

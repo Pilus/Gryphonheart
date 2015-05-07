@@ -51,12 +51,17 @@
     <Compile Include="Menu\GHMStub.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
     <Compile Include="Menu\Menus\WindowWrapper.cs" />
+    <Compile Include="Menu\Objects\BaseObjectWithInnerObject.cs" />
+    <Compile Include="Menu\Objects\BaseObjectWithTextLabel.cs" />
     <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.cs" />
     <Compile Include="Menu\Objects\DropDown\CustomDropDown\ICustomDropDownFrame.cs" />
     <Compile Include="Menu\Objects\Dummy\DummyObject.cs" />
     <Compile Include="Menu\Objects\EditBox\EditBoxObject.cs" />
     <Compile Include="Menu\Objects\EditBox\IEditBoxFrame.cs" />
     <Compile Include="Menu\Objects\EditBox\IEditBoxWithFilters.cs" />
+    <Compile Include="Menu\Objects\EditField\EditFieldObject.cs" />
+    <Compile Include="Menu\Objects\EditField\IEditFieldFrame.cs" />
+    <Compile Include="Menu\Objects\IObjectProfileWithText.cs" />
     <Compile Include="Menu\Objects\ITabableObject.cs" />
     <Compile Include="Menu\Objects\ITextLabelWithTooltip.cs" />
     <Compile Include="Menu\Objects\LayoutSettings.cs" />

@@ -62,7 +62,13 @@ namespace GH.Menu.Objects
         {
             if (MenuInitializationMapping.ContainsKey(profile.type))
             {
-                return MenuInitializationMapping[profile.type](profile, parent, layoutSettings);
+                var obj = MenuInitializationMapping[profile.type](profile, parent, layoutSettings);
+                if (profile is IObjectProfileWithText)
+                {
+                    obj = new BaseObjectWithTextLabel((IObjectProfileWithText)profile, parent, layoutSettings, obj);
+                }
+
+                return obj;
             }
             //return GHMStub.NewObject(profile, parent.Frame.self, layoutSettings);
             throw new CsException("Unknown object profile: " + profile.type);

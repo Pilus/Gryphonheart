@@ -4,7 +4,6 @@
 
     public interface IEditBoxFrame : IFrame
     {
-        ITextLabelWithTooltip Text { get; }
         IEditBoxWithFilters Box { get; }
     }
 }

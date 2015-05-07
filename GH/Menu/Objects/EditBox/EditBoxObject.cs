@@ -28,7 +28,6 @@
 
         private void SetUpFromProfile()
         {
-            this.frame.Text.Tooltip = this.profile.tooltip;
             this.frame.Box.NumbersOnly = this.profile.numbersOnly;
             this.frame.Box.VariablesOnly = this.profile.variablesOnly;
 
