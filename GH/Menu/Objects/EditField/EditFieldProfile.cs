@@ -10,9 +10,9 @@
 
         public ObjectAlign align { get; set; }
 
-        public double width { get; set; }
+        public double? width { get; set; }
 
-        public double height { get; set; }
+        public double? height { get; set; }
 
         public Action<string> OnLoad { get; set; }
 

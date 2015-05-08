@@ -24,13 +24,18 @@
             return new EditFieldObject((EditFieldProfile)profile, parent, settings);
         }
 
-        public static string Type = "Editbox";
+        public static string Type = "EditField";
 
         private void SetUpFromProfile()
         {
             if (this.profile.width != null)
             {
                 this.frame.SetWidth((double)this.profile.width);
+            }
+
+            if (this.profile.height != null)
+            {
+                this.frame.SetHeight((double)this.profile.height);
             }
 
             

@@ -7,6 +7,7 @@
         return f;
     end
 
+	local refencedObjects = {};
 	local c = {};
 	setmetatable(c, {
 		__index = function(_, key)
@@ -41,14 +42,28 @@
 					end
 					return tuple
 				end
+			elseif refencedObjects[key] then
+				return refencedObjects[key];
 			else 
 				return f[key];
 			end
 		end,
 		__newindex = function(_, key, value)
-			f[key] = value;
+			if type(value) == "table" and value.__setSelf then
+				refencedObjects[key] = value;
+				f[key] = value.self;
+			else
+				f[key] = value;
+			end
 		end,
 	});
+
+	-- Ensure that frames set with parentKey in a template is also wrapped.
+	for i, v in pairs(f) do
+		if type(v) == "table" and v.GetObjectType then
+			refencedObjects[i] = SetSelf(v);
+		end
+	end
 
 	return c;
 end

@@ -15,11 +15,10 @@ namespace GH.Menu.Menus
 
         public WindowedMenu(MenuProfile profile) : base(profile)
         {
-            this.window = new WindowWrapper
-            {
-                settingUp = true,
-                menu = this.Frame.self
-            };
+            this.window = (IGHM_Window)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, null, Global.UIParent, "GHM_Window");
+            
+            this.window.settingUp = true;
+            this.window.menu = this.Frame;
 
 
             this.window.SetWidth(this.Frame.GetWidth() + 4);
