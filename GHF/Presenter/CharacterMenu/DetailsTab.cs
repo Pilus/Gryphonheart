@@ -27,7 +27,7 @@ namespace GHF.Presenter.CharacterMenu
             this.loadedMenu = menu;
             this.currentDetails = profile.Details;
             this.additionalFields = new CsLuaList<string>();
-            this.loadedMenu.ForceLabel(DetailsTabLabels.Background, profile.Details.Background);
+            this.loadedMenu.SetValue(DetailsTabLabels.Background, profile.Details.Background);
 
             this.AddAndUpdateFieldIfNeeded(DetailsTabLabels.Goals, this.currentDetails.Goals);
         }
@@ -35,22 +35,22 @@ namespace GHF.Presenter.CharacterMenu
         public void Save()
         {
             this.ThrowIfMenuIsNotLoaded();
-            this.currentDetails.Background = this.loadedMenu.GetLabel(DetailsTabLabels.Background) as string;
-            this.currentDetails.Goals = this.loadedMenu.GetLabel(DetailsTabLabels.Goals) as string;
-            this.currentDetails.CurrentLocation = this.loadedMenu.GetLabel(DetailsTabLabels.CurrentLocation) as string;
+            this.currentDetails.Background = this.loadedMenu.GetValue(DetailsTabLabels.Background) as string;
+            this.currentDetails.Goals = this.loadedMenu.GetValue(DetailsTabLabels.Goals) as string;
+            this.currentDetails.CurrentLocation = this.loadedMenu.GetValue(DetailsTabLabels.CurrentLocation) as string;
         }
 
         private void AddAndUpdateFieldIfNeeded(string label, string value)
         {
             if (string.IsNullOrEmpty(value)) return;
             this.AddAdditionalField(label);
-            this.loadedMenu.ForceLabel(label, value);
+            this.loadedMenu.SetValue(label, value);
         }
 
         private void AddAdditionalField(string label)
         {
             this.ThrowIfMenuIsNotLoaded();
-            var panel = this.loadedMenu.GetLabelFrame(DetailsTabLabels.AdditionalDetailsPanel) as PanelObject;
+            var panel = this.loadedMenu.GetFrameById(DetailsTabLabels.AdditionalDetailsPanel) as PanelObject;
             this.additionalFields.Add(label);
             panel.AddElement(this.additionalFields.Count, DetailsTabProfileGenerator.GetFieldProfile(label));
             this.loadedMenu.UpdatePosition();

@@ -7,6 +7,10 @@
         return f;
     end
 
+    if (f.__csLuaWrapper) then
+        return f.__csLuaWrapper;
+    end
+
 	local refencedObjects = {};
 	local c = {};
 	setmetatable(c, {
@@ -21,8 +25,8 @@
 				return function(...)
 					local args = {...};
 					for i,arg in pairs(args) do
-						if type(arg) == "table" and arg.GetObjectType and arg.this then
-							args[i] = arg.this;
+						if type(arg) == "table" and arg.GetObjectType and arg.self then
+							args[i] = arg.self;
 						end
 					end
 					
@@ -44,6 +48,9 @@
 				end
 			elseif refencedObjects[key] then
 				return refencedObjects[key];
+			elseif type(f[key]) == "table" and f[key].GetObjectType then
+				refencedObjects[key] = SetSelf(f[key]);
+				return refencedObjects[key];
 			else 
 				return f[key];
 			end
@@ -57,13 +64,7 @@
 			end
 		end,
 	});
-
-	-- Ensure that frames set with parentKey in a template is also wrapped.
-	for i, v in pairs(f) do
-		if type(v) == "table" and v.GetObjectType then
-			refencedObjects[i] = SetSelf(v);
-		end
-	end
+	f.__csLuaWrapper = c;
 
 	return c;
 end

@@ -64,6 +64,7 @@
     <Compile Include="WidgetInterfaces\IGameTooltip.cs" />
     <Compile Include="WidgetInterfaces\IIndexer.cs" />
     <Compile Include="WidgetInterfaces\ILayeredRegion.cs" />
+    <Compile Include="WidgetInterfaces\INativeUIObject.cs" />
     <Compile Include="WidgetInterfaces\IRegion.cs" />
     <Compile Include="MiscEnums\Unit.cs" />
     <Compile Include="WidgetInterfaces\IButton.cs" />

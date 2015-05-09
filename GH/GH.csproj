@@ -50,6 +50,7 @@
     <Compile Include="Integration\AddOnRegister.cs" />
     <Compile Include="Menu\GHMStub.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
+    <Compile Include="Menu\MenuConfigurationException.cs" />
     <Compile Include="Menu\Objects\BaseObjectWithInnerObject.cs" />
     <Compile Include="Menu\Objects\BaseObjectWithTextLabel.cs" />
     <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.cs" />

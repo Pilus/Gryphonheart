@@ -273,30 +273,19 @@
             return null;
         }
 
-        public IMenuObject GetLabelFrame(string label)
+        public IMenuObject GetFrameById(string id)
         {
-            IMenuObject labelFrame = null;
-            this.objects.Foreach(obj =>
-            {
-                if (!(obj is IMenuContainer)) return;
-                var res = ((IMenuContainer) obj).GetLabelFrame(label);
-                if (res != null)
-                {
-                    labelFrame = res;
-                }
-            });
-            
-            return labelFrame ?? this.objects.FirstOrDefault(obj => obj.GetLabel() == label);
+            return this.objects.Select(obj => obj.GetFrameById(id)).FirstOrDefault(frame => frame != null);
         }
 
 
 
-        public object GetLabel(string label)
+        public object GetValue()
         {
             throw new NotImplementedException();
         }
 
-        public void ForceLabel(string label, object value)
+        public void SetValue(object value)
         {
             throw new NotImplementedException();
         }
@@ -309,6 +298,26 @@
         public void RemoveElement(string label)
         {
             throw new NotImplementedException();
+        }
+
+        public ObjectAlign GetAlignment()
+        {
+            return ObjectAlign.c;
+        }
+
+        public double GetPreferredCenterX()
+        {
+            return 0;
+        }
+
+        public double GetPreferredCenterY()
+        {
+            return 0;
+        }
+
+        public void Clear()
+        {
+            this.objects.Foreach(obj => obj.Clear());
         }
     }
 }

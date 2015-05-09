@@ -20,9 +20,9 @@ namespace GH.Menu.Objects
             return this.innerObject.GetAlignment();
         }
 
-        public virtual string GetLabel()
+        public virtual IMenuObject GetFrameById(string id)
         {
-            return this.innerObject.GetLabel();
+            return this.innerObject.GetFrameById(id);
         }
 
         public virtual double GetPreferredCenterX()
@@ -40,9 +40,9 @@ namespace GH.Menu.Objects
             return this.innerObject.GetValue();
         }
 
-        public virtual void Force(object value)
+        public virtual void SetValue(object value)
         {
-            this.innerObject.Force(value);
+            this.innerObject.SetValue(value);
         }
 
         public virtual void Clear()

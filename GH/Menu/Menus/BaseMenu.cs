@@ -64,7 +64,7 @@ namespace GH.Menu.Menus
 
         private void HandleOnShow(MenuProfile profile)
         {
-            var layerHandle = Global.GetGlobal("GHM_LayerHandle") as Action<IFrame>;
+            var layerHandle = Global.GetGlobal("GHM_LayerHandle") as Action<INativeUIObject>;
             this.Frame.SetScript(FrameHandler.OnShow, () =>
                 {
                     layerHandle(this.Frame.self);
@@ -96,33 +96,35 @@ namespace GH.Menu.Menus
             throw new CsException("AddElement method is not supported by this menu type.");
         }
 
-        public IMenuObject GetLabelFrame(string label)
+        public IMenuObject GetFrameById(string id)
         {
             foreach (var page in this.Pages)
             {
-                var labelFrame = page.GetLabelFrame(label);
+                var labelFrame = page.GetFrameById(id);
                 if (labelFrame != null)
                 {
                     return labelFrame;
                 }
             }
-            throw new CsException("Label frame '" + label + "' not found.");
+            throw new CsException("Frame with id '" + id + "' not found.");
         }
 
-        public void ForceLabel(string label, object value)
+        public void SetValue(string id, object value)
         {
-            this.GetLabelFrame(label).Force(value);
+            var frame = this.GetFrameById(id);
+            frame.SetValue(value);
         }
 
-        public object GetLabel(string label)
+        public object GetValue(string id)
         {
-            return this.GetLabelFrame(label).GetLabel();
+            var frame = this.GetFrameById(id);
+            return frame.GetValue();
         }
 
         public void UpdatePosition()
         {
-            var pageWidth = this.Pages.Max(page => page.GetPreferredWidth() ?? 0);
-            var pageHeight = this.Pages.Max(page => page.GetPreferredHeight() ?? 0);
+            var pageWidth = this.Pages.Max(page => page.GetPreferredWidth() ?? -1);
+            var pageHeight = this.Pages.Max(page => page.GetPreferredHeight() ?? -1);
 
             var widthAvailableToPages = pageWidth;
             if (this.menuWidth != null)
@@ -130,9 +132,13 @@ namespace GH.Menu.Menus
                 widthAvailableToPages = (double)this.menuWidth - this.Inserts.Left - this.Inserts.Right;
                 this.Frame.SetWidth((double)this.menuWidth);
             }
-            else
+            else if (pageWidth >= 0)
             {
                 this.Frame.SetWidth(pageWidth + this.Inserts.Left + this.Inserts.Right);
+            }
+            else
+            {
+                throw new MenuConfigurationException("The menu must either define a width or have a page with no objects with flexible width");
             }
 
             var heightAvailableToPages = pageHeight;
@@ -140,9 +146,13 @@ namespace GH.Menu.Menus
             {
                 heightAvailableToPages = (double) this.menuHeight - this.Inserts.Top - this.Inserts.Bottom;
             }
-            else
+            else if (pageHeight >= 0)
             {
                 this.Frame.SetWidth(pageHeight + this.Inserts.Top + this.Inserts.Bottom);
+            }
+            else
+            {
+                throw new MenuConfigurationException("The menu must either define a height or have a page with no objects with flexible height");
             }
 
             this.Pages.Foreach(page => page.SetPosition(this.Inserts.Left, this.Inserts.Right, widthAvailableToPages, heightAvailableToPages));
@@ -164,5 +174,7 @@ namespace GH.Menu.Menus
         }
 
         public IFrame Frame { get; private set; }
+
+        
     }
 }

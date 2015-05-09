@@ -8,8 +8,6 @@
     public interface IFrame : IUIObject, IRegion, IScript<FrameHandler, IFrame>
     {
 
-        new IFrame self { get; set; }
-
         /// <summary>
         ///     Create and return FontString as a child of this Frame.
         /// </summary>

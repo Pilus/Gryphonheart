@@ -58,7 +58,7 @@ namespace GHD.Document
             var flags = FlagsManager.LoadFlags(Defaults.DocumentWideFlags);
             this.pageCollection = new Page(flags, Defaults.PageProperties); // TODO: Set back to page collection
             this.pageCollection.Region.SetParent(this.frame);
-            this.pageCollection.Region.SetPoint(FramePoint.TOPLEFT, this.frame.self, FramePoint.TOPLEFT, 20, -20);
+            this.pageCollection.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, 20, -20);
             this.pageCollection.SetCursor(false, this.cursor);
         }
 

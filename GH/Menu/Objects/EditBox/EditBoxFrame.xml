@@ -15,7 +15,6 @@
     </Frames>
     <Scripts>
       <OnLoad>
-        self.Text = SetSelf(self.text);
         self.Box = SetSelf(self.box);
       </OnLoad>
     </Scripts>

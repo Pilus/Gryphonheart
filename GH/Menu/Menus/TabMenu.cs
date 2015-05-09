@@ -20,7 +20,7 @@ namespace GH.Menu.Menus
         {
             this.Inserts.Bottom = 20;
             this.UpdatePosition();
-            this.DisplayTab(1);
+            this.DisplayTab(0);
         }
 
         public void DisplayTab(int tabIndex)
@@ -40,9 +40,9 @@ namespace GH.Menu.Menus
         private IButton CreateButtonFrame(int index)
         {
             var button = (IButton)FrameUtil.FrameProvider.CreateFrame(FrameType.Button, this.Frame.GetName() + "Tab" + index,
-                this.Frame.self, "CharacterFrameTabButtonTemplate");
+                this.Frame, "CharacterFrameTabButtonTemplate");
 
-            if (index == 1)
+            if (index == 0)
             {
                 button.SetPoint(FramePoint.TOPLEFT, this.Frame, FramePoint.BOTTOMLEFT, 20, 0);
             }
@@ -63,7 +63,7 @@ namespace GH.Menu.Menus
         private void CreateTabButtons()
         {
             this.tabButtons = new CsLuaDictionary<int, IButton>();
-            var tabResizeFunc = (Action<IButton, double, object, double, double>)Global.GetGlobal("PanelTemplates_TabResize");
+            var tabResizeFunc = (Action<INativeUIObject, double, object, double, double>)Global.GetGlobal("PanelTemplates_TabResize");
 
             for (var i = 0; i < this.Pages.Count; i++)
             {
@@ -74,7 +74,7 @@ namespace GH.Menu.Menus
 
                 button.SetScript(ButtonHandler.OnClick, () =>
                 {
-                    tabResizeFunc(button, 0, null, 36, 88);
+                    tabResizeFunc(button.self, 0, null, 36, 88);
                     if (this.currentPage != null)
                     {
                         this.currentPage.Hide();

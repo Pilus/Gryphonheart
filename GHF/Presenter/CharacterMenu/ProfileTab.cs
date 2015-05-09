@@ -54,15 +54,15 @@ namespace GHF.Presenter.CharacterMenu
         {
             this.loadedMenu = menu;
             this.currentProfile = profile;
-            menu.ForceLabel(ProfileTabLabels.FirstName, profile.FirstName);
-            menu.ForceLabel(ProfileTabLabels.MiddleNames, profile.MiddleNames);
-            menu.ForceLabel(ProfileTabLabels.LastName, profile.LastName);
-            menu.ForceLabel(ProfileTabLabels.Appearance, profile.Appearance);
+            menu.SetValue(ProfileTabLabels.FirstName, profile.FirstName);
+            menu.SetValue(ProfileTabLabels.MiddleNames, profile.MiddleNames);
+            menu.SetValue(ProfileTabLabels.LastName, profile.LastName);
+            menu.SetValue(ProfileTabLabels.Appearance, profile.Appearance);
         }
 
         public void Save()
         {
-            this.currentProfile.Appearance = this.loadedMenu.GetLabel(ProfileTabLabels.Appearance) as string;
+            this.currentProfile.Appearance = this.loadedMenu.GetValue(ProfileTabLabels.Appearance) as string;
         }
     }
 }

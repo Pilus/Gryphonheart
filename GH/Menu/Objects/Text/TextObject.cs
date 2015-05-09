@@ -22,7 +22,7 @@
 
         public TextObject(TextProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
         {
-            var frame = (ITextObjectFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame.self, "GH_TextObject_Template");
+            var frame = (ITextObjectFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_TextObject_Template");
             this.Frame = frame;
             this.labelFrame =
                 (IFontString) FrameUtil.FrameProvider.AddSelfReferencesToNonCsFrameObject(frame.Label);
@@ -91,7 +91,7 @@
             return this.labelFrame.GetText();
         }
 
-        public override void Force(object value)
+        public override void SetValue(object value)
         {
             this.SetTextAndUpdateSize((string)value);
         }

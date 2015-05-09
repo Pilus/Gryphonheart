@@ -27,7 +27,7 @@ namespace GH.Menu.Objects.Dummy
             return value;
         }
 
-        public override void Force(object value)
+        public override void SetValue(object value)
         {
             this.value = value;
         }

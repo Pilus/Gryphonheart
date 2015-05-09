@@ -27,6 +27,11 @@
                 this.lines.Add(new Line(lineProfile, this.Frame, layoutSettings, this.lines.Count + 1));
             });
 
+            if (this.lines.Count == 0)
+            {
+                throw new MenuConfigurationException("The page does not contain any lines.");
+            }
+
             this.Name = profile.name;
         }
 
@@ -45,29 +50,25 @@
         public double? GetPreferredWidth()
         {
             var gotLineWithNoLimit = this.lines.Any(line => line.GetPreferredWidth() == null);
-
-            double width = 0;
-
+            
             if (!gotLineWithNoLimit)
             {
-                width = this.lines.Max(line => line.GetPreferredWidth() ?? 0);
+                return this.lines.Max(line => line.GetPreferredWidth() ?? 0);
             }
 
-            return width;
+            return null;
         }
 
         public double? GetPreferredHeight()
         {
             var gotLineWithNoLimit = this.lines.Any(line => line.GetPreferredHeight() == null);
 
-            double height = 0;
-
             if (!gotLineWithNoLimit)
             {
-                height = this.lines.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lines.Count > 0 ? this.lineSpacing : 0);
+                return this.lines.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lines.Count > 0 ? this.lineSpacing : 0);
             }
 
-            return height;
+            return null;
         }
 
         public void SetPosition(double xOff, double yOff, double width, double height)
@@ -103,10 +104,10 @@
             });
         }
 
-        public IMenuObject GetLabelFrame(string label)
+        public IMenuObject GetFrameById(string id)
         {
-            return this.lines.Select(line => line.GetLabelFrame(label))
-                .FirstOrDefault(labelFrame => labelFrame != null);
+            return this.lines.Select(line => line.GetFrameById(id))
+                .FirstOrDefault(frame => frame != null);
         }
 
         public string Name { get; private set; }
@@ -116,14 +117,14 @@
             throw new System.NotImplementedException();
         }
 
-        public void ForceLabel(string label, object value)
+        public void SetValue(object value)
         {
-            throw new System.NotImplementedException();
+            throw new CsException("Pages does not contain any value.");
         }
 
-        public object GetLabel(string label)
+        public object GetValue()
         {
-            throw new System.NotImplementedException();
+            throw new CsException("Pages cannot hold any values.");
         }
 
         public void RemoveElement(string label)
@@ -131,7 +132,24 @@
             throw new System.NotImplementedException();
         }
 
+        public ObjectAlign GetAlignment()
+        {
+            return ObjectAlign.c;
+        }
 
+        public double GetPreferredCenterX()
+        {
+            return 0;
+        }
 
+        public double GetPreferredCenterY()
+        {
+            return 0;
+        }
+
+        public void Clear()
+        {
+            this.lines.Foreach(line => line.Clear());
+        }
     }
 }

@@ -48,7 +48,7 @@
             //return this.frame.Box.GetText();
         }
 
-        public override void Force(object value)
+        public override void SetValue(object value)
         {
             throw new System.NotImplementedException();
             //this.frame.Box.SetText((string)value ?? "");

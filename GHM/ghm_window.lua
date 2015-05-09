@@ -510,14 +510,17 @@ function GHM_Window_OnLoad(self)
 	-- Backgrounds for Dev mode
 	function self:SetDevMode(devMode)
 		self.Debug = devMode;
+
+		self.TitleBar.bg = self.TitleBar:CreateTexture();
+		self.TitleBar.bg:SetAllPoints(self.TitleBar);
+		self.TitleBar.bg:SetTexture(.8, .8, .8, .5);
+
 		if devMode then
 			self.bg = self:CreateTexture();
 			self.bg:SetAllPoints(self);
 			self.bg:SetTexture(.5, .5, .5, .5);
 
-			self.TitleBar.bg = self.TitleBar:CreateTexture();
-			self.TitleBar.bg:SetAllPoints(self.TitleBar);
-			self.TitleBar.bg:SetTexture(.8, .8, .8, .5);
+			
 
 			self.MenuBar.bg = self.MenuBar:CreateTexture();
 			self.MenuBar.bg:SetAllPoints(self.MenuBar);

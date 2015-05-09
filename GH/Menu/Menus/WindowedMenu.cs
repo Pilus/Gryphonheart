@@ -69,12 +69,16 @@ namespace GH.Menu.Menus
 
         private void HookShowAndHide(MenuProfile profile)
         {
-            var layerHandle = Global.GetGlobal("GHM_LayerHandle") as Action<IFrame>;
-            var origShow = this.Frame.GetScript(FrameHandler.OnShow);
-            this.Frame.SetScript(FrameHandler.OnShow, () =>
+            var layerHandle = Global.GetGlobal("GHM_LayerHandle") as Action<INativeUIObject>;
+            var origShow = this.window.GetScript(FrameHandler.OnShow);
+            this.window.SetScript(FrameHandler.OnShow, () =>
             {
-                origShow();
-                layerHandle(this.window.Frame.self);
+                if (origShow != null)
+                {
+                    origShow();
+                }
+                
+                layerHandle(this.window.self);
                 if (profile.onShow != null)
                 {
                     profile.onShow();
@@ -85,11 +89,15 @@ namespace GH.Menu.Menus
                 }
             });
 
-            var origHide = this.Frame.GetScript(FrameHandler.OnHide);
-            this.Frame.SetScript(FrameHandler.OnHide, () =>
+            var origHide = this.window.GetScript(FrameHandler.OnHide);
+            this.window.SetScript(FrameHandler.OnHide, () =>
                 {
-                    origHide();
-                    layerHandle(this.window.Frame.self);
+                    if (origHide != null)
+                    {
+                        origHide();
+                    }
+
+                    layerHandle(this.window.self);
                     if (profile.onHide != null)
                     {
                         profile.onHide();
@@ -112,7 +120,7 @@ namespace GH.Menu.Menus
 
         public override void AnimatedShow()
         {
-            this.Frame.Show();
+            this.Show();
             this.window.AnimatedShow();
         }
 

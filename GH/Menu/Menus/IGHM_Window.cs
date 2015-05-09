@@ -5,7 +5,7 @@ namespace GH.Menu.Menus
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
-    public interface IGHM_Window
+    public interface IGHM_Window : IFrame
     {
         bool settingUp { get; set; }
         IFrame menu { get; set; }
@@ -18,15 +18,5 @@ namespace GH.Menu.Menus
         IFrame TopBgFrame { get; set; }
         IFrame TitleBar { get; set; }
         void AnimatedShow();
-
-
-        void SetWidth(double width);
-        void SetHeight(double height);
-        void SetFrameStrata(FrameStrata strata);
-
-        IFrame Frame { get; set; }
-        void Show();
-        void ClearAllPoints();
-        void SetPoint(FramePoint point, double xOfs, double yOfs);
     }
 }

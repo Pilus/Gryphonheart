@@ -25,8 +25,8 @@ namespace GHD.Document.Containers
             this.frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
 
             var firstText = (FormattedText)this.FirstChild;
-            firstText.Region.SetParent(this.frame.self);
-            firstText.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame.self, FramePoint.BOTTOMLEFT);
+            firstText.Region.SetParent(this.frame);
+            firstText.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
         }
 
         public override bool NavigateCursor(NavigationType type)

@@ -70,7 +70,7 @@
             return this.frame.Box.GetText();
         }
 
-        public override void Force(object value)
+        public override void SetValue(object value)
         {
             this.frame.Box.SetText((string)value ?? "");
         }

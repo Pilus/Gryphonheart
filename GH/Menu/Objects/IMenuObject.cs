@@ -8,7 +8,7 @@ namespace GH.Menu.Objects
     {
         ObjectAlign GetAlignment();
 
-        string GetLabel();
+        IMenuObject GetFrameById(string id);
 
         double GetPreferredCenterX();
 
@@ -16,7 +16,7 @@ namespace GH.Menu.Objects
 
         object GetValue();
 
-        void Force(object value);
+        void SetValue(object value);
 
         void Clear();
     }

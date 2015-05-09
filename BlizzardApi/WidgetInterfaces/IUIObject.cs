@@ -12,7 +12,7 @@
         bool IsObjectType(string type);
         void SetAlpha(double alpha);
 
-        IUIObject self
+        INativeUIObject self
         {
             get;
             set;

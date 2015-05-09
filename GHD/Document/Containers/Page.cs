@@ -27,10 +27,10 @@ namespace GHD.Document.Containers
             this.frame.SetHeight(this.properties.Height);
 
             var texture = this.frame.CreateTexture();
-            texture.SetAllPoints(this.frame.self);
+            texture.SetAllPoints(this.frame);
             texture.SetTexture(0.1, 0.1, 0.1);
 
-            this.FirstChild.Region.SetPoint(FramePoint.TOPLEFT, this.frame.self, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
+            this.FirstChild.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
         }
 
         public override IRegion Region

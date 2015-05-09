@@ -16,7 +16,7 @@
         {
             this.profile = profile;
 
-            this.frame = (ICustomDropDownFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame.self, "GH_CustomDropDown_Template");
+            this.frame = (ICustomDropDownFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_CustomDropDown_Template");
             this.Frame = this.frame;
             this.SetUp();
         }
@@ -54,7 +54,7 @@
             throw new System.NotImplementedException();
         }
 
-        public override void Force(object value)
+        public override void SetValue(object value)
         {
             throw new System.NotImplementedException();
         }

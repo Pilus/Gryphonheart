@@ -32,15 +32,15 @@ namespace GHD.Presenter.Document
             this.cursor = new Cursor();
 
             this.menu = BaseMenu.CreateMenu(profileGenerator.GenerateMenuProfile());
-            this.SetupDocumentArea(this.menu.GetLabelFrame(DocumentMenuLabels.DocumentArea) as IFrame);
+            this.SetupDocumentArea(this.menu.GetFrameById(DocumentMenuLabels.DocumentArea) as IFrame);
         }
 
         public void Test()
         {
             this.menu.AnimatedShow();
             this.document = new Document(this.inputProvider, this.cursor);
-            this.document.Region.SetParent(this.documentContainer.self);
-            this.document.Region.SetAllPoints(this.documentContainer.self);
+            this.document.Region.SetParent(this.documentContainer);
+            this.document.Region.SetAllPoints(this.documentContainer);
             this.inputProvider.Start();
         }
 
@@ -57,9 +57,9 @@ namespace GHD.Presenter.Document
             scrollFrame.ShowScrollBarBackgrounds();
 
             this.documentContainer = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame);
-            this.documentContainer.SetParent(scrollFrame.self);
-            scrollFrame.SetScrollChild(this.documentContainer.self);
-            this.documentContainer.SetPoint(FramePoint.TOPLEFT, scrollFrame.self, FramePoint.TOPLEFT);
+            this.documentContainer.SetParent(scrollFrame);
+            scrollFrame.SetScrollChild(this.documentContainer);
+            this.documentContainer.SetPoint(FramePoint.TOPLEFT, scrollFrame, FramePoint.TOPLEFT);
 
             this.documentContainer.SetWidth(800);
             this.documentContainer.SetHeight(1000);

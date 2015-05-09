@@ -106,9 +106,9 @@ namespace GH.Menu.Objects
             return this.profile.align;
         }
 
-        public virtual string GetLabel()
+        public virtual IMenuObject GetFrameById(string id)
         {
-            return this.profile.label;
+            return this.profile.label == id ? this : null;
         }
 
         public virtual void Clear()
@@ -134,7 +134,7 @@ namespace GH.Menu.Objects
 
         public abstract object GetValue();
 
-        public abstract void Force(object value);
+        public abstract void SetValue(object value);
 
 
         public virtual double GetPreferredCenterX()
