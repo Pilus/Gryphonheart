@@ -55,7 +55,7 @@ namespace GH.Menu.Objects.Panel
         {
             if (this.innerPage == null)
             {
-                return null;
+                return 0;
             }
 
             var height = this.innerPage.GetPreferredHeight();
@@ -70,7 +70,7 @@ namespace GH.Menu.Objects.Panel
         {
             if (this.innerPage == null)
             {
-                return null;
+                return 0;
             }
 
             var width = this.innerPage.GetPreferredWidth();
@@ -104,7 +104,8 @@ namespace GH.Menu.Objects.Panel
 
         public override IMenuObject GetFrameById(string id)
         {
-            return this.innerPage == null ? null : this.innerPage.GetFrameById(id);
+            if (id == this.profile.label) return this;
+            return this.innerPage != null ? this.innerPage.GetFrameById(id) : null;
         }
 
         public void AddElement(int lineIndex, IObjectProfile profile)

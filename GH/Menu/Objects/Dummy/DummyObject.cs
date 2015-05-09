@@ -4,6 +4,7 @@ namespace GH.Menu.Objects.Dummy
     using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using Debug;
 
     class DummyObject : BaseObject
     {
@@ -12,6 +13,7 @@ namespace GH.Menu.Objects.Dummy
             this.Frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame);
             this.Frame.SetWidth(profile.width ?? 10);
             this.Frame.SetHeight(profile.height ?? 10);
+            UiDebugTools.FrameBg(this.Frame);
         }
 
         public static DummyObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)

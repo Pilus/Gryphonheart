@@ -87,7 +87,7 @@ namespace GHF.View
                 {
                     new PanelProfile(ObjectAlign.l)
                     {
-                        label = ProfileTabLabels.AdditionalFieldsPanel
+                        label = ProfileTabLabels.AdditionalFieldsPanel,
                     }
                 },
                 new LineProfile()

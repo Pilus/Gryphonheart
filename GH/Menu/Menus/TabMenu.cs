@@ -18,7 +18,6 @@ namespace GH.Menu.Menus
 
         public TabMenu(MenuProfile profile) : base(profile)
         {
-            this.Inserts.Bottom = 20;
             this.UpdatePosition();
             this.DisplayTab(0);
         }

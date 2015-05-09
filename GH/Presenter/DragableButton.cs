@@ -17,15 +17,30 @@ namespace GH.Presenter
         public Action UpdateCallback { get; set; }
         public Action HideCallback { get; set; }
 
+        public bool DragWithoutShift;
+
         private bool beingDragged = false;
         private double currentX;
         private double currentY;
+        private double dragOffsetX;
+        private double dragOffsetY;
 
         public DragableButton(double size)
         {
             this.Button = FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, Global.UIParent) as IButton;
             this.Button.SetWidth(size);
             this.Button.SetHeight(size);
+            this.SetUpButton();
+        }
+
+        public DragableButton(IButton button)
+        {
+            this.Button = button;
+            this.SetUpButton();
+        }
+
+        private void SetUpButton()
+        {
             this.Button.SetPoint(FramePoint.CENTER, Global.UIParent, FramePoint.CENTER, 0, 0);
 
             this.Button.RegisterForDrag(MouseButton.LeftButton);
@@ -68,6 +83,14 @@ namespace GH.Presenter
         private void OnDragStart()
         {
             this.beingDragged = true;
+
+            var cursorPos = Global.GetCursorPosition();
+            var scale = this.Button.GetEffectiveScale();
+
+            var x = cursorPos.Item1 / scale;
+            var y = cursorPos.Item2 / scale;
+            this.dragOffsetX = this.currentX - x;
+            this.dragOffsetY = this.currentY - y;
         }
 
         private void OnDragStop()
@@ -81,14 +104,14 @@ namespace GH.Presenter
 
         private void OnUpdate()
         {
-            if (this.beingDragged && Global.IsShiftKeyDown())
+            if (this.beingDragged && (Global.IsShiftKeyDown() || this.DragWithoutShift))
             {
                 var cursorPos = Global.GetCursorPosition();
                 var scale = this.Button.GetEffectiveScale();
 
                 var x = cursorPos.Item1 / scale;
                 var y = cursorPos.Item2 / scale;
-                this.SetPosition(x, y);
+                this.SetPosition(x + this.dragOffsetX, y + this.dragOffsetY);
             }
 
             if (this.UpdateCallback != null)

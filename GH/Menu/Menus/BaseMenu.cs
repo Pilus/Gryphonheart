@@ -8,6 +8,7 @@ namespace GH.Menu.Menus
     using BlizzardApi.WidgetInterfaces;
     using CsLua;
     using CsLua.Collection;
+    using Debug;
     using Objects;
     using Objects.Page;
 
@@ -38,7 +39,9 @@ namespace GH.Menu.Menus
             if (firstPage != null)
             {
                 firstPage.Show();
+                //UiDebugTools.FrameBg(firstPage.Frame);
             }
+            
         }
 
         public static IMenu CreateMenu(MenuProfile profile)
@@ -81,8 +84,8 @@ namespace GH.Menu.Menus
         {
             var layoutSettings = new LayoutSettings()
             {
-                lineSpacing = profile.lineSpacing ?? 0,
-                objectSpacing = 0,
+                lineSpacing = profile.lineSpacing ?? 5,
+                objectSpacing = 5,
             };
 
             profile.Foreach(pageProfile =>
@@ -145,17 +148,18 @@ namespace GH.Menu.Menus
             if (this.menuHeight != null)
             {
                 heightAvailableToPages = (double) this.menuHeight - this.Inserts.Top - this.Inserts.Bottom;
+                this.Frame.SetHeight((double)this.menuHeight);
             }
             else if (pageHeight >= 0)
             {
-                this.Frame.SetWidth(pageHeight + this.Inserts.Top + this.Inserts.Bottom);
+                this.Frame.SetHeight(pageHeight + this.Inserts.Top + this.Inserts.Bottom);
             }
             else
             {
                 throw new MenuConfigurationException("The menu must either define a height or have a page with no objects with flexible height");
             }
 
-            this.Pages.Foreach(page => page.SetPosition(this.Inserts.Left, this.Inserts.Right, widthAvailableToPages, heightAvailableToPages));
+            this.Pages.Foreach(page => page.SetPosition(this.Inserts.Left, this.Inserts.Top, widthAvailableToPages, heightAvailableToPages));
         }
 
         public virtual void AnimatedShow()

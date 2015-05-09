@@ -5,6 +5,7 @@
     using BlizzardApi.WidgetInterfaces;
     using CsLua;
     using CsLua.Collection;
+    using Debug;
     using Line;
 
     public class Page : IPage
@@ -33,6 +34,8 @@
             }
 
             this.Name = profile.name;
+
+            //UiDebugTools.FrameBg(this.Frame);
         }
 
         public void Show()
@@ -78,6 +81,7 @@
 
             this.Frame.SetWidth(width);
             this.Frame.SetHeight(height);
+            this.Frame.SetPoint(FramePoint.TOPLEFT, xOff, -yOff);
 
             var linesWithNoHeightLimit = this.lines.Where(line => line.GetPreferredHeight() == null);
             var linesWithHeightLimit = this.lines.Where(line => line.GetPreferredHeight() != null);
@@ -98,9 +102,9 @@
             heightUsed = 0;
             this.lines.Foreach(line =>
             {
-                var h = this.GetPreferredHeight() ?? heightPrFlexObject;
-                line.SetPosition(0, heightUsed, width, h);
-                heightUsed += h + this.lineSpacing;
+                var lineHeight = line.GetPreferredHeight() ?? heightPrFlexObject;
+                line.SetPosition(0, heightUsed, width, lineHeight);
+                heightUsed += lineHeight + this.lineSpacing;
             });
         }
 

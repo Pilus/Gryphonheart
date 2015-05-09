@@ -5,6 +5,7 @@
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
+    using Debug;
     using Lua;
 
     public class Line : ILine
@@ -27,8 +28,6 @@
                 this.objects.Add(BaseObject.CreateMenuObject(objectProfile, this, layoutSettings));
             });
         }
-
-
 
         public void SetPosition(double xOff, double yOff, double width, double height)
         {

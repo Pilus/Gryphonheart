@@ -19,6 +19,7 @@
         private RoundButton mainButton;
         private readonly CsLuaList<RoundButton> buttons;
         private double lastActive;
+        private bool buttonsShown;
 
         private IClusterButtonAnimationFactory animationFactory;
         private IClusterButtonAnimation showAnimation;
@@ -67,6 +68,8 @@
 
         private void ButtonUpdate()
         {
+            if (!this.buttonsShown) return;
+
             var currentMouseFocus = FrameUtil.FrameProvider.GetMouseFocus();
             if (currentMouseFocus != null && (currentMouseFocus.self == this.mainButton.Button.self || this.buttons.Any(b => b.Button.self == currentMouseFocus.self)))
             {
@@ -76,10 +79,11 @@
             {
                 this.HideQuickButtons();
             }
-        }        
+        }
 
         private void HideQuickButtons()
         {
+            this.buttonsShown = false;
             var activeButtons = this.buttons.Where(b => b.Button.IsShown()).Select(b => b.Button).ToList();
             this.hideAnimation.AnimateButtons(this.mainButton.Button, activeButtons, false);
         }
@@ -93,6 +97,7 @@
                 .Where(qb => AddOnRegister.AddOnLoaded(qb.RequiredAddOn))
                 .OrderBy(qb => qb.Order).ToList();
 
+            this.buttonsShown = true;
             var activeButtons = new CsLuaList<IButton>();
             for (var i = 0; i < quickButtons.Count; i++)
             {

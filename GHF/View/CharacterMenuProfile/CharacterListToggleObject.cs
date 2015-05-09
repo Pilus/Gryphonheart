@@ -9,7 +9,7 @@ namespace GHF.View.CharacterMenuProfile
 
     public class CharacterListToggleObject
     {
-        public static double Height = 40;
+        public static double Height = 32;
         public static double Width = 120;
         
 

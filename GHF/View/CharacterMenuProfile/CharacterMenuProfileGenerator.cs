@@ -28,6 +28,7 @@ namespace GHF.View.CharacterMenu
                 theme = MenuTheme.TabTheme,
                 onHide = onHide,
                 title = "Gryphonheart Flags - My profile",
+                icon = "Interface\\Icons\\Spell_Misc_EmotionHappy",
             };
 
             foreach (var page in this.pages)

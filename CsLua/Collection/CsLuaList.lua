@@ -233,9 +233,10 @@ CsLua.Collection.CsLuaList = function(generics)
 	end
 
 	class.Max = function(selector)
-		local c = 0;
+		local c = nil;
 		for i = 0, publicClass.Count - 1 do
-			math.max(c, selector(publicClass[i]));
+			local v = selector(publicClass[i]);
+			c = math.max(c or v, v);
 		end
 		return c;
 	end
@@ -243,7 +244,8 @@ CsLua.Collection.CsLuaList = function(generics)
 	class.Min = function(selector)
 		local c = 0;
 		for i = 0, publicClass.Count - 1 do
-			math.min(c, selector(publicClass[i]));
+			local v = selector(publicClass[i]);
+			c = math.min(c or v, v);
 		end
 		return c;
 	end

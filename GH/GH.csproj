@@ -46,11 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Color.cs" />
+    <Compile Include="Debug\UIDebugTools.cs" />
     <Compile Include="Integration\AddOnReference.cs" />
     <Compile Include="Integration\AddOnRegister.cs" />
     <Compile Include="Menu\GHMStub.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
+    <Compile Include="Menu\Menus\Window\MinimizeableTitleBar.cs" />
+    <Compile Include="Menu\Theme\IThemedElement.cs" />
     <Compile Include="Menu\MenuConfigurationException.cs" />
+    <Compile Include="Menu\Menus\Window\ContentContainer.cs" />
+    <Compile Include="Menu\Menus\Window\TitleBar.cs" />
+    <Compile Include="Menu\Theme\IMenuTheme.cs" />
+    <Compile Include="Menu\Menus\Window\MenuWindow.cs" />
     <Compile Include="Menu\Objects\BaseObjectWithInnerObject.cs" />
     <Compile Include="Menu\Objects\BaseObjectWithTextLabel.cs" />
     <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.cs" />
@@ -103,6 +110,8 @@
     <Compile Include="Menu\Objects\Toolbar\ToolbarPageProfile.cs" />
     <Compile Include="Menu\Objects\Page\PageProfile.cs" />
     <Compile Include="Menu\Objects\TextColor.cs" />
+    <Compile Include="Menu\Theme\MenuTheme.cs" />
+    <Compile Include="Menu\Theme\ThemeHandler.cs" />
     <Compile Include="Misc\ISavedDataHandler.cs" />
     <Compile Include="Misc\Misc.cs" />
     <Compile Include="Model\Defaults\DefaultQuickButtons.cs" />
@@ -177,6 +186,7 @@
     <Content Include="Menu\Objects\TextLabelWithTooltip.xml" />
     <Content Include="Menu\Objects\Text\TextObject.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaConverter\CsToLua.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
