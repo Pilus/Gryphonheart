@@ -68,5 +68,10 @@ namespace Lua
         {
             Console.WriteLine(string.Concat(s1, s2, s3));
         }
+
+        public static void print(object s1, object s2, object s3, object s4)
+        {
+            Console.WriteLine(string.Concat(s1, s2, s3, s4));
+        }
     }
 }

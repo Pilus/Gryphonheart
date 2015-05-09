@@ -7,6 +7,7 @@ namespace GH.Menu.Objects
     using BlizzardApi.WidgetInterfaces;
     using CsLua;
     using CsLua.Collection;
+    using Debug;
     using DropDown.CustomDropDown;
     using Dummy;
     using EditBox;
@@ -76,26 +77,28 @@ namespace GH.Menu.Objects
 
         protected void SetUpTabbableObject(ITabableObject obj)
         {
-            obj.Previous = this.settings.PreviousTabableBox;
-            if (obj.Previous != null)
+            if (this.settings.TabOrder == null)
             {
-                obj.Previous.Next = obj;
+                this.settings.TabOrder = new TabOrder();
             }
+            this.settings.TabOrder.AddObject(obj);
 
             obj.SetScript(EditBoxHandler.OnTabPressed, () =>
             {
                 if (Global.IsShiftKeyDown())
                 {
-                    if (obj.Previous != null)
+                    var previous = this.settings.TabOrder.GetHigherObject(obj);
+                    if (previous != null)
                     {
-                        obj.Previous.SetFocus();
+                        previous.SetFocus();
                     }
                 }
                 else
                 {
-                    if (obj.Next != null)
+                    var next = this.settings.TabOrder.GetLowerObject(obj);
+                    if (next != null)
                     {
-                        obj.Next.SetFocus();
+                        next.SetFocus();
                     }
                 }
             });

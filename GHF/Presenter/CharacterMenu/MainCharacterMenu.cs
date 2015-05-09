@@ -26,7 +26,7 @@ namespace GHF.Presenter.CharacterMenu
             this.tabs = new CsLuaList<ICharacterMenuTab>()
                 {
                     new ProfileTab(),
-                    //new DetailsTab(),
+                    new DetailsTab(),
                 };
 
             var pages = this.tabs.Select(tab => tab.GetGeneratedProfile());

@@ -46,12 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Color.cs" />
-    <Compile Include="Debug\UIDebugTools.cs" />
+    <Compile Include="Debug\DebugTools.cs" />
     <Compile Include="Integration\AddOnReference.cs" />
     <Compile Include="Integration\AddOnRegister.cs" />
     <Compile Include="Menu\GHMStub.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
     <Compile Include="Menu\Menus\Window\MinimizeableTitleBar.cs" />
+    <Compile Include="Menu\Objects\TabOrder.cs" />
     <Compile Include="Menu\Theme\IThemedElement.cs" />
     <Compile Include="Menu\MenuConfigurationException.cs" />
     <Compile Include="Menu\Menus\Window\ContentContainer.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="Menu\Objects\DropDown\CustomDropDown\ICustomDropDownFrame.cs" />
     <Compile Include="Menu\Objects\Dummy\DummyObject.cs" />
     <Compile Include="Menu\Objects\EditBox\EditBoxObject.cs" />
-    <Compile Include="Menu\Objects\EditBox\IEditBoxFrame.cs" />
     <Compile Include="Menu\Objects\EditBox\IEditBoxWithFilters.cs" />
     <Compile Include="Menu\Objects\EditField\EditFieldObject.cs" />
     <Compile Include="Menu\Objects\EditField\IEditFieldFrame.cs" />

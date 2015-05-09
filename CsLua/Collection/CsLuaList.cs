@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using Lua;
 
@@ -206,6 +207,11 @@
         public double Sum(Func<T, double> selector)
         {
             return this.list.Sum(selector);
+        }
+
+        public CsLuaList<T> OrderBy(Func<T, double> selector)
+        {
+            return new CsLuaList<T>(this.list.OrderBy(selector).ToList());
         }
     }
 }

@@ -3,16 +3,17 @@
     using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
+    using Debug;
 
     public class EditBoxObject : BaseObject
     {
-        private readonly IEditBoxFrame frame;
+        private readonly IEditBoxWithFilters frame;
         private readonly EditBoxProfile profile;
 
         public EditBoxObject(EditBoxProfile profile, IMenuContainer parent, LayoutSettings settings)
             : base(profile, parent, settings)
         {
-            this.frame = (IEditBoxFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditBoxFrame_Template");
+            this.frame = (IEditBoxWithFilters)FrameUtil.FrameProvider.CreateFrame(FrameType.EditBox, UniqueName(Type), parent.Frame, "GH_EditBoxWithFilters_Template");
             this.Frame = this.frame;
             this.profile = profile;
 
@@ -28,23 +29,23 @@
 
         private void SetUpFromProfile()
         {
-            this.frame.Box.NumbersOnly = this.profile.numbersOnly;
-            this.frame.Box.VariablesOnly = this.profile.variablesOnly;
+            this.frame.NumbersOnly = this.profile.numbersOnly;
+            this.frame.VariablesOnly = this.profile.variablesOnly;
 
             if (this.profile.width != null)
             {
                 this.frame.SetWidth((double)this.profile.width);
             }
 
-            this.frame.Box.SetScript(EditBoxHandler.OnTextChanged, () =>
+            this.frame.SetScript(EditBoxHandler.OnTextChanged, () =>
             {
                 if (this.profile.OnTextChanged != null)
                 {
-                    this.profile.OnTextChanged(this.frame.Box.GetText());
+                    this.profile.OnTextChanged(this.frame.GetText());
                 }
             });
 
-            this.frame.Box.SetScript(EditBoxHandler.OnEnterPressed, () =>
+            this.frame.SetScript(EditBoxHandler.OnEnterPressed, () =>
             {
                 if (this.profile.OnEnterPressed != null)
                 {
@@ -54,25 +55,25 @@
 
             if (this.profile.size != null)
             {
-                this.frame.Box.SetMaxLetters((int)this.profile.size);
+                this.frame.SetMaxLetters((int)this.profile.size);
             }
             
             if (this.profile.startText != null)
             { 
-                this.frame.Box.SetText(this.profile.startText);
+                this.frame.SetText(this.profile.startText);
             }
 
-            this.SetUpTabbableObject(this.frame.Box);
+            this.SetUpTabbableObject(this.frame);
         }
 
         public override object GetValue()
         {
-            return this.frame.Box.GetText();
+            return this.frame.GetText();
         }
 
         public override void SetValue(object value)
         {
-            this.frame.Box.SetText((string)value ?? "");
+            this.frame.SetText((string)value ?? "");
         }
 
         public override double GetPreferredCenterY()

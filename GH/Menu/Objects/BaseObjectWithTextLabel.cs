@@ -4,10 +4,13 @@ namespace GH.Menu.Objects
     using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using Debug;
     using Lua;
 
     public class BaseObjectWithTextLabel : BaseObjectWithInnerObject
     {
+        private const double GabUnderText = -5.0;
+
         private readonly IMenuObject innerObject;
         private readonly IObjectProfileWithText profile;
         private readonly IMenuContainer parent;
@@ -43,14 +46,14 @@ namespace GH.Menu.Objects
             var innerPreferredHeight = this.innerObject.GetPreferredHeight();
             if (innerPreferredHeight != null)
             {
-                return innerPreferredHeight + this.textLabel.GetHeight();
+                return innerPreferredHeight + this.textLabel.GetHeight() + GabUnderText;
             }
             return null;
         }
 
         public override double GetPreferredCenterY()
         {
-            return this.innerObject.GetPreferredCenterY() + this.textLabel.GetHeight();
+            return this.innerObject.GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
         }
 
         public override void SetPosition(double xOff, double yOff, double width, double height)
@@ -59,7 +62,7 @@ namespace GH.Menu.Objects
             this.Frame.SetHeight(height);
             this.Frame.SetPoint(FramePoint.TOPLEFT, this.parent.Frame, FramePoint.TOPLEFT, xOff, -yOff);
 
-            var textLabelHeight = this.textLabel.GetHeight();
+            var textLabelHeight = this.textLabel.GetHeight() + GabUnderText;
             this.innerObject.SetPosition(0, textLabelHeight, width, height - textLabelHeight);
         }
     }

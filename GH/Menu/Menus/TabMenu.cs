@@ -8,6 +8,7 @@ namespace GH.Menu.Menus
     using BlizzardApi.WidgetInterfaces;
     using CsLua;
     using CsLua.Collection;
+    using Debug;
     using Objects.Page;
 
     public class TabMenu : WindowedMenu
@@ -38,8 +39,9 @@ namespace GH.Menu.Menus
 
         private IButton CreateButtonFrame(int index)
         {
-            var button = (IButton)FrameUtil.FrameProvider.CreateFrame(FrameType.Button, this.Frame.GetName() + "Tab" + index,
+            var button = (IButton)FrameUtil.FrameProvider.CreateFrame(FrameType.Button, this.Frame.GetName() + "Tab" + (index + 1),
                 this.Frame, "CharacterFrameTabButtonTemplate");
+            button.SetID(index + 1);
 
             if (index == 0)
             {
@@ -48,7 +50,7 @@ namespace GH.Menu.Menus
             else if (this.tabButtons.ContainsKey(index - 1))
             {
                 var prevButton = this.tabButtons[index - 1];
-                button.SetPoint(FramePoint.TOPLEFT, prevButton, FramePoint.TOPRIGHT, 5, 0);
+                button.SetPoint(FramePoint.TOPLEFT, prevButton, FramePoint.TOPRIGHT, 0, 0);
             }
             else
             {
@@ -62,7 +64,7 @@ namespace GH.Menu.Menus
         private void CreateTabButtons()
         {
             this.tabButtons = new CsLuaDictionary<int, IButton>();
-            var tabResizeFunc = (Action<INativeUIObject, double, object, double, double>)Global.GetGlobal("PanelTemplates_TabResize");
+            var setTabFunc = (Action<INativeUIObject, int>)Global.GetGlobal("PanelTemplates_SetTab");
 
             for (var i = 0; i < this.Pages.Count; i++)
             {
@@ -73,7 +75,7 @@ namespace GH.Menu.Menus
 
                 button.SetScript(ButtonHandler.OnClick, () =>
                 {
-                    tabResizeFunc(button.self, 0, null, 36, 88);
+                    setTabFunc(this.Frame.self, button.GetID());
                     if (this.currentPage != null)
                     {
                         this.currentPage.Hide();
@@ -83,6 +85,7 @@ namespace GH.Menu.Menus
                     page.Show();
                 });
             }
+            ((Action<INativeUIObject, int>)Global.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.self, this.Pages.Count);
         }
 
         private static void InvokeClick(IButton button)

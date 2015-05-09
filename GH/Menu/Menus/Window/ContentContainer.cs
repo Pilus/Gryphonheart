@@ -47,6 +47,11 @@
         public void ApplyTheme(IMenuTheme theme)
         {
             this.background.SetTexture(theme.BackgroundTexturePath);
+            if (theme.BackgroundTextureInserts != null)
+            {
+                var inserts = theme.BackgroundTextureInserts;
+                this.background.SetTexCoord(inserts.Left, inserts.Right, inserts.Top, inserts.Bottom);
+            }
         }
 
         private static IFrame CreateBorderFrame(IFrame parent)

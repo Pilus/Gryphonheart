@@ -5,6 +5,6 @@ namespace GH.Menu.Objects
     {
         public double lineSpacing = 0;
         public double objectSpacing = 0;
-        public ITabableObject PreviousTabableBox;
+        public TabOrder TabOrder;
     }
 }

@@ -1,13 +1,39 @@
 ﻿namespace GH.Debug
 {
+    using System;
     using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
     using Lua;
 
-    public static class UiDebugTools
+    public static class DebugTools
     {
+        [Obsolete("Debug.Msg should only be used for debugging. Remember to remove this call.", false)] 
+        public static void Msg(object obj1)
+        {
+            Core.print(obj1);
+        }
+
+        [Obsolete("Debug.Msg should only be used for debugging. Remember to remove this call.", false)]
+        public static void Msg(object obj1, object obj2)
+        {
+            Core.print(obj1, obj2);
+        }
+
+        [Obsolete("Debug.Msg should only be used for debugging. Remember to remove this call.", false)]
+        public static void Msg(object obj1, object obj2, object obj3)
+        {
+            Core.print(obj1, obj2, obj3);
+        }
+
+        [Obsolete("Debug.Msg should only be used for debugging. Remember to remove this call.", false)]
+        public static void Msg(object obj1, object obj2, object obj3, object obj4)
+        {
+            Core.print(obj1, obj2, obj3, obj4);
+        }
+
+        [Obsolete("Debug.FrameBg should only be used for debugging. Remember to remove this call.", false)] 
         public static void FrameBg(IFrame frame)
         {
             var bgFrame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame);

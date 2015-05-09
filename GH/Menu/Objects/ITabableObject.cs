@@ -4,7 +4,6 @@
 
     public interface ITabableObject : IEditBox
     {
-        ITabableObject Previous { get; set; }
-        ITabableObject Next { get; set; }
+
     }
 }

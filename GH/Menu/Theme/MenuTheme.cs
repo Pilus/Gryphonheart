@@ -1,5 +1,7 @@
 ﻿namespace GH.Menu.Theme
 {
+    using Menus;
+
     public class MenuTheme : IMenuTheme
     {
 
@@ -8,5 +10,7 @@
         public Color TitleBarBackgroundColor { get; set; }
 
         public string BackgroundTexturePath { get; set; }
+
+        public Inserts BackgroundTextureInserts { get; set; }
     }
 }
