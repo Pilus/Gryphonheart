@@ -6,6 +6,7 @@ namespace GHF.View.CharacterMenuProfile
     using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using GH.Debug;
 
     public class CharacterListToggleObject
     {
@@ -13,12 +14,12 @@ namespace GHF.View.CharacterMenuProfile
         public static double Width = 120;
         
 
-        public CharacterListToggleObject(IFrame parent, float xOff, float yOff, Action toggle)
+        public CharacterListToggleObject(IFrame parent, IFrame anchor, Action toggle)
         {
             var frame = FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "CharacterListToggleFrame", parent) as IFrame;
-            frame.SetWidth(Width);
-            frame.SetHeight(Height);
-            frame.SetPoint(FramePoint.TOPLEFT, xOff, yOff);
+            frame.SetAllPoints(anchor);
+            DebugTools.Msg("List toggle", anchor.GetName(), anchor.GetWidth());
+            DebugTools.FrameBg(frame);
 
             var button = FrameUtil.FrameProvider.CreateFrame(FrameType.Button, parent.GetName() + "CharacterListToggleButton", frame) as IButton;
 

@@ -7,6 +7,7 @@
     using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
+    using Debug;
     using Integration;
     using Lua;
     using Model;
@@ -54,6 +55,7 @@
             this.mainButton.SetIcon("Interface/ICONS/ABILITY_MOUNT_GOLDENGRYPHON");
 
             var buttonPosition = this.model.Settings.Get(SettingIds.ButtonPosition).Value as double [];
+            DebugTools.Msg("Got", buttonPosition[0], buttonPosition[1]);
             this.mainButton.SetPosition(buttonPosition[0], buttonPosition[1]);
             this.mainButton.EnterCallback = this.ShowQuickButtons;
             this.mainButton.PositionChangeCallback = this.MoveButtonCluster;

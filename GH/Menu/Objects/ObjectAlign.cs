@@ -2,8 +2,8 @@
 {
     public enum ObjectAlign
     {
-        r,
+        l,
         c,
-        l
+        r,
     }
 }

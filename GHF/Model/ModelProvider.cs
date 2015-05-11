@@ -1,6 +1,5 @@
 ﻿namespace GHF.Model
 {
-    using System.Collections;
     using BlizzardApi.Events;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
@@ -8,8 +7,7 @@
     using GH.Integration;
     using GH.Misc;
     using GH.ObjectHandling;
-    using GHF.Presenter;
-    using Lua;
+    using Presenter;
 
     public class ModelProvider : IModelProvider
     {
@@ -22,7 +20,7 @@
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
 
             new Presenter(this);
-            AddOnRegister.RegisterAddOn(AddOnReference.GHF, "0.0.1");            
+            AddOnRegister.RegisterAddOn(AddOnReference.GHF, "0.0.1");
         }
 
         private void SetPlayerProfileIfMissing()
@@ -37,8 +35,6 @@
             var profile = new Profile(playerName);
 
             this.AccountProfiles.Set(playerName, profile);
-
-            
         }
 
         private void OnVariablesLoaded()

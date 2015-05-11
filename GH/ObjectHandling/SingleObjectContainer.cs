@@ -1,6 +1,5 @@
 ﻿namespace GH.ObjectHandling
 {
-    using System.Collections.Generic;
     using CsLua.Collection;
     using Lua;
     using Misc;

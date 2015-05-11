@@ -68,7 +68,7 @@
             };
         }
 
-        private IEnumerable<DropDownData> GetDropDownData()
+        private CsLuaList<DropDownData> GetDropDownData()
         {
             var list = new CsLuaList<DropDownData>();
 

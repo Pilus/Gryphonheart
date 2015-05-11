@@ -171,6 +171,11 @@
 
             var heightAboveMedian = this.GetHeightAboveMedian();
 
+            if (this.Frame.GetName() == "GHF_CharacterMenuPage1Line1")
+            {
+                DebugTools.Msg("GHF_CharacterMenuPage1Line1", leftObjects.Count, rightObjects.Count, objects.Count);
+            }
+
             double x = 0;
             leftObjects.Foreach(obj =>
             {

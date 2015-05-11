@@ -12,6 +12,7 @@ namespace GHF.Presenter.CharacterMenu
     using GH.Menu.Menus;
     using Model;
     using View.CharacterMenu;
+    using View.CharacterMenuProfile;
 
     public class MainCharacterMenu
     {
@@ -19,6 +20,7 @@ namespace GHF.Presenter.CharacterMenu
         private IMenu menu;
         private IProfile profile;
         private IModelProvider model;
+        private CharacterListToggleObject listToggle;
 
         public MainCharacterMenu(IModelProvider model)
         {
@@ -35,6 +37,9 @@ namespace GHF.Presenter.CharacterMenu
             var menuProfile = characterMenuProfileGenerator.GenerateMenuProfile();
 
             this.menu = BaseMenu.CreateMenu(menuProfile);
+
+            this.listToggle = new CharacterListToggleObject(this.menu.Frame, this.menu.GetFrameById(ProfileTabLabels.ToggleCharacterList).Frame,
+                () => { });
         }
 
         public void Show()

@@ -11,6 +11,10 @@ namespace CsLua.Collection
         {
 
         }
+        /// <summary>
+        /// CsLua table formatter
+        /// </summary>
+        /// <param name="compactResult">Wheather or not a not the result should be compacted. Should only be used if there is no circular refferences.</param>
         public TableFormatter(bool compactResult)
         {
             

@@ -1,6 +1,5 @@
 ﻿namespace GH.ObjectHandling
 {
-    using System.Collections.Generic;
     using System.Linq;
     using CsLua;
     using CsLua.Collection;
@@ -10,7 +9,7 @@
     public class IdObjectList<T1, T2> : IIdObjectList<T1, T2> where T1 : IIdObject<T2>
     {
         private readonly ITableFormatter formatter;
-        private readonly IList<T1> objects;
+        private readonly CsLuaList<T1> objects;
         private readonly ISavedDataHandler savedDataHandler;
 
         private bool savedDataLoaded;
@@ -28,16 +27,16 @@
             return this.objects.FirstOrDefault(o => o.Id.Equals((id)));
         }
 
-        public IList<T2> GetIds()
+        public CsLuaList<T2> GetIds()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.Select(o => o.Id).ToList();
+            return this.objects.Select(o => o.Id);
         }
 
-        public IEnumerable<T1> GetAll()
+        public CsLuaList<T1> GetAll()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.ToList();
+            return this.objects;
         }
 
         public void Set(T2 id, T1 obj)

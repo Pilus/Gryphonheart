@@ -3,12 +3,12 @@
 CsLua = CsLua or {};
 CsLua.Collection = CsLua.Collection or {};
 CsLua.Collection.TableFormatter = function()
-    local class = {
-        __type = "TableFormatter",
-        __IsType = function(t) return t == "TableFormatter"; end,
-        __fullTypeName = "CsLua.Collection.TableFormatter",
-    }
-    
+	local class = {
+		__type = "TableFormatter",
+		__IsType = function(t) return t == "TableFormatter"; end,
+		__fullTypeName = "CsLua.Collection.TableFormatter",
+	}
+	
 	local useCompact = false;
 
 	local Compact;
@@ -25,85 +25,97 @@ CsLua.Collection.TableFormatter = function()
 		return c;
 	end
 
-	local Decompact = function(c)
+	local Decompact;
+	Decompact = function(c, t)
 		local s = tostring(c);
-		local t = {root = s};
+		t = t or {root = s};
+		
+		if t[s] then -- The table have already been decompressed.
+			return;
+		end
+
 		t[s] = {}
 		for i,value in pairs(c) do
-			t[s][i] = value;
-			-- TODO: Handle multiple objects
+			if type(value) == "table" then
+				Decompact(value, t);
+				t[s][i] = tostring(value); 
+			else
+				t[s][i] = value;
+			end
 		end
 		return t;
 	end
 
-    class.Serialize = function(graph)
-        assert(type(graph) == "table" and type(graph.serialize) == "function", "Argument must be a serializable class.");
-            
-        local serInfo = CsLua.Collection.SerializedInfo().__Cstor();
-            
-        local obj = graph;
-        while (obj) do
-            obj.serialize(serInfo);
-            obj = serInfo.Take();
-        end
-        local info = serInfo.GetInfo();
+	class.Serialize = function(graph)
+		assert(type(graph) == "table" and type(graph.serialize) == "function", "Argument must be a serializable class.");
+			
+		local serInfo = CsLua.Collection.SerializedInfo().__Cstor();
+			
+		local obj = graph;
+		while (obj) do
+			obj.serialize(serInfo);
+			obj = serInfo.Take();
+		end
+		local info = serInfo.GetInfo();
 		if (useCompact) then
 			return Compact(info);
 		end
 		return info;
-    end
-        
-    class.Deserialize = function(info)
+	end
+		
+	class.Deserialize = function(info)
 		if (useCompact) then
 			info = Decompact(info);
 		end
 		local serInfo = CsLua.Collection.SerializedInfo().__Cstor(info);
 		return serInfo.GetGraph();
-    end
+	end
 
 	class.__Cstor = function(_useCompact)
 		useCompact = _useCompact;
 		return class;
 	end
-        
-    return class;
+		
+	return class;
 end
-    
+	
 CsLua.Collection.SerializedInfo = function()
-    local class = {
-        __type = "SerializedInfo",
-        __IsType = function(t) return t == "SerializedInfo"; end,
-        __fullTypeName = "CsLua.Collection.SerializedInfo",
-    }
-    local info;	   
-        
-    local pending = {};
-        
-    class.Take = function()
-        for i, v in pairs(pending) do
-            pending[i] = nil;
-            return v;
-        end
-    end
-        
-    class.AddValue = function(obj, name, value, _)
-        if (type(value) == "table" and type(value.serialize) == "function") then
-            local subObj = value;
-            value = tostring(subObj);
-            if not(info[value]) then
-                pending[value] = subObj;
-            end
-        end
-        
-        local n = tostring(obj);
-        info[n] = info[n] or { __type = CsLua.GetFullTypeName(obj) };
-        info[n][name] = value;
+	local class = {
+		__type = "SerializedInfo",
+		__IsType = function(t) return t == "SerializedInfo"; end,
+		__fullTypeName = "CsLua.Collection.SerializedInfo",
+	}
+	local info;	   
+		
+	local pending = {};
+		
+	class.Take = function()
+		for i, v in pairs(pending) do
+			pending[i] = nil;
+			return v;
+		end
+	end
+		
+	class.AddValue = function(obj, name, value, _)
+		if (type(value) == "table" and type(value.serialize) == "function") then
+			local subObj = value;
+			value = tostring(subObj);
+			if not(info[value]) then
+				pending[value] = subObj;
+			end
+		elseif type(value) == "table" and value.__fullTypeName then
+			error("Unserializeable object: " .. value.__fullTypeName);
+		end
+		
+		local n = tostring(obj);
+		info[n] = info[n] or { __type = CsLua.GetFullTypeName(obj) };
+		info[n][name] = value;
 
 		if not(info.root) then
 			info.root = n;
 		end			
-    end
-        
+	end
+		
 	class.GetInfo = function()
 		return info;
 	end
@@ -122,9 +134,9 @@ CsLua.Collection.SerializedInfo = function()
 	local CreateObj = function(name, objInfo)
 		local targetType = objInfo.__type;
 		assert(type(targetType) == "string", "No target type found for element: "..name);
-        local classFunc = GetGlobalByName(targetType);
-        assert(type(classFunc) == "table", "Could not find class definition for: "..targetType);
-		objs[name] = classFunc(class);
+		local classFunc = GetGlobalByName(targetType);
+		assert(type(classFunc) == "table", "Could not find class definition for: "..targetType);
+		objs[name] = classFunc(nil).__Cstor(class);
 	end
 
 	local GetNameOfObj = function(obj)
@@ -136,7 +148,7 @@ CsLua.Collection.SerializedInfo = function()
 		error("Name for object not found.")
 	end
 
-    class.GetValue = function(obj, name, _)
+	class.GetValue = function(obj, name, _)
 		local objName = GetNameOfObj(obj);
 		local objInfo = info[objName];
 		local value = objInfo[name];
@@ -148,22 +160,22 @@ CsLua.Collection.SerializedInfo = function()
 			return objs[value];
 		end
 		return value;
-    end
+	end
 
 		
-        
-    class.GetGraph = function()
+		
+	class.GetGraph = function()
 		objs = {};
 
 		CreateObj(info.root, info[info.root]);
 
-        return objs[info.root];
-    end
+		return objs[info.root];
+	end
 
 	class.__Cstor = function(_info)
 		info = _info or {};
 		return class;
 	end
-        
-    return class;
+		
+	return class;
 end

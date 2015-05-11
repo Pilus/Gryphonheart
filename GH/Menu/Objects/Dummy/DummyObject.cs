@@ -13,6 +13,8 @@ namespace GH.Menu.Objects.Dummy
             this.Frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame);
             this.Frame.SetWidth(profile.width ?? 10);
             this.Frame.SetHeight(profile.height ?? 10);
+            DebugTools.Msg("Dummy", profile.label, this.Frame.GetName(), this.Frame.GetWidth());
+            DebugTools.FrameBg(this.Frame);
         }
 
         public static DummyObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
@@ -31,6 +33,12 @@ namespace GH.Menu.Objects.Dummy
         public override void SetValue(object value)
         {
             this.value = value;
+        }
+
+        public override void SetPosition(double xOff, double yOff, double width, double height)
+        {
+            DebugTools.Msg("SetPosition", this.Frame.GetName(), yOff, height);
+            base.SetPosition(xOff, yOff, width, height);
         }
     }
 }

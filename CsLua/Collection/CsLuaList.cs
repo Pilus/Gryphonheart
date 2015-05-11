@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
     using Lua;
@@ -186,6 +187,16 @@
             return this.list.Single(condition);
         }
 
+        public T SingleOrDefault()
+        {
+            return this.list.SingleOrDefault();
+        }
+
+        public T SingleOrDefault(Func<T, bool> condition)
+        {
+            return this.list.SingleOrDefault(condition);
+        }
+
         public void Foreach(Action<T> action)
         {
             foreach (var item in this.list)
@@ -212,6 +223,18 @@
         public CsLuaList<T> OrderBy(Func<T, double> selector)
         {
             return new CsLuaList<T>(this.list.OrderBy(selector).ToList());
+        }
+
+        public CsLuaList<T> Union(CsLuaList<T> otherList)
+        {
+            var newList = this.Where(item => true);
+            otherList.Foreach(item => newList.Add(item));
+            return newList;
+        }
+
+        public CsLuaList<T> Distinct()
+        {
+            return new CsLuaList<T>(this.list.Distinct().ToList());
         }
     }
 }

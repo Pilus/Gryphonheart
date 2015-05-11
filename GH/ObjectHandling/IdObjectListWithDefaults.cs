@@ -1,9 +1,8 @@
 ﻿namespace GH.ObjectHandling
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using CsLua;
     using CsLua.Collection;
+    using Debug;
     using Lua;
     using Misc;
 
@@ -38,6 +37,7 @@
             var obj = this.objects.FirstOrDefault(o => o.Id.Equals(id));
             if (obj != null)
             {
+                DebugTools.Msg("Got item for id", id);
                 return obj;
             }
             var defaultObj = this.defaultObjects.FirstOrDefault(o => o.Id.Equals(id));
@@ -48,10 +48,10 @@
             throw new CsException(Strings.strconcat("No default value found for id: ", Strings.tostring(id)));
         }
 
-        public IList<T2> GetIds()
+        public CsLuaList<T2> GetIds()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.Select(o => o.Id).Union(this.defaultObjects.Select(o => o.Id)).Distinct().ToList();
+            return this.objects.Select(o => o.Id).Union(this.defaultObjects.Select(o => o.Id)).Distinct();
         }
 
         public void Set(T2 id, T1 obj)
@@ -180,7 +180,7 @@
         }
 
 
-        public IEnumerable<T1> GetAll()
+        public CsLuaList<T1> GetAll()
         {
             return this.objects.Union(this.defaultObjects);
         }
