@@ -9,7 +9,7 @@
     public class IdObjectListWithDefaults<T1, T2> : IIdObjectListWithDefaults<T1, T2> where T1 : IIdObject<T2>
     {
         private readonly CsLuaList<T1> defaultObjects;
-        private readonly ITableFormatter formatter;
+        private readonly ITableFormatter<T1> formatter;
         private readonly CsLuaList<T1> objects;
         private readonly ISavedDataHandler savedDataHandler;
         private bool savedDataLoaded;
@@ -19,7 +19,7 @@
             this.savedDataHandler = new SavedDataHandler(tableName);
             this.defaultObjects = new CsLuaList<T1>();
             this.objects = new CsLuaList<T1>();
-            this.formatter = new TableFormatter(true);
+            this.formatter = new TableFormatter<T1>(true);
         }
 
         public void SetDefault(T1 obj)

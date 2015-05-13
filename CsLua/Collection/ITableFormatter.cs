@@ -3,10 +3,10 @@ namespace CsLua.Collection
 {
     using Lua;
 
-    public interface ITableFormatter
+    public interface ITableFormatter<T>
     {
-        NativeLuaTable Serialize(object graph);
+        NativeLuaTable Serialize(T graph);
 
-        object Deserialize(NativeLuaTable table);
+        T Deserialize(NativeLuaTable table);
     }
 }

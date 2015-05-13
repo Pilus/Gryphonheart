@@ -8,13 +8,13 @@
 
     public class IdObjectList<T1, T2> : IIdObjectList<T1, T2> where T1 : IIdObject<T2>
     {
-        private readonly ITableFormatter formatter;
+        private readonly ITableFormatter<T1> formatter;
         private readonly CsLuaList<T1> objects;
         private readonly ISavedDataHandler savedDataHandler;
 
         private bool savedDataLoaded;
 
-        public IdObjectList(ITableFormatter formatter, ISavedDataHandler savedDataHandler)
+        public IdObjectList(ITableFormatter<T1> formatter, ISavedDataHandler savedDataHandler)
         {
             this.formatter = formatter;
             this.objects = new CsLuaList<T1>();
@@ -81,7 +81,7 @@
 
         private void LoadObject(NativeLuaTable info)
         {
-            this.objects.Add((T1) this.formatter.Deserialize(info));
+            this.objects.Add(this.formatter.Deserialize(info));
         }
 
         private void ThrowIfSavedDataIsNotLoaded()

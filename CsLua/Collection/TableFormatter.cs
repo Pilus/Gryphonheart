@@ -3,13 +3,16 @@
 
 namespace CsLua.Collection
 {
+    using System;
+    using System.IO;
+    using System.Xml.Serialization;
     using Lua;
 
-    public class TableFormatter : ITableFormatter
+    public class TableFormatter<T> : ITableFormatter<T>
     {
         public TableFormatter()
         {
-
+            
         }
         /// <summary>
         /// CsLua table formatter
@@ -19,14 +22,31 @@ namespace CsLua.Collection
         {
             
         }
-        public NativeLuaTable Serialize(object graph)
+        public NativeLuaTable Serialize(T graph)
         {
-            throw new System.NotImplementedException();
+            var serializer = new XmlSerializer(typeof(T));
+            var stream = new MemoryStream();
+            serializer.Serialize(stream, graph);
+
+            stream.Position = 0;
+            TextReader tr = new StreamReader(stream);
+            var str = tr.ReadToEnd();
+            
+            var table = new NativeLuaTable();
+            table["obj"] = str;
+            return table;
         }
 
-        public object Deserialize(NativeLuaTable table)
+        public T Deserialize(NativeLuaTable table)
         {
-            throw new System.NotImplementedException();
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.WriteLine((string) table["obj"]);
+            writer.Flush();
+
+            stream.Position = 0;
+            var serializer = new XmlSerializer(typeof(T));
+            return (T)serializer.Deserialize(stream);
         }
     }
 }

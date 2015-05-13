@@ -85,8 +85,9 @@ CsLua.Collection.SerializedInfo = function()
 		__IsType = function(t) return t == "SerializedInfo"; end,
 		__fullTypeName = "CsLua.Collection.SerializedInfo",
 	}
+
 	local info;	   
-		
+	local objs;
 	local pending = {};
 		
 	class.Take = function()
@@ -120,8 +121,6 @@ CsLua.Collection.SerializedInfo = function()
 		return info;
 	end
 
-	local objs;
-
 	local GetGlobalByName = function(name)
 		local nameTable = {strsplit(".", name)};
 		local o = _G;
@@ -136,7 +135,8 @@ CsLua.Collection.SerializedInfo = function()
 		assert(type(targetType) == "string", "No target type found for element: "..name);
 		local classFunc = GetGlobalByName(targetType);
 		assert(type(classFunc) == "table", "Could not find class definition for: "..targetType);
-		objs[name] = classFunc(nil).__Cstor(class);
+		objs[name] = classFunc(nil);
+		objs[name].__Cstor(class);
 	end
 
 	local GetNameOfObj = function(obj)
@@ -153,7 +153,7 @@ CsLua.Collection.SerializedInfo = function()
 		local objInfo = info[objName];
 		local value = objInfo[name];
 
-		if (type(value) == "string" and string.startsWith(value,"Table: ") and info[value]) then
+		if (type(value) == "string" and string.sub(value,0,7) == "Table: " and info[value]) then
 			if not(objs[value])	then
 				CreateObj(value, info[value]);
 			end

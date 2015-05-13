@@ -10,11 +10,11 @@
     public class GuidObjectList<T> : IGuidObjectList<T>
     {
         private readonly CsLuaDictionary<WoWGuid, T> objects;
-        private readonly ITableFormatter formatter;
+        private readonly ITableFormatter<T> formatter;
         private readonly ISavedDataHandler savedDataHandler;
         private bool savedDataLoaded;
 
-        public GuidObjectList(ITableFormatter formatter, ISavedDataHandler savedDataHandler)
+        public GuidObjectList(ITableFormatter<T> formatter, ISavedDataHandler savedDataHandler)
         {
             this.formatter = formatter;
             this.savedDataHandler = savedDataHandler;

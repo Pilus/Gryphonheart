@@ -9,9 +9,9 @@
         private readonly ISavedDataHandler savedDataHandler;
         private readonly string key;
         private readonly T defaultValue;
-        private readonly ITableFormatter formatter;
+        private readonly ITableFormatter<T> formatter;
 
-        public SingleObjectContainer(ISavedDataHandler savedDataHandler, string key, T defaultValue, ITableFormatter formatter)
+        public SingleObjectContainer(ISavedDataHandler savedDataHandler, string key, T defaultValue, ITableFormatter<T> formatter)
         {
             this.savedDataHandler = savedDataHandler;
             this.key = key;

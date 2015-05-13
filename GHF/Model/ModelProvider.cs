@@ -14,7 +14,7 @@
 
         public ModelProvider()
         {
-            var formatter = new TableFormatter();
+            var formatter = new TableFormatter<IProfile>();
             this.AccountProfiles = new IdObjectList<IProfile, string>(formatter, new SavedDataHandler("GHF_AccountProfiles", Global.GetRealmName()));
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
