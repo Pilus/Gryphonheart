@@ -47,13 +47,13 @@ CsLua.Collection.TableFormatter = function()
 	end
 
 	class.Serialize = function(graph)
-		assert(type(graph) == "table" and type(graph.serialize) == "function", "Argument must be a serializable class.");
+		assert(type(graph) == "table" and type(graph.__Serialize) == "function", "Argument must be a serializable class.");
 			
 		local serInfo = CsLua.Collection.SerializedInfo().__Cstor();
 			
 		local obj = graph;
 		while (obj) do
-			obj.serialize(serInfo);
+			obj.__Serialize(serInfo);
 			obj = serInfo.Take();
 		end
 		local info = serInfo.GetInfo();
@@ -98,9 +98,9 @@ CsLua.Collection.SerializedInfo = function()
 	end
 		
 	class.AddValue = function(obj, name, value, _)
-		if (type(value) == "table" and type(value.serialize) == "function") then
+		if (type(value) == "table" and type(value.__Serialize) == "function") then
 			local subObj = value;
-			value = tostring(subObj);
+			value = subObj.__TableString();
 			if not(info[value]) then
 				pending[value] = subObj;
 			end
@@ -108,13 +108,16 @@ CsLua.Collection.SerializedInfo = function()
 			error("Unserializeable object: " .. value.__fullTypeName);
 		end
 		
-		local n = tostring(obj);
+		local n = obj.__TableString();
 		info[n] = info[n] or { __type = CsLua.GetFullTypeName(obj) };
-		info[n][name] = value;
+		
+		if name then
+			info[n][name] = value;
+		end
 
 		if not(info.root) then
 			info.root = n;
-		end			
+		end
 	end
 		
 	class.GetInfo = function()
@@ -134,7 +137,7 @@ CsLua.Collection.SerializedInfo = function()
 		local targetType = objInfo.__type;
 		assert(type(targetType) == "string", "No target type found for element: "..name);
 		local classFunc = GetGlobalByName(targetType);
-		assert(type(classFunc) == "table", "Could not find class definition for: "..targetType);
+		assert(type(classFunc) == "table" or type(classFunc) == "function", "Could not find class definition for: "..targetType);
 		objs[name] = classFunc(nil);
 		objs[name].__Cstor(class);
 	end
@@ -148,12 +151,23 @@ CsLua.Collection.SerializedInfo = function()
 		error("Name for object not found.")
 	end
 
+	class.GetValueKeys = function(obj)
+		local objName = GetNameOfObj(obj);
+		local objInfo = info[objName];
+
+		local keys = {};
+		for i,_ in pairs(objInfo) do
+			table.insert(keys, i);
+		end
+		return keys;
+	end
+
 	class.GetValue = function(obj, name, _)
 		local objName = GetNameOfObj(obj);
 		local objInfo = info[objName];
 		local value = objInfo[name];
 
-		if (type(value) == "string" and string.sub(value,0,7) == "Table: " and info[value]) then
+		if (type(value) == "string" and string.sub(value,0,7) == "table: " and info[value]) then
 			if not(objs[value])	then
 				CreateObj(value, info[value]);
 			end
@@ -161,11 +175,13 @@ CsLua.Collection.SerializedInfo = function()
 		end
 		return value;
 	end
-
-		
 		
 	class.GetGraph = function()
 		objs = {};
+		
+		if not(info.root) or not(info[info.root]) then
+			error("Invalid serialized data set. Could not find root object");
+		end
 
 		CreateObj(info.root, info[info.root]);
 

@@ -269,9 +269,12 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		meta.__Initialize = function(t) for i, v in pairs(t) do class[i] = v; end  return class; end
 		meta.__type = info.name;
 		if (serialize) then
-			meta.serialize = serialize.value;
+			meta.__Serialize = serialize.value;
 		end
 		meta.__fullTypeName = info.fullName;
+		meta.__TableString = function()
+			return tostring(class);
+		end
 		meta.__IsType = function(t) 
 			if t == info.name or t == info.fullName then
 				return true;

@@ -11,6 +11,7 @@
         {
             TestBasicSerializableClass();
             TestClassWithSubObject();
+            TestClassInCsLuaList();
         }
 
         private static void TestBasicSerializableClass()
@@ -39,6 +40,24 @@
             Assert(theClass.AnArray[1], processedClass.AnArray[1]);
             Assert(theClass.AClass.AString, processedClass.AClass.AString);
             Assert(theClass.AClass.ANumber, processedClass.AClass.ANumber);
+        }
+
+        private static void TestClassInCsLuaList()
+        {
+            var theClass = new ClassWithNativeObjects();
+            var list = new CsLuaList<ClassWithNativeObjects>()
+            {
+                theClass,
+            };
+
+            var tableFormatter = new TableFormatter<CsLuaList<ClassWithNativeObjects>>();
+
+            var res = tableFormatter.Serialize(list);
+            var processedClass = tableFormatter.Deserialize(res);
+
+            Assert(1, processedClass.Count);
+            Assert(theClass.AString, processedClass[0].AString);
+            Assert(theClass.ANumber, processedClass[0].ANumber);
         }
 
         

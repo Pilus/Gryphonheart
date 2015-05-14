@@ -3,22 +3,41 @@
 CsLua = CsLua or {};
 CsLua.Collection = CsLua.Collection or {};
 CsLua.Collection.CsLuaList = function(generics)
-	local class = {
-		__type = "CsLuaList",
-		__IsType = function(t) return t == "CsLuaList"; end,
-		__fullTypeName = "CsLua.Collection.CsLuaList",
-	}
+	local class = {};
 	local getters = {};
 	local publicClass = {};
+
 	local t = {};
 
-	class.__Initialize = function(nativeTable)
+	local Cstor = function(...)
+		local args = {...};
+		if type(args[1]) == "table" then
+			for _,v in ipairs(args[1]) do
+				publicClass.Add(v);
+			end
+		end
+	end
+
+	local Initialize = function(nativeTable)
 		t[0] = nativeTable[0];
 		for i, v in ipairs(nativeTable) do
 			t[i] = v;   
 		end
-		return publicClass;
 	end
+
+	local Serialize = function(info)
+		for i, v in pairs(t) do
+			info.AddValue(publicClass, i, v, generics);
+		end
+	end
+
+	local Deserialize = function(info)
+		for _, key in ipairs(info.GetValueKeys(publicClass)) do
+			t[key] = info.GetValue(publicClass, key, generics);
+		end
+	end
+
+	CsLua.CreateSimpleClass(class, publicClass, "CsLuaList", "CsLua.Collection.CsLuaList", Cstor, Initialize, Serialize, Deserialize);
 
 	getters.Count = function()
 		local c = #(t);
@@ -265,16 +284,6 @@ CsLua.Collection.CsLuaList = function(generics)
 			c = c + selector(publicClass[i]);
 		end
 		return c;
-	end
-
-	class.__Cstor = function(...)
-		local args = {...};
-		if type(args[1]) == "table" then
-			for _,v in ipairs(args[1]) do
-				publicClass.Add(v);
-			end
-		end
-		return publicClass;
 	end
 
 	setmetatable(publicClass, {
