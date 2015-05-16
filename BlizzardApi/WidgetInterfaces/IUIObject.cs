@@ -1,7 +1,5 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using System.Collections.Generic;
-
     public interface IUIObject : IIndexer<object, object>
     {
         

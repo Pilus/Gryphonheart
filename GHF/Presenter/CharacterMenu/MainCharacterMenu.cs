@@ -3,8 +3,6 @@
 
 namespace GHF.Presenter.CharacterMenu
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
     using CsLua.Collection;
@@ -16,7 +14,7 @@ namespace GHF.Presenter.CharacterMenu
 
     public class MainCharacterMenu
     {
-        private IEnumerable<ICharacterMenuTab> tabs;
+        private CsLuaList<ICharacterMenuTab> tabs;
         private IMenu menu;
         private IProfile profile;
         private IModelProvider model;

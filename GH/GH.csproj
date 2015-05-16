@@ -189,7 +189,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaConverter\CsToLua.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
+    <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaCompiler\CsLuaCompiler.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,12 +14,19 @@ CsLua.GetFullTypeName = function(obj)
     end
 end
 
-CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, initialize, serialize, deserialize)
+CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, initialize, serialize, deserialize, implements)
 	class.__type = name;
 	class.__fullTypeName = fullName;
 	class.__IsType = function(typeName) return typeName == name or typeName == object; end
 	class.__GetOverrides = function() return {}; end
-	class.__GetSignature = function() return {name, "object"}; end
+	class.__GetSignature = function() 
+		local t = {fullName};
+		for _,v in ipairs(implements) do
+			table.insert(t, v);
+		end
+		table.insert(t, "object");
+		return t; 
+	end
 	class.__TableString = function() return tostring(class); end
 	class.__Cstor = function(...)
 		local args = {...};

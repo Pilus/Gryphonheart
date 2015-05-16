@@ -1,7 +1,6 @@
 ﻿
 namespace GH.Misc
 {
-    using System.Collections.Generic;
     using Lua;
 
     public interface ISavedDataHandler

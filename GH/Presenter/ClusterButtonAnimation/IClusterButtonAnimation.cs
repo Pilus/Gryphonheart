@@ -1,10 +1,10 @@
 ﻿namespace GH.Presenter
 {
-    using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
+    using CsLua.Collection;
 
     public interface IClusterButtonAnimation
     {
-        void AnimateButtons(IButton parent, IList<IButton> buttons, bool show);
+        void AnimateButtons(IButton parent, CsLuaList<IButton> buttons, bool show);
     }
 }

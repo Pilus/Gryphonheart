@@ -3,6 +3,7 @@ namespace CsLuaTest
 {
     using AmbigousMethods;
     using CsLua.Collection;
+    using General;
     using Lua;
     using Override;
     using Serialization;
@@ -13,6 +14,7 @@ namespace CsLuaTest
         {
             var tests = new CsLuaList<ITest>()
             {
+                new GeneralTests(),
                 new AmbigousMethodsTests(),
                 new OverrideTest(),
                 new SerializationTests(),

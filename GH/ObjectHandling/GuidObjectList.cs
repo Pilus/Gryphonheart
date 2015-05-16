@@ -3,7 +3,6 @@
     using CsLua;
     using CsLua.Collection;
     using Lua;
-    using System.Collections.Generic;
     using Misc;
     using System;
 
@@ -39,7 +38,7 @@
             throw new NotImplementedException();
         }
 
-        public IEnumerable<WoWGuid> GetGuids()
+        public CsLuaList<WoWGuid> GetGuids()
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();

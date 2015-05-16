@@ -2,7 +2,6 @@
 namespace GH.Menu.Objects.DropDown.CustomDropDown
 {
     using System;
-    using System.Collections.Generic;
     using CsLua.Collection;
 
     public class CustomDropDownProfile : IObjectProfileWithText

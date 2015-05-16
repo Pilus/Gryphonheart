@@ -1,8 +1,5 @@
 ﻿namespace GH.Presenter
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
@@ -86,7 +83,7 @@
         private void HideQuickButtons()
         {
             this.buttonsShown = false;
-            var activeButtons = this.buttons.Where(b => b.Button.IsShown()).Select(b => b.Button).ToList();
+            var activeButtons = this.buttons.Where(b => b.Button.IsShown()).Select(b => b.Button);
             this.hideAnimation.AnimateButtons(this.mainButton.Button, activeButtons, false);
         }
 
@@ -97,7 +94,7 @@
         {
             var quickButtons = this.model.ButtonList.GetAll()
                 .Where(qb => AddOnRegister.AddOnLoaded(qb.RequiredAddOn))
-                .OrderBy(qb => qb.Order).ToList();
+                .OrderBy(qb => qb.Order);
 
             this.buttonsShown = true;
             var activeButtons = new CsLuaList<IButton>();

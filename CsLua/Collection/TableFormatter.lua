@@ -3,13 +3,16 @@
 CsLua = CsLua or {};
 CsLua.Collection = CsLua.Collection or {};
 CsLua.Collection.TableFormatter = function()
-	local class = {
-		__type = "TableFormatter",
-		__IsType = function(t) return t == "TableFormatter"; end,
-		__fullTypeName = "CsLua.Collection.TableFormatter",
-	}
-	
+	local class = {}
+
 	local useCompact = false;
+
+	local Cstor = function(_useCompact)
+		useCompact = _useCompact;
+		return class;
+	end
+
+	CsLua.CreateSimpleClass(class, class, "TableFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {"CsLua.Collection.ITableFormatter"});
 
 	local Compact;
 	Compact = function(t, target)
@@ -70,25 +73,25 @@ CsLua.Collection.TableFormatter = function()
 		local serInfo = CsLua.Collection.SerializedInfo().__Cstor(info);
 		return serInfo.GetGraph();
 	end
-
-	class.__Cstor = function(_useCompact)
-		useCompact = _useCompact;
-		return class;
-	end
 		
 	return class;
 end
 	
 CsLua.Collection.SerializedInfo = function()
-	local class = {
-		__type = "SerializedInfo",
-		__IsType = function(t) return t == "SerializedInfo"; end,
-		__fullTypeName = "CsLua.Collection.SerializedInfo",
-	}
+	local class = {}
 
-	local info;	   
+	local info;
 	local objs;
 	local pending = {};
+
+	local Cstor = function(_info)
+		info = _info or {};
+		return class;
+	end
+
+	CsLua.CreateSimpleClass(class, class, "SerializedInfo", "CsLua.Collection.SerializedInfo", Cstor);
+
+	
 		
 	class.Take = function()
 		for i, v in pairs(pending) do
@@ -186,11 +189,6 @@ CsLua.Collection.SerializedInfo = function()
 		CreateObj(info.root, info[info.root]);
 
 		return objs[info.root];
-	end
-
-	class.__Cstor = function(_info)
-		info = _info or {};
-		return class;
 	end
 		
 	return class;

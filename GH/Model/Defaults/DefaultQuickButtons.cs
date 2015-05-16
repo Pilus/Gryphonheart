@@ -1,8 +1,6 @@
 ﻿
 namespace GH.Model.Defaults
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using BlizzardApi.Global;
     using CsLua.Collection;
     using GH.Integration;
@@ -10,7 +8,7 @@ namespace GH.Model.Defaults
 
     public static class DefaultQuickButtons
     {
-        private static IList<IQuickButton> list = new CsLuaList<IQuickButton>()
+        private static CsLuaList<IQuickButton> list = new CsLuaList<IQuickButton>()
         {
             new QuickButton(
                 "helm", 1, true, "Toggle helm", "Interface\\Icons\\INV_Helmet_03",

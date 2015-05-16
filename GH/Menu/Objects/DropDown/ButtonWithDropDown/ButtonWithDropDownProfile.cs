@@ -3,7 +3,7 @@
 namespace GH.Menu.Objects.DropDown.ButtonWithDropDown
 {
     using System;
-    using System.Collections.Generic;
+    using CsLua.Collection;
 
     public class ButtonWithDropDownProfile : IObjectProfile
     {
@@ -25,6 +25,6 @@ namespace GH.Menu.Objects.DropDown.ButtonWithDropDown
 
         public bool? ignoreTheme { get; set; }
 
-        public Func<IEnumerable<DropDownData>> dataFunc;
+        public Func<CsLuaList<DropDownData>> dataFunc;
     }
 }

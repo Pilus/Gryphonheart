@@ -1,7 +1,5 @@
 ﻿namespace GH.Misc
 {
-    using System;
-    using System.Collections.Generic;
     using BlizzardApi.Global;
     using Lua;
 

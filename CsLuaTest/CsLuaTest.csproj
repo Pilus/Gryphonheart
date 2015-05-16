@@ -49,8 +49,17 @@
     <Compile Include="AmbigousMethods\ClassC2.cs" />
     <Compile Include="AmbigousMethods\ClassCBase.cs" />
     <Compile Include="AmbigousMethods\ClassWithAmbigousMethods.cs" />
+    <Compile Include="AmbigousMethods\ClassWithEnumMethod.cs" />
+    <Compile Include="AmbigousMethods\ClassWithGenericConstructor.cs" />
+    <Compile Include="AmbigousMethods\EnumA.cs" />
+    <Compile Include="AmbigousMethods\EnumB.cs" />
     <Compile Include="AmbigousMethods\InterfaceB.cs" />
+    <Compile Include="AmbigousMethods\MethodsWithGeneric.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
+    <Compile Include="General\GeneralTests.cs" />
+    <Compile Include="General\NonStaticClass.cs" />
+    <Compile Include="General\StaticClass.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="Override\Base.cs" />
     <Compile Include="Override\Inheriter.cs" />

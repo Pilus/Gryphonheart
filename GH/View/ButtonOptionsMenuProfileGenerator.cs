@@ -1,11 +1,9 @@
 ﻿namespace GH.View
 {
     using System;
-    using System.Collections.Generic;
     using BlizzardApi;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
-    using Menu;
     using Menu.Menus;
     using Menu.Objects;
     using Menu.Objects.DropDown;

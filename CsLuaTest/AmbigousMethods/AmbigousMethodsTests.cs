@@ -11,6 +11,9 @@
             TestAmbiguousMethodWithInterfaceAndTwoArgs();
             TestAmbiguousMethodWithInheritance();
             TestNullPickingCorrectMethods();
+            TestAmbigousMethodsWithEnum();
+            TestGenericMethod();
+            TestGenericConstructor();
         }
 
         private static void TestAmbiguousMethodWith1Arg()
@@ -98,6 +101,40 @@
             ResetOutput();
             theClass.NullPicking1(null);
             Assert("NullPicking1_InterfaceB", Output);
+        }
+
+        private static void TestAmbigousMethodsWithEnum()
+        {
+            var theClass = new ClassWithEnumMethod();
+
+            ResetOutput();
+            theClass.EnumMethod(EnumA.Value1);
+            Assert("MethodEnumA", Output);
+
+            ResetOutput();
+            theClass.EnumMethod(EnumB.Something);
+            Assert("MethodEnumB", Output);
+
+        }
+
+        private static void TestGenericMethod()
+        {
+            var theClass = new MethodsWithGeneric<int, string>();
+
+            ResetOutput();
+            theClass.GenericMethod(1);
+            Assert("GenericMethodT1", Output);
+
+            ResetOutput();
+            theClass.GenericMethod("x");
+            Assert("GenericMethodT2", Output);
+        }
+
+        private static void TestGenericConstructor()
+        {
+            ResetOutput();
+            var theClass = new ClassWithGenericConstructor<string>("ok");
+            Assert("GenericConstructorT", Output);
         }
 
         // TODO scenario where a class overrides a method with one signature, but not one with another. Call both from the base class. 

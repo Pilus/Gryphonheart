@@ -2,13 +2,12 @@
 
 namespace GH.Integration
 {
-    using System.Collections.Generic;
     using CsLua;
     using CsLua.Collection;
 
     public static class AddOnRegister
     {
-        private static IDictionary<AddOnReference, string> addOns = new CsLuaDictionary<AddOnReference, string>();
+        private static CsLuaDictionary<AddOnReference, string> addOns = new CsLuaDictionary<AddOnReference, string>();
 
         public static void RegisterAddOn(AddOnReference addonName, string version)
         {

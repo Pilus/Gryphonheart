@@ -18,16 +18,47 @@ local __not = setmetatable({}, { __add = function(_, value)
 	return not(value);
 end});
 
-local __GetByFullName = function(s)
+local __GetByFullName = function(s, doNotThrow)
 	local n = {string.split(".",s)};
 	local o = _G[n[1]];
-	assert(o,"Could not find global "..s)
+	
+	if not(0) then
+		if doNotThrow then
+			return;
+		else
+			error("Could not find global "..s);
+		end
+	end
+
 	for i=2,#(n) do
 		o = o[n[i]];
-		assert(o,"Could not find global "..s)
+		
+		if not(0) then
+			if doNotThrow then
+				return;
+			else
+				error("Could not find global "..s);
+			end
+		end
 	end
 	return o;
 end
+
+local __EnumParse = function(typeName, value, doNotThrow)
+	local enumTable = __GetByFullName(typeName);
+	if (enumTable) then
+		for i,v in pairs(enumTable) do
+			if string.lower(value) == string.lower(i) then
+				return v;
+			end
+		end
+	end
+
+	if not(doNotThrow) then
+		__Throw(CsLua.CsException("Could not parse enum value " .. tostring(value) .. " into " .. typeName));
+	end
+end
+
 local __IsType = function(obj, t)
 	if t == "object" then
 		return true;
@@ -65,7 +96,7 @@ local __GetSignatures = function(...)
 			if (obj.__GetSignature) then
 				signatures[i] = obj.__GetSignature();
 			else
-				table.insert(signatures[i], 1, "NativeLuaTable");
+				table.insert(signatures[i], 1, "Lua.NativeLuaTable");
 			end
 		elseif type(obj) == "boolean" then
 			table.insert(signatures[i], 1, "bool");
@@ -85,13 +116,22 @@ local __GetSignatures = function(...)
 	return signatures;
 end
 
-local __ScoreFunction = function(types, signature)
+local __IsMatchingEnum = function(enumType, obj)
+	if type(obj) == "string" then
+		return not(__EnumParse(enumType, obj, true) == nil)
+	end
+	return false;
+end
+
+local __ScoreFunction = function(types, signature, args, generic)
 	if #(types) == #(signature) then
 		local functionScore = 0;
 		for i, typeName in ipairs(types) do
+			typeName = (generic or {})[typeName] or typeName;
+
 			local argScore;
 			for j, argSignature in ipairs(signature[i]) do
-				if typeName == argSignature or argSignature == "null" then
+				if typeName == argSignature or argSignature == "null" or (argSignature == "string" and __IsMatchingEnum(typeName, args[i], true)) then
 					argScore = j - 1;
 					break;
 				end
@@ -107,13 +147,14 @@ local __ScoreFunction = function(types, signature)
 	return nil;
 end
 
-local __GetMatchingFunction = function(functions, ...)
+local __GetMatchingFunction = function(functions, generic, ...)
 	local argSignature = __GetSignatures(...);
+	local args = {...};
 
 	local bestFunc, bestScore;
 
 	for _, funcMeta in pairs(functions) do
-		local score = __ScoreFunction(funcMeta.types, argSignature);
+		local score = __ScoreFunction(funcMeta.types, argSignature, args, generic);
 		if (score and (bestScore == nil or bestScore > score)) then
 			bestScore = score;
 			bestFunc = funcMeta.func;
@@ -129,14 +170,12 @@ local __Throw = function(exception)
 end
 -- TODO: Try Catch Finaly func
 
-local __EnumParse = function(typeName, value)
-	local enumTable = __GetByFullName(typeName);
-	for i,v in pairs(enumTable) do
-		if string.lower(value) == string.lower(i) then
-			return v;
-		end
+local __SignatureToString = function(signature)
+	local args = {};
+	for i, argSig in ipairs(signature) do
+		args[i] = string.join("|", unpack(argSig));
 	end
-	__Throw(CsLua.CsException("Could not parse enum value " .. tostring(value) .. " into " .. typeName));
+	return string.join(", ", unpack(args));
 end
 
 local __CreateClass = function(info) -- fullName, name, getElements, inherits, implements, isStatic, isIndexer, isDictionary, isSerializable
@@ -146,6 +185,19 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 	local loadStaticOverride = function()
 		if info.inherits then
 			staticOverride = __GetByFullName(info.inherits);
+		end
+	end
+
+	local GenerateAmbigiousFunc = function(element, inheritiedClass, generic)
+		return function(...)
+			local matchingFunc = __GetMatchingFunction(element.value, generic, ...);
+			if matchingFunc then
+				return matchingFunc(...);
+			elseif inheritiedClass then
+				return inheritiedClass[element.name](...);
+			else
+				error("No method found for key '"..element.name.."' matching the signature: '"..__SignatureToString(__GetSignatures(...)).."'");
+			end
 		end
 	end
 
@@ -159,7 +211,11 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 
 		for _, element in pairs(elements) do
 			if (element.static) then
-				staticValues[element.name] = element.value;
+				if (element.type == "Method") then
+					staticValues[element.name] = GenerateAmbigiousFunc(element, nil, nil);
+				else
+					staticValues[element.name] = element.value;
+				end
 			end
 		end
 	end
@@ -204,24 +260,27 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 
 		local elements = info.getElements(overridingClass or class);
 		
-		local generics;
 		local methods, nonStaticVariables, staticVariables, staticGetters, nonStaticGetters, staticSetters, nonStaticSetters = {}, {}, {}, {}, {}, {}, {};
+		local staticMethods = {};
 		local constructor, serialize, deserialize;
 		local overrides = {};
+
+		local appliedGenerics = {};
+		if info.generics then
+			for i, appliedGenericVar in ipairs(generic) do
+				appliedGenerics[info.generics[i]] = appliedGenericVar;
+			end
+		end
 		
 		for _, element in pairs(elements) do
 			if (element.type == "Method") then
-				local func = function(...)
-					local matchingFunc = __GetMatchingFunction(element.value, ...);
-					if matchingFunc then
-						return matchingFunc(...);
-					elseif inheritiedClass then
-						return inheritiedClass[element.name](...);
-					else
-						error("No method found for key '"..element.name.."' matching the signature.");
-					end
-				end
+				local func = GenerateAmbigiousFunc(element, inheritiedClass, appliedGenerics);
 				methods[element.name] = func;
+
+				if (element.static == true) then
+					staticMethods[element.name] = func;
+				end
+
 				if (element.override == true) and inheritiedClass then
 					overrides[element.name] = func;
 				end
@@ -253,15 +312,26 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 				end
 			elseif (element.type == "Constructor") then
 				constructor = function(...)
-					local matchingFunc = __GetMatchingFunction(element.value, ...);
+					local matchingFunc = __GetMatchingFunction(element.value, appliedGenerics, ...);
 					if matchingFunc then
 						return matchingFunc(...);
 					else
-						error("No constructor matching the signature.");
+						error("No constructor matching the signature: '"..__SignatureToString(__GetSignatures(...)).."'");
 					end
 				end
 			else
 				error("Unhandled element type: "..tostring(element.type));
+			end
+		end
+
+		if not(staticValues) then
+			staticValues = {}
+			for i, v in pairs(staticVariables) do
+				staticValues[i] = v.value;
+			end
+
+			for i, v in pairs(staticMethods) do
+				staticValues[i] = v;
 			end
 		end
 		
@@ -298,19 +368,14 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 			for _,v in pairs(info.implements or {}) do
 				table.insert(signature, 1, v);
 			end
-			table.insert(signature, 1, info.name);
+			table.insert(signature, 1, info.fullName);
 			return signature;
 		end
 		meta.__GetOverrides = function()
 			return overrides;
 		end
 
-		if not(staticValues) then
-			staticValues = {}
-			for i, v in pairs(staticVariables) do
-				staticValues[i] = v.value;
-			end
-		end
+		
 		for i,v in pairs(nonStaticVariables) do
 			nonStaticValues[i] = v.value;
 		end

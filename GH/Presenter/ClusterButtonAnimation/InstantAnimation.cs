@@ -1,9 +1,9 @@
 ﻿
 namespace GH.Presenter.ClusterButtonAnimation
 {
-    using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using CsLua.Collection;
 
     public class InstantAnimation : AnimationBase, IClusterButtonAnimation
     {
@@ -12,7 +12,7 @@ namespace GH.Presenter.ClusterButtonAnimation
             
         }
 
-        public void AnimateButtons(IButton parent, IList<IButton> buttons, bool show)
+        public void AnimateButtons(IButton parent, CsLuaList<IButton> buttons, bool show)
         {
             for (var i = 0; i < buttons.Count; i++)
             {

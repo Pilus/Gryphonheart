@@ -1,7 +1,7 @@
 ﻿namespace GH.ObjectHandling
 {
-    using System.Collections.Generic;
     using CsLua;
+    using CsLua.Collection;
 
     public interface IGuidObjectList<T>
     {
@@ -11,7 +11,7 @@
 
         void Remove(WoWGuid guid);
 
-        IEnumerable<WoWGuid> GetGuids();
+        CsLuaList<WoWGuid> GetGuids();
 
         void LoadFromSaved();
     }

@@ -80,8 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BlizzardApi.lua" />
+    <None Include="Events\Events.lua" />
     <None Include="FrameUtil.lua" />
     <None Include="Global.lua" />
+    <None Include="MiscEnums\MiscEnums.lua" />
+    <None Include="WidgetEnums\WidgetEnums.lua" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lua\Lua.csproj">

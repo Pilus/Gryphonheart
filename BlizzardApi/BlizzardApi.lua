@@ -20,7 +20,5 @@ local EnumTable = function()
 end
 
 BlizzardApi = {
-  WidgetEnums = EnumTable(),
-  Events = EnumTable(),
   MiscEnums = EnumTable(),
 }
