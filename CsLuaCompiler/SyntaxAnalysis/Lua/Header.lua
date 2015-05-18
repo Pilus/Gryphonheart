@@ -22,7 +22,7 @@ local __GetByFullName = function(s, doNotThrow)
 	local n = {string.split(".",s)};
 	local o = _G[n[1]];
 	
-	if not(0) then
+	if not(o) then
 		if doNotThrow then
 			return;
 		else
@@ -33,7 +33,7 @@ local __GetByFullName = function(s, doNotThrow)
 	for i=2,#(n) do
 		o = o[n[i]];
 		
-		if not(0) then
+		if not(o) then
 			if doNotThrow then
 				return;
 			else
@@ -45,7 +45,7 @@ local __GetByFullName = function(s, doNotThrow)
 end
 
 local __EnumParse = function(typeName, value, doNotThrow)
-	local enumTable = __GetByFullName(typeName);
+	local enumTable = __GetByFullName(typeName, doNotThrow);
 	if (enumTable) then
 		for i,v in pairs(enumTable) do
 			if string.lower(value) == string.lower(i) then
@@ -74,7 +74,7 @@ local __IsType = function(obj, t)
 	if type(obj) == "boolean" then
 		return "bool" == t;
 	elseif type(obj) == "function" then
-		return "Action" == t;
+		return "System.Action" == t;
 	elseif type(obj) == "number" then
 		return "double" == t or "int" == t;
 	elseif type(obj) == "string" then
@@ -101,8 +101,8 @@ local __GetSignatures = function(...)
 		elseif type(obj) == "boolean" then
 			table.insert(signatures[i], 1, "bool");
 		elseif type(obj) == "function" then
-			table.insert(signatures[i], 1, "Action");
-			table.insert(signatures[i], 1, "Func");
+			table.insert(signatures[i], 1, "System.Action");
+			table.insert(signatures[i], 1, "System.Func");
 		elseif type(obj) == "number" then
 			table.insert(signatures[i], 1, "double");
 			table.insert(signatures[i], 1, "int");
@@ -180,7 +180,7 @@ end
 
 local __CreateClass = function(info) -- fullName, name, getElements, inherits, implements, isStatic, isIndexer, isDictionary, isSerializable
 	local staticValues;
-
+	local namespaceElement = {};
 	local staticOverride;
 	local loadStaticOverride = function()
 		if info.inherits then
@@ -207,7 +207,7 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		end
 
 		staticValues = {};
-		local elements = info.getElements(staticValues);
+		local elements = info.getElements(namespaceElement);
 
 		for _, element in pairs(elements) do
 			if (element.static) then
@@ -509,7 +509,6 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		return overriddenClass, class, populateOverrides;
 	end
 
-	local namespaceElement = {};
 	if (info.isStatic) then
 		local staticClass = nil;
 		local Init = function()

@@ -8,6 +8,7 @@
             TestStaticClassWithMethod();
             NonStaticClassWithStaticMethod();
             TestVariableTypeVsVariableName();
+            GetConstValueFromBase();
         }
 
         private static void TestStaticClassWithMethod()
@@ -30,6 +31,11 @@
             var theClass = new ClassWithTypeAndVariableNaming();
             theClass.Method(() => { });
             Assert("Action", Output);
+        }
+
+        private static void GetConstValueFromBase()
+        {
+            Assert(50, Inheriter.GetConstValue());
         }
     }
 }

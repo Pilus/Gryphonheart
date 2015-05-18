@@ -1,6 +1,5 @@
 ﻿namespace GH.Menu.Menus.Window
 {
-    using System.Runtime.CompilerServices;
     using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;

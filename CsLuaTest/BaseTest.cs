@@ -1,6 +1,5 @@
 ﻿namespace CsLuaTest
 {
-    using System.Runtime.CompilerServices;
     using CsLua;
     using Lua;
 
