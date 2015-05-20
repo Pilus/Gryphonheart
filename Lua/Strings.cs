@@ -79,6 +79,10 @@ namespace Lua
         /// <returns></returns>
         public static string tostring(object obj)
         {
+            if (obj == null)
+            {
+                return "nil";
+            }
             return obj.ToString();
         }
 

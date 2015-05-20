@@ -56,6 +56,10 @@
     <Compile Include="AmbigousMethods\InterfaceB.cs" />
     <Compile Include="AmbigousMethods\MethodsWithGeneric.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="DefaultValues\AnEnum.cs" />
+    <Compile Include="DefaultValues\DefaultValuesClass.cs" />
+    <Compile Include="DefaultValues\DefaultValuesTests.cs" />
+    <Compile Include="DefaultValues\ReferencedClass.cs" />
     <Compile Include="General\Base.cs" />
     <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
     <Compile Include="General\GeneralTests.cs" />

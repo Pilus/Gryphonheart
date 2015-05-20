@@ -59,6 +59,33 @@ local __EnumParse = function(typeName, value, doNotThrow)
 	end
 end
 
+local __defaultValues = {
+	bool = false,
+	int = 0,
+	float = 0,
+	long = 0,
+	double = 0,
+}
+
+local __GetDefaultValue = function(type, isNullable, generics)
+	if isNullable then
+		return nil;
+	end
+
+	for _,v in ipairs(generics) do
+		if v == type then
+			return nil;
+		end
+	end
+
+	if not(__defaultValues[type] == nil) then
+		return __defaultValues[type];
+	end
+
+	--Handle eventual enum. Return nil if not an enum.
+	return __EnumParse(type, "__default", true);
+end
+
 local __IsType = function(obj, t)
 	if t == "object" then
 		return true;
@@ -147,14 +174,14 @@ local __ScoreFunction = function(types, signature, args, generic)
 	return nil;
 end
 
-local __GetMatchingFunction = function(functions, generic, ...)
+local __GetMatchingFunction = function(functions, generics, ...)
 	local argSignature = __GetSignatures(...);
 	local args = {...};
 
 	local bestFunc, bestScore;
 
 	for _, funcMeta in pairs(functions) do
-		local score = __ScoreFunction(funcMeta.types, argSignature, args, generic);
+		local score = __ScoreFunction(funcMeta.types, argSignature, args, generics);
 		if (score and (bestScore == nil or bestScore > score)) then
 			bestScore = score;
 			bestFunc = funcMeta.func;
@@ -188,9 +215,9 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		end
 	end
 
-	local GenerateAmbigiousFunc = function(element, inheritiedClass, generic)
+	local GenerateAmbigiousFunc = function(element, inheritiedClass, generics)
 		return function(...)
-			local matchingFunc = __GetMatchingFunction(element.value, generic, ...);
+			local matchingFunc = __GetMatchingFunction(element.value, generics, ...);
 			if matchingFunc then
 				return matchingFunc(...);
 			elseif inheritiedClass then
@@ -207,7 +234,7 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		end
 
 		staticValues = {};
-		local elements = info.getElements(namespaceElement);
+		local elements = info.getElements(namespaceElement, {});
 
 		for _, element in pairs(elements) do
 			if (element.static) then
@@ -243,11 +270,11 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		return staticValues[key] or not(staticOverride == nil) and staticOverride[key] or nil;
 	end
 
-	local initializeClass = function(generic, overridingClass)
+	local initializeClass = function(generics, overridingClass)
 		local class = {};
 		local _, inheritiedClass, populateOverride;
 		if info.inherits then
-			_, inheritiedClass, populateOverride = __GetByFullName(info.inherits)(generic);
+			_, inheritiedClass, populateOverride = __GetByFullName(info.inherits)(generics);
 			if _ and not(inheritiedClass) then -- Adjust for objects returning only one variable. E.g. CsLuaList;
 			   inheritiedClass = _;
 			end
@@ -258,7 +285,7 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		if info.isDictionary then dictionaryValues = {}; end
 		local nonStaticValues = {};
 
-		local elements = info.getElements(overridingClass or class);
+		local elements = info.getElements(overridingClass or class, generics or {});
 		
 		local methods, nonStaticVariables, staticVariables, staticGetters, nonStaticGetters, staticSetters, nonStaticSetters = {}, {}, {}, {}, {}, {}, {};
 		local staticMethods = {};
@@ -267,7 +294,7 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 
 		local appliedGenerics = {};
 		if info.generics then
-			for i, appliedGenericVar in ipairs(generic) do
+			for i, appliedGenericVar in ipairs(generics) do
 				appliedGenerics[info.generics[i]] = appliedGenericVar;
 			end
 		end
@@ -470,9 +497,9 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 		return class, populateOverride;
 	end
 
-	local ClassWithOverride = function(generic)
+	local ClassWithOverride = function(generics)
 		local overriddenClass = {};
-		local class, populateParentOverrides = initializeClass(generic, overriddenClass);
+		local class, populateParentOverrides = initializeClass(generics, overriddenClass);
 
 		local overrides;
 
