@@ -7,12 +7,12 @@ namespace CsLuaTest.Override
 
     public class OverrideTest : BaseTest
     {
-        public override void PerformTests()
+        public OverrideTest()
         {
-            TestConstructors();
-            TestMethods();
-            TestMultiLayerMethods();
-            TestMultiLayerJumps();
+            this.Tests["TestConstructors"] = TestConstructors;
+            this.Tests["TestMethods"] = TestMethods;
+            this.Tests["TestMultiLayerMethods"] = TestMultiLayerMethods;
+            this.Tests["TestMultiLayerJumps"] = TestMultiLayerJumps;
         }
 
         public static void TestConstructors()

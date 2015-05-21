@@ -1,6 +1,5 @@
 ﻿namespace GHG.Model
 {
-    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
     using CsLua;
@@ -73,7 +72,7 @@
 
         public int GetNumMembers()
         {
-            return this.members.Count();
+            return this.members.Count;
         }
 
         public GroupMember GetMember(int i)
@@ -115,7 +114,7 @@
 
         public void AddRank(string rankName)
         {
-            var rank = new GroupRank(rankName, this.ranks.Count() == 0);
+            var rank = new GroupRank(rankName, this.ranks.Count == 0);
             this.ranks.Add(rank);
         }
 
@@ -126,7 +125,7 @@
 
         public int GetNumRanks()
         {
-            return this.ranks.Count();
+            return this.ranks.Count;
         }
 
         public GroupRank GetRank(int i)
@@ -141,7 +140,7 @@
 
         public int GetRankIndex(GroupRank rank)
         {
-            for (int i = 1; i <= this.ranks.Count(); i++)
+            for (int i = 1; i <= this.ranks.Count; i++)
             {
                 if (this.ranks[i].Equals(rank))
                 {
@@ -154,7 +153,7 @@
 
         public int GetRankIndex(WoWGuid rankGuid)
         {
-            for (int i = 1; i <= this.ranks.Count(); i++)
+            for (int i = 1; i <= this.ranks.Count; i++)
             {
                 if (this.ranks[i].Guid.Equals(rankGuid))
                 {
@@ -192,7 +191,7 @@
         {
             GroupRank rank = this.GetRank(rankIndex);
             GroupRank replacementRank;
-            if (rankIndex.Equals(this.ranks.Count()))
+            if (rankIndex.Equals(this.ranks.Count))
             {
                 replacementRank = this.ranks[rankIndex - 1];
             }

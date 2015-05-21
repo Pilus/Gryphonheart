@@ -66,7 +66,7 @@
     <Compile Include="General\Inheriter.cs" />
     <Compile Include="General\NonStaticClass.cs" />
     <Compile Include="General\StaticClass.cs" />
-    <Compile Include="ITest.cs" />
+    <Compile Include="ITestSuite.cs" />
     <Compile Include="Override\Base.cs" />
     <Compile Include="Override\Inheriter.cs" />
     <Compile Include="Override\Level1.cs" />
@@ -92,6 +92,8 @@
     <Compile Include="Serialization\ClassWithNativeObjects.cs" />
     <Compile Include="Serialization\ClassWithSubObject.cs" />
     <Compile Include="Serialization\SerializationTests.cs" />
+    <Compile Include="TryCatchFinally\CustomException.cs" />
+    <Compile Include="TryCatchFinally\TryCatchFinallyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

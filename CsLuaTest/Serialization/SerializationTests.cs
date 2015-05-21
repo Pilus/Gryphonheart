@@ -7,11 +7,11 @@
     public class SerializationTests : BaseTest
     {
 
-        public override void PerformTests()
+        public SerializationTests()
         {
-            TestBasicSerializableClass();
-            TestClassWithSubObject();
-            TestClassInCsLuaList();
+            this.Tests["TestBasicSerializableClass"] = TestBasicSerializableClass;
+            this.Tests["TestClassWithSubObject"] = TestClassWithSubObject;
+            this.Tests["TestClassInCsLuaList"] = TestClassInCsLuaList;
         }
 
         private static void TestBasicSerializableClass()

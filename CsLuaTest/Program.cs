@@ -1,6 +1,7 @@
 ﻿
 namespace CsLuaTest
 {
+    using TryCatchFinally;
     using AmbigousMethods;
     using CsLua.Collection;
     using DefaultValues;
@@ -13,8 +14,9 @@ namespace CsLuaTest
     {
         static void Main(string[] args)
         {
-            var tests = new CsLuaList<ITest>()
+            var tests = new CsLuaList<ITestSuite>()
             {
+                new TryCatchFinallyTests(),
                 new GeneralTests(),
                 new AmbigousMethodsTests(),
                 new OverrideTest(),

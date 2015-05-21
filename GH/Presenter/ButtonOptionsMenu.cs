@@ -1,7 +1,5 @@
 ﻿namespace GH.Presenter
 {
-    using System;
-    using System.Linq;
     using BlizzardApi.Global;
     using Menu;
     using Menu.Menus;

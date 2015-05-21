@@ -1,27 +1,22 @@
 ﻿--TargetFile: CsLua.lua
 
 CsLua = CsLua or {};
-CsLua.GetType = function(obj)
-    if type(obj) == "table" and obj.__type then
-        return obj.__type;
-    end
-    return type(obj);
-end
-
-CsLua.GetFullTypeName = function(obj)
-    if type(obj) == "table" and obj.__fullTypeName then
-        return obj.__fullTypeName;
-    end
-end
 
 CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, initialize, serialize, deserialize, implements)
 	class.__type = name;
 	class.__fullTypeName = fullName;
-	class.__IsType = function(typeName) return typeName == name or typeName == object; end
+	class.__IsType = function(typeName) 
+		for _,type in ipairs(class.__GetSignature()) do
+			if type == typeName then
+				return true;
+			end
+		end
+		return false
+	end
 	class.__GetOverrides = function() return {}; end
 	class.__GetSignature = function() 
 		local t = {fullName};
-		for _,v in ipairs(implements) do
+		for _,v in ipairs(implements or {}) do
 			table.insert(t, v);
 		end
 		table.insert(t, "object");

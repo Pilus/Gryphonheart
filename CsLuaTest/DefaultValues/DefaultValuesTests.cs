@@ -2,16 +2,15 @@
 {
     public class DefaultValuesTests : BaseTest
     {
-
-        public override void PerformTests()
+        public DefaultValuesTests()
         {
-            DefaultInt();
-            DefaultBool();
-            DefaultString();
-            DefaultEnum();
-            DefaultAction();
-            DefaultFunc();
-            DefaultClass();
+            this.Tests["DefaultInt"] = DefaultInt;
+            this.Tests["DefaultBool"] = DefaultBool;
+            this.Tests["DefaultString"] = DefaultString;
+            this.Tests["DefaultEnum"] = DefaultEnum;
+            this.Tests["DefaultAction"] = DefaultAction;
+            this.Tests["DefaultFunc"] = DefaultFunc;
+            this.Tests["DefaultClass"] = DefaultClass;
         }
 
         public static void DefaultInt()

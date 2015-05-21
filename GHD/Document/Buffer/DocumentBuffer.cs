@@ -1,7 +1,6 @@
 ﻿
 namespace GHD.Document.Buffer
 {
-    using System.Reflection.Emit;
     using Containers;
     using CsLua;
     using CsLua.Collection;

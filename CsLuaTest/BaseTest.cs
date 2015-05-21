@@ -1,12 +1,32 @@
 ﻿namespace CsLuaTest
 {
+    using System;
+    using CsLua.Collection;
     using CsLua;
     using Lua;
 
-    public abstract class BaseTest : ITest
+    public abstract class BaseTest : ITestSuite
     {
         public static string Output = "";
-        public abstract void PerformTests();
+
+        public CsLuaDictionary<string, Action> Tests
+        {
+            get; protected set;
+        }
+
+        public BaseTest()
+        {
+            this.Tests = new CsLuaDictionary<string, Action>();
+        }
+
+        public void PerformTests()
+        {
+            foreach (var test in this.Tests)
+            {
+                ResetOutput();
+                test.Value();
+            }
+        }
 
         protected static void ResetOutput()
         {
