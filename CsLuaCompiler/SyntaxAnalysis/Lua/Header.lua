@@ -46,7 +46,7 @@ end
 
 local __EnumParse = function(typeName, value, doNotThrow)
 	local enumTable = __GetByFullName(typeName, doNotThrow);
-	if (enumTable) then
+	if type(enumTable) == "table" then
 		for i,v in pairs(enumTable) do
 			if string.lower(value) == string.lower(i) then
 				return v;
@@ -72,7 +72,7 @@ local __GetDefaultValue = function(type, isNullable, generics)
 		return nil;
 	end
 
-	for _,v in ipairs(generics) do
+	for _,v in ipairs(generics or {}) do
 		if v == type then
 			return nil;
 		end
@@ -122,6 +122,8 @@ local __GetSignatures = function(...)
 		if type(obj) == "table" then
 			if (obj.__GetSignature) then
 				signatures[i] = obj.__GetSignature();
+			elseif type(obj.GetObjectType) == "function" then
+				table.insert(signatures[i], 1, "BlizzardApi.WidgetInterfaces.INativeUIObject");
 			else
 				table.insert(signatures[i], 1, "Lua.NativeLuaTable");
 			end
@@ -133,6 +135,7 @@ local __GetSignatures = function(...)
 		elseif type(obj) == "number" then
 			table.insert(signatures[i], 1, "double");
 			table.insert(signatures[i], 1, "int");
+			table.insert(signatures[i], 1, "long");
 		elseif type(obj) == "string" then
 			table.insert(signatures[i], 1, "string");
 		elseif type(obj) == "nil" then
@@ -237,7 +240,7 @@ local __SignatureToString = function(signature)
 	return string.join(", ", unpack(args));
 end
 
-local __CreateClass = function(info) -- fullName, name, getElements, inherits, implements, isStatic, isIndexer, isDictionary, isSerializable
+local __CreateClass = function(info)
 	local staticValues;
 	local namespaceElement = {};
 	local staticOverride;
@@ -299,7 +302,11 @@ local __CreateClass = function(info) -- fullName, name, getElements, inherits, i
 
 	local getStaticValue = function(key)
 		loadStaticOverride();
-		return staticValues[key] or not(staticOverride == nil) and staticOverride[key] or nil;
+		if not(staticValues[key] == nil) then
+			return staticValues[key];
+		end
+
+		return not(staticOverride == nil) and staticOverride[key] or nil;
 	end
 
 	local initializeClass = function(generics, overridingClass)
@@ -633,3 +640,12 @@ local __Struct = function(typeName, implements)
 	return function() return t; end;
 end
 
+System = System or {};
+System.Action = function() 
+	return {
+		__Cstor = function(func) return func; end,
+	};
+end
+System.Enum = {
+	Parse = __EnumParse,
+}

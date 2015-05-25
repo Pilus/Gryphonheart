@@ -109,26 +109,26 @@
                 button.SetIcon(quickButton.Icon);
                 button.EnterCallback = () =>
                 {
-                    Global.GameTooltip.SetOwner(button.Button, BlizzardApi.WidgetEnums.TooltipAnchor.ANCHOR_TOPLEFT);
-                    Global.GameTooltip.AddLine(quickButton.Tooltip);
-                    Global.GameTooltip.Show();
+                    Global.Frames.GameTooltip.SetOwner(button.Button, BlizzardApi.WidgetEnums.TooltipAnchor.ANCHOR_TOPLEFT);
+                    Global.Frames.GameTooltip.AddLine(quickButton.Tooltip);
+                    Global.Frames.GameTooltip.Show();
                 };
 
                 button.LeaveCallback = () =>
                 {
-                    var tooltipOwner = Global.GameTooltip.GetOwner();
+                    var tooltipOwner = Global.Frames.GameTooltip.GetOwner();
                     if (tooltipOwner != null && tooltipOwner.self == button.Button.self)
                     {
-                        Global.GameTooltip.Hide();
+                        Global.Frames.GameTooltip.Hide();
                     }
                 };
 
                 button.HideCallback = () =>
                 {
-                    var tooltipOwner = Global.GameTooltip.GetOwner();
+                    var tooltipOwner = Global.Frames.GameTooltip.GetOwner();
                     if (tooltipOwner != null && tooltipOwner.self == button.Button.self)
                     {
-                        Global.GameTooltip.Hide();
+                        Global.Frames.GameTooltip.Hide();
                     }
                 };
                 button.ClickCallback = quickButton.Action;

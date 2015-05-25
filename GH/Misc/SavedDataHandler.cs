@@ -34,11 +34,11 @@
 
         public NativeLuaTable GetAll()
         {
-            var dataTable = Global.GetGlobal(this.tableName) as NativeLuaTable;
+            var dataTable = Global.Api.GetGlobal(this.tableName) as NativeLuaTable;
             if (dataTable == null)
             {
                 dataTable = new NativeLuaTable();
-                Global.SetGlobal(this.tableName, dataTable);
+                Global.Api.SetGlobal(this.tableName, dataTable);
             }
 
             if (this.subTableName == null)

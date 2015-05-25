@@ -2,15 +2,16 @@
 
 CsLua = CsLua or {};
 CsLua.CsException = function()
-	local msg = "";
-	local class = {};
 	
-	local cstor = function(m)
-		msg = m;
+	local class = {};
+	class.Message = "";
+	
+	local cstor = function(msg)
+		class.Message = msg;
 	end
 
 	class.ToString = function()
-		return msg;
+		return class.Message;
 	end
 
 	CsLua.CreateSimpleClass(class, class, "CsException", "CsLua.CsException", cstor, nil, nil, nil, nil)
@@ -20,9 +21,10 @@ end;
 
 CsLua.NotImplementedException = function()
 	local class = {};
+	class.Message = "Functionality not implemented.";
 
 	class.ToString = function()
-		return "Functionality not implemented.";
+		return class.Message;
 	end
 
 	CsLua.CreateSimpleClass(class, class, "NotImplementedException", "CsLua.NotImplementedException", nil, nil, nil, nil, {"CsLua.CsException"})

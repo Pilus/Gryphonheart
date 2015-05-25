@@ -11,7 +11,7 @@ namespace GHD.Document
 
         static TextScoper()
         {
-            FontString = Global.UIParent.CreateFontString();
+            FontString = Global.Frames.UIParent.CreateFontString();
         }
 
         public static double GetWidth(string fontPath, int fontSize, string text)

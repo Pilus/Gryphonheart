@@ -42,7 +42,7 @@
     <Compile Include="Events\SystemEvent.cs" />
     <Compile Include="FrameUtil.cs" />
     <Compile Include="Global\Custom.cs" />
-    <Compile Include="Global\Frame.cs" />
+    <Compile Include="Global\Global.cs" />
     <Compile Include="Global\Settings.cs" />
     <Compile Include="Global\System.cs" />
     <Compile Include="Global\Unit.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="WidgetEnums\ButtonState.cs" />
     <Compile Include="WidgetEnums\ClickType.cs" />
     <Compile Include="WidgetEnums\FramePoint.cs" />
-    <Compile Include="Global\GlobalFrames.cs" />
+    <Compile Include="Global\IFrames.cs" />
     <Compile Include="Global\InterfaceOptions.cs" />
     <Compile Include="WidgetEnums\FrameStrata.cs" />
     <Compile Include="WidgetEnums\FrameType.cs" />

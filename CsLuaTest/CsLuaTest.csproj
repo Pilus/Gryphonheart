@@ -61,6 +61,7 @@
     <Compile Include="DefaultValues\DefaultValuesTests.cs" />
     <Compile Include="DefaultValues\ReferencedClass.cs" />
     <Compile Include="General\Base.cs" />
+    <Compile Include="General\ClassAmb.cs" />
     <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
     <Compile Include="General\GeneralTests.cs" />
     <Compile Include="General\Inheriter.cs" />

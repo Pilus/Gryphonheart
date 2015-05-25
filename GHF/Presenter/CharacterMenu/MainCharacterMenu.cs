@@ -42,7 +42,7 @@ namespace GHF.Presenter.CharacterMenu
 
         public void Show()
         {
-            this.profile = this.model.AccountProfiles.Get(Global.UnitName(UnitId.player));
+            this.profile = this.model.AccountProfiles.Get(Global.Api.UnitName(UnitId.player));
 
             foreach (var characterMenuTab in this.tabs)
             {
@@ -59,7 +59,7 @@ namespace GHF.Presenter.CharacterMenu
                 characterMenuTab.Save();
             }
 
-            this.model.AccountProfiles.Set(Global.UnitName(UnitId.player), this.profile);
+            this.model.AccountProfiles.Set(Global.Api.UnitName(UnitId.player), this.profile);
         }
     }
 }

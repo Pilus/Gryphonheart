@@ -9,7 +9,7 @@ namespace GH.Model.Defaults
     {
         public static void AddToModel(IIdObjectListWithDefaults<ISetting, SettingIds> settingsList)
         {
-            settingsList.SetDefault(new Setting(SettingIds.ButtonPosition, new double[] { Global.UIParent.GetWidth() / 2, Global.UIParent.GetHeight() / 2 }));
+            settingsList.SetDefault(new Setting(SettingIds.ButtonPosition, new double[] { Global.Frames.UIParent.GetWidth() / 2, Global.Frames.UIParent.GetHeight() / 2 }));
 
             settingsList.SetDefault(new Setting(SettingIds.QuickButtonShowAnimation, ClusterButtonAnimationType.Instant));
             settingsList.SetDefault(new Setting(SettingIds.QuickButtonHideAnimation, ClusterButtonAnimationType.Instant));

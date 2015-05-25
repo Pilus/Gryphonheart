@@ -8,6 +8,8 @@
             this.Tests["NonStaticClassWithStaticMethod"] = NonStaticClassWithStaticMethod;
             this.Tests["TestVariableTypeVsVariableName"] = TestVariableTypeVsVariableName;
             this.Tests["GetConstValueFromBase"] = GetConstValueFromBase;
+            this.Tests["ConstructorShouldUseArgumentsOverClassElements"] = ConstructorShouldUseArgumentsOverClassElements;
+            this.Tests["MethodShouldUseArgumentsOverClassElements"] = MethodShouldUseArgumentsOverClassElements;
         }
 
         private static void TestStaticClassWithMethod()
@@ -32,6 +34,19 @@
         private static void GetConstValueFromBase()
         {
             Assert(50, Inheriter.GetConstValue());
+        }
+
+        private static void ConstructorShouldUseArgumentsOverClassElements()
+        {
+            var classA = new ClassAmb("X");
+            Assert("X", classA.GetAmbValue());
+        }
+
+        private static void MethodShouldUseArgumentsOverClassElements()
+        {
+            var classA = new ClassAmb("X");
+            classA.SetAmbValue("Y");
+            Assert("Y", classA.GetAmbValue());
         }
     }
 }

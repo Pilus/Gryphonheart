@@ -15,7 +15,7 @@ namespace GH.Menu
     {
         public static IMenu NewFrame(object owner, MenuProfile profile)
         {
-            var menuAction = Global.GetGlobal("GHM_NewFrame") as Func<object, MenuProfile, IMenu>;
+            var menuAction = Global.Api.GetGlobal("GHM_NewFrame") as Func<object, MenuProfile, IMenu>;
             if (menuAction != null)
             {
                 return menuAction(owner, profile);
@@ -28,7 +28,7 @@ namespace GH.Menu
 
         public static IMenuObject NewObject(IObjectProfile profile, object parent, object settings)
         {
-            var menuObjectFunc = Global.GetGlobal("GHM_BaseObject") as Func<IObjectProfile, object, object, IMenuObject>;
+            var menuObjectFunc = Global.Api.GetGlobal("GHM_BaseObject") as Func<IObjectProfile, object, object, IMenuObject>;
             if (menuObjectFunc != null)
             {
                 return menuObjectFunc(profile, parent, settings);
@@ -41,7 +41,7 @@ namespace GH.Menu
 
         public static ILine NewLine(LineProfile profile, object parent, object settings)
         {
-            var func = Global.GetGlobal("GHM_Line") as Func<LineProfile, object, object, ILine>;
+            var func = Global.Api.GetGlobal("GHM_Line") as Func<LineProfile, object, object, ILine>;
             if (func != null)
             {
                 return func(profile, parent, settings);
@@ -54,7 +54,7 @@ namespace GH.Menu
 
         public static IPage NewPage(PageProfile profile, object parent, object settings)
         {
-            var func = Global.GetGlobal("GHM_Page") as Func<PageProfile, object, object, IPage>;
+            var func = Global.Api.GetGlobal("GHM_Page") as Func<PageProfile, object, object, IPage>;
             if (func != null)
             {
                 return func(profile, parent, settings);

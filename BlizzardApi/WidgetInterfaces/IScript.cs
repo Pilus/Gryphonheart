@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IScript<T, T2>
+    public interface IScript<T>
     {
         /// <summary>
         /// Set the function to use for a handler on this frame.
@@ -11,11 +11,11 @@
         /// <param name="handler"></param>
         /// <param name="function"></param>
         void SetScript(T handler, Action function);
-        void SetScript(T handler, Action<T2> function);
-        void SetScript(T handler, Action<T2, object> function);
-        void SetScript(T handler, Action<T2, object, object> function);
-        void SetScript(T handler, Action<T2, object, object, object> function);
-        void SetScript(T handler, Action<T2, object, object, object, object> function);
+        void SetScript(T handler, Action<INativeUIObject> function);
+        void SetScript(T handler, Action<INativeUIObject, object> function);
+        void SetScript(T handler, Action<INativeUIObject, object, object> function);
+        void SetScript(T handler, Action<INativeUIObject, object, object, object> function);
+        void SetScript(T handler, Action<INativeUIObject, object, object, object, object> function);
 
         /// <summary>
         /// Get the function for one of this frame's handlers.

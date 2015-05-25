@@ -1,18 +1,10 @@
 ﻿
 namespace BlizzardApi.Global
 {
-    using System;
-    
-    public static partial class Global
+    partial interface IApi
     {
-        public static object GetGlobal(string index)
-        {
-            throw new NotImplementedException(); 
-        }
+        object GetGlobal(string index);
 
-        public static void SetGlobal(string index, object value)
-        {
-            throw new NotImplementedException();
-        }
+        void SetGlobal(string index, object value);
     }
 }

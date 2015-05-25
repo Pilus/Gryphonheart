@@ -91,7 +91,7 @@ namespace GHD.Document.KeyboardInput
         new public Action OnUpdate { get; set; }
         private void OnUpdateHandler()
         {
-            var t = Global.GetTime();
+            var t = Global.Api.GetTime();
             if (t - this.lastDetectionTime > MinimumSampleTime && this.state == State.Ready && Strings.strlen(base.GetText()) > 0)
             {
                 this.lastDetectionTime = t;

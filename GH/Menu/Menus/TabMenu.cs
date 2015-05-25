@@ -64,7 +64,7 @@ namespace GH.Menu.Menus
         private void CreateTabButtons()
         {
             this.tabButtons = new CsLuaDictionary<int, IButton>();
-            var setTabFunc = (Action<INativeUIObject, int>)Global.GetGlobal("PanelTemplates_SetTab");
+            var setTabFunc = (Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
 
             for (var i = 0; i < this.Pages.Count; i++)
             {
@@ -85,7 +85,7 @@ namespace GH.Menu.Menus
                     page.Show();
                 });
             }
-            ((Action<INativeUIObject, int>)Global.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.self, this.Pages.Count);
+            ((Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.self, this.Pages.Count);
         }
 
         private static void InvokeClick(IButton button)

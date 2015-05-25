@@ -72,14 +72,14 @@ namespace GHD.Document.KeyboardInput
         public Action OnCursorChanged { get; set; }
         public Action OnUpdate { get; set; }
 
-        private void OnUpdateHandler(IFrame self)
+        private void OnUpdateHandler(INativeUIObject self)
         {
             if (this.OnUpdate != null)
             {
                 this.OnUpdate();
             }
         }
-        private void OnTextChangedHandler(IEditBox self)
+        private void OnTextChangedHandler(INativeUIObject self)
         {
             if (this.OnTextChanged != null)
             {
@@ -87,7 +87,7 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
-        private void OnCursorChangedHandler(IEditBox self)
+        private void OnCursorChangedHandler(INativeUIObject self)
         {
             if (this.OnCursorChanged != null)
             {
@@ -95,21 +95,21 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
-        private void OnEscapePressedHandler(IEditBox self)
+        private void OnEscapePressedHandler(INativeUIObject self)
         {
             if (this.OnEscapePressed != null)
             {
                 this.OnEscapePressed();
             }
         }
-        private void OnTabPressedHandler(IEditBox self)
+        private void OnTabPressedHandler(INativeUIObject self)
         {
             if (this.OnTabPressed != null)
             {
                 this.OnTabPressed();
             }
         }
-        private void OnEnterPressedHandler(IEditBox self)
+        private void OnEnterPressedHandler(INativeUIObject self)
         {
             if (this.OnEnterPressed != null)
             {
@@ -117,7 +117,7 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
-        private void OnArrowPressedHandler(IEditBox self, object key)
+        private void OnArrowPressedHandler(INativeUIObject self, object key)
         {
             if (this.OnArrowPressed != null)
             {

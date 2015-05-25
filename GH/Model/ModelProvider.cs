@@ -1,5 +1,6 @@
 ﻿namespace GH.Model
 {
+    using System;
     using Lua;
     using ObjectHandling;
     using Misc;
@@ -16,12 +17,12 @@
         {
             this.ButtonList = new IdObjectListWithDefaults<IQuickButton, string>("GH_Buttons");
             
-            this.Settings = new IdObjectListWithDefaults<ISetting, SettingIds>("GH_Settings");            
+            this.Settings = new IdObjectListWithDefaults<ISetting, SettingIds>("GH_Settings");
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
         }
 
-        private void OnVariablesLoaded()
+        private void OnVariablesLoaded(SystemEvent eventName)
         {
             DefaultQuickButtons.AddToModel(this.ButtonList);
             DefaultSettings.AddToModel(this.Settings);

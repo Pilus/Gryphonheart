@@ -3,12 +3,8 @@ namespace BlizzardApi.Global
 {
     using MiscEnums;
 
-    public static partial class Global
+    public partial interface IApi
     {
-        public static string UnitName(UnitId index)
-        {
-            return "Unknown";
-        }
-
+        string UnitName(UnitId index);
     }
 }

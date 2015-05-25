@@ -25,7 +25,7 @@ namespace GH.Menu.Menus
         public BaseMenu(MenuProfile profile)
         {
             this.Pages = new CsLuaList<IPage>();
-            this.Frame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, profile.name, Global.UIParent);
+            this.Frame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, profile.name, Global.Frames.UIParent);
 
             this.LoadPagesFromProfile(profile);
             this.HandleOnShow(profile);
@@ -67,7 +67,7 @@ namespace GH.Menu.Menus
 
         private void HandleOnShow(MenuProfile profile)
         {
-            var layerHandle = Global.GetGlobal("GHM_LayerHandle") as Action<INativeUIObject>;
+            var layerHandle = Global.Api.GetGlobal("GHM_LayerHandle") as Action<INativeUIObject>;
             this.Frame.SetScript(FrameHandler.OnShow, () =>
                 {
                     layerHandle(this.Frame.self);

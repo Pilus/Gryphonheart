@@ -15,7 +15,7 @@
         public ModelProvider()
         {
             var formatter = new TableFormatter<IProfile>();
-            this.AccountProfiles = new IdObjectList<IProfile, string>(formatter, new SavedDataHandler("GHF_AccountProfiles", Global.GetRealmName()));
+            this.AccountProfiles = new IdObjectList<IProfile, string>(formatter, new SavedDataHandler("GHF_AccountProfiles", Global.Api.GetRealmName()));
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
 
@@ -25,7 +25,7 @@
 
         private void SetPlayerProfileIfMissing()
         {
-            var playerName = Global.UnitName(UnitId.player);
+            var playerName = Global.Api.UnitName(UnitId.player);
             var ownProfile = this.AccountProfiles.Get(playerName);
             if (ownProfile != null)
             {
@@ -37,7 +37,7 @@
             this.AccountProfiles.Set(playerName, profile);
         }
 
-        private void OnVariablesLoaded()
+        private void OnVariablesLoaded(SystemEvent eventName)
         {
             this.AccountProfiles.LoadFromSaved();
             this.SetPlayerProfileIfMissing();

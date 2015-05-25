@@ -112,7 +112,7 @@ CsLua.Collection.SerializedInfo = function()
 		end
 		
 		local n = obj.__TableString();
-		info[n] = info[n] or { __type = CsLua.GetFullTypeName(obj) };
+		info[n] = info[n] or { __type = obj.__fullTypeName, };
 		
 		if name then
 			info[n][name] = value;

@@ -9,9 +9,9 @@ namespace GH.UIModules
     {
         public static void Register(string cmd, Action<string> func)
         {
-            var slashCmdList = (NativeLuaTable) Global.GetGlobal("SlashCmdList");
+            var slashCmdList = (NativeLuaTable) Global.Api.GetGlobal("SlashCmdList");
             slashCmdList[cmd] = func;
-            Global.SetGlobal("SLASH_" + cmd + "1", "/" + cmd);
+            Global.Api.SetGlobal("SLASH_" + cmd + "1", "/" + cmd);
         }
     }
 }

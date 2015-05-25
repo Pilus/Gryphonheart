@@ -40,7 +40,7 @@
         public void Show()
         {
             var yOff = this.attachedFrame.GetHeight() + BarHeight + (BorderSize*2);
-            this.dragableButton.SetPosition(Global.UIParent.GetWidth() / 2, (Global.UIParent.GetHeight() + yOff)/ 2);
+            this.dragableButton.SetPosition(Global.Frames.UIParent.GetWidth() / 2, (Global.Frames.UIParent.GetHeight() + yOff)/ 2);
             this.dragableButton.Button.Show();
         }
 

@@ -6,11 +6,8 @@ namespace BlizzardApi.Global
     
     using WidgetInterfaces;
 
-    public static partial class Global
+    public partial interface IApi
     {
-        public static void InterfaceOptions_AddCategory(IFrame frame)
-        {
-            throw new NotImplementedException();
-        }
+        void InterfaceOptions_AddCategory(IFrame frame);
     }
 }

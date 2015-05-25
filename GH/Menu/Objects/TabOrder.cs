@@ -17,7 +17,7 @@
 
         private static double GetSpaceAboveObject(ITabableObject obj)
         {
-            return Global.UIParent.GetHeight() - obj.GetTop();
+            return Global.Frames.UIParent.GetHeight() - obj.GetTop();
         }
 
         private static double GetSpaceBelowObject(ITabableObject obj)
@@ -31,7 +31,7 @@
 
         private static double GetSpaceRightOfObject(ITabableObject obj)
         {
-            return Global.UIParent.GetWidth() - obj.GetRight();
+            return Global.Frames.UIParent.GetWidth() - obj.GetRight();
         }
 
         public ITabableObject GetHigherObject(ITabableObject obj)

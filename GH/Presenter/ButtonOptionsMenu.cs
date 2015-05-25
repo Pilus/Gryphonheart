@@ -33,7 +33,7 @@
             var menuProfile = this.profileGenerator.GenerateMenuProfile();
             this.menu = BaseMenu.CreateMenu(menuProfile);
             this.menu["name"] = Name;
-            Global.InterfaceOptions_AddCategory(this.menu.Frame);
+            Global.Api.InterfaceOptions_AddCategory(this.menu.Frame);
         }
     }
 }

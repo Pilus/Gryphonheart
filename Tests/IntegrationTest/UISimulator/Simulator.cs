@@ -1,6 +1,7 @@
 ﻿
 namespace Tests.IntegrationTest.UISimulator
 {
+    using Moq;
     using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
@@ -11,7 +12,13 @@ namespace Tests.IntegrationTest.UISimulator
         public Simulator()
         {
             FrameUtil.FrameProvider = new SimulatorFrameProvider();
-            Global.UIParent = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
+            var framesMock = new Mock<IFrames>();
+
+            var uiParent = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
+
+            framesMock.Setup(frames => frames.UIParent).Returns(uiParent);
+
+            Global.Frames = framesMock.Object;
         }
     }
 }

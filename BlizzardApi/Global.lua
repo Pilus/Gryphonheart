@@ -1,8 +1,9 @@
 ﻿GetGlobal = function(index) return _G[index]; end
 SetGlobal = function(index, value) _G[index] = value; end
 
-Global = {}
-setmetatable(Global, {
+
+local returnGlobal = {};
+setmetatable(returnGlobal, {
 	__index = function(_, key)
 		if type(_G[key]) == "function" then
 			return function(...)
@@ -24,3 +25,9 @@ setmetatable(Global, {
 	__newindex = function(_, key, value)
 	end,
 });
+BlizzardApi.Global = { 
+	Global = {
+		Api = returnGlobal,
+		Frames = returnGlobal,
+	}
+}

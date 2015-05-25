@@ -98,14 +98,14 @@
         public void AddMember(WoWGuid guid, string name, WoWGuid rankGuid)
         {
             this.members.Add(new GroupMember(guid, name, rankGuid));
-            this.logEvents.Add(new LogEvent(LogEventType.Invite, Global.UnitName(UnitId.player), new[] {this.Name}));
+            this.logEvents.Add(new LogEvent(LogEventType.Invite, Global.Api.UnitName(UnitId.player), new[] {this.Name}));
         }
 
         public void RemoveMember(WoWGuid guid)
         {
             GroupMember member = this.GetMember(guid);
             this.members.Remove(member);
-            this.logEvents.Add(new LogEvent(LogEventType.Remove, Global.UnitName(UnitId.player), new[] { this.Name }));
+            this.logEvents.Add(new LogEvent(LogEventType.Remove, Global.Api.UnitName(UnitId.player), new[] { this.Name }));
         }
 
         #endregion
@@ -184,7 +184,7 @@
             LogEventType eventType = this.GetRankIndex(oldRankGuid) >= this.GetRankIndex(rankGuid)
                 ? LogEventType.Promote
                 : LogEventType.Demote;
-            this.logEvents.Add(new LogEvent(eventType, Global.UnitName(UnitId.player), new[] { this.Name }));
+            this.logEvents.Add(new LogEvent(eventType, Global.Api.UnitName(UnitId.player), new[] { this.Name }));
         }
 
         public void DeleteRank(int rankIndex)

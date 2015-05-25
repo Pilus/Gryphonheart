@@ -58,7 +58,7 @@ namespace GHD.Document.KeyboardInput
             var pos = this.textBox.GetCursorPosition();
             if (pos == 0)
             {
-                if (Global.IsShiftKeyDown())
+                if (Global.Api.IsShiftKeyDown())
                 {
                     this.callback(EditInputType.MarkHome, null);
                 }
@@ -69,7 +69,7 @@ namespace GHD.Document.KeyboardInput
             }
             else if (pos == TestTextHalfLen * 2)
             {
-                if (Global.IsShiftKeyDown())
+                if (Global.Api.IsShiftKeyDown())
                 {
                     this.callback(EditInputType.MarkEnd, null);
                 }
@@ -106,16 +106,16 @@ namespace GHD.Document.KeyboardInput
             switch (key)
             {
                 case "UP":
-                    this.callback(Global.IsShiftKeyDown() ? EditInputType.MarkUp : EditInputType.Up, null);
+                    this.callback(Global.Api.IsShiftKeyDown() ? EditInputType.MarkUp : EditInputType.Up, null);
                     break;
                 case "DOWN":
-                    this.callback(Global.IsShiftKeyDown() ? EditInputType.MarkDown : EditInputType.Down, null);
+                    this.callback(Global.Api.IsShiftKeyDown() ? EditInputType.MarkDown : EditInputType.Down, null);
                     break;
                 case "LEFT":
-                    this.callback(Global.IsShiftKeyDown() ? EditInputType.MarkLeft : EditInputType.Left, null);
+                    this.callback(Global.Api.IsShiftKeyDown() ? EditInputType.MarkLeft : EditInputType.Left, null);
                     break;
                 case "RIGHT":
-                    this.callback(Global.IsShiftKeyDown() ? EditInputType.MarkRight : EditInputType.Right, null);
+                    this.callback(Global.Api.IsShiftKeyDown() ? EditInputType.MarkRight : EditInputType.Right, null);
                     break;
                 default:
                     throw new CsException("Unknown key " + key);

@@ -14,7 +14,7 @@ namespace GH.Model.Defaults
                 "helm", 1, true, "Toggle helm", "Interface\\Icons\\INV_Helmet_03",
                 () =>
                 {
-                    Global.ShowHelm(!Global.ShowingHelm());
+                    Global.Api.ShowHelm(!Global.Api.ShowingHelm());
                 }, 
                 AddOnReference.None
             ),
@@ -22,7 +22,7 @@ namespace GH.Model.Defaults
                 "cloak", 2, true, "Toggle cloak", "Interface\\Icons\\INV_Misc_Cape_18",
                 () =>
                 {
-                    Global.ShowCloak(!Global.ShowingCloak());
+                    Global.Api.ShowCloak(!Global.Api.ShowingCloak());
                 },
                 AddOnReference.None
             ),

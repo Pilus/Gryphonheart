@@ -5,7 +5,7 @@
     using Lua;
     using WidgetEnums;
 
-    public interface IFrame : IUIObject, IRegion, IScript<FrameHandler, IFrame>
+    public interface IFrame : IUIObject, IRegion, IScript<FrameHandler>
     {
 
         /// <summary>

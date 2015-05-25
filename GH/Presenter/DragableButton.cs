@@ -6,6 +6,7 @@ namespace GH.Presenter
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using Lua;
 
     public class DragableButton
     {
@@ -27,7 +28,7 @@ namespace GH.Presenter
 
         public DragableButton(double size)
         {
-            this.Button = FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, Global.UIParent) as IButton;
+            this.Button = FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, Global.Frames.UIParent) as IButton;
             this.Button.SetWidth(size);
             this.Button.SetHeight(size);
             this.SetUpButton();
@@ -41,7 +42,7 @@ namespace GH.Presenter
 
         private void SetUpButton()
         {
-            this.Button.SetPoint(FramePoint.CENTER, Global.UIParent, FramePoint.CENTER, 0, 0);
+            this.Button.SetPoint(FramePoint.CENTER, Global.Frames.UIParent, FramePoint.CENTER, 0, 0);
 
             this.Button.RegisterForDrag(MouseButton.LeftButton);
             this.Button.SetMovable(true);
@@ -52,11 +53,10 @@ namespace GH.Presenter
             this.Button.SetScript(FrameHandler.OnEnter, this.OnEnter);
             this.Button.SetScript(FrameHandler.OnLeave, this.OnLeave);
             this.Button.SetScript(ButtonHandler.OnClick, this.OnClick);
-            this.Button.SetScript(FrameHandler.OnUpdate, this.OnUpdate);
             this.Button.SetScript(FrameHandler.OnHide, this.OnHide);
         }
 
-        private void OnEnter()
+        private void OnEnter(INativeUIObject self, object arg1)
         {
             if (this.EnterCallback != null)
             {
@@ -84,7 +84,7 @@ namespace GH.Presenter
         {
             this.beingDragged = true;
 
-            var cursorPos = Global.GetCursorPosition();
+            var cursorPos = Global.Api.GetCursorPosition();
             var scale = this.Button.GetEffectiveScale();
 
             var x = cursorPos.Item1 / scale;
@@ -102,11 +102,11 @@ namespace GH.Presenter
             }
         }
 
-        private void OnUpdate()
+        private void OnUpdate(INativeUIObject self, object elapsed)
         {
-            if (this.beingDragged && (Global.IsShiftKeyDown() || this.DragWithoutShift))
+            if (this.beingDragged && (Global.Api.IsShiftKeyDown() || this.DragWithoutShift))
             {
-                var cursorPos = Global.GetCursorPosition();
+                var cursorPos = Global.Api.GetCursorPosition();
                 var scale = this.Button.GetEffectiveScale();
 
                 var x = cursorPos.Item1 / scale;
@@ -130,7 +130,7 @@ namespace GH.Presenter
 
         public void SetPosition(double x, double y)
         {
-            this.Button.SetPoint(FramePoint.CENTER, Global.UIParent, FramePoint.BOTTOMLEFT, x, y);
+            this.Button.SetPoint(FramePoint.CENTER, Global.Frames.UIParent, FramePoint.BOTTOMLEFT, x, y);
             this.currentX = x;
             this.currentY = y;
         }

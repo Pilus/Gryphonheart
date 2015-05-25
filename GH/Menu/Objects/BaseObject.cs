@@ -37,7 +37,7 @@ namespace GH.Menu.Objects
             while (true)
             {
                 var n = type + Strings.tostring(c);
-                var obj = Global.GetGlobal(n);
+                var obj = Global.Api.GetGlobal(n);
                 if (obj == null)
                 {
                     return n;
@@ -85,7 +85,7 @@ namespace GH.Menu.Objects
 
             obj.SetScript(EditBoxHandler.OnTabPressed, () =>
             {
-                if (Global.IsShiftKeyDown())
+                if (Global.Api.IsShiftKeyDown())
                 {
                     var previous = this.settings.TabOrder.GetHigherObject(obj);
                     if (previous != null)
