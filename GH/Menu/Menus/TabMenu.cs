@@ -73,7 +73,7 @@ namespace GH.Menu.Menus
                 var button = this.CreateButtonFrame(i);
                 button.SetText(page.Name);
 
-                button.SetScript(ButtonHandler.OnClick, () =>
+                button.SetScript(ButtonHandler.OnClick, (self) =>
                 {
                     setTabFunc(this.Frame.self, button.GetID());
                     if (this.currentPage != null)

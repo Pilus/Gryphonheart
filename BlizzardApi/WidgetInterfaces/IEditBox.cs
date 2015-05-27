@@ -3,7 +3,7 @@
     using BlizzardApi.WidgetEnums;
     using System;
 
-    public interface IEditBox : IFrame, IFontInstance, IScript<EditBoxHandler>
+    public interface IEditBox : IFrame, IFontInstance, IScript<EditBoxHandler, IEditBox>
     {
         void SetText(string text); // - Set the text contained in the edit box.
         void AddHistoryLine(string text); // - Add text to the edit history.

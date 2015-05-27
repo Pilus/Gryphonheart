@@ -7,7 +7,7 @@
     using CsLua.Attributes;
 
     [ProvideSelf]
-    public interface IFrame : IUIObject, IRegion, IScript<FrameHandler>
+    public interface IFrame : IUIObject, IRegion, IScript<FrameHandler, IFrame>
     {
 
         /// <summary>

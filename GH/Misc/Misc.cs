@@ -28,7 +28,7 @@ namespace GH.Misc
             var frame = FrameUtil.FrameProvider.CreateFrame(FrameType.Frame) as IFrame;
             frame.RegisterEvent(eventName);
 
-            var wrapperFunc = new Action<INativeUIObject, object>((callingFrame, o) =>
+            var wrapperFunc = new Action<IFrame, object>((callingFrame, o) =>
             {
                 func((SystemEvent)Enum.Parse(typeof(SystemEvent), (string)o));
             });

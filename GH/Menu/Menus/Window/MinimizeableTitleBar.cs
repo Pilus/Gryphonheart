@@ -23,21 +23,21 @@
             this.restoreButton.Hide();
         }
 
-        public void Restore()
+        public void Restore(IFrame self)
         {
             this.minimizeButton.Show();
             this.restoreButton.Hide();
             this.attachedFrame.Show();
         }
 
-        public void Minimize()
+        public void Minimize(IFrame self)
         {
             this.restoreButton.Show();
             this.minimizeButton.Hide();
             this.attachedFrame.Hide();
         }
 
-        private static IButton CreateButton(IFrame parent, string texture, Action click)
+        private static IButton CreateButton(IFrame parent, string texture, Action<IButton> click)
         {
             var button = (IButton) FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, parent, "UIPanelCloseButton");
             button.SetPoint(FramePoint.RIGHT, parent, FramePoint.RIGHT, -BarHeight/2 - BorderSize/4, 0);

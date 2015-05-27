@@ -2,4 +2,5 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\Christian\OneDrive\Code\GryphonheartAddOns\Tests\bin\Debug\Moq.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

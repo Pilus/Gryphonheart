@@ -1,4 +1,39 @@
-﻿SetSelf = function(f)
+﻿
+local frameImplements = {
+	IButton = {"IFrame"},
+	IEditBox = {"IFrame", "IFontInstance"},
+	IFontInstance = {"IUIObject", "IRegion"},
+	IFontString = {"IFontInstance"},
+	IFrame = {"IUIObject", "IRegion"},
+	IGameTooltip = {"IRegion"},
+	ILayeredRegion = {"IRegion"},
+	IUIObject = {},
+	IRegion = {},
+	IScrollFrame = {"IFrame"},
+	ITexture = {"ILayeredRegion", "IUIObject"}
+}
+
+local GetImplements = function(f)
+	if not(type(f) == "table" and f.GetObjectType) then
+        error("SetSelf called on a non frame value. " .. type(f));
+    end
+
+	local pending = { "I" .. f:GetObjectType() };
+	local implements = {};
+
+	while #(pending) > 0 do
+		local frameI = table.remove(pending, 1);
+		assert(type(frameImplements[frameI]) == "table", "Could not find frame type "..(frameI or "nil").." in implements tree.");
+		table.insert(implements,"BlizzardApi.WidgetInterfaces." .. frameI);
+		for _,v in ipairs(frameImplements[frameI]) do
+			table.insert(pending, v);
+		end
+	end
+
+	return implements;
+end
+
+SetSelf = function(f)
 	if not(type(f) == "table" and f.GetObjectType) then
         error("SetSelf called on a non frame value. " .. type(f));
     end
@@ -65,6 +100,8 @@
 		end,
 	});
 	f.__csLuaWrapper = c;
+
+	CsLua.CreateSimpleClass(c, c, f:GetObjectType(), f:GetObjectType(), nil, nil, nil, nil, GetImplements(f))
 
 	return c;
 end

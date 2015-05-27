@@ -206,7 +206,7 @@ local __Try = function(try, catch, finally)
 	__CurrentException = nil;
 
 	if not(success) then
-		exception = exception or CsLua.CsException.__Cstor("Lua error:\n" .. err or "nil");
+		exception = exception or CsLua.CsException.__Cstor("Lua error:\n" .. (err or "nil"));
 		
 		local matchFound = false;
 		for _, catchCase in ipairs(catch or {}) do
@@ -256,10 +256,13 @@ local __CreateClass = function(info)
 			if matchingFunc then
 				return matchingFunc(...);
 			elseif inheritiedClass then
-				return inheritiedClass[element.name](...);
-			else
-				error("No method found for key '"..element.name.."' matching the signature: '"..__SignatureToString(__GetSignatures(...)).."'");
+				local f = inheritiedClass[element.name];
+				if f then
+					return f(...);
+				end
 			end
+
+			error("No method found for key '"..element.name.."' matching the signature: '"..__SignatureToString(__GetSignatures(...)).."'");
 		end
 	end
 
@@ -337,6 +340,14 @@ local __CreateClass = function(info)
 				appliedGenerics[info.generics[i]] = appliedGenericVar;
 			end
 		end
+
+		local implementedInterfaces = {};
+		if info.implements then
+			for _, fullName in ipairs(info.implements) do
+				table.insert(implementedInterfaces, __GetByFullName(fullName)(nil));
+			end
+		end
+
 		
 		for _, element in pairs(elements) do
 			if (element.type == "Method") then
@@ -412,28 +423,18 @@ local __CreateClass = function(info)
 			return tostring(class);
 		end
 		meta.__IsType = function(t) 
-			if t == info.name or t == info.fullName then
-				return true;
-			end
-			for _,v in pairs(info.implements or {}) do
-				if t == v then
-					return true;
-				end
-			end
-			
-			if inheritiedClass then
-				return inheritiedClass.__IsType(t);
-			end
-			return false;
+			return tContains(meta.__GetSignature(), t);
 		end;
 		meta.__GetSignature = function()
 			local signature = {"object"};
 			if (inheritiedClass) then
 				signature = inheritiedClass.__GetSignature();
 			end
-			for _,v in pairs(info.implements or {}) do
-				table.insert(signature, 1, v);
+
+			for _, interface in pairs(implementedInterfaces) do
+				interface.__AddImplementedSignatures(signature);
 			end
+
 			table.insert(signature, 1, info.fullName);
 			return signature;
 		end
@@ -449,7 +450,7 @@ local __CreateClass = function(info)
 			if not(type(v.value) == "function") then
 				nonStaticValues[i] = v.value;
 			end
-		end        
+		end
 
 		meta.__Cstor = function(...)
 			local args = {...};

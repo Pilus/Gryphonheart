@@ -3,7 +3,7 @@
     using System;
     using WidgetEnums;
 
-    public interface IButton : IFrame, IScript<ButtonHandler>
+    public interface IButton : IFrame, IScript<ButtonHandler, IButton>
     {
         /// <summary>
         ///     Execute the click action of the button.

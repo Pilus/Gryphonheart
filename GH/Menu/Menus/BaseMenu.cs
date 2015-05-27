@@ -68,7 +68,7 @@ namespace GH.Menu.Menus
         private void HandleOnShow(MenuProfile profile)
         {
             var layerHandle = Global.Api.GetGlobal("GHM_LayerHandle") as Action<INativeUIObject>;
-            this.Frame.SetScript(FrameHandler.OnShow, () =>
+            this.Frame.SetScript(FrameHandler.OnShow, (self) =>
                 {
                     layerHandle(this.Frame.self);
                     if (profile.onShow != null)
@@ -77,7 +77,7 @@ namespace GH.Menu.Menus
                     }
                 });
 
-            this.Frame.SetScript(FrameHandler.OnShow, () => layerHandle(this.Frame.self));
+            this.Frame.SetScript(FrameHandler.OnShow, (self) => layerHandle(this.Frame.self));
         }
 
         private void LoadPagesFromProfile(MenuProfile profile)

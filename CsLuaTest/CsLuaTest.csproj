@@ -64,7 +64,10 @@
     <Compile Include="General\ClassAmb.cs" />
     <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
     <Compile Include="General\GeneralTests.cs" />
+    <Compile Include="General\IBaseInterface.cs" />
+    <Compile Include="General\IInheritingInterface.cs" />
     <Compile Include="General\Inheriter.cs" />
+    <Compile Include="General\InheritingInterfaceImplementation.cs" />
     <Compile Include="General\NonStaticClass.cs" />
     <Compile Include="General\StaticClass.cs" />
     <Compile Include="ITestSuite.cs" />
@@ -94,8 +97,8 @@
     <Compile Include="Serialization\ClassWithSubObject.cs" />
     <Compile Include="Serialization\SerializationTests.cs" />
     <Compile Include="TryCatchFinally\CustomException.cs" />
-    <Compile Include="Wrap\ISimpleInterface.cs" />
     <Compile Include="TryCatchFinally\TryCatchFinallyTests.cs" />
+    <Compile Include="Wrap\ISimpleInterface.cs" />
     <Compile Include="Wrap\WrapTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +109,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
+      <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
+      <Name>BlizzardApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CsLua\CsLua.csproj">
       <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
       <Name>CsLua</Name>

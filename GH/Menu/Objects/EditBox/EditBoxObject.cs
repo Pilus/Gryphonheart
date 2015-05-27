@@ -3,6 +3,7 @@
     using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
+    using BlizzardApi.WidgetInterfaces;
     using Debug;
 
     public class EditBoxObject : BaseObject
@@ -37,7 +38,7 @@
                 this.frame.SetWidth((double)this.profile.width);
             }
 
-            this.frame.SetScript(EditBoxHandler.OnTextChanged, () =>
+            this.frame.SetScript(EditBoxHandler.OnTextChanged, (self) =>
             {
                 if (this.profile.OnTextChanged != null)
                 {
@@ -45,7 +46,7 @@
                 }
             });
 
-            this.frame.SetScript(EditBoxHandler.OnEnterPressed, () =>
+            this.frame.SetScript(EditBoxHandler.OnEnterPressed, (self) =>
             {
                 if (this.profile.OnEnterPressed != null)
                 {
