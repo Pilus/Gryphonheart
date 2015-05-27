@@ -4,7 +4,9 @@
     using Events;
     using Lua;
     using WidgetEnums;
+    using CsLua.Attributes;
 
+    [ProvideSelf]
     public interface IFrame : IUIObject, IRegion, IScript<FrameHandler>
     {
 

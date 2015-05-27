@@ -94,7 +94,9 @@
     <Compile Include="Serialization\ClassWithSubObject.cs" />
     <Compile Include="Serialization\SerializationTests.cs" />
     <Compile Include="TryCatchFinally\CustomException.cs" />
+    <Compile Include="Wrap\ISimpleInterface.cs" />
     <Compile Include="TryCatchFinally\TryCatchFinallyTests.cs" />
+    <Compile Include="Wrap\WrapTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

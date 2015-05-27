@@ -39,15 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ProvideSelfAttribute.cs" />
     <Compile Include="CsException.cs" />
     <Compile Include="Collection\CsLuaDictionary.cs" />
     <Compile Include="Collection\CsLuaList.cs" />
     <Compile Include="Collection\ITableFormatter.cs" />
-    <Compile Include="MultipleArguments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Collection\TableFormatter.cs" />
-    <Compile Include="TypeConverter.cs" />
     <Compile Include="WoWGuid.cs" />
+    <Compile Include="Wrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Collection\CsLuaDictionary.lua" />
@@ -55,8 +55,6 @@
     <None Include="Collection\TableFormatter.lua" />
     <None Include="CsException.lua" />
     <None Include="Misc.lua" />
-    <None Include="Tuple.lua" />
-    <None Include="TypeConverter.lua" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lua\Lua.csproj">

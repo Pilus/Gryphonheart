@@ -79,7 +79,6 @@
     <Compile Include="WidgetEnums\Orientation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BlizzardApi.lua" />
     <None Include="Events\Events.lua" />
     <None Include="FrameUtil.lua" />
     <None Include="Global.lua" />
@@ -87,6 +86,10 @@
     <None Include="WidgetEnums\WidgetEnums.lua" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CsLua\CsLua.csproj">
+      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
+      <Name>CsLua</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lua\Lua.csproj">
       <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
       <Name>Lua</Name>
