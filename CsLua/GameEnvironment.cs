@@ -2,7 +2,7 @@
 {
     using System;
 
-    public static class Environment
+    public static class GameEnvironment
     {
         public static bool IsExecutingInGame {
             get {
@@ -12,7 +12,7 @@
 
         public static void ExecuteLuaCode(string code)
         {
-            throw new Exception("Lua code an only be executed in-game.");
+            throw new CsException("Lua code an only be executed in-game.");
         }
     }
 }

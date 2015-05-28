@@ -1,10 +1,10 @@
-﻿namespace CsLuaTest.General
+﻿namespace CsLuaTest.Interfaces
 {
     public class InheritingInterfaceImplementation : IInheritingInterface
     {
         public static void AMethodTakingBaseInterface(IBaseInterface arg)
         {
-            GeneralTests.Output = "OK";
+            InterfacesTests.Output = "OK";
         }
          
     }

@@ -44,6 +44,17 @@ local __GetByFullName = function(s, doNotThrow)
 	return o;
 end
 
+local __GenericsMethod = function(func)
+	local t = {}
+	setmetatable(t, {
+		__index = function(_, generics)
+			return function(...) func(generics, ...); end;
+		end,
+	});
+
+	return t;
+end
+
 local __EnumParse = function(typeName, value, doNotThrow)
 	local enumTable = __GetByFullName(typeName, doNotThrow);
 	if type(enumTable) == "table" then
@@ -206,7 +217,7 @@ local __Try = function(try, catch, finally)
 	__CurrentException = nil;
 
 	if not(success) then
-		exception = exception or CsLua.CsException.__Cstor("Lua error:\n" .. (err or "nil"));
+		exception = exception or CsLua.CsException().__Cstor("Lua error:\n" .. (err or "nil"));
 		
 		local matchFound = false;
 		for _, catchCase in ipairs(catch or {}) do

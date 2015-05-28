@@ -6,9 +6,11 @@ namespace CsLuaTest
     using CsLua.Collection;
     using DefaultValues;
     using General;
+    using Interfaces;
     using Lua;
     using Override;
     using Serialization;
+    using Wrap;
 
     class Program
     {
@@ -22,6 +24,8 @@ namespace CsLuaTest
                 new OverrideTest(),
                 new SerializationTests(),
                 new DefaultValuesTests(),
+                new InterfacesTests(),
+                new WrapTests(),
             };
 
             tests.Foreach(test => test.PerformTests());

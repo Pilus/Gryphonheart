@@ -199,15 +199,27 @@
         IRegion GetTitleRegion();
 
         void IgnoreDepth(bool ignoreFlag);
+        /// <summary>
+        /// Gets whether the frame is prohibited from being dragged off screen (added 1.11)
+        /// </summary>
+        /// <returns></returns>
         bool IsClampedToScreen();
 
-        /// Gets whether the frame is prohibited from being dragged off screen (added 1.11)
+        /// <summary>
+        /// Returns true if the given event is registered to the frame. (added 2.3)
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
         bool IsEventRegistered(string eventName);
 
-        /// Returns true if the given event is registered to the frame. (added 2.3)
+        /// <summary>
+        /// Determine if this frame is of the specified type, or a subclass of that type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         bool IsFrameType(string type);
 
-        /// Determine if this frame is of the specified type, or a subclass of that type.
+        /// 
         bool IsIgnoringDepth();
 
         bool IsKeyboardEnabled();

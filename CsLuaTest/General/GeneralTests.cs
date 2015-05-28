@@ -10,7 +10,6 @@
             this.Tests["GetConstValueFromBase"] = GetConstValueFromBase;
             this.Tests["ConstructorShouldUseArgumentsOverClassElements"] = ConstructorShouldUseArgumentsOverClassElements;
             this.Tests["MethodShouldUseArgumentsOverClassElements"] = MethodShouldUseArgumentsOverClassElements;
-            this.Tests["InheritiedInterfaceShouldBeloadedInSignature"] = InheritiedInterfaceShouldBeloadedInSignature;
         }
 
         private static void TestStaticClassWithMethod()
@@ -50,13 +49,6 @@
             Assert("Y", classA.GetAmbValue());
         }
 
-        private static void InheritiedInterfaceShouldBeloadedInSignature()
-        {
-            var theClass = new InheritingInterfaceImplementation();
-            InheritingInterfaceImplementation.AMethodTakingBaseInterface(theClass);
-            Assert("OK", Output);
-        }
-
-        // TODO: Test for inheriting interface with generics.
+        
     }
 }

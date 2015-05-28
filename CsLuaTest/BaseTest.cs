@@ -23,8 +23,16 @@
         {
             foreach (var test in this.Tests)
             {
-                ResetOutput();
-                test.Value();
+                try
+                {
+                    ResetOutput();
+                    test.Value();
+                }
+                catch (CsException ex)
+                {
+                    Core.print("Test failed", test.Key, ex.Message);
+                }
+                
             }
         }
 
