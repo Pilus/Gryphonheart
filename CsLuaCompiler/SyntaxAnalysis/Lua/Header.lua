@@ -48,7 +48,7 @@ local __GenericsMethod = function(func)
 	local t = {}
 	setmetatable(t, {
 		__index = function(_, generics)
-			return function(...) func(generics, ...); end;
+			return function(...) return func(generics, ...); end;
 		end,
 	});
 

@@ -68,7 +68,7 @@ CsLua.Wrapper = {
 			return obj.__wrap;
 		end
 
-		local interface = __GetByFullName(generics[1])(nil);
+		local interface = __GetByFullName(generics[1].name)(generics[1]);
 
 		ValidateObjAgainstInterface(obj, interface);
 
@@ -80,7 +80,7 @@ CsLua.Wrapper = {
 			__obj = obj;
 		};
 
-		setmetatable(t, {
+		setmetatable(wrap, {
 			__index = function(_, key)
 				if auxClass[key] then
 					return auxClass[key];
