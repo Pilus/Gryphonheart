@@ -67,10 +67,23 @@
                 return;
             }
 
-            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(n) return 'OK' .. str; end, };");
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(n) return 'OK' .. n; end, };");
             var interfaceImplementation = Wrapper.WrapGlobalObject<IInheritingInterfaceWithGenerics<string,int>>("interfaceImplementation");
 
             Assert("OK10", interfaceImplementation.Method(10));
+        }
+
+        public static void WrapInheritingInterfaceWithProvideSelf()
+        {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(self, str) return 'OK' .. str; end, };");
+            var interfaceImplementation = Wrapper.WrapGlobalObject<ISetSelfInterface>("interfaceImplementation");
+
+            Assert("OKmore", interfaceImplementation.Method("more"));
         }
     }
 }

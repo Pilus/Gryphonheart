@@ -99,7 +99,12 @@ CsLua.Wrapper = {
 							unwrappedArgs[i] = CsLua.Wrapper.TryUnwrapObject[nil](select(i, ...));
 						end
 
-						local returnArg = obj[key](unpack(unwrappedArgs));
+						local returnArg;
+						if interface.provideSelf then
+							returnArg = obj[key](obj, unpack(unwrappedArgs));
+						else
+							returnArg = obj[key](unpack(unwrappedArgs));
+						end
 
 						if type(returnArg == "table") then
 							local typeFunc = __GetByFullName(method.returnType, true);
