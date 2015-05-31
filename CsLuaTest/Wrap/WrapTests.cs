@@ -2,6 +2,7 @@
 {
     using System;
     using CsLua;
+    using CsLua.Wrapping;
 
     class WrapTests : BaseTest
     {
@@ -11,6 +12,8 @@
             this.Tests["WrapInheritingInterface"] = WrapInheritingInterface;
             this.Tests["WrapGenericInterface"] = WrapGenericInterface;
             this.Tests["WrapInheritingInterfaceWithGenericInterface"] = WrapInheritingInterfaceWithGenericInterface;
+            this.Tests["WrapInheritingInterfaceWithProvideSelf"] = WrapInheritingInterfaceWithProvideSelf;
+            this.Tests["WrapHandleMultipleValues"] = WrapHandleMultipleValues;
         }
 
         private static void WrapSimpleInterface()
@@ -84,6 +87,22 @@
             var interfaceImplementation = Wrapper.WrapGlobalObject<ISetSelfInterface>("interfaceImplementation");
 
             Assert("OKmore", interfaceImplementation.Method("more"));
+        }
+
+        public static void WrapHandleMultipleValues()
+        {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function() return 'OK', 43, true; end, };");
+            var interfaceImplementation = Wrapper.WrapGlobalObject<IInterfaceWithMultipleReturnValues<bool>>("interfaceImplementation");
+
+            var multiple = interfaceImplementation.Method();
+            Assert("OK", multiple.Value1);
+            Assert(43, multiple.Value2);
+            Assert(true, multiple.Value3);
         }
     }
 }

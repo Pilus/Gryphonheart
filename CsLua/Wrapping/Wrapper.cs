@@ -1,7 +1,7 @@
 ﻿
 [assembly: CsLua.Attributes.RequiresCsLuaHeader]
 
-namespace CsLua
+namespace CsLua.Wrapping
 {
 
     public static class Wrapper
