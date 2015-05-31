@@ -37,7 +37,7 @@
                 return;
             }
 
-            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(n) return 'OK' .. str; end, };");
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(n) return 'OK' .. n; end, };");
             var interfaceImplementation = Wrapper.WrapGlobalObject<IInterfaceWithGenerics<int>>("interfaceImplementation");
 
             Assert("OK10", interfaceImplementation.Method(10));

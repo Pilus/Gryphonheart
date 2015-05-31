@@ -8,6 +8,7 @@
     public abstract class BaseTest : ITestSuite
     {
         public static string Output = "";
+        public const bool ContinueOnError = false;
 
         public CsLuaDictionary<string, Action> Tests
         {
@@ -23,16 +24,23 @@
         {
             foreach (var test in this.Tests)
             {
-                try
+                if (ContinueOnError)
+                { 
+                    try
+                    {
+                        ResetOutput();
+                        test.Value();
+                    }
+                    catch (CsException ex)
+                    {
+                        Core.print("Test failed", test.Key, ex.Message);
+                    }
+                }
+                else
                 {
                     ResetOutput();
                     test.Value();
                 }
-                catch (CsException ex)
-                {
-                    Core.print("Test failed", test.Key, ex.Message);
-                }
-                
             }
         }
 

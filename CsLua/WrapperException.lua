@@ -13,7 +13,7 @@ CsLua.WrapperException = function()
 		return class.Message;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "WrapperException", "CsLua.WrapperException", nil, nil, nil, nil, {"CsLua.CsException"})
+	CsLua.CreateSimpleClass(class, class, "WrapperException", "CsLua.WrapperException", cstor, nil, nil, nil, {"CsLua.CsException"})
 	
 	return class;
 end;

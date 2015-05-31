@@ -210,6 +210,22 @@ local __Throw = function(exception)
 	error(exception.ToString(), 2);
 end
 
+local __GenericsList = function(...)
+	local list = {...};
+
+	return list;
+end
+
+local __Generic = function(name, innerGenerics)
+	local class = {};
+
+	class.innerGenerics = innerGenerics;
+
+	class.name = name;
+
+	return class;
+end
+
 local __Try = function(try, catch, finally)
 	__CurrentException = nil;
 	local success, err = pcall(try)

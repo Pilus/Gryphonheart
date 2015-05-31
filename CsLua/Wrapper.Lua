@@ -11,7 +11,8 @@ local ValidateObjAgainstInterface = function(obj, interface)
 	end
 end
 
-local getMethodsByName = function(interface, name, m)
+local getMethodsByName;
+getMethodsByName = function(interface, name, m)
 	m = m or {};
 	for _, method in ipairs(interface.methods) do
 		if method.name == name then
@@ -26,7 +27,8 @@ local getMethodsByName = function(interface, name, m)
 	return m;
 end
 
-local getPropertyByName = function(interface, name)
+local getPropertyByName
+getPropertyByName = function(interface, name)
 	for _, property in ipairs(interface.properties) do
 		return property;
 	end
@@ -68,7 +70,7 @@ CsLua.Wrapper = {
 			return obj.__wrap;
 		end
 
-		local interface = __GetByFullName(generics[1].name)(generics[1]);
+		local interface = __GetByFullName(generics[1].name)(generics[1].innerGenerics);
 
 		ValidateObjAgainstInterface(obj, interface);
 
