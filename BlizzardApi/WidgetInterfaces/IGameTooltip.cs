@@ -1,7 +1,9 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
     using WidgetEnums;
 
+    [ProvideSelf]
     public interface IGameTooltip : IRegion
     {
         void AddDoubleLine(string textL, string textR , double rL , double gL , double bL , double rR , double gR , double bR );

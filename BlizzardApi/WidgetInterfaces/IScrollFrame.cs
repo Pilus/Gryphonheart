@@ -1,5 +1,8 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
+
+    [ProvideSelf]
     public interface IScrollFrame : IFrame
     {
         double GetHorizontalScroll();

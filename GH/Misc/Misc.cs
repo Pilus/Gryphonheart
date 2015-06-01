@@ -3,10 +3,11 @@ namespace GH.Misc
 {
     using System;
     using BlizzardApi;
-    using BlizzardApi.Events;
+    using BlizzardApi.EventEnums;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Lua;
+    using BlizzardApi.Global;
 
     public static class Misc
     {
@@ -25,7 +26,7 @@ namespace GH.Misc
 
         public static void RegisterEvent(SystemEvent eventName, Action<SystemEvent> func)
         {
-            var frame = FrameUtil.FrameProvider.CreateFrame(FrameType.Frame) as IFrame;
+            var frame = Global.FrameProvider.CreateFrame(FrameType.Frame) as IFrame;
             frame.RegisterEvent(eventName);
 
             var wrapperFunc = new Action<IFrame, object>((callingFrame, o) =>

@@ -5,13 +5,13 @@
 
     public interface IGuidObjectList<T>
     {
-        T Get(WoWGuid guid);
+        T Get(CsLuaGuid guid);
 
-        void Set(WoWGuid guid, T obj);
+        void Set(CsLuaGuid guid, T obj);
 
-        void Remove(WoWGuid guid);
+        void Remove(CsLuaGuid guid);
 
-        CsLuaList<WoWGuid> GetGuids();
+        CsLuaList<CsLuaGuid> GetGuids();
 
         void LoadFromSaved();
     }

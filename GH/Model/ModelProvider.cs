@@ -1,13 +1,11 @@
 ﻿namespace GH.Model
 {
-    using System;
-    using Lua;
     using ObjectHandling;
     using Misc;
     using Presenter;
 
     using GH.Model.Defaults;
-    using BlizzardApi.Events;
+    using BlizzardApi.EventEnums;
 
     public class ModelProvider : IModelProvider
     {

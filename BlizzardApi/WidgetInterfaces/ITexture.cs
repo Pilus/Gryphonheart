@@ -1,8 +1,11 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
+    using CsLua.Wrapping;
     using System;
     using WidgetEnums;
 
+    [ProvideSelf]
     public interface ITexture : ILayeredRegion, IUIObject
     {
         /// <summary>
@@ -13,7 +16,7 @@
         /// Gets the 8 texture coordinates that map to the Texture's corners (added 1.11)
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double, double, double, double, double> GetTexCoord();
+        IMultipleValues<double, double, double, double, double, double, double, double> GetTexCoord();
         /// <summary>
         /// Gets this texture's current texture path.
         /// </summary>
@@ -23,7 +26,7 @@
         /// Gets the vertex color for the Texture.
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double> GetVertexColor();
+        IMultipleValues<double, double, double, double> GetVertexColor();
         /// <summary>
         /// Gets the desaturation state of this Texture. (added 1.11)
         /// </summary>

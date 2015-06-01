@@ -3,6 +3,7 @@
 namespace Tests.IntegrationTest.GHDTests
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
     using GHD.Document.Buffer;
     using GHD.Document.Containers;
@@ -56,7 +57,7 @@ namespace Tests.IntegrationTest.GHDTests
 
         private static void VerifyLabel(int num, string expectedString)
         {
-            var label = (IFontString)FrameUtil.FrameProvider.GetFrameByGlobalName("FormattedTextFrame" + num + "Label");
+            var label = CsLua.Wrapping.Wrapper.WrapGlobalObject<IFontString>("FormattedTextFrame" + num + "Label");
             if (expectedString == null)
             {
                 Assert.AreEqual(null, label);

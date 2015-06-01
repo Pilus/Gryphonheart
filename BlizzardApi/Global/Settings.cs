@@ -3,6 +3,7 @@ namespace BlizzardApi.Global
 {
     using System;
     using MiscEnums;
+    using CsLua.Wrapping;
 
     public partial interface IApi
     {
@@ -38,7 +39,7 @@ namespace BlizzardApi.Global
         /// </summary>
         /// <param name="cVar"></param>
         /// <returns></returns>
-        Tuple<string, object, bool, bool> GetCVarInfo(string cVar); 
+        IMultipleValues<string, object, bool, bool> GetCVarInfo(string cVar); 
         /// <summary>
         /// Get the current in-use multi-sample (antialias) format.
         /// </summary>
@@ -66,7 +67,7 @@ namespace BlizzardApi.Global
         /// </summary>
         /// <returns></returns>
         int GetRefreshRates();
-        Tuple<string,string,string> GetScreenResolutions();
+        IMultipleValues<string,string,string> GetScreenResolutions();
         object GetVideoCaps();
         /// <summary>
         /// returns whether threat warnings should currently be displayed.

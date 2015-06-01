@@ -69,8 +69,8 @@
         {
             if (!this.buttonsShown) return;
 
-            var currentMouseFocus = FrameUtil.FrameProvider.GetMouseFocus();
-            if (currentMouseFocus != null && (currentMouseFocus.self == this.mainButton.Button.self || this.buttons.Any(b => b.Button.self == currentMouseFocus.self)))
+            var currentMouseFocus = Global.FrameProvider.GetMouseFocus();
+            if (currentMouseFocus != null && (currentMouseFocus.__obj == this.mainButton.Button.__obj || this.buttons.Any(b => b.Button.__obj == currentMouseFocus.__obj)))
             {
                 this.lastActive = Core.time();
             }
@@ -117,7 +117,7 @@
                 button.LeaveCallback = () =>
                 {
                     var tooltipOwner = Global.Frames.GameTooltip.GetOwner();
-                    if (tooltipOwner != null && tooltipOwner.self == button.Button.self)
+                    if (tooltipOwner != null && tooltipOwner.__obj == button.Button.__obj)
                     {
                         Global.Frames.GameTooltip.Hide();
                     }
@@ -126,7 +126,7 @@
                 button.HideCallback = () =>
                 {
                     var tooltipOwner = Global.Frames.GameTooltip.GetOwner();
-                    if (tooltipOwner != null && tooltipOwner.self == button.Button.self)
+                    if (tooltipOwner != null && tooltipOwner.__obj == button.Button.__obj)
                     {
                         Global.Frames.GameTooltip.Hide();
                     }

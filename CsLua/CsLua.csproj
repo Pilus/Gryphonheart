@@ -50,7 +50,7 @@
     <Compile Include="Wrapping\IMultipleValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Collection\TableFormatter.cs" />
-    <Compile Include="WoWGuid.cs" />
+    <Compile Include="CsLuaGuid.cs" />
     <Compile Include="Wrapping\Wrapper.cs" />
     <Compile Include="Wrapping\WrapperException.cs" />
   </ItemGroup>

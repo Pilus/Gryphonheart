@@ -1,6 +1,7 @@
 ﻿namespace GH.Menu.Objects.DropDown.CustomDropDown
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Line;
@@ -16,7 +17,7 @@
         {
             this.profile = profile;
 
-            this.frame = (ICustomDropDownFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_CustomDropDown_Template");
+            this.frame = (ICustomDropDownFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_CustomDropDown_Template");
             this.Frame = this.frame;
             this.SetUp();
         }

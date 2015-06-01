@@ -5,6 +5,7 @@
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Presenter;
+    using BlizzardApi.Global;
 
     public class MinimizeableTitleBar : TitleBar
     {
@@ -39,7 +40,7 @@
 
         private static IButton CreateButton(IFrame parent, string texture, Action<IButton> click)
         {
-            var button = (IButton) FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, parent, "UIPanelCloseButton");
+            var button = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, null, parent, "UIPanelCloseButton");
             button.SetPoint(FramePoint.RIGHT, parent, FramePoint.RIGHT, -BarHeight/2 - BorderSize/4, 0);
             button.SetHeight(BarHeight);
             button.SetWidth(BarHeight);

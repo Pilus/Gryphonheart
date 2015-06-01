@@ -2,6 +2,7 @@
 namespace GH.Menu.Objects
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Debug;
@@ -22,8 +23,8 @@ namespace GH.Menu.Objects
             this.profile = profile;
             this.parent = parent;
             
-            this.Frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, BaseObject.UniqueName("ObjectWithTextLabel"), parent.Frame);
-            this.textLabel = (ITextLabelWithTooltip)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, "$parentLabel", this.Frame, "GH_TextLabel_Template");
+            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, BaseObject.UniqueName("ObjectWithTextLabel"), parent.Frame);
+            this.textLabel = (ITextLabelWithTooltip)Global.FrameProvider.CreateFrame(FrameType.Frame, "$parentLabel", this.Frame, "GH_TextLabel_Template");
             this.textLabel.SetPoint(FramePoint.TOPLEFT, 0, 0);
             this.textLabel.Label.SetText(profile.text);
             this.textLabel.Tooltip = profile.tooltip;

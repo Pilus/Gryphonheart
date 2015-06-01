@@ -7,7 +7,7 @@ namespace GHG.Model
     [System.Serializable]
     public class GroupMember
     {
-        public WoWGuid Guid
+        public CsLuaGuid Guid
         {
             get;
             private set;
@@ -19,7 +19,7 @@ namespace GHG.Model
             set;
         }
 
-        public WoWGuid RankGuid
+        public CsLuaGuid RankGuid
         {
             get;
             set;
@@ -37,7 +37,7 @@ namespace GHG.Model
             set;
         }
 
-        public GroupMember(WoWGuid guid, string name, WoWGuid rankGuid)
+        public GroupMember(CsLuaGuid guid, string name, CsLuaGuid rankGuid)
         {
             this.Guid = guid;
             this.Name = name;

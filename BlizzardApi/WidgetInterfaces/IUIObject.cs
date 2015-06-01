@@ -1,5 +1,8 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
+
+    [ProvideSelf]
     public interface IUIObject : IIndexer<object, object>
     {
         
@@ -10,7 +13,7 @@
         bool IsObjectType(string type);
         void SetAlpha(double alpha);
 
-        INativeUIObject self
+        INativeUIObject __obj
         {
             get;
             set;

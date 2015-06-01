@@ -1,10 +1,11 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
     using System;
-    using Events;
+    using EventEnums;
     using Lua;
     using WidgetEnums;
     using CsLua.Attributes;
+    using CsLua.Wrapping;
 
     [ProvideSelf]
     public interface IFrame : IUIObject, IRegion, IScript<FrameHandler, IFrame>
@@ -86,13 +87,13 @@
         ///     Gets the frame's backdrop border color (r, g, b, a).
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double> GetBackdropBorderColor();
+        IMultipleValues<double, double, double, double> GetBackdropBorderColor();
 
         /// <summary>
         ///     Gets the frame's backdrop color (r, g, b, a).
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double> GetBackdropColor();
+        IMultipleValues<double, double, double, double> GetBackdropColor();
 
         /// <summary>
         ///     Get the list of "children" (frames and things derived from frames) of this frame.
@@ -148,7 +149,7 @@
         ///     Gets the frame's hit rectangle inset distances (l, r, t, b).
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double> GetHitRectInsets();
+        IMultipleValues<double, double, double, double> GetHitRectInsets();
 
         /// <summary>
         ///     Get the ID of this frame.
@@ -160,13 +161,13 @@
         ///     Gets the frame's maximum allowed resize bounds (w, h).
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double> GetMaxResize();
+        IMultipleValues<double, double> GetMaxResize();
 
         /// <summary>
         ///     Gets the frame's minimum allowed resize bounds (w, h).
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double> GetMinResize();
+        IMultipleValues<double, double> GetMinResize();
 
         /// <summary>
         ///     Get the number of "children" (frames and things derived from frames) this frame has.

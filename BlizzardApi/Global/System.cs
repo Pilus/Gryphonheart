@@ -1,6 +1,7 @@
 ﻿
 namespace BlizzardApi.Global
 {
+    using CsLua.Wrapping;
     using System;
     using WidgetInterfaces;
 
@@ -19,7 +20,7 @@ namespace BlizzardApi.Global
         /// Returns information about current client build.
         /// </summary>
         /// <returns></returns>
-        Tuple<string, string, string, double> GetBuildInfo();
+        IMultipleValues<string, string, string, double> GetBuildInfo();
         /// <summary>
         /// Returns the currently set error handler.
         /// </summary>
@@ -28,10 +29,10 @@ namespace BlizzardApi.Global
         IFrame GetCurrentKeyBoardFocus(); // Returns the [editbox] widget currently handling keyboard events.
         string GetExistingLocales(); // Returns a list of installed language packs.
         double GetFramerate(); // Returns the current framerate (full precision)
-        Tuple<int, int> GetGameTime(); // Returns the time in-game.
+        IMultipleValues<int, int> GetGameTime(); // Returns the time in-game.
         string GetLocale(); // Returns client locale, example 'enUS'.
-        Tuple<double, double> GetCursorPosition(); // Returns the cursor's position on the screen.
-        Tuple<double, double, double, double> GetNetStats(); // Get bandwidth and latency network information.
+        IMultipleValues<double, double> GetCursorPosition(); // Returns the cursor's position on the screen.
+        IMultipleValues<double, double, double, double> GetNetStats(); // Get bandwidth and latency network information.
         string GetRealmName(); // returns the name of the server a user is logged in to
         int GetScreenHeight(); // Returns the height of the window in pixels.
         int GetScreenWidth(); // Returns the width of the window in pixels.

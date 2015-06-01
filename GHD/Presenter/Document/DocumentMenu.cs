@@ -3,6 +3,7 @@
 namespace GHD.Presenter.Document
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using GH.Menu;
@@ -46,7 +47,7 @@ namespace GHD.Presenter.Document
 
         private void SetupDocumentArea(IFrame documentAreaFrame)
         {
-            var scrollFrame = (IGHM_ScrollFrameTemplate)FrameUtil.FrameProvider.CreateFrame(FrameType.ScrollFrame, this.menu.Frame.GetName() + "Scroll", documentAreaFrame,
+            var scrollFrame = (IGHM_ScrollFrameTemplate)Global.FrameProvider.CreateFrame(FrameType.ScrollFrame, this.menu.Frame.GetName() + "Scroll", documentAreaFrame,
                 "GHM_ScrollFrameTemplate");
             var border = 10;
             scrollFrame.SetParent(documentAreaFrame);
@@ -56,7 +57,7 @@ namespace GHD.Presenter.Document
             scrollFrame.SetPoint(FramePoint.RIGHT, -13 + border, 0);
             scrollFrame.ShowScrollBarBackgrounds();
 
-            this.documentContainer = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame);
+            this.documentContainer = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame);
             this.documentContainer.SetParent(scrollFrame);
             scrollFrame.SetScrollChild(this.documentContainer);
             this.documentContainer.SetPoint(FramePoint.TOPLEFT, scrollFrame, FramePoint.TOPLEFT);

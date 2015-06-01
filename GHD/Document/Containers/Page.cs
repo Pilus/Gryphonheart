@@ -10,6 +10,7 @@ namespace GHD.Document.Containers
     using Elements;
     using GHD.Document.Flags;
     using Buffer;
+    using BlizzardApi.Global;
 
     public class Page : ContainerBase, IContainer
     {
@@ -22,7 +23,7 @@ namespace GHD.Document.Containers
         {
             this.flags = flags;
             this.properties = properties;
-            this.frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPage"));
+            this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPage"));
             this.frame.SetWidth(this.properties.Width);
             this.frame.SetHeight(this.properties.Height);
 

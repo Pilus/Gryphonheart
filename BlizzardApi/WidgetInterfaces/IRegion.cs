@@ -1,8 +1,11 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
+    using CsLua.Wrapping;
     using System;
     using WidgetEnums;
 
+    [ProvideSelf]
     public interface IRegion
     {
         void ClearAllPoints();
@@ -15,10 +18,10 @@
         double GetHeight();
         double GetLeft();
         int GetNumPoints();
-        Tuple<FramePoint, IRegion, FramePoint, double, double> GetPoint(int pointNum);
-        Tuple<double, double, double, double> GetRect();
+        IMultipleValues<FramePoint, IRegion, FramePoint, double, double> GetPoint(int pointNum);
+        IMultipleValues<double, double, double, double> GetRect();
         double GetRight();
-        Tuple<double, double> GetSize();
+        IMultipleValues<double, double> GetSize();
         double GetTop();
         double GetWidth();
         void Hide();

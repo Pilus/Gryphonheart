@@ -9,6 +9,7 @@ namespace GH.Menu.Objects.Panel
     using Line;
     using Lua;
     using Page;
+    using BlizzardApi.Global;
 
     public class PanelObject : BaseObject, IMenuContainer
     {
@@ -93,7 +94,7 @@ namespace GH.Menu.Objects.Panel
 
         private void CreateFrame()
         {
-            this.Frame = FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, this.name, this.parentFrame) as IFrame;
+            this.Frame = Global.FrameProvider.CreateFrame(FrameType.Frame, this.name, this.parentFrame) as IFrame;
             this.Frame.SetFrameLevel(this.parentFrame.GetFrameLevel() + 1);
             
             if (this.profile.Count > 0)

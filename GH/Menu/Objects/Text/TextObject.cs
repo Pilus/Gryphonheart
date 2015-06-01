@@ -22,10 +22,9 @@
 
         public TextObject(TextProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
         {
-            var frame = (ITextObjectFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_TextObject_Template");
+            var frame = (ITextObjectFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_TextObject_Template");
             this.Frame = frame;
-            this.labelFrame =
-                (IFontString) FrameUtil.FrameProvider.AddSelfReferencesToNonCsFrameObject(frame.Label);
+            this.labelFrame = frame.Label;
             this.profile = profile;
 
             this.SetUpFromProfile();

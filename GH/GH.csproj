@@ -49,7 +49,6 @@
     <Compile Include="Debug\DebugTools.cs" />
     <Compile Include="Integration\AddOnReference.cs" />
     <Compile Include="Integration\AddOnRegister.cs" />
-    <Compile Include="Menu\GHMStub.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
     <Compile Include="Menu\Menus\Window\MinimizeableTitleBar.cs" />
     <Compile Include="Menu\Objects\TabOrder.cs" />

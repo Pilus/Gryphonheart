@@ -67,7 +67,7 @@ CsLua.Wrapping.Wrapper = {
 	end),
 	
 	WrapObject = __GenericsMethod(function(generics, obj)
-		if obj.__wrap then
+		if obj.__wrap and obj.__wrap.__interfaceName == generics[1].name then
 			return obj.__wrap;
 		end
 
@@ -81,6 +81,7 @@ CsLua.Wrapping.Wrapper = {
 		local wrap = {};
 		local auxClass = {
 			__obj = obj;
+			__interfaceName = generics[1].name;
 		};
 
 		setmetatable(wrap, {

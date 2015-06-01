@@ -87,7 +87,7 @@
 
         private static IButton CreateCloseButton(DragableButton button)
         {
-            var closeButton = (IButton) FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, button.Button,
+            var closeButton = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, null, button.Button,
                 "UIPanelCloseButton");
             closeButton.SetPoint(FramePoint.RIGHT, button.Button, FramePoint.RIGHT, 6 - BorderSize, 0);
             closeButton.SetHeight(BarHeight);
@@ -97,7 +97,7 @@
 
         private static IFrame CreateBorder(DragableButton button)
         {
-            var frame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, null, button.Button);
+            var frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, null, button.Button);
             frame.SetAllPoints(button.Button);
             SetBackdrop(frame, "");
             return frame;

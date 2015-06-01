@@ -1,8 +1,10 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
     using BlizzardApi.WidgetEnums;
+    using CsLua.Attributes;
     using System;
 
+    [ProvideSelf]
     public interface IEditBox : IFrame, IFontInstance, IScript<EditBoxHandler, IEditBox>
     {
         void SetText(string text); // - Set the text contained in the edit box.

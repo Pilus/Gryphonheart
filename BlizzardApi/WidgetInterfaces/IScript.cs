@@ -1,7 +1,9 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
     using System;
 
+    [ProvideSelf]
     public interface IScript<T1, T2>
     {
         /// <summary>

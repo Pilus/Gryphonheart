@@ -3,6 +3,7 @@
 namespace GHD.Document.Elements
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Flags;
@@ -18,7 +19,7 @@ namespace GHD.Document.Elements
         {
             frameCount++;
             var name = GenerateFrameName();
-            this.frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, name);
+            this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, name);
             this.label = this.frame.CreateFontString(name + "Label", Layer.BORDER);
             this.label.SetAllPoints(this.frame);
             this.frame.SetHeight(flags.FontSize);
@@ -41,7 +42,7 @@ namespace GHD.Document.Elements
         {
             const string name = "FormattedTextFrame";
             var i = 1;
-            while (FrameUtil.FrameProvider.GetFrameByGlobalName(name + i) != null)
+            while (Global.Api.GetGlobal(name + i) != null)
             {
                 i++;
             }

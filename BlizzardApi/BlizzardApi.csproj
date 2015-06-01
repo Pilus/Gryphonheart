@@ -39,14 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\SystemEvent.cs" />
-    <Compile Include="FrameUtil.cs" />
+    <Compile Include="EventEnums\SystemEvent.cs" />
     <Compile Include="Global\Custom.cs" />
     <Compile Include="Global\Global.cs" />
     <Compile Include="Global\Settings.cs" />
     <Compile Include="Global\System.cs" />
     <Compile Include="Global\Unit.cs" />
-    <Compile Include="IFrameProvider.cs" />
+    <Compile Include="Global\IFrameProvider.cs" />
     <Compile Include="WidgetEnums\AlphaMode.cs" />
     <Compile Include="WidgetEnums\ButtonState.cs" />
     <Compile Include="WidgetEnums\ClickType.cs" />
@@ -79,11 +78,7 @@
     <Compile Include="WidgetEnums\Orientation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Events\Events.lua" />
-    <None Include="FrameUtil.lua" />
-    <None Include="Global.lua" />
-    <None Include="MiscEnums\MiscEnums.lua" />
-    <None Include="WidgetEnums\WidgetEnums.lua" />
+    <None Include="Global\Custom.lua" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CsLua\CsLua.csproj">

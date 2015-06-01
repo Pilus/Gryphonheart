@@ -8,6 +8,7 @@ namespace Tests.IntegrationTest.UISimulator
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Moq;
+    using BlizzardApi.Global;
 
     public class SimulatorFrameProvider : IFrameProvider
     {
@@ -42,17 +43,7 @@ namespace Tests.IntegrationTest.UISimulator
             throw new NotImplementedException();
         }
 
-        public IUIObject GetFrameByGlobalName(string name)
-        {
-            return this.objects.SingleOrDefault(o => name.Equals(o.GetName()));
-        }
-
         public IUIObject GetMouseFocus()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IUIObject AddSelfReferencesToNonCsFrameObject(object obj)
         {
             throw new NotImplementedException();
         }

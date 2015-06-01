@@ -1,7 +1,7 @@
 ﻿
 namespace GH.Menu.Objects.Dummy
 {
-    using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Debug;
@@ -10,7 +10,7 @@ namespace GH.Menu.Objects.Dummy
     {
         public DummyObject(DummyProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
         {
-            this.Frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame);
+            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame);
             this.Frame.SetWidth(profile.width ?? 10);
             this.Frame.SetHeight(profile.height ?? 10);
             DebugTools.Msg("Dummy", profile.label, this.Frame.GetName(), this.Frame.GetWidth());

@@ -6,6 +6,7 @@
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
     using Lua;
+    using BlizzardApi.Global;
 
     public static class DebugTools
     {
@@ -36,7 +37,7 @@
         [Obsolete("Debug.FrameBg should only be used for debugging. Remember to remove this call.", false)] 
         public static void FrameBg(IFrame frame)
         {
-            var bgFrame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame);
+            var bgFrame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame);
             bgFrame.SetAllPoints(frame);
             bgFrame.SetFrameLevel(100);
             bgFrame.SetFrameStrata(FrameStrata.HIGH);

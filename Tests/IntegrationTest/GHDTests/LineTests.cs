@@ -13,6 +13,7 @@ namespace Tests.IntegrationTest.GHDTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Tests.IntegrationTest.UISimulator;
+    using BlizzardApi.Global;
 
     [TestClass]
     public class LineTests
@@ -176,7 +177,7 @@ namespace Tests.IntegrationTest.GHDTests
 
         private static void VerifyLabel(int num, string expectedString)
         {
-            var label = (IFontString)FrameUtil.FrameProvider.GetFrameByGlobalName("FormattedTextFrame" + num + "Label");
+            var label = CsLua.Wrapping.Wrapper.WrapGlobalObject<IFontString>("FormattedTextFrame" + num + "Label");
             if (expectedString == null)
             {
                 Assert.AreEqual(null, label);

@@ -11,10 +11,10 @@ namespace Tests.IntegrationTest.UISimulator
     {
         public Simulator()
         {
-            FrameUtil.FrameProvider = new SimulatorFrameProvider();
+            Global.FrameProvider = new SimulatorFrameProvider();
             var framesMock = new Mock<IFrames>();
 
-            var uiParent = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
+            var uiParent = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
 
             framesMock.Setup(frames => frames.UIParent).Returns(uiParent);
 

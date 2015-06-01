@@ -7,6 +7,7 @@
     using CsLua.Collection;
     using Debug;
     using Lua;
+    using BlizzardApi.Global;
 
     public class Line : ILine
     {
@@ -19,7 +20,7 @@
         public Line(LineProfile profile, IFrame parent, LayoutSettings layoutSettings, int lineNumber)
         {
             this.objects = new CsLuaList<IMenuObject>();
-            this.Frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Line" + lineNumber,
+            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Line" + lineNumber,
                 parent);
             this.objectSpacing = layoutSettings.objectSpacing;
 

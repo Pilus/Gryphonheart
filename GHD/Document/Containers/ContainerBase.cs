@@ -2,6 +2,7 @@
 namespace GHD.Document.Containers
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
     using CsLua;
@@ -208,7 +209,7 @@ namespace GHD.Document.Containers
         protected static string GenerateFrameName(string prefix)
         {
             var i = 1;
-            while (FrameUtil.FrameProvider.GetFrameByGlobalName(prefix + i) != null)
+            while (Global.Api.GetGlobal(prefix + i) != null)
             {
                 i++;
             }

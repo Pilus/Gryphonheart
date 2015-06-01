@@ -1,7 +1,9 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
     using WidgetEnums;
 
+    [ProvideSelf]
     public interface IFontInstance : IUIObject,IRegion
     {
         new IFontInstance self { get; set; }

@@ -1,8 +1,11 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLua.Attributes;
+    using CsLua.Wrapping;
     using System;
     using WidgetEnums;
 
+    [ProvideSelf]
     public interface IButton : IFrame, IScript<ButtonHandler, IButton>
     {
         /// <summary>
@@ -35,7 +38,7 @@
         ///     Get the color of this button's text when disabled.
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double> GetDisabledTextColor();
+        IMultipleValues<double, double, double, double> GetDisabledTextColor();
 
         /// <summary>
         ///     Get the texture for this button when disabled.
@@ -62,7 +65,7 @@
         ///     Get the color of this button's text when highlighted.
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double, double, double> GetHighLightTextColor();
+        IMultipleValues<double, double, double, double> GetHighLightTextColor();
 
         /// <summary>
         ///     Get the texture for this button when highlighted.
@@ -86,7 +89,7 @@
         ///     Get the texture for this button when pushed.
         /// </summary>
         /// <returns></returns>
-        Tuple<double, double> GetPushedTextOffset();
+        IMultipleValues<double, double> GetPushedTextOffset();
 
         /// <summary>
         ///     Get the texture for this button when pushed.

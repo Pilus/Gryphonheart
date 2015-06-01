@@ -12,7 +12,7 @@
         public EditFieldObject(EditFieldProfile profile, IMenuContainer parent, LayoutSettings settings)
             : base(profile, parent, settings)
         {
-            this.frame = (IEditFieldFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditBoxFrame_Template");
+            this.frame = (IEditFieldFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditBoxFrame_Template");
             this.Frame = this.frame;
             this.profile = profile;
 

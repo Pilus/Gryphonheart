@@ -14,7 +14,7 @@
         public EditBoxObject(EditBoxProfile profile, IMenuContainer parent, LayoutSettings settings)
             : base(profile, parent, settings)
         {
-            this.frame = (IEditBoxWithFilters)FrameUtil.FrameProvider.CreateFrame(FrameType.EditBox, UniqueName(Type), parent.Frame, "GH_EditBoxWithFilters_Template");
+            this.frame = (IEditBoxWithFilters)Global.FrameProvider.CreateFrame(FrameType.EditBox, UniqueName(Type), parent.Frame, "GH_EditBoxWithFilters_Template");
             this.Frame = this.frame;
             this.profile = profile;
 

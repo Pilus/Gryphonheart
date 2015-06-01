@@ -10,7 +10,7 @@ namespace GHG.Model
         public GroupRank(string name, bool isFirst)
         {
             this.Name = name;
-            this.Guid = WoWGuid.NewGuid();
+            this.Guid = CsLuaGuid.NewGuid();
             if (isFirst)
             {
                 this.CanEditRanksAndPermissions = true;
@@ -18,7 +18,7 @@ namespace GHG.Model
         }
 
 
-        public WoWGuid Guid
+        public CsLuaGuid Guid
         {
             get;
             private set;

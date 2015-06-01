@@ -2,6 +2,7 @@
 namespace GHD.Document.Containers
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
@@ -22,7 +23,7 @@ namespace GHD.Document.Containers
 
         public Line(IFlags flags) : base(new FormattedText(flags) {AllowZeroPosition = true,})
         {
-            this.frame = (IFrame)FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
+            this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
 
             var firstText = (FormattedText)this.FirstChild;
             firstText.Region.SetParent(this.frame);

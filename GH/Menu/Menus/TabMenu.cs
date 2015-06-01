@@ -39,7 +39,7 @@ namespace GH.Menu.Menus
 
         private IButton CreateButtonFrame(int index)
         {
-            var button = (IButton)FrameUtil.FrameProvider.CreateFrame(FrameType.Button, this.Frame.GetName() + "Tab" + (index + 1),
+            var button = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, this.Frame.GetName() + "Tab" + (index + 1),
                 this.Frame, "CharacterFrameTabButtonTemplate");
             button.SetID(index + 1);
 
@@ -75,7 +75,7 @@ namespace GH.Menu.Menus
 
                 button.SetScript(ButtonHandler.OnClick, (self) =>
                 {
-                    setTabFunc(this.Frame.self, button.GetID());
+                    setTabFunc(this.Frame.__obj, button.GetID());
                     if (this.currentPage != null)
                     {
                         this.currentPage.Hide();
@@ -85,7 +85,7 @@ namespace GH.Menu.Menus
                     page.Show();
                 });
             }
-            ((Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.self, this.Pages.Count);
+            ((Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.__obj, this.Pages.Count);
         }
 
         private static void InvokeClick(IButton button)

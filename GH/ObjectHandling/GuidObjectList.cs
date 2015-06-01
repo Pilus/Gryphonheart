@@ -8,7 +8,7 @@
 
     public class GuidObjectList<T> : IGuidObjectList<T>
     {
-        private readonly CsLuaDictionary<WoWGuid, T> objects;
+        private readonly CsLuaDictionary<CsLuaGuid, T> objects;
         private readonly ITableFormatter<T> formatter;
         private readonly ISavedDataHandler savedDataHandler;
         private bool savedDataLoaded;
@@ -17,28 +17,28 @@
         {
             this.formatter = formatter;
             this.savedDataHandler = savedDataHandler;
-            this.objects = new CsLuaDictionary<WoWGuid, T>();
+            this.objects = new CsLuaDictionary<CsLuaGuid, T>();
         }
 
-        public T Get(WoWGuid guid)
+        public T Get(CsLuaGuid guid)
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
         }
 
-        public void Set(WoWGuid guid, T obj)
+        public void Set(CsLuaGuid guid, T obj)
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
         }
 
-        public void Remove(WoWGuid guid)
+        public void Remove(CsLuaGuid guid)
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
         }
 
-        public CsLuaList<WoWGuid> GetGuids()
+        public CsLuaList<CsLuaGuid> GetGuids()
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
@@ -49,12 +49,12 @@
             var data = this.savedDataHandler.GetAll();
             if (data != null)
             {
-                Table.Foreach(data, (key, value) => this.LoadObject((WoWGuid) key, (NativeLuaTable) value));
+                Table.Foreach(data, (key, value) => this.LoadObject((CsLuaGuid) key, (NativeLuaTable) value));
             }
             this.savedDataLoaded = true;
         }
 
-        private void LoadObject(WoWGuid guid, NativeLuaTable info)
+        private void LoadObject(CsLuaGuid guid, NativeLuaTable info)
         {
             this.objects[guid] = (T) this.formatter.Deserialize(info);
         }

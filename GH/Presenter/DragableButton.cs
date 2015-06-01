@@ -28,7 +28,7 @@ namespace GH.Presenter
 
         public DragableButton(double size)
         {
-            this.Button = FrameUtil.FrameProvider.CreateFrame(FrameType.Button, null, Global.Frames.UIParent) as IButton;
+            this.Button = Global.FrameProvider.CreateFrame(FrameType.Button, null, Global.Frames.UIParent) as IButton;
             this.Button.SetWidth(size);
             this.Button.SetHeight(size);
             this.SetUpButton();
@@ -87,8 +87,8 @@ namespace GH.Presenter
             var cursorPos = Global.Api.GetCursorPosition();
             var scale = this.Button.GetEffectiveScale();
 
-            var x = cursorPos.Item1 / scale;
-            var y = cursorPos.Item2 / scale;
+            var x = cursorPos.Value1 / scale;
+            var y = cursorPos.Value2 / scale;
             this.dragOffsetX = this.currentX - x;
             this.dragOffsetY = this.currentY - y;
         }
@@ -109,8 +109,8 @@ namespace GH.Presenter
                 var cursorPos = Global.Api.GetCursorPosition();
                 var scale = this.Button.GetEffectiveScale();
 
-                var x = cursorPos.Item1 / scale;
-                var y = cursorPos.Item2 / scale;
+                var x = cursorPos.Value1 / scale;
+                var y = cursorPos.Value2 / scale;
                 this.SetPosition(x + this.dragOffsetX, y + this.dragOffsetY);
             }
 

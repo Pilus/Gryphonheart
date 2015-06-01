@@ -14,6 +14,7 @@ namespace GHD.Document
     using GHD.Document.Elements;
     using GHD.Document.Flags;
     using KeyboardInput;
+    using BlizzardApi.Global;
 
     public class Document
     {
@@ -36,7 +37,7 @@ namespace GHD.Document
             this.keyboardInput.RegisterCallback(this.HandleKeyboardInput);
             this.cursor = cursor;
 
-            this.frame = (IButton)FrameUtil.FrameProvider.CreateFrame(FrameType.Button, "GHD_Document" + documentCount);
+            this.frame = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, "GHD_Document" + documentCount);
 
             if (data != null)
             {

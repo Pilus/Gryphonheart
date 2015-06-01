@@ -1,6 +1,7 @@
 ﻿namespace GH.Menu.Menus.Window
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
@@ -56,7 +57,7 @@
 
         private static IFrame CreateBorderFrame(IFrame parent)
         {
-            var frame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, null, parent);
+            var frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, null, parent);
             frame.SetPoint(FramePoint.TOPLEFT, -TitleBar.BorderSize, TitleBar.BarHeight - TitleBar.BorderSize);
             frame.SetPoint(FramePoint.BOTTOMRIGHT, TitleBar.BorderSize, -TitleBar.BorderSize);
             SetBackdrop(frame, string.Empty);

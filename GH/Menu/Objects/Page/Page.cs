@@ -1,6 +1,7 @@
 ﻿namespace GH.Menu.Objects.Page
 {
     using BlizzardApi;
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua;
@@ -19,7 +20,7 @@
         public Page(PageProfile profile, IFrame parent, LayoutSettings layoutSettings, int pageNumber)
         {
             this.lines = new CsLuaList<ILine>();
-            this.Frame = (IFrame) FrameUtil.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Page" + pageNumber,
+            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Page" + pageNumber,
                 parent);
             this.lineSpacing = layoutSettings.lineSpacing;
 

@@ -4,7 +4,7 @@ namespace GH.Menu.Objects.DropDown
 {
     using System;
 
-    public struct DropDownData
+    public class DropDownData
     {
         public string text;
         public string value;

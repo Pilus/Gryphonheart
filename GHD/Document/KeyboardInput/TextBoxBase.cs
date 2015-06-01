@@ -6,13 +6,14 @@ namespace GHD.Document.KeyboardInput
     using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using BlizzardApi.Global;
 
     public class TextBoxBase
     {
         private readonly IEditBox editBox;
         public TextBoxBase()
         {
-            this.editBox = FrameUtil.FrameProvider.CreateFrame(FrameType.EditBox) as IEditBox;
+            this.editBox = Global.FrameProvider.CreateFrame(FrameType.EditBox) as IEditBox;
             this.editBox.SetScript(FrameHandler.OnUpdate, this.OnUpdateHandler);            
             this.editBox.SetScript(EditBoxHandler.OnTextChanged, this.OnTextChangedHandler);
             this.editBox.SetScript(EditBoxHandler.OnArrowPressed, this.OnArrowPressedHandler);

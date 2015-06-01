@@ -1,6 +1,6 @@
 ﻿namespace GHF.Model
 {
-    using BlizzardApi.Events;
+    using BlizzardApi.EventEnums;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
     using CsLua.Collection;
