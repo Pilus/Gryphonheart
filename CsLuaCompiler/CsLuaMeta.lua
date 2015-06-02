@@ -372,7 +372,7 @@ CsLuaMeta.CreateClass = function(info)
 		local implementedInterfaces = {};
 		if info.implements then
 			for _, fullName in ipairs(info.implements) do
-				table.insert(implementedInterfaces, CsLuaMeta.GetByFullName(fullName)(nil));
+				table.insert(implementedInterfaces, CsLuaMeta.GetByFullName(fullName)({}));
 			end
 		end
 

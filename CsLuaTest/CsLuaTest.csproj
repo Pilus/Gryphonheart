@@ -64,6 +64,7 @@
     <Compile Include="General\ClassAmb.cs" />
     <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
     <Compile Include="General\GeneralTests.cs" />
+    <Compile Include="Interfaces\ClassA.cs" />
     <Compile Include="Interfaces\IBaseInterface.cs" />
     <Compile Include="Interfaces\IInheritingInterface.cs" />
     <Compile Include="General\Inheriter.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="General\NonStaticClass.cs" />
     <Compile Include="General\StaticClass.cs" />
     <Compile Include="Interfaces\InterfacesTests.cs" />
+    <Compile Include="Interfaces\InterfaceWithGenerics.cs" />
     <Compile Include="ITestSuite.cs" />
     <Compile Include="Override\Base.cs" />
     <Compile Include="Override\Inheriter.cs" />
