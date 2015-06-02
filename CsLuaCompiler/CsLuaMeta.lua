@@ -9,13 +9,13 @@ local function SetAddMeta(f)
 	local mt = { __add = function(self, b) return f(self[1], b) end }
 	return setmetatable({}, { __add = function(a, _) return setmetatable({ a }, mt) end })
 end
-local add = SetAddMeta(function(a, b)
+CsLuaMeta.add = SetAddMeta(function(a, b)
 	assert(a and b, "Add called on a nil value.");
 	if type(a) == "number" and type(b) == "number" then return a + b; end
 	return tostring(a)..tostring(b);
 end);
 
-CsLuaMeta.not = setmetatable({}, { __add = function(_, value)
+CsLuaMeta._not = setmetatable({}, { __add = function(_, value)
 	return not(value);
 end});
 
@@ -173,7 +173,7 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic)
 
 			local argScore;
 			for j, argSignature in ipairs(signature[i]) do
-				if typeName == argSignature or argSignature == "null" or (argSignature == "string" and __IsMatchingEnum(typeName, args[i], true)) then
+				if typeName == argSignature or argSignature == "null" or (argSignature == "string" and CsLuaMeta.IsMatchingEnum(typeName, args[i], true)) then
 					argScore = j - 1;
 					break;
 				end

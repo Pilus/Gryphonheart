@@ -7,7 +7,7 @@ local ValidateObjAgainstInterface = function(obj, interface)
 	for _, method in ipairs(interface.methods) do
 		local name = method.name;
 		if not(type(obj[name]) == "function") then
-			__Throw(CsLua.WrapperException().__Cstor("Object does not implement method: " .. name));
+			CsLuaMeta.Throw(CsLua.WrapperException().__Cstor("Object does not implement method: " .. name));
 		end
 	end
 end
@@ -45,13 +45,13 @@ getPropertyByName = function(interface, name)
 end
 
 local getMethodFittingSignature = function(methods, ...)
-	local argSignature = __GetSignatures(...);
+	local argSignature = CsLuaMeta.GetSignatures(...);
 	local args = {...};
 
 	local bestMethod, bestScore;
 
 	for _, method in pairs(methods) do
-		local score = __ScoreFunction(method.signature, argSignature, args, {});
+		local score = CsLuaMeta.ScoreFunction(method.signature, argSignature, args, {});
 		if (score and (bestScore == nil or bestScore > score)) then
 			bestScore = score;
 			bestMethod = method;
@@ -62,16 +62,16 @@ local getMethodFittingSignature = function(methods, ...)
 end
 
 CsLua.Wrapping.Wrapper = {
-	WrapGlobalObject = __GenericsMethod(function(generics, name)
+	WrapGlobalObject = CsLuaMeta.GenericsMethod(function(generics, name)
 		return CsLua.Wrapping.Wrapper.WrapObject[generics](_G[name]);
 	end),
 	
-	WrapObject = __GenericsMethod(function(generics, obj)
+	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj)
 		if obj.__wrap and obj.__wrap.__interfaceName == generics[1].name then
 			return obj.__wrap;
 		end
 
-		local interface = __GetByFullName(generics[1].name)(generics[1].innerGenerics);
+		local interface = CsLuaMeta.GetByFullName(generics[1].name)(generics[1].innerGenerics);
 
 		ValidateObjAgainstInterface(obj, interface);
 
@@ -95,7 +95,7 @@ CsLua.Wrapping.Wrapper = {
 					return function(...)
 						local method = getMethodFittingSignature(methods, ...);
 						if not(method) then
-							__Throw(CsLua.Wrapping.WrapperException().__Cstor("No method found for key '"..key.."' matching the signature: '"..__SignatureToString(__GetSignatures(...)).."'"));
+							CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("No method found for key '"..key.."' matching the signature: '"..CsLuaMeta.SignatureToString(CsLuaMeta.GetSignatures(...)).."'"));
 						end
 
 						local unwrappedArgs = {};
@@ -113,7 +113,7 @@ CsLua.Wrapping.Wrapper = {
 						if #(returnArgs) > 1 then
 							return CsLua.Wrapping.MultipleValues(nil).__Cstor(unpack(returnArgs));
 						elseif type(returnArgs[1]) == "table" then
-							local typeFunc = __GetByFullName(method.returnType, true);
+							local typeFunc = CsLuaMeta.GetByFullName(method.returnType, true);
 							if type(typeFunc) == "function" and typeFunc(nil).isInterface then
 								return CsLua.Wrapping.Wrapper.WrapObject[method.returnType](returnArgs[1]);
 							end
@@ -125,12 +125,12 @@ CsLua.Wrapping.Wrapper = {
 
 				local property = getPropertyByName(interface, key);
 				if not(property) then
-					__Throw(CsLua.Wrapping.WrapperException().__Cstor("Object interface does not define a property or method matching key '" .. tostring(key) .. "'"));
+					CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("Object interface does not define a property or method matching key '" .. tostring(key) .. "'"));
 				end
 
 				local returnArg = obj[key];
 				if type(returnArg == "table") then
-					local typeFunc = __GetByFullName(property.type, true);
+					local typeFunc = CsLuaMeta.GetByFullName(property.type, true);
 					if type(typeFunc) == "function" and typeFunc(nil).isInterface then
 						return CsLua.Wrapping.Wrapper.WrapObject[method.returnType](returnArg);
 					end
@@ -141,7 +141,7 @@ CsLua.Wrapping.Wrapper = {
 			__newindex = function(_, key, value)
 				local property = getPropertyByName(interface, key);
 				if not(property) then
-					__Throw(CsLua.Wrapping.WrapperException().__Cstor("Object interface does not define a property matching key '" .. tostring(key) .. "'"));
+					CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("Object interface does not define a property matching key '" .. tostring(key) .. "'"));
 				end
 
 				obj[key] = CsLua.Wrapping.Wrapper.TryUnwrapObject[nil](value);
@@ -154,7 +154,7 @@ CsLua.Wrapping.Wrapper = {
 		return wrap;
 	end),
 
-	TryUnwrapObject = __GenericsMethod(function(generics, obj)
+	TryUnwrapObject = CsLuaMeta.GenericsMethod(function(generics, obj)
 		if type(value) == "table" and obj.__obj then
 			return obj.__obj;
 		end
