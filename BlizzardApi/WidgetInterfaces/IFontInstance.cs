@@ -6,8 +6,6 @@
     [ProvideSelf]
     public interface IFontInstance : IUIObject,IRegion
     {
-        new IFontInstance self { get; set; }
-
         /// <summary>
         /// Sets the font to use for text, returns 1 if the path was valid, nil otherwise (no change occurs).
         /// </summary>

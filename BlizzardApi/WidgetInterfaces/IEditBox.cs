@@ -2,6 +2,7 @@
 {
     using BlizzardApi.WidgetEnums;
     using CsLua.Attributes;
+    using CsLua.Wrapping;
     using System;
 
     [ProvideSelf]
@@ -30,7 +31,7 @@
         int GetNumLetters(); // - Gets the number of letters in the box.
         double GetNumber();
 
-        Tuple<double,double, double, double> GetTextInsets(); // - Gets the text display insets for the EditBox (added 1.11)
+        IMultipleValues<double,double, double, double> GetTextInsets(); // - Gets the text display insets for the EditBox (added 1.11)
         void HighlightText(); // - Set the highlight to all of the edit box text.
         void HighlightText(double startPos, double endPos); // - Set the highlight to some of the edit box text.
 
