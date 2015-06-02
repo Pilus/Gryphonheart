@@ -2,7 +2,7 @@
 
 namespace GHD.Document.Data
 {
-    public struct PageProperties : IPageProperties
+    public class PageProperties : IPageProperties
     {
         public double Width { get; set; }
         public double Height { get; set; }

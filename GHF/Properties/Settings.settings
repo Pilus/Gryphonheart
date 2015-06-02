@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Title" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Gryphonheart Flag</Value>
+      <Value Profile="(Default)">Gryphonheart Flags</Value>
     </Setting>
     <Setting Name="Notes" Type="System.String" Scope="User">
       <Value Profile="(Default)">Lets you specify roleplay details about your character, such as last name and appearance. Also  displays the details of other roleplayers.</Value>
