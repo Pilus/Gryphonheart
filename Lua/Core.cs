@@ -13,7 +13,7 @@ namespace Lua
     {
         public static string type(object obj)
         {
-            if (obj == null) return "nul";
+            if (obj == null) return "nil";
             var type = obj.GetType().Name;
 
             switch (type)
