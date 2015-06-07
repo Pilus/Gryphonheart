@@ -369,13 +369,6 @@ CsLuaMeta.CreateClass = function(info)
 			end
 		end
 
-		local implementedInterfaces = {};
-		if info.implements then
-			for _, fullName in ipairs(info.implements) do
-				table.insert(implementedInterfaces, CsLuaMeta.GetByFullName(fullName)({}));
-			end
-		end
-
 		
 		for _, element in pairs(elements) do
 			if (element.type == "Method") then
@@ -459,7 +452,7 @@ CsLuaMeta.CreateClass = function(info)
 				signature = inheritiedClass.__GetSignature();
 			end
 
-			for _, interface in pairs(implementedInterfaces) do
+			for _, interface in pairs(info.interfaces) do
 				interface.__AddImplementedSignatures(signature);
 			end
 

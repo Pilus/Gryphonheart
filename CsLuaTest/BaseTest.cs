@@ -8,7 +8,7 @@
     public abstract class BaseTest : ITestSuite
     {
         public static string Output = "";
-        public const bool ContinueOnError = false;
+        public const bool ContinueOnError = true;
 
         public CsLuaDictionary<string, Action> Tests
         {
