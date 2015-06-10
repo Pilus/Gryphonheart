@@ -50,11 +50,12 @@
     <Compile Include="AmbigousMethods\ClassCBase.cs" />
     <Compile Include="AmbigousMethods\ClassWithAmbigousMethods.cs" />
     <Compile Include="AmbigousMethods\ClassWithEnumMethod.cs" />
-    <Compile Include="AmbigousMethods\ClassWithGenericConstructor.cs" />
+    <Compile Include="Generics\ClassWithGenericConstructor.cs" />
     <Compile Include="AmbigousMethods\EnumA.cs" />
     <Compile Include="AmbigousMethods\EnumB.cs" />
     <Compile Include="AmbigousMethods\InterfaceB.cs" />
-    <Compile Include="AmbigousMethods\MethodsWithGeneric.cs" />
+    <Compile Include="Generics\ClassWithGenericElements.cs" />
+    <Compile Include="Generics\MethodsWithGeneric.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="DefaultValues\AnEnum.cs" />
     <Compile Include="DefaultValues\DefaultValuesClass.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="General\ClassAmb.cs" />
     <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
     <Compile Include="General\GeneralTests.cs" />
+    <Compile Include="Generics\GenericsTests.cs" />
     <Compile Include="Interfaces\ClassA.cs" />
     <Compile Include="Interfaces\IBaseInterface.cs" />
     <Compile Include="Interfaces\IInheritingInterface.cs" />

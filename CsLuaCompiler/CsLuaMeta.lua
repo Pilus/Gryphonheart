@@ -361,6 +361,7 @@ CsLuaMeta.CreateClass = function(info)
 		local staticMethods = {};
 		local constructor, serialize, deserialize;
 		local overrides = {};
+		local interfaces = {};
 
 		local appliedGenerics = {};
 		if info.generics then
@@ -371,7 +372,9 @@ CsLuaMeta.CreateClass = function(info)
 
 		
 		for _, element in pairs(elements) do
-			if (element.type == "Method") then
+			if (element.type == "Interface") then
+				table.insert(interfaces, element.value);
+			elseif (element.type == "Method") then
 				local func = GenerateAmbigiousFunc(element, inheritiedClass, appliedGenerics);
 				methods[element.name] = func;
 
@@ -452,7 +455,7 @@ CsLuaMeta.CreateClass = function(info)
 				signature = inheritiedClass.__GetSignature();
 			end
 
-			for _, interface in pairs(info.interfaces) do
+			for _, interface in pairs(interfaces) do
 				interface.__AddImplementedSignatures(signature);
 			end
 

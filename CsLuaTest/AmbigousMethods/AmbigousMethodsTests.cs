@@ -12,8 +12,6 @@
             this.Tests["TestAmbiguousMethodWithInheritance"] = TestAmbiguousMethodWithInheritance;
             this.Tests["TestNullPickingCorrectMethods"] = TestNullPickingCorrectMethods;
             this.Tests["TestAmbigousMethodsWithEnum"] = TestAmbigousMethodsWithEnum;
-            this.Tests["TestGenericMethod"] = TestGenericMethod;
-            this.Tests["TestGenericConstructor"] = TestGenericConstructor;
         }
 
         private static void TestAmbiguousMethodWith1Arg()
@@ -107,24 +105,6 @@
             theClass.EnumMethod(EnumB.Something);
             Assert("MethodEnumB", Output);
 
-        }
-
-        private static void TestGenericMethod()
-        {
-            var theClass = new MethodsWithGeneric<int, string>();
-
-            theClass.GenericMethod(1);
-            Assert("GenericMethodT1", Output);
-
-            ResetOutput();
-            theClass.GenericMethod("x");
-            Assert("GenericMethodT2", Output);
-        }
-
-        private static void TestGenericConstructor()
-        {
-            var theClass = new ClassWithGenericConstructor<string>("ok");
-            Assert("GenericConstructorT", Output);
         }
 
         // TODO scenario where a class overrides a method with one signature, but not one with another. Call both from the base class. 

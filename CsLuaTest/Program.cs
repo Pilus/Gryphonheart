@@ -1,15 +1,16 @@
 ﻿
 namespace CsLuaTest
 {
-    using TryCatchFinally;
     using AmbigousMethods;
     using CsLua.Collection;
+    using Generics;
     using DefaultValues;
     using General;
     using Interfaces;
     using Lua;
     using Override;
     using Serialization;
+    using TryCatchFinally;
     using Wrap;
 
     class Program
@@ -26,6 +27,7 @@ namespace CsLuaTest
                 new DefaultValuesTests(),
                 new InterfacesTests(),
                 new WrapTests(),
+                new GenericsTests(),
             };
 
             tests.Foreach(test => test.PerformTests());
