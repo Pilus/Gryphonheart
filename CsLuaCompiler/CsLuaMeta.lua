@@ -317,7 +317,10 @@ CsLuaMeta.CreateClass = function(info)
 		local elements = info.getElements(staticValues);
 
 		for _, element in pairs(elements) do
-			if (element.static and element.name == key) then
+			if (element.type == "PropertySet") then
+				element.value(value);
+				return;
+			elseif (element.static and element.name == key and not(element.type == "PropertyGet")) then
 				staticValues[element.name] = value;
 				return;
 			end
@@ -332,10 +335,17 @@ CsLuaMeta.CreateClass = function(info)
 	end
 
 	local getStaticValue = function(key)
-		loadStaticOverride();
-		if not(staticValues[key] == nil) then
-			return staticValues[key];
+		local elements = info.getElements(staticValues);
+
+		for _, element in pairs(elements) do
+			if (element.type == "PropertyGet") then
+				return element.value();
+			elseif (element.static and element.name == key and not(element.type == "PropertySet")) then
+				return staticValues[element.name];
+			end
 		end
+
+		loadStaticOverride();
 
 		return not(staticOverride == nil) and staticOverride[key] or nil;
 	end
@@ -402,6 +412,12 @@ CsLuaMeta.CreateClass = function(info)
 					staticSetters[element.name] = element;
 				else
 					nonStaticSetters[element.name] = element;
+				end
+			elseif (element.type == "PropertyAuto") then
+				if (element.static) then
+					staticVariables[element.name] = element;
+				else
+					nonStaticVariables[element.name] = element;
 				end
 			elseif (element.type == "Serialization") then
 				if (element.name == "serialize") then

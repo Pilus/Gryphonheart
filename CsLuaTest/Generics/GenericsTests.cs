@@ -6,6 +6,8 @@
         {
             this.Tests["TestGenericMethod"] = TestGenericMethod;
             this.Tests["TestGenericConstructor"] = TestGenericConstructor;
+            this.Tests["TestGenericVariable"] = TestGenericVariable;
+            this.Tests["TestGenericProperty"] = TestGenericProperty;
         }
 
         private static void TestGenericMethod()
