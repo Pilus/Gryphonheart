@@ -15,7 +15,7 @@ namespace BlizzardApi.Global
             {
                 if (api == null)
                 {
-                    api = Wrapper.WrapGlobalObject<IApi>("_G");
+                    api = Wrapper.WrapGlobalObject<IApi>("_G", true);
                 }
                 return api;
             }
@@ -30,7 +30,7 @@ namespace BlizzardApi.Global
             {
                 if (frames == null)
                 {
-                    frames = Wrapper.WrapGlobalObject<IFrames>("_G");
+                    frames = Wrapper.WrapGlobalObject<IFrames>("_G", true);
                 }
                 return frames;
             }
@@ -46,7 +46,7 @@ namespace BlizzardApi.Global
             {
                 if (frames == null)
                 {
-                    frameProvider = Wrapper.WrapGlobalObject<IFrameProvider>("_G");
+                    frameProvider = Wrapper.WrapGlobalObject<IFrameProvider>("_G", true);
                 }
                 return frameProvider;
             }

@@ -7,7 +7,7 @@ local ValidateObjAgainstInterface = function(obj, interface)
 	for _, method in ipairs(interface.methods) do
 		local name = method.name;
 		if not(type(obj[name]) == "function") then
-			CsLuaMeta.Throw(CsLua.WrapperException().__Cstor("Object does not implement method: " .. name));
+			CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("Object does not implement method: " .. name));
 		end
 	end
 end
@@ -62,18 +62,20 @@ local getMethodFittingSignature = function(methods, ...)
 end
 
 CsLua.Wrapping.Wrapper = {
-	WrapGlobalObject = CsLuaMeta.GenericsMethod(function(generics, name)
-		return CsLua.Wrapping.Wrapper.WrapObject[generics](_G[name]);
+	WrapGlobalObject = CsLuaMeta.GenericsMethod(function(generics, name, skipValidation)
+		return CsLua.Wrapping.Wrapper.WrapObject[generics](_G[name], skipValidation);
 	end),
 	
-	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj)
+	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj, skipValidation)
 		if obj.__wrap and obj.__wrap.__interfaceName == generics[1].name then
 			return obj.__wrap;
 		end
 
 		local interface = CsLuaMeta.GetByFullName(generics[1].name)(generics[1].innerGenerics);
 
-		ValidateObjAgainstInterface(obj, interface);
+		if not(skipValidation == true) then
+			ValidateObjAgainstInterface(obj, interface);
+		end
 
 		local signatures = {};
 		interface.__AddImplementedSignatures(signatures);
