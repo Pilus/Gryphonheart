@@ -6,6 +6,7 @@
     {
         public InterfacesTests()
         {
+            Name = "Interfaces";
             this.Tests["InheritiedInterfaceShouldBeloadedInSignature"] = InheritiedInterfaceShouldBeloadedInSignature;
             this.Tests["ImplementedInterfaceWithGenerics"] = ImplementedInterfaceWithGenerics;
         }

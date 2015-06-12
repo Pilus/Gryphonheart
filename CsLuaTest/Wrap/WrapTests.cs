@@ -8,6 +8,7 @@
     {
         public WrapTests()
         {
+            Name = "Wrap";
             this.Tests["WrapSimpleInterface"] = WrapSimpleInterface;
             this.Tests["WrapInheritingInterface"] = WrapInheritingInterface;
             this.Tests["WrapGenericInterface"] = WrapGenericInterface;

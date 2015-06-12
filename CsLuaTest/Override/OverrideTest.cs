@@ -9,6 +9,7 @@ namespace CsLuaTest.Override
     {
         public OverrideTest()
         {
+            Name = "Override";
             this.Tests["TestConstructors"] = TestConstructors;
             this.Tests["TestMethods"] = TestMethods;
             this.Tests["TestMultiLayerMethods"] = TestMultiLayerMethods;

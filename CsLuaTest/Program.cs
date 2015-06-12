@@ -12,6 +12,7 @@ namespace CsLuaTest
     using Serialization;
     using TryCatchFinally;
     using Wrap;
+    using Static;
 
     class Program
     {
@@ -28,9 +29,10 @@ namespace CsLuaTest
                 new InterfacesTests(),
                 new WrapTests(),
                 new GenericsTests(),
+                new StaticTests(),
             };
 
-            tests.Foreach(test => test.PerformTests());
+            tests.Foreach(test => test.PerformTests(new IndentedLineWriter()));
             Core.print("CsLua test completed.");
         }
     }

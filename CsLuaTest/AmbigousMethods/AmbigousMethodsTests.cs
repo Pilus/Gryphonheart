@@ -4,6 +4,7 @@
     {
         public AmbigousMethodsTests()
         {
+            Name = "AmbigousMethods";
             this.Tests["TestAmbiguousMethodWith1Arg"] = TestAmbiguousMethodWith1Arg;
             this.Tests["TestAmbiguousMethodWith1ArgAndObject"] = TestAmbiguousMethodWith1ArgAndObject;
             this.Tests["TestAmbiguousMethodWith1ArgAndClass"] = TestAmbiguousMethodWith1ArgAndClass;

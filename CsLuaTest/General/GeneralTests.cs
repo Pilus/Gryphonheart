@@ -4,41 +4,12 @@
     {
         public GeneralTests()
         {
-            this.Tests["TestStaticClassWithMethod"] = TestStaticClassWithMethod;
-            this.Tests["TestStaticClassWithVariable"] = TestStaticClassWithVariable;
-            this.Tests["TestStaticClassWithAutoProperty"] = TestStaticClassWithAutoProperty;
-            this.Tests["TestStaticClassWithCustomProperty"] = TestStaticClassWithCustomProperty;
+            Name = "General";
             this.Tests["NonStaticClassWithStaticMethod"] = NonStaticClassWithStaticMethod;
             this.Tests["TestVariableTypeVsVariableName"] = TestVariableTypeVsVariableName;
             this.Tests["GetConstValueFromBase"] = GetConstValueFromBase;
             this.Tests["ConstructorShouldUseArgumentsOverClassElements"] = ConstructorShouldUseArgumentsOverClassElements;
             this.Tests["MethodShouldUseArgumentsOverClassElements"] = MethodShouldUseArgumentsOverClassElements;
-        }
-
-        private static void TestStaticClassWithMethod()
-        {
-            StaticClass.Method(1);
-            Assert("StaticMethodInt", Output);
-        }
-
-        private static void TestStaticClassWithVariable()
-        {
-            Assert(40, StaticClass.Variable);
-            Assert(0, StaticClass.VariableWithDefault);
-        }
-
-        private static void TestStaticClassWithAutoProperty()
-        {
-            Assert(0, StaticClass.AutoProperty);
-            StaticClass.AutoProperty = 20;
-            Assert(20, StaticClass.AutoProperty);
-        }
-
-        private static void TestStaticClassWithCustomProperty()
-        {
-            Assert(0, StaticClass.PropertyWithGetSet);
-            StaticClass.PropertyWithGetSet = 25;
-            Assert(50, StaticClass.PropertyWithGetSet);
         }
 
         private static void NonStaticClassWithStaticMethod()

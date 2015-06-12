@@ -4,6 +4,7 @@
     {
         public GenericsTests()
         {
+            Name = "Generics";
             this.Tests["TestGenericMethod"] = TestGenericMethod;
             this.Tests["TestGenericConstructor"] = TestGenericConstructor;
             this.Tests["TestGenericVariable"] = TestGenericVariable;

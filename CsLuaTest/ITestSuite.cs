@@ -6,6 +6,6 @@ namespace CsLuaTest
 
     public interface ITestSuite
     {
-        void PerformTests();
+        void PerformTests(IndentedLineWriter lineWriter);
     }
 }

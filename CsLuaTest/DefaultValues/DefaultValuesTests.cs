@@ -4,6 +4,7 @@
     {
         public DefaultValuesTests()
         {
+            Name = "DefaultValues";
             this.Tests["DefaultInt"] = DefaultInt;
             this.Tests["DefaultBool"] = DefaultBool;
             this.Tests["DefaultString"] = DefaultString;

@@ -303,11 +303,21 @@ namespace Lua
             return str.Substring(initPos).IndexOf(pattern, StringComparison.Ordinal);
         }
 
+        /// <summary>
+        /// Return a string which is count copies of seed.
+        /// </summary>
+        /// <param name="seed"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static string strrep(string seed, int count)
+        {
+            throw new NotImplementedException();
+        }
+
     /*
 
 strlower(string) - Return string with all upper case changed to lower case.
 strmatch(string, pattern[, initpos]) - Similar to strfind but only returns the matches, not the string positions.
-strrep(seed,count) - Return a string which is count copies of seed.
 strrev(string) - Reverses a string; alias of string.reverse.
 
 strupper(string) - Return string with all lower case changed to upper case.

@@ -9,6 +9,7 @@
 
         public SerializationTests()
         {
+            Name = "Serialization";
             this.Tests["TestBasicSerializableClass"] = TestBasicSerializableClass;
             this.Tests["TestClassWithSubObject"] = TestClassWithSubObject;
             this.Tests["TestClassInCsLuaList"] = TestClassInCsLuaList;

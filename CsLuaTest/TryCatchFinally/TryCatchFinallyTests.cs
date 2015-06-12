@@ -7,6 +7,7 @@ namespace CsLuaTest.TryCatchFinally
     {
         public TryCatchFinallyTests() 
         {
+            Name = "TryCatchFinally";
             this.Tests["TestSimpleThrow"] = TestSimpleThrow;
             this.Tests["TestFinally"] = TestFinally;
             this.Tests["TestFinallyWithCatch"] = TestFinallyWithCatch;

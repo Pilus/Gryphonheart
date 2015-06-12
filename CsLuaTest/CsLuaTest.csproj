@@ -66,13 +66,14 @@
     <Compile Include="General\ClassWithTypeAndVariableNaming.cs" />
     <Compile Include="General\GeneralTests.cs" />
     <Compile Include="Generics\GenericsTests.cs" />
+    <Compile Include="IndentedLineWriter.cs" />
     <Compile Include="Interfaces\ClassA.cs" />
     <Compile Include="Interfaces\IBaseInterface.cs" />
     <Compile Include="Interfaces\IInheritingInterface.cs" />
     <Compile Include="General\Inheriter.cs" />
     <Compile Include="Interfaces\InheritingInterfaceImplementation.cs" />
     <Compile Include="General\NonStaticClass.cs" />
-    <Compile Include="General\StaticClass.cs" />
+    <Compile Include="Static\StaticClass.cs" />
     <Compile Include="Interfaces\InterfacesTests.cs" />
     <Compile Include="Interfaces\InterfaceWithGenerics.cs" />
     <Compile Include="ITestSuite.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Serialization\ClassWithNativeObjects.cs" />
     <Compile Include="Serialization\ClassWithSubObject.cs" />
     <Compile Include="Serialization\SerializationTests.cs" />
+    <Compile Include="Static\StaticTests.cs" />
     <Compile Include="TryCatchFinally\CustomException.cs" />
     <Compile Include="TryCatchFinally\TryCatchFinallyTests.cs" />
     <Compile Include="Wrap\IInheritingInterface.cs" />

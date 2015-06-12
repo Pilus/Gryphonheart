@@ -7,6 +7,7 @@
 
     public abstract class BaseTest : ITestSuite
     {
+        public string Name = "Unnamed";
         public static string Output = "";
         public const bool ContinueOnError = true;
 
@@ -20,28 +21,38 @@
             this.Tests = new CsLuaDictionary<string, Action>();
         }
 
-        public void PerformTests()
+        public void PerformTests(IndentedLineWriter lineWriter)
         {
-            foreach (var test in this.Tests)
+            lineWriter.WriteLine(Name);
+            lineWriter.indent++;
+            foreach (var testName in this.Tests.Keys)
             {
+                var test = this.Tests[testName];
+
                 if (ContinueOnError)
                 { 
                     try
                     {
                         ResetOutput();
-                        test.Value();
+                        test();
+                        lineWriter.WriteLine(testName + " Success");
                     }
                     catch (CsException ex)
                     {
-                        Core.print("Test failed", test.Key, ex.Message);
+                        lineWriter.WriteLine(testName + " Failed");
+                        lineWriter.indent++;
+                        lineWriter.WriteLine(ex.Message);
+                        lineWriter.indent--;
                     }
                 }
                 else
                 {
+                    lineWriter.WriteLine(testName);
                     ResetOutput();
-                    test.Value();
+                    test();
                 }
             }
+            lineWriter.indent--;
         }
 
         protected static void ResetOutput()

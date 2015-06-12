@@ -338,7 +338,7 @@ CsLuaMeta.CreateClass = function(info)
 		local elements = info.getElements(staticValues);
 
 		for _, element in pairs(elements) do
-			if (element.type == "PropertyGet") then
+			if (element.name == key and element.type == "PropertyGet") then
 				return element.value();
 			elseif (element.static and element.name == key and not(element.type == "PropertySet")) then
 				return staticValues[element.name];
