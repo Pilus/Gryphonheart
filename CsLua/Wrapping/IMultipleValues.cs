@@ -67,4 +67,17 @@
         T7 Value7 { get; }
         T8 Value8 { get; }
     }
+
+    public interface IMultipleValues<T1, T2, T3, T4, T5, T6, T7, T8, T9>
+    {
+        T1 Value1 { get; }
+        T2 Value2 { get; }
+        T3 Value3 { get; }
+        T4 Value4 { get; }
+        T5 Value5 { get; }
+        T6 Value6 { get; }
+        T7 Value7 { get; }
+        T8 Value8 { get; }
+        T9 Value9 { get; }
+    }
 }

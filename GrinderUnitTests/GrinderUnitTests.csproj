@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>.\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -55,9 +58,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
+      <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
+      <Name>BlizzardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CsLua\CsLua.csproj">
+      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
+      <Name>CsLua</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Grinder\Grinder.csproj">
       <Project>{3f5f4ba0-a433-46df-ae6e-71b2132051c8}</Project>
       <Name>Grinder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lua\Lua.csproj">
+      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
+      <Name>Lua</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

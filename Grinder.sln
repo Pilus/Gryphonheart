@@ -5,13 +5,13 @@ VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grinder", "Grinder\Grinder.csproj", "{3F5F4BA0-A433-46DF-AE6E-71B2132051C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLua", "..\CsLua\CsLua.csproj", "{B91182F7-751E-46EB-8549-3D9AB6E34B7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinderUnitTests", "GrinderUnitTests\GrinderUnitTests.csproj", "{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlizzardApi", "..\BlizzardApi\BlizzardApi.csproj", "{4FA81A8F-BE0D-4DAD-9E55-0AD7146FC259}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLua", "CsLua\CsLua.csproj", "{B91182F7-751E-46EB-8549-3D9AB6E34B7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lua", "..\Lua\Lua.csproj", "{E9EBE6E6-D167-480A-AC2C-B6A00D5B8715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlizzardApi", "BlizzardApi\BlizzardApi.csproj", "{4FA81A8F-BE0D-4DAD-9E55-0AD7146FC259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinderUnitTests", "UnitTestProject1\GrinderUnitTests.csproj", "{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lua", "Lua\Lua.csproj", "{E9EBE6E6-D167-480A-AC2C-B6A00D5B8715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +23,10 @@ Global
 		{3F5F4BA0-A433-46DF-AE6E-71B2132051C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F5F4BA0-A433-46DF-AE6E-71B2132051C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F5F4BA0-A433-46DF-AE6E-71B2132051C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B91182F7-751E-46EB-8549-3D9AB6E34B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B91182F7-751E-46EB-8549-3D9AB6E34B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B91182F7-751E-46EB-8549-3D9AB6E34B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,10 +39,6 @@ Global
 		{E9EBE6E6-D167-480A-AC2C-B6A00D5B8715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9EBE6E6-D167-480A-AC2C-B6A00D5B8715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9EBE6E6-D167-480A-AC2C-B6A00D5B8715}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3D5BAC3-2210-4A97-B8FE-872A19BDF058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
