@@ -40,9 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventEnums\SystemEvent.cs" />
+    <Compile Include="Global\Container.cs" />
     <Compile Include="Global\Currency.cs" />
     <Compile Include="Global\Custom.cs" />
     <Compile Include="Global\Global.cs" />
+    <Compile Include="Global\Item.cs" />
     <Compile Include="Global\Settings.cs" />
     <Compile Include="Global\System.cs" />
     <Compile Include="Global\Unit.cs" />

@@ -15,7 +15,7 @@ namespace BlizzardApi.Global
         /// <summary>
         /// Download a backup of your settings from the server.
         /// </summary>
-        void DownloadSettings();
+        //void DownloadSettings(); // Seems to be missing 
         /// <summary>
         /// Returns the current value of a console variable.
         /// </summary>

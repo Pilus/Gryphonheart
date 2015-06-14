@@ -67,6 +67,10 @@ CsLua.Wrapping.Wrapper = {
 	end),
 	
 	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj, skipValidation)
+		if not(type(generics)=="table") or not(type(generics[1]) == "table") or not(type(generics[1].name) == "string") then
+			CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("No interface provided to wrap object in."));
+		end
+
 		if obj.__wrap and obj.__wrap.__interfaceName == generics[1].name then
 			return obj.__wrap;
 		end

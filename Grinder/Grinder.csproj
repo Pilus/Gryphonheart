@@ -34,10 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Model\Currency.cs" />
     <Compile Include="Model\EntityType.cs" />
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Presenter\Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\IView.cs" />
@@ -48,9 +51,7 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presenter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>

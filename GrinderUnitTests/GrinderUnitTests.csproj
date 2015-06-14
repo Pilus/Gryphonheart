@@ -54,8 +54,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ContainerSimulator.cs" />
     <Compile Include="ModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestUtill.cs" />
+    <Compile Include="PresenterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
