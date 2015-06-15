@@ -1,94 +1,43 @@
 ﻿
 namespace Grinder.Model
 {
-    using BlizzardApi.Global;
     using System;
     using CsLua.Collection;
-    using CsLua.Wrapping;
+    using Grinder.Model.Entity;
+    using Grinder.Model.EntityAdaptor;
 
     public class Model : IModel
     {
+        private IEntityAdaptorFactory adaptorFactory;
+        private CsLuaDictionary<EntityType, IEntityAdaptor> adaptors;
+
+        public Model(IEntityAdaptorFactory adaptorFactory)
+        {
+            this.adaptorFactory = adaptorFactory;
+            this.adaptors = new CsLuaDictionary<EntityType, IEntityAdaptor>();
+            this.CreateAdaptor(EntityType.Currency);
+            this.CreateAdaptor(EntityType.Item);
+        }
+
+        private void CreateAdaptor(EntityType type)
+        {
+            this.adaptors.Add(type, this.adaptorFactory.CreateAdoptor(type));
+        }
+
         public CsLuaList<IEntity> GetAvailableEntities(EntityType type)
-        {   
-            switch (type)
-            {
-                case EntityType.Currency:
-                    return GetAvailableCurrencies();
-                case EntityType.Item:
-                    return GetAvailableItems();
-                default:
-                    throw new Exception("Unknown entity type.");
-            }
-        }
-
-        private static CsLuaList<IEntity> GetAvailableCurrencies()
         {
-            var list = new CsLuaList<IEntity>();
-
-            var id = 1;
-            var continuousNullCount = 0;
-            while (continuousNullCount < 100)
-            {
-                var currencyInfo = Global.Api.GetCurrencyInfo(id);
-
-                if (currencyInfo != null)
-                {
-                    var currency = new Currency(id, currencyInfo);
-                    if (currency.IsDiscovered)
-                    {
-                        list.Add(currency);
-                    }
-                    
-                    continuousNullCount = 0;
-                }
-                else
-                {
-                    continuousNullCount++;
-                }
-                id++;
-            }
-            
-            return list;
-        }
-
-        private static CsLuaList<IEntity> GetAvailableItems()
-        {
-            var list = new CsLuaList<IEntity>();
-
-            for (var bagId = -1; bagId <= 11; bagId++)
-            {
-                for (var slot = 1; slot < Global.Api.GetContainerNumSlots(bagId); slot++)
-                {
-                    var itemId = Global.Api.GetContainerItemID(bagId, slot);
-                    if (itemId != null && !list.Any(item => item.Id.Equals(itemId)))
-                    {
-                        var item = new Item((int)itemId, Global.Api.GetItemInfo((int)itemId));
-                        if (item.StackSize > 1)
-                        {
-                            list.Add(item);
-                        }
-                    }
-                }
-            }
-
-            return list;
+            return this.adaptors[type].GetAvailableEntities();
         }
 
         public int GetCurrentAmount(EntityType type, int entityId)
         {
-            switch (type)
-            {
-                case EntityType.Currency:
-                    return Global.Api.GetCurrencyInfo(entityId).Value2;
-                case EntityType.Item:
-                    return Global.Api.GetItemCount(entityId);
-                default:
-                    throw new Exception("Unknown entity type.");
-            }
+            return this.adaptors[type].GetCurrentAmount(entityId);
         }
 
         public CsLuaList<IEntity> LoadTrackedEntities()
         {
+            var knownEntities = new CsLuaDictionary<EntityType, CsLuaList<IEntity>>();
+
             throw new NotImplementedException();
         }
 

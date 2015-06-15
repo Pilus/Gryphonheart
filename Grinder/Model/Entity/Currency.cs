@@ -1,4 +1,4 @@
-﻿namespace Grinder.Model
+﻿namespace Grinder.Model.Entity
 {
     using CsLua.Wrapping;
 

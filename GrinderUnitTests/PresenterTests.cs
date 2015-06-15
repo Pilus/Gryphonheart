@@ -6,7 +6,7 @@
     public class PresenterTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void PresenterCallsLoadTrackedEntitiesAndDisplaysThemInTheView()
         {
         }
     }

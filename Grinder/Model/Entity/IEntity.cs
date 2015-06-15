@@ -1,6 +1,6 @@
 ﻿
 
-namespace Grinder.Model
+namespace Grinder.Model.Entity
 {
     public interface IEntity
     {

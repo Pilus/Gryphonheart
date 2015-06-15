@@ -4,6 +4,7 @@ namespace Grinder.Model
 {
     using System;
     using CsLua.Collection;
+    using Grinder.Model.Entity;
 
     public interface IModel
     {

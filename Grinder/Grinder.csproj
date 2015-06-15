@@ -34,15 +34,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Model\Currency.cs" />
-    <Compile Include="Model\EntityType.cs" />
-    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Model\EntityAdaptor\CurrencyAdaptor.cs" />
+    <Compile Include="Model\EntityAdaptor\EntityAdaptorException.cs" />
+    <Compile Include="Model\EntityAdaptor\EntityAdaptorFactory.cs" />
+    <Compile Include="Model\EntityAdaptor\ItemAdaptor.cs" />
+    <Compile Include="Model\EntityStorage\EntityStorage.cs" />
+    <Compile Include="Model\EntityStorage\IEntityStorage.cs" />
+    <Compile Include="Model\Entity\Currency.cs" />
+    <Compile Include="Model\EntityAdaptor\IEntityAdaptor.cs" />
+    <Compile Include="Model\EntityAdaptor\IEntityAdaptorFactory.cs" />
+    <Compile Include="Model\Entity\EntityType.cs" />
+    <Compile Include="Model\Entity\IEntity.cs" />
     <Compile Include="Model\IModel.cs" />
-    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Entity\Item.cs" />
+    <Compile Include="Model\EntityStorage\ITrackedEntity.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\ModelException.cs" />
     <Compile Include="Presenter\Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\IEntitySelection.cs" />
+    <Compile Include="View\ITrackableEntity.cs" />
     <Compile Include="View\IView.cs" />
   </ItemGroup>
   <ItemGroup>

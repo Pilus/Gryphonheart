@@ -9,7 +9,7 @@ namespace Grinder.View
     {
         void SetUpdateAction(Action update);
         void SetTrackButtonOnClick(Action clickAction);
-        void ShowEntitySelection(EntityType[] types, CsLuaList<IEntity> entities, Action<int> onSelect);
+        void ShowEntitySelection(IEntitySelection selction);
         void SetTrackingEntityHandlers(Action<int> onReset, Action<int> onRemove);
         void AddTrackingEntity(string id, string name, string icon);
         void RemoveTrackingEntity(string id);
