@@ -1,10 +1,12 @@
 ﻿namespace Grinder.Model.EntityStorage
 {
     using CsLua.Collection;
-    interface IEntityStorage
+    using View;
+
+    public interface IEntityStorage
     {
-        CsLuaList<ITrackedEntity> LoadTrackedEntities();
-        void AddTrackedEntityIfMissing(ITrackedEntity trackedEntity);
-        void RemoveTrackedEntity(ITrackedEntity trackedEntity);
+        CsLuaList<TrackedEntity> LoadTrackedEntities();
+        void AddTrackedEntityIfMissing(TrackedEntity trackedEntity);
+        void RemoveTrackedEntity(TrackedEntity trackedEntity);
     }
 }

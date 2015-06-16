@@ -58,6 +58,7 @@
     <Compile Include="Model\EntityAdaptor\EntityAdaptorFactoryTests.cs" />
     <Compile Include="Model\EntityAdaptor\ItemAdaptorTests.cs" />
     <Compile Include="Model\EntityAdaptor\CurrencyAdaptorTests.cs" />
+    <Compile Include="Model\EntityStorage\EntityStorageTests.cs" />
     <Compile Include="Model\ModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtill.cs" />

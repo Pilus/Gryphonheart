@@ -39,15 +39,17 @@
     <Compile Include="Model\EntityAdaptor\EntityAdaptorFactory.cs" />
     <Compile Include="Model\EntityAdaptor\ItemAdaptor.cs" />
     <Compile Include="Model\EntityStorage\EntityStorage.cs" />
+    <Compile Include="Model\EntityStorage\EntityStorageException.cs" />
     <Compile Include="Model\EntityStorage\IEntityStorage.cs" />
     <Compile Include="Model\Entity\Currency.cs" />
     <Compile Include="Model\EntityAdaptor\IEntityAdaptor.cs" />
     <Compile Include="Model\EntityAdaptor\IEntityAdaptorFactory.cs" />
+    <Compile Include="Model\Entity\EntitySample.cs" />
     <Compile Include="Model\Entity\EntityType.cs" />
     <Compile Include="Model\Entity\IEntity.cs" />
+    <Compile Include="Model\Entity\IEntitySample.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Entity\Item.cs" />
-    <Compile Include="Model\EntityStorage\ITrackedEntity.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\ModelException.cs" />
     <Compile Include="Presenter\Presenter.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="View\IEntitySelection.cs" />
     <Compile Include="View\ITrackableEntity.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="Model\EntityStorage\TrackedEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
