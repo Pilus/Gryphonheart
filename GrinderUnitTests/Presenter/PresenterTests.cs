@@ -31,7 +31,7 @@
             this.modelMock.Setup(model => model.LoadTrackedEntities()).Returns(new CsLuaList<IEntity>() { item, currency });
             this.viewMock.Setup(view => view.AddTrackingEntity(It.IsAny<IEntityId>(), It.IsAny<string>(), It.IsAny<string>()));
 
-            var presenter = new Presenter(modelMock.Object, viewMock.Object);
+            var presenter = new Presenter(this.modelMock.Object, this.viewMock.Object);
 
             this.viewMock.Verify(view => view.AddTrackingEntity(It.IsAny<IEntityId>(), It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
             this.viewMock.Verify(view => view.AddTrackingEntity(It.Is<IEntityId>(id => id.Id.Equals(item.Id) && id.Type.Equals(item.Type)), item.Name, item.IconPath), Times.Once());
@@ -48,14 +48,11 @@
             this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Item, 43)).Returns(CreateMockSample(200000, 10));
             this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Currency, 20)).Returns(CreateMockSample(200000, 0));
 
-            this.viewMock.Setup(view => view.AddTrackingEntity(It.IsAny<IEntityId>(), It.IsAny<string>(), It.IsAny<string>()));
-            this.viewMock.Setup(view => view.UpdateTrackingEntityVelocity(It.IsAny<IEntityId>(), It.IsAny<int>(), It.IsAny<double>()));
-
             Action update = null;
             this.viewMock.Setup(view => view.SetUpdateAction(It.IsAny<Action>()))
                 .Callback((Action action) => update = action);
 
-            var presenter = new Presenter(modelMock.Object, viewMock.Object);
+            var presenter = new Presenter(this.modelMock.Object, this.viewMock.Object);
 
             Assert.IsTrue(update != null, "Update function not set.");
             this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(It.IsAny<IEntityId>(), It.IsAny<int>(), It.IsAny<double>()), Times.Never);
@@ -76,10 +73,99 @@
             this.VerifyAmountAndVelocity(EntityType.Currency, 20, 30, 360);
         }
 
+        [TestMethod]
+        public void PresenterResetsTheInitialSampleOnReset()
+        {
+            var item = CreateMockEntity(EntityType.Item, 43, "Test item", "The item icon");
+            var currency = CreateMockEntity(EntityType.Currency, 20, "Test currency", "The currency icon");
+
+            this.modelMock.Setup(model => model.LoadTrackedEntities()).Returns(new CsLuaList<IEntity>() { item, currency });
+            this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Item, 43)).Returns(CreateMockSample(200000, 10));
+            this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Currency, 20)).Returns(CreateMockSample(200000, 0));
+
+            Action<IEntityId> reset = null;
+            this.viewMock.Setup(view => view.SetTrackingEntityHandlers(It.IsAny<Action<IEntityId>>(), It.IsAny<Action<IEntityId>>()))
+                .Callback((Action<IEntityId> resetAction, Action<IEntityId> removeAction) => reset = resetAction);
+
+            var presenter = new Presenter(this.modelMock.Object, this.viewMock.Object);
+
+            Assert.IsTrue(reset != null, "Reset function not set.");
+            this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(It.IsAny<IEntityId>(), It.IsAny<int>(), It.IsAny<double>()), Times.Never);
+
+            this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Item, 43)).Returns(CreateMockSample(200400, 15));
+
+            reset(new EntityId(EntityType.Item, 43));
+
+            this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(It.IsAny<IEntityId>(), It.IsAny<int>(), It.IsAny<double>()), Times.Once);
+            this.VerifyAmountAndVelocity(EntityType.Item, 43, 15, 0);
+        }
+
+        [TestMethod]
+        public void PresenterRemovesTheInitialSampleOnRemove()
+        {
+            var item = CreateMockEntity(EntityType.Item, 43, "Test item", "The item icon");
+            var currency = CreateMockEntity(EntityType.Currency, 20, "Test currency", "The currency icon");
+
+            this.modelMock.Setup(model => model.LoadTrackedEntities()).Returns(new CsLuaList<IEntity>() { item, currency });
+            this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Item, 43)).Returns(CreateMockSample(200000, 10));
+            this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Currency, 20)).Returns(CreateMockSample(200000, 0));
+
+            Action<IEntityId> remove = null;
+            this.viewMock.Setup(view => view.SetTrackingEntityHandlers(It.IsAny<Action<IEntityId>>(), It.IsAny<Action<IEntityId>>()))
+                .Callback((Action<IEntityId> resetAction, Action<IEntityId> removeAction) => remove = removeAction);
+
+            var presenter = new Presenter(this.modelMock.Object, this.viewMock.Object);
+
+            Assert.IsTrue(remove != null, "Remove function not set.");
+            
+            remove(new EntityId(EntityType.Item, 43));
+
+            this.viewMock.Verify(view => view.RemoveTrackingEntity(It.IsAny<IEntityId>()), Times.Once);
+            this.viewMock.Verify(view => view.RemoveTrackingEntity(It.Is<IEntityId>(entityId => entityId.Id.Equals(43) && entityId.Type.Equals(EntityType.Item))), Times.Exactly(1));
+
+            this.modelMock.Verify(model => model.SaveEntityTrackingFlag(It.IsAny<EntityType>(), It.IsAny<int>(), It.IsAny<bool>() ), Times.Once);
+            this.modelMock.Verify(model => model.SaveEntityTrackingFlag(EntityType.Item, 43, false), Times.Once);
+        }
+
+        [TestMethod]
+        public void PresenterProvidesHandlesTrackClickAndTrackableEntitySelection()
+        {
+            this.modelMock.Setup(model => model.LoadTrackedEntities()).Returns(new CsLuaList<IEntity>());
+            var item1 = CreateMockEntity(EntityType.Item, 43, "Test item 1", "The item icon 1");
+            var item2 = CreateMockEntity(EntityType.Item, 45, "Test item 2", "The item icon 2");
+            var currency = CreateMockEntity(EntityType.Currency, 20, "Test currency", "The currency icon");
+
+            this.modelMock.Setup(model => model.GetAvailableEntities(EntityType.Item)).Returns(new CsLuaList<IEntity>() { item1, item2 });
+            this.modelMock.Setup(model => model.GetAvailableEntities(EntityType.Currency)).Returns(new CsLuaList<IEntity>() { currency });
+
+            Action track = null;
+            this.viewMock.Setup(view => view.SetTrackButtonOnClick(It.IsAny<Action>()))
+                .Callback((Action trackClick) => track = trackClick);
+
+            var presenter = new Presenter(this.modelMock.Object, this.viewMock.Object);
+
+            Assert.IsTrue(track != null, "Track click function not set.");
+            this.viewMock.Verify(view => view.ShowEntitySelection(It.IsAny<IEntitySelection>()), Times.Never);
+
+            IEntitySelection entitySelection = null;
+            this.viewMock.Setup(view => view.ShowEntitySelection(It.IsAny<IEntitySelection>()))
+                .Callback((IEntitySelection selection) => entitySelection = selection);
+
+            track();
+
+            this.viewMock.Verify(view => view.ShowEntitySelection(It.IsAny<IEntitySelection>()), Times.Once);
+            Assert.IsTrue(entitySelection != null, "Entity selection not provided.");
+            Assert.AreEqual(2, entitySelection.Count);
+            Assert.IsTrue(entitySelection.ContainsKey("Items"));
+            Assert.IsTrue(entitySelection.ContainsKey("Currencies"));
+
+            // TODO: check the details of entitySelection and test the invokes.
+        }
+
         private void VerifyAmountAndVelocity(EntityType type, int id, int amount, double velocity)
         {
             this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(
-                It.Is<IEntityId>(entityId => entityId.Id.Equals(id) && entityId.Type.Equals(type)), amount, velocity), Times.Once());
+                It.Is<IEntityId>(entityId => entityId.Id.Equals(id) && entityId.Type.Equals(type)), amount, velocity), Times.Once);
         }
 
         private static IEntity CreateMockEntity(EntityType type, int id, string name, string icon)

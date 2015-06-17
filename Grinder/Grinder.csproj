@@ -54,8 +54,10 @@
     <Compile Include="Model\ModelException.cs" />
     <Compile Include="Presenter\EntityId.cs" />
     <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Presenter\TrackableEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Presenter\EntitySelection.cs" />
     <Compile Include="View\IEntityId.cs" />
     <Compile Include="View\IEntitySelection.cs" />
     <Compile Include="View\ITrackableEntity.cs" />

@@ -7,9 +7,15 @@
 
     public class Presenter
     {
-        private CsLuaDictionary<IEntityId, IEntitySample> initialTrackingSample;
-        private IModel model;
-        private IView view;
+        private static CsLuaDictionary<EntityType, string> entityTypes = new CsLuaDictionary<EntityType, string>()
+        {
+            { EntityType.Currency, "Currencies"},
+            { EntityType.Item, "Items"},
+        };
+
+        private readonly CsLuaDictionary<IEntityId, IEntitySample> initialTrackingSample;
+        private readonly IModel model;
+        private readonly IView view;
 
         public Presenter(IModel model, IView view)
         {
@@ -18,6 +24,8 @@
             this.view = view;
 
             this.view.SetUpdateAction(this.UpdateVelocity);
+            this.view.SetTrackingEntityHandlers(this.ResetSample, this.RemoveTracking);
+            this.view.SetTrackButtonOnClick(this.TrackOnClick);
 
             this.LoadEntities();
         }
@@ -59,6 +67,36 @@
             }
 
             return 0;
+        }
+
+        private void ResetSample(IEntityId id)
+        {
+            this.initialTrackingSample[id] = this.model.GetCurrentSample(id.Type, id.Id);
+            this.view.UpdateTrackingEntityVelocity(id, this.initialTrackingSample[id].Amount, 0);
+        }
+
+        private void RemoveTracking(IEntityId id)
+        {
+            this.model.SaveEntityTrackingFlag(id.Type, id.Id, false);
+            this.view.RemoveTrackingEntity(id);
+        }
+
+        private void TrackOnClick()
+        {
+            var selection = new EntitySelection();
+
+            foreach (var entityType in entityTypes.Keys)
+            {
+                selection[entityTypes[entityType]] = this.model.GetAvailableEntities(entityType)
+                    .Select(entity => (ITrackableEntity) new TrackableEntity(entity, this.TrackEntity));
+            }
+
+            this.view.ShowEntitySelection(selection);
+        }
+
+        private void TrackEntity(IEntity entity)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
