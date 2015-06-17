@@ -2,18 +2,16 @@
 namespace Grinder.View
 {
     using System;
-    using CsLua.Collection;
-    using Model;
 
     public interface IView
     {
         void SetUpdateAction(Action update);
         void SetTrackButtonOnClick(Action clickAction);
         void ShowEntitySelection(IEntitySelection selction);
-        void SetTrackingEntityHandlers(Action<int> onReset, Action<int> onRemove);
-        void AddTrackingEntity(string id, string name, string icon);
-        void RemoveTrackingEntity(string id);
-        void UpdateTrackingEntityVelocity(string id, int count, double velocity);
+        void SetTrackingEntityHandlers(Action<IEntityId> onReset, Action<IEntityId> onRemove);
+        void AddTrackingEntity(IEntityId id, string name, string icon);
+        void RemoveTrackingEntity(IEntityId id);
+        void UpdateTrackingEntityVelocity(IEntityId id, int count, double velocity);
         
     }
 }
