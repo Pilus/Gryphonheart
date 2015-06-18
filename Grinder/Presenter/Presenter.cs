@@ -96,7 +96,8 @@
 
         private void TrackEntity(IEntity entity)
         {
-            throw new System.NotImplementedException();
+            this.model.SaveEntityTrackingFlag(entity.Type, entity.Id, true);
+            this.view.AddTrackingEntity(GetId(entity), entity.Name, entity.IconPath);
         }
     }
 }

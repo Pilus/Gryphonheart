@@ -60,9 +60,12 @@
     <Compile Include="Presenter\EntitySelection.cs" />
     <Compile Include="View\IEntityId.cs" />
     <Compile Include="View\IEntitySelection.cs" />
+    <Compile Include="View\Xml\IGrinderFrame.cs" />
+    <Compile Include="View\Xml\IGrinderTrackingRow.cs" />
     <Compile Include="View\ITrackableEntity.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="Model\EntityStorage\TrackedEntity.cs" />
+    <Compile Include="View\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -70,7 +73,9 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="View\Xml\GrinderFrame.xml" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>

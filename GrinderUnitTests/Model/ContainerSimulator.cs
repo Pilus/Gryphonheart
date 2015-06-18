@@ -1,4 +1,4 @@
-﻿namespace GrinderUnitTests
+﻿namespace GrinderUnitTests.Model
 {
     using System;
     using System.Linq;

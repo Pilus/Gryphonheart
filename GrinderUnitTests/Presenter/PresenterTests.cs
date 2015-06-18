@@ -156,10 +156,32 @@
             this.viewMock.Verify(view => view.ShowEntitySelection(It.IsAny<IEntitySelection>()), Times.Once);
             Assert.IsTrue(entitySelection != null, "Entity selection not provided.");
             Assert.AreEqual(2, entitySelection.Count);
-            Assert.IsTrue(entitySelection.ContainsKey("Items"));
-            Assert.IsTrue(entitySelection.ContainsKey("Currencies"));
 
-            // TODO: check the details of entitySelection and test the invokes.
+            var itemsString = "Items";
+            var currenciesString = "Currencies";
+
+            Assert.IsTrue(entitySelection.ContainsKey(itemsString));
+            Assert.IsTrue(entitySelection.ContainsKey(currenciesString));
+
+            Assert.AreEqual(2, entitySelection[itemsString].Count);
+            Assert.AreEqual(1, entitySelection[itemsString]
+                .Where(item => item.Name.Equals(item1.Name) && item.IconPath.Equals(item1.IconPath)).Count);
+            Assert.AreEqual(1, entitySelection[itemsString]
+                .Where(item => item.Name.Equals(item2.Name) && item.IconPath.Equals(item2.IconPath)).Count);
+
+            Assert.AreEqual(1, entitySelection[currenciesString].Count);
+            Assert.AreEqual(1, entitySelection[currenciesString]
+                .Where(c => c.Name.Equals(currency.Name) && c.IconPath.Equals(currency.IconPath)).Count);
+
+            this.viewMock.Verify(view => view.AddTrackingEntity(It.IsAny<IEntityId>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            this.modelMock.Verify(model => model.SaveEntityTrackingFlag(It.IsAny<EntityType>(), It.IsAny<int>(), It.IsAny<bool>()), Times.Never);
+
+            entitySelection[itemsString][1].OnSelect();
+
+            this.viewMock.Verify(view => view.AddTrackingEntity(It.IsAny<IEntityId>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            this.viewMock.Verify(view => view.AddTrackingEntity(It.Is<IEntityId>(entityId => entityId.Id.Equals(item2.Id) && entityId.Type.Equals(item2.Type)), item2.Name, item2.IconPath), Times.Once);
+            this.modelMock.Verify(model => model.SaveEntityTrackingFlag(It.IsAny<EntityType>(), It.IsAny<int>(), It.IsAny<bool>()), Times.Once);
+            this.modelMock.Verify(model => model.SaveEntityTrackingFlag(item2.Type, item2.Id, true), Times.Once);
         }
 
         private void VerifyAmountAndVelocity(EntityType type, int id, int amount, double velocity)

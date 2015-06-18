@@ -44,7 +44,7 @@ namespace BlizzardApi.Global
         {
             get
             {
-                if (frames == null)
+                if (frameProvider == null)
                 {
                     frameProvider = Wrapper.WrapGlobalObject<IFrameProvider>("_G", true);
                 }
