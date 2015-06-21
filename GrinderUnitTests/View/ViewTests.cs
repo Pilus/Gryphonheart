@@ -98,6 +98,48 @@
             ValidateAnchor(trackingRowMocks[1].Object, trackingRowMocks[2].Object);
         }
 
+        [TestMethod]
+        public void ViewRemovesTrackingEntityRowsWhenRemoved()
+        {
+            var containerMock = new Mock<IFrame>();
+            this.frameMock.SetupGet(frame => frame.TrackingContainer).Returns(containerMock.Object);
+
+            var frameProviderMock = new Mock<IFrameProvider>();
+            Global.FrameProvider = frameProviderMock.Object;
+
+            var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
+            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+                .Returns((FrameType frameType, string name, IRegion parent, string template) =>
+                {
+                    var mock = CreateTrackingRowMock(parent);
+                    trackingRowMocks.Add(mock);
+                    return mock.Object;
+                });
+
+            var viewUnderTest = new View();
+
+            var entityIdB = new Mock<IEntityId>().Object;
+            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityA", "IconA");
+            viewUnderTest.AddTrackingEntity(entityIdB, "EntityB", "IconB");
+            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityC", "IconC");
+
+            viewUnderTest.RemoveTrackingEntity(entityIdB);
+
+            Assert.AreEqual(3, trackingRowMocks.Count);
+            Assert.AreEqual("EntityA", trackingRowMocks[0].Object.Name.GetText());
+            Assert.AreEqual("IconA", trackingRowMocks[0].Object.IconTexture.GetTexture());
+            Assert.AreEqual("EntityC", trackingRowMocks[1].Object.Name.GetText());
+            Assert.AreEqual("IconC", trackingRowMocks[1].Object.IconTexture.GetTexture());
+            Assert.AreEqual(false, trackingRowMocks[2].Object.IsShown());
+
+            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityD", "IconD");
+
+            Assert.AreEqual(3, trackingRowMocks.Count);
+            Assert.AreEqual(true, trackingRowMocks[2].Object.IsShown());
+            Assert.AreEqual("EntityD", trackingRowMocks[2].Object.Name.GetText());
+            Assert.AreEqual("IconD", trackingRowMocks[2].Object.IconTexture.GetTexture());
+        }
+
         private static void ValidateAnchor(IGrinderTrackingRow expectedAnchor, IGrinderTrackingRow row)
         {
             Assert.AreEqual(2, row.GetNumPoints());
@@ -165,6 +207,11 @@
                     return TestUtill.StructureMultipleValues<FramePoint, IRegion, FramePoint, double, double>
                         ((FramePoint)point["point"], (IRegion)point["parent"], (FramePoint)point["parentPoint"], (double)point["x"], (double)point["y"]);
                 });
+
+            var shown = true;
+            mock.Setup(row => row.Show()).Callback(() => { shown = true; });
+            mock.Setup(row => row.Hide()).Callback(() => { shown = false; });
+            mock.Setup(row => row.IsShown()).Returns(() => shown);
 
             return mock;
         }

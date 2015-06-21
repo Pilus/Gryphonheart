@@ -9,8 +9,8 @@
     public class View : IView
     {
         private const string RowId = "Id";
-        private IGrinderFrame frame;
-        private CsLuaList<IGrinderTrackingRow> trackingRows;
+        private readonly IGrinderFrame frame;
+        private readonly CsLuaList<IGrinderTrackingRow> trackingRows;
 
         public View()
         {
@@ -21,36 +21,53 @@
 
         public void AddTrackingEntity(IEntityId id, string name, string icon)
         {
-            var row = (IGrinderTrackingRow)Global.FrameProvider.CreateFrame(
-                FrameType.Frame, "GrinderTrackingRow" + (this.trackingRows.Count + 1), this.frame.TrackingContainer, "GrinderTrackingRowTemplate");
+            var row = this.trackingRows.FirstOrDefault(r => r.IsShown() == false);
+
+            if (row == null)
+            {
+                row = (IGrinderTrackingRow) Global.FrameProvider.CreateFrame(
+                    FrameType.Frame, "GrinderTrackingRow" + (this.trackingRows.Count + 1), this.frame.TrackingContainer,
+                    "GrinderTrackingRowTemplate");
+
+                var previousRow = this.trackingRows.LastOrDefault();
+                if (previousRow == null)
+                {
+                    row.SetPoint(FramePoint.TOPLEFT, this.frame.TrackingContainer, FramePoint.TOPLEFT);
+                    row.SetPoint(FramePoint.TOPRIGHT, this.frame.TrackingContainer, FramePoint.TOPRIGHT);
+                }
+                else
+                {
+                    row.SetPoint(FramePoint.TOPLEFT, previousRow, FramePoint.BOTTOMLEFT);
+                    row.SetPoint(FramePoint.TOPRIGHT, previousRow, FramePoint.BOTTOMRIGHT);
+                }
+
+                this.trackingRows.Add(row);
+            }
 
             row[RowId] = id;
             row.Name.SetText(name);
             row.IconTexture.SetTexture(icon);
-
-            var previousRow = this.trackingRows.LastOrDefault();
-            if (previousRow == null)
-            {
-                row.SetPoint(FramePoint.TOPLEFT, this.frame.TrackingContainer, FramePoint.TOPLEFT);
-                row.SetPoint(FramePoint.TOPRIGHT, this.frame.TrackingContainer, FramePoint.TOPRIGHT);
-            }
-            else
-            {
-                row.SetPoint(FramePoint.TOPLEFT, previousRow, FramePoint.BOTTOMLEFT);
-                row.SetPoint(FramePoint.TOPRIGHT, previousRow, FramePoint.BOTTOMRIGHT);
-            }
-
-            this.trackingRows.Add(row);
         }
 
         public void RemoveTrackingEntity(IEntityId id)
         {
-            throw new NotImplementedException();
+            var index = this.trackingRows.IndexOf(this.trackingRows.First(row => row[RowId].Equals(id)));
+
+            while (index < this.trackingRows.Count)
+            {
+                var row = this.trackingRows[index];
+                if (row != this.trackingRows.Last(r => r.IsShown()))
+                {
+                    
+                }
+
+                index++;
+            }
         }
 
         public void SetTrackButtonOnClick(Action clickAction)
         {
-            this.frame.TrackButton.SetScript(ButtonHandler.OnClick, (IButton button) => clickAction());
+            this.frame.TrackButton.SetScript(ButtonHandler.OnClick, button => clickAction());
         }
 
         public void SetTrackingEntityHandlers(Action<IEntityId> onReset, Action<IEntityId> onRemove)
