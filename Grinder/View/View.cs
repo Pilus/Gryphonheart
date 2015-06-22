@@ -8,7 +8,6 @@
     using System;
     public class View : IView
     {
-        private const string RowId = "Id";
         private readonly IGrinderFrame frame;
         private readonly CsLuaList<IGrinderTrackingRow> trackingRows;
 
@@ -43,26 +42,45 @@
 
                 this.trackingRows.Add(row);
             }
+            else
+            {
+                row.Show();
+            }
 
-            row[RowId] = id;
+            row.Id = id;
             row.Name.SetText(name);
             row.IconTexture.SetTexture(icon);
         }
 
         public void RemoveTrackingEntity(IEntityId id)
         {
-            var index = this.trackingRows.IndexOf(this.trackingRows.First(row => row[RowId].Equals(id)));
+            var index = this.trackingRows.IndexOf(this.trackingRows.First(row => row.Id.Equals(id)));
 
-            while (index < this.trackingRows.Count)
+            while (true)
             {
                 var row = this.trackingRows[index];
-                if (row != this.trackingRows.Last(r => r.IsShown()))
+                if (row.IsShown() == true && row != this.trackingRows.Last(r => r.IsShown()))
                 {
-                    
+                    var nextRow = this.trackingRows[index + 1];
+                    CloneRow(row, nextRow);
+                }
+                else
+                {
+                    row.Hide();
+                    break;
                 }
 
                 index++;
             }
+        }
+
+        private static void CloneRow(IGrinderTrackingRow targetRow, IGrinderTrackingRow templateRow)
+        {
+            targetRow.Id = templateRow.Id;
+            targetRow.Name.SetText(templateRow.Name.GetText());
+            targetRow.IconTexture.SetTexture(templateRow.IconTexture.GetTexture());
+            targetRow.Amount.SetText(templateRow.Amount.GetText());
+            targetRow.Velocity.SetText(templateRow.Velocity.GetText());
         }
 
         public void SetTrackButtonOnClick(Action clickAction)
@@ -77,7 +95,15 @@
 
         public void SetUpdateAction(Action update)
         {
-            throw new NotImplementedException();
+            double lastUpdate = 0;
+            this.frame.SetScript(FrameHandler.OnUpdate, (frame) =>
+            {
+                if (Lua.Core.time() >= lastUpdate + 0.1)
+                {
+                    lastUpdate = Lua.Core.time();
+                    update();
+                }
+            });
         }
 
         public void ShowEntitySelection(IEntitySelection selction)

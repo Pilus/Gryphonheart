@@ -10,5 +10,6 @@
         IFontString Velocity { get; }
         IButton ResetButton { get; }
         IButton RemoveButton { get; }
+        IEntityId Id { get; set; }
     }
 }

@@ -6,6 +6,7 @@
     using CsLua.Collection;
     using Grinder.View;
     using Grinder.View.Xml;
+    using Lua;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using System;
@@ -140,6 +141,74 @@
             Assert.AreEqual("IconD", trackingRowMocks[2].Object.IconTexture.GetTexture());
         }
 
+        [TestMethod]
+        public void ViewShouldTriggerTheProvidedUpdateFunctionEvery100ms()
+        {
+            Action<IFrame> frameOnUpdate = null;
+            this.frameMock.Setup(frame => frame.SetScript(FrameHandler.OnUpdate, It.IsAny<Action<IFrame>>()))
+                .Callback<FrameHandler, Action<IFrame>>((handler, action) => frameOnUpdate = action);
+
+            var viewUnderTest = new View();
+
+            var startTime = 100000;
+            Core.mockTime = startTime;
+
+            var updateInvokes = 0;
+            viewUnderTest.SetUpdateAction(() => updateInvokes++);
+
+            Assert.IsTrue(frameOnUpdate != null, "Frame on update function is not registered");
+            Assert.AreEqual(0, updateInvokes);
+
+            frameOnUpdate(frameMock.Object);
+
+            Assert.AreEqual(1, updateInvokes);
+
+            frameOnUpdate(frameMock.Object);
+
+            Assert.AreEqual(1, updateInvokes);
+
+            Core.mockTime = startTime + 0.1;
+            frameOnUpdate(frameMock.Object);
+
+            Assert.AreEqual(2, updateInvokes);
+
+            frameOnUpdate(frameMock.Object);
+
+            Assert.AreEqual(2, updateInvokes);
+        }
+
+        [TestMethod]
+        public void ViewShouldTriggerHandlersForButtons()
+        {
+            var containerMock = new Mock<IFrame>();
+            this.frameMock.SetupGet(frame => frame.TrackingContainer).Returns(containerMock.Object);
+
+            var frameProviderMock = new Mock<IFrameProvider>();
+            Global.FrameProvider = frameProviderMock.Object;
+
+            var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
+            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+                .Returns((FrameType frameType, string name, IRegion parent, string template) => {
+                    var mock = CreateTrackingRowMock(parent);
+                    trackingRowMocks.Add(mock);
+                    return mock.Object;
+                });
+
+            var viewUnderTest = new View();
+
+            IEntityId resetId = null;
+            IEntityId removeId = null;
+
+            viewUnderTest.SetTrackingEntityHandlers(id => resetId = id, id => removeId = id);
+
+            var idA = new Mock<IEntityId>().Object;
+            var idB = new Mock<IEntityId>().Object;
+            var idC = new Mock<IEntityId>().Object;
+            viewUnderTest.AddTrackingEntity(idA, "EntityA", "IconA");
+            viewUnderTest.AddTrackingEntity(idB, "EntityB", "IconB");
+            viewUnderTest.AddTrackingEntity(idC, "EntityC", "IconC");
+        }
+
         private static void ValidateAnchor(IGrinderTrackingRow expectedAnchor, IGrinderTrackingRow row)
         {
             Assert.AreEqual(2, row.GetNumPoints());
@@ -191,6 +260,16 @@
             mock.SetupGet(row => row.Velocity).Returns(velocityMock.Object);
             var iconTextureMock = MockTexture();
             mock.SetupGet(row => row.IconTexture).Returns(iconTextureMock.Object);
+
+            IEntityId id = null;
+            mock.SetupSet(p => p.Id = It.IsAny<IEntityId>())
+                .Callback<IEntityId>((value) => {
+                    id = value;
+                });
+            mock.SetupGet(p => p.Id).Returns(() => {
+                return id;
+                });
+
 
             var points = new List<Dictionary<string, object>>();
             mock.Setup(row => row.SetPoint(It.IsAny<FramePoint>(), It.IsAny<IRegion>(), It.IsAny<FramePoint>()))

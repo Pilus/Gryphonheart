@@ -32,8 +32,15 @@ namespace Lua
             }
         }
 
-        public static long time()
+        public static double? mockTime { private get; set; }
+
+        public static double time()
         {
+            if (mockTime != null)
+            {
+                return (double)mockTime;
+            }
+
             DateTime epoch = new DateTime(1970, 1, 1);
             TimeSpan timeSpan = (DateTime.Now - epoch);
             return timeSpan.Ticks / 10000000;
