@@ -12,15 +12,17 @@
 
         private readonly IGrinderFrame frame;
         private readonly CsLuaList<IGrinderTrackingRow> trackingRows;
+        private readonly IEntitySelectionDropdownHandler entitySelectionDropdownHandler;
 
         private Action<IEntityId> onReset;
         private Action<IEntityId> onRemove;
 
-        public View()
+        public View(IEntitySelectionDropdownHandler entitySelectionDropdownHandler)
         {
             this.frame = (IGrinderFrame)Global.Api.GetGlobal("GrinderFrame");
             this.frame.Show();
             this.trackingRows = new CsLuaList<IGrinderTrackingRow>();
+            this.entitySelectionDropdownHandler = entitySelectionDropdownHandler;
         }
 
         public void AddTrackingEntity(IEntityId id, string name, string icon)
@@ -135,9 +137,9 @@
             });
         }
 
-        public void ShowEntitySelection(IEntitySelection selction)
+        public void ShowEntitySelection(IEntitySelection selection)
         {
-            throw new NotImplementedException();
+            this.entitySelectionDropdownHandler.Show(this.frame.TrackButton, selection);
         }
 
         public void UpdateTrackingEntityVelocity(IEntityId id, int count, double velocity)

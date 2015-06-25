@@ -9,7 +9,7 @@ namespace Grinder.View
         void RemoveTrackingEntity(IEntityId id);
         void SetUpdateAction(Action update);
         void SetTrackButtonOnClick(Action clickAction);
-        void ShowEntitySelection(IEntitySelection selction);
+        void ShowEntitySelection(IEntitySelection selection);
         void SetTrackingEntityHandlers(Action<IEntityId> onReset, Action<IEntityId> onRemove);
         void UpdateTrackingEntityVelocity(IEntityId id, int count, double velocity);
     }

@@ -18,6 +18,7 @@
         private static string TrackingRowTemplateXmlName = "GrinderTrackingRowTemplate";
         private Mock<IApi> apiMock;
         private Mock<IGrinderFrame> frameMock;
+        private Mock<IEntitySelectionDropdownHandler> entitySelectionDropdownHandlerMock;
 
         [TestInitialize]
         public void TestInitialize()
@@ -27,13 +28,18 @@
             ApplyMockGlobalGetSet(this.apiMock);
 
             this.frameMock = new Mock<IGrinderFrame>();
+            var trackButton = MockButton(frameMock.Object);
+            frameMock.SetupGet(f => f.TrackButton).Returns(trackButton.Object);
+
             Global.Api.SetGlobal("GrinderFrame", this.frameMock.Object);
+
+            this.entitySelectionDropdownHandlerMock = new Mock<IEntitySelectionDropdownHandler>();
         }
 
         [TestMethod]
         public void ViewShowsGrinderFrameOnInit()
         {
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             this.frameMock.Verify(f => f.Show(), Times.Once);
             this.frameMock.Verify(f => f.Hide(), Times.Never);
@@ -45,7 +51,7 @@
             var buttonMock = new Mock<IButton>();
             this.frameMock.SetupGet(frame => frame.TrackButton).Returns(buttonMock.Object);
 
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             var invoked = 0;
             Action clickAction = new Action(() => { invoked++; });
@@ -80,7 +86,7 @@
                     return mock.Object;
             });
 
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityA", "IconA");
             viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityB", "IconB");
@@ -117,7 +123,7 @@
                     return mock.Object;
                 });
 
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             var entityIdB = new Mock<IEntityId>().Object;
             viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityA", "IconA");
@@ -148,7 +154,7 @@
             this.frameMock.Setup(frame => frame.SetScript(FrameHandler.OnUpdate, It.IsAny<Action<IFrame>>()))
                 .Callback<FrameHandler, Action<IFrame>>((handler, action) => frameOnUpdate = action);
 
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             var startTime = 100000;
             Core.mockTime = startTime;
@@ -194,7 +200,7 @@
                     return mock.Object;
                 });
 
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             IEntityId resetId = null;
             IEntityId removeId = null;
@@ -232,7 +238,7 @@
                     return mock.Object;
                 });
 
-            var viewUnderTest = new View();
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
             var entityIdB = new Mock<IEntityId>().Object;
             viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityA", "IconA");
@@ -243,6 +249,33 @@
 
             Assert.AreEqual("43", trackingRowMocks[1].Object.Amount.GetText());
             Assert.AreEqual("3.14 / hour", trackingRowMocks[1].Object.Velocity.GetText());
+        }
+
+        [TestMethod]
+        public void ViewShowsEntitySelection()
+        {
+            IFrame shownAnchor = null;
+            IEntitySelection shownSelection = null;
+
+            this.entitySelectionDropdownHandlerMock.Setup(es =>
+                es.Show(It.IsAny<IFrame>(), It.IsAny<IEntitySelection>()))
+                .Callback((IFrame anchor, IEntitySelection selection) => {
+                    shownAnchor = anchor;
+                    shownSelection = selection;
+                });
+
+            var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
+
+            var entitySelectionMock = new Mock<IEntitySelection>();
+
+            viewUnderTest.ShowEntitySelection(entitySelectionMock.Object);
+
+            this.entitySelectionDropdownHandlerMock.Verify(es => 
+                es.Show(It.IsAny<IFrame>(), It.IsAny<IEntitySelection>()), Times.Once());
+
+            Assert.AreEqual(this.frameMock.Object.TrackButton, shownAnchor);
+            Assert.AreEqual(entitySelectionMock.Object, shownSelection);
+
         }
 
         private static void ValidateAnchor(IGrinderTrackingRow expectedAnchor, IGrinderTrackingRow row)
