@@ -3,6 +3,7 @@
 namespace Lua
 {
     using System;
+    using System.Linq;
 
     public static class LuaMath
     {
@@ -129,65 +130,34 @@ namespace Lua
         /// <summary>
         /// Returns the numeric maximum of the input values.
         /// </summary>
-        public static double max(double valueA, double valueB)
+        public static double max(params double[] values)
         {
-            return System.Math.Max(valueA, valueB);
+            return values.Max(v => v);
         }
 
         /// <summary>
         /// Returns the numeric maximum of the input values.
         /// </summary>
-        public static int max(int valueA, int valueB)
+        public static int max(params int[] values)
         {
-            return System.Math.Max(valueA, valueB);
-        }
-
-        /// <summary>
-        /// Returns the numeric maximum of the input values.
-        /// </summary>
-        public static double max(double valueA, double valueB, double valueC)
-        {
-            return max(valueA, max(valueB, valueC));
-        }
-
-        /// <summary>
-        /// Returns the numeric maximum of the input values.
-        /// </summary>
-        public static double max(double valueA, double valueB, double valueC, double valueD)
-        {
-            return max(valueA, max(valueB, valueC, valueD));
+            return values.Max(v => v);
         }
 
         /// <summary>
         /// Returns the numeric minimum of the input values.
         /// </summary>
-        public static double min(double valueA, double valueB)
+        public static int min(params int[] values)
         {
-            return System.Math.Min(valueA, valueB);
+            return values.Min(v => v);
         }
+
 
         /// <summary>
         /// Returns the numeric minimum of the input values.
         /// </summary>
-        public static int min(int valueA, int valueB)
+        public static double min(params double[] values)
         {
-            return System.Math.Min(valueA, valueB);
-        }
-
-        /// <summary>
-        /// Returns the numeric minimum of the input values.
-        /// </summary>
-        public static double min(double valueA, double valueB, double valueC)
-        {
-            return min(valueA, min(valueB, valueC));
-        }
-
-        /// <summary>
-        /// Returns the numeric minimum of the input values.
-        /// </summary>
-        public static double min(double valueA, double valueB, double valueC, double valueD)
-        {
-            return min(valueA, min(valueB, valueC, valueD));
+            return values.Min(v => v);
         }
 
         /// <summary>

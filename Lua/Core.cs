@@ -46,39 +46,9 @@ namespace Lua
             return timeSpan.Ticks / 10000000;
         }
 
-        public static void print(string msg)
+        public static void print(params object[] args)
         {
-            Console.WriteLine(msg);
-        }
-
-        public static void print(string s1, string s2)
-        {
-            Console.WriteLine(string.Concat(s1, s2));
-        }
-
-        public static void print(string s1, string s2, string s3)
-        {
-            Console.WriteLine(string.Concat(s1, s2, s3));
-        }
-
-        public static void print(object msg)
-        {
-            Console.WriteLine(msg);
-        }
-
-        public static void print(object s1, object s2)
-        {
-            Console.WriteLine(string.Concat(s1, s2));
-        }
-
-        public static void print(object s1, object s2, object s3)
-        {
-            Console.WriteLine(string.Concat(s1, s2, s3));
-        }
-
-        public static void print(object s1, object s2, object s3, object s4)
-        {
-            Console.WriteLine(string.Concat(s1, s2, s3, s4));
+            Console.WriteLine(args);
         }
     }
 }

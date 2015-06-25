@@ -8,7 +8,7 @@
 
     public class EntityStorage : IEntityStorage
     {
-        private const string TrackedEntitiesSavedVariableName = "Grinder_TrackedEntities";
+        public const string TrackedEntitiesSavedVariableName = "Grinder_TrackedEntities";
 
         private readonly TableFormatter<CsLuaList<TrackedEntity>> formatter;
         private CsLuaList<TrackedEntity> trackedEntities;

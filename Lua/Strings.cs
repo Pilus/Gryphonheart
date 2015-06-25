@@ -9,21 +9,11 @@ namespace Lua
         /// Return a formatted string using values passed in.
         /// </summary>
         /// <param name="formatstring"></param>
-        /// <param name="obj1"></param>
+        /// <param name="objs"></param>
         /// <returns></returns>
-        public static string format(string formatstring, object obj1)
+        public static string format(string formatstring, params object[] objs)
         {
-            return string.Format(formatstring, obj1);
-        }
-
-        public static string format(string formatstring, object obj1, object obj2)
-        {
-            return string.Format(formatstring, obj1, obj2);
-        }
-
-        public static string format(string formatstring, object obj1, object obj2, object obj3)
-        {
-            return string.Format(formatstring, obj1, obj2, obj3);
+            return string.Format(formatstring, objs);
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace Grinder.Model.EntityAdaptor
 {
-    using Grinder.Model.Entity;
+    using Entity;
 
     public class EntityAdaptorFactory : IEntityAdaptorFactory
     {

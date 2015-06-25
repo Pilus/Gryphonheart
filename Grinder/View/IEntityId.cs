@@ -1,6 +1,7 @@
 ﻿namespace Grinder.View
 {
-    using Grinder.Model.Entity;
+    using Model.Entity;
+
     public interface IEntityId
     {
         int Id { get; }
