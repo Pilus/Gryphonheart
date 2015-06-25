@@ -178,7 +178,7 @@
         }
 
         [TestMethod]
-        public void ViewShouldTriggerHandlersForButtons()
+        public void ViewTriggersHandlersForButtons()
         {
             var containerMock = new Mock<IFrame>();
             this.frameMock.SetupGet(frame => frame.TrackingContainer).Returns(containerMock.Object);
@@ -207,6 +207,42 @@
             viewUnderTest.AddTrackingEntity(idA, "EntityA", "IconA");
             viewUnderTest.AddTrackingEntity(idB, "EntityB", "IconB");
             viewUnderTest.AddTrackingEntity(idC, "EntityC", "IconC");
+
+            trackingRowMocks[1].Object.ResetButton.Click();
+            Assert.AreEqual(idB, resetId);
+
+            trackingRowMocks[2].Object.RemoveButton.Click();
+            Assert.AreEqual(idC, removeId);
+        }
+
+        [TestMethod]
+        public void ViewUpdatesTrackingEntityVelocity()
+        {
+            var containerMock = new Mock<IFrame>();
+            this.frameMock.SetupGet(frame => frame.TrackingContainer).Returns(containerMock.Object);
+
+            var frameProviderMock = new Mock<IFrameProvider>();
+            Global.FrameProvider = frameProviderMock.Object;
+
+            var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
+            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+                .Returns((FrameType frameType, string name, IRegion parent, string template) => {
+                    var mock = CreateTrackingRowMock(parent);
+                    trackingRowMocks.Add(mock);
+                    return mock.Object;
+                });
+
+            var viewUnderTest = new View();
+
+            var entityIdB = new Mock<IEntityId>().Object;
+            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityA", "IconA");
+            viewUnderTest.AddTrackingEntity(entityIdB, "EntityB", "IconB");
+            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityC", "IconC");
+
+            viewUnderTest.UpdateTrackingEntityVelocity(entityIdB, 43, 3.14);
+
+            Assert.AreEqual("43", trackingRowMocks[1].Object.Amount.GetText());
+            Assert.AreEqual("3.14 / hour", trackingRowMocks[1].Object.Velocity.GetText());
         }
 
         private static void ValidateAnchor(IGrinderTrackingRow expectedAnchor, IGrinderTrackingRow row)
@@ -260,6 +296,10 @@
             mock.SetupGet(row => row.Velocity).Returns(velocityMock.Object);
             var iconTextureMock = MockTexture();
             mock.SetupGet(row => row.IconTexture).Returns(iconTextureMock.Object);
+            var resetButtonMock = MockButton(mock.Object);
+            mock.SetupGet(row => row.ResetButton).Returns(resetButtonMock.Object);
+            var removeButtonMock = MockButton(mock.Object);
+            mock.SetupGet(row => row.RemoveButton).Returns(removeButtonMock.Object);
 
             IEntityId id = null;
             mock.SetupSet(p => p.Id = It.IsAny<IEntityId>())
@@ -269,7 +309,6 @@
             mock.SetupGet(p => p.Id).Returns(() => {
                 return id;
                 });
-
 
             var points = new List<Dictionary<string, object>>();
             mock.Setup(row => row.SetPoint(It.IsAny<FramePoint>(), It.IsAny<IRegion>(), It.IsAny<FramePoint>()))
@@ -314,6 +353,25 @@
                 .Callback((string s) => texture = s);
             mock.Setup(fs => fs.GetTexture())
                 .Returns(() => texture);
+            return mock;
+        }
+
+        private static Mock<IButton> MockButton(IFrame parent)
+        {
+            string text = string.Empty;
+            var mock = new Mock<IButton>();
+            mock.Setup(b => b.SetText(It.IsAny<string>()))
+                .Callback((string s) => text = s);
+            mock.Setup(b => b.GetText())
+                .Returns(() => text);
+
+            Action<IButton> clickAction = null;
+            mock.Setup(b => b.SetScript(ButtonHandler.OnClick, It.IsAny<Action<IButton>>()))
+                .Callback((ButtonHandler handler, Action<IButton> action) => clickAction = action);
+            mock.Setup(b => b.Click()).Callback(() => clickAction(mock.Object));
+
+            mock.Setup(b => b.GetParent()).Returns(parent);
+
             return mock;
         }
 

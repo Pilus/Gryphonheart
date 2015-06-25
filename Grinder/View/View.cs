@@ -8,8 +8,13 @@
     using System;
     public class View : IView
     {
+        private const string VelocitySuffix = " / hour";
+
         private readonly IGrinderFrame frame;
         private readonly CsLuaList<IGrinderTrackingRow> trackingRows;
+
+        private Action<IEntityId> onReset;
+        private Action<IEntityId> onRemove;
 
         public View()
         {
@@ -40,6 +45,8 @@
                     row.SetPoint(FramePoint.TOPRIGHT, previousRow, FramePoint.BOTTOMRIGHT);
                 }
 
+                ApplyTrackingEntityHandlersToRow(row);
+
                 this.trackingRows.Add(row);
             }
             else
@@ -50,6 +57,27 @@
             row.Id = id;
             row.Name.SetText(name);
             row.IconTexture.SetTexture(icon);
+        }
+
+        private void ApplyTrackingEntityHandlersToRow(IGrinderTrackingRow row)
+        {
+            row.ResetButton.SetScript(ButtonHandler.OnClick, (IButton button) =>
+            {
+                var parent = (IGrinderTrackingRow)button.GetParent();
+                if (this.onReset != null)
+                {
+                    this.onReset(parent.Id);
+                }
+            });
+
+            row.RemoveButton.SetScript(ButtonHandler.OnClick, (IButton button) =>
+            {
+                var parent = (IGrinderTrackingRow)button.GetParent();
+                if (this.onRemove != null)
+                {
+                    this.onRemove(parent.Id);
+                }
+            });
         }
 
         public void RemoveTrackingEntity(IEntityId id)
@@ -90,7 +118,8 @@
 
         public void SetTrackingEntityHandlers(Action<IEntityId> onReset, Action<IEntityId> onRemove)
         {
-            throw new NotImplementedException();
+            this.onReset = onReset;
+            this.onRemove = onRemove;
         }
 
         public void SetUpdateAction(Action update)
@@ -113,7 +142,9 @@
 
         public void UpdateTrackingEntityVelocity(IEntityId id, int count, double velocity)
         {
-            throw new NotImplementedException();
+            var row = this.trackingRows.First(r => r.Id.Equals(id));
+            row.Amount.SetText(count + string.Empty);
+            row.Velocity.SetText(velocity + VelocitySuffix);
         }
     }
 }
