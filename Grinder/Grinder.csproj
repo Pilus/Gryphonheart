@@ -61,6 +61,7 @@
     <Compile Include="GrinderAddOn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presenter\EntitySelection.cs" />
+    <Compile Include="View\EntitySelectionDropdownHandler.cs" />
     <Compile Include="View\IEntityId.cs" />
     <Compile Include="View\IEntitySelection.cs" />
     <Compile Include="View\IEntitySelectionDropdownHandler.cs" />

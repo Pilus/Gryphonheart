@@ -1,5 +1,6 @@
 ﻿namespace WoWSimulator
 {
+    using System.Linq;
     using CsLuaAttributes;
 
     public class AddOn
@@ -10,7 +11,11 @@
             this.csLuaAddOn = csLuaAddOn;
 
             var addonType = csLuaAddOn.GetType();
-            var csLuaAddOnAtttribute = addonType.GetCustomAttributes(typeof (CsLuaAddOnAttribute), false);
+            var csLuaAddOnAtttribute = addonType.GetCustomAttributes(false);
+            foreach (var attribute in csLuaAddOnAtttribute.OfType<CsLuaAddOnAttribute>())
+            {
+                this.Name = attribute.Name;
+            }
 
         }
 

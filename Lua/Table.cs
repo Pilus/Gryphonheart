@@ -68,7 +68,7 @@ namespace Lua
         /// <param name="value"></param>
         public static void insert(NativeLuaTable t, object value)
         {
-            throw new NotImplementedException();
+            t[t.__Count() + 1] = value;
         }
 
         /// <summary>
@@ -79,7 +79,11 @@ namespace Lua
         /// <param name="value"></param>
         public static void insert(NativeLuaTable t, int pos, object value)
         {
-            throw new NotImplementedException();
+            for (var i = t.__Count(); i >= pos; i--)
+            {
+                t[i + 1] = t[i];
+            }
+            t[pos] = value;
         }
 
         /// <summary>
@@ -89,7 +93,9 @@ namespace Lua
         /// <returns></returns>
         public static object remove(NativeLuaTable t)
         {
-            throw new NotImplementedException(); 
+            var value = t[t.__Count()];
+            t[t.__Count()] = null;
+            return value;
         }
 
         /// <summary>
@@ -100,7 +106,16 @@ namespace Lua
         /// <returns></returns>
         public static object remove(NativeLuaTable t, int pos)
         {
-            throw new NotImplementedException();
+            var value = t[pos];
+            t[pos] = null;
+
+            for (var i = pos + 1; i <= t.__Count(); i++)
+            {
+                t[i - 1] = t[i];
+                t[i] = null;
+            }
+
+            return value;
         }
 
         /// <summary>

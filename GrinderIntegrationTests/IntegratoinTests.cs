@@ -7,7 +7,7 @@
     [TestClass]
     public class IntegratoinTests
     {
-        [TestMethod]
+        //[TestMethod]
         public void NewUser()
         {
             var session = new SessionBuilder()

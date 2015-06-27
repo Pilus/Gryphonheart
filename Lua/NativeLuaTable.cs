@@ -10,11 +10,11 @@ namespace Lua
         public int __Count()
         {
             var i = 1;
-            while (this.innerDictionary.ContainsKey(i))
+            while (this.innerDictionary.ContainsKey(i) && this.innerDictionary[i] != null)
             {
                 i++;
             }
-            return i;
+            return i - 1;
         }
 
         public object this[object key]

@@ -5,6 +5,7 @@ namespace Grinder
     using Lua;
     using Model.EntityAdaptor;
     using Model.EntityStorage;
+    using View;
 
     [CsLuaAddOn("Grinder", "Grinder", 62000, 
         Author = "Pilus",
@@ -15,7 +16,7 @@ namespace Grinder
         public void Execute()
         {
             var model = new Model.Model(new EntityAdaptorFactory(), new EntityStorage());
-            var view = new View.View(null);
+            var view = new View.View(new EntitySelectionDropdownHandler());
             var presenter = new Presenter.Presenter(model, view);
 
             Core.print("Grinder loaded.");

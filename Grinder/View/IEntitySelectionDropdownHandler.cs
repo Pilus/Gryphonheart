@@ -4,6 +4,6 @@
 
     public interface IEntitySelectionDropdownHandler
     {
-        void Show(IFrame anchor, IEntitySelection selction);
+        void Show(IFrame anchor, IEntitySelection selection);
     }
 }
