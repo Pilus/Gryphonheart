@@ -85,6 +85,10 @@
     <Content Include="View\Xml\GrinderFrame.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="View\Xml\GrinderTrackingRow.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">

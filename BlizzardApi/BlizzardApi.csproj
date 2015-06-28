@@ -52,6 +52,7 @@
     <Compile Include="WidgetEnums\AlphaMode.cs" />
     <Compile Include="WidgetEnums\ButtonState.cs" />
     <Compile Include="WidgetEnums\ClickType.cs" />
+    <Compile Include="WidgetEnums\DrawLayer.cs" />
     <Compile Include="WidgetEnums\FramePoint.cs" />
     <Compile Include="Global\IFrames.cs" />
     <Compile Include="Global\InterfaceOptions.cs" />

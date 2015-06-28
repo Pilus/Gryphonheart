@@ -11,17 +11,6 @@
         private string name;
         private readonly string objectType;
 
-        public UIObject(string objectType)
-        {
-            this.objectType = objectType;
-        }
-
-        public UIObject(string objectType, string name, IRegion parent)
-        {
-            this.objectType = objectType;
-            this.SetName(name, parent);
-        }
-
         public UIObject(UiInitUtil util, string objectType, LayoutFrameType layout, IRegion parent)
         {
             this.objectType = objectType;

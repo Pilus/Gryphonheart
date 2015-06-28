@@ -27,14 +27,11 @@
     </Layers>
     <Frames>
       <Button name="$parentTrackButton" parentKey="TrackButton" text="Track">
-        
+        <Size y="20" x="150"/>
       </Button>
       <Frame name="$parentTrackingContainer" parentKey="TrackingContainer">
 
       </Frame>
-      <Button name="$parentTempButton" parentKey="TrackButton2" text="Track">
-
-      </Button>
     </Frames>
   </Frame>
 </Ui>

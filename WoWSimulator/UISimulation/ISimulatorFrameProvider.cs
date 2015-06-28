@@ -10,6 +10,8 @@
 
         void LoadXmlFile(string path);
 
-         UiInitUtil Util { get; }
+        UiInitUtil Util { get; }
+
+        void Click(string text);
     }
 }

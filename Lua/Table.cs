@@ -18,7 +18,7 @@ namespace Lua
 
         public static void Foreach(NativeLuaTable t, Action<object, object> iterator)
         {
-            throw new NotImplementedException();
+            t.__Foreach(iterator);
         }
 
         /// <summary>

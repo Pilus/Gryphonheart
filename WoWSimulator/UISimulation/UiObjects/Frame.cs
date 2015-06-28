@@ -13,19 +13,7 @@
         private readonly List<string> registeredEvents = new List<string>();
 
         private readonly Script<FrameHandler, IFrame> scriptHandler;
-        public Frame(UiInitUtil util, string objectType)
-            : base(util, objectType)
-        {
-            this.util = util;
-            this.scriptHandler = new Script<FrameHandler, IFrame>(this);
-        }
-
-        public Frame(UiInitUtil util, string objectType, string name, IRegion parent)
-            : base(util, objectType, name, parent)
-        {
-            this.util = util;
-            this.scriptHandler = new Script<FrameHandler, IFrame>(this);
-        }
+        private readonly List<ILayeredRegion> regions = new List<ILayeredRegion>();
 
         public Frame(UiInitUtil util, string objectType, FrameType frameType, IRegion parent)
             : base(util, objectType, frameType, parent)
@@ -51,16 +39,43 @@
                 {
                     this.ApplyFrameTypeFrames(item as LayoutFrameTypeFrames);
                 }
-                
+                else if (item is LayoutFrameTypeLayers)
+                {
+                    this.ApplyFrameTypeLayers(item as LayoutFrameTypeLayers);
+                }
             }
         }
 
         private void ApplyFrameTypeFrames(LayoutFrameTypeFrames frames)
         {
+            if (frames.Items == null) return;
+
             foreach (var frameType in frames.Items)
             {
                 this.children.Add(this.util.CreateObject(frameType, this));
             }
+        }
+
+        private void ApplyFrameTypeLayers(LayoutFrameTypeLayers layers)
+        {
+            if (layers.Layer == null) return;
+
+            foreach (var layer in layers.Layer)
+            {
+                if (layer.Items == null) continue;
+
+                foreach (var layerItem in layer.Items)
+                {
+                    this.ApplyLayerItem(layerItem, layer);
+                }
+            }
+        }
+
+        private void ApplyLayerItem(LayoutFrameType item, LayoutFrameTypeLayersLayer layer)
+        {
+            var obj = (ILayeredRegion)this.util.CreateObject(item, this);
+            obj.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer.level));
+            this.regions.Add(obj);
         }
 
         public IFontString CreateFontString()

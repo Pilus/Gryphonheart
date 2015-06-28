@@ -1,6 +1,7 @@
 ﻿
 namespace Lua
 {
+    using System;
     using System.Collections.Generic;
 
     public class NativeLuaTable
@@ -17,9 +18,17 @@ namespace Lua
             return i - 1;
         }
 
+        public void __Foreach(Action<object, object> action)
+        {
+            foreach (var o in this.innerDictionary)
+            {
+                action(o.Key, o.Value);
+            }
+        }
+
         public object this[object key]
         {
-            get { return this.innerDictionary[key]; }
+            get { return this.innerDictionary.ContainsKey(key) ? this.innerDictionary[key] : null; }
             set { this.innerDictionary[key] = value; }
         }
     }

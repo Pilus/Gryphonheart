@@ -57,7 +57,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CurrencySystem.cs" />
     <Compile Include="GrinderFrameWrapper.cs" />
+    <Compile Include="GrinderTrackingRowWrapper.cs" />
     <Compile Include="IntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

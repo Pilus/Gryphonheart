@@ -12,19 +12,6 @@
         private IRegion parent;
         private readonly UiInitUtil util;
 
-        public Region(UiInitUtil util, string objectType)
-            : base(objectType)
-        {
-            this.util = util;
-        }
-
-        public Region(UiInitUtil util, string objectType, string name, IRegion parent)
-            : base(objectType, name, parent)
-        {
-            this.util = util;
-            this.parent = parent;
-        }
-
         public Region(UiInitUtil util, string objectType, LayoutFrameType layout, IRegion parent)
             : base(util, objectType, layout, parent)
         {

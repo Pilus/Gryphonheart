@@ -68,6 +68,12 @@
             return this;
         }
 
+        public SessionBuilder WithIgnoredXmlTemplate(string templateName)
+        {
+            this.frameProvider.Util.AddIgnoredTemplate(templateName);
+            return this;
+        }
+
         public SessionBuilder WithFps(float fps)
         {
             this.fps = fps;

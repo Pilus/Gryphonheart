@@ -17,6 +17,8 @@
         private readonly Dictionary<string, LayoutFrameType> xmlTemplates;
         private readonly Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>> wrappers;
         private readonly List<IFrame> frames;
+        private readonly List<string> ignoredTemplates = new List<string>();
+
         public UiInitUtil()
         {
             this.xmlTemplates = new CsLuaDictionary<string, LayoutFrameType>();
@@ -51,10 +53,19 @@
                 parent = (IRegion)this.GetObjectByName(((FrameType) xmlInfo).parent);
             }
 
-            if (!string.IsNullOrEmpty(xmlInfo.inherits) && !this.xmlTemplates.ContainsKey(xmlInfo.inherits))
+            var providedInherits = xmlInfo.inherits;
+            if (!string.IsNullOrEmpty(providedInherits) && !this.xmlTemplates.ContainsKey(providedInherits))
             {
                 // Unknown / non loaded xml template
-                xmlInfo.inherits = null;
+                if (this.ignoredTemplates.Contains(providedInherits))
+                {
+                    xmlInfo.inherits = null;
+                }
+                else
+                {
+                    throw new UiSimuationException(string.Format("Could not find referenced template '{0}'.", providedInherits));
+                }
+                
             }
 
             IUIObject obj;
@@ -62,9 +73,9 @@
             {
                 obj = this.wrappers[xmlInfo.name](this, xmlInfo, parent);
             }
-            else if (xmlInfo.inherits != null && this.wrappers.ContainsKey(xmlInfo.inherits))
+            else if (!string.IsNullOrEmpty(providedInherits) && this.wrappers.ContainsKey(providedInherits))
             {
-                obj = this.wrappers[xmlInfo.inherits](this, xmlInfo, parent);
+                obj = this.wrappers[providedInherits](this, xmlInfo, parent);
             }
             else
             {
@@ -85,22 +96,31 @@
             return obj;
         }
 
-        private IFrame Create(LayoutFrameType xml, IRegion parent)
+        private IUIObject Create(LayoutFrameType xml, IRegion parent)
         {
             if (xml is ButtonType)
             {
-                return new Button(this, "frame", (ButtonType)xml, parent);
+                return new Button(this, "button", (ButtonType)xml, parent);
             }
             if (xml is FrameType)
             {
                 return new Frame(this, "frame", (FrameType) xml, parent);
             }
-            throw new UiSimuationException("Unhandled xml type.");
+            if (xml is FontStringType)
+            {
+                return new FontString(this, "fontString", (FontStringType)xml, parent);
+            }
+            throw new UiSimuationException(string.Format("Unhandled xml type '{0}'.", xml.GetType().Name));
         }
 
         public void AddWrapper(string frameOrTemplateName, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject> wrapperInit)
         {
             this.wrappers[frameOrTemplateName] = wrapperInit;
+        }
+
+        public void AddIgnoredTemplate(string templateName)
+        {
+            this.ignoredTemplates.Add(templateName);
         }
 
         public IUIObject GetObjectByName(string name)
@@ -129,6 +149,11 @@
             {
                 frame.GetScript(FrameHandler.OnUpdate)(frame, elapsed, null, null, null);
             }
+        }
+
+        public IEnumerable<IFrame> GetVisibleFrames()
+        {
+            return this.frames.Where(f => f.IsVisible());
         }
     }
 }

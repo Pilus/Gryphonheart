@@ -7,17 +7,7 @@
     public class Button : Frame, IButton
     {
         private Script<ButtonHandler, IButton> scriptHandler;
-        public Button(UiInitUtil util, string objectType)
-            : base(util, objectType)
-        {
-            this.scriptHandler = new Script<ButtonHandler, IButton>(this);
-        }
-
-        public Button(UiInitUtil util, string objectType, string name, IRegion parent)
-            : base(util, objectType, name, parent)
-        {
-            this.scriptHandler = new Script<ButtonHandler, IButton>(this);
-        }
+        private string text;
 
         public Button(UiInitUtil util, string objectType, ButtonType frameType, IRegion parent)
             : base(util, objectType, frameType, parent)
@@ -31,9 +21,9 @@
             this.ApplyType(frameType);
         }
 
-        private void ApplyType(ButtonType frameType)
+        private void ApplyType(ButtonType type)
         {
-            
+            this.text = type.text;
         }
 
         public void Click()
@@ -108,7 +98,7 @@
 
         public string GetText()
         {
-            throw new NotImplementedException();
+            return this.text;
         }
 
         public double GetTextHeight()
@@ -253,7 +243,7 @@
 
         public void SetText(string text)
         {
-            throw new NotImplementedException();
+            this.text = text;
         }
 
         public void UnlockHighlight()

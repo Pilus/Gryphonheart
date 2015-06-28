@@ -398,6 +398,26 @@
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="Scripts" type="ScriptsType"/>
+				<xs:element name="TexCoords">
+					<xs:complexType>
+						<xs:attribute name="left" type="xs:float" use="required"/>
+						<xs:attribute name="right" type="xs:float" use="required"/>
+						<xs:attribute name="top" type="xs:float" use="required"/>
+						<xs:attribute name="bottom" type="xs:float" use="required"/>
+						<xs:attribute name="ULx" type="xs:float"/>
+						<xs:attribute name="ULy" type="xs:float"/>
+						<xs:attribute name="LLx" type="xs:float"/>
+						<xs:attribute name="LLy" type="xs:float"/>
+						<xs:attribute name="URx" type="xs:float"/>
+						<xs:attribute name="URy" type="xs:float"/>
+						<xs:attribute name="LRx" type="xs:float"/>
+						<xs:attribute name="LRy" type="xs:float"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Gradient" type="GradientType"/>
+				<xs:element name="FontHeight" type="Value"/>
+				<xs:element name="Color" type="ColorType"/>
+				<xs:element name="Shadow" type="ShadowType"/>
 			</xs:choice>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string"/>
@@ -429,29 +449,6 @@
 	<xs:complexType name="TextureType">
 		<xs:complexContent>
 			<xs:extension base="LayoutFrameType">
-				<!--
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="TexCoords">
-							<xs:complexType>
-								<xs:attribute name="left" type="xs:float" use="required"/>
-								<xs:attribute name="right" type="xs:float" use="required"/>
-								<xs:attribute name="top" type="xs:float" use="required"/>
-								<xs:attribute name="bottom" type="xs:float" use="required"/>
-								<xs:attribute name="ULx" type="xs:float"/>
-								<xs:attribute name="ULy" type="xs:float"/>
-								<xs:attribute name="LLx" type="xs:float"/>
-								<xs:attribute name="LLy" type="xs:float"/>
-								<xs:attribute name="URx" type="xs:float"/>
-								<xs:attribute name="URy" type="xs:float"/>
-								<xs:attribute name="LRx" type="xs:float"/>
-								<xs:attribute name="LRy" type="xs:float"/>
-							</xs:complexType>
-						</xs:element>
-						<xs:element name="Color" type="ColorType"/>
-						<xs:element name="Gradient" type="GradientType"/>
-					</xs:choice>
-				</xs:sequence> -->
 				<xs:attribute name="file" type="xs:string"/>
 				<xs:attribute name="mask" type="xs:string"/>
 				<xs:attribute name="alphaMode" type="ALPHAMODE" default="BLEND"/>
@@ -468,13 +465,6 @@
 	<xs:complexType name="FontStringType">
 		<xs:complexContent>
 			<xs:extension base="LayoutFrameType">
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="FontHeight" type="Value"/>
-						<xs:element name="Color" type="ColorType"/>
-						<xs:element name="Shadow" type="ShadowType"/>
-					</xs:choice>
-				</xs:sequence>
 				<xs:attribute name="font" type="xs:string"/>
 				<xs:attribute name="bytes" default="255">
 					<xs:simpleType>

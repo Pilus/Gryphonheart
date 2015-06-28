@@ -44,6 +44,136 @@ public partial class AbsValue {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+public partial class GradientType {
+    
+    private ColorType minColorField;
+    
+    private ColorType maxColorField;
+    
+    private ORIENTATION orientationField;
+    
+    public GradientType() {
+        this.orientationField = ORIENTATION.HORIZONTAL;
+    }
+    
+    /// <remarks/>
+    public ColorType MinColor {
+        get {
+            return this.minColorField;
+        }
+        set {
+            this.minColorField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public ColorType MaxColor {
+        get {
+            return this.maxColorField;
+        }
+        set {
+            this.maxColorField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(ORIENTATION.HORIZONTAL)]
+    public ORIENTATION orientation {
+        get {
+            return this.orientationField;
+        }
+        set {
+            this.orientationField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+public partial class ColorType {
+    
+    private float rField;
+    
+    private float gField;
+    
+    private float bField;
+    
+    private float aField;
+    
+    public ColorType() {
+        this.aField = ((float)(1F));
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float r {
+        get {
+            return this.rField;
+        }
+        set {
+            this.rField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float g {
+        get {
+            return this.gField;
+        }
+        set {
+            this.gField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float b {
+        get {
+            return this.bField;
+        }
+        set {
+            this.bField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(typeof(float), "1")]
+    public float a {
+        get {
+            return this.aField;
+        }
+        set {
+            this.aField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+public enum ORIENTATION {
+    
+    /// <remarks/>
+    HORIZONTAL,
+    
+    /// <remarks/>
+    VERTICAL,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
 public partial class ScriptsType {
     
     private ScriptType[] itemsField;
@@ -893,72 +1023,6 @@ public partial class BackdropType {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-public partial class ColorType {
-    
-    private float rField;
-    
-    private float gField;
-    
-    private float bField;
-    
-    private float aField;
-    
-    public ColorType() {
-        this.aField = ((float)(1F));
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public float r {
-        get {
-            return this.rField;
-        }
-        set {
-            this.rField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public float g {
-        get {
-            return this.gField;
-        }
-        set {
-            this.gField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public float b {
-        get {
-            return this.bField;
-        }
-        set {
-            this.bField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(typeof(float), "1")]
-    public float a {
-        get {
-            return this.aField;
-        }
-        set {
-            this.aField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
 public partial class Value {
     
     private object itemField;
@@ -1727,12 +1791,17 @@ public partial class LayoutFrameType {
     [System.Xml.Serialization.XmlElementAttribute("Animations", typeof(LayoutFrameTypeAnimations))]
     [System.Xml.Serialization.XmlElementAttribute("Attributes", typeof(AttributesType))]
     [System.Xml.Serialization.XmlElementAttribute("Backdrop", typeof(BackdropType))]
+    [System.Xml.Serialization.XmlElementAttribute("Color", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("FontHeight", typeof(Value))]
     [System.Xml.Serialization.XmlElementAttribute("Frames", typeof(LayoutFrameTypeFrames))]
+    [System.Xml.Serialization.XmlElementAttribute("Gradient", typeof(GradientType))]
     [System.Xml.Serialization.XmlElementAttribute("HitRectInsets", typeof(Inset))]
     [System.Xml.Serialization.XmlElementAttribute("Layers", typeof(LayoutFrameTypeLayers))]
     [System.Xml.Serialization.XmlElementAttribute("ResizeBounds", typeof(LayoutFrameTypeResizeBounds))]
     [System.Xml.Serialization.XmlElementAttribute("Scripts", typeof(ScriptsType))]
+    [System.Xml.Serialization.XmlElementAttribute("Shadow", typeof(ShadowType))]
     [System.Xml.Serialization.XmlElementAttribute("Size", typeof(Dimension))]
+    [System.Xml.Serialization.XmlElementAttribute("TexCoords", typeof(LayoutFrameTypeTexCoords))]
     [System.Xml.Serialization.XmlElementAttribute("TitleRegion", typeof(LayoutFrameType))]
     public object[] Items {
         get {
@@ -3233,8 +3302,6 @@ public partial class ButtonType : FrameType {
 [System.Xml.Serialization.XmlRootAttribute("FontString", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class FontStringType : LayoutFrameType {
     
-    private object[] itemsField;
-    
     private string fontField;
     
     private int bytesField;
@@ -3270,19 +3337,6 @@ public partial class FontStringType : LayoutFrameType {
         this.justifyHField = JUSTIFYHTYPE.CENTER;
         this.maxLinesField = ((uint)(0));
         this.indentedField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Color", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("FontHeight", typeof(Value))]
-    [System.Xml.Serialization.XmlElementAttribute("Shadow", typeof(ShadowType))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
     }
     
     /// <remarks/>
@@ -4731,19 +4785,6 @@ public enum DRAWLAYER {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
 [System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-public enum ORIENTATION {
-    
-    /// <remarks/>
-    HORIZONTAL,
-    
-    /// <remarks/>
-    VERTICAL,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
-[System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
@@ -5221,6 +5262,275 @@ public enum ItemsChoiceType2 {
     
     /// <remarks/>
     minResize,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.blizzard.com/wow/ui/")]
+public partial class LayoutFrameTypeTexCoords {
+    
+    private float leftField;
+    
+    private float rightField;
+    
+    private float topField;
+    
+    private float bottomField;
+    
+    private float uLxField;
+    
+    private bool uLxFieldSpecified;
+    
+    private float uLyField;
+    
+    private bool uLyFieldSpecified;
+    
+    private float lLxField;
+    
+    private bool lLxFieldSpecified;
+    
+    private float lLyField;
+    
+    private bool lLyFieldSpecified;
+    
+    private float uRxField;
+    
+    private bool uRxFieldSpecified;
+    
+    private float uRyField;
+    
+    private bool uRyFieldSpecified;
+    
+    private float lRxField;
+    
+    private bool lRxFieldSpecified;
+    
+    private float lRyField;
+    
+    private bool lRyFieldSpecified;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float left {
+        get {
+            return this.leftField;
+        }
+        set {
+            this.leftField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float right {
+        get {
+            return this.rightField;
+        }
+        set {
+            this.rightField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float top {
+        get {
+            return this.topField;
+        }
+        set {
+            this.topField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float bottom {
+        get {
+            return this.bottomField;
+        }
+        set {
+            this.bottomField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float ULx {
+        get {
+            return this.uLxField;
+        }
+        set {
+            this.uLxField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ULxSpecified {
+        get {
+            return this.uLxFieldSpecified;
+        }
+        set {
+            this.uLxFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float ULy {
+        get {
+            return this.uLyField;
+        }
+        set {
+            this.uLyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool ULySpecified {
+        get {
+            return this.uLyFieldSpecified;
+        }
+        set {
+            this.uLyFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float LLx {
+        get {
+            return this.lLxField;
+        }
+        set {
+            this.lLxField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LLxSpecified {
+        get {
+            return this.lLxFieldSpecified;
+        }
+        set {
+            this.lLxFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float LLy {
+        get {
+            return this.lLyField;
+        }
+        set {
+            this.lLyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LLySpecified {
+        get {
+            return this.lLyFieldSpecified;
+        }
+        set {
+            this.lLyFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float URx {
+        get {
+            return this.uRxField;
+        }
+        set {
+            this.uRxField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool URxSpecified {
+        get {
+            return this.uRxFieldSpecified;
+        }
+        set {
+            this.uRxFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float URy {
+        get {
+            return this.uRyField;
+        }
+        set {
+            this.uRyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool URySpecified {
+        get {
+            return this.uRyFieldSpecified;
+        }
+        set {
+            this.uRyFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float LRx {
+        get {
+            return this.lRxField;
+        }
+        set {
+            this.lRxField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LRxSpecified {
+        get {
+            return this.lRxFieldSpecified;
+        }
+        set {
+            this.lRxFieldSpecified = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public float LRy {
+        get {
+            return this.lRyField;
+        }
+        set {
+            this.lRyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool LRySpecified {
+        get {
+            return this.lRyFieldSpecified;
+        }
+        set {
+            this.lRyFieldSpecified = value;
+        }
+    }
 }
 
 /// <remarks/>
