@@ -8,7 +8,7 @@
     using CsLua.Wrapping;
 
     [ProvideSelf]
-    public interface IFrame : IUIObject, IRegion, IScript<FrameHandler, IFrame>
+    public interface IFrame : IRegion, IScript<FrameHandler, IFrame>
     {
 
         /// <summary>

@@ -2,6 +2,7 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using BlizzardApi.Global;
+    using CsLuaTestUtils;
     using Moq;
     using Grinder.Model.Entity;
     using Grinder.Model.EntityAdaptor;
@@ -21,7 +22,7 @@
         {
             apiMock.Setup(api => api.GetItemInfo(It.IsIn(31, 43, 45, 105)))
                 .Returns((int id) =>
-                      TestUtill.StructureMultipleValues("item" + id, string.Empty, 3, 60, 0, string.Empty, string.Empty, id > 40 && id < 50 ? id - 40 : 1, string.Empty, "texture" + id, 10));
+                      TestUtil.StructureMultipleValues("item" + id, string.Empty, 3, 60, 0, string.Empty, string.Empty, id > 40 && id < 50 ? id - 40 : 1, string.Empty, "texture" + id, 10));
 
             var containerSim = new ContainerSimulator();
             containerSim.PutItem(1, 2, 31, 1);

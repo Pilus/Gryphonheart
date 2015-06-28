@@ -6,6 +6,7 @@
     using BlizzardApi.Global;
     using Moq;
     using CsLua.Wrapping;
+    using CsLuaTestUtils;
     using Grinder.Model.Entity;
     using Grinder.Model.EntityAdaptor;
 
@@ -23,7 +24,7 @@
         private static void MockCurrencies()
         {
             apiMock.Setup(api => api.GetCurrencyInfo(It.IsInRange(77, 160, Range.Inclusive)))
-                .Returns((int id) => TestUtill.StructureMultipleValues("CurrencyName" + id, id == 80 ? 55 : 10, "iconPath" + id, 7, 100, 1000, id < 100));
+                .Returns((int id) => TestUtil.StructureMultipleValues("CurrencyName" + id, id == 80 ? 55 : 10, "iconPath" + id, 7, 100, 1000, id < 100));
         }
 
         [TestMethod]

@@ -11,6 +11,7 @@
     using Moq;
     using System;
     using System.Collections.Generic;
+    using CsLuaTestUtils;
 
     [TestClass]
     public class ViewTests
@@ -355,7 +356,7 @@
                 {
                     if (index < 1 || index > points.Count) return null;
                     var point = points[index - 1];
-                    return TestUtill.StructureMultipleValues<FramePoint, IRegion, FramePoint, double, double>
+                    return TestUtil.StructureMultipleValues<FramePoint, IRegion, FramePoint, double, double>
                         ((FramePoint)point["point"], (IRegion)point["parent"], (FramePoint)point["parentPoint"], (double)point["x"], (double)point["y"]);
                 });
 

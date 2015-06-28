@@ -57,7 +57,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="IntegratoinTests.cs" />
+    <Compile Include="GrinderFrameWrapper.cs" />
+    <Compile Include="IntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +66,21 @@
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CsLuaTestUtils\CsLuaTestUtils.csproj">
+      <Project>{52b30640-cbf4-43db-93b1-7b1d66c48924}</Project>
+      <Name>CsLuaTestUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CsLua\CsLua.csproj">
+      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
+      <Name>CsLua</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Grinder\Grinder.csproj">
       <Project>{3f5f4ba0-a433-46df-ae6e-71b2132051c8}</Project>
       <Name>Grinder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lua\Lua.csproj">
+      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
+      <Name>Lua</Name>
     </ProjectReference>
     <ProjectReference Include="..\WoWSimulator\WoWSimulator.csproj">
       <Project>{90089c84-d04e-4953-be7d-3b2a9be1c819}</Project>

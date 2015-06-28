@@ -32,6 +32,9 @@
       <Frame name="$parentTrackingContainer" parentKey="TrackingContainer">
 
       </Frame>
+      <Button name="$parentTempButton" parentKey="TrackButton2" text="Track">
+
+      </Button>
     </Frames>
   </Frame>
 </Ui>

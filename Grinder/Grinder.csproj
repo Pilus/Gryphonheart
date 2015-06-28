@@ -82,7 +82,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="View\Xml\GrinderFrame.xml" />
+    <Content Include="View\Xml\GrinderFrame.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">

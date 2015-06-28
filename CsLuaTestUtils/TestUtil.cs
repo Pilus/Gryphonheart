@@ -1,9 +1,9 @@
-﻿namespace GrinderUnitTests
+﻿namespace CsLuaTestUtils
 {
     using CsLua.Wrapping;
     using Moq;
 
-    public class TestUtill
+    public class TestUtil
     {
         public static IMultipleValues<T1, T2> StructureMultipleValues<T1, T2, T3>(T1 value1, T2 value2)
         {

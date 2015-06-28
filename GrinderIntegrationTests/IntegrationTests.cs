@@ -5,13 +5,15 @@
     using WoWSimulator;
 
     [TestClass]
-    public class IntegratoinTests
+    public class IntegrationTests
     {
-        //[TestMethod]
+        [TestMethod]
         public void NewUser()
         {
             var session = new SessionBuilder()
                 .WithAddOn(new GrinderAddOn())
+                .WithXmlFile(@"View\Xml\GrinderFrame.xml")
+                .WithFrameWrapper("GrinderFrame", GrinderFrameWrapper.Init)
                 .Build();
 
             session.RunStartup();

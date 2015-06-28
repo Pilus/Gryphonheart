@@ -6,7 +6,7 @@
     using WidgetEnums;
 
     [ProvideSelf]
-    public interface IRegion
+    public interface IRegion : IUIObject
     {
         void ClearAllPoints();
         object CreateAnimationGroup();

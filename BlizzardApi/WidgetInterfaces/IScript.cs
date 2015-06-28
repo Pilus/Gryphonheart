@@ -24,7 +24,7 @@
         /// <param name="self"></param>
         /// <param name="handler"></param>
         /// <returns></returns>
-        Action GetScript(T1 handler);
+        Action<T2, object, object, object, object> GetScript(T1 handler);
         /// <summary>
         /// Return true if the frame can be given a handler of the specified type (NOT whether it actually HAS one, use GetScript for that)
         /// </summary>
@@ -38,6 +38,6 @@
         /// <param name="self"></param>
         /// <param name="handler"></param>
         /// <param name="function"></param>
-        void HookScript(T1 handler, Action function);
+        void HookScript(T1 handler, Action<T2, object, object, object, object> function);
     }
 }
