@@ -17,6 +17,8 @@
                 .Build();
 
             session.RunStartup();
+
+            session.RunUpdate();
         }
     }
 }

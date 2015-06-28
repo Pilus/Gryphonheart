@@ -10,6 +10,7 @@
         private int id;
         private readonly List<IUIObject> children = new List<IUIObject>();
         private readonly UiInitUtil util;
+        private readonly List<string> registeredEvents = new List<string>();
 
         private readonly Script<FrameHandler, IFrame> scriptHandler;
         public Frame(UiInitUtil util, string objectType)
@@ -259,7 +260,7 @@
 
         public bool IsEventRegistered(string eventName)
         {
-            throw new System.NotImplementedException();
+            return this.registeredEvents.Contains(eventName);
         }
 
         public bool IsFrameType(string type)
@@ -324,12 +325,15 @@
 
         public void RegisterEvent(string eventName)
         {
-            throw new System.NotImplementedException();
+            if (!this.IsEventRegistered(eventName))
+            {
+                registeredEvents.Add(eventName);
+            }
         }
 
         public void RegisterEvent(BlizzardApi.EventEnums.SystemEvent eventName)
         {
-            throw new System.NotImplementedException();
+            this.RegisterEvent(eventName.ToString());
         }
 
         public void RegisterForDrag(MouseButton buttonType)
@@ -454,12 +458,12 @@
 
         public void UnregisterAllEvents()
         {
-            throw new System.NotImplementedException();
+            this.registeredEvents.Clear();
         }
 
         public void UnregisterEvent(string eventName)
         {
-            throw new System.NotImplementedException();
+            this.registeredEvents.Remove(eventName);
         }
 
         public void SetScript(FrameHandler handler, System.Action<IFrame> function)

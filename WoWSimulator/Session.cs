@@ -10,13 +10,15 @@
     public class Session : ISession
     {
         private Dictionary<string, Action> addOns;
+        private float fps;
 
-        public Session(Mock<IApi> apiMock, IFrames globalFrames, ISimulatorFrameProvider frameProvider, Dictionary<string, Action> addOns)
+        public Session(Mock<IApi> apiMock, IFrames globalFrames, ISimulatorFrameProvider frameProvider, Dictionary<string, Action> addOns, float fps)
         {
             this.ApiMock = apiMock;
             this.Frames = globalFrames;
             this.FrameProvider = frameProvider;
             this.addOns = addOns;
+            this.fps = fps;
         }
 
         private void SetSessionToGlobal()
@@ -39,13 +41,19 @@
         public void RunUpdate()
         {
             this.SetSessionToGlobal();
-            throw new NotImplementedException();
+            this.FrameProvider.Util.UpdateTick(1/this.fps);
         }
 
         public void RunUpdateForDuration(TimeSpan time)
         {
             this.SetSessionToGlobal();
-            throw new NotImplementedException();
+            var updates = time.TotalSeconds*this.fps;
+
+            var c = 0;
+            while (c < updates)
+            {
+                this.FrameProvider.Util.UpdateTick(1 / this.fps);
+            }
         }
 
         public void RunUpdateForDuration(TimeSpan time, int fps)

@@ -18,6 +18,7 @@
         private readonly Mock<IApi> apiMock;
         private readonly List<AddOn> addOns;
         private readonly SimulatorFrameProvider frameProvider;
+        private float fps = 30;
 
         public SessionBuilder()
         {
@@ -40,7 +41,7 @@
             var globalFrames = new GlobalFrames();
             globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(FrameType.Frame, "UIParent");
 
-            return new Session(this.apiMock, globalFrames, this.frameProvider, addOnLoadActions);
+            return new Session(this.apiMock, globalFrames, this.frameProvider, addOnLoadActions, this.fps);
         }
 
         public SessionBuilder WithApiMock(IApiMock mock)
@@ -64,6 +65,12 @@
         public SessionBuilder WithFrameWrapper(string frameOrTemplateName, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject> wrapperInit)
         {
             this.frameProvider.Util.AddWrapper(frameOrTemplateName, wrapperInit);
+            return this;
+        }
+
+        public SessionBuilder WithFps(float fps)
+        {
+            this.fps = fps;
             return this;
         }
 

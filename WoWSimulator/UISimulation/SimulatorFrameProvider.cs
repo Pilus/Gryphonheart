@@ -16,7 +16,7 @@ namespace WoWSimulator.UISimulation
     {
         private readonly IList<IUIObject> objects;
         private readonly EventHandler eventHandler;
-        public readonly UiInitUtil Util;
+        public UiInitUtil Util { get; private set; }
         private readonly List<string> xmlFiles;
 
         public SimulatorFrameProvider()
@@ -112,7 +112,7 @@ namespace WoWSimulator.UISimulation
 
         public void TriggerEvent(object eventName, params object[] eventArgs)
         {
-            //throw new NotImplementedException();
+            this.Util.TriggerEvent(eventName.ToString(), eventArgs);
         }
 
         public void TriggerHandler(object handler, params object[] args)

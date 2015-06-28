@@ -2,22 +2,27 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Remoting.Messaging;
+    using System.Timers;
+    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
     using UiObjects;
+    using FrameType = FrameType;
 
     public class UiInitUtil
     {
         private readonly Dictionary<string, IUIObject> namedObjects;
         private readonly Dictionary<string, LayoutFrameType> xmlTemplates;
         private readonly Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>> wrappers;
-        private readonly List<IFrame> framesForEvents;
+        private readonly List<IFrame> frames;
         public UiInitUtil()
         {
             this.xmlTemplates = new CsLuaDictionary<string, LayoutFrameType>();
             this.namedObjects = new CsLuaDictionary<string, IUIObject>();
             this.wrappers = new Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>>();
-            this.framesForEvents = new List<IFrame>();
+            this.frames = new List<IFrame>();
         }
 
         public LayoutFrameType GetTemplate(string name)
@@ -71,6 +76,12 @@
             {
                 this.namedObjects[name] = obj;
             }
+
+            if (obj is IFrame)
+            {
+                this.frames.Add(obj as IFrame);
+            }
+
             return obj;
         }
 
@@ -89,7 +100,7 @@
 
         public void AddWrapper(string frameOrTemplateName, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject> wrapperInit)
         {
-            wrappers[frameOrTemplateName] = wrapperInit;
+            this.wrappers[frameOrTemplateName] = wrapperInit;
         }
 
         public IUIObject GetObjectByName(string name)
@@ -102,11 +113,21 @@
             return (T)Enum.Parse(typeof(T), otherEnum.ToString());
         }
 
-        public void RegisterForEvents(IFrame frame)
+        public void TriggerEvent(string eventName, object[] eventArgs)
         {
-            if (!this.framesForEvents.Contains(frame))
+            Func<int, object> Get = (index) => index < eventName.Length ? eventArgs[index] : null;
+
+            foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnEvent) && f.IsEventRegistered(eventName)))
             {
-                this.framesForEvents.Add(frame);
+                frame.GetScript(FrameHandler.OnEvent)(frame, eventName, Get(0), Get(1), Get(2));
+            }
+        }
+
+        public void UpdateTick(float elapsed)
+        {
+            foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnUpdate)))
+            {
+                frame.GetScript(FrameHandler.OnUpdate)(frame, elapsed, null, null, null);
             }
         }
     }
