@@ -40,6 +40,7 @@
             var id = GetId(entity);
             this.initialTrackingSample[id] = this.model.GetCurrentSample(id.Type, id.Id);
             this.view.AddTrackingEntity(id, entity.Name, entity.IconPath);
+            
         }
 
         private static IEntityId GetId(IEntity entity)
@@ -97,7 +98,10 @@
         private void TrackEntity(IEntity entity)
         {
             this.model.SaveEntityTrackingFlag(entity.Type, entity.Id, true);
-            this.view.AddTrackingEntity(GetId(entity), entity.Name, entity.IconPath);
+            
+            var id = GetId(entity);
+            this.view.AddTrackingEntity(id, entity.Name, entity.IconPath);
+            this.ResetSample(id);
         }
     }
 }

@@ -10,7 +10,9 @@
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLuaAttributes;
+    using Lua;
     using Moq;
+    using SavedData;
     using UISimulation;
 
     public class SessionBuilder
@@ -18,14 +20,19 @@
         private readonly Mock<IApi> apiMock;
         private readonly List<AddOn> addOns;
         private readonly SimulatorFrameProvider frameProvider;
+        private readonly UiInitUtil util;
+        private readonly FrameActor actor;
         private float fps = 30;
+        private NativeLuaTable savedVariables;
 
         public SessionBuilder()
         {
             this.apiMock = new Mock<IApi>();
             this.addOns = new List<AddOn>();
-            this.frameProvider = new SimulatorFrameProvider();
-            this.WithApiMock(new GlobalTable(this.frameProvider.Util));
+            this.util = new UiInitUtil();
+            this.actor = new FrameActor(this.util);
+            this.frameProvider = new SimulatorFrameProvider(this.util, this.actor);
+            this.WithApiMock(new GlobalTable(this.util));
         }
 
         public ISession Build()
@@ -41,7 +48,17 @@
             var globalFrames = new GlobalFrames();
             globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(FrameType.Frame, "UIParent");
 
-            return new Session(this.apiMock, globalFrames, this.frameProvider, addOnLoadActions, this.fps);
+            var savedVariables = new List<string>();
+            this.addOns.ForEach(a =>
+            {
+                if (a.SavedVariables.Length > 0) savedVariables.AddRange(a.SavedVariables);
+                if (a.SavedVariablesPerCharacter.Length > 0) savedVariables.AddRange(a.SavedVariablesPerCharacter);
+            });
+
+            var savedDataHandler = new SavedDataHandler(this.apiMock, savedVariables);
+            if (this.savedVariables != null) savedDataHandler.Load(this.savedVariables);
+
+            return new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler);
         }
 
         public SessionBuilder WithApiMock(IApiMock mock)
@@ -64,19 +81,25 @@
 
         public SessionBuilder WithFrameWrapper(string frameOrTemplateName, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject> wrapperInit)
         {
-            this.frameProvider.Util.AddWrapper(frameOrTemplateName, wrapperInit);
+            this.util.AddWrapper(frameOrTemplateName, wrapperInit);
             return this;
         }
 
         public SessionBuilder WithIgnoredXmlTemplate(string templateName)
         {
-            this.frameProvider.Util.AddIgnoredTemplate(templateName);
+            this.util.AddIgnoredTemplate(templateName);
             return this;
         }
 
         public SessionBuilder WithFps(float fps)
         {
             this.fps = fps;
+            return this;
+        }
+
+        public SessionBuilder WithSavedVariables(NativeLuaTable savedVariables)
+        {
+            this.savedVariables = savedVariables;
             return this;
         }
 

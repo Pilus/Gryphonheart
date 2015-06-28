@@ -2,6 +2,7 @@
 {
     using System;
     using BlizzardApi.Global;
+    using Lua;
     using Moq;
     using UISimulation;
 
@@ -11,8 +12,10 @@
         void RunUpdate();
         void RunUpdateForDuration(TimeSpan time);
         void RunUpdateForDuration(TimeSpan time, int fps);
-        Mock<IApi> ApiMock { get; }
-        IFrames Frames { get; }
-        ISimulatorFrameProvider FrameProvider { get; }
+        void Click(string text);
+        NativeLuaTable GetSavedVariables();
+        void VerifyVisible(string text);
+        void VerifyVisible(string text, bool exact);
+        T GetGlobal<T>(string name);
     }
 }

@@ -9,9 +9,5 @@
         void TriggerHandler(object handler, params object[] args);
 
         void LoadXmlFile(string path);
-
-        UiInitUtil Util { get; }
-
-        void Click(string text);
     }
 }

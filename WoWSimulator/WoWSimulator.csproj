@@ -50,9 +50,10 @@
     <Compile Include="ApiMocks\IApiMock.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavedData\SavedDataHandler.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="SessionBuilder.cs" />
-    <Compile Include="UISimulation\EventHandler.cs" />
+    <Compile Include="UISimulation\FrameActor.cs" />
     <Compile Include="UISimulation\GlobalFrames.cs" />
     <Compile Include="UISimulation\ISimulatorFrameProvider.cs" />
     <Compile Include="UISimulation\SimulatorFrameProvider.cs" />

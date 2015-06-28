@@ -6,9 +6,11 @@
     using CsLua.Collection;
     using Grinder.View.Xml;
     using System;
+    using Lua;
+
     public class View : IView
     {
-        private const string VelocitySuffix = " / hour";
+        private const string VelocityString = "%f.2 / hour";
 
         private readonly IGrinderFrame frame;
         private readonly CsLuaList<IGrinderTrackingRow> trackingRows;
@@ -146,7 +148,7 @@
         {
             var row = this.trackingRows.First(r => r.Id.Equals(id));
             row.Amount.SetText(count + string.Empty);
-            row.Velocity.SetText(velocity + VelocitySuffix);
+            row.Velocity.SetText(Strings.format(VelocityString, velocity));
         }
     }
 }

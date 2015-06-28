@@ -8,6 +8,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using System;
+    using Lua;
 
     [TestClass]
     public class PresenterTests
@@ -137,10 +138,14 @@
 
             this.modelMock.Setup(model => model.GetAvailableEntities(EntityType.Item)).Returns(new CsLuaList<IEntity>() { item1, item2 });
             this.modelMock.Setup(model => model.GetAvailableEntities(EntityType.Currency)).Returns(new CsLuaList<IEntity>() { currency });
+            this.modelMock.Setup(model => model.GetCurrentSample(EntityType.Item, 45)).Returns(CreateMockSample(200000, 10));
 
             Action track = null;
+            Action update = null;
             this.viewMock.Setup(view => view.SetTrackButtonOnClick(It.IsAny<Action>()))
                 .Callback((Action trackClick) => track = trackClick);
+            this.viewMock.Setup(view => view.SetUpdateAction(It.IsAny<Action>()))
+                .Callback((Action updateAction) => update = updateAction);
 
             var presenter = new Presenter(this.modelMock.Object, this.viewMock.Object);
 
@@ -182,6 +187,14 @@
             this.viewMock.Verify(view => view.AddTrackingEntity(It.Is<IEntityId>(entityId => entityId.Id.Equals(item2.Id) && entityId.Type.Equals(item2.Type)), item2.Name, item2.IconPath), Times.Once);
             this.modelMock.Verify(model => model.SaveEntityTrackingFlag(It.IsAny<EntityType>(), It.IsAny<int>(), It.IsAny<bool>()), Times.Once);
             this.modelMock.Verify(model => model.SaveEntityTrackingFlag(item2.Type, item2.Id, true), Times.Once);
+
+            this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(It.IsAny<IEntityId>(), It.IsAny<int>(), It.IsAny<double>()), Times.Once);
+            this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(It.Is<IEntityId>(entityId => entityId.Id.Equals(item2.Id) && entityId.Type.Equals(item2.Type)), 10, 0), Times.Once);
+
+            Core.mockTime = Core.time() + 1;
+            update();
+
+            this.viewMock.Verify(view => view.UpdateTrackingEntityVelocity(It.Is<IEntityId>(entityId => entityId.Id.Equals(item2.Id) && entityId.Type.Equals(item2.Type)), 10, 0), Times.Exactly(2));
         }
 
         private void VerifyAmountAndVelocity(EntityType type, int id, int amount, double velocity)

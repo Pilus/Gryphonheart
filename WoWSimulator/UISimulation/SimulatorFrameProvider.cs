@@ -14,16 +14,15 @@ namespace WoWSimulator.UISimulation
 
     public class SimulatorFrameProvider : ISimulatorFrameProvider
     {
-        private readonly IList<IUIObject> objects;
-        private readonly EventHandler eventHandler;
-        public UiInitUtil Util { get; private set; }
+        private readonly UiInitUtil util;
+        private readonly FrameActor actor;
         private readonly List<string> xmlFiles;
 
-        public SimulatorFrameProvider()
+
+        public SimulatorFrameProvider(UiInitUtil util, FrameActor actor)
         {
-            this.objects = new List<IUIObject>();
-            this.eventHandler = new EventHandler();
-            this.Util = new UiInitUtil();
+            this.util = util;
+            this.actor = actor;
             this.xmlFiles = new List<string>();
         }
 
@@ -62,22 +61,22 @@ namespace WoWSimulator.UISimulation
             xml.inherits = inherits;
             xml.name = name;
             xml.Items = new object[]{};
-            return this.Util.CreateObject(xml, parent);
+            return this.util.CreateObject(xml, parent);
         }
 
-        private NativeLuaTable currentMenu;
+        
         public IUIObject GetMouseFocus()
         {
             throw new NotImplementedException();
         }
         public void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode, double autoHideDelay)
         {
-            this.currentMenu = menuList;
+            this.actor.ShowEasyMenu(menuList);
         }
 
         public void EasyMenu(NativeLuaTable menuList, IFrame frame, string anchor, double x, double y, string displayMode, double autoHideDelay)
         {
-            this.EasyMenu(menuList, frame, this.Util.GetObjectByName(anchor) as IFrame, x, y, displayMode, autoHideDelay);
+            this.EasyMenu(menuList, frame, this.util.GetObjectByName(anchor) as IFrame, x, y, displayMode, autoHideDelay);
         }
 
         public void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode)
@@ -87,7 +86,7 @@ namespace WoWSimulator.UISimulation
 
         public void EasyMenu(NativeLuaTable menuList, IFrame frame, string anchor, double x, double y, string displayMode)
         {
-            this.EasyMenu(menuList, frame, this.Util.GetObjectByName(anchor) as IFrame, x, y, displayMode, 0);
+            this.EasyMenu(menuList, frame, this.util.GetObjectByName(anchor) as IFrame, x, y, displayMode, 0);
         }
 
 
@@ -105,20 +104,20 @@ namespace WoWSimulator.UISimulation
 
                 foreach (var obj in items.Where(item => item.@virtual))
                 {
-                    this.Util.AddTempate(obj);
+                    this.util.AddTempate(obj);
                 }
 
 
                 foreach (var obj in items.Where(item => !item.@virtual))
                 {
-                    this.Util.CreateObject(obj);
+                    this.util.CreateObject(obj);
                 }
             }
         }
 
         public void TriggerEvent(object eventName, params object[] eventArgs)
         {
-            this.Util.TriggerEvent(eventName.ToString(), eventArgs);
+            this.util.TriggerEvent(eventName.ToString(), eventArgs);
         }
 
         public void TriggerHandler(object handler, params object[] args)
@@ -129,39 +128,7 @@ namespace WoWSimulator.UISimulation
 
         public void Click(string text)
         {
-            var button = (IButton)this.Util.GetVisibleFrames()
-                .FirstOrDefault(b => b is IButton && (b as IButton).GetText().Equals(text));
-            if (button != null)
-            {
-                button.Click();
-                return;
-            }
-
-            if (this.currentMenu != null)
-            {
-                var found = false;
-                Table.Foreach(this.currentMenu, (key, value) =>
-                {
-                    if (found) return;
-                    if (!(value is NativeLuaTable)) return;
-
-                    var t = (NativeLuaTable) value;
-                    if (!t["text"].Equals(text)) return;
-
-                    if (t["menuList"] is NativeLuaTable)
-                    {
-                        this.currentMenu = (t["menuList"] as NativeLuaTable);
-                    }
-                    else if (t["func"] is Action)
-                    {
-                        (t["func"] as Action)();
-                    }
-                    found = true;
-                });
-                if (found) return;
-            }
-
-            throw new UiSimuationException(string.Format("Could not find element matching text '{0}' to click on.", text));
+            
         }
     }
 }

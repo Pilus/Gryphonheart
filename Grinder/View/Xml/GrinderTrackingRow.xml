@@ -19,6 +19,22 @@
             <Anchor point="LEFT" relativeTo="$parentIconTexture" relativePoint="RIGHT"/>
           </Anchors>
         </FontString>
+        <FontString name="$parentAmountFontString" parentKey="Amount" inherits="GrinderTrackingRowLabelTemplate">
+          <Size>
+            <AbsDimension y="15" x="25"/>
+          </Size>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentIconTexture" relativePoint="RIGHT"/>
+          </Anchors>
+        </FontString>
+        <FontString name="$parentVelocityFontString" parentKey="Velocity" inherits="GrinderTrackingRowLabelTemplate">
+          <Size>
+            <AbsDimension y="15" x="25"/>
+          </Size>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentIconTexture" relativePoint="RIGHT"/>
+          </Anchors>
+        </FontString>
       </Layer>
     </Layers>
     <Frames>

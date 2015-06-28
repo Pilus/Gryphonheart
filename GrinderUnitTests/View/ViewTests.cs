@@ -246,7 +246,7 @@
             viewUnderTest.AddTrackingEntity(entityIdB, "EntityB", "IconB");
             viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityC", "IconC");
 
-            viewUnderTest.UpdateTrackingEntityVelocity(entityIdB, 43, 3.14);
+            viewUnderTest.UpdateTrackingEntityVelocity(entityIdB, 43, 3.1415);
 
             Assert.AreEqual("43", trackingRowMocks[1].Object.Amount.GetText());
             Assert.AreEqual("3.14 / hour", trackingRowMocks[1].Object.Velocity.GetText());

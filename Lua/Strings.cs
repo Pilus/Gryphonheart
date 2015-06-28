@@ -2,6 +2,8 @@
 namespace Lua
 {
     using System;
+    using System.Globalization;
+    using System.Text.RegularExpressions;
 
     public static class Strings
     {
@@ -13,7 +15,17 @@ namespace Lua
         /// <returns></returns>
         public static string format(string formatstring, params object[] objs)
         {
-            return string.Format(formatstring, objs);
+            return string.Format(CsStyleFormatString(formatstring), objs);
+        }
+
+        private static string CsStyleFormatString(string luaFormatString)
+        {
+            var c = -1;
+            return Regex.Replace(luaFormatString, @"%([^%])(\.(\d+))?", (match) =>
+            {
+                c++;
+                return string.Format(CultureInfo.InvariantCulture, "{{{0}:{1}{2}}}", c, match.Groups[1], match.Groups.Count > 3 ? match.Groups[3].ToString() : string.Empty);
+            });
         }
 
         /// <summary>

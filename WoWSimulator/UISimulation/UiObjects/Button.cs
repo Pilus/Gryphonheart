@@ -98,7 +98,7 @@
 
         public string GetText()
         {
-            return this.text;
+            return this.text ?? string.Empty;
         }
 
         public double GetTextHeight()

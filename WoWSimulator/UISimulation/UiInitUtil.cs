@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Remoting.Messaging;
-    using System.Timers;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;

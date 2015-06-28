@@ -185,7 +185,7 @@
         ///     Return the "regions" (fontstrings, textures) of the frame (multiple return values) belonging to this frame.
         /// </summary>
         /// <returns></returns>
-        IRegion[] GetRegions();
+        ILayeredRegion[] GetRegions();
 
         /// <summary>
         ///     Get the scale factor of this object relative to its parent.

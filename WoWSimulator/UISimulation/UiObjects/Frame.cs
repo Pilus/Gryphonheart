@@ -248,9 +248,9 @@
             throw new System.NotImplementedException();
         }
 
-        public IRegion[] GetRegions()
+        public ILayeredRegion[] GetRegions()
         {
-            throw new System.NotImplementedException();
+            return this.regions.ToArray();
         }
 
         public double GetScale()
