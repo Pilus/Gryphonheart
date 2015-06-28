@@ -6,20 +6,21 @@
     public class FontString : Region, IFontString
     {
         private string text;
+        private DrawLayer layer;
 
-        public FontString(UiInitUtil util, string objectType, FontStringType frameType, IRegion parent)
-            : base(util, objectType, frameType, parent)
+        public FontString(UiInitUtil util, string objectType, FontStringType type, IRegion parent)
+            : base(util, objectType, type, parent)
         {
-            if (!string.IsNullOrEmpty(frameType.inherits))
+            if (!string.IsNullOrEmpty(type.inherits))
             {
-                this.ApplyType((FontStringType)util.GetTemplate(frameType.inherits));
+                this.ApplyType((FontStringType)util.GetTemplate(type.inherits));
             }
-            this.ApplyType(frameType);
+            this.ApplyType(type);
         }
 
         private void ApplyType(FontStringType type)
         {
-            
+            this.text = type.text;
         }
 
         public bool CanNonSpaceWrap()
@@ -39,7 +40,7 @@
 
         public string GetText()
         {
-            throw new System.NotImplementedException();
+            return this.text;
         }
 
         public void SetAlphaGradient(int start, int length)
@@ -59,7 +60,7 @@
 
         public void SetText(string text)
         {
-            throw new System.NotImplementedException();
+            this.text = text;
         }
 
         public void SetTextHeight(double pixelHeight)
@@ -98,6 +99,26 @@
         }
 
         public void SetTextColor(double r, double g, double b, double a)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DrawLayer GetDrawLayer()
+        {
+            return this.layer;
+        }
+
+        public void SetDrawLayer(DrawLayer layer)
+        {
+            this.layer = layer;
+        }
+
+        public void SetVertexColor(float r, float g, float b)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetVertexColor(float r, float g, float b, float alpha)
         {
             throw new System.NotImplementedException();
         }

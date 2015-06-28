@@ -44,7 +44,7 @@
 
         public IButton RemoveButton
         {
-            get { return (IButton)this["IButton"]; }
+            get { return (IButton)this["RemoveButton"]; }
         }
 
         public IEntityId Id { get; set; }

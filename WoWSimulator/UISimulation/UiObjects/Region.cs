@@ -1,6 +1,7 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
     using System;
+    using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
@@ -11,6 +12,7 @@
         private double height = 0;
         private IRegion parent;
         private readonly UiInitUtil util;
+        private readonly List<Point> points = new List<Point>();
 
         public Region(UiInitUtil util, string objectType, LayoutFrameType layout, IRegion parent)
             : base(util, objectType, layout, parent)
@@ -107,7 +109,7 @@
 
         public void ClearAllPoints()
         {
-            throw new System.NotImplementedException();
+            this.points.Clear();
         }
 
         public object CreateAnimationGroup()
@@ -153,7 +155,7 @@
 
         public int GetNumPoints()
         {
-            throw new System.NotImplementedException();
+            return this.points.Count;
         }
 
         public CsLua.Wrapping.IMultipleValues<FramePoint, IRegion, FramePoint, double, double> GetPoint(int pointNum)
@@ -250,32 +252,52 @@
 
         public void SetPoint(FramePoint point)
         {
-            throw new System.NotImplementedException();
+            this.points.Add(new Point()
+            {
+                _Point = point,
+            });
         }
 
         public void SetPoint(FramePoint point, double xOfs, double yOfs)
         {
-            throw new System.NotImplementedException();
+            this.points.Add(new Point()
+            {
+                _Point = point,
+                XOfs = xOfs,
+                YOfs = yOfs,
+            });
         }
 
         public void SetPoint(FramePoint point, IRegion relativeFrame, FramePoint relativePoint)
         {
-            throw new System.NotImplementedException();
+            this.points.Add(new Point()
+            {
+                _Point = point,
+                RelativeFrame = relativeFrame,
+                RelativePoint = relativePoint,
+            });
         }
 
         public void SetPoint(FramePoint point, string relativeFrameName, FramePoint relativePoint)
         {
-            throw new System.NotImplementedException();
+            this.SetPoint(point, this.util.GetObjectByName(relativeFrameName) as IRegion, relativePoint);
         }
 
         public void SetPoint(FramePoint point, IRegion relativeFrame, FramePoint relativePoint, double xOfs, double yOfs)
         {
-            throw new System.NotImplementedException();
+            this.points.Add(new Point()
+            {
+                _Point = point,
+                RelativeFrame = relativeFrame,
+                RelativePoint = relativePoint,
+                XOfs = xOfs,
+                YOfs = yOfs,
+            });
         }
 
         public void SetPoint(FramePoint point, string relativeFrameName, FramePoint relativePoint, double xOfs, double yOfs)
         {
-            throw new System.NotImplementedException();
+            this.SetPoint(point, this.util.GetObjectByName(relativeFrameName) as IRegion, relativePoint, xOfs, yOfs);
         }
 
         public void SetSize(double width, double height)

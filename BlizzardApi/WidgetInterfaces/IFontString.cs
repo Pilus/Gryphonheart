@@ -3,7 +3,7 @@
     using CsLua.Attributes;
 
     [ProvideSelf]
-    public interface IFontString : IFontInstance
+    public interface IFontString : IFontInstance, ILayeredRegion
     {
         /// <summary>
         /// Get whether long strings without spaces are wrapped or truncated (added 1.11)

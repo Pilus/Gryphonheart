@@ -22,6 +22,12 @@
       </Layer>
     </Layers>
     <Frames>
+      <Button name="$parentResetButton" parentKey="ResetButton">
+        
+      </Button>
+      <Button name="$parentRemoveButton" parentKey="RemoveButton">
+
+      </Button>
     </Frames>
   </Frame>
 

@@ -63,7 +63,7 @@
 
         private void ApplyTrackingEntityHandlersToRow(IGrinderTrackingRow row)
         {
-            row.ResetButton.SetScript(ButtonHandler.OnClick, (IButton button) =>
+            row.ResetButton.SetScript(ButtonHandler.OnClick, (button) =>
             {
                 var parent = (IGrinderTrackingRow)button.GetParent();
                 if (this.onReset != null)
@@ -72,7 +72,7 @@
                 }
             });
 
-            row.RemoveButton.SetScript(ButtonHandler.OnClick, (IButton button) =>
+            row.RemoveButton.SetScript(ButtonHandler.OnClick, (button) =>
             {
                 var parent = (IGrinderTrackingRow)button.GetParent();
                 if (this.onRemove != null)

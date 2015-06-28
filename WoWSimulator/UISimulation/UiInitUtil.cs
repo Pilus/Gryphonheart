@@ -110,6 +110,10 @@
             {
                 return new FontString(this, "fontString", (FontStringType)xml, parent);
             }
+            if (xml is TextureType)
+            {
+                return new Texture(this, "texture", (TextureType)xml, parent);
+            }
             throw new UiSimuationException(string.Format("Unhandled xml type '{0}'.", xml.GetType().Name));
         }
 
