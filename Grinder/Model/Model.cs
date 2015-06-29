@@ -1,7 +1,6 @@
 ﻿
 namespace Grinder.Model
 {
-    using System;
     using CsLua.Collection;
     using EntityStorage;
     using Grinder.Model.Entity;

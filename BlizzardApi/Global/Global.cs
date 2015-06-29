@@ -1,4 +1,4 @@
-﻿[assembly:CsLua.Attributes.IsCsLuaLibrary]
+﻿[assembly:CsLuaAttributes.CsLuaLibrary]
 
 namespace BlizzardApi.Global
 {

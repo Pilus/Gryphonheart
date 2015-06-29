@@ -1,5 +1,5 @@
 ﻿
-[assembly: CsLua.Attributes.RequiresCsLuaHeader]
+[assembly: CsLuaAttributes.RequiresCsLuaHeader]
 
 namespace CsLua.Wrapping
 {

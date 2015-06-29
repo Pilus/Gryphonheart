@@ -1,6 +1,6 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLua.Attributes;
+    using CsLuaAttributes;
     using CsLua.Wrapping;
     using System;
     using WidgetEnums;

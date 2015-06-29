@@ -1,6 +1,6 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLua.Attributes;
+    using CsLuaAttributes;
 
     /// <summary>
     /// Native UI object without the CsLua self wrapper

@@ -1,6 +1,6 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLua.Attributes;
+    using CsLuaAttributes;
 
     [ProvideSelf]
     public interface IScrollFrame : IFrame

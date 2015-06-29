@@ -1,9 +1,9 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLua.Attributes;
     using CsLua.Wrapping;
     using System;
     using WidgetEnums;
+    using CsLuaAttributes;
 
     [ProvideSelf]
     public interface IButton : IFrame, IScript<ButtonHandler, IButton>

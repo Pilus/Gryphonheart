@@ -1,7 +1,7 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLua.Attributes;
     using WidgetEnums;
+    using CsLuaAttributes;
 
     [ProvideSelf]
     public interface IGameTooltip : IRegion
