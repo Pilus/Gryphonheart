@@ -47,14 +47,32 @@
 
             foreach (var item in layout.Items)
             {
-                if (item is Dimension)
+                if (item is LayoutFrameTypeSize)
                 {
-                    this.ApplyDimension(item as Dimension);
+                    this.ApplySize(item as LayoutFrameTypeSize);
                 }
                 else if (item is LayoutFrameTypeAnchors)
                 {
                     this.ApplyLayoutFrameTypeAnchors(item as LayoutFrameTypeAnchors);
                 }
+            }
+        }
+
+        private void ApplySize(LayoutFrameTypeSize size)
+        {
+            if (size.xSpecified)
+            {
+                this.width = size.x;
+            }
+
+            if (size.ySpecified)
+            {
+                this.height = size.y;
+            }
+
+            if (size.Size != null)
+            {
+                this.ApplyDimension(size.Size);
             }
         }
 
@@ -297,7 +315,7 @@
 
         public void SetPoint(FramePoint point, string relativeFrameName, FramePoint relativePoint, double xOfs, double yOfs)
         {
-            this.SetPoint(point, this.util.GetObjectByName(relativeFrameName) as IRegion, relativePoint, xOfs, yOfs);
+            this.SetPoint(point, relativeFrameName != null ? this.util.GetObjectByName(relativeFrameName) as IRegion : this.parent, relativePoint, xOfs, yOfs);
         }
 
         public void SetSize(double width, double height)

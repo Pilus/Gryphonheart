@@ -14,6 +14,7 @@
             return new SessionBuilder()
                 .WithAddOn(new GrinderAddOn())
                 .WithIgnoredXmlTemplate("UIDropDownMenuTemplate")
+                .WithIgnoredXmlTemplate("UIPanelButtonTemplate")
                 .WithXmlFile(@"View\Xml\GrinderFrame.xml")
                 .WithFrameWrapper("GrinderFrame", GrinderFrameWrapper.Init)
                 .WithXmlFile(@"View\Xml\GrinderTrackingRow.xml")

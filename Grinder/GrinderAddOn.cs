@@ -7,7 +7,7 @@ namespace Grinder
     using Model.EntityStorage;
     using View;
 
-    [CsLuaAddOn("Grinder", "Grinder", 62000, 
+    [CsLuaAddOn("Grinder", "Grinder", 60200, 
         Author = "Pilus",
         Notes = "Tracking system for items and currencies.",
         SavedVariablesPerCharacter = new []{ EntityStorage.TrackedEntitiesSavedVariableName })]
