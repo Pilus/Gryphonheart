@@ -325,7 +325,15 @@
 	<xs:complexType name="LayoutFrameType">
 		<xs:sequence minOccurs="0">
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="Size" type="Dimension"/>
+				<xs:element name="Size">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element name="Size" type="Dimension"/>
+						</xs:sequence>
+						<xs:attribute name="x" type="xs:float"/>
+						<xs:attribute name="y" type="xs:float"/>
+					</xs:complexType>
+				</xs:element>
 				<xs:element name="Anchors">
 					<xs:complexType>
 						<xs:sequence>

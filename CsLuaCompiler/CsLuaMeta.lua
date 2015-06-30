@@ -662,3 +662,5 @@ end
 System.Enum = {
 	Parse = CsLuaMeta.EnumParse,
 }
+System.NotImplementedException = CsLua.NotImplementedException;
+System.Exception = CsLua.CsException;

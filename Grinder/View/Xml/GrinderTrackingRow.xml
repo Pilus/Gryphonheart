@@ -1,6 +1,9 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
     http://wowprogramming.com/FrameXML/UI.xsd">
   <Frame name="GrinderTrackingRowTemplate" virtual="true" xmlns="http://www.blizzard.com/wow/ui/">
+    <Size>
+      <AbsDimension y="15" x="200"/>
+    </Size>
     <Layers>
       <Layer>
         <Texture name="$parentIconTexture" parentKey="IconTexture">
@@ -17,6 +20,7 @@
           </Size>
           <Anchors>
             <Anchor point="LEFT" relativeTo="$parentIconTexture" relativePoint="RIGHT"/>
+            <Anchor point="RIGHT" relativeTo="$parentAmountFontString" relativePoint="LEFT"/>
           </Anchors>
         </FontString>
         <FontString name="$parentAmountFontString" parentKey="Amount" inherits="GrinderTrackingRowLabelTemplate">
@@ -24,25 +28,39 @@
             <AbsDimension y="15" x="25"/>
           </Size>
           <Anchors>
-            <Anchor point="LEFT" relativeTo="$parentIconTexture" relativePoint="RIGHT"/>
+            <Anchor point="RIGHT" relativeTo="$parentVelocityFontString" relativePoint="LEFT"/>
           </Anchors>
         </FontString>
         <FontString name="$parentVelocityFontString" parentKey="Velocity" inherits="GrinderTrackingRowLabelTemplate">
           <Size>
-            <AbsDimension y="15" x="25"/>
+            <AbsDimension y="15" x="40"/>
           </Size>
           <Anchors>
-            <Anchor point="LEFT" relativeTo="$parentIconTexture" relativePoint="RIGHT"/>
+            <Anchor point="RIGHT" relativeTo="$parentResetButton" relativePoint="LEFT"/>
           </Anchors>
         </FontString>
       </Layer>
     </Layers>
     <Frames>
       <Button name="$parentResetButton" parentKey="ResetButton">
-        
+        <Size>
+          <AbsDimension y="15" x="15"/>
+        </Size>
+        <Anchors>
+          <Anchor point="LEFT" relativeTo="$parentRemoveButton" relativePoint="RIGHT"/>
+        </Anchors>
+        <NormalTexture file="Interface/BUTTONS/UI-Panel-ExpandButton-Up"/>
+        <PushedTexture file="Interface/BUTTONS/UI-Panel-ExpandButton-Down"/>
       </Button>
       <Button name="$parentRemoveButton" parentKey="RemoveButton">
-
+        <Size>
+          <AbsDimension y="15" x="15"/>
+        </Size>
+        <Anchors>
+          <Anchor point="LEFT" relativePoint="LEFT"/>
+        </Anchors>
+        <NormalTexture file="Interface/BUTTONS/CancelButton-Up"/>
+        <PushedTexture file="Interface/BUTTONS/CancelButton-Down"/>
       </Button>
     </Frames>
   </Frame>
@@ -51,7 +69,7 @@
     <FontHeight>
       <AbsValue val="11" />
     </FontHeight>
-    <Color r="1" g="0.8196079" b="0" />
+    <Color r="1" g="1" b="1" />
     <Shadow>
       <Color r="0" g="0" b="0" />
       <Offset>
