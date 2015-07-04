@@ -662,5 +662,10 @@ end
 System.Enum = {
 	Parse = CsLuaMeta.EnumParse,
 }
-System.NotImplementedException = CsLua.NotImplementedException;
-System.Exception = CsLua.CsException;
+System.NotImplementedException = function(...) return CsLua.NotImplementedException(...) end;
+System.Exception = function(...) return CsLua.CsException(...) end;
+
+
+CsLuaAttributes = { 
+	ICsLuaAddOn = function() return null; end
+}

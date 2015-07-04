@@ -89,6 +89,10 @@ CsLua.Collection.CsLuaDictionary = function(generics)
 		return t2;
 	end
 
+	class.Add = function(key, value)
+		t[key] = value;
+	end
+
 	setmetatable(publicClass, {
 		__index = function(_, key)
 			if getters[key] then
