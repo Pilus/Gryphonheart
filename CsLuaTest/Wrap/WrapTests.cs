@@ -15,6 +15,7 @@
             this.Tests["WrapInheritingInterfaceWithGenericInterface"] = WrapInheritingInterfaceWithGenericInterface;
             this.Tests["WrapInheritingInterfaceWithProvideSelf"] = WrapInheritingInterfaceWithProvideSelf;
             this.Tests["WrapHandleMultipleValues"] = WrapHandleMultipleValues;
+            this.Tests["WrapGenericWithProperty"] = WrapGenericWithProperty;
         }
 
         private static void WrapSimpleInterface()
@@ -45,6 +46,20 @@
             var interfaceImplementation = Wrapper.WrapGlobalObject<IInterfaceWithGenerics<int>>("interfaceImplementation");
 
             Assert("OK10", interfaceImplementation.Method(10));
+        }
+
+        public static void WrapGenericWithProperty()
+        {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Property = { Value = 43}, };");
+            var interfaceImplementation = Wrapper.WrapGlobalObject<IInterfaceWithGenerics<ISimpleInterface>>("interfaceImplementation");
+
+            var inner = interfaceImplementation.Property;
+            Assert(43, inner.Value);
         }
 
         private static void WrapInheritingInterface()

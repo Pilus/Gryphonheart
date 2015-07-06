@@ -5,7 +5,7 @@ namespace CsLuaTest
     public class IndentedLineWriter
     {
         public int indent;
-        public string indentChar = "\t";
+        public string indentChar = "   ";
 
         public void WriteLine(string line)
         {

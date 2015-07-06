@@ -138,7 +138,7 @@ CsLua.Wrapping.Wrapper = {
 				if type(returnArg == "table") then
 					local typeFunc = CsLuaMeta.GetByFullName(property.type, true);
 					if type(typeFunc) == "function" and typeFunc(nil).isInterface then
-						return CsLua.Wrapping.Wrapper.WrapObject[method.returnType](returnArg);
+						return CsLua.Wrapping.Wrapper.WrapObject[property.returnType](returnArg);
 					end
 				end
 
