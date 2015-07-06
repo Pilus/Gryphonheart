@@ -3,6 +3,7 @@ namespace CsLuaTest
 {
     using AmbigousMethods;
     using CsLua.Collection;
+    using CsLuaAttributes;
     using Generics;
     using DefaultValues;
     using General;
@@ -14,9 +15,10 @@ namespace CsLuaTest
     using Wrap;
     using Static;
 
-    class Program
+    [CsLuaAddOn("CsLuaTest", "CsLua Test", 60200, Author = "Pilus", Notes = "Unit tests for the CsLua framework.")]
+    class CsLuaTest : ICsLuaAddOn
     {
-        static void Main(string[] args)
+        public void Execute()
         {
             var tests = new CsLuaList<ITestSuite>()
             {

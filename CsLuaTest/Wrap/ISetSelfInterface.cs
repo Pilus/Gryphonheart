@@ -1,9 +1,7 @@
 ﻿
-
-
 namespace CsLuaTest.Wrap
 {
-    using CsLua.Attributes;
+    using CsLuaAttributes;
 
     [ProvideSelf]
     public interface ISetSelfInterface
