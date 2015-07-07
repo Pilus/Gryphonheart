@@ -1,7 +1,6 @@
 ﻿
 namespace BlizzardApi.Global
 {
-    using System;
     using MiscEnums;
     using CsLua.Wrapping;
 

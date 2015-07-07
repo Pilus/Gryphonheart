@@ -1,6 +1,5 @@
 ﻿namespace Grinder.Presenter
 {
-    using System;
     using Grinder.Model.Entity;
     using Grinder.View;
     public class EntityId : IEntityId

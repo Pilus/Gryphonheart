@@ -1,7 +1,5 @@
 ﻿namespace CsLua
 {
-    using System;
-
     public static class GameEnvironment
     {
         public static bool IsExecutingInGame {

@@ -2,7 +2,6 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Grinder.Model;
-    using System;
     using Moq;
     using Grinder.Model.EntityAdaptor;
     using CsLua.Collection;

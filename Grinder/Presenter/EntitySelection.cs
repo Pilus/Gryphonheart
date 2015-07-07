@@ -1,6 +1,5 @@
 ﻿namespace Grinder.Presenter
 {
-    using System.Collections.Generic;
     using CsLua.Collection;
     using View;
 

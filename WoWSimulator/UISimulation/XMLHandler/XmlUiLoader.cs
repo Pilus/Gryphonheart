@@ -1,7 +1,5 @@
 ﻿namespace WoWSimulator.UISimulation.XMLHandler
 {
-    using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Xml.Serialization;
 

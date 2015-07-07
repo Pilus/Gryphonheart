@@ -1,10 +1,7 @@
 ﻿namespace WoWSimulator
 {
     using System;
-    using BlizzardApi.Global;
     using Lua;
-    using Moq;
-    using UISimulation;
 
     public interface ISession
     {

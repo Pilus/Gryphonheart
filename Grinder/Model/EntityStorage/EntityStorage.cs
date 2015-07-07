@@ -1,10 +1,8 @@
 ﻿namespace Grinder.Model.EntityStorage
 {
-    using System;
     using BlizzardApi.Global;
     using CsLua.Collection;
     using Lua;
-    using View;
 
     public class EntityStorage : IEntityStorage
     {

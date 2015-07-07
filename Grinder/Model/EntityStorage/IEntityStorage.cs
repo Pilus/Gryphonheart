@@ -1,7 +1,6 @@
 ﻿namespace Grinder.Model.EntityStorage
 {
     using CsLua.Collection;
-    using View;
 
     public interface IEntityStorage
     {

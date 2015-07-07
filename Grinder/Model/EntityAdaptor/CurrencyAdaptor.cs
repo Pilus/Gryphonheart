@@ -1,6 +1,5 @@
 ﻿namespace Grinder.Model.EntityAdaptor
 {
-    using System;
     using CsLua.Collection;
     using Grinder.Model.Entity;
     using BlizzardApi.Global;

@@ -1,6 +1,5 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
-    using System;
     using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;

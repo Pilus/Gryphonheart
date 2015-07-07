@@ -1,11 +1,8 @@
 ﻿namespace GrinderUnitTests.Model.EntityAdaptor
 {
-    using System;
-    using Grinder.Model;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using BlizzardApi.Global;
     using Moq;
-    using CsLua.Wrapping;
     using CsLuaTestUtils;
     using Grinder.Model.Entity;
     using Grinder.Model.EntityAdaptor;

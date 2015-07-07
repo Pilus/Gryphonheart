@@ -2,7 +2,6 @@
 {
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
-    using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
     using Grinder.View.Xml;
     using System;

@@ -4,7 +4,6 @@
     using System.Linq;
     using BlizzardApi.Global;
     using CsLua.Collection;
-    using CsLua.Wrapping;
     using Moq;
 
     public class ContainerSimulator

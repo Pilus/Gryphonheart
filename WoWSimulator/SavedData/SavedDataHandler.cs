@@ -1,7 +1,6 @@
 ﻿namespace WoWSimulator.SavedData
 {
     using System.Collections.Generic;
-    using ApiMocks;
     using BlizzardApi.Global;
     using Lua;
     using Moq;

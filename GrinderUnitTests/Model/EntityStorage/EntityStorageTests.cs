@@ -4,7 +4,6 @@
     using CsLua.Collection;
     using Grinder.Model.Entity;
     using Grinder.Model.EntityStorage;
-    using Grinder.View;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
