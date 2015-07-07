@@ -10,6 +10,8 @@
         public string Name = "Unnamed";
         public static string Output = "";
         public const bool ContinueOnError = true;
+        public static int TestCount;
+        public static int FailCount;
 
         public CsLuaDictionary<string, Action> Tests
         {
@@ -33,12 +35,14 @@
                 { 
                     try
                     {
+                        TestCount++;
                         ResetOutput();
                         test();
                         lineWriter.WriteLine(testName + " Success");
                     }
                     catch (CsException ex)
                     {
+                        FailCount++;
                         lineWriter.WriteLine(testName + " Failed");
                         lineWriter.indent++;
                         lineWriter.WriteLine(ex.Message);

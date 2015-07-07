@@ -55,7 +55,7 @@
                 return;
             }
 
-            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Property = { Value = 43}, };");
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function() end, Property = { Value = 43, Method = function() end}, };");
             var interfaceImplementation = Wrapper.WrapGlobalObject<IInterfaceWithGenerics<ISimpleInterface>>("interfaceImplementation");
 
             var inner = interfaceImplementation.Property;
