@@ -121,7 +121,7 @@ CsLua.Wrapping.Wrapper = {
 						elseif type(returnArgs[1]) == "table" then
 							local typeFunc = CsLuaMeta.GetByFullName(method.returnType, true);
 							if type(typeFunc) == "function" and typeFunc(nil).isInterface then
-								return CsLua.Wrapping.Wrapper.WrapObject[{{name = method.returnType}}](returnArgs[1]);
+								return CsLua.Wrapping.Wrapper.WrapObject[{{name = method.returnType}}](returnArgs[1], skipValidation);
 							end
 						end
 
@@ -138,7 +138,7 @@ CsLua.Wrapping.Wrapper = {
 				if type(returnArg == "table") then
 					local typeFunc = CsLuaMeta.GetByFullName(property.type, true);
 					if type(typeFunc) == "function" and typeFunc(nil).isInterface then
-						return CsLua.Wrapping.Wrapper.WrapObject[{{name = property.type}}](returnArg);
+						return CsLua.Wrapping.Wrapper.WrapObject[{{name = property.type}}](returnArg, skipValidation);
 					end
 				end
 
@@ -161,7 +161,7 @@ CsLua.Wrapping.Wrapper = {
 	end),
 
 	TryUnwrapObject = CsLuaMeta.GenericsMethod(function(generics, obj)
-		if type(value) == "table" and obj.__obj then
+		if type(obj) == "table" and obj.__obj then
 			return obj.__obj;
 		end
 
