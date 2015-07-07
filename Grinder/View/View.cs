@@ -20,7 +20,7 @@
 
         public View(IEntitySelectionDropdownHandler entitySelectionDropdownHandler)
         {
-            this.frame = (IGrinderFrame)Global.Api.GetGlobal("GrinderFrame");
+            this.frame = (IGrinderFrame)Global.Api.GetGlobal("GrinderFrame", typeof(IGrinderFrame));
             this.frame.Show();
             this.trackingRows = new CsLuaList<IGrinderTrackingRow>();
             this.entitySelectionDropdownHandler = entitySelectionDropdownHandler;

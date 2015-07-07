@@ -417,6 +417,8 @@
                 .Callback((string key, object obj) => { globalObjects[key] = obj; });
             apiMock.Setup(api => api.GetGlobal(It.IsAny<string>()))
                 .Returns((string key) => globalObjects.ContainsKey(key) ? globalObjects[key] : null);
+            apiMock.Setup(api => api.GetGlobal(It.IsAny<string>(), It.IsAny<Type>()))
+                .Returns((string key, Type t) => globalObjects.ContainsKey(key) ? globalObjects[key] : null);
         }
     }
 }

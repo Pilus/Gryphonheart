@@ -664,6 +664,11 @@ System.Enum = {
 }
 System.NotImplementedException = function(...) return CsLua.NotImplementedException(...) end;
 System.Exception = function(...) return CsLua.CsException(...) end;
+System.Type = function(name)
+	local class = { FullName = name };
+	CsLua.CreateSimpleClass(class, class, "Type", "System.Type");
+	return class;
+end
 
 
 CsLuaAttributes = { 

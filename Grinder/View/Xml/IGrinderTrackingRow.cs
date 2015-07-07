@@ -1,7 +1,9 @@
 ﻿namespace Grinder.View.Xml
 {
     using BlizzardApi.WidgetInterfaces;
+    using CsLuaAttributes;
 
+    [ProvideSelf]
     public interface IGrinderTrackingRow : IFrame
     {
         ITexture IconTexture { get; }
