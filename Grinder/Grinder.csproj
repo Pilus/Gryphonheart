@@ -36,6 +36,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\EntityAdaptor\CurrencyAdaptor.cs" />
     <Compile Include="Model\EntityAdaptor\EntityAdaptorException.cs" />
@@ -84,6 +87,7 @@
   <ItemGroup>
     <Content Include="View\Xml\GrinderFrame.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="View\Xml\GrinderTrackingRow.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
