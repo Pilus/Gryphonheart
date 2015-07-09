@@ -16,6 +16,8 @@
             this.Tests["WrapInheritingInterfaceWithProvideSelf"] = WrapInheritingInterfaceWithProvideSelf;
             this.Tests["WrapHandleMultipleValues"] = WrapHandleMultipleValues;
             this.Tests["WrapGenericWithProperty"] = WrapGenericWithProperty;
+            this.Tests["WrapHandleMultipleValues"] = WrapHandleMultipleValues;
+            this.Tests["WrapHandleRecursiveWrapping"] = WrapHandleRecursiveWrapping;
         }
 
         private static void WrapSimpleInterface()
@@ -119,6 +121,37 @@
             Assert("OK", multiple.Value1);
             Assert(43, multiple.Value2);
             Assert(true, multiple.Value3);
+        }
+
+        public static void WrapHandleRecursiveWrapping()
+        {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
+            GameEnvironment.ExecuteLuaCode(@"
+                var recursiveInterfaceGenerator = function(inner, value)
+                    return {
+                        GetInner = function() return inner; end,
+                        Inner = inner,
+                        GetValue = function() return value; end,
+                    };
+                end
+
+                A = recursiveInterfaceGenerator(null, 'a');
+                B = recursiveInterfaceGenerator(A, 'b');
+                C = recursiveInterfaceGenerator(B, 'c');
+            ");
+
+            var C = Wrapper.WrapGlobalObject<IInterfaceWithWrappedValues>("C");
+            Assert('c', C.GetValue());
+
+            var B = C.Inner;
+            Assert('b', B.GetValue());
+
+            var A = B.GetInner();
+            Assert('a', A.GetValue());
         }
     }
 }

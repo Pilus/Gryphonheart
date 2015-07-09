@@ -163,7 +163,7 @@ CsLua.Collection.CsLuaList = function(generics)
 		if res then
 			return res;
 		end
-		Lua.CS.Throw(CsLua.CsException("The source sequence is empty.")); -- TODO: Throw correctly.
+		Lua.CS.Throw(CsLua.CsException().__Cstor("The source sequence is empty."));
 	end
 
 	class.Single = function(f)

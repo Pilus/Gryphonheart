@@ -115,6 +115,7 @@
     <Compile Include="Wrap\IInheritingInterfaceWithGenerics.cs" />
     <Compile Include="Wrap\IInterfaceWithGenerics.cs" />
     <Compile Include="Wrap\IInterfaceWithMultipleReturnValues.cs" />
+    <Compile Include="Wrap\IInterfaceWithWrappedValues.cs" />
     <Compile Include="Wrap\ISetSelfInterface.cs" />
     <Compile Include="Wrap\ISimpleInterface.cs" />
     <Compile Include="Wrap\WrapTests.cs" />
