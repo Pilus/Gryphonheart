@@ -31,7 +31,9 @@ end
 local getPropertyByName
 getPropertyByName = function(interface, name)
 	for _, property in ipairs(interface.properties) do
-		return property;
+		if property.name == name then
+			return property;
+		end
 	end
 
 	for _, implementedInterface in ipairs(interface.implementedInterfaces) do
@@ -67,6 +69,10 @@ CsLua.Wrapping.Wrapper = {
 	end),
 	
 	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj, skipValidation)
+		if not(type(obj)=="table") then
+			CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("Non valid object passed to WrapObject. Got " .. type(obj) .. "."));
+		end
+
 		if not(type(generics)=="table") or not(type(generics[1]) == "table") or not(type(generics[1].name) == "string") then
 			CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("No interface provided to wrap object in."));
 		end
@@ -135,7 +141,7 @@ CsLua.Wrapping.Wrapper = {
 				end
 
 				local returnArg = obj[key];
-				if type(returnArg == "table") then
+				if type(returnArg) == "table" then
 					local typeFunc = CsLuaMeta.GetByFullName(property.type, true);
 					if type(typeFunc) == "function" and typeFunc(nil).isInterface then
 						return CsLua.Wrapping.Wrapper.WrapObject[{{name = property.type}}](returnArg, skipValidation);

@@ -131,11 +131,12 @@
             }
 
             GameEnvironment.ExecuteLuaCode(@"
-                var recursiveInterfaceGenerator = function(inner, value)
+                local recursiveInterfaceGenerator = function(inner, value)
                     return {
                         GetInner = function() return inner; end,
                         Inner = inner,
                         GetValue = function() return value; end,
+                        Property = true,
                     };
                 end
 

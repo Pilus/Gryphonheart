@@ -5,7 +5,7 @@
       <AbsDimension x="120" y="80" />
     </Size>
     <Anchors>
-      <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="-50" y="50" />
+      <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-100" y="100" />
     </Anchors>
     <Layers>
       <Layer>
@@ -42,9 +42,9 @@
     </Backdrop>
     <Frames>
       <Button name="$parentTrackButton" parentKey="TrackButton" text="Track" inherits="UIPanelButtonTemplate">
-        <Size y="20" x="150"/>
+        <Size y="20" x="50"/>
         <Anchors>
-          <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="5" y="-5" />
+          <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="5" y="-10" />
         </Anchors>
       </Button>
       <Frame name="$parentTrackingContainer" parentKey="TrackingContainer">

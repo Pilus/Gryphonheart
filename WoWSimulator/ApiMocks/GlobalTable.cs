@@ -26,6 +26,8 @@
                 .Returns((string key) => this.globalObjects.ContainsKey(key) ? this.globalObjects[key] : this.util.GetObjectByName(key));
             apiMock.Setup(api => api.GetGlobal(It.IsAny<string>(), It.IsAny<Type>()))
                 .Returns((string key, Type t) => this.globalObjects.ContainsKey(key) ? this.globalObjects[key] : this.util.GetObjectByName(key));
+            apiMock.Setup(api => api.GetGlobal(It.IsAny<string>(), It.IsAny<Type>(), It.IsAny<bool>()))
+                .Returns((string key, Type t, bool skipValidation) => this.globalObjects.ContainsKey(key) ? this.globalObjects[key] : this.util.GetObjectByName(key));
         }
     }
 }
