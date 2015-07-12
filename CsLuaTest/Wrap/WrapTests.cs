@@ -19,6 +19,7 @@
             this.Tests["WrapHandleMultipleValues"] = WrapHandleMultipleValues;
             this.Tests["WrapHandleRecursiveWrapping"] = WrapHandleRecursiveWrapping;
             this.Tests["WrapWithTargetTypeTranslation"] = WrapWithTargetTypeTranslation;
+            this.Tests["CastOfWrappedObject"] = CastOfWrappedObject;
         }
 
         private static void WrapSimpleInterface()
@@ -185,6 +186,36 @@
 
             var b = (IB)producer.Produce("B");
             Assert(true, b.IsB());
+        }
+
+        public static void CastOfWrappedObject()
+        {
+            GameEnvironment.ExecuteLuaCode(@"
+                retTrue = function() return true; end;
+
+                A = {
+                    IsBase = retTrue,
+                    IsA = retTrue,
+                }
+                B = {
+                    IsBase = retTrue,
+                    IsB = retTrue,
+                }
+
+                P = {
+                    Produce = function(s)
+                        return _G[s];
+                    end
+                };
+            ");
+
+            var producer = Wrapper.WrapGlobalObject<IProducer>("P");
+
+            var a = producer.Produce("A");
+            var aCast = (IA) a;
+
+            Assert(true, aCast is IA);
+            Assert(true, aCast.IsA());
         }
     }
 }

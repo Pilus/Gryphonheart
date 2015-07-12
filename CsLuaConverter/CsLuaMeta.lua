@@ -57,6 +57,18 @@ int = {
 	end,
 }
 
+CsLuaMeta.Cast = function(castType) return setmetatable({}, { __add = function(_, value)
+	if not(type(value) == "table" and value.__fullTypeName) then
+		return value;
+	end
+
+	if (CsLuaMeta.IsType(value, castType)) then
+		return value;
+	end
+
+	error("todo: cast");
+end}); end
+
 CsLuaMeta.GetByFullName = function(s, doNotThrow)
 	local n = {string.split(".",s)};
 	local o = _G[n[1]];
