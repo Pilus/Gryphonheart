@@ -7,13 +7,13 @@ namespace BlizzardApi.Global
 
     public interface IFrameProvider
     {
-        T CreateFrame<T>(FrameType frameType);
+        IUIObject CreateFrame(FrameType frameType);
 
-        T CreateFrame<T>(FrameType frameType, string name);
+        IUIObject CreateFrame(FrameType frameType, string name);
 
-        T CreateFrame<T>(FrameType frameType, string name, IFrame parent);
+        IUIObject CreateFrame(FrameType frameType, string name, IFrame parent);
 
-        T CreateFrame<T>(FrameType frameType, string name, IFrame parent, string inherits);
+        IUIObject CreateFrame(FrameType frameType, string name, IFrame parent, string inherits);
 
         IUIObject GetMouseFocus();
          

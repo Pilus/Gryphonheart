@@ -2,7 +2,11 @@
 
 namespace BlizzardApi.Global
 {
+    using System;
     using CsLua.Wrapping;
+    using Lua;
+    using WidgetInterfaces;
+
     public static class Global
     {
         private static IApi api;
@@ -46,7 +50,7 @@ namespace BlizzardApi.Global
             {
                 if (frameProvider == null)
                 {
-                    frameProvider = Wrapper.WrapGlobalObject<IFrameProvider>("_G", true);
+                    frameProvider = Wrapper.WrapGlobalObject<IFrameProvider>("_G", true, FrameTypeTranslator);
                 }
                 return frameProvider;
             }
@@ -54,6 +58,16 @@ namespace BlizzardApi.Global
             {
                 frameProvider = value;
             }
+        }
+
+        private static string FrameTypeTranslator(NativeLuaTable obj)
+        {
+            if (obj["GetObjectType"] != null)
+            {
+                return "BlizzardApi.WidgetInterfaces.I" + (obj["GetObjectType"] as Func<NativeLuaTable, string>)(obj);
+            }
+
+            return null;
         }
     }
 }

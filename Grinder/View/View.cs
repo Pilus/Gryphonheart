@@ -32,7 +32,7 @@
 
             if (row == null)
             {
-                row = Global.FrameProvider.CreateFrame<IGrinderTrackingRow>(
+                row = (IGrinderTrackingRow)Global.FrameProvider.CreateFrame(
                     FrameType.Frame, "GrinderTrackingRow" + (this.trackingRows.Count + 1), this.frame.TrackingContainer,
                     "GrinderTrackingRowTemplate");
 

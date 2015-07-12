@@ -44,7 +44,7 @@
             }
 
             var globalFrames = new GlobalFrames();
-            globalFrames.UIParent = this.frameProvider.CreateFrame<IFrame>(FrameType.Frame, "UIParent");
+            globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(FrameType.Frame, "UIParent");
 
             var savedVariables = new List<string>();
             this.addOns.ForEach(a =>

@@ -176,6 +176,7 @@ CsLuaMeta.GetSignatures = function(...)
 			if (obj.__GetSignature) then
 				signatures[i] = obj.__GetSignature();
 			elseif type(obj.GetObjectType) == "function" then
+				table.insert(signatures[i], 1, "Lua.NativeLuaTable");
 				table.insert(signatures[i], 1, "BlizzardApi.WidgetInterfaces.INativeUIObject");
 			else
 				table.insert(signatures[i], 1, "Lua.NativeLuaTable");

@@ -41,7 +41,7 @@ namespace GrinderUnitTests.View
                     menuAnchor = frame;
                 });
             frameProviderMock.Setup(
-                f => f.CreateFrame<IFrame>(FrameType.Frame, It.IsAny<string>(), uiParent, "UIDropDownMenuTemplate"))
+                f => f.CreateFrame(FrameType.Frame, It.IsAny<string>(), uiParent, "UIDropDownMenuTemplate"))
                 .Returns(() => { 
                     expectedAnchor = new Mock<IFrame>().Object;
                     return expectedAnchor;

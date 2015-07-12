@@ -24,22 +24,22 @@ namespace WoWSimulator.UISimulation
             this.xmlFiles = new List<string>();
         }
 
-        public T CreateFrame<T>(FrameType frameType)
+        public IUIObject CreateFrame(FrameType frameType)
         {
-            return this.CreateFrame<T>(frameType, null, null, null);
+            return this.CreateFrame(frameType, null, null, null);
         }
 
-        public T CreateFrame<T>(FrameType frameType, string name)
+        public IUIObject CreateFrame(FrameType frameType, string name)
         {
-            return this.CreateFrame<T>(frameType, name, null, null);
+            return this.CreateFrame(frameType, name, null, null);
         }
 
-        public T CreateFrame<T>(FrameType frameType, string name, IFrame parent)
+        public IUIObject CreateFrame(FrameType frameType, string name, IFrame parent)
         {
-            return this.CreateFrame<T>(frameType, name, parent, null);
+            return this.CreateFrame(frameType, name, parent, null);
         }
 
-        public T CreateFrame<T>(FrameType frameType, string name, IFrame parent, string inherits)
+        public IUIObject CreateFrame(FrameType frameType, string name, IFrame parent, string inherits)
         {
             LayoutFrameType xml;
             switch (frameType)
@@ -59,7 +59,7 @@ namespace WoWSimulator.UISimulation
             xml.inherits = inherits;
             xml.name = name;
             xml.Items = new object[]{};
-            return (T)this.util.CreateObject(xml, parent);
+            return this.util.CreateObject(xml, parent);
         }
 
         
