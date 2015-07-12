@@ -7,16 +7,16 @@ namespace BlizzardApi.Global
 
     public interface IFrameProvider
     {
-        IUIObject CreateFrame(FrameType frameType);
+        T CreateFrame<T>(FrameType frameType);
 
-        IUIObject CreateFrame(FrameType frameType, string name);
+        T CreateFrame<T>(FrameType frameType, string name);
 
-        IUIObject CreateFrame(FrameType frameType, string name, IFrame parent);
+        T CreateFrame<T>(FrameType frameType, string name, IFrame parent);
 
-        IUIObject CreateFrame(FrameType frameType, string name, IFrame parent, string inherits);
+        T CreateFrame<T>(FrameType frameType, string name, IFrame parent, string inherits);
 
         IUIObject GetMouseFocus();
-
+         
         void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode, double autoHideDelay);
         void EasyMenu(NativeLuaTable menuList, IFrame frame, string anchor, double x, double y, string displayMode, double autoHideDelay);
         void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode);

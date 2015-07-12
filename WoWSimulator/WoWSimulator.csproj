@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsLuaAttributes">
-      <HintPath>..\CsLuaCompiler\CsLuaAttributes.dll</HintPath>
+      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\GrinderUnitTests\Moq.dll</HintPath>

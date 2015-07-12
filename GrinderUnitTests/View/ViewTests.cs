@@ -80,7 +80,7 @@
             Global.FrameProvider = frameProviderMock.Object;
 
             var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
-            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+            frameProviderMock.Setup(fp => fp.CreateFrame<IFrame>(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
                 .Returns((FrameType frameType, string name, IRegion parent, string template) => {
                     var mock = CreateTrackingRowMock(parent);
                     trackingRowMocks.Add(mock);
@@ -116,7 +116,7 @@
             Global.FrameProvider = frameProviderMock.Object;
 
             var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
-            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+            frameProviderMock.Setup(fp => fp.CreateFrame<IFrame>(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
                 .Returns((FrameType frameType, string name, IRegion parent, string template) =>
                 {
                     var mock = CreateTrackingRowMock(parent);
@@ -194,7 +194,7 @@
             Global.FrameProvider = frameProviderMock.Object;
 
             var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
-            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+            frameProviderMock.Setup(fp => fp.CreateFrame<IFrame>(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
                 .Returns((FrameType frameType, string name, IRegion parent, string template) => {
                     var mock = CreateTrackingRowMock(parent);
                     trackingRowMocks.Add(mock);
@@ -232,7 +232,7 @@
             Global.FrameProvider = frameProviderMock.Object;
 
             var trackingRowMocks = new List<Mock<IGrinderTrackingRow>>();
-            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
+            frameProviderMock.Setup(fp => fp.CreateFrame<IFrame>(FrameType.Frame, It.IsAny<string>(), containerMock.Object, TrackingRowTemplateXmlName))
                 .Returns((FrameType frameType, string name, IRegion parent, string template) => {
                     var mock = CreateTrackingRowMock(parent);
                     trackingRowMocks.Add(mock);

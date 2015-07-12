@@ -14,9 +14,10 @@ namespace CsLuaTest
     using TryCatchFinally;
     using Wrap;
     using Static;
+    using TypeMethods;
 
     [CsLuaAddOn("CsLuaTest", "CsLua Test", 60200, Author = "Pilus", Notes = "Unit tests for the CsLua framework.")]
-    class CsLuaTest : ICsLuaAddOn
+    public class CsLuaTest : ICsLuaAddOn
     {
         public void Execute()
         {
@@ -32,6 +33,7 @@ namespace CsLuaTest
                 new WrapTests(),
                 new GenericsTests(),
                 new StaticTests(),
+                new TypeMethodsTests(),
             };
 
             tests.Foreach(test => test.PerformTests(new IndentedLineWriter()));

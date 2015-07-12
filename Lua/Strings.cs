@@ -313,7 +313,13 @@ namespace Lua
         /// <returns></returns>
         public static string strrep(string seed, int count)
         {
-            throw new NotImplementedException();
+            var s = string.Empty;
+            while (count > 0)
+            {
+                s += seed;
+                count--;
+            }
+            return s;
         }
 
     /*

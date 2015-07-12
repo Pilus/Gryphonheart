@@ -20,8 +20,16 @@
 
         private static void MockCurrencies()
         {
-            apiMock.Setup(api => api.GetCurrencyInfo(It.IsInRange(77, 160, Range.Inclusive)))
-                .Returns((int id) => TestUtil.StructureMultipleValues("CurrencyName" + id, id == 80 ? 55 : 10, "iconPath" + id, 7, 100, 1000, id < 100));
+            apiMock.Setup(api => api.GetCurrencyInfo(It.IsAny<int>()))
+                .Returns((int id) =>
+                {
+                    if (id >= 77 && id <= 160)
+                    {
+                        return TestUtil.StructureMultipleValues("CurrencyName" + id, id == 80 ? 55 : 10, "iconPath" + id,
+                            7, 100, 1000, id < 100);
+                    }
+                    return TestUtil.StructureMultipleValues("", 0, "", 0, 0, 0, false);
+                });
         }
 
         [TestMethod]

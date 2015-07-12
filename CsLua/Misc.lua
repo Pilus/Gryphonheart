@@ -3,6 +3,11 @@
 CsLua = CsLua or {};
 
 CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, initialize, serialize, deserialize, implements)
+	assert(type(class)=="table", "class argument must be a table");
+	assert(type(publicClass)=="table", "publicClass argument must be a table");
+	assert(type(name)=="string", "name argument must be a string");
+	assert(type(fullName)=="string", "fullName argument must be a string");
+	
 	class.__type = name;
 	class.__fullTypeName = fullName;
 	class.__IsType = function(typeName) 

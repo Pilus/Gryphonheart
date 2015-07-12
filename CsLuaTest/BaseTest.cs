@@ -9,7 +9,7 @@
     {
         public string Name = "Unnamed";
         public static string Output = "";
-        public const bool ContinueOnError = false;
+        public const bool ContinueOnError = true;
         public static int TestCount;
         public static int FailCount;
 

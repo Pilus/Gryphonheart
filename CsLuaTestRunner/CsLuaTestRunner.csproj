@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B91182F7-751E-46EB-8549-3D9AB6E34B7F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{EB646944-4977-41FC-8A7A-938C13D51C07}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CsLua</RootNamespace>
-    <AssemblyName>CsLua</AssemblyName>
+    <RootNamespace>CsLuaTestRunner</RootNamespace>
+    <AssemblyName>CsLuaTestRunner</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,36 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CsException.cs" />
-    <Compile Include="Collection\CsLuaDictionary.cs" />
-    <Compile Include="Collection\CsLuaList.cs" />
-    <Compile Include="Collection\ITableFormatter.cs" />
-    <Compile Include="GameEnvironment.cs" />
-    <Compile Include="Wrapping\IMultipleValues.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Collection\TableFormatter.cs" />
-    <Compile Include="CsLuaGuid.cs" />
-    <Compile Include="Wrapping\Wrapper.cs" />
-    <Compile Include="Wrapping\WrapperException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Collection\CsLuaDictionary.lua" />
-    <None Include="Collection\CsLuaList.lua" />
-    <None Include="Collection\MultipleValues.lua" />
-    <None Include="Collection\TableFormatter.lua" />
-    <None Include="CsException.lua" />
-    <None Include="Misc.lua" />
-    <None Include="Wrapping\Wrapper.Lua" />
-    <None Include="Wrapping\WrapperException.lua" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lua\Lua.csproj">
-      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
-      <Name>Lua</Name>
+    <ProjectReference Include="..\CsLuaTest\CsLuaTest.csproj">
+      <Project>{ac8558c0-fb17-40cc-b739-0dedcde5504e}</Project>
+      <Name>CsLuaTest</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="GameEnvironment.lua" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

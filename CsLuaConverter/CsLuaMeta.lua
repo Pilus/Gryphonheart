@@ -19,6 +19,38 @@ CsLuaMeta._not = setmetatable({}, { __add = function(_, value)
 	return not(value);
 end});
 
+local typeBasedMethods = {
+	ToString = function(obj)
+		if type(obj) == "table" and obj.__fullTypeName then
+			return obj.__fullTypeName;
+		end
+		if type(obj) == "boolean" then
+			if (obj == true) then
+				return "True";
+			end
+			return "False";
+		end
+		return tostring(obj);
+	end,
+	Equals = function(obj, otherObj)
+		return obj == otherObj;
+	end
+}
+
+for i,v in pairs(typeBasedMethods) do
+	CsLuaMeta[i] = function(...) 
+		local args = {...};
+		return setmetatable({}, { 
+			__add = function(obj)
+				if type(obj) == "table" and obj.__fullTypeName and type(obj[i]) == "function" then
+					return obj[i](unpack(args));
+				end
+				return v(obj, unpack(args));
+			end
+		});
+	 end;
+end
+
 CsLuaMeta.GetByFullName = function(s, doNotThrow)
 	local n = {string.split(".",s)};
 	local o = _G[n[1]];
@@ -194,7 +226,6 @@ CsLuaMeta.GetMatchingFunction = function(functions, generics, ...)
 	local args = {...};
 
 	local bestFunc, bestScore;
-
 	for _, funcMeta in pairs(functions) do
 		local score = CsLuaMeta.ScoreFunction(funcMeta.types, argSignature, args, generics);
 		if (score and (bestScore == nil or bestScore > score)) then
@@ -278,9 +309,10 @@ CsLuaMeta.CreateClass = function(info)
 		end
 	end
 
-	local GenerateAmbigiousFunc = function(element, inheritiedClass, generics)
+	local GenerateAmbigiousFunc = function(element, inheritiedClass, generics, methodGenerics)
+		local value = element.value(methodGenerics);
 		return function(...)
-			local matchingFunc = CsLuaMeta.GetMatchingFunction(element.value, generics, ...);
+			local matchingFunc = CsLuaMeta.GetMatchingFunction(value, generics, ...);
 			if matchingFunc then
 				return matchingFunc(...);
 			elseif inheritiedClass then
@@ -291,7 +323,7 @@ CsLuaMeta.CreateClass = function(info)
 			end
 
 			error("No method found for key '"..element.name.."' matching the signature: '"..CsLuaMeta.SignatureToString(CsLuaMeta.GetSignatures(...)).."'");
-		end
+		end, value;
 	end
 
 	local initializeStaticElements = function()
@@ -385,7 +417,19 @@ CsLuaMeta.CreateClass = function(info)
 			if (element.type == "Interface") then
 				table.insert(interfaces, element.value);
 			elseif (element.type == "Method") then
-				local func = GenerateAmbigiousFunc(element, inheritiedClass, appliedGenerics);
+				local func, methodValue = GenerateAmbigiousFunc(element, inheritiedClass, appliedGenerics);
+
+				if (methodValue[1].generics) then
+					func = CsLuaMeta.GenericsMethod(function(generics,...)
+						local methodGenerics = {};
+						for i,v in ipairs(generics) do
+							methodGenerics[methodValue[1].generics[i]] = { name = v.name };
+						end
+						local innerFunc = GenerateAmbigiousFunc(element, inheritiedClass, appliedGenerics, methodGenerics);
+						return innerFunc(...);
+					end);
+				end
+
 				methods[element.name] = func;
 
 				if (element.static == true) then
@@ -429,7 +473,7 @@ CsLuaMeta.CreateClass = function(info)
 				end
 			elseif (element.type == "Constructor") then
 				constructor = function(...)
-					local matchingFunc = CsLuaMeta.GetMatchingFunction(element.value, appliedGenerics, ...);
+					local matchingFunc = CsLuaMeta.GetMatchingFunction(element.value(), appliedGenerics, ...);
 					if matchingFunc then
 						return matchingFunc(...);
 					else
@@ -669,6 +713,18 @@ System.Type = function(name)
 	CsLua.CreateSimpleClass(class, class, "Type", "System.Type");
 	return class;
 end
+
+System.Collections = {
+	Generic = {
+		IDictionary = function()
+			return {
+				isInterface = true,
+				name = "IDictionary",
+				__AddImplementedSignatures = function() end,
+			}
+		end
+	}
+}
 
 
 CsLuaAttributes = { 

@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CsLuaAttributes">
-      <HintPath>..\CsLuaCompiler\CsLuaAttributes.dll</HintPath>
+      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -110,7 +110,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaCompiler\CsLuaCompiler.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
+    <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaConverter\CsLuaConverter.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

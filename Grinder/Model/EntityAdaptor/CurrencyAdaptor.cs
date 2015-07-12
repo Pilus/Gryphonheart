@@ -17,7 +17,7 @@
             {
                 var currencyInfo = Global.Api.GetCurrencyInfo(id);
 
-                if (currencyInfo != null)
+                if (!string.IsNullOrEmpty(currencyInfo.Value1))
                 {
                     var currency = new Currency(id, currencyInfo);
                     if (currency.IsDiscovered)

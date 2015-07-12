@@ -160,7 +160,7 @@ CsLua.Wrapping.Wrapper = {
 			end,
 		});
 
-		CsLua.CreateSimpleClass(auxClass, wrap, interface.name, generics[1], nil, nil, nil, nil, signatures);
+		CsLua.CreateSimpleClass(auxClass, wrap, interface.name, generics[1].name, nil, nil, nil, nil, signatures);
 
 		obj.__wrap = wrap;
 		return wrap;

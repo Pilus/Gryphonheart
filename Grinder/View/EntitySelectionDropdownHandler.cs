@@ -12,7 +12,7 @@
 
         public EntitySelectionDropdownHandler()
         {
-            this.menuFrame = (IFrame) Global.FrameProvider.CreateFrame(FrameType.Frame, "GrinderEntitySelectionMenu", Global.Frames.UIParent, "UIDropDownMenuTemplate");
+            this.menuFrame = Global.FrameProvider.CreateFrame<IFrame>(FrameType.Frame, "GrinderEntitySelectionMenu", Global.Frames.UIParent, "UIDropDownMenuTemplate");
         }
 
         public void Show(IFrame anchor, IEntitySelection selection)
