@@ -64,11 +64,11 @@ local getMethodFittingSignature = function(methods, ...)
 end
 
 CsLua.Wrapping.Wrapper = {
-	WrapGlobalObject = CsLuaMeta.GenericsMethod(function(generics, name, skipValidation)
-		return CsLua.Wrapping.Wrapper.WrapObject[generics](_G[name], skipValidation);
+	WrapGlobalObject = CsLuaMeta.GenericsMethod(function(generics, name, skipValidation, targetTypeTranslator)
+		return CsLua.Wrapping.Wrapper.WrapObject[generics](_G[name], skipValidation, targetTypeTranslator);
 	end),
 	
-	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj, skipValidation)
+	WrapObject = CsLuaMeta.GenericsMethod(function(generics, obj, skipValidation, targetTypeTranslator)
 		if not(type(obj)=="table") then
 			CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("Non valid object passed to WrapObject. Got " .. type(obj) .. "."));
 		end
@@ -125,9 +125,13 @@ CsLua.Wrapping.Wrapper = {
 						if #(returnArgs) > 1 then
 							return CsLua.Wrapping.MultipleValues(nil).__Cstor(unpack(returnArgs));
 						elseif type(returnArgs[1]) == "table" then
+							local returnType = method.returnType;
+							if targetTypeTranslator then
+								returnType = targetTypeTranslator(returnArgs[1]) or returnType;
+							end
 							local typeFunc = CsLuaMeta.GetByFullName(method.returnType, true);
 							if type(typeFunc) == "function" and typeFunc(nil).isInterface then
-								return CsLua.Wrapping.Wrapper.WrapObject[{{name = method.returnType}}](returnArgs[1], skipValidation);
+								return CsLua.Wrapping.Wrapper.WrapObject[{{name = returnType}}](returnArgs[1], skipValidation, targetTypeTranslator);
 							end
 						end
 
@@ -142,9 +146,14 @@ CsLua.Wrapping.Wrapper = {
 
 				local returnArg = obj[key];
 				if type(returnArg) == "table" then
+					local propertyType = property.type;
+					if targetTypeTranslator then
+						propertyType = targetTypeTranslator(returnArgs[1]) or propertyType;
+					end
+
 					local typeFunc = CsLuaMeta.GetByFullName(property.type, true);
 					if type(typeFunc) == "function" and typeFunc(nil).isInterface then
-						return CsLua.Wrapping.Wrapper.WrapObject[{{name = property.type}}](returnArg, skipValidation);
+						return CsLua.Wrapping.Wrapper.WrapObject[{{name = propertyType	}}](returnArg, skipValidation, targetTypeTranslator);
 					end
 				end
 
