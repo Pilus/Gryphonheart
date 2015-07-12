@@ -7,6 +7,7 @@
             Name = "TypeMethods";
             this.Tests["TestEquals"] = TestEquals;
             this.Tests["TestToString"] = TestToString;
+            this.Tests["TestIntParse"] = TestIntParse;
         }
 
         private static void TestEquals()
@@ -27,12 +28,18 @@
         private static void TestToString()
         {
             Assert("43", (43).ToString());
+            Assert("43", 43.ToString());
 
             var x = true;
             Assert("True", x.ToString());
 
             var c1 = new Class1() {Value = "c1"};
             Assert("c1", c1.ToString());
+        }
+
+        private static void TestIntParse()
+        {
+            Assert(43, int.Parse("43"));
         }
     }
 }

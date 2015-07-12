@@ -51,6 +51,12 @@ for i,v in pairs(typeBasedMethods) do
 	 end;
 end
 
+int = {
+	Parse = function(value)
+		return tonumber(value);
+	end,
+}
+
 CsLuaMeta.GetByFullName = function(s, doNotThrow)
 	local n = {string.split(".",s)};
 	local o = _G[n[1]];
@@ -83,6 +89,9 @@ CsLuaMeta.GenericsMethod = function(func)
 		__index = function(_, generics)
 			return function(...) return func(generics, ...); end;
 		end,
+		__call = function(_, ...)
+			return func(CsLuaMeta.GenericsList(CsLuaMeta.Generic('object')), ...);
+		end
 	});
 
 	return t;
