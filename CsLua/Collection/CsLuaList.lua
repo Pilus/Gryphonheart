@@ -163,14 +163,14 @@ CsLua.Collection.CsLuaList = function(generics)
 		if res then
 			return res;
 		end
-		Lua.CS.Throw(CsLua.CsException().__Cstor("The source sequence is empty."));
+		CsLuaMeta.Throw(CsLua.CsException().__Cstor("The source sequence is empty."));
 	end
 
 	class.Single = function(f)
 		if publicClass.Count == 1 then
 			return publicClass[0];
 		end
-		Lua.CS.Throw(Lua.Exception("The source sequence did not hold precisely one element."));
+		CsLuaMeta.Throw(CsLua.CsException().__Cstor("The source sequence did not hold precisely one element."));
 	end
 
 	class.SingleOrDefault = function(f)
@@ -179,7 +179,7 @@ CsLua.Collection.CsLuaList = function(generics)
 		elseif publicClass.Count == 0 then
 			return nil;
 		end
-		Lua.CS.Throw(Lua.Exception("The source sequence did not hold one or none elements."));
+		CsLuaMeta.Throw(CsLua.CsException().__Cstor("The source sequence did not hold one or none elements."));
 	end
 
 	class.LastOrDefault = function(f)
@@ -196,7 +196,7 @@ CsLua.Collection.CsLuaList = function(generics)
 		if res then
 			return res;
 		end
-		Lua.CS.Throw(Lua.Exception("The source sequence is empty."));
+		CsLuaMeta.Throw(CsLua.CsException().__Cstor("The source sequence is empty."));
 	end
 
 	class.Union = function(otherList)

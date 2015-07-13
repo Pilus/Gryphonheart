@@ -141,7 +141,7 @@ CsLua.Wrapping.Wrapper = {
 
 				local property = getPropertyByName(interface, key);
 				if not(property) then
-					CsLuaMeta.Throw(CsLua.Wrapping.WrapperException().__Cstor("Object interface does not define a property or method matching key '" .. tostring(key) .. "'"));
+					return nil;
 				end
 
 				local returnArg = obj[key];

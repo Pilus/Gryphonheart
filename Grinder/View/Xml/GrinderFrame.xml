@@ -2,7 +2,7 @@
     http://wowprogramming.com/FrameXML/UI.xsd">
   <Frame name="GrinderFrame" hidden="true" parent="UIParent" xmlns="http://www.blizzard.com/wow/ui/">
     <Size>
-      <AbsDimension x="120" y="80" />
+      <AbsDimension x="240" y="140" />
     </Size>
     <Anchors>
       <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-100" y="100" />
@@ -10,7 +10,7 @@
     <Layers>
       <Layer>
         <FontString name="$parentLabel" justifyH="CENTER" font="Fonts\FRIZQT__.TTF" text="Grinder" parentKey="Label">
-          <Size y="20" />
+          <Size y="20" x="15"/>
           <Anchors>
             <Anchor point="TOPLEFT" />
             <Anchor point="TOPRIGHT" />
@@ -28,17 +28,16 @@
         </FontString>
       </Layer>
     </Layers>
-    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
-           edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
-      <BackgroundInsets>
-        <AbsInset left="11" right="12" top="12" bottom="11"/>
-      </BackgroundInsets>
-      <TileSize>
-        <AbsValue val="32"/>
-      </TileSize>
+    <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
       <EdgeSize>
-        <AbsValue val="32"/>
+        <AbsValue val="16"/>
       </EdgeSize>
+      <TileSize>
+        <AbsValue val="16"/>
+      </TileSize>
+      <BackgroundInsets>
+        <AbsInset left="5" right="5" top="5" bottom="4"/>
+      </BackgroundInsets>
     </Backdrop>
     <Frames>
       <Button name="$parentTrackButton" parentKey="TrackButton" text="Track" inherits="UIPanelButtonTemplate">

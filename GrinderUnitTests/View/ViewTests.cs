@@ -12,6 +12,8 @@
     using System;
     using System.Collections.Generic;
     using CsLuaTestUtils;
+    using Grinder.Model.Entity;
+    using Grinder.Presenter;
 
     [TestClass]
     public class ViewTests
@@ -241,12 +243,11 @@
 
             var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
 
-            var entityIdB = new Mock<IEntityId>().Object;
-            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityA", "IconA");
-            viewUnderTest.AddTrackingEntity(entityIdB, "EntityB", "IconB");
-            viewUnderTest.AddTrackingEntity(new Mock<IEntityId>().Object, "EntityC", "IconC");
+            viewUnderTest.AddTrackingEntity(new EntityId(EntityType.Item, 1), "EntityA", "IconA");
+            viewUnderTest.AddTrackingEntity(new EntityId(EntityType.Item, 2), "EntityB", "IconB");
+            viewUnderTest.AddTrackingEntity(new EntityId(EntityType.Item, 3), "EntityC", "IconC");
 
-            viewUnderTest.UpdateTrackingEntityVelocity(entityIdB, 43, 3.1415);
+            viewUnderTest.UpdateTrackingEntityVelocity(new EntityId(EntityType.Item, 2), 43, 3.1415);
 
             Assert.AreEqual("43", trackingRowMocks[1].Object.Amount.GetText());
             Assert.AreEqual("3.14 / hour", trackingRowMocks[1].Object.Velocity.GetText());
