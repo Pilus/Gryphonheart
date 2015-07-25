@@ -20,6 +20,7 @@
             this.Tests["WrapHandleRecursiveWrapping"] = WrapHandleRecursiveWrapping;
             this.Tests["WrapWithTargetTypeTranslation"] = WrapWithTargetTypeTranslation;
             this.Tests["CastOfWrappedObject"] = CastOfWrappedObject;
+            this.Tests["NonWrappedAsPropertyInWrappedObject"] = NonWrappedAsPropertyInWrappedObject;
         }
 
         private static void WrapSimpleInterface()
@@ -216,6 +217,21 @@
 
             Assert(true, aCast is IA);
             Assert(true, aCast.IsA());
+        }
+
+        public static void NonWrappedAsPropertyInWrappedObject()
+        {
+            GameEnvironment.ExecuteLuaCode("A = {};");
+
+            var obj = Wrapper.WrapGlobalObject<INonWrappedProperty>("A");
+            var cA = new ClassA() {Value = "ok"};
+            obj.Property = cA;
+
+            Assert(true, obj.Property == cA);
+
+            cA.Value = "2";
+
+            Assert("2", obj.Property.Value);
         }
     }
 }

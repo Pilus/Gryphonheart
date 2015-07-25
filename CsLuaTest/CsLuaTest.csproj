@@ -114,6 +114,7 @@
     <Compile Include="TryCatchFinally\TryCatchFinallyTests.cs" />
     <Compile Include="TypeMethods\Class1.cs" />
     <Compile Include="TypeMethods\TypeMethodsTests.cs" />
+    <Compile Include="Wrap\ClassA.cs" />
     <Compile Include="Wrap\IA.cs" />
     <Compile Include="Wrap\IB.cs" />
     <Compile Include="Wrap\IBase.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Wrap\IInterfaceWithGenerics.cs" />
     <Compile Include="Wrap\IInterfaceWithMultipleReturnValues.cs" />
     <Compile Include="Wrap\IInterfaceWithWrappedValues.cs" />
+    <Compile Include="Wrap\INonWrappedProperty.cs" />
     <Compile Include="Wrap\IProducer.cs" />
     <Compile Include="Wrap\ISetSelfInterface.cs" />
     <Compile Include="Wrap\ISimpleInterface.cs" />
