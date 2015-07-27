@@ -10,6 +10,7 @@
             this.Tests["GetConstValueFromBase"] = GetConstValueFromBase;
             this.Tests["ConstructorShouldUseArgumentsOverClassElements"] = ConstructorShouldUseArgumentsOverClassElements;
             this.Tests["MethodShouldUseArgumentsOverClassElements"] = MethodShouldUseArgumentsOverClassElements;
+            this.Tests["ClassesShouldBeAbleToUseCustomEqualsImplementation"] = ClassesShouldBeAbleToUseCustomEqualsImplementation;
         }
 
         private static void NonStaticClassWithStaticMethod()
@@ -43,6 +44,14 @@
             Assert("Y", classA.GetAmbValue());
         }
 
-        
+        private static void ClassesShouldBeAbleToUseCustomEqualsImplementation()
+        {
+            var c1 = new ClassWithEquals() { Value = 1 };
+            var c2 = new ClassWithEquals() { Value = 2 };
+            var c3 = new ClassWithEquals() { Value = 1 };
+
+            Assert(false, c1.Equals(c2));
+            Assert(true, c1.Equals(c3));
+        }
     }
 }
