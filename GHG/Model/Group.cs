@@ -18,7 +18,7 @@
         private bool cryptatedDataInitialized = false;
 
         private bool deleted;
-        private long version;
+        private double version;
 
         public Group()
         {
@@ -48,7 +48,7 @@
 
         public string[] ChatSlashCommads { get; set; }
 
-        public long Version
+        public double Version
         {
             get { return this.version; }
         }

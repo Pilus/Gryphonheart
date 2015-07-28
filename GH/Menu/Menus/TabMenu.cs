@@ -93,7 +93,7 @@ namespace GH.Menu.Menus
             var onClick = button.GetScript(ButtonHandler.OnClick);
             if (onClick != null)
             {
-                onClick();
+                onClick(button, null, null, null, null);
             }
         }
     }

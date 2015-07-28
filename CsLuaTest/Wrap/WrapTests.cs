@@ -232,6 +232,10 @@
             cA.Value = "2";
 
             Assert("2", obj.Property.Value);
+
+            GameEnvironment.ExecuteLuaCode("A2 = A");
+            var objRef2 = Wrapper.WrapGlobalObject<INonWrappedProperty>("A2");
+            Assert(true, objRef2.Property == cA);
         }
     }
 }

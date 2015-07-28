@@ -64,6 +64,7 @@
     <Compile Include="WidgetEnums\Handler.cs" />
     <Compile Include="WidgetEnums\Justify.cs" />
     <Compile Include="WidgetEnums\TooltipAnchor.cs" />
+    <Compile Include="WidgetInterfaces\ICheckButton.cs" />
     <Compile Include="WidgetInterfaces\IEditBox.cs" />
     <Compile Include="WidgetInterfaces\IFontInstance.cs" />
     <Compile Include="WidgetInterfaces\IFontString.cs" />

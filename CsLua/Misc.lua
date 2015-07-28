@@ -46,3 +46,9 @@ CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, in
 	class.__Serialize = serialize;
 end
 
+string.startsWith = function(str,pattern)
+	if string.sub(str,0,string.len(pattern)) == pattern then
+		return true;
+	end
+	return false;
+end

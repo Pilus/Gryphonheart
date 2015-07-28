@@ -5,7 +5,7 @@
     using CsLuaAttributes;
 
     [ProvideSelf]
-    public interface IButton : IFrame, IScript<ButtonHandler, IButton>
+    public interface IButton : IScript<ButtonHandler, IButton>, IFrame 
     {
         /// <summary>
         ///     Execute the click action of the button.

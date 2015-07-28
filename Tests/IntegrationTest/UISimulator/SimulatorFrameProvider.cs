@@ -9,6 +9,7 @@ namespace Tests.IntegrationTest.UISimulator
     using BlizzardApi.WidgetInterfaces;
     using Moq;
     using BlizzardApi.Global;
+    using Lua;
 
     public class SimulatorFrameProvider : IFrameProvider
     {
@@ -134,6 +135,26 @@ namespace Tests.IntegrationTest.UISimulator
         {
             mock.Setup(f => f.GetParent()).Returns(() => parent);
             mock.Setup(f => f.SetParent(It.IsAny<IRegion>())).Callback((IRegion r) => parent = r);
+        }
+
+        public void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode, double autoHideDelay)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EasyMenu(NativeLuaTable menuList, IFrame frame, string anchor, double x, double y, string displayMode, double autoHideDelay)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EasyMenu(NativeLuaTable menuList, IFrame frame, string anchor, double x, double y, string displayMode)
+        {
+            throw new NotImplementedException();
         }
     }
 }

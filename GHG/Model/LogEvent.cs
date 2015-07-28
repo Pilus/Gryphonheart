@@ -21,7 +21,7 @@ namespace GHG.Model
             private set;
         }
 
-        public long TimeStamp
+        public double TimeStamp
         {
             get;
             private set;

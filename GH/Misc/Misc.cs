@@ -11,9 +11,9 @@ namespace GH.Misc
 
     public static class Misc
     {
-        private static long lastVersion;
+        private static double lastVersion;
 
-        public static long GetTimeBasedVersion()
+        public static double GetTimeBasedVersion()
         {
             var ver = Core.time() - 1370000000;
             if (ver <= lastVersion)
