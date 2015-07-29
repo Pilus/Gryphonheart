@@ -90,7 +90,7 @@
 
         public void SetTexCoord(double minX, double maxX, double minY, double maxY)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetTexCoord(double ULx, double ULy, double LLx, double LLy, double URx, double URy, double LRx, double LRy)

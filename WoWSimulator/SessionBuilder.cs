@@ -17,6 +17,7 @@
     {
         private readonly Mock<IApi> apiMock;
         private readonly List<AddOn> addOns;
+        private readonly List<Func<UiInitUtil, IFrame>> frameCreationMethod = new List<Func<UiInitUtil, IFrame>>();
         private readonly SimulatorFrameProvider frameProvider;
         private readonly UiInitUtil util;
         private readonly FrameActor actor;

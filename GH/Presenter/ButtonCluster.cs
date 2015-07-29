@@ -11,6 +11,7 @@
 
     public class ButtonCluster
     {
+        public const string MainIconPath = "Interface/ICONS/ABILITY_MOUNT_GOLDENGRYPHON";
         private const double HideTimeSec = 1.0;
 
         private readonly IModelProvider model;
@@ -49,7 +50,7 @@
         private void SetUpMainButton()
         {
             this.mainButton = new RoundButton(52);
-            this.mainButton.SetIcon("Interface/ICONS/ABILITY_MOUNT_GOLDENGRYPHON");
+            this.mainButton.SetIcon(MainIconPath);
 
             var buttonPosition = this.model.Settings.Get(SettingIds.ButtonPosition).Value as double [];
             DebugTools.Msg("Got", buttonPosition[0], buttonPosition[1]);

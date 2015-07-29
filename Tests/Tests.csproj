@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GHAddOnTestable.cs" />
     <Compile Include="GHCTests\Integration\GHCIntegrationTest.cs" />
     <Compile Include="GHCTests\Modules\ActionBarTests.cs" />
     <Compile Include="GHDTests\LineTests.cs" />

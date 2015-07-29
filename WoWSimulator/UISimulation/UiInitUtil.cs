@@ -89,6 +89,11 @@
             if (obj is IFrame)
             {
                 this.frames.Add(obj as IFrame);
+
+                if (parent is Frame)
+                {
+                    (parent as Frame).Children.Add(obj as IFrame);
+                }
             }
 
             return obj;

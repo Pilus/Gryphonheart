@@ -98,7 +98,7 @@
         ///     Get the list of "children" (frames and things derived from frames) of this frame.
         /// </summary>
         /// <returns></returns>
-        string[] GetChildren();
+        IFrame[] GetChildren();
 
         /// <summary>
         ///     Gets the modifiers to the frame's rectangle used for clamping the frame to screen.

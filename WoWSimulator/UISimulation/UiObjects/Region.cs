@@ -161,6 +161,10 @@
 
         public double GetHeight()
         {
+            if (this.points.Count < 2)
+            {
+                return this.height;
+            }
             // todo: Calculate when anchors are in effect.
             throw new System.NotImplementedException();
         }
@@ -202,8 +206,12 @@
 
         public double GetWidth()
         {
+            if (this.points.Count < 2)
+            {
+                return this.width;
+            }
             // todo: Calculate when anchors are in effect.
-            return width;
+            throw new System.NotImplementedException();
         }
 
         public void Hide()
@@ -255,6 +263,11 @@
         public void SetParent(IRegion parent)
         {
             this.parent = parent;
+            
+            if (parent is Frame)
+            {
+                (parent as Frame).Children.Add(this as IFrame);
+            }
         }
 
         public void SetParent(string parentName)

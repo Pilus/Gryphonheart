@@ -8,7 +8,7 @@
     public class Frame : Region, IFrame
     {
         private int id;
-        private readonly List<IUIObject> children = new List<IUIObject>();
+        public readonly List<IFrame> Children = new List<IFrame>();
         private readonly UiInitUtil util;
         private readonly List<string> registeredEvents = new List<string>();
 
@@ -52,7 +52,7 @@
 
             foreach (var frameType in frames.Items)
             {
-                this.children.Add(this.util.CreateObject(frameType, this));
+                this.util.CreateObject(frameType, this);
             }
         }
 
@@ -77,6 +77,7 @@
             obj.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer.level));
             this.regions.Add(obj);
         }
+
 
         public IFontString CreateFontString()
         {
@@ -110,7 +111,10 @@
 
         public ITexture CreateTexture(string name, Layer layer)
         {
-            throw new System.NotImplementedException();
+            var texture = this.util.CreateObject(new TextureType()) as ITexture;
+            texture.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer));
+            this.regions.Add(texture);
+            return texture;
         }
 
         public ITexture CreateTexture(string name, string inheritsFrom)
@@ -173,9 +177,9 @@
             throw new System.NotImplementedException();
         }
 
-        public string[] GetChildren()
+        public IFrame[] GetChildren()
         {
-            throw new System.NotImplementedException();
+            return this.Children.ToArray();
         }
 
         public object GetClampRectInsets()
@@ -353,12 +357,12 @@
 
         public void RegisterForDrag(MouseButton buttonType)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void RegisterForDrag(MouseButton buttonType, MouseButton buttonType2)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetBackdrop(Lua.NativeLuaTable backdropTable)
@@ -433,7 +437,7 @@
 
         public void SetMovable(bool isMovable)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetResizable(bool isResizable)
