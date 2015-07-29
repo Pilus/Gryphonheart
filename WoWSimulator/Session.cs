@@ -78,7 +78,7 @@
 
         private IFrames Frames { get; set; }
 
-        private ISimulatorFrameProvider FrameProvider { get; set; }
+        public ISimulatorFrameProvider FrameProvider { get; private set; }
 
 
         public NativeLuaTable GetSavedVariables()

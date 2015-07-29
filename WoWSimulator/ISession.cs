@@ -2,6 +2,7 @@
 {
     using System;
     using Lua;
+    using UISimulation;
 
     public interface ISession
     {
@@ -14,5 +15,6 @@
         void VerifyVisible(string text);
         void VerifyVisible(string text, bool exact);
         T GetGlobal<T>(string name);
+        ISimulatorFrameProvider FrameProvider { get; }
     }
 }

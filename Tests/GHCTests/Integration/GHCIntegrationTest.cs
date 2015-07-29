@@ -20,7 +20,7 @@ namespace Tests.GHCTests.Integration
                 .WithAddOn(new GHCAddOn())
                 .Build();
 
-            var optionsContainer = Global.FrameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "InterfaceOptionsFramePanelContainer") as IFrame;
+            var optionsContainer = session.FrameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "InterfaceOptionsFramePanelContainer") as IFrame;
             optionsContainer.SetWidth(400);
             optionsContainer.SetHeight(500);
 
