@@ -1,6 +1,8 @@
 ﻿
 namespace Tests.GHCTests
 {
+    using BlizzardApi.Global;
+    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using GHC.Modules.AbilityActionBar;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,6 +17,20 @@ namespace Tests.GHCTests
         public void ActionBarWithSingleAction()
         {
             new MockGlobal();
+
+            var frameProviderMock = new Mock<IFrameProvider>();
+            Global.FrameProvider = frameProviderMock.Object;
+
+            var framesMock = new Mock<IFrames>();
+
+            var uiParent = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
+            framesMock.Setup(frames => frames.UIParent).Returns(uiParent);
+            Global.Frames = framesMock.Object;
+
+            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Button, null, Global.Frames.UIParent))
+                .Returns(new Mock<IButton>().Object);
+
+
             var actionButtonMocks = new List<Mock<IActionButtonProxy>>();
 
             var actionBar = new ActionBar((parent) =>

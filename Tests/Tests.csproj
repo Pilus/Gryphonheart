@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsLuaAttributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>.\Moq.dll</HintPath>
     </Reference>
@@ -48,11 +52,14 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GHCTests\Integration\GHCIntegrationTest.cs" />
     <Compile Include="GHCTests\Modules\ActionBarTests.cs" />
     <Compile Include="GHDTests\LineTests.cs" />
     <Compile Include="GHDTests\PageTests.cs" />
@@ -84,6 +91,10 @@
     <ProjectReference Include="..\Lua\Lua.csproj">
       <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
       <Name>Lua</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WoWSimulator\WoWSimulator.csproj">
+      <Project>{90089c84-d04e-4953-be7d-3b2a9be1c819}</Project>
+      <Name>WoWSimulator</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

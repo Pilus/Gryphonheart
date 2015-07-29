@@ -24,14 +24,14 @@ namespace GH.Misc
             return ver;
         }
 
-        public static void RegisterEvent(SystemEvent eventName, Action<SystemEvent> func)
+        public static void RegisterEvent(SystemEvent eventName, Action<SystemEvent, object> func)
         {
             var frame = Global.FrameProvider.CreateFrame(FrameType.Frame) as IFrame;
             frame.RegisterEvent(eventName);
 
-            var wrapperFunc = new Action<IFrame, object>((callingFrame, o) =>
+            var wrapperFunc = new Action<IFrame, object, object>((callingFrame, o, arg1) =>
             {
-                func((SystemEvent)Enum.Parse(typeof(SystemEvent), (string)o));
+                func((SystemEvent)Enum.Parse(typeof(SystemEvent), (string)o), arg1);
             });
 
             frame.SetScript(FrameHandler.OnEvent, wrapperFunc);

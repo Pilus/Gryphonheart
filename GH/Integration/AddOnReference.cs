@@ -7,5 +7,6 @@
         GHG,
         GHF,
         GHD,
+        GHC,
     }
 }

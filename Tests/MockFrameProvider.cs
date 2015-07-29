@@ -18,6 +18,17 @@ namespace Tests
         public MockFrameProvider()
         {
             this.objects = new List<IUIObject>();
+
+            new MockGlobal();
+
+            Global.FrameProvider = this;
+            var framesMock = new Mock<IFrames>();
+
+            var uiParent = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
+
+            framesMock.Setup(frames => frames.UIParent).Returns(uiParent);
+
+            Global.Frames = framesMock.Object;
         }
 
         public IUIObject CreateFrame(FrameType frameType)

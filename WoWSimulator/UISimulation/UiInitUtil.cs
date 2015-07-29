@@ -67,7 +67,7 @@
             }
 
             IUIObject obj;
-            if (this.wrappers.ContainsKey(xmlInfo.name))
+            if (xmlInfo.name != null && this.wrappers.ContainsKey(xmlInfo.name))
             {
                 obj = this.wrappers[xmlInfo.name](this, xmlInfo, parent);
             }
@@ -137,7 +137,7 @@
 
         public void TriggerEvent(string eventName, object[] eventArgs)
         {
-            Func<int, object> Get = (index) => index < eventName.Length ? eventArgs[index] : null;
+            Func<int, object> Get = (index) => index < eventArgs.Length ? eventArgs[index] : null;
 
             foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnEvent) && f.IsEventRegistered(eventName)))
             {

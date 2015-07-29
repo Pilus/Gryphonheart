@@ -22,6 +22,8 @@
         {
             this.buttonFactory = buttonFactory;
             this.SetUpContainer();
+            this.actionButtons = new CsLuaList<IActionButtonProxy>();
+            this.unusedActionButtons = new CsLuaList<IActionButtonProxy>();
         }
 
         public void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc)

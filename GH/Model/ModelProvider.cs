@@ -20,7 +20,7 @@
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
         }
 
-        private void OnVariablesLoaded(SystemEvent eventName)
+        private void OnVariablesLoaded(SystemEvent eventName, object _)
         {
             DefaultQuickButtons.AddToModel(this.ButtonList);
             DefaultSettings.AddToModel(this.Settings);

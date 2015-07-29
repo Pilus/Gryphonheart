@@ -37,7 +37,7 @@
             this.AccountProfiles.Set(playerName, profile);
         }
 
-        private void OnVariablesLoaded(SystemEvent eventName)
+        private void OnVariablesLoaded(SystemEvent eventName, object _)
         {
             this.AccountProfiles.LoadFromSaved();
             this.SetPlayerProfileIfMissing();
