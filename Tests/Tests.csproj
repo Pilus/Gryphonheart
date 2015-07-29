@@ -53,11 +53,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="IntegrationTest\GHDTests\LineTests.cs" />
-    <Compile Include="IntegrationTest\GHDTests\PageTests.cs" />
-    <Compile Include="IntegrationTest\GHDTests\KeyboardInputTests.cs" />
-    <Compile Include="IntegrationTest\UISimulator\Simulator.cs" />
-    <Compile Include="IntegrationTest\UISimulator\SimulatorFrameProvider.cs" />
+    <Compile Include="GHCTests\Modules\ActionBarTests.cs" />
+    <Compile Include="GHDTests\LineTests.cs" />
+    <Compile Include="GHDTests\PageTests.cs" />
+    <Compile Include="MockGlobal.cs" />
+    <Compile Include="MockFrameProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +68,10 @@
     <ProjectReference Include="..\CsLua\CsLua.csproj">
       <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
       <Name>CsLua</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GHC\GHC.csproj">
+      <Project>{4b177d62-5e1f-4839-ab79-c4e3b6cd78f7}</Project>
+      <Name>GHC</Name>
     </ProjectReference>
     <ProjectReference Include="..\GHD\GHD.csproj">
       <Project>{8e16cba7-81ac-4b92-bcde-ee72e5687bad}</Project>

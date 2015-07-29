@@ -26,7 +26,11 @@ namespace GH.Presenter
         private double dragOffsetX;
         private double dragOffsetY;
 
-        public DragableButton(double size)
+        public DragableButton(double size) : this(size, null)
+        {
+        }
+
+        public DragableButton(double size, string name)
         {
             this.Button = Global.FrameProvider.CreateFrame(FrameType.Button, null, Global.Frames.UIParent) as IButton;
             this.Button.SetWidth(size);

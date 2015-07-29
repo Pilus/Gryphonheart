@@ -1,5 +1,5 @@
 ﻿
-namespace Tests.IntegrationTest.UISimulator
+namespace Tests
 {
     using System;
     using System.Collections.Generic;
@@ -11,11 +11,11 @@ namespace Tests.IntegrationTest.UISimulator
     using BlizzardApi.Global;
     using Lua;
 
-    public class SimulatorFrameProvider : IFrameProvider
+    public class MockFrameProvider : IFrameProvider
     {
         private readonly IList<IUIObject> objects;
         
-        public SimulatorFrameProvider()
+        public MockFrameProvider()
         {
             this.objects = new List<IUIObject>();
         }
@@ -54,6 +54,7 @@ namespace Tests.IntegrationTest.UISimulator
             var mock = new Mock<IFrame>();
             SimulateFrame(mock, name, parent);
             this.objects.Add(mock.Object);
+            Global.Api.SetGlobal(name, mock.Object);
             return mock;
         }
 

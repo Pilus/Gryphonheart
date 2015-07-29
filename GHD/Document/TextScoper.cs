@@ -46,6 +46,7 @@ namespace GHD.Document
                     return resultingText;
                 }
                 resultingText = FontString.GetText();
+                i++;
             }
             return resultingText;
         }

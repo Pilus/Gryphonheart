@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GHC</RootNamespace>
     <AssemblyName>GHC</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,9 +38,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GHCAddOn.cs" />
-    <Compile Include="Modules\AbilityActionBar\ActionButtonItemViewModel.cs" />
-    <Compile Include="Modules\AbilityActionBar\ActionButtonFactory.cs" />
+    <Compile Include="Modules\AbilityActionBar\ActionBar.cs" />
+    <Compile Include="Modules\AbilityActionBar\ActionBarException.cs" />
     <Compile Include="Modules\AbilityActionBar\ActionButtonProxy.cs" />
+    <Compile Include="Modules\AbilityActionBar\IActionBar.cs" />
+    <Compile Include="Modules\AbilityActionBar\IActionButtonProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +53,10 @@
     <ProjectReference Include="..\CsLua\CsLua.csproj">
       <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
       <Name>CsLua</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH\GH.csproj">
+      <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
+      <Name>GH</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lua\Lua.csproj">
       <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>

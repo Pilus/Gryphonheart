@@ -36,5 +36,17 @@ namespace GH.Misc
 
             frame.SetScript(FrameHandler.OnEvent, wrapperFunc);
         }
+
+
+        public static string GetUniqueGlobalName(string prefix)
+        {
+            var i = 1;
+            while (Global.Api.GetGlobal(prefix + i) != null)
+            {
+                i++;
+            }
+
+            return prefix + i;
+        }
     }
 }

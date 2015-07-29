@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHG", "GHG\GHG.csproj", "{3D230DD5-49B6-44CD-9793-000C3B1315B2}"
 EndProject
@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHC", "GHC\GHC.csproj", "{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWSimulator", "WoWSimulator\WoWSimulator.csproj", "{90089C84-D04E-4953-BE7D-3B2A9BE1C819}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +97,10 @@ Global
 		{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90089C84-D04E-4953-BE7D-3B2A9BE1C819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90089C84-D04E-4953-BE7D-3B2A9BE1C819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90089C84-D04E-4953-BE7D-3B2A9BE1C819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90089C84-D04E-4953-BE7D-3B2A9BE1C819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
