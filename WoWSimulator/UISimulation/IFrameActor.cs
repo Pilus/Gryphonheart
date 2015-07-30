@@ -10,6 +10,7 @@
         IUIObject GetMouseFocus();
         void MouseOver(IFrame frame);
         void ShowEasyMenu(NativeLuaTable menu);
+        void VerifyVisible(string text);
         void VerifyVisible(string text, bool exact);
     }
 }

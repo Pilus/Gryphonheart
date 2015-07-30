@@ -9,7 +9,7 @@ namespace GHD.Model
         public ModelProvider()
         {
             new Presenter(this);
-            AddOnRegister.RegisterAddOn(AddOnReference.GHD, "0.0.1");    
+            AddOnRegister.RegisterAddOn(AddOnReference.GHD);    
         }
     }
 }

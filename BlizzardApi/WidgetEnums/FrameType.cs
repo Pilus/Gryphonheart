@@ -8,5 +8,6 @@ namespace BlizzardApi.WidgetEnums
         EditBox,
         ScrollFrame,
         CheckButton,
+        GameTooltip,
     }
 }

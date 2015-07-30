@@ -42,6 +42,16 @@
             button.SetCount(count);
         }
 
+        public void Show()
+        {
+            this.containerFrame.Show();
+        }
+
+        public void Hide()
+        {
+            this.containerFrame.Hide();
+        }
+
         public void SetCooldown(string id, double startTime, int duration)
         {
             var button = this.GetActionButton(id);
@@ -93,6 +103,7 @@
 
         private void SetUpContainer()
         {
+            this.containerFrame.Hide();
             this.containerFrame.SetPoint(FramePoint.BOTTOM, Global.Frames.UIParent, FramePoint.BOTTOM, 0, 150);
             var backdrop = new CsLuaDictionary<object, object>();
             backdrop["bgFile"] = "x";

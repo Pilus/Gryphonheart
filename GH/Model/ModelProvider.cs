@@ -17,15 +17,11 @@
             
             this.Settings = new IdObjectListWithDefaults<ISetting, SettingIds>("GH_Settings");
 
-            Misc.RegisterEvent(SystemEvent.ADDON_LOADED, this.OnAddOnLoaded);
+            Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
         }
 
-        private void OnAddOnLoaded(SystemEvent eventName, object addonName)
+        private void OnVariablesLoaded(SystemEvent eventName, object _)
         {
-            if (!addonName.Equals("GH"))
-            {
-                return;
-            }
 
             DefaultQuickButtons.AddToModel(this.ButtonList);
             DefaultSettings.AddToModel(this.Settings);

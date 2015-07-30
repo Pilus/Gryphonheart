@@ -101,6 +101,16 @@
 
         private IUIObject Create(LayoutFrameType xml, IRegion parent)
         {
+            // Important: Check for the highest level of types first.
+
+            if (xml is GameTooltipType)
+            {
+                return new GameTooltip(this, "gameTooltip", (GameTooltipType)xml, parent);
+            }
+            if (xml is CheckButtonType)
+            {
+                return new CheckButton(this, "checkButton", (CheckButtonType)xml, parent);
+            }
             if (xml is ButtonType)
             {
                 return new Button(this, "button", (ButtonType)xml, parent);
@@ -117,6 +127,7 @@
             {
                 return new Texture(this, "texture", (TextureType)xml, parent);
             }
+            
             throw new UiSimuationException(string.Format("Unhandled xml type '{0}'.", xml.GetType().Name));
         }
 
@@ -140,9 +151,9 @@
             return (T)Enum.Parse(typeof(T), otherEnum.ToString());
         }
 
-        public void TriggerEvent(string eventName, object[] eventArgs)
+        public void TriggerEvent(string eventName, params object[] eventArgs)
         {
-            Func<int, object> Get = (index) => index < eventArgs.Length ? eventArgs[index] : null;
+            Func<int, object> Get = (index) => eventArgs != null && index < eventArgs.Length ? eventArgs[index] : null;
 
             foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnEvent) && f.IsEventRegistered(eventName)).ToList())
             {

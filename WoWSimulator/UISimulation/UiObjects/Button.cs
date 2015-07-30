@@ -128,7 +128,7 @@
 
         public void RegisterForClicks(ClickType clickType, ClickType clickType2)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void SetButtonState(ButtonState state)

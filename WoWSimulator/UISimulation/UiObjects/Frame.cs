@@ -367,7 +367,7 @@
 
         public void SetBackdrop(Lua.NativeLuaTable backdropTable)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetBackdropBorderColor(double r, double g, double b)

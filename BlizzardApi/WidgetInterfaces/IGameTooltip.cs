@@ -4,7 +4,7 @@
     using CsLuaAttributes;
 
     [ProvideSelf]
-    public interface IGameTooltip : IRegion
+    public interface IGameTooltip : IFrame
     {
         void AddDoubleLine(string textL, string textR , double rL , double gL , double bL , double rR , double gR , double bR );
 

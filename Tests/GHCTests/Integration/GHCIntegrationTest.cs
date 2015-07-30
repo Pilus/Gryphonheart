@@ -18,6 +18,7 @@ namespace Tests.GHCTests.Integration
             var session = new SessionBuilder()
                 .WithAddOn(new GHAddOn())
                 .WithAddOn(new GHCAddOn())
+                .WithXmlFile(@"GHCTests\Integration\ActionButtonTemplate.xml")
                 .Build();
 
             var optionsContainer = session.FrameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "InterfaceOptionsFramePanelContainer") as IFrame;
@@ -31,6 +32,8 @@ namespace Tests.GHCTests.Integration
 
             ghTestable.MouseOverMainButton();
             ghTestable.ClickSubButton("Interface/ICONS/Ability_Stealth");
+
+            session.Actor.VerifyVisible("Interface/ICONS/INV_Misc_Bag_11", true);
         }
     }
 }

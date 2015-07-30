@@ -52,6 +52,12 @@ namespace WoWSimulator.UISimulation
                 case FrameType.EditBox:
                     xml = new EditBoxType();
                     break;
+                case FrameType.GameTooltip:
+                    xml = new GameTooltipType();
+                    break;
+                case FrameType.CheckButton:
+                    xml = new CheckButtonType();
+                    break;
                 default:
                     throw new UiSimuationException(string.Format("Unhandled frame type {0}.", frameType));
             }

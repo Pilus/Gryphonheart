@@ -59,6 +59,11 @@
             throw new UiSimuationException(string.Format("Could not find element matching text '{0}' to click on.", text));
         }
 
+        public void VerifyVisible(string text)
+        {
+            this.VerifyVisible(text, false);
+        }
+
         public void VerifyVisible(string text, bool exact)
         {
             var analyzedText = string.Empty;
@@ -74,6 +79,9 @@
 
             if (visibleFrames.SelectMany(f => f.GetRegions()).Any(r =>
                 (r is IFontString && validate((r as IFontString).GetText())))) return;
+
+            if(visibleFrames.SelectMany(f => f.GetRegions()).Any(r =>
+               (r is ITexture && validate((r as ITexture).GetTexture())))) return;
 
             throw new UiSimuationException(string.Format("No ui elements found displaying the text '{0}'.\nFound texts: {1}.", text, analyzedText));
         }

@@ -8,9 +8,6 @@
 
         public IFrame UIParent { get; set; }
 
-        public IGameTooltip GameTooltip
-        {
-            get { throw new System.NotImplementedException(); }
-        }
+        public IGameTooltip GameTooltip { get; set; }
     }
 }

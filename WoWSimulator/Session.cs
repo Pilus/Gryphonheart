@@ -48,6 +48,8 @@
                 addon.Value();
                 this.FrameProvider.TriggerEvent(SystemEvent.ADDON_LOADED, addon.Key);
             }
+
+            this.FrameProvider.TriggerEvent(SystemEvent.VARIABLES_LOADED, null);
         }
 
         public void RunUpdate()

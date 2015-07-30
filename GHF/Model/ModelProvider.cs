@@ -20,7 +20,7 @@
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
 
             new Presenter(this);
-            AddOnRegister.RegisterAddOn(AddOnReference.GHF, "0.0.1");
+            AddOnRegister.RegisterAddOn(AddOnReference.GHF);
         }
 
         private void SetPlayerProfileIfMissing()

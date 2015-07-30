@@ -8,6 +8,8 @@ namespace GH.Model.Defaults
 
     public static class DefaultQuickButtons
     {
+        private static bool quickButtonsLoaded;
+
         private static CsLuaList<IQuickButton> list = new CsLuaList<IQuickButton>()
         {
             new QuickButton(
@@ -46,11 +48,17 @@ namespace GH.Model.Defaults
 
         public static void RegisterDefaultButton(IQuickButton button)
         {
+            if (quickButtonsLoaded)
+            {
+                throw new ModelException("Default buttons have already been loaded.");
+            }
+
             list.Add(button);
         }
 
         public static void AddToModel(IIdObjectListWithDefaults<IQuickButton, string> buttonList)
         {
+            quickButtonsLoaded = true;
             foreach (var quickButton in list)
             {
                 buttonList.SetDefault(quickButton);

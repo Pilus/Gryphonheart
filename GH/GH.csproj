@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseException.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Debug\DebugTools.cs" />
     <Compile Include="GHAddOn.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Model\Defaults\DefaultQuickButtons.cs" />
     <Compile Include="Model\Defaults\DefaultSettings.cs" />
     <Compile Include="Model\ISetting.cs" />
+    <Compile Include="Model\ModelException.cs" />
     <Compile Include="Model\QuickButton.cs" />
     <Compile Include="Model\IQuickButton.cs" />
     <Compile Include="Model\IModelProvider.cs" />

@@ -21,14 +21,16 @@
 
         public void MouseOverMainButton()
         {
-            this.session.
+            this.session.Actor.MouseOver(this.mainButton);
 
             this.session.RunUpdateForDuration(TimeSpan.FromSeconds(1));
         }
 
         public void ClickSubButton(string texturePath)
         {
-            var button = this.GetUIParentChildWithTexture(texturePath);
+            var button = this.GetUIParentChildWithTexture(texturePath) as IButton;
+
+            this.session.Actor.Click(button);
         }
 
         private IFrame GetUIParentChildWithTexture(string texturePath)

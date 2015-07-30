@@ -61,7 +61,9 @@
     <Compile Include="UISimulation\SimulatorFrameProvider.cs" />
     <Compile Include="UISimulation\UiInitUtil.cs" />
     <Compile Include="UISimulation\UiObjects\Button.cs" />
+    <Compile Include="UISimulation\UiObjects\CheckButton.cs" />
     <Compile Include="UISimulation\UiObjects\FontString.cs" />
+    <Compile Include="UISimulation\UiObjects\GameTooltip.cs" />
     <Compile Include="UISimulation\UiObjects\Point.cs" />
     <Compile Include="UISimulation\UiObjects\Script.cs" />
     <Compile Include="UISimulation\UiObjects\Frame.cs" />

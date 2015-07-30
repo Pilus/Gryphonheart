@@ -7,20 +7,20 @@ namespace GH.Integration
 
     public static class AddOnRegister
     {
-        private static CsLuaDictionary<AddOnReference, string> addOns = new CsLuaDictionary<AddOnReference, string>();
+        private static CsLuaList<AddOnReference> addOns = new CsLuaList<AddOnReference>();
 
-        public static void RegisterAddOn(AddOnReference addonName, string version)
+        public static void RegisterAddOn(AddOnReference addonName)
         {
-            if (addOns.ContainsKey(addonName))
+            if (addOns.Contains(addonName))
             {
                 throw new CsException("AddOn already registered");
             }
-            addOns[addonName] = version;
+            addOns.Add(addonName);
         }
 
         public static bool AddOnLoaded(AddOnReference addOnName)
         {
-            return addOnName.Equals(AddOnReference.None) || addOns.ContainsKey(addOnName);
+            return addOnName.Equals(AddOnReference.None) || addOns.Contains(addOnName);
         }
     }
 }

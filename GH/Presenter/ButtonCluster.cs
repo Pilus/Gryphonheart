@@ -71,7 +71,7 @@
             if (!this.buttonsShown) return;
 
             var currentMouseFocus = Global.FrameProvider.GetMouseFocus();
-            if (currentMouseFocus != null && (currentMouseFocus.__obj == this.mainButton.Button.__obj || this.buttons.Any(b => b.Button.__obj == currentMouseFocus.__obj)))
+            if (currentMouseFocus != null && (currentMouseFocus == this.mainButton.Button || this.buttons.Any(b => b.Button == currentMouseFocus)))
             {
                 this.lastActive = Core.time();
             }

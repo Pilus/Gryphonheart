@@ -9,5 +9,7 @@
         void RemoveButton(string id);
         void SetCooldown(string id, double startTime, int duration);
         void SetCount(string id, int count);
+        void Show();
+        void Hide();
     }
 }
