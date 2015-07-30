@@ -29,7 +29,8 @@ namespace Tests.GHCTests.Integration
 
             var ghTestable = new GHAddOnTestable(session);
 
-            ghTestable.MouseOver();
+            ghTestable.MouseOverMainButton();
+            ghTestable.ClickSubButton("Interface/ICONS/Ability_Stealth");
         }
     }
 }

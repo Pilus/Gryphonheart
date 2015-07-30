@@ -46,11 +46,13 @@
     <Compile Include="Collection\CsLuaDictionary.cs" />
     <Compile Include="Collection\CsLuaList.cs" />
     <Compile Include="Collection\ITableFormatter.cs" />
+    <Compile Include="CsLuaStatic.cs" />
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="Wrapping\IMultipleValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Collection\TableFormatter.cs" />
     <Compile Include="CsLuaGuid.cs" />
+    <Compile Include="Wrapping\IWrapper.cs" />
     <Compile Include="Wrapping\Wrapper.cs" />
     <Compile Include="Wrapping\WrapperException.cs" />
   </ItemGroup>

@@ -57,7 +57,9 @@
             var savedDataHandler = new SavedDataHandler(this.apiMock, savedVariables);
             if (this.savedVariables != null) savedDataHandler.Load(this.savedVariables);
 
-            return new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler);
+            var wrapper = new MockObjectWrapper(this.apiMock.Object);
+
+            return new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler, wrapper);
         }
 
         public SessionBuilder WithApiMock(IApiMock mock)

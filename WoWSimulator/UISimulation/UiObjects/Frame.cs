@@ -244,12 +244,12 @@
 
         public int GetNumChildren()
         {
-            throw new System.NotImplementedException();
+            return this.Children.Count;
         }
 
         public int GetNumRegions()
         {
-            throw new System.NotImplementedException();
+            return this.regions.Count;
         }
 
         public ILayeredRegion[] GetRegions()

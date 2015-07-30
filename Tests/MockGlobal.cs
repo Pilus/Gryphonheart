@@ -17,7 +17,7 @@ namespace Tests
             apiMock.Setup(api => api.SetGlobal(It.IsAny<string>(), It.IsAny<object>()))
                 .Callback((string name, object obj) => globalRegister[name] = obj);
 
-            Global.Api = apiMock.Object;            
+            Global.Api = apiMock.Object;
         }
     }
 }

@@ -16,7 +16,6 @@ namespace WoWSimulator.UISimulation
         private readonly FrameActor actor;
         private readonly List<string> xmlFiles;
 
-
         public SimulatorFrameProvider(UiInitUtil util, FrameActor actor)
         {
             this.util = util;
@@ -65,7 +64,7 @@ namespace WoWSimulator.UISimulation
         
         public IUIObject GetMouseFocus()
         {
-            throw new NotImplementedException();
+            return this.actor.GetMouseFocus();
         }
         public void EasyMenu(NativeLuaTable menuList, IFrame frame, IFrame anchor, double x, double y, string displayMode, double autoHideDelay)
         {
@@ -121,12 +120,6 @@ namespace WoWSimulator.UISimulation
         public void TriggerHandler(object handler, params object[] args)
         {
             throw new NotImplementedException();
-        }
-
-
-        public void Click(string text)
-        {
-            
         }
     }
 }

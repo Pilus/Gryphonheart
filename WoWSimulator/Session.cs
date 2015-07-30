@@ -8,16 +8,18 @@
     using Moq;
     using SavedData;
     using UISimulation;
+    using CsLua.Wrapping;
+    using CsLua;
 
     public class Session : ISession
     {
         private UiInitUtil util;
-        private FrameActor actor;
         private Dictionary<string, Action> addOns;
         private float fps;
         private SavedDataHandler savedDataHandler;
+        private IWrapper wrapper;
 
-        public Session(Mock<IApi> apiMock, IFrames globalFrames, UiInitUtil util, FrameActor actor, ISimulatorFrameProvider frameProvider, Dictionary<string, Action> addOns, float fps, SavedDataHandler savedDataHandler)
+        public Session(Mock<IApi> apiMock, IFrames globalFrames, UiInitUtil util, FrameActor actor, ISimulatorFrameProvider frameProvider, Dictionary<string, Action> addOns, float fps, SavedDataHandler savedDataHandler, IWrapper wrapper)
         {
             this.ApiMock = apiMock;
             this.Frames = globalFrames;
@@ -26,7 +28,8 @@
             this.fps = fps;
             this.savedDataHandler = savedDataHandler;
             this.util = util;
-            this.actor = actor;
+            this.Actor = actor;
+            this.wrapper = wrapper;
         }
 
         private void SetSessionToGlobal()
@@ -34,6 +37,7 @@
             Global.Api = this.ApiMock.Object;
             Global.FrameProvider = this.FrameProvider;
             Global.Frames = this.Frames;
+            CsLuaStatic.Wrapper = this.wrapper;
         }
 
         public void RunStartup()
@@ -80,25 +84,11 @@
 
         public ISimulatorFrameProvider FrameProvider { get; private set; }
 
+        public IFrameActor Actor { get; private set; }
 
         public NativeLuaTable GetSavedVariables()
         {
             return this.savedDataHandler.GetSavedVariables();
-        }
-
-        public void Click(string text)
-        {
-            this.actor.Click(text);
-        }
-
-        public void VerifyVisible(string text)
-        {
-            this.actor.VerifyVisible(text, false);
-        }
-
-        public void VerifyVisible(string text, bool exact)
-        {
-            this.actor.VerifyVisible(text, exact);
         }
 
         public T GetGlobal<T>(string name)

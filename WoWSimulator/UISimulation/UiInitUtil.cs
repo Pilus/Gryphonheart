@@ -144,7 +144,7 @@
         {
             Func<int, object> Get = (index) => index < eventArgs.Length ? eventArgs[index] : null;
 
-            foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnEvent) && f.IsEventRegistered(eventName)))
+            foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnEvent) && f.IsEventRegistered(eventName)).ToList())
             {
                 frame.GetScript(FrameHandler.OnEvent)(frame, eventName, Get(0), Get(1), Get(2));
             }

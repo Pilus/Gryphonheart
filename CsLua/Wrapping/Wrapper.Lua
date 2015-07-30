@@ -183,3 +183,6 @@ CsLua.Wrapping.Wrapper = {
 		return obj;
 	end),
 }
+
+CsLua.CsLuaStatic = CsLua.CsLuaStatic or {};
+CsLua.CsLuaStatic.Wrapper = CsLua.Wrapping.Wrapper;

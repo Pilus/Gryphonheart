@@ -6,6 +6,7 @@ namespace BlizzardApi.Global
     using CsLua.Wrapping;
     using Lua;
     using WidgetInterfaces;
+    using CsLua;
 
     public static class Global
     {
@@ -19,7 +20,7 @@ namespace BlizzardApi.Global
             {
                 if (api == null)
                 {
-                    api = Wrapper.WrapGlobalObject<IApi>("_G", true);
+                    api = CsLuaStatic.Wrapper.WrapGlobalObject<IApi>("_G", true);
                 }
                 return api;
             }
@@ -34,7 +35,7 @@ namespace BlizzardApi.Global
             {
                 if (frames == null)
                 {
-                    frames = Wrapper.WrapGlobalObject<IFrames>("_G", true);
+                    frames = CsLuaStatic.Wrapper.WrapGlobalObject<IFrames>("_G", true);
                 }
                 return frames;
             }
@@ -50,7 +51,7 @@ namespace BlizzardApi.Global
             {
                 if (frameProvider == null)
                 {
-                    frameProvider = Wrapper.WrapGlobalObject<IFrameProvider>("_G", true, FrameTypeTranslator);
+                    frameProvider = CsLuaStatic.Wrapper.WrapGlobalObject<IFrameProvider>("_G", true, FrameTypeTranslator);
                 }
                 return frameProvider;
             }

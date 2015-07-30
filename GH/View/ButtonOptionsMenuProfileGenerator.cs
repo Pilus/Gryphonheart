@@ -12,6 +12,7 @@
     using Menu.Objects.Page;
     using Menu.Objects.Text;
     using BlizzardApi.Global;
+    using CsLua;
 
     public class ButtonOptionsMenuProfileGenerator : IMenuProfileGenerator
     {
@@ -23,7 +24,7 @@
 
         public MenuProfile GenerateMenuProfile()
         {
-            var optionsFrame = CsLua.Wrapping.Wrapper.WrapGlobalObject<IFrame>("InterfaceOptionsFramePanelContainer");
+            var optionsFrame = CsLuaStatic.Wrapper.WrapGlobalObject<IFrame>("InterfaceOptionsFramePanelContainer");
             var optionsMenuWidth = optionsFrame.GetWidth() - 20;
             var optionsMenuHeight = optionsFrame.GetHeight() - 20;
 

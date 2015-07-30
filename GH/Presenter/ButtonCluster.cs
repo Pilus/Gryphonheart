@@ -99,13 +99,15 @@
 
             this.buttonsShown = true;
             var activeButtons = new CsLuaList<IButton>();
+
+            while (this.buttons.Count < quickButtons.Count)
+            {
+                this.buttons.Add(new RoundButton(32));
+            }
+
             for (var i = 0; i < quickButtons.Count; i++)
             {
                 var quickButton = quickButtons[i];
-                if (this.buttons[i] == null)
-                {
-                    this.buttons[i] = new RoundButton(32);
-                }
                 var button = this.buttons[i];
                 button.SetIcon(quickButton.Icon);
                 button.EnterCallback = () =>

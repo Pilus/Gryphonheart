@@ -12,17 +12,17 @@
         private IModelProvider model;
         private IMenuProfileGenerator profileGenerator;
         private IMenu menu;
+        private bool setUp;
 
         public ButtonOptionsMenu(IModelProvider model)
         {
             this.model = model;
             this.profileGenerator = new ButtonOptionsMenuProfileGenerator(this.OnShow);
-
-            this.SetUp();
         }
 
         private void OnShow()
         {
+            this.SetUp();
             var buttons = this.model.ButtonList.GetAll()
                 .OrderBy(button => button.Order);
             //this.menu.ForceLabel("test", "Something");
@@ -30,6 +30,7 @@
 
         private void SetUp()
         {
+            this.setUp = true;
             var menuProfile = this.profileGenerator.GenerateMenuProfile();
             this.menu = BaseMenu.CreateMenu(menuProfile);
             this.menu["name"] = Name;

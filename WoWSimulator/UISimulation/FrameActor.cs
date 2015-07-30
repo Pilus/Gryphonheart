@@ -4,11 +4,13 @@
     using System.Linq;
     using BlizzardApi.WidgetInterfaces;
     using Lua;
+    using BlizzardApi.WidgetEnums;
 
-    public class FrameActor
+    public class FrameActor : IFrameActor
     {
         private readonly UiInitUtil util;
         private NativeLuaTable currentMenu;
+        private IUIObject mouseFocus;
 
         public FrameActor(UiInitUtil util)
         {
@@ -26,7 +28,7 @@
                 .FirstOrDefault(b => b is IButton && (b as IButton).GetText().Equals(text));
             if (button != null)
             {
-                button.Click();
+                this.Click(button);
                 return;
             }
 
@@ -74,6 +76,24 @@
                 (r is IFontString && validate((r as IFontString).GetText())))) return;
 
             throw new UiSimuationException(string.Format("No ui elements found displaying the text '{0}'.\nFound texts: {1}.", text, analyzedText));
+        }
+
+        public IUIObject GetMouseFocus()
+        {
+            return this.mouseFocus;
+        }
+
+        public void Click(IButton frame)
+        {
+            this.MouseOver(frame);
+            frame.Click();
+        }
+
+        public void MouseOver(IFrame frame)
+        {
+            this.mouseFocus = frame;
+            frame.GetScript(FrameHandler.OnEnter)(frame, null, null, null, null);
+            
         }
     }
 }

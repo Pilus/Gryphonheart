@@ -55,7 +55,9 @@
     <Compile Include="SessionBuilder.cs" />
     <Compile Include="UISimulation\FrameActor.cs" />
     <Compile Include="UISimulation\GlobalFrames.cs" />
+    <Compile Include="UISimulation\IFrameActor.cs" />
     <Compile Include="UISimulation\ISimulatorFrameProvider.cs" />
+    <Compile Include="UISimulation\MockObjectWrapper.cs" />
     <Compile Include="UISimulation\SimulatorFrameProvider.cs" />
     <Compile Include="UISimulation\UiInitUtil.cs" />
     <Compile Include="UISimulation\UiObjects\Button.cs" />
