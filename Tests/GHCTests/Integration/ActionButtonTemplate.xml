@@ -14,8 +14,8 @@
     <TexCoords left="0.01562500" right="0.76562500" top="0.00781250" bottom="0.38281250"/>
   </Texture>
 
-  <CheckButton name="TEMP" virtual="true">
-  </CheckButton>
+  <Button name="TEMP" virtual="true">
+  </Button>
 
   <CheckButton name="ActionButtonTemplate" virtual="true">
     <Size>
