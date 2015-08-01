@@ -20,7 +20,7 @@
             this.parent = parent;
             if (!string.IsNullOrEmpty(layout.inherits))
             {
-                this.ApplyLayout(util.GetTemplate(layout.inherits), parent);
+                this.ApplyLayout(util.GetTemplate(layout.inherits) as LayoutFrameType, parent);
             }
             this.ApplyLayout(layout, parent);
         }
@@ -223,12 +223,12 @@
 
         public void SetAllPoints(IRegion frame)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetAllPoints(string frameName)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetHeight(double height)

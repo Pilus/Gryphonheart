@@ -19,6 +19,10 @@ namespace Tests.GHCTests.Integration
                 .WithAddOn(new GHAddOn())
                 .WithAddOn(new GHCAddOn())
                 .WithXmlFile(@"GHCTests\Integration\ActionButtonTemplate.xml")
+                .WithXmlFile(@"GHCTests\Integration\Cooldown.xml")
+                .WithIgnoredXmlTemplate("NumberFontNormalSmallGray")
+                .WithIgnoredXmlTemplate("NumberFontNormal")
+                .WithIgnoredXmlTemplate("GameFontHighlightSmallOutline")
                 .Build();
 
             var optionsContainer = session.FrameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "InterfaceOptionsFramePanelContainer") as IFrame;

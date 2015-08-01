@@ -45,9 +45,9 @@
             }
 
             var globalFrames = new GlobalFrames();
-            globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(FrameType.Frame, "UIParent");
+            globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "UIParent");
 
-            globalFrames.GameTooltip = (IGameTooltip)this.frameProvider.CreateFrame(FrameType.GameTooltip, "UIParent");
+            globalFrames.GameTooltip = (IGameTooltip)this.frameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.GameTooltip, "UIParent");
 
             var savedVariables = new List<string>();
             this.addOns.ForEach(a =>

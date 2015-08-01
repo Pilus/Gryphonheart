@@ -13,6 +13,7 @@
     {
         private readonly Dictionary<string, IUIObject> namedObjects;
         private readonly Dictionary<string, LayoutFrameType> xmlTemplates;
+        private readonly Dictionary<string, FontType> fontTemplates; 
         private readonly Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>> wrappers;
         private readonly List<IFrame> frames;
         private readonly List<string> ignoredTemplates = new List<string>();
@@ -20,14 +21,28 @@
         public UiInitUtil()
         {
             this.xmlTemplates = new CsLuaDictionary<string, LayoutFrameType>();
+            this.fontTemplates = new CsLuaDictionary<string, FontType>();
             this.namedObjects = new CsLuaDictionary<string, IUIObject>();
             this.wrappers = new Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>>();
             this.frames = new List<IFrame>();
         }
 
-        public LayoutFrameType GetTemplate(string name)
+        public object GetTemplate(string name)
         {
-            return this.xmlTemplates[name];
+            if (this.xmlTemplates[name] != null)
+            {
+                return this.xmlTemplates[name];
+            }
+            return this.fontTemplates[name];
+        }
+
+        public void AddTempate(FontType obj)
+        {
+            if (this.fontTemplates.ContainsKey(obj.name))
+            {
+                throw new UiSimuationException(string.Format("An xml element with name {0} is already loaded.", obj.name));
+            }
+            this.fontTemplates[obj.name] = obj;
         }
 
         public void AddTempate(LayoutFrameType obj)

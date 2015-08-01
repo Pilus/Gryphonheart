@@ -20,8 +20,25 @@
             }
             this.ApplyType(frameType);
         }
+        
+        public Button(UiInitUtil util, string objectType, CheckButtonType frameType, IRegion parent)
+            : base(util, objectType, frameType, parent)
+        {
+            this.scriptHandler = new Script<ButtonHandler, IButton>(this);
+
+            if (!string.IsNullOrEmpty(frameType.inherits))
+            {
+                this.ApplyType((CheckButtonType)util.GetTemplate(frameType.inherits));
+            }
+            this.ApplyType(frameType);
+        }
 
         private void ApplyType(ButtonType type)
+        {
+            this.text = type.text;
+        }
+
+        private void ApplyType(CheckButtonType type)
         {
             this.text = type.text;
         }

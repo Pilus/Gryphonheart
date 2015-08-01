@@ -44,6 +44,28 @@ public partial class AbsValue {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+public partial class ButtonStyleType {
+    
+    private string styleField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string style {
+        get {
+            return this.styleField;
+        }
+        set {
+            this.styleField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
 public partial class GradientType {
     
     private ColorType minColorField;
@@ -178,7 +200,7 @@ public partial class ScriptsType {
     
     private ScriptType[] itemsField;
     
-    private ItemsChoiceType8[] itemsElementNameField;
+    private ItemsChoiceType6[] itemsElementNameField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("OnAnimFinished", typeof(ScriptType))]
@@ -257,7 +279,7 @@ public partial class ScriptsType {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType8[] ItemsElementName {
+    public ItemsChoiceType6[] ItemsElementName {
         get {
             return this.itemsElementNameField;
         }
@@ -306,7 +328,7 @@ public partial class ScriptType {
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum ItemsChoiceType8 {
+public enum ItemsChoiceType6 {
     
     /// <remarks/>
     OnAnimFinished,
@@ -496,28 +518,6 @@ public enum ItemsChoiceType8 {
     
     /// <remarks/>
     PreClick,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-public partial class ButtonStyleType {
-    
-    private string styleField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string style {
-        get {
-            return this.styleField;
-        }
-        set {
-            this.styleField = value;
-        }
-    }
 }
 
 /// <remarks/>
@@ -1751,9 +1751,9 @@ public partial class Font : FontType {
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(EditBoxType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(SliderType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(StatusBarType))]
+[System.Xml.Serialization.XmlIncludeAttribute(typeof(CheckButtonType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(ButtonType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(UnitButtonType))]
-[System.Xml.Serialization.XmlIncludeAttribute(typeof(CheckButtonType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(FontStringType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(TextureType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
@@ -1765,6 +1765,10 @@ public partial class Font : FontType {
 public partial class LayoutFrameType {
     
     private object[] itemsField;
+    
+    private object[] items1Field;
+    
+    private Items1ChoiceType[] items1ElementNameField;
     
     private string nameField;
     
@@ -1787,28 +1791,73 @@ public partial class LayoutFrameType {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Anchors", typeof(LayoutFrameTypeAnchors))]
-    [System.Xml.Serialization.XmlElementAttribute("Animations", typeof(LayoutFrameTypeAnimations))]
-    [System.Xml.Serialization.XmlElementAttribute("Attributes", typeof(AttributesType))]
-    [System.Xml.Serialization.XmlElementAttribute("Backdrop", typeof(BackdropType))]
-    [System.Xml.Serialization.XmlElementAttribute("Color", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("FontHeight", typeof(Value))]
-    [System.Xml.Serialization.XmlElementAttribute("Frames", typeof(LayoutFrameTypeFrames))]
-    [System.Xml.Serialization.XmlElementAttribute("Gradient", typeof(GradientType))]
-    [System.Xml.Serialization.XmlElementAttribute("HitRectInsets", typeof(Inset))]
-    [System.Xml.Serialization.XmlElementAttribute("Layers", typeof(LayoutFrameTypeLayers))]
-    [System.Xml.Serialization.XmlElementAttribute("ResizeBounds", typeof(LayoutFrameTypeResizeBounds))]
-    [System.Xml.Serialization.XmlElementAttribute("Scripts", typeof(ScriptsType))]
-    [System.Xml.Serialization.XmlElementAttribute("Shadow", typeof(ShadowType))]
-    [System.Xml.Serialization.XmlElementAttribute("Size", typeof(LayoutFrameTypeSize))]
-    [System.Xml.Serialization.XmlElementAttribute("TexCoords", typeof(LayoutFrameTypeTexCoords))]
-    [System.Xml.Serialization.XmlElementAttribute("TitleRegion", typeof(LayoutFrameType))]
     public object[] Items {
         get {
             return this.itemsField;
         }
         set {
             this.itemsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Anchors", typeof(LayoutFrameTypeAnchors))]
+    [System.Xml.Serialization.XmlElementAttribute("Animations", typeof(LayoutFrameTypeAnimations))]
+    [System.Xml.Serialization.XmlElementAttribute("Attributes", typeof(AttributesType))]
+    [System.Xml.Serialization.XmlElementAttribute("Backdrop", typeof(BackdropType))]
+    [System.Xml.Serialization.XmlElementAttribute("BarColor", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("BarTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("ButtonText", typeof(FontStringType))]
+    [System.Xml.Serialization.XmlElementAttribute("CheckedTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("Color", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("ColorValueTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("ColorValueThumbTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("ColorWheelTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("ColorWheelThumbTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("DisabledCheckedTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("DisabledColor", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("DisabledFont", typeof(ButtonStyleType))]
+    [System.Xml.Serialization.XmlElementAttribute("DisabledTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("FogColor", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("FontHeight", typeof(Value))]
+    [System.Xml.Serialization.XmlElementAttribute("Frames", typeof(LayoutFrameTypeFrames))]
+    [System.Xml.Serialization.XmlElementAttribute("Gradient", typeof(GradientType))]
+    [System.Xml.Serialization.XmlElementAttribute("HighlightColor", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("HighlightFont", typeof(ButtonStyleType))]
+    [System.Xml.Serialization.XmlElementAttribute("HighlightTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("HitRectInsets", typeof(Inset))]
+    [System.Xml.Serialization.XmlElementAttribute("Layers", typeof(LayoutFrameTypeLayers))]
+    [System.Xml.Serialization.XmlElementAttribute("NormalColor", typeof(ColorType))]
+    [System.Xml.Serialization.XmlElementAttribute("NormalFont", typeof(ButtonStyleType))]
+    [System.Xml.Serialization.XmlElementAttribute("NormalTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("PushedTextOffset", typeof(Dimension))]
+    [System.Xml.Serialization.XmlElementAttribute("PushedTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("ResizeBounds", typeof(LayoutFrameTypeResizeBounds))]
+    [System.Xml.Serialization.XmlElementAttribute("Scripts", typeof(ScriptsType))]
+    [System.Xml.Serialization.XmlElementAttribute("Shadow", typeof(ShadowType))]
+    [System.Xml.Serialization.XmlElementAttribute("Size", typeof(LayoutFrameTypeSize))]
+    [System.Xml.Serialization.XmlElementAttribute("TexCoords", typeof(LayoutFrameTypeTexCoords))]
+    [System.Xml.Serialization.XmlElementAttribute("ThumbTexture", typeof(TextureType))]
+    [System.Xml.Serialization.XmlElementAttribute("TitleRegion", typeof(LayoutFrameType))]
+    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Items1ElementName")]
+    public object[] Items1 {
+        get {
+            return this.items1Field;
+        }
+        set {
+            this.items1Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Items1ElementName")]
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public Items1ChoiceType[] Items1ElementName {
+        get {
+            return this.items1ElementNameField;
+        }
+        set {
+            this.items1ElementNameField = value;
         }
     }
     
@@ -2772,12 +2821,330 @@ public enum ANIMLOOPTYPE {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+[System.Xml.Serialization.XmlRootAttribute("Texture", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
+public partial class TextureType : LayoutFrameType {
+    
+    private string fileField;
+    
+    private string maskField;
+    
+    private ALPHAMODE alphaModeField;
+    
+    private float alphaField;
+    
+    private bool forceAlphaField;
+    
+    private bool nonBlockingField;
+    
+    private bool horizTileField;
+    
+    private bool vertTileField;
+    
+    public TextureType() {
+        this.alphaModeField = ALPHAMODE.BLEND;
+        this.alphaField = ((float)(1F));
+        this.forceAlphaField = false;
+        this.nonBlockingField = false;
+        this.horizTileField = false;
+        this.vertTileField = false;
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string file {
+        get {
+            return this.fileField;
+        }
+        set {
+            this.fileField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string mask {
+        get {
+            return this.maskField;
+        }
+        set {
+            this.maskField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(ALPHAMODE.BLEND)]
+    public ALPHAMODE alphaMode {
+        get {
+            return this.alphaModeField;
+        }
+        set {
+            this.alphaModeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(typeof(float), "1")]
+    public float alpha {
+        get {
+            return this.alphaField;
+        }
+        set {
+            this.alphaField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool forceAlpha {
+        get {
+            return this.forceAlphaField;
+        }
+        set {
+            this.forceAlphaField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool nonBlocking {
+        get {
+            return this.nonBlockingField;
+        }
+        set {
+            this.nonBlockingField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool horizTile {
+        get {
+            return this.horizTileField;
+        }
+        set {
+            this.horizTileField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool vertTile {
+        get {
+            return this.vertTileField;
+        }
+        set {
+            this.vertTileField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+[System.Xml.Serialization.XmlRootAttribute("FontString", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
+public partial class FontStringType : LayoutFrameType {
+    
+    private string fontField;
+    
+    private int bytesField;
+    
+    private string textField;
+    
+    private float spacingField;
+    
+    private OUTLINETYPE outlineField;
+    
+    private bool monochromeField;
+    
+    private bool nonspacewrapField;
+    
+    private bool wordwrapField;
+    
+    private JUSTIFYVTYPE justifyVField;
+    
+    private JUSTIFYHTYPE justifyHField;
+    
+    private uint maxLinesField;
+    
+    private bool indentedField;
+    
+    public FontStringType() {
+        this.bytesField = 255;
+        this.spacingField = ((float)(0F));
+        this.outlineField = OUTLINETYPE.NONE;
+        this.monochromeField = false;
+        this.nonspacewrapField = false;
+        this.wordwrapField = true;
+        this.justifyVField = JUSTIFYVTYPE.MIDDLE;
+        this.justifyHField = JUSTIFYHTYPE.CENTER;
+        this.maxLinesField = ((uint)(0));
+        this.indentedField = false;
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string font {
+        get {
+            return this.fontField;
+        }
+        set {
+            this.fontField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(255)]
+    public int bytes {
+        get {
+            return this.bytesField;
+        }
+        set {
+            this.bytesField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string text {
+        get {
+            return this.textField;
+        }
+        set {
+            this.textField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(typeof(float), "0")]
+    public float spacing {
+        get {
+            return this.spacingField;
+        }
+        set {
+            this.spacingField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(OUTLINETYPE.NONE)]
+    public OUTLINETYPE outline {
+        get {
+            return this.outlineField;
+        }
+        set {
+            this.outlineField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool monochrome {
+        get {
+            return this.monochromeField;
+        }
+        set {
+            this.monochromeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool nonspacewrap {
+        get {
+            return this.nonspacewrapField;
+        }
+        set {
+            this.nonspacewrapField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(true)]
+    public bool wordwrap {
+        get {
+            return this.wordwrapField;
+        }
+        set {
+            this.wordwrapField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(JUSTIFYVTYPE.MIDDLE)]
+    public JUSTIFYVTYPE justifyV {
+        get {
+            return this.justifyVField;
+        }
+        set {
+            this.justifyVField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(JUSTIFYHTYPE.CENTER)]
+    public JUSTIFYHTYPE justifyH {
+        get {
+            return this.justifyHField;
+        }
+        set {
+            this.justifyHField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(typeof(uint), "0")]
+    public uint maxLines {
+        get {
+            return this.maxLinesField;
+        }
+        set {
+            this.maxLinesField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool indented {
+        get {
+            return this.indentedField;
+        }
+        set {
+            this.indentedField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.blizzard.com/wow/ui/")]
 public partial class LayoutFrameTypeFrames {
     
     private FrameType[] itemsField;
     
-    private ItemsChoiceType7[] itemsElementNameField;
+    private ItemsChoiceType5[] itemsElementNameField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("ArchaeologyDigSiteFrame", typeof(ArchaeologyDigSiteFrameType))]
@@ -2818,7 +3185,7 @@ public partial class LayoutFrameTypeFrames {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType7[] ItemsElementName {
+    public ItemsChoiceType5[] ItemsElementName {
         get {
             return this.itemsElementNameField;
         }
@@ -2886,9 +3253,9 @@ public partial class ArchaeologyDigSiteFrameType : FrameType {
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(EditBoxType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(SliderType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(StatusBarType))]
+[System.Xml.Serialization.XmlIncludeAttribute(typeof(CheckButtonType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(ButtonType))]
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(UnitButtonType))]
-[System.Xml.Serialization.XmlIncludeAttribute(typeof(CheckButtonType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3201,7 +3568,6 @@ public enum FRAMESTRATA {
 
 /// <remarks/>
 [System.Xml.Serialization.XmlIncludeAttribute(typeof(UnitButtonType))]
-[System.Xml.Serialization.XmlIncludeAttribute(typeof(CheckButtonType))]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3209,10 +3575,6 @@ public enum FRAMESTRATA {
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
 [System.Xml.Serialization.XmlRootAttribute("Button", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class ButtonType : FrameType {
-    
-    private object[] itemsField;
-    
-    private ItemsChoiceType4[] itemsElementNameField;
     
     private string textField;
     
@@ -3222,41 +3584,6 @@ public partial class ButtonType : FrameType {
     
     public ButtonType() {
         this.motionScriptsWhileDisabledField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ButtonText", typeof(FontStringType))]
-    [System.Xml.Serialization.XmlElementAttribute("DisabledColor", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("DisabledFont", typeof(ButtonStyleType))]
-    [System.Xml.Serialization.XmlElementAttribute("DisabledTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("HighlightColor", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("HighlightFont", typeof(ButtonStyleType))]
-    [System.Xml.Serialization.XmlElementAttribute("HighlightTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("NormalColor", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("NormalFont", typeof(ButtonStyleType))]
-    [System.Xml.Serialization.XmlElementAttribute("NormalTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("PushedTextOffset", typeof(Dimension))]
-    [System.Xml.Serialization.XmlElementAttribute("PushedTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType4[] ItemsElementName {
-        get {
-            return this.itemsElementNameField;
-        }
-        set {
-            this.itemsElementNameField = value;
-        }
     }
     
     /// <remarks/>
@@ -3300,67 +3627,29 @@ public partial class ButtonType : FrameType {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-[System.Xml.Serialization.XmlRootAttribute("FontString", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
-public partial class FontStringType : LayoutFrameType {
-    
-    private string fontField;
-    
-    private int bytesField;
+public partial class UnitButtonType : ButtonType {
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
+[System.Xml.Serialization.XmlRootAttribute("CheckButton", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
+public partial class CheckButtonType : FrameType {
     
     private string textField;
     
-    private float spacingField;
+    private string registerForClicksField;
     
-    private OUTLINETYPE outlineField;
+    private bool motionScriptsWhileDisabledField;
     
-    private bool monochromeField;
+    private bool checkedField;
     
-    private bool nonspacewrapField;
-    
-    private bool wordwrapField;
-    
-    private JUSTIFYVTYPE justifyVField;
-    
-    private JUSTIFYHTYPE justifyHField;
-    
-    private uint maxLinesField;
-    
-    private bool indentedField;
-    
-    public FontStringType() {
-        this.bytesField = 255;
-        this.spacingField = ((float)(0F));
-        this.outlineField = OUTLINETYPE.NONE;
-        this.monochromeField = false;
-        this.nonspacewrapField = false;
-        this.wordwrapField = true;
-        this.justifyVField = JUSTIFYVTYPE.MIDDLE;
-        this.justifyHField = JUSTIFYHTYPE.CENTER;
-        this.maxLinesField = ((uint)(0));
-        this.indentedField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string font {
-        get {
-            return this.fontField;
-        }
-        set {
-            this.fontField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(255)]
-    public int bytes {
-        get {
-            return this.bytesField;
-        }
-        set {
-            this.bytesField = value;
-        }
+    public CheckButtonType() {
+        this.motionScriptsWhileDisabledField = false;
+        this.checkedField = false;
     }
     
     /// <remarks/>
@@ -3376,335 +3665,24 @@ public partial class FontStringType : LayoutFrameType {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(typeof(float), "0")]
-    public float spacing {
+    public string registerForClicks {
         get {
-            return this.spacingField;
+            return this.registerForClicksField;
         }
         set {
-            this.spacingField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(OUTLINETYPE.NONE)]
-    public OUTLINETYPE outline {
-        get {
-            return this.outlineField;
-        }
-        set {
-            this.outlineField = value;
+            this.registerForClicksField = value;
         }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool monochrome {
+    public bool motionScriptsWhileDisabled {
         get {
-            return this.monochromeField;
+            return this.motionScriptsWhileDisabledField;
         }
         set {
-            this.monochromeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool nonspacewrap {
-        get {
-            return this.nonspacewrapField;
-        }
-        set {
-            this.nonspacewrapField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(true)]
-    public bool wordwrap {
-        get {
-            return this.wordwrapField;
-        }
-        set {
-            this.wordwrapField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(JUSTIFYVTYPE.MIDDLE)]
-    public JUSTIFYVTYPE justifyV {
-        get {
-            return this.justifyVField;
-        }
-        set {
-            this.justifyVField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(JUSTIFYHTYPE.CENTER)]
-    public JUSTIFYHTYPE justifyH {
-        get {
-            return this.justifyHField;
-        }
-        set {
-            this.justifyHField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(typeof(uint), "0")]
-    public uint maxLines {
-        get {
-            return this.maxLinesField;
-        }
-        set {
-            this.maxLinesField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool indented {
-        get {
-            return this.indentedField;
-        }
-        set {
-            this.indentedField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-[System.Xml.Serialization.XmlRootAttribute("Texture", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
-public partial class TextureType : LayoutFrameType {
-    
-    private string fileField;
-    
-    private string maskField;
-    
-    private ALPHAMODE alphaModeField;
-    
-    private float alphaField;
-    
-    private bool forceAlphaField;
-    
-    private bool nonBlockingField;
-    
-    private bool horizTileField;
-    
-    private bool vertTileField;
-    
-    public TextureType() {
-        this.alphaModeField = ALPHAMODE.BLEND;
-        this.alphaField = ((float)(1F));
-        this.forceAlphaField = false;
-        this.nonBlockingField = false;
-        this.horizTileField = false;
-        this.vertTileField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string file {
-        get {
-            return this.fileField;
-        }
-        set {
-            this.fileField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string mask {
-        get {
-            return this.maskField;
-        }
-        set {
-            this.maskField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(ALPHAMODE.BLEND)]
-    public ALPHAMODE alphaMode {
-        get {
-            return this.alphaModeField;
-        }
-        set {
-            this.alphaModeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(typeof(float), "1")]
-    public float alpha {
-        get {
-            return this.alphaField;
-        }
-        set {
-            this.alphaField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool forceAlpha {
-        get {
-            return this.forceAlphaField;
-        }
-        set {
-            this.forceAlphaField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool nonBlocking {
-        get {
-            return this.nonBlockingField;
-        }
-        set {
-            this.nonBlockingField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool horizTile {
-        get {
-            return this.horizTileField;
-        }
-        set {
-            this.horizTileField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    [System.ComponentModel.DefaultValueAttribute(false)]
-    public bool vertTile {
-        get {
-            return this.vertTileField;
-        }
-        set {
-            this.vertTileField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum ItemsChoiceType4 {
-    
-    /// <remarks/>
-    ButtonText,
-    
-    /// <remarks/>
-    DisabledColor,
-    
-    /// <remarks/>
-    DisabledFont,
-    
-    /// <remarks/>
-    DisabledTexture,
-    
-    /// <remarks/>
-    HighlightColor,
-    
-    /// <remarks/>
-    HighlightFont,
-    
-    /// <remarks/>
-    HighlightTexture,
-    
-    /// <remarks/>
-    NormalColor,
-    
-    /// <remarks/>
-    NormalFont,
-    
-    /// <remarks/>
-    NormalTexture,
-    
-    /// <remarks/>
-    PushedTextOffset,
-    
-    /// <remarks/>
-    PushedTexture,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-public partial class UnitButtonType : ButtonType {
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
-[System.Xml.Serialization.XmlRootAttribute("CheckButton", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
-public partial class CheckButtonType : ButtonType {
-    
-    private TextureType[] items1Field;
-    
-    private Items1ChoiceType[] items1ElementNameField;
-    
-    private bool checkedField;
-    
-    public CheckButtonType() {
-        this.checkedField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("CheckedTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("DisabledCheckedTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("Items1ElementName")]
-    public TextureType[] Items1 {
-        get {
-            return this.items1Field;
-        }
-        set {
-            this.items1Field = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Items1ElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public Items1ChoiceType[] Items1ElementName {
-        get {
-            return this.items1ElementNameField;
-        }
-        set {
-            this.items1ElementNameField = value;
+            this.motionScriptsWhileDisabledField = value;
         }
     }
     
@@ -3724,74 +3702,11 @@ public partial class CheckButtonType : ButtonType {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum Items1ChoiceType {
-    
-    /// <remarks/>
-    CheckedTexture,
-    
-    /// <remarks/>
-    DisabledCheckedTexture,
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
 [System.Xml.Serialization.XmlRootAttribute("ColorSelect", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class ColorSelectType : FrameType {
-    
-    private TextureType[] itemsField;
-    
-    private ItemsChoiceType5[] itemsElementNameField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ColorValueTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("ColorValueThumbTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("ColorWheelTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlElementAttribute("ColorWheelThumbTexture", typeof(TextureType))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-    public TextureType[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType5[] ItemsElementName {
-        get {
-            return this.itemsElementNameField;
-        }
-        set {
-            this.itemsElementNameField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-[System.SerializableAttribute()]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum ItemsChoiceType5 {
-    
-    /// <remarks/>
-    ColorValueTexture,
-    
-    /// <remarks/>
-    ColorValueThumbTexture,
-    
-    /// <remarks/>
-    ColorWheelTexture,
-    
-    /// <remarks/>
-    ColorWheelThumbTexture,
 }
 
 /// <remarks/>
@@ -3856,8 +3771,6 @@ public partial class PlayerModelType : ModelType {
 [System.Xml.Serialization.XmlRootAttribute("Model", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class ModelType : FrameType {
     
-    private ColorType fogColorField;
-    
     private string fileField;
     
     private float scaleField;
@@ -3873,16 +3786,6 @@ public partial class ModelType : FrameType {
         this.fogNearField = ((float)(0F));
         this.fogFarField = ((float)(1F));
         this.glowField = ((float)(1F));
-    }
-    
-    /// <remarks/>
-    public ColorType FogColor {
-        get {
-            return this.fogColorField;
-        }
-        set {
-            this.fogColorField = value;
-        }
     }
     
     /// <remarks/>
@@ -3954,8 +3857,6 @@ public partial class ModelType : FrameType {
 [System.Xml.Serialization.XmlRootAttribute("EditBox", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class EditBoxType : FrameType {
     
-    private object[] itemsField;
-    
     private string fontField;
     
     private int lettersField;
@@ -3986,19 +3887,6 @@ public partial class EditBoxType : FrameType {
         this.autoFocusField = true;
         this.ignoreArrowsField = false;
         this.countInvisibleLettersField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("FontString", typeof(FontStringType))]
-    [System.Xml.Serialization.XmlElementAttribute("HighlightColor", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("TextInsets", typeof(Inset))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
     }
     
     /// <remarks/>
@@ -4573,7 +4461,7 @@ public partial class SimpleHTMLType : FrameType {
     
     private FontStringType[] itemsField;
     
-    private ItemsChoiceType6[] itemsElementNameField;
+    private ItemsChoiceType4[] itemsElementNameField;
     
     private string fontField;
     
@@ -4612,7 +4500,7 @@ public partial class SimpleHTMLType : FrameType {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType6[] ItemsElementName {
+    public ItemsChoiceType4[] ItemsElementName {
         get {
             return this.itemsElementNameField;
         }
@@ -4660,7 +4548,7 @@ public partial class SimpleHTMLType : FrameType {
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum ItemsChoiceType6 {
+public enum ItemsChoiceType4 {
     
     /// <remarks/>
     FontStringHeader1,
@@ -4680,8 +4568,6 @@ public enum ItemsChoiceType6 {
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/")]
 [System.Xml.Serialization.XmlRootAttribute("Slider", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class SliderType : FrameType {
-    
-    private TextureType[] itemsField;
     
     private DRAWLAYER drawLayerField;
     
@@ -4706,17 +4592,6 @@ public partial class SliderType : FrameType {
     public SliderType() {
         this.drawLayerField = DRAWLAYER.OVERLAY;
         this.orientationField = ORIENTATION.VERTICAL;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ThumbTexture")]
-    public TextureType[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
     }
     
     /// <remarks/>
@@ -4863,8 +4738,6 @@ public enum DRAWLAYER {
 [System.Xml.Serialization.XmlRootAttribute("StatusBar", Namespace="http://www.blizzard.com/wow/ui/", IsNullable=false)]
 public partial class StatusBarType : FrameType {
     
-    private object[] itemsField;
-    
     private DRAWLAYER drawLayerField;
     
     private float minValueField;
@@ -4890,18 +4763,6 @@ public partial class StatusBarType : FrameType {
         this.orientationField = ORIENTATION.HORIZONTAL;
         this.rotatesTextureField = false;
         this.reverseFillField = false;
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("BarColor", typeof(ColorType))]
-    [System.Xml.Serialization.XmlElementAttribute("BarTexture", typeof(TextureType))]
-    public object[] Items {
-        get {
-            return this.itemsField;
-        }
-        set {
-            this.itemsField = value;
-        }
     }
     
     /// <remarks/>
@@ -5135,7 +4996,7 @@ public enum ItemChoiceType {
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum ItemsChoiceType7 {
+public enum ItemsChoiceType5 {
     
     /// <remarks/>
     ArchaeologyDigSiteFrame,
@@ -5699,6 +5560,127 @@ public partial class LayoutFrameTypeTexCoords {
 /// <remarks/>
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
+public enum Items1ChoiceType {
+    
+    /// <remarks/>
+    Anchors,
+    
+    /// <remarks/>
+    Animations,
+    
+    /// <remarks/>
+    Attributes,
+    
+    /// <remarks/>
+    Backdrop,
+    
+    /// <remarks/>
+    BarColor,
+    
+    /// <remarks/>
+    BarTexture,
+    
+    /// <remarks/>
+    ButtonText,
+    
+    /// <remarks/>
+    CheckedTexture,
+    
+    /// <remarks/>
+    Color,
+    
+    /// <remarks/>
+    ColorValueTexture,
+    
+    /// <remarks/>
+    ColorValueThumbTexture,
+    
+    /// <remarks/>
+    ColorWheelTexture,
+    
+    /// <remarks/>
+    ColorWheelThumbTexture,
+    
+    /// <remarks/>
+    DisabledCheckedTexture,
+    
+    /// <remarks/>
+    DisabledColor,
+    
+    /// <remarks/>
+    DisabledFont,
+    
+    /// <remarks/>
+    DisabledTexture,
+    
+    /// <remarks/>
+    FogColor,
+    
+    /// <remarks/>
+    FontHeight,
+    
+    /// <remarks/>
+    Frames,
+    
+    /// <remarks/>
+    Gradient,
+    
+    /// <remarks/>
+    HighlightColor,
+    
+    /// <remarks/>
+    HighlightFont,
+    
+    /// <remarks/>
+    HighlightTexture,
+    
+    /// <remarks/>
+    HitRectInsets,
+    
+    /// <remarks/>
+    Layers,
+    
+    /// <remarks/>
+    NormalColor,
+    
+    /// <remarks/>
+    NormalFont,
+    
+    /// <remarks/>
+    NormalTexture,
+    
+    /// <remarks/>
+    PushedTextOffset,
+    
+    /// <remarks/>
+    PushedTexture,
+    
+    /// <remarks/>
+    ResizeBounds,
+    
+    /// <remarks/>
+    Scripts,
+    
+    /// <remarks/>
+    Shadow,
+    
+    /// <remarks/>
+    Size,
+    
+    /// <remarks/>
+    TexCoords,
+    
+    /// <remarks/>
+    ThumbTexture,
+    
+    /// <remarks/>
+    TitleRegion,
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+[System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.blizzard.com/wow/ui/")]
@@ -5707,7 +5689,7 @@ public partial class Ui {
     
     private object[] itemsField;
     
-    private ItemsChoiceType9[] itemsElementNameField;
+    private ItemsChoiceType7[] itemsElementNameField;
     
     private string schemaLocationField;
     
@@ -5763,7 +5745,7 @@ public partial class Ui {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
     [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public ItemsChoiceType9[] ItemsElementName {
+    public ItemsChoiceType7[] ItemsElementName {
         get {
             return this.itemsElementNameField;
         }
@@ -5858,7 +5840,7 @@ public partial class UiScript {
 [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
 [System.SerializableAttribute()]
 [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.blizzard.com/wow/ui/", IncludeInSchema=false)]
-public enum ItemsChoiceType9 {
+public enum ItemsChoiceType7 {
     
     /// <remarks/>
     Alpha,

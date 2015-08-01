@@ -325,6 +325,8 @@
 	<xs:complexType name="LayoutFrameType">
 		<xs:sequence minOccurs="0">
 			<xs:choice maxOccurs="unbounded">
+			</xs:choice>
+			<xs:choice maxOccurs="unbounded">
 				<xs:element name="Size">
 					<xs:complexType>
 						<xs:sequence minOccurs="0">
@@ -427,6 +429,28 @@
 				<xs:element name="FontHeight" type="Value"/>
 				<xs:element name="Color" type="ColorType"/>
 				<xs:element name="Shadow" type="ShadowType"/>
+				<xs:element name="NormalTexture" type="ui:TextureType"/>
+				<xs:element name="PushedTexture" type="ui:TextureType"/>
+				<xs:element name="DisabledTexture" type="ui:TextureType"/>
+				<xs:element name="HighlightTexture" type="ui:TextureType"/>
+				<xs:element name="ButtonText" type="FontStringType"/>
+				<xs:element name="NormalFont" type="ButtonStyleType"/>
+				<xs:element name="HighlightFont" type="ButtonStyleType"/>
+				<xs:element name="DisabledFont" type="ButtonStyleType"/>
+				<xs:element name="NormalColor" type="ColorType"/>
+				<xs:element name="HighlightColor" type="ColorType"/>
+				<xs:element name="DisabledColor" type="ColorType"/>
+				<xs:element name="PushedTextOffset" type="Dimension"/>
+				<xs:element name="CheckedTexture" type="TextureType"/>
+				<xs:element name="DisabledCheckedTexture" type="TextureType"/>
+				<xs:element name="BarTexture" type="TextureType"/>
+				<xs:element name="BarColor" type="ui:ColorType"/>
+				<xs:element name="ThumbTexture" type="TextureType"/>
+				<xs:element name="ColorWheelTexture" type="TextureType"/>
+				<xs:element name="ColorWheelThumbTexture" type="TextureType"/>
+				<xs:element name="ColorValueTexture" type="TextureType"/>
+				<xs:element name="ColorValueThumbTexture" type="TextureType"/>
+				<xs:element name="FogColor" type="ColorType"/>
 			</xs:choice>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string"/>
@@ -525,22 +549,6 @@
 	<xs:complexType name="ButtonType">
 		<xs:complexContent>
 			<xs:extension base="FrameType">
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="NormalTexture" type="ui:TextureType"/>
-						<xs:element name="PushedTexture" type="ui:TextureType"/>
-						<xs:element name="DisabledTexture" type="ui:TextureType"/>
-						<xs:element name="HighlightTexture" type="ui:TextureType"/>
-						<xs:element name="ButtonText" type="FontStringType"/>
-						<xs:element name="NormalFont" type="ButtonStyleType"/>
-						<xs:element name="HighlightFont" type="ButtonStyleType"/>
-						<xs:element name="DisabledFont" type="ButtonStyleType"/>
-						<xs:element name="NormalColor" type="ColorType"/>
-						<xs:element name="HighlightColor" type="ColorType"/>
-						<xs:element name="DisabledColor" type="ColorType"/>
-						<xs:element name="PushedTextOffset" type="Dimension"/>
-					</xs:choice>
-				</xs:sequence>
 				<xs:attribute name="text" type="xs:string"/>
 				<xs:attribute name="registerForClicks" type="xs:string"/>
 				<xs:attribute name="motionScriptsWhileDisabled" type="xs:boolean" default="false"/>
@@ -551,13 +559,10 @@
 
 	<xs:complexType name="CheckButtonType">
 		<xs:complexContent>
-			<xs:extension base="ButtonType">
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="CheckedTexture" type="TextureType"/>
-						<xs:element name="DisabledCheckedTexture" type="TextureType"/>
-					</xs:choice>
-				</xs:sequence>
+			<xs:extension base="FrameType">
+				<xs:attribute name="text" type="xs:string"/>
+				<xs:attribute name="registerForClicks" type="xs:string"/>
+				<xs:attribute name="motionScriptsWhileDisabled" type="xs:boolean" default="false"/>
 				<xs:attribute name="checked" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
@@ -567,12 +572,6 @@
 	<xs:complexType name="StatusBarType">
 		<xs:complexContent>
 			<xs:extension base="FrameType">
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="BarTexture" type="TextureType"/>
-						<xs:element name="BarColor" type="ui:ColorType"/>
-					</xs:choice>
-				</xs:sequence>
 				<xs:attribute name="drawLayer" type="ui:DRAWLAYER" default="ARTWORK"/>
 				<xs:attribute name="minValue" type="xs:float"/>
 				<xs:attribute name="maxValue" type="xs:float"/>
@@ -588,11 +587,6 @@
 	<xs:complexType name="SliderType">
 		<xs:complexContent>
 			<xs:extension base="FrameType">
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="ThumbTexture" type="TextureType"/>
-					</xs:choice>
-				</xs:sequence>
 				<xs:attribute name="drawLayer" type="ui:DRAWLAYER" default="OVERLAY"/>
 				<xs:attribute name="minValue" type="xs:float"/>
 				<xs:attribute name="maxValue" type="xs:float"/>
@@ -607,13 +601,6 @@
 	<xs:complexType name="EditBoxType">
 		<xs:complexContent>
 			<xs:extension base="FrameType">
-				<xs:sequence minOccurs="0">
-					<xs:choice maxOccurs="unbounded">
-						<xs:element ref="FontString"/>
-						<xs:element name="HighlightColor" type="ColorType"/>
-						<xs:element name="TextInsets" type="Inset"/>
-					</xs:choice>
-				</xs:sequence>
 				<xs:attribute name="font" type="xs:string"/>
 				<xs:attribute name="letters" type="xs:int" default="0"/>
 				<xs:attribute name="blinkSpeed" type="xs:float" default="0.5"/>
@@ -632,14 +619,6 @@
 	<xs:complexType name="ColorSelectType">
 		<xs:complexContent>
 			<xs:extension base="FrameType">
-				<xs:sequence>
-					<xs:choice maxOccurs="unbounded">
-						<xs:element name="ColorWheelTexture" type="TextureType"/>
-						<xs:element name="ColorWheelThumbTexture" type="TextureType"/>
-						<xs:element name="ColorValueTexture" type="TextureType"/>
-						<xs:element name="ColorValueThumbTexture" type="TextureType"/>
-					</xs:choice>
-				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -648,9 +627,6 @@
 	<xs:complexType name="ModelType">
 		<xs:complexContent>
 			<xs:extension base="FrameType">
-				<xs:sequence minOccurs="0">
-					<xs:element name="FogColor" type="ColorType"/>
-				</xs:sequence>
 				<xs:attribute name="file" type="xs:string"/>
 				<xs:attribute name="scale" type="xs:float" default="1.0"/>
 				<xs:attribute name="fogNear" default="0.0">

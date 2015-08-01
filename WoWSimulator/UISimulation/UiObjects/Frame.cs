@@ -32,8 +32,15 @@
         {
             this.id = frameType.id;
 
-            if (frameType.Items == null) return;
-            foreach (var item in frameType.Items)
+            this.ApplyItems(frameType.Items);
+            this.ApplyItems(frameType.Items1);
+        }
+
+        private void ApplyItems(object[] items)
+        {
+            if (items == null) return;
+
+            foreach (var item in items)
             {
                 if (item is LayoutFrameTypeFrames)
                 {
@@ -229,7 +236,7 @@
 
         public int GetID()
         {
-            throw new System.NotImplementedException();
+            return this.id;
         }
 
         public CsLua.Wrapping.IMultipleValues<double, double> GetMaxResize()
@@ -422,7 +429,7 @@
 
         public void SetID(int id)
         {
-            throw new System.NotImplementedException();
+            this.id = id;
         }
 
         public void SetMaxResize(double maxWidth, double maxHeight)

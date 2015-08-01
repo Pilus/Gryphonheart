@@ -115,6 +115,12 @@ namespace WoWSimulator.UISimulation
                 {
                     this.util.CreateObject(obj);
                 }
+
+                var fonts = ui.Items.OfType<FontType>().ToList();
+                foreach (var font in fonts.Where(font => font.@virtual))
+                {
+                    this.util.AddTempate(font);
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
+    using System;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
@@ -40,7 +41,7 @@
 
         public string GetText()
         {
-            return this.text;
+            return this.text ?? string.Empty;
         }
 
         public void SetAlphaGradient(int start, int length)

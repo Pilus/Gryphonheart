@@ -5,7 +5,7 @@
 
     public class CheckButton : Button, ICheckButton
     {
-        public CheckButton(UiInitUtil util, string objectType, ButtonType frameType, IRegion parent)
+        public CheckButton(UiInitUtil util, string objectType, CheckButtonType frameType, IRegion parent)
             : base(util, objectType, frameType, parent)
         {
             

@@ -16,7 +16,7 @@
             this.objectType = objectType;
             if (!string.IsNullOrEmpty(layout.inherits))
             {
-                this.ApplyLayout(util.GetTemplate(layout.inherits), parent);
+                this.ApplyLayout(util.GetTemplate(layout.inherits) as LayoutFrameType, parent);
             }
             this.ApplyLayout(layout, parent);
         }
