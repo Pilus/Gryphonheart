@@ -14,8 +14,8 @@
     <TexCoords left="0.01562500" right="0.76562500" top="0.00781250" bottom="0.38281250"/>
   </Texture>
 
-  <Button name="TEMP" virtual="true">
-  </Button>
+  <Slider name="TEMP" virtual="true">
+  </Slider>
 
   <CheckButton name="ActionButtonTemplate" virtual="true">
     <Size>
@@ -67,7 +67,7 @@
         </Texture>
       </Layer>
       <Layer level="OVERLAY" textureSubLevel="1">
-        <Texture parentKey="NewActionTexture" atlas="bags-newitem" useAtlasSize="false" alphaMode="ADD" hidden="true">
+        <Texture parentKey="NewActionTexture" alphaMode="ADD" hidden="true">
           <Size x="44" y="44"/>
           <Anchors>
             <Anchor point="CENTER"/>
@@ -81,9 +81,6 @@
         <Anchors>
           <Anchor point="CENTER" x="0" y="-1"/>
         </Anchors>
-        <SwipeTexture>
-          <Color r="1" g="1" b="1" a="0.8"/>
-        </SwipeTexture>
       </Cooldown>
     </Frames>
     <NormalTexture name="$parentNormalTexture" parentKey="NormalTexture" file="Interface\Buttons\UI-Quickslot2">

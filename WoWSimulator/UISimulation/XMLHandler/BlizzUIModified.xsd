@@ -328,7 +328,8 @@
 				<xs:element name="Size">
 					<xs:complexType>
 						<xs:sequence minOccurs="0">
-							<xs:element name="Size" type="Dimension"/>
+							<xs:element ref="AbsDimension"/>
+							<xs:element ref="RelDimension"/>
 						</xs:sequence>
 						<xs:attribute name="x" type="xs:float"/>
 						<xs:attribute name="y" type="xs:float"/>
@@ -561,7 +562,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="CheckButton" type="CheckButtonType" substitutionGroup="ui:Button"/>
+	<xs:element name="CheckButton" type="CheckButtonType" substitutionGroup="ui:Frame"/>
 
 	<xs:complexType name="StatusBarType">
 		<xs:complexContent>
@@ -789,10 +790,12 @@
 					</xs:element>
 					<xs:element ref="Font" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="LayoutFrame" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="Frame" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="Animation" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="AnimationGroup" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:choice>
 			</xs:sequence>
+			<xs:attribute name="schemaLocation" type="xs:string" use="optional"/>
 		</xs:complexType>
 	</xs:element>
 

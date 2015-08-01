@@ -26,7 +26,7 @@
             var errors = stringWriter.ToString();
             if (errors.Length > 0)
             {
-                throw new UiSimuationException("Errors loading xml:\n" + errors);
+                throw new UiSimuationException(string.Format("Errors loading xml:\nFile: {0}\n{1}", xmlFilePath, errors));
             }
 
             return ui;
@@ -45,7 +45,11 @@
 
         private static void Serializer_UnknownAttribute(object sender, XmlAttributeEventArgs e)
         {
-            
+            if(e.Attr.Name.Equals("xsi:schemaLocation"))
+            {
+                return;
+            }
+
             stringWriter.WriteLine("Unknown Attribute");
             stringWriter.WriteLine(e.Attr.Name + " " + e.Attr.InnerXml);
             stringWriter.WriteLine("LineNumber: " + e.LineNumber);
@@ -56,6 +60,11 @@
 
         private static void serializer_UnknownNode(object sender, XmlNodeEventArgs e)
         {
+            if (e.Name.Equals("xsi:schemaLocation"))
+            {
+                return;
+            }
+
             stringWriter.WriteLine("UnknownNode Name: {0}", e.Name);
             stringWriter.WriteLine("UnknownNode LocalName: {0}", e.LocalName);
             stringWriter.WriteLine("UnknownNode Namespace URI: {0}", e.NamespaceURI);

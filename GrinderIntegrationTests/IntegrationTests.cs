@@ -35,26 +35,26 @@
 
             session.RunUpdate();
 
-            session.Click("Track");
-            session.Click("Currencies");
-            session.Click("CurrencyName80");
+            session.Actor.Click("Track");
+            session.Actor.Click("Currencies");
+            session.Actor.Click("CurrencyName80");
 
             session.RunUpdateForDuration(TimeSpan.FromSeconds(10));
 
-            session.VerifyVisible("CurrencyName80", true);
-            session.VerifyVisible("55", true);
-            session.VerifyVisible("0.00 / hour", true);
+            session.Actor.VerifyVisible("CurrencyName80", true);
+            session.Actor.VerifyVisible("55", true);
+            session.Actor.VerifyVisible("0.00 / hour", true);
 
             currencySystem.Amounts[80] = 56;
             session.RunUpdateForDuration(TimeSpan.FromSeconds(1));
-            session.VerifyVisible("56", true);
-            session.VerifyVisible("328.27 / hour", true);
+            session.Actor.VerifyVisible("56", true);
+            session.Actor.VerifyVisible("328.27 / hour", true);
 
             var row = session.GetGlobal<IGrinderTrackingRow>("GrinderTrackingRow1");
             row.ResetButton.Click();
 
-            session.VerifyVisible("56", true);
-            session.VerifyVisible("0.00 / hour", true);
+            session.Actor.VerifyVisible("56", true);
+            session.Actor.VerifyVisible("0.00 / hour", true);
 
             var savedSessionVariables = session.GetSavedVariables();
             session = null;
@@ -68,9 +68,9 @@
             
             session2.RunUpdate();
 
-            session2.VerifyVisible("CurrencyName80", true);
-            session2.VerifyVisible("56", true);
-            session2.VerifyVisible("0.00 / hour", true);
+            session2.Actor.VerifyVisible("CurrencyName80", true);
+            session2.Actor.VerifyVisible("56", true);
+            session2.Actor.VerifyVisible("0.00 / hour", true);
         }
     }
 }

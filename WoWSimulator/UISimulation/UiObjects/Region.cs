@@ -69,29 +69,10 @@
                 this.height = size.y;
             }
 
-            if (size.Size != null)
+            if (size.AbsDimension != null)
             {
-                this.ApplyDimension(size.Size);
-            }
-        }
-
-        private void ApplyDimension(Dimension dim)
-        {
-            if (dim.Item is AbsDimension)
-            {
-                if (dim.xSpecified)
-                {
-                    this.width = ((AbsDimension)dim.Item).x;
-                }
-
-                if (dim.ySpecified)
-                {
-                    this.height = ((AbsDimension)dim.Item).y;
-                }
-            }
-            else if (dim.Item is RelDimension)
-            {
-                throw new System.NotImplementedException();
+                this.width = size.AbsDimension.x;
+                this.height = size.AbsDimension.y;
             }
         }
 

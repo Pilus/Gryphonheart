@@ -100,8 +100,8 @@
         public void MouseOver(IFrame frame)
         {
             this.mouseFocus = frame;
-            frame.GetScript(FrameHandler.OnEnter)(frame, null, null, null, null);
-            
+            var script = frame.GetScript(FrameHandler.OnEnter);
+            script?.Invoke(frame, null, null, null, null);
         }
     }
 }
