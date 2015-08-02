@@ -28,7 +28,7 @@
 
         public void SetOnClick(Action<string> func)
         {
-            this.button.SetScript(ButtonHandler.OnClick, (IButton b) => { func(this.Id); });
+            this.button.SetScript(ButtonHandler.OnClick, (INativeUIObject b) => { func(this.Id); });
         }
 
         public void SetTooltipFunc(Action<string, IGameTooltip> updateFunc)
@@ -97,7 +97,7 @@
 
         private void SetupHandlersForTooltips()
         {
-            this.button.SetScript(FrameHandler.OnEnter, (IFrame f) =>
+            this.button.SetScript(FrameHandler.OnEnter, f =>
             {
                 if (this.button.GetCenter() > Global.Frames.UIParent.GetWidth()/2)
                 {
@@ -109,12 +109,12 @@
                 }                
             });
 
-            this.button.SetScript(FrameHandler.OnLeave, (IFrame f) =>
+            this.button.SetScript(FrameHandler.OnLeave, f =>
             {
                 Global.Frames.GameTooltip.Hide();
             });
 
-            this.button.SetScript(FrameHandler.OnUpdate, (IFrame f) => {
+            this.button.SetScript(FrameHandler.OnUpdate, f => {
                 if (Global.Frames.GameTooltip.GetOwner() == this.button && this.updateFunc != null)
                 {
                     this.updateFunc(this.Id, Global.Frames.GameTooltip);

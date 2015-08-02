@@ -114,6 +114,10 @@ CsLuaMeta.GenericsMethod = function(func)
 end
 
 CsLuaMeta.EnumParse = function(typeName, value, doNotThrow)
+	if type(typeName) == "table" and  typeName.__fullTypeName == "System.Type" then
+		typeName = typeName.FullName;
+	end
+
 	local enumTable = CsLuaMeta.GetByFullName(typeName, doNotThrow);
 	if type(enumTable) == "table" then
 		for i,v in pairs(enumTable) do
@@ -124,7 +128,7 @@ CsLuaMeta.EnumParse = function(typeName, value, doNotThrow)
 	end
 
 	if not(doNotThrow) then
-		CsLuaMeta.Throw(CsLua.CsException("Could not parse enum value " .. tostring(value) .. " into " .. typeName));
+		CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not parse enum value " .. tostring(value) .. " into " .. typeName));
 	end
 end
 

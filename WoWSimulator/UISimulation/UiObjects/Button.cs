@@ -268,32 +268,32 @@
             throw new NotImplementedException();
         }
 
-        public void SetScript(ButtonHandler handler, Action<IButton> function)
+        public void SetScript(ButtonHandler handler, Action<INativeUIObject> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<IButton, object> function)
+        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<IButton, object, object> function)
+        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<IButton, object, object, object> function)
+        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<IButton, object, object, object, object> function)
+        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public Action<IButton, object, object, object, object> GetScript(ButtonHandler handler)
+        public Action<INativeUIObject, object, object, object, object> GetScript(ButtonHandler handler)
         {
             return this.scriptHandler.GetScript(handler);
         }
@@ -303,7 +303,7 @@
             return this.scriptHandler.HasScript(handler);
         }
 
-        public void HookScript(ButtonHandler handler, Action<IButton, object, object, object, object> function)
+        public void HookScript(ButtonHandler handler, Action<INativeUIObject, object, object, object, object> function)
         {
             this.scriptHandler.HookScript(handler, function);
         }

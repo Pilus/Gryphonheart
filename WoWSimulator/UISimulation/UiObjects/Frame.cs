@@ -492,32 +492,32 @@
             this.registeredEvents.Remove(eventName);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<IFrame> function)
+        public void SetScript(FrameHandler handler, System.Action<INativeUIObject> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<IFrame, object> function)
+        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<IFrame, object, object> function)
+        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<IFrame, object, object, object> function)
+        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<IFrame, object, object, object, object> function)
+        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public System.Action<IFrame, object, object, object, object> GetScript(FrameHandler handler)
+        public System.Action<INativeUIObject, object, object, object, object> GetScript(FrameHandler handler)
         {
             return this.scriptHandler.GetScript(handler);
         }
@@ -527,7 +527,7 @@
             return this.scriptHandler.HasScript(handler);
         }
 
-        public void HookScript(FrameHandler handler, System.Action<IFrame, object, object, object, object> function)
+        public void HookScript(FrameHandler handler, System.Action<INativeUIObject, object, object, object, object> function)
         {
             this.scriptHandler.HookScript(handler, function);
         }

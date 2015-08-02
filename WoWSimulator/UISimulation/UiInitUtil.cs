@@ -172,7 +172,7 @@
 
             foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnEvent) && f.IsEventRegistered(eventName)).ToList())
             {
-                frame.GetScript(FrameHandler.OnEvent)(frame, eventName, Get(0), Get(1), Get(2));
+                frame.GetScript(FrameHandler.OnEvent)(null, eventName, Get(0), Get(1), Get(2));
             }
         }
 
@@ -180,7 +180,7 @@
         {
             foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnUpdate)))
             {
-                frame.GetScript(FrameHandler.OnUpdate)(frame, elapsed, null, null, null);
+                frame.GetScript(FrameHandler.OnUpdate)(null, elapsed, null, null, null);
             }
         }
 

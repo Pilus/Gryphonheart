@@ -60,7 +60,7 @@ namespace GH.Presenter
             this.Button.SetScript(FrameHandler.OnHide, this.OnHide);
         }
 
-        private void OnEnter(IFrame self, object arg1)
+        private void OnEnter(INativeUIObject self, object arg1)
         {
             if (this.EnterCallback != null)
             {
@@ -68,7 +68,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnLeave(IFrame self, object arg1)
+        private void OnLeave(INativeUIObject self, object arg1)
         {
             if (this.LeaveCallback != null)
             {
@@ -76,7 +76,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnClick(IButton self)
+        private void OnClick(INativeUIObject self, object arg1, object arg2)
         {
             if (this.ClickCallback != null)
             {
@@ -84,7 +84,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnDragStart(IFrame self, object arg1, object arg2)
+        private void OnDragStart(INativeUIObject self, object arg1)
         {
             this.beingDragged = true;
 
@@ -97,7 +97,7 @@ namespace GH.Presenter
             this.dragOffsetY = this.currentY - y;
         }
 
-        private void OnDragStop(IFrame self, object arg1, object arg2)
+        private void OnDragStop(INativeUIObject self)
         {
             this.beingDragged = false;
             if (this.PositionChangeCallback != null)
@@ -106,7 +106,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnUpdate(IFrame self, object arg1, object arg2)
+        private void OnUpdate(INativeUIObject self, object arg1)
         {
             if (this.beingDragged && (Global.Api.IsShiftKeyDown() || this.DragWithoutShift))
             {
@@ -124,7 +124,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnHide(IFrame self, object arg1, object arg2)
+        private void OnHide(INativeUIObject self)
         {
             if (this.HideCallback != null)
             {

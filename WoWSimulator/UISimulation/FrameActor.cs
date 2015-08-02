@@ -101,7 +101,7 @@
         {
             this.mouseFocus = frame;
             var script = frame.GetScript(FrameHandler.OnEnter);
-            script?.Invoke(frame, null, null, null, null);
+            script?.Invoke(null, null, null, null, null);
         }
     }
 }
