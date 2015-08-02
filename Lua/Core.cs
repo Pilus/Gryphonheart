@@ -48,7 +48,7 @@ namespace Lua
 
         public static void print(params object[] args)
         {
-            Console.WriteLine(args);
+            Console.WriteLine(string.Join(" ", args));
         }
     }
 }

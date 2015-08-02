@@ -193,7 +193,19 @@ CsLuaMeta.GetSignatures = function(...)
 		local obj = args[i]
 
 		if type(obj) == "table" then
-			if (obj.__GetSignature) then
+			if obj.__IsArray then
+				if obj.__Type then
+					table.insert(signatures[i], 1, obj.__Type);
+				elseif obj[0] then
+					local sig = CsLuaMeta.GetSignatures(obj[0])[1];
+					for j=#(sig),1,-1 do
+						local v = sig[j];
+						table.insert(signatures[i], 1, "Array<"..v..">");
+					end
+				else
+					CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
+				end
+			elseif (obj.__GetSignature) then
 				signatures[i] = obj.__GetSignature();
 			elseif type(obj.GetObjectType) == "function" then
 				table.insert(signatures[i], 1, "Lua.NativeLuaTable");
@@ -235,7 +247,9 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic)
 
 			local argScore;
 			for j, argSignature in ipairs(signature[i]) do
-				if typeName == argSignature or argSignature == "null" or (argSignature == "string" and CsLuaMeta.IsMatchingEnum(typeName, args[i], true)) then
+				if typeName == argSignature 
+					or (type(typeName) == "table" and type(argSignature)=="table" and typeName[1] == argSignature[1]) 
+					or argSignature == "null" or (argSignature == "string" and CsLuaMeta.IsMatchingEnum(typeName, args[i], true)) then
 					argScore = j - 1;
 					break;
 				end
@@ -324,7 +338,16 @@ end
 CsLuaMeta.SignatureToString = function(signature)
 	local args = {};
 	for i, argSig in ipairs(signature) do
-		args[i] = string.join("|", unpack(argSig));
+	    local s = nil;
+		for j, sig in ipairs(argSig) do
+			if s then s = s .. "|"; else s = ""; end
+			if type(sig)  == "table" then
+				s  = s .. type(sig);
+			else
+				s  = s .. tostring(sig);
+			end
+		end
+		args[i] = s;
 	end
 	return string.join(", ", unpack(args));
 end
@@ -549,7 +572,7 @@ CsLuaMeta.CreateClass = function(info)
 				interface.__AddImplementedSignatures(signature);
 			end
 
-			table.insert(signature, 1, info.fullName);
+			table.insert(signature, 1, {info.fullName, appliedGenerics});
 			return signature;
 		end
 		meta.__GetOverrides = function()

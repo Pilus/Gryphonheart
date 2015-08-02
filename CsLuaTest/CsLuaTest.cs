@@ -2,6 +2,7 @@
 namespace CsLuaTest
 {
     using AmbigousMethods;
+    using Arrays;
     using CsLua.Collection;
     using CsLuaAttributes;
     using Generics;
@@ -10,6 +11,7 @@ namespace CsLuaTest
     using Interfaces;
     using Lua;
     using Override;
+    using Params;
     using Serialization;
     using TryCatchFinally;
     using Wrap;
@@ -34,6 +36,8 @@ namespace CsLuaTest
                 new GenericsTests(),
                 new StaticTests(),
                 new TypeMethodsTests(),
+                new ParamsTests(),
+                new ArraysTests(),
             };
 
             tests.Foreach(test => test.PerformTests(new IndentedLineWriter()));

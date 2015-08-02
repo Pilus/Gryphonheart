@@ -68,5 +68,15 @@
         {
             AmbigousMethodsTests.Output = "NullPicking1_object";
         }
+
+        public void GenericPicking(ClassWithGenerics<int> x)
+        {
+            AmbigousMethodsTests.Output = "GenericPicking_int";
+        }
+
+        public void GenericPicking(ClassWithGenerics<bool> x)
+        {
+            AmbigousMethodsTests.Output = "GenericPicking_bool";
+        }
     }
 }

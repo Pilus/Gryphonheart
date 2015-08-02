@@ -160,6 +160,11 @@
 
         public static void WrapWithTargetTypeTranslation()
         {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
             GameEnvironment.ExecuteLuaCode(@"
                 retTrue = function() return true; end;
 
@@ -191,6 +196,11 @@
 
         public static void CastOfWrappedObject()
         {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
             GameEnvironment.ExecuteLuaCode(@"
                 retTrue = function() return true; end;
 
@@ -221,6 +231,11 @@
 
         public static void NonWrappedAsPropertyInWrappedObject()
         {
+            if (!GameEnvironment.IsExecutingInGame)
+            {
+                return;
+            }
+
             GameEnvironment.ExecuteLuaCode("A = {};");
 
             var obj = CsLuaStatic.Wrapper.WrapGlobalObject<INonWrappedProperty>("A");

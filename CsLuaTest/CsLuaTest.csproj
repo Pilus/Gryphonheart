@@ -56,6 +56,10 @@
     <Compile Include="AmbigousMethods\ClassCBase.cs" />
     <Compile Include="AmbigousMethods\ClassWithAmbigousMethods.cs" />
     <Compile Include="AmbigousMethods\ClassWithEnumMethod.cs" />
+    <Compile Include="AmbigousMethods\ClassWithGenerics.cs" />
+    <Compile Include="Arrays\AClass.cs" />
+    <Compile Include="Arrays\ArraysTests.cs" />
+    <Compile Include="Arrays\ClassWithArrays.cs" />
     <Compile Include="General\ClassWithEquals.cs" />
     <Compile Include="Generics\ClassA.cs" />
     <Compile Include="Generics\ClassWithGenericConstructor.cs" />
@@ -81,6 +85,8 @@
     <Compile Include="General\Inheriter.cs" />
     <Compile Include="Interfaces\InheritingInterfaceImplementation.cs" />
     <Compile Include="General\NonStaticClass.cs" />
+    <Compile Include="Params\ClassWithParams.cs" />
+    <Compile Include="Params\ParamsTests.cs" />
     <Compile Include="Static\StaticClass.cs" />
     <Compile Include="Interfaces\InterfacesTests.cs" />
     <Compile Include="Interfaces\InterfaceWithGenerics.cs" />

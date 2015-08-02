@@ -10,7 +10,7 @@
 
         public static void ExecuteLuaCode(string code)
         {
-            throw new CsException("Lua code an only be executed in-game.");
+            throw new CsException("Lua code can only be executed in-game.");
         }
     }
 }

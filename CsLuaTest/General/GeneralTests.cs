@@ -11,6 +11,8 @@
             this.Tests["ConstructorShouldUseArgumentsOverClassElements"] = ConstructorShouldUseArgumentsOverClassElements;
             this.Tests["MethodShouldUseArgumentsOverClassElements"] = MethodShouldUseArgumentsOverClassElements;
             this.Tests["ClassesShouldBeAbleToUseCustomEqualsImplementation"] = ClassesShouldBeAbleToUseCustomEqualsImplementation;
+            this.Tests["MinusEqualsShouldBeHandled"] = MinusEqualsShouldBeHandled;
+            this.Tests["CommonStringExtensionsShouldWork"] = CommonStringExtensionsShouldWork;
         }
 
         private static void NonStaticClassWithStaticMethod()
@@ -52,6 +54,26 @@
 
             Assert(false, c1.Equals(c2));
             Assert(true, c1.Equals(c3));
+        }
+
+        private static void MinusEqualsShouldBeHandled()
+        {
+            var i = 10;
+            i -= 3;
+
+            Assert(7, i);
+        }
+
+        private static void CommonStringExtensionsShouldWork()
+        {
+            var s = "s1";
+            Assert(false, string.IsNullOrEmpty(s));
+
+            var s2 = "";
+            Assert(true, string.IsNullOrEmpty(s2));
+
+            var i1 = int.Parse("4");
+            Assert(4, i1);
         }
     }
 }

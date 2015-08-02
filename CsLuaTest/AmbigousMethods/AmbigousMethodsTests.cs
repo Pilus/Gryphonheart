@@ -13,6 +13,7 @@
             this.Tests["TestAmbiguousMethodWithInheritance"] = TestAmbiguousMethodWithInheritance;
             this.Tests["TestNullPickingCorrectMethods"] = TestNullPickingCorrectMethods;
             this.Tests["TestAmbigousMethodsWithEnum"] = TestAmbigousMethodsWithEnum;
+            this.Tests["TestAmbigousMethodsWithGenerics"] = TestAmbigousMethodsWithGenerics;
         }
 
         private static void TestAmbiguousMethodWith1Arg()
@@ -108,10 +109,22 @@
 
         }
 
+        private static void TestAmbigousMethodsWithGenerics()
+        {
+            var theClass = new ClassWithAmbigousMethods();
+
+            theClass.GenericPicking(new ClassWithGenerics<bool>());
+            Assert("GenericPicking_bool", Output);
+
+            ResetOutput();
+            theClass.GenericPicking(new ClassWithGenerics<int>());
+            Assert("GenericPicking_int", Output);
+        }
+
         // TODO scenario where a class overrides a method with one signature, but not one with another. Call both from the base class. 
-        
+
         // TODO ambigous with CsLuaList
 
-        
+
     }
 }
