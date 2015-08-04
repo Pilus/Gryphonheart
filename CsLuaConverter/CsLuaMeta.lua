@@ -242,14 +242,36 @@ end
 CsLuaMeta.ScoreFunction = function(types, signature, args, generic)
 	if #(types) == #(signature) then
 		local functionScore = 0;
-		for i, typeName in ipairs(types) do
+		for i, typeTable in ipairs(types) do
+			local typeName, typeGenerics;
+			if type(typeTable) == "string" then
+				typeName = typeTable;
+				typeGenerics = nil;
+			else
+				typeName = typeTable[1];
+				typeGenerics = typeTable[2];
+			end
+
 			typeName = (generic or {})[typeName] or typeName;
 
 			local argScore;
 			for j, argSignature in ipairs(signature[i]) do
-				if typeName == argSignature 
-					or (type(typeName) == "table" and type(argSignature)=="table" and typeName[1] == argSignature[1]) 
-					or argSignature == "null" or (argSignature == "string" and CsLuaMeta.IsMatchingEnum(typeName, args[i], true)) then
+				local argTypeName, argTypeGenerics;
+				if type(argSignature) == "string" then
+					argTypeName = argSignature;
+					argTypeGenerics = nil;
+				else
+					argTypeName = argSignature[1];
+					argTypeGenerics = argSignature[2];
+				end
+
+				if typeName == argTypeName and (
+						(not(typeGenerics) and not(argTypeGenerics))
+						or (type(typeGenerics) == "table" and typeGenerics.Equals(argTypeGenerics))
+					)
+					or argTypeName == "null" 
+					or CsLuaMeta.IsMatchingEnum(typeName, args[i], true) then
+
 					argScore = j - 1;
 					break;
 				end
@@ -289,16 +311,43 @@ end
 CsLuaMeta.GenericsList = function(...)
 	local list = {...};
 
+	for i,v in pairs(list) do
+		if not(type(v) == "table" or v.__fullTypeName == "CsLuaMeta.Generic") then
+			CsLuaMeta.Throw(CsLua.CsException().__Cstor("Invalid element in generics list at pos "..i));
+		end
+	end
+
+	list.Equals = function(otherList)
+		if not(type(otherList) == "table") then
+			return false;
+		end
+		for i,v in ipairs(list) do
+			if not(v.Equals(otherList[i])) then
+				return false;
+			end
+		end
+		return true;
+	end
+	list.__fullTypeName = "CsLuaMeta.GenericsList";
+
 	return list;
 end
 
 CsLuaMeta.Generic = function(name, innerGenerics)
 	local class = {};
-
 	class.innerGenerics = innerGenerics;
-
 	class.name = name;
 
+	class.Equals = function(otherGenerics)
+		if type(otherGenerics) == "table" and otherGenerics.name == class.name then
+			if (class.innerGenerics) then
+				return class.innerGenerics.Equals(otherGenerics.innerGenerics)
+			end
+			return true;
+		end
+		return false;
+	end
+	class.__fullTypeName = "CsLuaMeta.Generic";
 	return class;
 end
 
@@ -342,7 +391,7 @@ CsLuaMeta.SignatureToString = function(signature)
 		for j, sig in ipairs(argSig) do
 			if s then s = s .. "|"; else s = ""; end
 			if type(sig)  == "table" then
-				s  = s .. type(sig);
+				s  = s .. tostring(sig[1]) .. "<...>";
 			else
 				s  = s .. tostring(sig);
 			end
@@ -560,7 +609,15 @@ CsLuaMeta.CreateClass = function(info)
 			return tostring(class);
 		end
 		meta.__IsType = function(t) 
-			return tContains(meta.__GetSignature(), t);
+			local sig = meta.__GetSignature();
+			for _, s in ipairs(sig) do
+				if type(s) == "string" and s == t then
+					return true;
+				elseif type(s) == "table" and s[1] == t then
+					return true;
+				end
+			end
+			return false;
 		end;
 		meta.__GetSignature = function()
 			local signature = {"object"};
@@ -572,7 +629,7 @@ CsLuaMeta.CreateClass = function(info)
 				interface.__AddImplementedSignatures(signature);
 			end
 
-			table.insert(signature, 1, {info.fullName, appliedGenerics});
+			table.insert(signature, 1, {info.fullName, generics});
 			return signature;
 		end
 		meta.__GetOverrides = function()
