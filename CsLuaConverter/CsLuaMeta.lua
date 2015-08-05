@@ -200,7 +200,11 @@ CsLuaMeta.GetSignatures = function(...)
 					local sig = CsLuaMeta.GetSignatures(obj[0])[1];
 					for j=#(sig),1,-1 do
 						local v = sig[j];
-						table.insert(signatures[i], 1, "Array<"..v..">");
+						if type(v) == "table" then
+							table.insert(signatures[i], 1, "Array<"..v[1].."<"..v[2]..">>");
+						else
+							table.insert(signatures[i], 1, "Array<"..v..">");
+						end
 					end
 				else
 					CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
@@ -239,52 +243,59 @@ CsLuaMeta.IsMatchingEnum = function(enumType, obj)
 	return false;
 end
 
-CsLuaMeta.ScoreFunction = function(types, signature, args, generic)
-	if #(types) == #(signature) then
-		local functionScore = 0;
-		for i, typeTable in ipairs(types) do
-			local typeName, typeGenerics;
-			if type(typeTable) == "string" then
-				typeName = typeTable;
-				typeGenerics = nil;
-			else
-				typeName = typeTable[1];
-				typeGenerics = typeTable[2];
-			end
-
-			typeName = (generic or {})[typeName] or typeName;
-
-			local argScore;
-			for j, argSignature in ipairs(signature[i]) do
-				local argTypeName, argTypeGenerics;
-				if type(argSignature) == "string" then
-					argTypeName = argSignature;
-					argTypeGenerics = nil;
-				else
-					argTypeName = argSignature[1];
-					argTypeGenerics = argSignature[2];
-				end
-
-				if typeName == argTypeName and (
-						(not(typeGenerics) and not(argTypeGenerics))
-						or (type(typeGenerics) == "table" and typeGenerics.Equals(argTypeGenerics))
-					)
-					or argTypeName == "null" 
-					or CsLuaMeta.IsMatchingEnum(typeName, args[i], true) then
-
-					argScore = j - 1;
-					break;
-				end
-			end
-
-			if argScore == nil then
-				return;
-			end
-			functionScore = functionScore + argScore;
-		end
-		return functionScore;
+CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyword)
+	if not(#(types) == #(signature) or  hasParamKeyword) then
+		return;
 	end
-	return nil;
+
+	local functionScore = 0;
+	for i, typeTable in ipairs(types) do
+		local typeName, typeGenerics;
+		if type(typeTable) == "string" then
+			typeName = typeTable;
+			typeGenerics = nil;
+		else
+			typeName = typeTable[1];
+			typeGenerics = typeTable[2];
+		end
+
+		typeName = (generic or {})[typeName] or typeName;
+
+		local argScore;
+
+		if (hasParamKeyword and i == #(types) and signature[i] == nil) then
+			argScore = 1;
+		end
+
+		for j, argSignature in ipairs(signature[i] or {}) do
+			local argTypeName, argTypeGenerics;
+			if type(argSignature) == "string" then
+				argTypeName = argSignature;
+				argTypeGenerics = nil;
+			else
+				argTypeName = argSignature[1];
+				argTypeGenerics = argSignature[2];
+			end
+
+			if typeName == argTypeName and (
+					(not(typeGenerics) and not(argTypeGenerics))
+					or (type(typeGenerics) == "table" and typeGenerics.Equals(argTypeGenerics))
+				)
+				or argTypeName == "null" 
+				or CsLuaMeta.IsMatchingEnum(typeName, args[i], true) 
+				or (hasParamKeyword and i == #(types)) then
+
+				argScore = j - 1;
+				break;
+			end
+		end
+
+		if argScore == nil then
+			return;
+		end
+		functionScore = functionScore + argScore;
+	end
+	return functionScore;
 end
 
 CsLuaMeta.GetMatchingFunction = function(functions, generics, ...)
@@ -293,7 +304,7 @@ CsLuaMeta.GetMatchingFunction = function(functions, generics, ...)
 
 	local bestFunc, bestScore;
 	for _, funcMeta in pairs(functions) do
-		local score = CsLuaMeta.ScoreFunction(funcMeta.types, argSignature, args, generics);
+		local score = CsLuaMeta.ScoreFunction(funcMeta.types, argSignature, args, generics, funcMeta.hasParamKeyword);
 		if (score and (bestScore == nil or bestScore > score)) then
 			bestScore = score;
 			bestFunc = funcMeta.func;

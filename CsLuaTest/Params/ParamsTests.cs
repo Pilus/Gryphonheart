@@ -47,6 +47,8 @@
             Assert("Method3_int3", c.Method3(1, 2, 7));
 
             Assert("Method3_object4", c.Method3(1, 2, 7, "abc"));
+
+            Assert("Method3_object5", c.Method3(1, null, 2, 7, "abc"));
         }
 
         private static void TestActionWithParams()
@@ -55,12 +57,15 @@
 
             c.MethodExpectingAction(ActionWithParams);
 
-            
+            Assert("Trueb3", ParamsTests.Output);
         }
 
         private static void ActionWithParams(params object[] args)
         {
-
+            foreach (object t in args)
+            {
+                ParamsTests.Output += t.ToString();
+            }
         }
     }
 }
