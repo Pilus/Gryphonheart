@@ -107,7 +107,7 @@ CsLua.Collection.SerializedInfo = function()
 			if not(info[value]) then
 				pending[value] = subObj;
 			end
-		elseif type(value) == "table" and value.__fullTypeName then
+		elseif type(value) == "table" and not(value.__fullTypeName == "System.Array") then
 			error("Unserializeable object: " .. value.__fullTypeName);
 		end
 		

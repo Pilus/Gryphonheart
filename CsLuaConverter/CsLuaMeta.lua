@@ -234,15 +234,7 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyw
 
 	local functionScore = 0;
 	for i, typeTable in ipairs(types) do
-		local typeName, typeGenerics;
-		if type(typeTable) == "string" then error("Leftover typeTable as string "..typeTable)
-			typeName = typeTable;
-			typeGenerics = nil;
-		else
-			typeName = typeTable[1];
-			typeGenerics = typeTable[2];
-		end
-
+		local typeName, typeGenerics = typeTable[1], typeTable[2];
 		typeName = (generic or {})[typeName] or typeName;
 
 		local argScore;
@@ -256,7 +248,7 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyw
 
 			if typeName == argTypeName and (
 					(not(typeGenerics) and not(argTypeGenerics))
-					or (type(typeGenerics) == "table" and typeGenerics.Equals(argTypeGenerics))
+					or (typeGenerics and (typeGenerics.Equals(argTypeGenerics) or not(argTypeGenerics)))
 				)
 				or argTypeName == "null" 
 				or CsLuaMeta.IsMatchingEnum(typeName, args[i], true) 
@@ -316,6 +308,18 @@ CsLuaMeta.GenericsList = function(...)
 		end
 		return true;
 	end
+
+	list.ToString = function()
+		local s = "<";
+		for i,v in ipairs(list) do
+			if i > 1 then
+				s = s .. ",";
+			end
+			s = s .. v.ToString();
+		end
+		return s .. ">";
+	end
+
 	list.__fullTypeName = "CsLuaMeta.GenericsList";
 
 	return list;
@@ -335,6 +339,15 @@ CsLuaMeta.Generic = function(name, innerGenerics)
 		end
 		return false;
 	end
+
+	class.ToString = function()
+		local s = name;
+		if class.innerGenerics then
+			s = s..class.innerGenerics.ToString();
+		end
+		return s;
+	end
+
 	class.__fullTypeName = "CsLuaMeta.Generic";
 	return class;
 end
@@ -378,10 +391,9 @@ CsLuaMeta.SignatureToString = function(signature)
 	    local s = nil;
 		for j, sig in ipairs(argSig) do
 			if s then s = s .. "|"; else s = ""; end
-			if type(sig)  == "table" then
-				s  = s .. tostring(sig[1]) .. "<...>";
-			else
-				s  = s .. tostring(sig);
+			s  = s .. tostring(sig[1]);
+			if sig[2] then
+				s  = s .. tostring(sig[2].ToString());
 			end
 		end
 		args[i] = s;
@@ -815,38 +827,35 @@ end
 System.Array = function(generic)
 	local class = {};
 
-	local array;
+	local signature;
+
+	local initializeSignature = function()
+		local genericsList;
+		if generic then
+			genericsList = CsLuaMeta.GenericsList(generic);
+		elseif class[0] then
+			local sig = CsLuaMeta.GetSignatures(class[0])[1]; -- Choose the highest level
+			genericsList = CsLuaMeta.GenericsList(CsLuaMeta.Generic(sig[1], sig[2]));
+		else
+			CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
+		end
+
+		signature = {{"object"}, { "System.Array", genericsList}};
+	end
 
 	local cstor = function(oneBasedArray)
 		class.Length = #(oneBasedArray);
 		for i=1,#(oneBasedArray) do
 			class[i-1] = oneBasedArray[i];
 		end
+		initializeSignature();
 	end;
 
 	CsLua.CreateSimpleClass(class, class, "Array", "System.Array", cstor);
 
-	-- TODO: overwrite the simple GetSignature.
-	--[[
-		if obj.__Type then
-			table.insert(signatures[i], 1, { "System.Array", 
-					CsLuaMeta.GenericsList(CsLuaMeta.Generic(obj.__Type))});
-		elseif obj[0] then
-			local sig = CsLuaMeta.GetSignatures(obj[0])[1];
-			for j=#(sig),1,-1 do
-				local arrayGeneric = sig[j];
-
-				if type(arrayGeneric) == "string" then
-					arrayGeneric = CsLuaMeta.Generic(v)
-				end
-
-				table.insert(signatures[i], { "System.Array", 
-					CsLuaMeta.GenericsList(v)});
-			end
-		else
-			CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
-		end
-	]]
+	class.__GetSignature = function()
+		return signature;
+	end
 
 	return class;
 end
