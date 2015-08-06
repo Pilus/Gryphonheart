@@ -12,7 +12,7 @@ CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, in
 	class.__fullTypeName = fullName;
 	class.__IsType = function(typeName) 
 		for _,type in ipairs(class.__GetSignature()) do
-			if type == typeName then
+			if type[1] == typeName then
 				return true;
 			end
 		end
@@ -20,11 +20,11 @@ CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, in
 	end
 	class.__GetOverrides = function() return {}; end
 	class.__GetSignature = function() 
-		local t = {fullName};
+		local t = {{fullName}};
 		for _,v in ipairs(implements or {}) do
-			table.insert(t, v);
+			table.insert(t, {v});
 		end
-		table.insert(t, "object");
+		table.insert(t, {"object"});
 		return t; 
 	end
 	class.__TableString = function() return tostring(class); end

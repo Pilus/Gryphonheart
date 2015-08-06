@@ -189,47 +189,31 @@ CsLuaMeta.GetSignatures = function(...)
 	local args = {...};
 	local signatures = {};
 	for i = 1,select('#', ...) do
-		signatures[i] = {"object"};
+		signatures[i] = {{"object"}};
 		local obj = args[i]
 
 		if type(obj) == "table" then
-			if obj.__IsArray then
-				if obj.__Type then
-					table.insert(signatures[i], 1, obj.__Type);
-				elseif obj[0] then
-					local sig = CsLuaMeta.GetSignatures(obj[0])[1];
-					for j=#(sig),1,-1 do
-						local v = sig[j];
-						if type(v) == "table" then
-							table.insert(signatures[i], 1, "Array<"..v[1].."<"..v[2]..">>");
-						else
-							table.insert(signatures[i], 1, "Array<"..v..">");
-						end
-					end
-				else
-					CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
-				end
-			elseif (obj.__GetSignature) then
+			if (obj.__GetSignature) then
 				signatures[i] = obj.__GetSignature();
 			elseif type(obj.GetObjectType) == "function" then
-				table.insert(signatures[i], 1, "Lua.NativeLuaTable");
-				table.insert(signatures[i], 1, "BlizzardApi.WidgetInterfaces.INativeUIObject");
+				table.insert(signatures[i], 1, {"Lua.NativeLuaTable"});
+				table.insert(signatures[i], 1, {"BlizzardApi.WidgetInterfaces.INativeUIObject"});
 			else
-				table.insert(signatures[i], 1, "Lua.NativeLuaTable");
+				table.insert(signatures[i], 1, {"Lua.NativeLuaTable"});
 			end
 		elseif type(obj) == "boolean" then
-			table.insert(signatures[i], 1, "bool");
+			table.insert(signatures[i], 1, {"bool"});
 		elseif type(obj) == "function" then
-			table.insert(signatures[i], 1, "System.Action");
-			table.insert(signatures[i], 1, "System.Func");
+			table.insert(signatures[i], 1, {"System.Action"});
+			table.insert(signatures[i], 1, {"System.Func"});
 		elseif type(obj) == "number" then
-			table.insert(signatures[i], 1, "double");
-			table.insert(signatures[i], 1, "int");
-			table.insert(signatures[i], 1, "long");
+			table.insert(signatures[i], 1, {"double"});
+			table.insert(signatures[i], 1, {"int"});
+			table.insert(signatures[i], 1, {"long"});
 		elseif type(obj) == "string" then
-			table.insert(signatures[i], 1, "string");
+			table.insert(signatures[i], 1, {"string"});
 		elseif type(obj) == "nil" then
-			table.insert(signatures[i], 1, "null");
+			table.insert(signatures[i], 1, {"null"});
 		end
 	end
 
@@ -251,7 +235,7 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyw
 	local functionScore = 0;
 	for i, typeTable in ipairs(types) do
 		local typeName, typeGenerics;
-		if type(typeTable) == "string" then
+		if type(typeTable) == "string" then error("Leftover typeTable as string "..typeTable)
 			typeName = typeTable;
 			typeGenerics = nil;
 		else
@@ -268,14 +252,7 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyw
 		end
 
 		for j, argSignature in ipairs(signature[i] or {}) do
-			local argTypeName, argTypeGenerics;
-			if type(argSignature) == "string" then
-				argTypeName = argSignature;
-				argTypeGenerics = nil;
-			else
-				argTypeName = argSignature[1];
-				argTypeGenerics = argSignature[2];
-			end
+			local argTypeName, argTypeGenerics = argSignature[1], argSignature[2];
 
 			if typeName == argTypeName and (
 					(not(typeGenerics) and not(argTypeGenerics))
@@ -631,7 +608,7 @@ CsLuaMeta.CreateClass = function(info)
 			return false;
 		end;
 		meta.__GetSignature = function()
-			local signature = {"object"};
+			local signature = {{"object"}};
 			if (inheritiedClass) then
 				signature = inheritiedClass.__GetSignature();
 			end
@@ -829,9 +806,48 @@ System.Enum = {
 }
 System.NotImplementedException = function(...) return CsLua.NotImplementedException(...) end;
 System.Exception = function(...) return CsLua.CsException(...) end;
-System.Type = function(name)
+System.Type = function(name, generics)
 	local class = { FullName = name };
 	CsLua.CreateSimpleClass(class, class, "Type", "System.Type");
+	return class;
+end
+
+System.Array = function(generic)
+	local class = {};
+
+	local array;
+
+	local cstor = function(oneBasedArray)
+		class.Length = #(oneBasedArray);
+		for i=1,#(oneBasedArray) do
+			class[i-1] = oneBasedArray[i];
+		end
+	end;
+
+	CsLua.CreateSimpleClass(class, class, "Array", "System.Array", cstor);
+
+	-- TODO: overwrite the simple GetSignature.
+	--[[
+		if obj.__Type then
+			table.insert(signatures[i], 1, { "System.Array", 
+					CsLuaMeta.GenericsList(CsLuaMeta.Generic(obj.__Type))});
+		elseif obj[0] then
+			local sig = CsLuaMeta.GetSignatures(obj[0])[1];
+			for j=#(sig),1,-1 do
+				local arrayGeneric = sig[j];
+
+				if type(arrayGeneric) == "string" then
+					arrayGeneric = CsLuaMeta.Generic(v)
+				end
+
+				table.insert(signatures[i], { "System.Array", 
+					CsLuaMeta.GenericsList(v)});
+			end
+		else
+			CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
+		end
+	]]
+
 	return class;
 end
 
