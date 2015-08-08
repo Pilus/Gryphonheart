@@ -22,7 +22,7 @@ CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, in
 	class.__GetSignature = function() 
 		local t = {{fullName}};
 		for _,v in ipairs(implements or {}) do
-			table.insert(t, {v});
+			table.insert(t, v);
 		end
 		table.insert(t, {"object"});
 		return t; 

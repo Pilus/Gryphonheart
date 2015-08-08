@@ -14,7 +14,7 @@ namespace Tests.IntegrationTest.GHDTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
-    [TestClass]
+    //[TestClass]
     public class PageTests
     {
         [TestInitialize]

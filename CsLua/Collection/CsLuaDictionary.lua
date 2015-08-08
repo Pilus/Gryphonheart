@@ -28,7 +28,7 @@ CsLua.Collection.CsLuaDictionary = function(generics)
 	end
 
 	CsLua.CreateSimpleClass(class, publicClass, "CsLuaDictionary", "CsLua.Collection.CsLuaDictionary", Cstor, Initialize, nil, nil, {
-		"System.Collection.Generic.Dictionary", "System.Collection.Generic.IDictionary"
+		{"System.Collection.Generic.Dictionary"}, {"System.Collection.Generic.IDictionary"}
 	});
 
 	class.Count = function()

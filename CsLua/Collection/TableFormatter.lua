@@ -12,7 +12,7 @@ CsLua.Collection.TableFormatter = function()
 		return class;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "TableFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {"CsLua.Collection.ITableFormatter"});
+	CsLua.CreateSimpleClass(class, class, "TableFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {{"CsLua.Collection.ITableFormatter"}});
 
 	local Compact;
 	Compact = function(t, target)

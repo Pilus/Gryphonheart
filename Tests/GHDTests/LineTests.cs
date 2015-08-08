@@ -14,7 +14,7 @@ namespace Tests.IntegrationTest.GHDTests
     using Moq;
     using BlizzardApi.Global;
 
-    [TestClass]
+    //[TestClass]
     public class LineTests
     {
         [TestInitialize]

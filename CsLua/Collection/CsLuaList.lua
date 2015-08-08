@@ -37,7 +37,7 @@ CsLua.Collection.CsLuaList = function(generics)
 		end
 	end
 
-	CsLua.CreateSimpleClass(class, publicClass, "CsLuaList", "CsLua.Collection.CsLuaList", Cstor, Initialize, Serialize, Deserialize,  {"System.Collection.Generic.IList"});
+	CsLua.CreateSimpleClass(class, publicClass, "CsLuaList", "CsLua.Collection.CsLuaList", Cstor, Initialize, Serialize, Deserialize,  {{"System.Collection.Generic.IList"}});
 
 	getters.Count = function()
 		local c = #(t);

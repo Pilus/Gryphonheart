@@ -406,7 +406,7 @@ CsLuaMeta.SignatureToString = function(signature)
 	for i, argSig in ipairs(signature) do
 	    local s = nil;
 		for j, sig in ipairs(argSig) do
-			if s then s = s .. "|"; else s = ""; end
+			if s then s = s .. "\124"; else s = ""; end
 			s  = s .. tostring(sig[1]);
 			if sig[2] then
 				s  = s .. tostring(sig[2].ToString());

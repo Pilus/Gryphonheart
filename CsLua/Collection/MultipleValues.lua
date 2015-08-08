@@ -12,7 +12,7 @@ CsLua.Wrapping.MultipleValues = function(generics)
 		end
 	end
 
-	CsLua.CreateSimpleClass(class, class, "MultipleValues", "CsLua.Wrapping.MultipleValues", cstor, nil, nil, nil, {"CsLua.Wrapping.IMultipleValues"})
+	CsLua.CreateSimpleClass(class, class, "MultipleValues", "CsLua.Wrapping.MultipleValues", cstor, nil, nil, nil, {{"CsLua.Wrapping.IMultipleValues"}})
 	
 	return class;
 end

@@ -27,7 +27,7 @@ CsLua.NotImplementedException = function()
 		return class.Message;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "NotImplementedException", "CsLua.NotImplementedException", nil, nil, nil, nil, {"CsLua.CsException"})
+	CsLua.CreateSimpleClass(class, class, "NotImplementedException", "CsLua.NotImplementedException", nil, nil, nil, nil, {{"CsLua.CsException"}})
 	
 	return class;
 end;
