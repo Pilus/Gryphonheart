@@ -5,10 +5,11 @@
         public ParamsTests()
         {
             this.Name = "Params";
-            this.Tests["BasicParamsScenario"] = BasicParamsScenario;
+            this.Tests["BasicParamsScenario"]       = BasicParamsScenario;
             this.Tests["ParamsWithAmbigiousMethod"] = ParamsWithAmbigiousMethod;
-            this.Tests["TestActionWithParams"] = TestActionWithParams;
-            this.Tests["AdvancedParamsScenario"] = AdvancedParamsScenario;
+            this.Tests["TestActionWithParams"]      = TestActionWithParams;
+            this.Tests["AdvancedParamsScenario"]    = AdvancedParamsScenario;
+            this.Tests["TestParamsCalledWithArray"] = TestParamsCalledWithArray;
         }
 
         private static void BasicParamsScenario()
@@ -53,11 +54,21 @@
 
         private static void TestActionWithParams()
         {
+            ResetOutput();
             var c = new ClassWithParams();
 
             c.MethodExpectingAction(ActionWithParams);
 
             Assert("Trueb3", ParamsTests.Output);
+        }
+
+        private static void TestParamsCalledWithArray()
+        {
+            ResetOutput();
+
+            ActionWithParams(new object[] {"a", 1});
+
+            Assert("a1", ParamsTests.Output);
         }
 
         private static void ActionWithParams(params object[] args)

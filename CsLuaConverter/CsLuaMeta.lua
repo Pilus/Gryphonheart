@@ -41,7 +41,7 @@ for i,v in pairs(typeBasedMethods) do
 	CsLuaMeta[i] = function(...) 
 		local args = {...};
 		return setmetatable({}, { 
-			__add = function(obj)
+			__mul = function(obj)
 				if type(obj) == "table" and obj.__fullTypeName and type(obj[i]) == "function" then
 					return obj[i](unpack(args));
 				end
@@ -227,6 +227,22 @@ CsLuaMeta.IsMatchingEnum = function(enumType, obj)
 	return false;
 end
 
+CsLuaMeta.IdentifyTypeInSignature = function(typeName, typeGenerics, signature, value)
+	for j, argSignature in ipairs(signature or {}) do
+		local argTypeName, argTypeGenerics = argSignature[1], argSignature[2];
+
+		if typeName == argTypeName and (
+				(not(typeGenerics) and not(argTypeGenerics))
+				or (typeGenerics and (typeGenerics.Equals(argTypeGenerics) or not(argTypeGenerics)))
+			)
+			or argTypeName == "null" 
+			or CsLuaMeta.IsMatchingEnum(typeName, value, true)  then
+
+			return j - 1;
+		end
+	end
+end
+
 CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyword)
 	if not(#(types) == #(signature) or  hasParamKeyword) then
 		return;
@@ -238,25 +254,25 @@ CsLuaMeta.ScoreFunction = function(types, signature, args, generic, hasParamKeyw
 		typeName = (generic or {})[typeName] or typeName;
 
 		local argScore;
+		
+		if (hasParamKeyword and i == #(types)) then
+			if signature[i] == nil then
+				argScore = 1;
+			else
+				if typeName == "System.Array" then
+					for j = i,#(signature) do
+						local score = CsLuaMeta.IdentifyTypeInSignature(typeGenerics[1].name, typeGenerics[1].innerGenerics, signature[j], args[j]);
+						if not(score) then
+							argScore = nil;
+							break
+						end
 
-		if (hasParamKeyword and i == #(types) and signature[i] == nil) then
-			argScore = 1;
-		end
-
-		for j, argSignature in ipairs(signature[i] or {}) do
-			local argTypeName, argTypeGenerics = argSignature[1], argSignature[2];
-
-			if typeName == argTypeName and (
-					(not(typeGenerics) and not(argTypeGenerics))
-					or (typeGenerics and (typeGenerics.Equals(argTypeGenerics) or not(argTypeGenerics)))
-				)
-				or argTypeName == "null" 
-				or CsLuaMeta.IsMatchingEnum(typeName, args[i], true) 
-				or (hasParamKeyword and i == #(types)) then
-
-				argScore = j - 1;
-				break;
+						argScore = (argScore == nil) and score or math.max(argScore, score);
+					end
+				end
 			end
+		else
+			argScore = CsLuaMeta.IdentifyTypeInSignature(typeName, typeGenerics, signature[i], args[i]);
 		end
 
 		if argScore == nil then
@@ -850,6 +866,22 @@ System.Array = function(generic)
 		end
 		initializeSignature();
 	end;
+
+	class.GetEnumerator = function()
+		return function(_, prevKey) 
+			local key;
+			if prevKey == nil then
+				key = 0;
+			else
+				key = prevKey + 1;
+			end
+
+			if key < class.Length then
+				return key, class[key];
+			end
+			return nil, nil;
+		end;
+	end
 
 	CsLua.CreateSimpleClass(class, class, "Array", "System.Array", cstor);
 
