@@ -27,7 +27,7 @@ namespace Tests.GHCTests
             framesMock.Setup(frames => frames.UIParent).Returns(uiParent);
             Global.Frames = framesMock.Object;
 
-            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Button, null, Global.Frames.UIParent))
+            frameProviderMock.Setup(fp => fp.CreateFrame(FrameType.Button, It.IsAny<string>(), Global.Frames.UIParent))
                 .Returns(new Mock<IButton>().Object);
 
 
@@ -44,7 +44,8 @@ namespace Tests.GHCTests
             var icon1 = "icon1";
             Action<string> click1 = (id) => { };
             Action<string, IGameTooltip> tooltip1 = (id, TT) => { };
-            actionBar.AddButton(id1, icon1, click1, tooltip1);
+            Func<string, ICooldownInfo> getCooldown = (id) => new CooldownInfo();
+            actionBar.AddButton(id1, icon1, click1, tooltip1, getCooldown);
 
             Assert.AreEqual(1, actionButtonMocks.Count);
             var mock1 = actionButtonMocks[0];

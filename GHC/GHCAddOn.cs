@@ -39,14 +39,21 @@ namespace GHC
 
         private void TempShowActionBar()
         {
-            double castTime = null;
+            var duration = 5;
+            double? castTime = null;
             var bar = new ActionBar((frame) => new ActionButtonProxy(frame));
             bar.AddButton("test", "Interface/ICONS/INV_Misc_Bag_11", s =>
             {
+                castTime = Global.Api.GetTime();
                 Core.print("test");
-                bar.SetCooldown("test", Global.Api.GetTime(), 5);
             }, 
-            (s, tooltip) => { tooltip.AddLine("Test"); });
+            (s, tooltip) => { tooltip.AddLine("Test"); },
+                (s) => new CooldownInfo()
+                {
+                    Active = castTime != null && Global.Api.GetTime() < castTime + duration,
+                    Duration = duration,
+                    StartTime = castTime
+                });
             bar.Show();
         }
     }

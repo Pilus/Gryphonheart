@@ -118,10 +118,10 @@
             this.button.SetScript(FrameHandler.OnUpdate, this.OnUpdate);
         }
 
-        private void OnUpdate(INativeUIObject _)
+        private void OnUpdate(INativeUIObject _, object elapsed)
         {
             var cooldown = this.getCooldown();
-            actionButtonProxyMethods.CooldownFrame_SetTimer(this.cooldownFrame, cooldown.StartTime, cooldown.Duration, cooldown.Active ? 1 : 0);
+            actionButtonProxyMethods.CooldownFrame_SetTimer(this.cooldownFrame, cooldown.StartTime ?? 0, cooldown.Duration, cooldown.Active ? 1 : 0);
 
             if (this.button.Equals(Global.Frames.GameTooltip.GetOwner()) && this.updateFunc != null)
             {
