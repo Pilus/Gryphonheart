@@ -33,7 +33,7 @@ local typeBasedMethods = {
 		return tostring(obj);
 	end,
 	Equals = function(obj, otherObj)
-		return obj == otherObj;
+		return obj == otherObj or (type(obj) == "table" and type(otherObj) == "table" and obj.__obj == otherObj.__obj);
 	end
 }
 
@@ -406,7 +406,7 @@ CsLuaMeta.SignatureToString = function(signature)
 	for i, argSig in ipairs(signature) do
 	    local s = nil;
 		for j, sig in ipairs(argSig) do
-			if s then s = s .. "\124"; else s = ""; end
+			if s then s = s .. ":"; else s = ""; end
 			s  = s .. tostring(sig[1]);
 			if sig[2] then
 				s  = s .. tostring(sig[2].ToString());
@@ -859,10 +859,10 @@ System.Array = function(generic)
 		signature = {{"object"}, { "System.Array", genericsList}};
 	end
 
-	local cstor = function(oneBasedArray)
-		class.Length = #(oneBasedArray);
-		for i=1,#(oneBasedArray) do
-			class[i-1] = oneBasedArray[i];
+	local cstor = function(zeroBasedArray)
+		class.Length = #(zeroBasedArray) > 0 and #(zeroBasedArray) + 1 or (zeroBasedArray[0] and 1 or 0);
+		for i=0,class.Length-1 do
+			class[i] = zeroBasedArray[i];
 		end
 		initializeSignature();
 	end;

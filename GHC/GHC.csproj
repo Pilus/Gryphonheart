@@ -41,8 +41,11 @@
     <Compile Include="Modules\AbilityActionBar\ActionBar.cs" />
     <Compile Include="Modules\AbilityActionBar\ActionBarException.cs" />
     <Compile Include="Modules\AbilityActionBar\ActionButtonProxy.cs" />
+    <Compile Include="Modules\AbilityActionBar\CooldownInfo.cs" />
     <Compile Include="Modules\AbilityActionBar\IActionBar.cs" />
     <Compile Include="Modules\AbilityActionBar\IActionButtonProxy.cs" />
+    <Compile Include="Modules\AbilityActionBar\IActionButtonProxyMethods.cs" />
+    <Compile Include="Modules\AbilityActionBar\ICooldownInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

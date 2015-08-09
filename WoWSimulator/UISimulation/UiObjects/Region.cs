@@ -135,7 +135,7 @@
             throw new System.NotImplementedException();
         }
 
-        public double GetCenter()
+        public CsLua.Wrapping.IMultipleValues<double, double> GetCenter()
         {
             throw new System.NotImplementedException();
         }

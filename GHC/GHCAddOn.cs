@@ -2,12 +2,14 @@
 namespace GHC
 {
     using BlizzardApi.EventEnums;
+    using BlizzardApi.Global;
     using CsLuaAttributes;
     using GH;
     using GH.Integration;
     using GH.Misc;
     using GH.Model;
     using GH.Model.Defaults;
+    using Lua;
     using Modules.AbilityActionBar;
 
     [CsLuaAddOn("GHC", "Gryphonheart Crime", 60200, Author = "The Gryphonheart Team", Dependencies = new []{"GH"})]
@@ -37,8 +39,14 @@ namespace GHC
 
         private void TempShowActionBar()
         {
+            double castTime = null;
             var bar = new ActionBar((frame) => new ActionButtonProxy(frame));
-            bar.AddButton("test", "Interface/ICONS/INV_Misc_Bag_11", s => { }, (s, tooltip) => { });
+            bar.AddButton("test", "Interface/ICONS/INV_Misc_Bag_11", s =>
+            {
+                Core.print("test");
+                bar.SetCooldown("test", Global.Api.GetTime(), 5);
+            }, 
+            (s, tooltip) => { tooltip.AddLine("Test"); });
             bar.Show();
         }
     }

@@ -32,7 +32,7 @@ namespace GH.Presenter
 
         public DragableButton(double size, string name)
         {
-            this.Button = Global.FrameProvider.CreateFrame(FrameType.Button, null, Global.Frames.UIParent) as IButton;
+            this.Button = Global.FrameProvider.CreateFrame(FrameType.Button, name, Global.Frames.UIParent) as IButton;
             this.Button.SetWidth(size);
             this.Button.SetHeight(size);
             this.SetUpButton();

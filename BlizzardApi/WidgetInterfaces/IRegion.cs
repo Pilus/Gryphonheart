@@ -13,7 +13,7 @@
         object CreateAnimationGroup(string name, string inheritsFrom);
         object GetAnimationGroups();
         double GetBottom();
-        double GetCenter();
+        IMultipleValues<double, double> GetCenter();
         double GetHeight();
         double GetLeft();
         int GetNumPoints();

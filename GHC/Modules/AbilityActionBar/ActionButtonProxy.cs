@@ -5,6 +5,7 @@
     using BlizzardApi.WidgetInterfaces;
     using GH.Misc;
     using System;
+    using CsLua;
 
     public class ActionButtonProxy : IActionButtonProxy
     {
@@ -12,14 +13,19 @@
         private Action<string, IGameTooltip> updateFunc;
         private ITexture iconTexture;
         private IFrame cooldownFrame;
+        private Func<ICooldownInfo> getCooldown;
 
-        private static Action<ICheckButton, int> setItemButtonCount;
-        private static Action<IFrame, double, int, int> cooldownFrameSetTimer;
+        private static IActionButtonProxyMethods actionButtonProxyMethods;
 
         public string Id { get; set; }
 
         public ActionButtonProxy(IFrame parent)
         {
+            if (actionButtonProxyMethods == null)
+            {
+                actionButtonProxyMethods = CsLuaStatic.Wrapper.WrapGlobalObject<IActionButtonProxyMethods>("_G");
+            }
+
             this.button = Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "ActionButton"), parent, "ActionButtonTemplate") as ICheckButton;
             this.button.RegisterForClicks(ClickType.LeftButtonUp, ClickType.RightButtonUp);
             this.SetupHandlersForTooltips();
@@ -28,7 +34,11 @@
 
         public void SetOnClick(Action<string> func)
         {
-            this.button.SetScript(ButtonHandler.OnClick, (INativeUIObject b) => { func(this.Id); });
+            this.button.SetScript(ButtonHandler.OnClick, (INativeUIObject b) =>
+            {
+                this.button.SetChecked(false);
+                func(this.Id);
+            });
         }
 
         public void SetTooltipFunc(Action<string, IGameTooltip> updateFunc)
@@ -43,22 +53,7 @@
 
         public void SetCount(int count)
         {
-            if (setItemButtonCount == null)
-            {
-                setItemButtonCount = Global.Api.GetGlobal("SetItemButtonCount") as Action<ICheckButton, int>;
-            }
-
-            setItemButtonCount(this.button, count);
-        }
-
-        public void SetCooldown(double startTime, int duration)
-        {
-            if (cooldownFrameSetTimer == null)
-            {
-                cooldownFrameSetTimer = Global.Api.GetGlobal("CooldownFrame_SetTimer") as Action<IFrame, double, int, int>;
-            }
-
-            cooldownFrameSetTimer(this.cooldownFrame, startTime, duration, 1);
+            //actionButtonProxyMethods.setItemButtonCount(this.button, count);
         }
 
         public void SetDimensions(double width, double height)
@@ -71,6 +66,11 @@
         {
             this.button.ClearAllPoints();
             this.button.SetPoint(point, xOffs, yOffs);
+        }
+
+        public void SetGetCooldown(Func<ICooldownInfo> func)
+        {
+            this.getCooldown = func;
         }
 
         public void Hide()
@@ -99,14 +99,15 @@
         {
             this.button.SetScript(FrameHandler.OnEnter, f =>
             {
-                if (this.button.GetCenter() > Global.Frames.UIParent.GetWidth()/2)
+                Global.Frames.GameTooltip.Show();
+                if (this.button.GetCenter().Value1 > Global.Frames.UIParent.GetWidth()/2)
                 {
-                    Global.Frames.GameTooltip.SetOwner(this.button, TooltipAnchor.ANCHOR_BOTTOMLEFT);
+                    Global.Frames.GameTooltip.SetOwner(this.button, TooltipAnchor.ANCHOR_TOPLEFT);
                 }
                 else
                 {
-                    Global.Frames.GameTooltip.SetOwner(this.button, TooltipAnchor.ANCHOR_BOTTOMRIGHT);
-                }                
+                    Global.Frames.GameTooltip.SetOwner(this.button, TooltipAnchor.ANCHOR_TOPRIGHT);
+                }
             });
 
             this.button.SetScript(FrameHandler.OnLeave, f =>
@@ -114,12 +115,21 @@
                 Global.Frames.GameTooltip.Hide();
             });
 
-            this.button.SetScript(FrameHandler.OnUpdate, f => {
-                if (Global.Frames.GameTooltip.GetOwner() == this.button && this.updateFunc != null)
-                {
-                    this.updateFunc(this.Id, Global.Frames.GameTooltip);
-                }
-            });
+            this.button.SetScript(FrameHandler.OnUpdate, this.OnUpdate);
+        }
+
+        private void OnUpdate(INativeUIObject _)
+        {
+            var cooldown = this.getCooldown();
+            actionButtonProxyMethods.CooldownFrame_SetTimer(this.cooldownFrame, cooldown.StartTime, cooldown.Duration, cooldown.Active ? 1 : 0);
+
+            if (this.button.Equals(Global.Frames.GameTooltip.GetOwner()) && this.updateFunc != null)
+            {
+                var tooltip = Global.Frames.GameTooltip;
+                tooltip.ClearLines();
+                this.updateFunc(this.Id, tooltip);
+                tooltip.Show();
+            }
         }
     }
 }

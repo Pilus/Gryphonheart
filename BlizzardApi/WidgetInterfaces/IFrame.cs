@@ -139,12 +139,6 @@
         FrameStrata GetFrameStrata();
 
         /// <summary>
-        ///     Get the type of this frame.
-        /// </summary>
-        /// <returns></returns>
-        string GetFrameType();
-
-        /// <summary>
         ///     Gets the frame's hit rectangle inset distances (l, r, t, b).
         /// </summary>
         /// <returns></returns>
@@ -211,13 +205,6 @@
         /// <param name="eventName"></param>
         /// <returns></returns>
         bool IsEventRegistered(string eventName);
-
-        /// <summary>
-        /// Determine if this frame is of the specified type, or a subclass of that type.
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        bool IsFrameType(string type);
 
         /// 
         bool IsIgnoringDepth();

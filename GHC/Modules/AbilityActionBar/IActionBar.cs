@@ -5,9 +5,8 @@
 
     public interface IActionBar
     {
-        void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc);
+        void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc, Func<string, ICooldownInfo> cooldownInfoFunc);
         void RemoveButton(string id);
-        void SetCooldown(string id, double startTime, int duration);
         void SetCount(string id, int count);
         void Show();
         void Hide();

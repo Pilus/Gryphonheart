@@ -14,9 +14,9 @@
         private const double ContainerEdge = 10;
         private const string NamePrefix = "GH_ActionBar";
 
-        private Func<IFrame, IActionButtonProxy> buttonFactory;
-        private CsLuaList<IActionButtonProxy> actionButtons;
-        private CsLuaList<IActionButtonProxy> unusedActionButtons;
+        private readonly Func<IFrame, IActionButtonProxy> buttonFactory;
+        private readonly CsLuaList<IActionButtonProxy> actionButtons;
+        private readonly CsLuaList<IActionButtonProxy> unusedActionButtons;
 
         public ActionBar(Func<IFrame, IActionButtonProxy> buttonFactory) : base(ButtonSize + ContainerEdge * 2, Misc.GetUniqueGlobalName(NamePrefix))
         {
@@ -26,13 +26,14 @@
             this.unusedActionButtons = new CsLuaList<IActionButtonProxy>();
         }
 
-        public void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc)
+        public void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc, Func<string, ICooldownInfo> cooldownInfoFunc)
         {
             var button = this.GetFreeActionButton();
             button.Id = id;
             button.SetIcon(iconPath);
             button.SetOnClick(clickFunc);
             button.SetTooltipFunc(tooltipFunc);
+            button.SetGetCooldown(() => cooldownInfoFunc(id));
             button.Show();
         }
 
@@ -50,12 +51,6 @@
         public void Hide()
         {
             this.containerFrame.Hide();
-        }
-
-        public void SetCooldown(string id, double startTime, int duration)
-        {
-            var button = this.GetActionButton(id);
-            button.SetCooldown(startTime, duration);
         }
 
         public void RemoveButton(string id)
@@ -97,7 +92,7 @@
             for (var i = 0; i < this.actionButtons.Count; i++)
             {
                 var button = this.actionButtons[i];
-                button.SetPoint(FramePoint.BOTTOMLEFT, i * ButtonSize, 0);
+                button.SetPoint(FramePoint.BOTTOMLEFT, (i * ButtonSize) + ContainerEdge, ContainerEdge);
             }
         }
 
@@ -106,16 +101,16 @@
             this.containerFrame.Hide();
             this.containerFrame.SetPoint(FramePoint.BOTTOM, Global.Frames.UIParent, FramePoint.BOTTOM, 0, 150);
             var backdrop = new CsLuaDictionary<object, object>();
-            backdrop["bgFile"] = "x";
+            backdrop["bgFile"] = "Interface/Tooltips/UI-Tooltip-Background";
             backdrop["edgeFile"] = "Interface/Tooltips/UI-Tooltip-Border";
             backdrop["tile"] = false;
             backdrop["tileSize"] = 16;
             backdrop["edgeSize"] = 16;
             var inserts = new CsLuaDictionary<object, object>();
-            backdrop["left"] = 4;
-            backdrop["right"] = 4;
-            backdrop["top"] = 4;
-            backdrop["bottom"] = 4;
+            inserts["left"] = 5;
+            inserts["right"] = 5;
+            inserts["top"] = 5;
+            inserts["bottom"] = 5;
             backdrop["insets"] = inserts;
             this.containerFrame.SetBackdrop(backdrop.ToNativeLuaTable());
         }

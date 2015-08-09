@@ -10,7 +10,7 @@ namespace GH.Presenter
 
         public RoundButton(double size) : base(size)
         {
-            var overlay = this.Button.CreateTexture(null, Layer.OVERLAY);
+            var overlay = this.Button.CreateTexture(null, Layer.BORDER);
             overlay.SetWidth(size);
             overlay.SetHeight(size);
             overlay.SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder");
