@@ -8,6 +8,7 @@
         void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc, Func<string, ICooldownInfo> cooldownInfoFunc);
         void RemoveButton(string id);
         void SetCount(string id, int count);
+        void SetHotKey(string id, string hotKeyText);
         void Show();
         void Hide();
     }

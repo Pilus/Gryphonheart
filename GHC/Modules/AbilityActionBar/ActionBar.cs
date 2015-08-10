@@ -43,6 +43,12 @@
             button.SetCount(count);
         }
 
+        public void SetHotKey(string id, string hotKeyText)
+        {
+            var button = this.GetActionButton(id);
+            button.SetHotKey(hotKeyText);
+        }
+
         public void Show()
         {
             this.containerFrame.Show();

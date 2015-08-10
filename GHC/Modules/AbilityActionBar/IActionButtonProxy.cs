@@ -9,6 +9,7 @@
         string Id { get; set; }
 
         void SetCount(int count);
+        void SetHotKey(string hotKeyText);
         void SetDimensions(double width, double height);
         void SetIcon(string iconPath);
         void SetOnClick(Action<string> func);

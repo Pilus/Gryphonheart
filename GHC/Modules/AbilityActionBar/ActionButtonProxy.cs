@@ -13,6 +13,7 @@
         private Action<string, IGameTooltip> updateFunc;
         private ITexture iconTexture;
         private IFrame cooldownFrame;
+        private IFontString hotKeyFont;
         private Func<ICooldownInfo> getCooldown;
 
         private static IActionButtonProxyMethods actionButtonProxyMethods;
@@ -29,7 +30,7 @@
             this.button = Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "ActionButton"), parent, "ActionButtonTemplate") as ICheckButton;
             this.button.RegisterForClicks(ClickType.LeftButtonUp, ClickType.RightButtonUp);
             this.SetupHandlersForTooltips();
-            this.IdentifyIconAndCooldownElements();
+            this.IdentifyFrameElements();
         }
 
         public void SetOnClick(Action<string> func)
@@ -54,6 +55,11 @@
         public void SetCount(int count)
         {
             //actionButtonProxyMethods.setItemButtonCount(this.button, count);
+        }
+
+        public void SetHotKey(string hotKeyText)
+        {
+            this.hotKeyFont.SetText(hotKeyText);
         }
 
         public void SetDimensions(double width, double height)
@@ -88,11 +94,12 @@
             return this.button.IsShown();
         }
 
-        private void IdentifyIconAndCooldownElements()
+        private void IdentifyFrameElements()
         {
             var buttonName = this.button.GetName();
             this.iconTexture = Global.Api.GetGlobal(buttonName + "Icon", typeof(ITexture)) as ITexture;
             this.cooldownFrame = Global.Api.GetGlobal(buttonName + "Cooldown", typeof(IFrame)) as IFrame;
+            this.hotKeyFont = Global.Api.GetGlobal(buttonName + "HotKey", typeof(IFontString)) as IFontString;
         }
 
         private void SetupHandlersForTooltips()
