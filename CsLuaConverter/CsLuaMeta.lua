@@ -664,7 +664,7 @@ CsLuaMeta.CreateClass = function(info)
 
 		meta.__Cstor = function(...)
 			local args = {...};
-			if #(args) == 1 and type(args[1]) == "table" and args[1].GetValue then
+			if #(args) == 1 and type(args[1]) == "table" and args[1].__fullTypeName == "CsLua.Collection.SerializedInfo" then
 				if (inheritiedClass) then
 					inheritiedClass.__Cstor(args[1]);
 				end

@@ -116,7 +116,7 @@ CsLua.Wrapping.Wrapper = {
 						end
 
 						local returnArgs;
-						if interface.provideSelf then
+						if interface.ShouldProvideSelf() then
 							returnArgs = {obj[key](obj, unpack(unwrappedArgs))};
 						else
 							returnArgs = {obj[key](unpack(unwrappedArgs))};
