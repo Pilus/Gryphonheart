@@ -39,16 +39,16 @@ namespace GHF.View.CharacterMenuProfile
                 },
                 new LineProfile()
                 {
-                    new EditFieldProfile()
+                    /* new EditFieldProfile()
                     {
                         align = ObjectAlign.l,
                         text = "Background:",
                         label = DetailsTabLabels.Background,
-                    }
+                    } */
                 },
                 new LineProfile()
                 {
-                    new ButtonWithDropDownProfile()
+                    /*new ButtonWithDropDownProfile()
                     {
                         align = ObjectAlign.r,
                         text = "Add Extra Details",
@@ -58,7 +58,7 @@ namespace GHF.View.CharacterMenuProfile
                         dataFunc = () => {
                             return GenerateDropDownData(IsFieldAdded, AddAdditionalField);
                         },
-                    }
+                    } */
                 },
                 new LineProfile()
                 {

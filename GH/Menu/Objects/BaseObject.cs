@@ -54,9 +54,9 @@ namespace GH.Menu.Objects
                 { CustomDropDownObject.Type, CustomDropDownObject.Initialize },
                 { DummyObject.Type, DummyObject.Initialize },
                 { EditBoxObject.Type, EditBoxObject.Initialize },
-                { "EditField", DummyObject.Initialize },
-                { "Button", DummyObject.Initialize },
-                { "ButtonWithDropDown", DummyObject.Initialize },
+                //{ "EditField", DummyObject.Initialize },
+                //{ "Button", DummyObject.Initialize },
+                //{ "ButtonWithDropDown", DummyObject.Initialize },
             };
 
         public static IMenuObject CreateMenuObject(IObjectProfile profile, IMenuContainer parent, LayoutSettings layoutSettings)

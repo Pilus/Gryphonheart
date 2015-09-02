@@ -6,7 +6,7 @@
     </Size>
     <Layers>
       <Layer>
-        <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="" parentKey="label">
+        <FontString name="$parentLabel" justifyH="LEFT" font="Fonts\FRIZQT__.TTF" text="" parentKey="Label">
           <Anchors>
             <Anchor point="TOPLEFT"/>
             <Anchor point="BOTTOMRIGHT"/>

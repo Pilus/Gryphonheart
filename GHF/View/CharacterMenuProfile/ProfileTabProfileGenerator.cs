@@ -72,14 +72,14 @@ namespace GHF.View
                         },
                         new LineProfile()
                         {
-                            new ButtonProfile()
+                            /*new ButtonProfile()
                             {
                                 align = ObjectAlign.r,
                                 text = "Add Extra Fields",
                                 tooltip = "Click to add additional fields, such as title, nick name or others.",
                                 onClick = () => {},
                                 height = 26,
-                            }
+                            }*/
                         },
                     },
                 },
@@ -92,12 +92,13 @@ namespace GHF.View
                 },
                 new LineProfile()
                 {
+                    /*
                     new EditFieldProfile()
                     {
                         align = ObjectAlign.l,
                         text = "Appearance:",
                         label = ProfileTabLabels.Appearance,
-                    }
+                    } */
                 },
                 new LineProfile()
                 {

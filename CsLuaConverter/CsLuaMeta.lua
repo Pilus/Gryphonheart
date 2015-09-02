@@ -70,7 +70,7 @@ CsLuaMeta.Cast = function(castType) return setmetatable({}, { __add = function(_
 		return CsLua.Wrapping.Wrapper.WrapObject[{{name = castType}}](value.__obj, true);
 	end
 
-	error("Could not cast table value to "..castType);
+	error("Could not cast table value to "..castType..". Got type "..tostring(value.__fullTypeName));
 end}); end
 
 CsLuaMeta.GetByFullName = function(s, doNotThrow)
