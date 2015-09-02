@@ -25,9 +25,6 @@
       </Layer>
     </Layers>
     <Scripts>
-      <OnLoad>
-        self.Label = SetSelf(self.label);
-      </OnLoad>
       <OnEnter>
         if self.tooltip then
           GameTooltip:SetOwner(self, "ANCHOR_LEFT");

@@ -36,14 +36,6 @@
         </Frames>
       </Frame>
     </Frames>
-    <Scripts>
-      <OnLoad>
-        self.Label = SetSelf(self.label);
-        self.SelectedText = SetSelf(self.Area.DropDownMenu.Text.Label);
-        self.DropDownMenu = SetSelf(self.Area.DropDownMenu);
-        self.MiddleDropDownTexture = SetSelf(_G[self.Area.DropDownMenu:GetName().."Middle"]);
-      </OnLoad>
-    </Scripts>
   </Frame>
 
   <Frame name="GH_DropDownMenu_Template" inherits="UIDropDownMenuTemplate" enableMouse="true" virtual="true">
