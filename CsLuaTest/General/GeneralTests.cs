@@ -13,6 +13,7 @@
             this.Tests["ClassesShouldBeAbleToUseCustomEqualsImplementation"] = ClassesShouldBeAbleToUseCustomEqualsImplementation;
             this.Tests["MinusEqualsShouldBeHandled"] = MinusEqualsShouldBeHandled;
             this.Tests["CommonStringExtensionsShouldWork"] = CommonStringExtensionsShouldWork;
+            this.Tests["HandleAmbigurityBetweenPropertyNameAndType"] = HandleAmbigurityBetweenPropertyNameAndType;
         }
 
         private static void NonStaticClassWithStaticMethod()
@@ -74,6 +75,14 @@
 
             var i1 = int.Parse("4");
             Assert(4, i1);
+        }
+
+        private static void HandleAmbigurityBetweenPropertyNameAndType()
+        {
+            var c = new ClassWithProperty();
+
+            var s = c.Run("A", "B");
+            Assert("AB", s);
         }
     }
 }
