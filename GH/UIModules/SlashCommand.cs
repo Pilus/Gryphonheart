@@ -7,7 +7,7 @@ namespace GH.UIModules
 
     public static class SlashCommand
     {
-        public static void Register(string cmd, Action<string> func)
+        public static void Register(string cmd, Action<string, NativeLuaTable> func)
         {
             var slashCmdList = (NativeLuaTable) Global.Api.GetGlobal("SlashCmdList");
             slashCmdList[cmd] = func;

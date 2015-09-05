@@ -34,6 +34,12 @@
             Core.print(obj1, obj2, obj3, obj4);
         }
 
+        [Obsolete("Debug.Msg should only be used for debugging. Remember to remove this call.", false)]
+        public static void Msg(object obj1, object obj2, object obj3, object obj4, object obj5)
+        {
+            Core.print(obj1, obj2, obj3, obj4, obj5);
+        }
+
         [Obsolete("Debug.FrameBg should only be used for debugging. Remember to remove this call.", false)] 
         public static void FrameBg(IFrame frame)
         {

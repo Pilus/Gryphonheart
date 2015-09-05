@@ -111,15 +111,16 @@ CsLua.Wrapping.Wrapper = {
 						end
 
 						local unwrappedArgs = {};
-						for i = 1,select('#', ...) do
+						local c = select('#', ...);
+						for i = 1,c do
 							unwrappedArgs[i] = CsLua.Wrapping.Wrapper.TryUnwrapObject[nil](select(i, ...));
 						end
 
 						local returnArgs;
 						if interface.ShouldProvideSelf() then
-							returnArgs = {obj[key](obj, unpack(unwrappedArgs))};
+							returnArgs = {obj[key](obj, unpack(unwrappedArgs,1,c))};
 						else
-							returnArgs = {obj[key](unpack(unwrappedArgs))};
+							returnArgs = {obj[key](unpack(unwrappedArgs,1,c))};
 						end
 
 						if #(returnArgs) > 1 then

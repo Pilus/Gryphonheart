@@ -11,10 +11,10 @@ namespace GHX
             SlashCommand.Register("GHX", SlashCmd);
         }
 
-        private static void SlashCmd(string fullCmd)
+        private static void SlashCmd(string fullCmd, NativeLuaTable _)
         {
             var t = Strings.strsplittotable(" ", fullCmd);
-            var cmd = (string) Table.remove(t, 1);            
+            var cmd = (string) Table.remove(t, 1);
             var remainingCmd = Strings.strjoinfromtable(" ", t);
 
             switch (cmd)

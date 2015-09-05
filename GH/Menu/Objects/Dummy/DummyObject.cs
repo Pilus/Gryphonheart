@@ -37,7 +37,7 @@ namespace GH.Menu.Objects.Dummy
 
         public override void SetPosition(double xOff, double yOff, double width, double height)
         {
-            DebugTools.Msg("SetPosition", this.Frame.GetName(), yOff, height);
+            DebugTools.Msg("SetPosition", this.Frame.GetName(), xOff, yOff, height);
             base.SetPosition(xOff, yOff, width, height);
         }
     }

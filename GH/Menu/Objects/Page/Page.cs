@@ -77,7 +77,6 @@
 
         public void SetPosition(double xOff, double yOff, double width, double height)
         {
-            width = this.GetPreferredWidth() ?? width;
             height = this.GetPreferredHeight() ?? height;
 
             this.Frame.SetWidth(width);

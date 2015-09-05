@@ -104,10 +104,11 @@
                 return;
             }
 
-            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(self, str) return 'OK' .. str; end, };");
+            GameEnvironment.ExecuteLuaCode("interfaceImplementation = { Method = function(self, str) return 'OK' .. str; end, Method2 = function(self,a,b,c) return tostring(a)..tostring(b)..tostring(c); end  };");
             var interfaceImplementation = CsLuaStatic.Wrapper.WrapGlobalObject<ISetSelfInterface>("interfaceImplementation");
 
             Assert("OKmore", interfaceImplementation.Method("more"));
+            Assert("nilbc", interfaceImplementation.Method2(null, "b", "c"));
         }
 
         public static void WrapHandleMultipleValues()

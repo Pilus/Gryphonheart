@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC566057-5A19-4C78-8528-21DD7484D147}</ProjectGuid>
+    <ProjectGuid>{342F64F4-25CF-422F-9575-5E123F7D02E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CsLuaConverterTrigger</RootNamespace>
-    <AssemblyName>CsLuaConverterTrigger</AssemblyName>
+    <RootNamespace>MenuTest</RootNamespace>
+    <AssemblyName>MenuTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsLuaAttributes">
+      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainTest.cs" />
+    <Compile Include="MenuTestAddOn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -45,34 +56,6 @@
       <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
       <Name>CsLua</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GHC\GHC.csproj">
-      <Project>{4b177d62-5e1f-4839-ab79-c4e3b6cd78f7}</Project>
-      <Name>GHC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHD\GHD.csproj">
-      <Project>{8e16cba7-81ac-4b92-bcde-ee72e5687bad}</Project>
-      <Name>GHD</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHF\GHF.csproj">
-      <Project>{2a3ca7e7-7d67-4eda-a534-d52c5358bddd}</Project>
-      <Name>GHF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHG\GHG.csproj">
-      <Project>{3d230dd5-49b6-44cd-9793-000c3b1315b2}</Project>
-      <Name>GHG</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHI\GHI.csproj">
-      <Project>{af929778-d501-43d1-892d-3d92278d2c3f}</Project>
-      <Name>GHI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHM\GHM.csproj">
-      <Project>{a27954bb-8ad4-44e0-95af-2bad787156f8}</Project>
-      <Name>GHM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GHX\GHX.csproj">
-      <Project>{1669f998-3c3c-4c41-bb16-b2f37d962fdd}</Project>
-      <Name>GHX</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
       <Name>GH</Name>
@@ -81,23 +64,8 @@
       <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
       <Name>Lua</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MenuTest\MenuTest.csproj">
-      <Project>{342f64f4-25cf-422f-9575-5e123f7d02e4}</Project>
-      <Name>MenuTest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tests\Tests.csproj">
-      <Project>{9e9ddc27-bd76-45cc-9f20-25ec7568c86d}</Project>
-      <Name>Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WoWSimulator\WoWSimulator.csproj">
-      <Project>{90089c84-d04e-4953-be7d-3b2a9be1c819}</Project>
-      <Name>WoWSimulator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>cmd /c ""$(SolutionDir)CsLuaConverter\CsLuaConverter.exe" "$(SolutionPath)" "$(SolutionDir)..\AddOns""</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
