@@ -11,5 +11,7 @@
         string BackgroundTexturePath { get; }
 
         Inserts BackgroundTextureInserts { get; }
+
+        Color ButtonColor { get; }
     }
 }

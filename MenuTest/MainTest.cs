@@ -16,7 +16,7 @@
             var menu = BaseMenu.CreateMenu(
                 new MenuProfile("Main test", 400, () => { Core.print("OK"); }, true, () => Core.print("Show"), null, null)
                 {
-                    title = "Menu test",
+                    title = "Menu tests",
                     icon = "Interface\\Icons\\Ability_Creature_Cursed_04",
                     [0] = new PageProfile()
                     {
@@ -27,7 +27,11 @@
                                 width = 80,
                                 height = 20,
                                 align = ObjectAlign.c,
-                                text = "Editbox",
+                                text = "Buttons",
+                                onClick = (() =>
+                                {
+                                    new ButtonsTest();
+                                })
                             }
                         }
                     }

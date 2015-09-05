@@ -10,6 +10,7 @@
             TitleBarBackgroundColor = new Color(0.5, 0.1, 0.1),
             BackgroundTexturePath = "Interface/Achievementframe/UI-Achievement-AchievementBackground.",
             BackgroundTextureInserts = new Inserts(0.5, 1.0, 0.0, 1.0),
+            ButtonColor = new Color(0.5, 0.1, 0.1),
         };
 
         public static IMenuTheme GetTheme()

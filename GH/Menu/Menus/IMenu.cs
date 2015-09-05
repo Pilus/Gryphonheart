@@ -3,8 +3,9 @@ namespace GH.Menu.Menus
 {
     using BlizzardApi.WidgetInterfaces;
     using Objects;
+    using Theme;
 
-    public interface IMenu : IIndexer<object, object>
+    public interface IMenu : IIndexer<object, object>, IThemedElement
     {
         void SetValue(string id, object value);
 

@@ -30,6 +30,11 @@
 
         private void SetUp()
         {
+            if (this.setUp)
+            {
+                return;
+            }
+
             this.setUp = true;
             var menuProfile = this.profileGenerator.GenerateMenuProfile();
             this.menu = BaseMenu.CreateMenu(menuProfile);

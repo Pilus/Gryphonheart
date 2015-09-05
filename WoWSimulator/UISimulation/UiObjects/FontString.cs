@@ -114,12 +114,12 @@
             this.layer = layer;
         }
 
-        public void SetVertexColor(float r, float g, float b)
+        public void SetVertexColor(double r, double g, double b)
         {
             throw new System.NotImplementedException();
         }
 
-        public void SetVertexColor(float r, float g, float b, float alpha)
+        public void SetVertexColor(double r, double g, double b, double alpha)
         {
             throw new System.NotImplementedException();
         }

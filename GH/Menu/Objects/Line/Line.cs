@@ -8,6 +8,7 @@
     using Debug;
     using Lua;
     using BlizzardApi.Global;
+    using Theme;
 
     public class Line : ILine
     {
@@ -87,9 +88,9 @@
             });
         }
 
-        private void PositionCenterObjects(double allocatedWidth, double height, CsLuaList<IMenuObject> centerObjects, double heightAboveMedian, double centerFlexUnitSize)
+        private void PositionCenterObjects(double xOff, double height, CsLuaList<IMenuObject> centerObjects, double heightAboveMedian, double centerFlexUnitSize)
         {
-            var x = allocatedWidth;
+            var x = xOff;
             centerObjects.Foreach(obj =>
             {
                 var w = obj.GetPreferredWidth();
@@ -151,7 +152,7 @@
 
             var heightAboveMedian = this.GetHeightAboveMedian();
 
-            this.PositionCenterObjects(centerWidth, height, centerObjects, heightAboveMedian, centerFlexUnitSize);
+            this.PositionCenterObjects((width - centerWidth) / 2, height, centerObjects, heightAboveMedian, centerFlexUnitSize);
             this.PositionLeftSide((width - centerWidth) / 2, leftWidth, height, leftObjects, leftObjectsWithFlixibleWidth,
                 heightAboveMedian);
             this.PositionRightSide((width - centerWidth) / 2, rightWidth, width, height, rightObjects, rightObjectsWithFlixibleWidth, heightAboveMedian);
@@ -283,7 +284,16 @@
             return this.objects.Select(obj => obj.GetFrameById(id)).FirstOrDefault(frame => frame != null);
         }
 
-
+        public void ApplyTheme(IMenuTheme theme)
+        {
+            this.objects.Foreach(obj =>
+            {
+                if (obj is IThemedElement)
+                {
+                    ((IThemedElement) obj).ApplyTheme(theme);
+                }
+            });
+        }
 
         public object GetValue()
         {

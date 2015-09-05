@@ -5,6 +5,7 @@ namespace GH.Menu.Objects
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using Button;
     using CsLua;
     using CsLua.Collection;
     using Debug;
@@ -13,6 +14,7 @@ namespace GH.Menu.Objects
     using EditBox;
     using Line;
     using Lua;
+    using Menus;
     using Panel;
     using Text;
 
@@ -54,8 +56,8 @@ namespace GH.Menu.Objects
                 { CustomDropDownObject.Type, CustomDropDownObject.Initialize },
                 { DummyObject.Type, DummyObject.Initialize },
                 { EditBoxObject.Type, EditBoxObject.Initialize },
+                { ButtonObject.Type, ButtonObject.Initialize },
                 //{ "EditField", DummyObject.Initialize },
-                //{ "Button", DummyObject.Initialize },
                 //{ "ButtonWithDropDown", DummyObject.Initialize },
             };
 
@@ -135,10 +137,15 @@ namespace GH.Menu.Objects
             return this.Frame.GetHeight();
         }
 
-        public abstract object GetValue();
+        public virtual object GetValue()
+        {
+            throw new NoValueHandlingException();
+        }
 
-        public abstract void SetValue(object value);
-
+        public virtual void SetValue(object value)
+        {
+            throw new NoValueHandlingException();
+        }
 
         public virtual double GetPreferredCenterX()
         {

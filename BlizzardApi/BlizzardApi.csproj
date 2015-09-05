@@ -78,6 +78,7 @@
     <Compile Include="WidgetInterfaces\IFrame.cs" />
     <Compile Include="WidgetInterfaces\IScript.cs" />
     <Compile Include="WidgetInterfaces\IScrollFrame.cs" />
+    <Compile Include="WidgetInterfaces\IStatusBar.cs" />
     <Compile Include="WidgetInterfaces\ITexture.cs" />
     <Compile Include="WidgetInterfaces\IUIObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

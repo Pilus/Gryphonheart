@@ -2,17 +2,16 @@
 namespace GH.Menu.Menus
 {
     using System;
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using CsLua;
     using CsLua.Collection;
-    using Debug;
     using Objects;
     using Objects.Page;
+    using Theme;
 
-    public class BaseMenu :  CsLuaDictionary<object, object>, IMenu
+    public class BaseMenu :  CsLuaDictionary<object, object>, IMenu, IThemedElement
     {
 
         public readonly CsLuaList<IPage> Pages;
@@ -44,7 +43,7 @@ namespace GH.Menu.Menus
             
         }
 
-        public static IMenu CreateMenu(MenuProfile profile)
+        private static IMenu InitializeMenu(MenuProfile profile)
         {
             switch (profile.theme)
             {
@@ -63,6 +62,18 @@ namespace GH.Menu.Menus
                 default:
                     throw new CsException("Unknown theme: " + profile.theme);
             }
+        }
+
+        public static IMenu CreateMenu(MenuProfile profile)
+        {
+            var menu = InitializeMenu(profile);
+            menu.ApplyTheme(ThemeHandler.GetTheme());
+            return menu;
+        }
+
+        public virtual void ApplyTheme(IMenuTheme theme)
+        {
+            this.Pages.Foreach(page => page.ApplyTheme(theme));
         }
 
         private void HandleOnShow(MenuProfile profile)

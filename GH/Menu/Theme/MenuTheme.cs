@@ -1,5 +1,6 @@
 ﻿namespace GH.Menu.Theme
 {
+    using System;
     using Menus;
 
     public class MenuTheme : IMenuTheme
@@ -12,5 +13,7 @@
         public string BackgroundTexturePath { get; set; }
 
         public Inserts BackgroundTextureInserts { get; set; }
+
+        public Color ButtonColor { get; set; }
     }
 }

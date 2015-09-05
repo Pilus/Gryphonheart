@@ -8,6 +8,7 @@
     using CsLua.Collection;
     using Debug;
     using Line;
+    using Theme;
 
     public class Page : IPage
     {
@@ -37,6 +38,11 @@
             this.Name = profile.name;
 
             //UiDebugTools.FrameBg(this.Frame);
+        }
+
+        public void ApplyTheme(IMenuTheme theme)
+        {
+            this.lines.Foreach(line => line.ApplyTheme(theme));
         }
 
         public void Show()

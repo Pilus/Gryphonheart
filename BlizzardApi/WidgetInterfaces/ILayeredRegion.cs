@@ -17,7 +17,7 @@
         /// <param name="layer">Draw layer</param>
         void SetDrawLayer(DrawLayer layer);
 
-        void SetVertexColor(float r, float g, float b);
-        void SetVertexColor(float r, float g, float b, float alpha);
+        void SetVertexColor(double r, double g, double b);
+        void SetVertexColor(double r, double g, double b, double alpha);
     }
 }

@@ -59,8 +59,12 @@
     <Compile Include="Integration\AddOnReference.cs" />
     <Compile Include="Integration\AddOnRegister.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
+    <Compile Include="Menu\Menus\NoValueHandlingException.cs" />
     <Compile Include="Menu\Menus\Window\MinimizeableTitleBar.cs" />
+    <Compile Include="Menu\Objects\Button\ButtonObject.cs" />
+    <Compile Include="Menu\Objects\Button\IButtonTemplate.cs" />
     <Compile Include="Menu\Objects\TabOrder.cs" />
+    <Compile Include="Menu\Objects\TooltipHandler.cs" />
     <Compile Include="Menu\Theme\IThemedElement.cs" />
     <Compile Include="Menu\MenuConfigurationException.cs" />
     <Compile Include="Menu\Menus\Window\ContentContainer.cs" />
@@ -163,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Menu\Objects\Button\DialogBox-Button-Up-White.tga" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
@@ -179,6 +184,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Menu\Objects\Button\ButtonFrame.xml" />
     <Content Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.xml" />
     <Content Include="Menu\Objects\EditBox\EditBoxFrame.xml" />
     <Content Include="Menu\Objects\EditField\EditFieldFrame.xml" />

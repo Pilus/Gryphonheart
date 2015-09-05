@@ -10,6 +10,7 @@ namespace GH.Menu.Objects.Panel
     using Lua;
     using Page;
     using BlizzardApi.Global;
+    using Theme;
 
     public class PanelObject : BaseObject, IMenuContainer
     {
@@ -100,6 +101,14 @@ namespace GH.Menu.Objects.Panel
             if (this.profile.Count > 0)
             { 
                 this.innerPage = new Page(this.profile, this.Frame, this.settings, 1);
+            }
+        }
+
+        public void ApplyTheme(IMenuTheme theme)
+        {
+            if (this.innerPage != null)
+            {
+                this.innerPage.ApplyTheme(theme);
             }
         }
 
