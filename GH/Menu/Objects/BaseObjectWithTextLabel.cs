@@ -64,7 +64,7 @@ namespace GH.Menu.Objects
             this.Frame.SetPoint(FramePoint.TOPLEFT, this.parent.Frame, FramePoint.TOPLEFT, xOff, -yOff);
 
             var textLabelHeight = this.textLabel.GetHeight() + GabUnderText;
-            this.innerObject.SetPosition(0, textLabelHeight, width, height - textLabelHeight);
+            this.innerObject.SetPosition(xOff, yOff + textLabelHeight, width, height - textLabelHeight);
         }
     }
 }

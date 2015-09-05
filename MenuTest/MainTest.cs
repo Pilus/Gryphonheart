@@ -33,7 +33,21 @@
                                     new ButtonsTest();
                                 })
                             }
-                        }
+                        },
+                        new LineProfile()
+                        {
+                            new ButtonProfile()
+                            {
+                                width = 80,
+                                height = 20,
+                                align = ObjectAlign.c,
+                                text = "EditBoxes",
+                                onClick = (() =>
+                                {
+                                    new EditBoxesTest();
+                                })
+                            }
+                        },
                     }
                 }
                 );

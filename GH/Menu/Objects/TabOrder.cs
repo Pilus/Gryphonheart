@@ -51,13 +51,13 @@
         {
             var bottom = GetSpaceBelowObject(obj);
             var right = GetSpaceRightOfObject(obj);
-            var higherObjects = this.objects.Where(
+            var lowerObjects = this.objects.Where(
                 o =>
                     o != obj &&
                     (GetSpaceBelowObject(o) <= bottom - OnSameLineTreheshold ||
                     (GetSpaceBelowObject(o) <= bottom + OnSameLineTreheshold && GetSpaceRightOfObject(o) <= right)));
 
-            return higherObjects.OrderBy(GetSpaceBelowObject).LastOrDefault();
+            return lowerObjects.FirstOrDefault();
         }
     }
 }

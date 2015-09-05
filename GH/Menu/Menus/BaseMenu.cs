@@ -11,7 +11,7 @@ namespace GH.Menu.Menus
     using Objects.Page;
     using Theme;
 
-    public class BaseMenu :  CsLuaDictionary<object, object>, IMenu, IThemedElement
+    public class BaseMenu : CsLuaDictionary<object, object>, IMenu, IThemedElement
     {
 
         public readonly CsLuaList<IPage> Pages;
