@@ -17,13 +17,12 @@ namespace GHF.View.CharacterMenuProfile
 
         public CharacterListToggleObject(IFrame parent, IFrame anchor, Action toggle)
         {
-            var frame = Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "CharacterListToggleFrame", parent) as IFrame;
+            var frame = (IFrame) Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "CharacterListToggleFrame", parent);
             frame.SetAllPoints(anchor);
-            DebugTools.Msg("List toggle", anchor.GetName(), anchor.GetWidth());
-            DebugTools.FrameBg(frame);
-
-            var button = Global.FrameProvider.CreateFrame(FrameType.Button, parent.GetName() + "CharacterListToggleButton", frame) as IButton;
-
+            
+            var button = (IButton) Global.FrameProvider.CreateFrame(FrameType.Button, parent.GetName() + "CharacterListToggleButton", frame);
+            button.SetHeight(Height);
+            button.SetWidth(Height);
 
             var label = frame.CreateFontString();
 

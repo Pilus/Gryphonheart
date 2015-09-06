@@ -1,6 +1,5 @@
 ﻿namespace GH.Menu.Objects.Page
 {
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
@@ -8,6 +7,7 @@
     using CsLua.Collection;
     using Debug;
     using Line;
+    using Lua;
     using Theme;
 
     public class Page : IPage
@@ -24,7 +24,7 @@
             this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Page" + pageNumber,
                 parent);
             this.lineSpacing = layoutSettings.lineSpacing;
-
+            
             profile.Foreach(lineProfile =>
             {
                 this.lines.Add(new Line(lineProfile, this.Frame, layoutSettings, this.lines.Count + 1));
@@ -75,7 +75,7 @@
 
             if (!gotLineWithNoLimit)
             {
-                return this.lines.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lines.Count > 0 ? this.lineSpacing : 0);
+                return this.lines.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lineSpacing * LuaMath.max(this.lines.Count - 1, 0));
             }
 
             return null;

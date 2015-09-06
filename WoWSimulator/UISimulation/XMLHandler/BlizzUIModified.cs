@@ -4050,7 +4050,7 @@ public partial class MessageFrameType : FrameType {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("FontString", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("TextInsets", typeof(Inset))]
-    public object[] Items {
+    public new object[] Items {
         get {
             return this.itemsField;
         }
@@ -4367,7 +4367,7 @@ public partial class ScrollingMessageFrameType : FrameType {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("FontString", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("TextInsets", typeof(Inset))]
-    public object[] Items {
+    public new object[] Items {
         get {
             return this.itemsField;
         }
@@ -4459,7 +4459,7 @@ public partial class SimpleHTMLType : FrameType {
     
     private FontStringType fontStringField;
     
-    private FontStringType[] itemsField;
+    private object[] itemsField;
     
     private ItemsChoiceType4[] itemsElementNameField;
     
@@ -4488,7 +4488,7 @@ public partial class SimpleHTMLType : FrameType {
     [System.Xml.Serialization.XmlElementAttribute("FontStringHeader2", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("FontStringHeader3", typeof(FontStringType))]
     [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-    public FontStringType[] Items {
+    public new object[] Items {
         get {
             return this.itemsField;
         }

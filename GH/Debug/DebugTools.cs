@@ -43,7 +43,7 @@
         [Obsolete("Debug.FrameBg should only be used for debugging. Remember to remove this call.", false)] 
         public static void FrameBg(IFrame frame)
         {
-            var bgFrame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame);
+            var bgFrame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, null, frame);
             bgFrame.SetAllPoints(frame);
             bgFrame.SetFrameLevel(100);
             bgFrame.SetFrameStrata(FrameStrata.HIGH);

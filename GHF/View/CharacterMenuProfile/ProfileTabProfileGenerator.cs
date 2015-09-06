@@ -72,14 +72,17 @@ namespace GHF.View
                         },
                         new LineProfile()
                         {
-                            /*new ButtonProfile()
+                            /*new ButtonWithDropDownProfile()
                             {
                                 align = ObjectAlign.r,
                                 text = "Add Extra Fields",
                                 tooltip = "Click to add additional fields, such as title, nick name or others.",
-                                onClick = () => {},
                                 height = 26,
-                            }*/
+                                width = 120,
+                                dataFunc = () => {
+                                    //return GenerateDropDownData(IsFieldAdded, AddAdditionalField);
+                                },
+                            } */
                         },
                     },
                 },

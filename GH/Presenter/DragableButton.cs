@@ -21,8 +21,8 @@ namespace GH.Presenter
         public bool DragWithoutShift;
 
         private bool beingDragged = false;
-        private double currentX;
-        private double currentY;
+        private double? currentX;
+        private double? currentY;
         private double dragOffsetX;
         private double dragOffsetY;
 
@@ -93,8 +93,17 @@ namespace GH.Presenter
 
             var x = cursorPos.Value1 / scale;
             var y = cursorPos.Value2 / scale;
-            this.dragOffsetX = this.currentX - x;
-            this.dragOffsetY = this.currentY - y;
+            if (this.currentX == null || this.currentY == null)
+            {
+                var center = this.Button.GetCenter();
+                this.dragOffsetX = center.Value1 - x;
+                this.dragOffsetY = center.Value2 - y;
+            }
+            else
+            {
+                this.dragOffsetX = (double)this.currentX - x;
+                this.dragOffsetY = (double)this.currentY - y;
+            }
         }
 
         private void OnDragStop(INativeUIObject self)
@@ -102,7 +111,7 @@ namespace GH.Presenter
             this.beingDragged = false;
             if (this.PositionChangeCallback != null)
             {
-                this.PositionChangeCallback(this.currentX, this.currentY);
+                this.PositionChangeCallback((double)this.currentX, (double)this.currentY);
             }
         }
 
