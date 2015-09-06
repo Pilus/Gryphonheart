@@ -5,7 +5,7 @@ namespace GH.Menu.Objects.Button
 
     public class ButtonProfile : IObjectProfile
     {
-        public string type { get { return "Button"; } }
+        public string type { get { return ButtonObject.Type; } }
         public string label { get; set; }
         public ObjectAlign align { get; set; }
 

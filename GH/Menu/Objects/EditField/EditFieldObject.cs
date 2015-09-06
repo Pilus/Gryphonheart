@@ -9,22 +9,23 @@
         private readonly IEditFieldFrame frame;
         private readonly EditFieldProfile profile;
 
-        public EditFieldObject(EditFieldProfile profile, IMenuContainer parent, LayoutSettings settings)
-            : base(profile, parent, settings)
-        {
-            this.frame = (IEditFieldFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditBoxFrame_Template");
-            this.Frame = this.frame;
-            this.profile = profile;
-
-            this.SetUpFromProfile();
-        }
+        public static string Type = "EditField";
 
         public static EditFieldObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
         {
             return new EditFieldObject((EditFieldProfile)profile, parent, settings);
         }
 
-        public static string Type = "EditField";
+        public EditFieldObject(EditFieldProfile profile, IMenuContainer parent, LayoutSettings settings)
+            : base(profile, parent, settings)
+        {
+            this.frame = (IEditFieldFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditFieldFrame_Template");
+            this.Frame = this.frame;
+            this.profile = profile;
+
+            this.SetUpFromProfile();
+            this.SetUpTabbableObject(this.frame.Text);
+        }
 
         private void SetUpFromProfile()
         {
@@ -38,20 +39,16 @@
                 this.frame.SetHeight((double)this.profile.height);
             }
 
-            
-            //this.SetUpTabbableObject(this.frame.Box);
         }
 
         public override object GetValue()
         {
-            throw new System.NotImplementedException();
-            //return this.frame.Box.GetText();
+            return this.frame.Text.GetText();
         }
 
         public override void SetValue(object value)
         {
-            throw new System.NotImplementedException();
-            //this.frame.Box.SetText((string)value ?? "");
+            this.frame.Text.SetText((string)value ?? "");
         }
 
         public override double? GetPreferredWidth()

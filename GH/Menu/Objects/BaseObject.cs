@@ -9,9 +9,11 @@ namespace GH.Menu.Objects
     using CsLua;
     using CsLua.Collection;
     using Debug;
+    using DropDown.ButtonWithDropDown;
     using DropDown.CustomDropDown;
     using Dummy;
     using EditBox;
+    using EditField;
     using Line;
     using Lua;
     using Menus;
@@ -57,8 +59,8 @@ namespace GH.Menu.Objects
                 { DummyObject.Type, DummyObject.Initialize },
                 { EditBoxObject.Type, EditBoxObject.Initialize },
                 { ButtonObject.Type, ButtonObject.Initialize },
-                //{ "EditField", DummyObject.Initialize },
-                //{ "ButtonWithDropDown", DummyObject.Initialize },
+                { EditFieldObject.Type, EditFieldObject.Initialize },
+                { ButtonWithDropDownObject.Type, ButtonWithDropDownObject.Initialize },
             };
 
         public static IMenuObject CreateMenuObject(IObjectProfile profile, IMenuContainer parent, LayoutSettings layoutSettings)

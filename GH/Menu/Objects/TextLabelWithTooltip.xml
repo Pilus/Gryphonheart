@@ -26,7 +26,7 @@
     </Layers>
     <Scripts>
       <OnEnter>
-        if self.tooltip then
+        if self.Tooltip then
           GameTooltip:SetOwner(self, "ANCHOR_LEFT");
           GameTooltip:ClearLines()
           GameTooltip:AddLine(self.Tooltip, 1, 0.8196079, 0);
@@ -34,7 +34,7 @@
         end
       </OnEnter>
       <OnLeave>
-        if self.tooltip then
+        if self.Tooltip then
           GameTooltip:Hide();
         end
       </OnLeave>

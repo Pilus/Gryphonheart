@@ -7,6 +7,7 @@ namespace GHF.View
     using GH.Menu;
     using GH.Menu.Objects;
     using GH.Menu.Objects.Button;
+    using GH.Menu.Objects.DropDown.ButtonWithDropDown;
     using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.EditBox;
     using GH.Menu.Objects.EditField;
@@ -72,17 +73,17 @@ namespace GHF.View
                         },
                         new LineProfile()
                         {
-                            /*new ButtonWithDropDownProfile()
+                            new ButtonWithDropDownProfile()
                             {
                                 align = ObjectAlign.r,
                                 text = "Add Extra Fields",
                                 tooltip = "Click to add additional fields, such as title, nick name or others.",
                                 height = 26,
                                 width = 120,
-                                dataFunc = () => {
-                                    //return GenerateDropDownData(IsFieldAdded, AddAdditionalField);
-                                },
-                            } */
+                                //dataFunc = () => {
+                                //    return GenerateDropDownData(IsFieldAdded, AddAdditionalField);
+                                //},
+                            } 
                         },
                     },
                 },
@@ -95,13 +96,12 @@ namespace GHF.View
                 },
                 new LineProfile()
                 {
-                    /*
                     new EditFieldProfile()
                     {
                         align = ObjectAlign.l,
                         text = "Appearance:",
                         label = ProfileTabLabels.Appearance,
-                    } */
+                    }
                 },
                 new LineProfile()
                 {

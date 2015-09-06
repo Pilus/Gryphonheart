@@ -29,46 +29,35 @@
         </Anchors>
         <Scripts>
           <OnMouseDown>
-            self.Text:SetFocus();
+            self:GetParent().Text:SetFocus();
           </OnMouseDown>
           <OnMouseUp>
-            self.Text:SetFocus();
+            self:GetParent().Text:SetFocus();
           </OnMouseUp>
         </Scripts>
         <ScrollChild>
-          <EditBox name="$parentText" letters="2048" multiLine="true" autoFocus="false" parentKey="Text">
+          <EditBox name="$parentText" letters="2048" multiLine="true" autoFocus="false">
             <Size>
               <AbsDimension x="160" y="100"/>
             </Size>
             <Scripts>
               <OnLoad>
-                self:GetParent():GetParent().
-                
-                self:SetScript("OnCursorChanged",function(self,arg1,arg2,arg3)
-                local scrollBar = _G[self:GetParent():GetName().."ScrollBar"]
-                local h = scrollBar:GetHeight();
+                self:GetParent():GetParent().Text = self;
+                self:SetScript("OnCursorChanged", function(self, arg1, arg2, arg3)
+                  local scrollBar = _G[self:GetParent():GetName().."ScrollBar"]
+                  local h = scrollBar:GetHeight();
 
-                if (-arg2)-h-scrollBar:GetValue() > 22 then
-                scrollBar:SetValue(-arg2+ (-3.0*arg3) -h);
-                end
-                if -3 > -arg2-scrollBar:GetValue() then
-                scrollBar:SetValue(-arg2- 1.5*arg3);
-                end
+                  if (-arg2)-h-scrollBar:GetValue() > 22 then
+                    scrollBar:SetValue(-arg2+ (-3.0*arg3) -h);
+                  end
+                  if -3 > -arg2-scrollBar:GetValue() then
+                    scrollBar:SetValue(-arg2- 1.5*arg3);
+                  end
                 end);
               </OnLoad>
               <OnEscapePressed>
                 self:ClearFocus();
               </OnEscapePressed>
-              <OnTextChanged>
-
-                local f = self:GetParent():GetParent();
-                if f and f.main then
-                f.main.SetLabel(f.label,self:GetText());
-                end
-              </OnTextChanged>
-              <OnCursorChanged>
-
-              </OnCursorChanged>
             </Scripts>
             <FontString inherits="GameFontHighlight"/>
           </EditBox>

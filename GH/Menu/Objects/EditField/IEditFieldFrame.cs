@@ -1,10 +1,10 @@
 ﻿namespace GH.Menu.Objects.EditField
 {
     using BlizzardApi.WidgetInterfaces;
+    using EditBox;
 
     public interface IEditFieldFrame : IFrame
     {
-        ITextLabelWithTooltip Text { get; }
-        //IEditBoxWithFilters Box { get; }
+        ITabableObject Text { get; }
     }
 }

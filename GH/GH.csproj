@@ -63,6 +63,7 @@
     <Compile Include="Menu\Menus\Window\MinimizeableTitleBar.cs" />
     <Compile Include="Menu\Objects\Button\ButtonObject.cs" />
     <Compile Include="Menu\Objects\Button\IButtonTemplate.cs" />
+    <Compile Include="Menu\Objects\DropDown\ButtonWithDropDown\ButtonWithDropDownObject.cs" />
     <Compile Include="Menu\Objects\TabOrder.cs" />
     <Compile Include="Menu\Objects\TooltipHandler.cs" />
     <Compile Include="Menu\Theme\IThemedElement.cs" />
