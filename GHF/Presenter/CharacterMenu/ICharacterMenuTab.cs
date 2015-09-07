@@ -11,7 +11,7 @@ namespace GHF.Presenter.CharacterMenu
     {
         PageProfile GetGeneratedProfile();
 
-        void Load(IMenu menu, IProfile profile);
+        void Load(IMenu menu, Profile profile);
 
         void Save();
     }

@@ -14,7 +14,7 @@ namespace GHF.Presenter.CharacterMenu
     public class ProfileTab : ICharacterMenuTab
     {
         private readonly ProfileTabProfileGenerator profileGenerator;
-        private IProfile currentProfile;
+        private Profile currentProfile;
         private IMenu loadedMenu;
 
         public ProfileTab()
@@ -50,7 +50,7 @@ namespace GHF.Presenter.CharacterMenu
             }
         }
 
-        public void Load(IMenu menu, IProfile profile)
+        public void Load(IMenu menu, Profile profile)
         {
             this.loadedMenu = menu;
             this.currentProfile = profile;

@@ -24,7 +24,7 @@
             this.profile = profile;
 
             this.SetUpFromProfile();
-            this.SetUpTabbableObject(this.frame.Text);
+            this.SetUpTabbableObject(new TabableEditBox(this.frame.Text));
         }
 
         private void SetUpFromProfile()

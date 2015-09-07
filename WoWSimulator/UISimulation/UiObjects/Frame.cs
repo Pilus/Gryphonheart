@@ -8,6 +8,9 @@
     public class Frame : Region, IFrame
     {
         private int id;
+        private int level;
+        private FrameStrata frameStrata;
+
         public readonly List<IFrame> Children = new List<IFrame>();
         private readonly UiInitUtil util;
         private readonly List<string> registeredEvents = new List<string>();
@@ -88,37 +91,48 @@
 
         public IFontString CreateFontString()
         {
-            throw new System.NotImplementedException();
+            return this.CreateFontString(null);
         }
 
         public IFontString CreateFontString(string name)
         {
-            throw new System.NotImplementedException();
+            return this.CreateFontString(name, Layer.ARTWORK);
         }
 
         public IFontString CreateFontString(string name, Layer layer)
         {
-            throw new System.NotImplementedException();
+            return this.CreateFontString(name, layer, null);
         }
 
         public IFontString CreateFontString(string name, Layer layer, string inheritsFrom)
         {
-            throw new System.NotImplementedException();
+            var fontString = this.util.CreateObject(new FontStringType()
+            {
+                name = name,
+            }) as IFontString;
+            fontString.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer));
+
+            this.regions.Add(fontString);
+            return fontString;
         }
 
         public ITexture CreateTexture()
         {
-            throw new System.NotImplementedException();
+            return this.CreateTexture(null);
         }
 
         public ITexture CreateTexture(string name)
         {
-            throw new System.NotImplementedException();
+            return this.CreateTexture(name, Layer.BACKGROUND);
         }
 
         public ITexture CreateTexture(string name, Layer layer)
         {
-            var texture = this.util.CreateObject(new TextureType()) as ITexture;
+            var texture = this.util.CreateObject(new TextureType()
+            {
+                name = name,
+            }) as ITexture;
+
             texture.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer));
             this.regions.Add(texture);
             return texture;
@@ -216,12 +230,12 @@
 
         public int GetFrameLevel()
         {
-            throw new System.NotImplementedException();
+            return this.level;
         }
 
         public FrameStrata GetFrameStrata()
         {
-            throw new System.NotImplementedException();
+            return this.frameStrata;
         }
 
         public string GetFrameType()
@@ -414,12 +428,12 @@
 
         public void SetFrameLevel(int level)
         {
-            throw new System.NotImplementedException();
+            this.level = level;
         }
 
         public void SetFrameStrata(FrameStrata strata)
         {
-            throw new System.NotImplementedException();
+            this.frameStrata = strata;
         }
 
         public void SetHitRectInsets(double left, double right, double top, double bottom)

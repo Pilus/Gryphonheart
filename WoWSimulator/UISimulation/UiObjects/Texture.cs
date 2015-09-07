@@ -105,7 +105,7 @@
 
         public void SetTexture(double r, double g, double b)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetTexture(double r, double g, double b, double a)
@@ -116,7 +116,7 @@
 
         public void SetVertexColor(double r, double g, double b)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetVertexColor(double r, double g, double b, double alpha)

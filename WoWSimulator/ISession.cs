@@ -12,6 +12,7 @@
         void RunUpdateForDuration(TimeSpan time, int fps);
         NativeLuaTable GetSavedVariables();
         T GetGlobal<T>(string name);
+        void SetGlobal(string name, object obj);
         ISimulatorFrameProvider FrameProvider { get; }
         IFrameActor Actor { get; }
     }

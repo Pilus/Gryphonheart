@@ -5,6 +5,6 @@
 
     public interface IEditFieldFrame : IFrame
     {
-        ITabableObject Text { get; }
+        IEditBox Text { get; }
     }
 }

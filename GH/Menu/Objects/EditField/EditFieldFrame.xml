@@ -14,7 +14,7 @@
     </Backdrop>
 
     <Frames>
-      <ScrollFrame name="$parentScroll" inherits="UIPanelScrollFrameTemplate">
+      <ScrollFrame name="$parentScroll" inherits="UIPanelScrollFrameTemplate" parentKey="Scroll">
         <Anchors>
           <Anchor point="TOPLEFT"  relativePoint="TOPLEFT">
             <Offset>
@@ -36,7 +36,7 @@
           </OnMouseUp>
         </Scripts>
         <ScrollChild>
-          <EditBox name="$parentText" letters="2048" multiLine="true" autoFocus="false">
+          <EditBox name="$parentText" letters="2048" multiLine="true" autoFocus="false" parentKey="Text">
             <Size>
               <AbsDimension x="160" y="100"/>
             </Size>

@@ -1,10 +1,16 @@
 ﻿namespace GHF.Model
 {
     using System;
+    using GH.ObjectHandling;
 
     [Serializable]
-    public class Profile : IProfile
+    public class Profile : IIdObject<string>
     {
+        public Profile()
+        {
+            
+        }
+
         public Profile(string playerName)
         {
             this.Id = playerName;
@@ -23,7 +29,7 @@
 
         public string Appearance { get; set; }
 
-        public IDetails Details { get; set; }
+        public Details Details { get; set; }
 
         
     }

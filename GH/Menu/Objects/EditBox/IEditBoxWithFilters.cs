@@ -2,7 +2,7 @@
 {
     using BlizzardApi.WidgetInterfaces;
 
-    public interface IEditBoxWithFilters : IEditBox, ITabableObject
+    public interface IEditBoxWithFilters : IEditBox
     {
         bool VariablesOnly { get; set; }
 

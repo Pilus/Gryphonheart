@@ -118,6 +118,10 @@
         {
             // Important: Check for the highest level of types first.
 
+            if (xml is ScrollFrameType)
+            {
+                return new ScrollFrame(this, "scrollFrame", (ScrollFrameType)xml, parent);
+            }
             if (xml is GameTooltipType)
             {
                 return new GameTooltip(this, "gameTooltip", (GameTooltipType)xml, parent);
@@ -129,6 +133,10 @@
             if (xml is ButtonType)
             {
                 return new Button(this, "button", (ButtonType)xml, parent);
+            }
+            if (xml is EditBoxType)
+            {
+                return new EditBox(this, "editBox", (EditBoxType)xml, parent);
             }
             if (xml is FrameType)
             {

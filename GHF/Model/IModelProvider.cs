@@ -4,6 +4,6 @@
 
     public interface IModelProvider
     {
-        IIdObjectList<IProfile, string> AccountProfiles { get; } 
+        IIdObjectList<Profile, string> AccountProfiles { get; } 
     }
 }

@@ -1820,6 +1820,7 @@ public partial class LayoutFrameType {
     [System.Xml.Serialization.XmlElementAttribute("DisabledTexture", typeof(TextureType))]
     [System.Xml.Serialization.XmlElementAttribute("FogColor", typeof(ColorType))]
     [System.Xml.Serialization.XmlElementAttribute("FontHeight", typeof(Value))]
+    [System.Xml.Serialization.XmlElementAttribute("FontString", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("Frames", typeof(LayoutFrameTypeFrames))]
     [System.Xml.Serialization.XmlElementAttribute("Gradient", typeof(GradientType))]
     [System.Xml.Serialization.XmlElementAttribute("HighlightColor", typeof(ColorType))]
@@ -2827,6 +2828,10 @@ public partial class TextureType : LayoutFrameType {
     
     private string fileField;
     
+    private int urgencyField;
+    
+    private bool urgencyFieldSpecified;
+    
     private string maskField;
     
     private ALPHAMODE alphaModeField;
@@ -2858,6 +2863,28 @@ public partial class TextureType : LayoutFrameType {
         }
         set {
             this.fileField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public int urgency {
+        get {
+            return this.urgencyField;
+        }
+        set {
+            this.urgencyField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool urgencySpecified {
+        get {
+            return this.urgencyFieldSpecified;
+        }
+        set {
+            this.urgencyFieldSpecified = value;
         }
     }
     
@@ -4050,7 +4077,7 @@ public partial class MessageFrameType : FrameType {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("FontString", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("TextInsets", typeof(Inset))]
-    public new object[] Items {
+    public object[] Items {
         get {
             return this.itemsField;
         }
@@ -4367,7 +4394,7 @@ public partial class ScrollingMessageFrameType : FrameType {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("FontString", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("TextInsets", typeof(Inset))]
-    public new object[] Items {
+    public object[] Items {
         get {
             return this.itemsField;
         }
@@ -4459,7 +4486,7 @@ public partial class SimpleHTMLType : FrameType {
     
     private FontStringType fontStringField;
     
-    private object[] itemsField;
+    private FontStringType[] itemsField;
     
     private ItemsChoiceType4[] itemsElementNameField;
     
@@ -4488,7 +4515,7 @@ public partial class SimpleHTMLType : FrameType {
     [System.Xml.Serialization.XmlElementAttribute("FontStringHeader2", typeof(FontStringType))]
     [System.Xml.Serialization.XmlElementAttribute("FontStringHeader3", typeof(FontStringType))]
     [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-    public new object[] Items {
+    public FontStringType[] Items {
         get {
             return this.itemsField;
         }
@@ -5619,6 +5646,9 @@ public enum Items1ChoiceType {
     
     /// <remarks/>
     FontHeight,
+    
+    /// <remarks/>
+    FontString,
     
     /// <remarks/>
     Frames,

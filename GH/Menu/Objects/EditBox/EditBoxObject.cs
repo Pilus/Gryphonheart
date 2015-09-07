@@ -64,7 +64,7 @@
                 this.frame.SetText(this.profile.startText);
             }
 
-            this.SetUpTabbableObject(this.frame);
+            this.SetUpTabbableObject(new TabableEditBox(this.frame));
         }
 
         public override object GetValue()

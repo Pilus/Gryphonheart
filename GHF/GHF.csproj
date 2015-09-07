@@ -51,7 +51,6 @@
     <Compile Include="Model\Details.cs" />
     <Compile Include="Model\IDetails.cs" />
     <Compile Include="Model\IModelProvider.cs" />
-    <Compile Include="Model\IProfile.cs" />
     <Compile Include="Model\ModelProvider.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Presenter\CharacterMenu\DetailsTab.cs" />
@@ -75,7 +74,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="View\CharacterMenuProfile\CharacterList\CharacterListButton.xml" />
+    <Content Include="View\CharacterMenuProfile\CharacterList\CharacterListButton.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">

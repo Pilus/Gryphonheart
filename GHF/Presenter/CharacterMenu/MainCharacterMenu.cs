@@ -17,8 +17,8 @@ namespace GHF.Presenter.CharacterMenu
     {
         private CsLuaList<ICharacterMenuTab> tabs;
         private IMenu menu;
-        private CsLuaList<IProfile> profiles;
-        private IProfile currentProfile;
+        private CsLuaList<Profile> profiles;
+        private Profile currentProfile;
         private IModelProvider model;
         private CharacterListToggleObject listToggle;
         private CharacterListFrame listFrame;
@@ -63,7 +63,7 @@ namespace GHF.Presenter.CharacterMenu
             }
         }
 
-        private void ToggleProfile(IProfile profile)
+        private void ToggleProfile(Profile profile)
         {
             this.currentProfile = profile;
             foreach (var characterMenuTab in this.tabs)

@@ -18,7 +18,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
         public ICharacterListButton Button;
 
         private Action onClickAction;
-        private IProfile profile;
+        private Profile profile;
 
         public CharacterListButtonHandler(IFrame parent)
         {
@@ -28,7 +28,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             this.Button.SetHeight(Height);
         }
 
-        public void Display(IProfile profile)
+        public void Display(Profile profile)
         {
             this.Button.NameLabel.SetText(profile.FirstName + " " + profile.LastName);
         }

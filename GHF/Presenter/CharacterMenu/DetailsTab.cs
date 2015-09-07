@@ -22,7 +22,7 @@ namespace GHF.Presenter.CharacterMenu
             return DetailsTabProfileGenerator.GenerateProfile(this.IsFieldAdded, this.AddAdditionalField);
         }
 
-        public void Load(IMenu menu, IProfile profile)
+        public void Load(IMenu menu, Profile profile)
         {
             this.loadedMenu = menu;
             this.currentDetails = profile.Details;

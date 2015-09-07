@@ -56,7 +56,7 @@
 
         public void SetNonSpaceWrap(object wrapFlag)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetText(string text)
@@ -71,12 +71,12 @@
 
         public void SetWordWrap(bool enable)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetFont(string path, double height)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetFont(string path, double height, string flags)
@@ -86,7 +86,7 @@
 
         public void SetJustifyH(JustifyH justifyH)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetJustifyV(JustifyV justifyV)
@@ -96,7 +96,7 @@
 
         public void SetTextColor(double r, double g, double b)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void SetTextColor(double r, double g, double b, double a)

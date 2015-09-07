@@ -19,6 +19,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "CharacterList", parent);
             this.frame.SetPoint(FramePoint.TOPRIGHT, parent, FramePoint.TOPLEFT, 0, YOffset);
             this.frame.SetWidth(CharacterListButtonHandler.Width);
+            this.buttons = new CsLuaList<CharacterListButtonHandler>();
             SetBackdrop(this.frame, "");
         }
 
@@ -51,7 +52,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             }
         }
 
-        public void SetUp(CsLuaList<IProfile> profiles, string initialId, Action<string> toggleProfile, Action save)
+        public void SetUp(CsLuaList<Profile> profiles, string initialId, Action<string> toggleProfile, Action save)
         {
             this.PrepareButtons(profiles.Count);
 
@@ -94,7 +95,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             }
         }
 
-        public void Update(IProfile profile)
+        public void Update(Profile profile)
         {
             var button = this.buttons.First(b => b.CurrentId() == profile.Id);
             button.Display(profile);

@@ -87,7 +87,7 @@ namespace GH.Menu.Objects
             }
             this.settings.TabOrder.AddObject(obj);
 
-            obj.SetScript(EditBoxHandler.OnTabPressed, (self) =>
+            obj.SetTabAction(() =>
             {
                 if (Global.Api.IsShiftKeyDown())
                 {

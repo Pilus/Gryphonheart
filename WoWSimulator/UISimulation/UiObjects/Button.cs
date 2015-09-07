@@ -1,6 +1,7 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
     using System;
+    using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
@@ -8,11 +9,18 @@
     {
         private Script<ButtonHandler, IButton> scriptHandler;
         private string text;
+        private UiInitUtil util;
+
+        private string normalTexturePath;
+        private ITexture normalTexture;
+        private string pushedTexturePath;
+        private ITexture pushedTexture;
 
         public Button(UiInitUtil util, string objectType, ButtonType frameType, IRegion parent)
             : base(util, objectType, frameType, parent)
         {
             this.scriptHandler = new Script<ButtonHandler, IButton>(this);
+            this.util = util;
 
             if (!string.IsNullOrEmpty(frameType.inherits))
             {
@@ -36,6 +44,43 @@
         private void ApplyType(ButtonType type)
         {
             this.text = type.text;
+            this.ApplyItems(type.Items1);
+        }
+
+        private void ApplyItems(object[] items)
+        {
+            if (items == null) return;
+
+            foreach (var item in items)
+            {
+                if (item is FontStringType)
+                {
+                    this.ApplyFontStringType(item as FontStringType);
+                }
+                if (item is TextureType)
+                {
+                    Apply(item as TextureType);
+                }
+            }
+        }
+
+        private void ApplyFontStringType(FontStringType fontStringType)
+        {
+            this.util.CreateObject(fontStringType, this);
+        }
+
+        private void Apply(TextureType textureType)
+        {
+            var texture = (ITexture)this.util.CreateObject(textureType, this);
+            if (this.normalTexture == null)
+            {
+                this.normalTexture = texture;
+            }
+            else
+            {
+                this.pushedTexture = texture;
+            }
+            
         }
 
         private void ApplyType(CheckButtonType type)
@@ -95,7 +140,7 @@
 
         public ITexture GetNormalTexture()
         {
-            throw new NotImplementedException();
+            return this.normalTexture;
         }
 
         public IFontString GetNormalFontObject()
@@ -110,7 +155,7 @@
 
         public ITexture GetPushedTexture()
         {
-            throw new NotImplementedException();
+            return this.pushedTexture;
         }
 
         public string GetText()
@@ -140,7 +185,7 @@
 
         public void RegisterForClicks(ClickType clickType)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void RegisterForClicks(ClickType clickType, ClickType clickType2)
@@ -235,7 +280,7 @@
 
         public void SetNormalTexture(string texturePath)
         {
-            throw new NotImplementedException();
+            this.normalTexturePath = texturePath;
         }
 
         public void SetNormalFontObject(IFontString fontString)
@@ -255,7 +300,7 @@
 
         public void SetPushedTexture(string texturePath)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void SetText(string text)

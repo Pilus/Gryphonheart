@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
+    using Moq;
 
     public class UIObject : IUIObject
     {
@@ -72,7 +73,8 @@
         {
             get
             {
-                throw new UiSimuationException("Native object is not available in simulation");
+                //throw new UiSimuationException("Native object is not available in simulation");
+                return new Mock<INativeUIObject>().Object;
             }
             set
             {

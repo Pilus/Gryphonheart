@@ -97,5 +97,10 @@
         {
             return (T) this.ApiMock.Object.GetGlobal(name);
         }
+
+        public void SetGlobal(string name, object obj)
+        {
+            this.ApiMock.Object.SetGlobal(name, obj);
+        }
     }
 }

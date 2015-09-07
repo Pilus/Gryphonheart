@@ -451,6 +451,7 @@
 				<xs:element name="ColorValueTexture" type="TextureType"/>
 				<xs:element name="ColorValueThumbTexture" type="TextureType"/>
 				<xs:element name="FogColor" type="ColorType"/>
+				<xs:element name="FontString" type="FontStringType"/>
 			</xs:choice>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string"/>
@@ -483,6 +484,7 @@
 		<xs:complexContent>
 			<xs:extension base="LayoutFrameType">
 				<xs:attribute name="file" type="xs:string"/>
+				<xs:attribute name="urgency" type="xs:int"/>
 				<xs:attribute name="mask" type="xs:string"/>
 				<xs:attribute name="alphaMode" type="ALPHAMODE" default="BLEND"/>
 				<xs:attribute name="alpha" type="xs:float" default="1.0"/>

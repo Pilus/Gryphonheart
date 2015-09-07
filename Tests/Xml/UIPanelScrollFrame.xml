@@ -1,0 +1,87 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+    http://wowprogramming.com/FrameXML/UI.xsd">
+
+  <ScrollFrame name="UIPanelScrollFrameTemplate" virtual="true" inherits="UIPanelScrollFrameCodeTemplate">
+    <Frames>
+      <Slider name="$parentScrollBar" inherits="UIPanelScrollBarTemplate" parentKey="ScrollBar">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="6" y="-16"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="6" y="16"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Slider>
+    </Frames>
+  </ScrollFrame>
+
+  <Slider name="UIPanelScrollBarTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="16" y="0"/>
+    </Size>
+    <Frames>
+      <Button name="$parentScrollUpButton" inherits="UIPanelScrollUpButtonTemplate">
+        <Anchors>
+          <Anchor point="BOTTOM" relativePoint="TOP"/>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            local parent = self:GetParent();
+            local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
+            parent:SetValue(parent:GetValue() - scrollStep);
+            PlaySound("UChatScrollButton");
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Button name="$parentScrollDownButton" inherits="UIPanelScrollDownButtonTemplate">
+        <Anchors>
+          <Anchor point="TOP" relativePoint="BOTTOM"/>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            local parent = self:GetParent();
+            local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
+            parent:SetValue(parent:GetValue() + scrollStep);
+            PlaySound("UChatScrollButton");
+          </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnValueChanged>
+        self:GetParent():SetVerticalScroll(value);
+      </OnValueChanged>
+    </Scripts>
+    <ThumbTexture name="$parentThumbTexture" inherits="UIPanelScrollBarButton" urgency="5" file="Interface\Buttons\UI-ScrollBar-Knob">
+      <Size>
+        <AbsDimension x="18" y="24"/>
+      </Size>
+      <TexCoords left="0.20" right="0.80" top="0.125" bottom="0.875"/>
+    </ThumbTexture>
+  </Slider>
+
+  <Button name="UIPanelScrollUpButtonTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="18" y="16"/>
+    </Size>
+    <NormalTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Up"/>
+    <PushedTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Down"/>
+    <DisabledTexture inherits="UIPanelScrollBarButton" urgency="5" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Disabled"/>
+    <HighlightTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Highlight" alphaMode="ADD"/>
+  </Button>
+  
+  <Button name="UIPanelScrollDownButtonTemplate" virtual="true">
+    <Size>
+      <AbsDimension x="18" y="16"/>
+    </Size>
+    <NormalTexture inherits="UIPanelScrollBarButton" urgency="5" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Up"/>
+    <PushedTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Down"/>
+    <DisabledTexture inherits="UIPanelScrollBarButton" urgency="5" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Disabled"/>
+    <HighlightTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Highlight" alphaMode="ADD"/>
+  </Button>
+</Ui>

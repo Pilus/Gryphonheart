@@ -14,8 +14,8 @@
 
         public ModelProvider()
         {
-            var formatter = new TableFormatter<IProfile>();
-            this.AccountProfiles = new IdObjectList<IProfile, string>(formatter, new SavedDataHandler("GHF_AccountProfiles", Global.Api.GetRealmName()));
+            var formatter = new TableFormatter<Profile>();
+            this.AccountProfiles = new IdObjectList<Profile, string>(formatter, new SavedDataHandler("GHF_AccountProfiles", Global.Api.GetRealmName()));
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
 
@@ -43,6 +43,6 @@
             this.SetPlayerProfileIfMissing();
         }
 
-        public IIdObjectList<IProfile, string> AccountProfiles { get; private set; }
+        public IIdObjectList<Profile, string> AccountProfiles { get; private set; }
     }
 }
