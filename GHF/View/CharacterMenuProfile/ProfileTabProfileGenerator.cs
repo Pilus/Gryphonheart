@@ -15,6 +15,7 @@ namespace GHF.View
     using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
     using GH.Menu.Objects.Text;
+    using GHF.View.CharacterMenuProfile.CharacterList;
 
     public class ProfileTabProfileGenerator
     {

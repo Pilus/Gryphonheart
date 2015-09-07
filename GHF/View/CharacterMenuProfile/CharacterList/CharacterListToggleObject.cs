@@ -1,6 +1,6 @@
 ﻿
 
-namespace GHF.View.CharacterMenuProfile
+namespace GHF.View.CharacterMenuProfile.CharacterList
 {
     using System;
     using BlizzardApi;

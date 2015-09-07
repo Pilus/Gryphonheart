@@ -8,6 +8,7 @@ namespace GHF.Presenter.CharacterMenu
     using CsLua.Collection;
     using GH.Menu;
     using GH.Menu.Menus;
+    using GHF.View.CharacterMenuProfile.CharacterList;
     using Model;
     using View.CharacterMenu;
     using View.CharacterMenuProfile;
@@ -16,9 +17,11 @@ namespace GHF.Presenter.CharacterMenu
     {
         private CsLuaList<ICharacterMenuTab> tabs;
         private IMenu menu;
-        private IProfile profile;
+        private CsLuaList<IProfile> profiles;
+        private IProfile currentProfile;
         private IModelProvider model;
         private CharacterListToggleObject listToggle;
+        private CharacterListFrame listFrame;
 
         public MainCharacterMenu(IModelProvider model)
         {
@@ -36,20 +39,37 @@ namespace GHF.Presenter.CharacterMenu
 
             this.menu = BaseMenu.CreateMenu(menuProfile);
 
-            this.listToggle = new CharacterListToggleObject(this.menu.Frame, this.menu.GetFrameById(ProfileTabLabels.ToggleCharacterList).Frame,
-                () => { });
+            this.listFrame = new CharacterListFrame(this.menu.Frame);
+            this.listToggle = new CharacterListToggleObject(this.menu.Frame, this.menu.GetFrameById(ProfileTabLabels.ToggleCharacterList).Frame, this.listFrame.Toggle);
         }
 
         public void Show()
         {
-            this.profile = this.model.AccountProfiles.Get(Global.Api.UnitName(UnitId.player));
+            var unitName = Global.Api.UnitName(UnitId.player);
+            this.profiles = this.model.AccountProfiles.GetAll();
 
-            foreach (var characterMenuTab in this.tabs)
-            {
-                characterMenuTab.Load(this.menu, this.profile);
-            }
+            this.listFrame.SetUp(this.profiles, unitName, this.ToggleProfile, this.Save);
+            this.ToggleProfile(this.model.AccountProfiles.Get(unitName));
 
             this.menu.AnimatedShow();
+        }
+
+        private void ToggleProfile(string id)
+        {
+            this.currentProfile = profiles.FirstOrDefault(p => p.Id.Equals(id));
+            foreach (var characterMenuTab in this.tabs)
+            {
+                characterMenuTab.Load(this.menu, this.currentProfile);
+            }
+        }
+
+        private void ToggleProfile(IProfile profile)
+        {
+            this.currentProfile = profile;
+            foreach (var characterMenuTab in this.tabs)
+            {
+                characterMenuTab.Load(this.menu, this.currentProfile);
+            }
         }
 
         private void Save()
@@ -59,7 +79,8 @@ namespace GHF.Presenter.CharacterMenu
                 characterMenuTab.Save();
             }
 
-            this.model.AccountProfiles.Set(Global.Api.UnitName(UnitId.player), this.profile);
+            this.model.AccountProfiles.Set(this.currentProfile.Id, this.currentProfile);
+            this.listFrame.Update(this.currentProfile);
         }
     }
 }
