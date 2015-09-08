@@ -28,7 +28,7 @@
 
         public void SetChecked(bool state)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void SetCheckedTexture(string texture)

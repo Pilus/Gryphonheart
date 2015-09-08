@@ -10,6 +10,8 @@
     {
         private Script<EditBoxHandler, IEditBox> scriptHandler;
 
+        private string text;
+
         public EditBox(UiInitUtil util, string objectType, FrameType frameType, IRegion parent) : base(util, objectType, frameType, parent)
         {
             this.scriptHandler = new Script<EditBoxHandler, IEditBox>(this);
@@ -87,7 +89,7 @@
 
         public void SetText(string text)
         {
-            throw new NotImplementedException();
+            this.text = text;
         }
 
         public void AddHistoryLine(string text)
@@ -102,7 +104,7 @@
 
         public string GetText()
         {
-            throw new NotImplementedException();
+            return this.text;
         }
 
         public void Insert(string text)

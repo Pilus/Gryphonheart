@@ -80,7 +80,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
 
         private void PrepareButtons(int count)
         {
-            for (var i = this.buttons.Count - 1; i < count; i++)
+            for (var i = this.buttons.Count; i < count; i++)
             {
                 var button = new CharacterListButtonHandler(this.frame);
                 if (i == 0)
