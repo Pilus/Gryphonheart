@@ -1,15 +1,13 @@
 ﻿namespace Tests.GHFTests.Integration
 {
     using System;
-    using System.Runtime.InteropServices;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
     using GH;
-    using GHCTests.Integration;
     using GHF;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using WoWSimulator;
     using Wrappers;
+    using CsLuaAttributes;
 
     [TestClass]
     public class GHFIntegrationTest
@@ -59,7 +57,11 @@
             ghTestable.MouseOverMainButton();
             ghTestable.ClickSubButton("Interface\\Icons\\Spell_Misc_EmotionHappy");
 
-            
+
+            var menuTestable = new GHMenuTestable(session);
+
+            menuTestable.SelectMenu("GHF_CharacterMenu");
+            menuTestable.VerifyLabelVisible("First Name:");
         }
 
         private void PanelTemplates_SetNumTabs(INativeUIObject _, int i)

@@ -15,5 +15,6 @@
         void SetGlobal(string name, object obj);
         ISimulatorFrameProvider FrameProvider { get; }
         IFrameActor Actor { get; }
+        UiInitUtil Util { get; }
     }
 }

@@ -30,6 +30,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
 
         public void Display(Profile profile)
         {
+            this.profile = profile;
             this.Button.NameLabel.SetText(profile.FirstName + " " + profile.LastName);
         }
 

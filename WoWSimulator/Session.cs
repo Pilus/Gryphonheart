@@ -13,7 +13,6 @@
 
     public class Session : ISession
     {
-        private UiInitUtil util;
         private Dictionary<string, Action> addOns;
         private float fps;
         private SavedDataHandler savedDataHandler;
@@ -27,10 +26,12 @@
             this.addOns = addOns;
             this.fps = fps;
             this.savedDataHandler = savedDataHandler;
-            this.util = util;
+            this.Util = util;
             this.Actor = actor;
             this.wrapper = wrapper;
         }
+
+        public UiInitUtil Util { get; private set; }
 
         private void SetSessionToGlobal()
         {
@@ -56,7 +57,7 @@
         {
             this.SetSessionToGlobal();
 
-            this.util.UpdateTick(1/this.fps);
+            this.Util.UpdateTick(1/this.fps);
             Core.mockTime = Core.time() + 1 / this.fps;
         }
 
@@ -68,7 +69,7 @@
             var c = 0;
             while (c < updates)
             {
-                this.util.UpdateTick(1 / this.fps);
+                this.Util.UpdateTick(1 / this.fps);
                 Core.mockTime = Core.time() + 1/this.fps;
                 c++;
             }
