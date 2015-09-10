@@ -34,7 +34,8 @@
             return region != null && (region == this.currentMenu || this.IsRegionInMenu(region.GetParent()));
         }
 
-        public void VerifyLabelVisible(string labelText)
+
+        private IFontString GetLabel(string labelText)
         {
             this.VerifyCurrentMenu();
 
@@ -42,19 +43,33 @@
 
             var framesInMenu = visibleFrames.Where(this.IsRegionInMenu);
 
-            if (framesInMenu.Count() == 0)
+            if (!framesInMenu.Any())
             {
                 throw new UiSimuationException("No visible frames in menu.");
             }
 
-            var label = framesInMenu.SelectMany(f => f.GetRegions()).FirstOrDefault(r =>
+            return (IFontString)framesInMenu.SelectMany(f => f.GetRegions()).FirstOrDefault(r =>
                 (r is IFontString && (r as IFontString).GetText().Contains(labelText)));
+        }
+
+        public void VerifyLabelVisible(string labelText)
+        {
+            var label = this.GetLabel(labelText);
+
             if (label == null)
             {
                 throw new UiSimuationException(string.Format("No label found displaying the text '{0}' in the menu.", labelText));
             }
-
-
         }
+        /*
+        private IFrame GetObjectOfLabel(IFontString label)
+        {
+            var frame = label.GetParent();
+        }
+
+        public object GetElementValue(string labelText)
+        {
+            var label = this.GetLabel(labelText);
+        } */
     }
 }
