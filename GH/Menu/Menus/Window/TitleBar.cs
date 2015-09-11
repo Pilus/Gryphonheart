@@ -6,6 +6,7 @@
     using BlizzardApi.WidgetInterfaces;
     using CsLua.Collection;
     using Presenter;
+    using System;
     using Theme;
 
     public class TitleBar : IThemedElement
@@ -26,7 +27,7 @@
             this.dragableButton = CreateDragableButton(this.attachedFrame);
             this.textFrame = CreateText(this.dragableButton);
             this.background = CreateBackground(this.dragableButton);
-            this.closeButton = CreateCloseButton(this.dragableButton);
+            this.closeButton = CreateCloseButton(this.dragableButton, () => { this.attachedFrame.Hide(); });
             this.attachedFrame.AttachTo(this.dragableButton.Button);
             this.borderFrame = CreateBorder(this.dragableButton);
             this.iconTexture = CreateIconTexture(this.dragableButton);
@@ -62,7 +63,7 @@
 
         private static DragableButton CreateDragableButton(ContentContainer attachedFrame)
         {
-            var button = new DragableButton(BarHeight) {DragWithoutShift = true};
+            var button = new DragableButton(BarHeight, attachedFrame.GetName() + "TitleBar") {DragWithoutShift = true};
             button.Button.SetWidth(attachedFrame.GetWidth());
             return button;
         }
@@ -85,13 +86,14 @@
             return text;
         }
 
-        private static IButton CreateCloseButton(DragableButton button)
+        private static IButton CreateCloseButton(DragableButton button, Action closeAction)
         {
-            var closeButton = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, null, button.Button,
+            var closeButton = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, button.Button.GetName() + "CloseButton", button.Button,
                 "UIPanelCloseButton");
             closeButton.SetPoint(FramePoint.RIGHT, button.Button, FramePoint.RIGHT, 6 - BorderSize, 0);
             closeButton.SetHeight(BarHeight);
             closeButton.SetWidth(BarHeight);
+            closeButton.SetScript(ButtonHandler.OnClick, (obj, arg1, arg2) => { closeAction(); });
             return closeButton;
         }
 

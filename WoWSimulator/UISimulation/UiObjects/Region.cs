@@ -195,7 +195,7 @@
             throw new System.NotImplementedException();
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
             this.shown = false;
         }

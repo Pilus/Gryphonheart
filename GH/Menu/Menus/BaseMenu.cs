@@ -28,6 +28,7 @@ namespace GH.Menu.Menus
 
             this.LoadPagesFromProfile(profile);
             this.HandleOnShow(profile);
+            this.HandleOnHide(profile);
 
             this.Inserts = new Inserts();
             this.menuWidth = profile.width;
@@ -78,17 +79,26 @@ namespace GH.Menu.Menus
 
         private void HandleOnShow(MenuProfile profile)
         {
-            var layerHandle = Global.Api.GetGlobal("GHM_LayerHandle") as Action<INativeUIObject>;
             this.Frame.SetScript(FrameHandler.OnShow, (self) =>
                 {
-                    layerHandle(this.Frame.__obj);
+                    // TODO: Do Layer handling
                     if (profile.onShow != null)
                     {
                         profile.onShow();
                     }
                 });
+        }
 
-            this.Frame.SetScript(FrameHandler.OnShow, (self) => layerHandle(this.Frame.__obj));
+        private void HandleOnHide(MenuProfile profile)
+        {
+            this.Frame.SetScript(FrameHandler.OnHide, (self) =>
+            {
+                // TODO: Do Layer handling
+                if (profile.onHide != null)
+                {
+                    profile.onHide();
+                }
+            });
         }
 
         private void LoadPagesFromProfile(MenuProfile profile)

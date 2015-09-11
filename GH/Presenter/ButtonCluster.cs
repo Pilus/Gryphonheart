@@ -94,7 +94,7 @@
         private void ShowQuickButtons()
         {
             var quickButtons = this.model.ButtonList.GetAll()
-                .Where(qb => AddOnRegister.AddOnLoaded(qb.RequiredAddOn))
+                .Where(qb => this.model.IsAddOnLoaded(qb.RequiredAddOn))
                 .OrderBy(qb => qb.Order);
 
             this.buttonsShown = true;

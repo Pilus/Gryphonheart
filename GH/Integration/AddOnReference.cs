@@ -3,6 +3,7 @@
     public enum AddOnReference
     {
         None,
+        GH,
         GHI,
         GHG,
         GHF,

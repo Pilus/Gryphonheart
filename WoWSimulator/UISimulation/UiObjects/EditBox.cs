@@ -90,6 +90,7 @@
         public void SetText(string text)
         {
             this.text = text;
+            this.scriptHandler.ExecuteScript(EditBoxHandler.OnTextChanged, text, null, null, null);
         }
 
         public void AddHistoryLine(string text)

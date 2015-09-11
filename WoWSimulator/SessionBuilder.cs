@@ -21,6 +21,7 @@
         private readonly SimulatorFrameProvider frameProvider;
         private readonly UiInitUtil util;
         private readonly FrameActor actor;
+        private readonly List<Action<ISession>> postBuildActions = new List<Action<ISession>>();
         private float fps = 30;
         private NativeLuaTable savedVariables;
 
@@ -61,7 +62,11 @@
 
             var wrapper = new MockObjectWrapper(this.apiMock.Object);
 
-            return new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler, wrapper);
+            var session = new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler, wrapper);
+
+            this.postBuildActions.ForEach(action => action(session));
+
+            return session;
         }
 
         public SessionBuilder WithApiMock(IApiMock mock)
@@ -97,6 +102,12 @@
         public SessionBuilder WithFps(float fps)
         {
             this.fps = fps;
+            return this;
+        }
+
+        public SessionBuilder WithPostBuildAction(Action<ISession> action)
+        {
+            this.postBuildActions.Add(action);
             return this;
         }
 

@@ -1,6 +1,7 @@
 ﻿
 namespace GHD.Model
 {
+    using BlizzardApi.Global;
     using GH.Integration;
     using Presenter;
 
@@ -8,8 +9,9 @@ namespace GHD.Model
     {
         public ModelProvider()
         {
-            new Presenter(this);
-            AddOnRegister.RegisterAddOn(AddOnReference.GHD);    
+            var integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
+            new Presenter(this, integration);
+            integration.RegisterAddOn(AddOnReference.GHD);
         }
     }
 }

@@ -56,8 +56,10 @@
     <Compile Include="Color.cs" />
     <Compile Include="Debug\DebugTools.cs" />
     <Compile Include="GHAddOn.cs" />
+    <Compile Include="Integration\IAddOnIntegration.cs" />
     <Compile Include="Integration\AddOnReference.cs" />
-    <Compile Include="Integration\AddOnRegister.cs" />
+    <Compile Include="Integration\AddOnIntegration.cs" />
+    <Compile Include="Integration\IntegrationException.cs" />
     <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
     <Compile Include="Menu\Menus\NoValueHandlingException.cs" />
     <Compile Include="Menu\Menus\Window\MinimizeableTitleBar.cs" />

@@ -1,8 +1,8 @@
 ﻿namespace Tests
 {
     using BlizzardApi.WidgetInterfaces;
-    using System;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using WoWSimulator;
     using WoWSimulator.UISimulation;
 
@@ -37,8 +37,6 @@
 
         private IFontString GetLabel(string labelText)
         {
-            this.VerifyCurrentMenu();
-
             var visibleFrames = this.session.Util.GetVisibleFrames().ToList();
 
             var framesInMenu = visibleFrames.Where(this.IsRegionInMenu);
@@ -54,6 +52,8 @@
 
         public void VerifyLabelVisible(string labelText)
         {
+            this.VerifyCurrentMenu();
+
             var label = this.GetLabel(labelText);
 
             if (label == null)
@@ -61,15 +61,81 @@
                 throw new UiSimuationException(string.Format("No label found displaying the text '{0}' in the menu.", labelText));
             }
         }
-        /*
+
+        private Regex textLabelObjectRegex = new Regex(@"ObjectWithTextLabel\d+$");
+
         private IFrame GetObjectOfLabel(IFontString label)
         {
             var frame = label.GetParent();
+            while (!textLabelObjectRegex.IsMatch(frame.GetName()))
+            {
+                frame = frame.GetParent();
+
+                if (frame == null)
+                {
+                    throw new UiSimuationException("Highest level object not found.");
+                }
+            }
+            return (IFrame)frame;
         }
 
-        public object GetElementValue(string labelText)
+        private IFrame GetObject(string labelText)
         {
             var label = this.GetLabel(labelText);
-        } */
+            if (label == null)
+            {
+                throw new UiSimuationException(string.Format("No label found displaying the text '{0}' in the menu.", labelText));
+            }
+
+            var objectWithTextLabelFrame = this.GetObjectOfLabel(label);
+            return objectWithTextLabelFrame.GetChildren()[1];
+        }
+
+        private object GetValueFromObject(IFrame obj)
+        {
+            var name = Regex.Replace(obj.GetName(), @"\d+$", string.Empty);
+
+            switch (name)
+            {
+                case "Editbox":
+                    return (obj as IEditBox).GetText();
+                default:
+                    throw new UiSimuationException(string.Format("Could not get value from object type '{0}'.", name));
+            }
+        }
+
+        private void SetValueOnObject(IFrame obj, object value)
+        {
+            var name = Regex.Replace(obj.GetName(), @"\d+$", string.Empty);
+
+            switch (name)
+            {
+                case "Editbox":
+                    (obj as IEditBox).SetText(value as string);
+                    break;
+                default:
+                    throw new UiSimuationException(string.Format("Could not set value on object type '{0}'.", name));
+            }
+        }
+
+        public object GetObjectValue(string labelText)
+        {
+            this.VerifyCurrentMenu();
+            return GetValueFromObject(GetObject(labelText));
+        }
+
+        public void SetObjectValue(string labelText, object value)
+        {
+            this.VerifyCurrentMenu();
+            SetValueOnObject(GetObject(labelText), value);
+        }
+
+        public void CloseMenu()
+        {
+            this.VerifyCurrentMenu();
+
+            var button = (IButton)this.session.GetGlobal<IFrame>(this.currentMenu.GetName() + "TitleBarCloseButton");
+            button.Click();
+        }
     }
 }

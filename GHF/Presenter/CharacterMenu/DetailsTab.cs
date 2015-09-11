@@ -36,8 +36,8 @@ namespace GHF.Presenter.CharacterMenu
         {
             this.ThrowIfMenuIsNotLoaded();
             this.currentDetails.Background = this.loadedMenu.GetValue(DetailsTabLabels.Background) as string;
-            this.currentDetails.Goals = this.loadedMenu.GetValue(DetailsTabLabels.Goals) as string;
-            this.currentDetails.CurrentLocation = this.loadedMenu.GetValue(DetailsTabLabels.CurrentLocation) as string;
+            //this.currentDetails.Goals = this.loadedMenu.GetValue(DetailsTabLabels.Goals) as string;
+            //this.currentDetails.CurrentLocation = this.loadedMenu.GetValue(DetailsTabLabels.CurrentLocation) as string;
         }
 
         private void AddAndUpdateFieldIfNeeded(string label, string value)

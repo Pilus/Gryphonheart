@@ -62,6 +62,7 @@
     <Compile Include="GHAddOnTestable.cs" />
     <Compile Include="GHFTests\Integration\CharacterListButtonWrapper.cs" />
     <Compile Include="GHMenuTestable.cs" />
+    <Compile Include="GHSessionBuilderExtension.cs" />
     <Compile Include="Wrappers\ButtonTemplateWrapper.cs" />
     <Compile Include="Wrappers\EditBoxWithFiltersWrapper.cs" />
     <Compile Include="GHCTests\Integration\GHCIntegrationTest.cs" />

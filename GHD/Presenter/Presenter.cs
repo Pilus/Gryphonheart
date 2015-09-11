@@ -1,6 +1,7 @@
 ﻿
 namespace GHD.Presenter
 {
+    using BlizzardApi.Global;
     using Document;
     using GH.Integration;
     using GH.Model.Defaults;
@@ -12,10 +13,10 @@ namespace GHD.Presenter
         private readonly IModelProvider model;
         private DocumentMenu documentMenu;
 
-        public Presenter(IModelProvider model)
+        public Presenter(IModelProvider model, IAddOnIntegration integration)
         {
             this.model = model;
-            DefaultQuickButtons.RegisterDefaultButton(new QuickButton(
+            integration.RegisterDefaultButton(new QuickButton(
                 "ghdDocument",
                 6,
                 true,
@@ -23,6 +24,8 @@ namespace GHD.Presenter
                 "Interface\\Icons\\INV_Misc_Book_08",
                 ShowDocumentMenu,
                 AddOnReference.GHD));
+
+            integration.RegisterAddOn(AddOnReference.GHD);
         }
 
         private void ShowDocumentMenu()

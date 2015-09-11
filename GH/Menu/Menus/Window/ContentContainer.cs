@@ -12,6 +12,8 @@
         private readonly IFrame content;
         private readonly IFrame borderFrame;
         private readonly ITexture background;
+        private IFrame attachedTo;
+
         public ContentContainer(IFrame content)
         {
             this.content = content;
@@ -39,8 +41,14 @@
             return this.content.GetHeight() + TitleBar.BorderSize;
         }
 
+        public string GetName()
+        {
+            return this.content.GetName();
+        }
+
         public void AttachTo(IFrame frame)
         {
+            this.attachedTo = frame;
             this.content.SetParent(frame);
             this.content.SetPoint(FramePoint.TOP, frame, FramePoint.BOTTOM, 0, TitleBar.BorderSize/2);
         }

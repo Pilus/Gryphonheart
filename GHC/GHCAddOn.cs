@@ -15,11 +15,14 @@ namespace GHC
     [CsLuaAddOn("GHC", "Gryphonheart Crime", 60200, Author = "The Gryphonheart Team", Dependencies = new []{"GH"})]
     public class GHCAddOn : ICsLuaAddOn
     {
+        private IAddOnIntegration integration;
+
         public void Execute()
         {
             Misc.RegisterEvent(SystemEvent.ADDON_LOADED, this.OnAddOnLoaded);
+            this.integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
 
-            DefaultQuickButtons.RegisterDefaultButton(new QuickButton(
+            this.integration.RegisterDefaultButton(new QuickButton(
                 "ghcMain",
                 6,
                 true,
@@ -33,7 +36,7 @@ namespace GHC
         {
             if (addonName.Equals("GHC"))
             {
-                AddOnRegister.RegisterAddOn(AddOnReference.GHC);
+                this.integration.RegisterAddOn(AddOnReference.GHC);
             }
         }
 

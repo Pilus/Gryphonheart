@@ -18,8 +18,7 @@ namespace GHF.Presenter
         public Presenter(IModelProvider model)
         {
             this.model = model;
-
-            DefaultQuickButtons.RegisterDefaultButton(new QuickButton(
+            this.model.Integration.RegisterDefaultButton(new QuickButton(
                 "ghfProfile",
                 5,
                 true,

@@ -6,21 +6,27 @@
     using CsLua.Collection;
     using GH.Integration;
     using GH.Misc;
+    using GH.Model;
     using GH.ObjectHandling;
     using Presenter;
 
     public class ModelProvider : IModelProvider
     {
+        public const string SavedAccountProfiles = "GHF_AccountProfiles";
+
+        public IAddOnIntegration Integration { get; private set; }
 
         public ModelProvider()
         {
             var formatter = new TableFormatter<Profile>();
-            this.AccountProfiles = new IdObjectList<Profile, string>(formatter, new SavedDataHandler("GHF_AccountProfiles", Global.Api.GetRealmName()));
+            this.AccountProfiles = new IdObjectList<Profile, string>(formatter, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()));
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
+            this.Integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
+
+            this.Integration.RegisterAddOn(AddOnReference.GHF);
 
             new Presenter(this);
-            AddOnRegister.RegisterAddOn(AddOnReference.GHF);
         }
 
         private void SetPlayerProfileIfMissing()

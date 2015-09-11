@@ -89,6 +89,12 @@
         }
 
 
+        public override void Hide()
+        {
+            base.Hide();
+            this.scriptHandler.ExecuteScript(FrameHandler.OnHide, null, null, null, null);
+        }
+
         public IFontString CreateFontString()
         {
             return this.CreateFontString(null);

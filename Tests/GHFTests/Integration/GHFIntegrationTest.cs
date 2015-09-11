@@ -13,60 +13,54 @@
     public class GHFIntegrationTest
     {
         [TestMethod]
-        public void UpdateProfile()
+        public void SimpleProfileLifecycle()
         {
             var session = new SessionBuilder()
                 .WithPlayerName("Tester")
-                .WithXmlFile(@"Menu\Objects\Button\ButtonFrame.xml")
-                .WithXmlFile(@"Menu\Objects\Editbox\EditBoxFrame.xml")
-                .WithXmlFile(@"Menu\Objects\TextLabelWithTooltip.xml")
-                .WithXmlFile(@"Menu\Objects\EditField\EditFieldFrame.xml")
-                .WithXmlFile(@"Menu\Objects\Text\TextObject.xml")
-                .WithXmlFile(@"Xml\UIPanelScrollFrame.xml")
-                .WithFrameWrapper("GH_EditBoxWithFilters_Template", EditBoxWithFiltersWrapper.Init)
-                .WithFrameWrapper("GH_TextLabel_Template", TextLabelWithTooltipWrapper.Init)
-                .WithFrameWrapper("GH_Button_Template", ButtonTemplateWrapper.Init)
-                .WithFrameWrapper("GH_EditFieldFrame_Template", EditFieldFrameWrapper.Init)
-                .WithFrameWrapper("GH_TextObject_Template", TextObjectFrameWrapper.Init)
-                .WithIgnoredXmlTemplate("SystemFont_Med2")
-                .WithIgnoredXmlTemplate("UIPanelCloseButton")
-                .WithIgnoredXmlTemplate("CharacterFrameTabButtonTemplate")
-                .WithIgnoredXmlTemplate("UIPanelButtonUpTexture")
-                .WithIgnoredXmlTemplate("UIPanelButtonDownTexture")
-                .WithIgnoredXmlTemplate("UIPanelButtonDisabledTexture")
-                .WithIgnoredXmlTemplate("UIPanelButtonHighlightTexture")
-                .WithIgnoredXmlTemplate("UIPanelScrollBarButton")
-                .WithXmlFile(@"View\CharacterMenuProfile\CharacterList\CharacterListButton.xml")
-                .WithFrameWrapper("GHF_CharacterListButtonTemplate", CharacterListButtonWrapper.Init)
-                .WithAddOn(new GHAddOn())
-                .WithAddOn(new GHFAddOn())
+                .WithGH()
+                .WithGHF()
                 .Build();
 
-            var optionsContainer = session.FrameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "InterfaceOptionsFramePanelContainer") as IFrame;
-            optionsContainer.SetWidth(400);
-            optionsContainer.SetHeight(500);
-
-            Action<INativeUIObject, int> PanelTemplates_SetNumTabs = this.PanelTemplates_SetNumTabs;
-            session.SetGlobal("PanelTemplates_SetNumTabs", PanelTemplates_SetNumTabs);
-            session.SetGlobal("PanelTemplates_SetTab", PanelTemplates_SetNumTabs);
-            
             session.RunStartup();
 
             var ghTestable = new GHAddOnTestable(session);
+            var menuTestable = new GHMenuTestable(session);
 
             ghTestable.MouseOverMainButton();
             ghTestable.ClickSubButton("Interface\\Icons\\Spell_Misc_EmotionHappy");
-
-
-            var menuTestable = new GHMenuTestable(session);
-
-            menuTestable.SelectMenu("GHF_CharacterMenu");
-            menuTestable.VerifyLabelVisible("First Name:");
-        }
-
-        private void PanelTemplates_SetNumTabs(INativeUIObject _, int i)
-        {
             
+            menuTestable.SelectMenu("GHF_CharacterMenu");
+            Assert.AreEqual("Tester", menuTestable.GetObjectValue("First Name:"));
+            Assert.AreEqual("", menuTestable.GetObjectValue("Middle Name(s):"));
+            Assert.AreEqual("", menuTestable.GetObjectValue("Last Name:"));
+
+            menuTestable.SetObjectValue("First Name:", "Testperson");
+            menuTestable.SetObjectValue("Middle Name(s):", "von der");
+            menuTestable.SetObjectValue("Last Name:", "Testa");
+
+            menuTestable.CloseMenu();
+
+            var savedVars = session.GetSavedVariables();
+
+            var session2 = new SessionBuilder()
+                .WithPlayerName("Tester")
+                .WithGH()
+                .WithGHF()
+                .WithSavedVariables(savedVars)
+                .Build();
+
+            session2.RunStartup();
+
+            var ghTestable2 = new GHAddOnTestable(session2);
+            var menuTestable2 = new GHMenuTestable(session2);
+
+            ghTestable2.MouseOverMainButton();
+            ghTestable2.ClickSubButton("Interface\\Icons\\Spell_Misc_EmotionHappy");
+
+            menuTestable2.SelectMenu("GHF_CharacterMenu");
+            Assert.AreEqual("Testperson", menuTestable2.GetObjectValue("First Name:"));
+            Assert.AreEqual("von der", menuTestable2.GetObjectValue("Middle Name(s):"));
+            Assert.AreEqual("Testa", menuTestable2.GetObjectValue("Last Name:"));
         }
     }
 }
