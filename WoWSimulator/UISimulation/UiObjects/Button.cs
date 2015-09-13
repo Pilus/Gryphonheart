@@ -11,9 +11,7 @@
         private string text;
         private UiInitUtil util;
 
-        private string normalTexturePath;
         private ITexture normalTexture;
-        private string pushedTexturePath;
         private ITexture pushedTexture;
 
         public Button(UiInitUtil util, string objectType, ButtonType frameType, IRegion parent)
@@ -275,12 +273,12 @@
 
         public void SetNormalTexture(ITexture texture)
         {
-            throw new NotImplementedException();
+            this.normalTexture = texture;
         }
 
         public void SetNormalTexture(string texturePath)
         {
-            this.normalTexturePath = texturePath;
+            this.normalTexture = (ITexture)this.util.CreateObject(new TextureType() { file = texturePath });
         }
 
         public void SetNormalFontObject(IFontString fontString)
@@ -295,12 +293,12 @@
 
         public void SetPushedTexture(ITexture texture)
         {
-            throw new NotImplementedException();
+            this.pushedTexture = texture;
         }
 
         public void SetPushedTexture(string texturePath)
         {
-            //throw new NotImplementedException();
+            this.pushedTexture = (ITexture)this.util.CreateObject(new TextureType() { file = texturePath});
         }
 
         public void SetText(string text)

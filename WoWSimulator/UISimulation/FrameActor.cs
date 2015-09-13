@@ -22,10 +22,30 @@
             this.currentMenu = menu;
         }
 
+        private bool ButtonMatchesText(IButton button, string text)
+        {
+            if (button.GetText().Equals(text))
+            {
+                return true;
+            }
+
+            var pushedTexture = button.GetNormalTexture();
+            if (pushedTexture != null)
+            {
+                if (text.Equals(pushedTexture.GetTexture()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void Click(string text)
         {
             var button = (IButton)this.util.GetVisibleFrames()
-                .FirstOrDefault(b => b is IButton && (b as IButton).GetText().Equals(text));
+                .FirstOrDefault(f => f is IButton && this.ButtonMatchesText(f as IButton, text));
+
             if (button != null)
             {
                 this.Click(button);

@@ -62,12 +62,12 @@
             }
         }
 
-        private Regex textLabelObjectRegex = new Regex(@"ObjectWithTextLabel\d+$");
+        private readonly Regex textLabelObjectRegex = new Regex(@"ObjectWithTextLabel\d+$");
 
         private IFrame GetObjectOfLabel(IFontString label)
         {
             var frame = label.GetParent();
-            while (!textLabelObjectRegex.IsMatch(frame.GetName()))
+            while (!this.textLabelObjectRegex.IsMatch(frame.GetName()))
             {
                 frame = frame.GetParent();
 

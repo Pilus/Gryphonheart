@@ -20,7 +20,7 @@
 
         private void ApplyType(TextureType type)
         {
-            if (string.IsNullOrEmpty(type.file)) this.SetTexture(type.file);
+            if (!string.IsNullOrEmpty(type.file)) this.SetTexture(type.file);
         }
 
         public DrawLayer GetDrawLayer()
