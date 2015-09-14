@@ -32,13 +32,14 @@
         private void SetPlayerProfileIfMissing()
         {
             var playerName = Global.Api.UnitName(UnitId.player);
+            var className = Global.Api.UnitClass(UnitId.player).Value2;
             var ownProfile = this.AccountProfiles.Get(playerName);
             if (ownProfile != null)
             {
                 return;
             }
 
-            var profile = new Profile(playerName);
+            var profile = new Profile(playerName, className);
 
             this.AccountProfiles.Set(playerName, profile);
         }

@@ -89,6 +89,7 @@
             var analyzedText = string.Empty;
             Func<string, bool> validate = (str) =>
             {
+                if (string.IsNullOrEmpty(str)) return false;
                 analyzedText += "'" + str + "' ";
                 return (!exact && str.Contains(text)) || str.Equals(text);
             };

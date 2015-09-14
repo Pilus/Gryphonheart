@@ -11,10 +11,11 @@
             
         }
 
-        public Profile(string playerName)
+        public Profile(string playerName, string className)
         {
             this.Id = playerName;
             this.FirstName = playerName;
+            this.Class = className;
             this.Details = new Details();
         }
 
@@ -31,6 +32,6 @@
 
         public Details Details { get; set; }
 
-        
+        public string Class { get; set; }
     }
 }

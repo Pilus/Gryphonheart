@@ -24,6 +24,18 @@
             </Offset>
           </Shadow>
         </FontString>
+        <Texture name="$parentIcon" parentKey="Icon">
+          <Size>
+            <AbsDimension x="32" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="0" y="0" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </Texture>
       </Layer>
     </Layers>
   </CheckButton>

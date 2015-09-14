@@ -6,5 +6,6 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
     public interface ICharacterListButton : ICheckButton
     {
         IFontString NameLabel { get; }
+        ITexture Icon { get; }
     }
 }

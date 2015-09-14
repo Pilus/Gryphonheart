@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLuaConverterTrigger", "Cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuTest", "MenuTest\MenuTest.csproj", "{342F64F4-25CF-422F-9575-5E123F7D02E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLuaTestUtils", "CsLuaTestUtils\CsLuaTestUtils.csproj", "{52B30640-CBF4-43DB-93B1-7B1D66C48924}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{342F64F4-25CF-422F-9575-5E123F7D02E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342F64F4-25CF-422F-9575-5E123F7D02E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342F64F4-25CF-422F-9575-5E123F7D02E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52B30640-CBF4-43DB-93B1-7B1D66C48924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B30640-CBF4-43DB-93B1-7B1D66C48924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B30640-CBF4-43DB-93B1-7B1D66C48924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B30640-CBF4-43DB-93B1-7B1D66C48924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

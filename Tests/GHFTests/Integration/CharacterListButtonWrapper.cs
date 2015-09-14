@@ -21,5 +21,10 @@
         {
             get { return (IFontString) this["NameLabel"]; }
         }
+
+        public ITexture Icon
+        {
+            get { return (ITexture)this["Icon"]; }
+        }
     }
 }

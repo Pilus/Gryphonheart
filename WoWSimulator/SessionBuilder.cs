@@ -7,7 +7,9 @@
     using BlizzardApi.MiscEnums;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using CsLua.Wrapping;
     using CsLuaAttributes;
+    using CsLuaTestUtils;
     using Lua;
     using Moq;
     using SavedData;
@@ -120,6 +122,14 @@
         public SessionBuilder WithPlayerName(string name)
         {
             this.apiMock.Setup(api => api.UnitName(UnitId.player)).Returns(name);
+            return this;
+        }
+
+        public SessionBuilder WithPlayerClass(string className)
+        {
+            var classNumber = new List<string>() {"None", "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "DeathKnight", "Shaman", "Mage", "Warlock", "Monk", "Druid" };
+            var returnValue = TestUtil.StructureMultipleValues<string, string, int>(className, className.ToUpper(), classNumber.IndexOf(className));
+            this.apiMock.Setup(api => api.UnitClass(UnitId.player)).Returns(returnValue);
             return this;
         }
     }

@@ -68,6 +68,7 @@
         {
             var session = new SessionBuilder()
                 .WithPlayerName("Tester")
+                .WithPlayerClass("Mage")
                 .WithGH()
                 .WithGHF()
                 .Build();
@@ -95,6 +96,7 @@
 
             var session2 = new SessionBuilder()
                 .WithPlayerName("Pilus")
+                .WithPlayerClass("Warrior")
                 .WithGH()
                 .WithGHF()
                 .WithSavedVariables(savedVars)
@@ -115,6 +117,9 @@
 
             session2.Actor.Click("Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up");
             session2.Actor.VerifyVisible("Testperson von der Testa");
+            session2.Actor.VerifyVisible("Interface\\Icons\\INV_Staff_13"); // Mage
+            session2.Actor.VerifyVisible("Pilus");
+            session2.Actor.VerifyVisible("Interface\\Icons\\INV_Sword_27"); // Warrior
         }
     }
 }
