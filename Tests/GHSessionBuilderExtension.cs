@@ -4,6 +4,8 @@
     using GH;
     using GHF;
     using System;
+    using GHF.Model.MSP;
+    using Moq;
     using Tests.GHFTests.Integration;
     using Tests.Wrappers;
     using WoWSimulator;
@@ -54,7 +56,13 @@
             return sessionBuilder
                 .WithXmlFile(@"View\CharacterMenuProfile\CharacterList\CharacterListButton.xml")
                 .WithFrameWrapper("GHF_CharacterListButtonTemplate", CharacterListButtonWrapper.Init)
-                .WithAddOn(new GHFAddOn());
+                .WithAddOn(new GHFAddOn())
+                .WithPostBuildAction(s =>
+                {
+                    var msp = new Mock<ILibMSPWrapper>();
+                    msp.Setup(m => m.GetEmptyFieldsObj()).Returns(new MspFieldsMock());
+                    s.SetGlobal("libMSPWrapper", msp.Object);
+                });
         }
     }
 }

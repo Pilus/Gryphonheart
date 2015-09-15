@@ -7,6 +7,7 @@
     using GH.Model.Defaults;
     using BlizzardApi.EventEnums;
     using GH.Integration;
+    using ObjectHandling.Storage;
 
     public class ModelProvider : IModelProvider
     {
@@ -18,19 +19,19 @@
             this.integration = integration;
             DefaultQuickButtons.RegisterDefaultButtons(this.integration);
 
-            this.ButtonList = new IdObjectListWithDefaults<IQuickButton, string>("GH_Buttons");
+            this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>("GH_Buttons");
             
-            this.Settings = new IdObjectListWithDefaults<ISetting, SettingIds>("GH_Settings");
+            this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>("GH_Settings");
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
         }
 
         private void OnVariablesLoaded(SystemEvent eventName, object _)
         {
-            this.integration.RetrieveDefaultButtons().Foreach(this.ButtonList.SetDefault);
+            this.integration.RetrieveDefaultButtons().Foreach(this.ButtonStore.SetDefault);
             DefaultSettings.AddToModel(this.Settings);
 
-            this.ButtonList.LoadFromSaved();
+            this.ButtonStore.LoadFromSaved();
             this.Settings.LoadFromSaved();
             this.presenter = new Presenter(this);
         }
@@ -40,12 +41,12 @@
             return this.integration.IsAddOnLoaded(addonReference);
         }
 
-        public IIdObjectListWithDefaults<IQuickButton, string> ButtonList { 
+        public IObjectStoreWithDefaults<IQuickButton, string> ButtonStore { 
             get; 
             private set; 
         }
 
-        public IIdObjectListWithDefaults<ISetting, SettingIds> Settings
+        public IObjectStoreWithDefaults<ISetting, SettingIds> Settings
         {
             get;
             private set; 

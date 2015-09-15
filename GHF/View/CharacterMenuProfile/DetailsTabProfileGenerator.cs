@@ -71,7 +71,7 @@ namespace GHF.View.CharacterMenuProfile
             };
         }
 
-        public static string GetFieldName(string label)
+        public static string GetLocalizedFieldName(string label)
         {
             switch (label)
             {
@@ -95,7 +95,7 @@ namespace GHF.View.CharacterMenuProfile
             return new EditFieldProfile()
             {
                 align = ObjectAlign.l,
-                text = GetFieldName(label) + ":",
+                text = GetLocalizedFieldName(label) + ":",
                 label = label,
             };
         }
@@ -109,7 +109,7 @@ namespace GHF.View.CharacterMenuProfile
                 list.Add(new DropDownData()
                 {
                     value = fieldLabel,
-                    text = GetFieldName(fieldLabel) + ":",
+                    text = GetLocalizedFieldName(fieldLabel) + ":",
                     disabled = IsFieldAdded(fieldLabel),
                     onSelect = () => AddAdditionalField(fieldLabel)
                 });

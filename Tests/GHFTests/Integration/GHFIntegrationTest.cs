@@ -8,6 +8,8 @@
     using WoWSimulator;
     using Wrappers;
     using CsLuaAttributes;
+    using GHF.Model.MSP;
+    using Moq;
 
     [TestClass]
     public class GHFIntegrationTest
@@ -17,6 +19,10 @@
         {
             var session = new SessionBuilder()
                 .WithPlayerName("Tester")
+                .WithPlayerClass("Druid")
+                .WithPlayerGuid("g1")
+                .WithPlayerRace("Human")
+                .WithPlayerSex(2)
                 .WithGH()
                 .WithGHF()
                 .Build();
@@ -33,10 +39,13 @@
             Assert.AreEqual("Tester", menuTestable.GetObjectValue("First Name:"));
             Assert.AreEqual("", menuTestable.GetObjectValue("Middle Name(s):"));
             Assert.AreEqual("", menuTestable.GetObjectValue("Last Name:"));
+            Assert.AreEqual("", menuTestable.GetObjectValue("Background:"));
 
             menuTestable.SetObjectValue("First Name:", "Testperson");
             menuTestable.SetObjectValue("Middle Name(s):", "von der");
             menuTestable.SetObjectValue("Last Name:", "Testa");
+            menuTestable.SetObjectValue("Appearance:", "Looks");
+            menuTestable.SetObjectValue("Background:", "Background story.");
 
             menuTestable.CloseMenu();
 
@@ -44,6 +53,10 @@
 
             var session2 = new SessionBuilder()
                 .WithPlayerName("Tester")
+                .WithPlayerClass("Druid")
+                .WithPlayerGuid("g1")
+                .WithPlayerRace("Human")
+                .WithPlayerSex(2)
                 .WithGH()
                 .WithGHF()
                 .WithSavedVariables(savedVars)
@@ -61,6 +74,8 @@
             Assert.AreEqual("Testperson", menuTestable2.GetObjectValue("First Name:"));
             Assert.AreEqual("von der", menuTestable2.GetObjectValue("Middle Name(s):"));
             Assert.AreEqual("Testa", menuTestable2.GetObjectValue("Last Name:"));
+            Assert.AreEqual("Looks", menuTestable2.GetObjectValue("Appearance:"));
+            Assert.AreEqual("Background story.", menuTestable2.GetObjectValue("Background:"));
         }
 
         [TestMethod]
@@ -69,6 +84,9 @@
             var session = new SessionBuilder()
                 .WithPlayerName("Tester")
                 .WithPlayerClass("Mage")
+                .WithPlayerGuid("g1")
+                .WithPlayerRace("Human")
+                .WithPlayerSex(2)
                 .WithGH()
                 .WithGHF()
                 .Build();
@@ -97,6 +115,9 @@
             var session2 = new SessionBuilder()
                 .WithPlayerName("Pilus")
                 .WithPlayerClass("Warrior")
+                .WithPlayerGuid("g2")
+                .WithPlayerRace("Human")
+                .WithPlayerSex(2)
                 .WithGH()
                 .WithGHF()
                 .WithSavedVariables(savedVars)

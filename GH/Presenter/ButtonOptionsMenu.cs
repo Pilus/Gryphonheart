@@ -23,7 +23,7 @@
         private void OnShow()
         {
             this.SetUp();
-            var buttons = this.model.ButtonList.GetAll()
+            var buttons = this.model.ButtonStore.GetAll()
                 .OrderBy(button => button.Order);
             //this.menu.ForceLabel("test", "Something");
         }

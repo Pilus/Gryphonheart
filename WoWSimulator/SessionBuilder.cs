@@ -128,8 +128,27 @@
         public SessionBuilder WithPlayerClass(string className)
         {
             var classNumber = new List<string>() {"None", "Warrior", "Paladin", "Hunter", "Rogue", "Priest", "DeathKnight", "Shaman", "Mage", "Warlock", "Monk", "Druid" };
-            var returnValue = TestUtil.StructureMultipleValues<string, string, int>(className, className.ToUpper(), classNumber.IndexOf(className));
+            var returnValue = TestUtil.StructureMultipleValues(className, className.ToUpper(), classNumber.IndexOf(className));
             this.apiMock.Setup(api => api.UnitClass(UnitId.player)).Returns(returnValue);
+            return this;
+        }
+
+        public SessionBuilder WithPlayerRace(string race)
+        {
+            var returnValue = TestUtil.StructureMultipleValues(race+"Loc", race);
+            this.apiMock.Setup(api => api.UnitRace(UnitId.player)).Returns(returnValue);
+            return this;
+        }
+
+        public SessionBuilder WithPlayerGuid(string guid)
+        {
+            this.apiMock.Setup(api => api.UnitGUID(UnitId.player)).Returns(guid);
+            return this;
+        }
+
+        public SessionBuilder WithPlayerSex(int sex)
+        {
+            this.apiMock.Setup(api => api.UnitSex(UnitId.player)).Returns(sex);
             return this;
         }
     }

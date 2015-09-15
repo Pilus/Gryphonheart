@@ -52,7 +52,12 @@
     <Compile Include="Model\IDetails.cs" />
     <Compile Include="Model\IModelProvider.cs" />
     <Compile Include="Model\ModelProvider.cs" />
+    <Compile Include="Model\MSP\ILibMSPWrapper.cs" />
+    <Compile Include="Model\MSP\IMSPFields.cs" />
+    <Compile Include="Model\MSP\MSPFieldNames.cs" />
+    <Compile Include="Model\MSP\MSPProxy.cs" />
     <Compile Include="Model\Profile.cs" />
+    <Compile Include="Model\ProfileFormatter.cs" />
     <Compile Include="Presenter\CharacterMenu\DetailsTab.cs" />
     <Compile Include="Presenter\CharacterMenu\MainCharacterMenu.cs" />
     <Compile Include="Presenter\CharacterMenu\ICharacterMenuTab.cs" />
@@ -72,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Model\MSP\LibMSP.lua" />
+    <None Include="Model\MSP\LibMSPWrapper.lua" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\CharacterMenuProfile\CharacterList\CharacterListButton.xml">

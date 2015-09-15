@@ -5,7 +5,7 @@
 
     public class TestUtil
     {
-        public static IMultipleValues<T1, T2> StructureMultipleValues<T1, T2, T3>(T1 value1, T2 value2)
+        public static IMultipleValues<T1, T2> StructureMultipleValues<T1, T2>(T1 value1, T2 value2)
         {
             var mock = new Mock<IMultipleValues<T1, T2>>();
 

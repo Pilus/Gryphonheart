@@ -3,6 +3,7 @@
     using BlizzardApi.WidgetInterfaces;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using GH.Menu.Objects.EditField;
     using WoWSimulator;
     using WoWSimulator.UISimulation;
 
@@ -99,6 +100,8 @@
             {
                 case "Editbox":
                     return (obj as IEditBox).GetText();
+                case "EditField":
+                    return (obj as IEditFieldFrame).Text.GetText();
                 default:
                     throw new UiSimuationException(string.Format("Could not get value from object type '{0}'.", name));
             }
@@ -112,6 +115,9 @@
             {
                 case "Editbox":
                     (obj as IEditBox).SetText(value as string);
+                    break;
+                case "EditField":
+                    (obj as IEditFieldFrame).Text.SetText(value as string);
                     break;
                 default:
                     throw new UiSimuationException(string.Format("Could not set value on object type '{0}'.", name));

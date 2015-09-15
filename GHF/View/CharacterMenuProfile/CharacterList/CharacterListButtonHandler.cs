@@ -34,20 +34,22 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
 
         private Action onClickAction;
         private Profile profile;
+        private ProfileFormatter formatter;
 
-        public CharacterListButtonHandler(IFrame parent)
+        public CharacterListButtonHandler(IFrame parent, ProfileFormatter formatter)
         {
             this.Button = (ICharacterListButton)Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "Button"), parent, Template);
             this.Button.SetScript(ButtonHandler.OnClick, this.OnClick);
             this.Button.SetWidth(Width);
             this.Button.SetHeight(Height);
+            this.formatter = formatter;
         }
 
         public void Display(Profile profile)
         {
             this.profile = profile;
-            this.Button.NameLabel.SetText(profile.FirstName + " "  + (profile.MiddleNames == null ? "" : (profile.MiddleNames + " ")) + profile.LastName);
-            this.Button.Icon.SetTexture(classIcons[profile.Class]);
+            this.Button.NameLabel.SetText(this.formatter.GetFullName(profile));
+            this.Button.Icon.SetTexture(classIcons[profile.GameClass]);
         }
 
         public void SetClick(Action action)

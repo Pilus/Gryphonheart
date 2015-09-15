@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="GHAddOnTestable.cs" />
     <Compile Include="GHFTests\Integration\CharacterListButtonWrapper.cs" />
+    <Compile Include="GHFTests\Integration\GhfMspIntegrationTests.cs" />
+    <Compile Include="GHFTests\Integration\MspFieldsMock.cs" />
     <Compile Include="GHMenuTestable.cs" />
     <Compile Include="GHSessionBuilderExtension.cs" />
     <Compile Include="Wrappers\ButtonTemplateWrapper.cs" />

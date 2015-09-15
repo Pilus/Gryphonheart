@@ -45,6 +45,9 @@ namespace GHF.Presenter.CharacterMenu
                 case ProfileTabLabels.LastName:
                     this.currentProfile.LastName = (string) obj;
                     break;
+                case ProfileTabLabels.Appearance:
+                    this.currentProfile.Appearance = (string) obj;
+                    break;
                 default:
                     throw new CsException("Unknown menu label key " + key);
             }

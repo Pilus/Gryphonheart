@@ -4,11 +4,12 @@ namespace GH.Model
 {
     using GH.Integration;
     using GH.ObjectHandling;
+    using ObjectHandling.Storage;
 
     public interface IModelProvider
     {
-        IIdObjectListWithDefaults<IQuickButton, string> ButtonList { get; }
-        IIdObjectListWithDefaults<ISetting, SettingIds> Settings { get; }
+        IObjectStoreWithDefaults<IQuickButton, string> ButtonStore { get; }
+        IObjectStoreWithDefaults<ISetting, SettingIds> Settings { get; }
         bool IsAddOnLoaded(AddOnReference addonReference);
     }
 }

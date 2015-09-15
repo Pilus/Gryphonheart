@@ -1,5 +1,6 @@
 ﻿namespace GHF
 {
+    using BlizzardApi.Global;
     using CsLuaAttributes;
     using Lua;
     using Model;
@@ -9,6 +10,13 @@
     {
         public void Execute()
         {
+            // Check for existing MSP RP AddOn.
+            if (Global.Api.GetGlobal("msp_RPAddOn") != null)
+            {
+                Core.print("GHF stopped loading due to conflict with another MSP RP AddOn:", Global.Api.GetGlobal("msp_RPAddOn"));
+            }
+            Global.Api.SetGlobal("msp_RPAddOn", "GHF");
+
             var model = new ModelProvider();
         }
     }

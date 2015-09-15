@@ -80,9 +80,10 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
 
         private void PrepareButtons(int count)
         {
+            var formatter = new ProfileFormatter();
             for (var i = this.buttons.Count; i < count; i++)
             {
-                var button = new CharacterListButtonHandler(this.frame);
+                var button = new CharacterListButtonHandler(this.frame, formatter);
                 if (i == 0)
                 {
                     button.Button.SetPoint(FramePoint.TOP, this.frame, FramePoint.TOP);

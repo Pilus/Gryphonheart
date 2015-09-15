@@ -104,6 +104,7 @@ namespace GHF.View
                         label = ProfileTabLabels.Appearance,
                     }
                 },
+                /* TODO: Reenable when link of GHI item in appearance is implemented.
                 new LineProfile()
                 {
                     new TextProfile()
@@ -112,7 +113,7 @@ namespace GHF.View
                         text = "Tip: Shift click GHI items to link them in the apperance text.",
                         color = TextColor.white,
                     }
-                },
+                }, */
             };
         }
     }

@@ -11,11 +11,14 @@
             
         }
 
-        public Profile(string playerName, string className)
+        public Profile(string playerName, string gameClassName, string gameRace, string gameSex, string guid)
         {
             this.Id = playerName;
             this.FirstName = playerName;
-            this.Class = className;
+            this.GameClass = gameClassName;
+            this.GameRace = gameRace;
+            this.GameSex = gameSex;
+            this.Guid = guid;
             this.Details = new Details();
         }
 
@@ -32,6 +35,9 @@
 
         public Details Details { get; set; }
 
-        public string Class { get; set; }
+        public string GameClass { get; set; }
+        public string GameRace { get; set; }
+        public string GameSex { get; set; }
+        public string Guid { get; set; }
     }
 }
