@@ -1,6 +1,7 @@
 ﻿namespace Tests.GHFTests.Integration
 {
     using System.Collections.Generic;
+    using GH;
     using GHF.Model.MSP;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
@@ -35,11 +36,14 @@
 
             var expectedValues = new Dictionary<string, string>()
             {
+                { "VP", "1" },
+                { "VA", "GH/3.0.1" },
                 { "NA", "Tester" },
                 { "GC", "WARRIOR" },
                 { "GR", "Human" },
                 { "GS", "2" },
                 { "GU", "g1" },
+                { "DE", null },
             };
 
             Assert.AreEqual(expectedValues.Count, fieldsMock.Count);
@@ -50,7 +54,7 @@
                 Assert.AreEqual(expected.Value, fieldsMock[expected.Key]);
             }
 
-            /*
+            
             var ghTestable = new GHAddOnTestable(session);
             var menuTestable = new GHMenuTestable(session);
 
@@ -66,8 +70,17 @@
             menuTestable.SetObjectValue("Background:", "Background story.");
 
             menuTestable.CloseMenu();
-            
-            */
+
+            expectedValues["NA"] = "Testperson von der Testa";
+            expectedValues["DE"] = "Looks";
+
+            Assert.AreEqual(expectedValues.Count, fieldsMock.Count);
+
+            foreach (var expected in expectedValues)
+            {
+                Assert.IsTrue(fieldsMock.ContainsKey(expected.Key));
+                Assert.AreEqual(expected.Value, fieldsMock[expected.Key]);
+            }
         }
     }
 }

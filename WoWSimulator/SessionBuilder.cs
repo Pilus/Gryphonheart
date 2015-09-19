@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using ApiMocks;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
@@ -63,12 +64,26 @@
             if (this.savedVariables != null) savedDataHandler.Load(this.savedVariables);
 
             var wrapper = new MockObjectWrapper(this.apiMock.Object);
-
+            this.MockAddOnApi(this.apiMock);
             var session = new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler, wrapper);
 
             this.postBuildActions.ForEach(action => action(session));
 
             return session;
+        }
+
+        private void MockAddOnApi(Mock<IApi> mock)
+        {
+            mock.Setup(api => api.GetAddOnMetadata(It.IsAny<string>(), It.IsAny<string>())).Returns(
+            (string addOnName, string variableName) =>
+            {
+                var addOn = this.addOns.FirstOrDefault(a => a.Name.Equals(addOnName));
+                if (addOn != null && addOn.TocValues.ContainsKey(variableName))
+                {
+                    return addOn.TocValues[variableName];
+                }
+                return null;
+            });
         }
 
         public SessionBuilder WithApiMock(IApiMock mock)

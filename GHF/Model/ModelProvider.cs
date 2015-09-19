@@ -37,7 +37,8 @@
             this.Integration.RegisterAddOn(AddOnReference.GHF);
 
             var playerName = Global.Api.UnitName(UnitId.player);
-            this.msp = new MSPProxy(new ProfileFormatter());
+            var version = Global.Api.GetAddOnMetadata(Strings.tostring(AddOnReference.GH), "Version");
+            this.msp = new MSPProxy(new ProfileFormatter(), version);
             this.subscriptionCenter.SubscribeForUpdates(this.msp.Set, profile => profile.Id.Equals(playerName));
 
             new Presenter(this);

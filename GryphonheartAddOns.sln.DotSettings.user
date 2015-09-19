@@ -4,4 +4,5 @@
   &lt;Assembly Path="C:\Users\Christian\OneDrive\Code\GryphonheartAddOns\Tests\bin\Debug\Moq.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" /&gt;&#xD;
+  &lt;Assembly Path="D:\World of Warcraft\Interface\Gryphonheart\CsLuaConverter\CsLuaAttributes.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
