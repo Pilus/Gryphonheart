@@ -1,6 +1,8 @@
 ﻿namespace GHF.Model
 {
     using System;
+    using System.Collections.Generic;
+    using CsLua.Collection;
     using GH.ObjectHandling;
 
     [Serializable]
@@ -20,6 +22,7 @@
             this.GameSex = gameSex;
             this.Guid = guid;
             this.Details = new Details();
+            this.AdditionalFields = new CsLuaDictionary<string, string>();
         }
 
         public string Id { get; set; }
@@ -29,15 +32,31 @@
 
         public string MiddleNames { get; set; }
 
-        public string Title { get; set; }
-
         public string Appearance { get; set; }
-
-        public Details Details { get; set; }
 
         public string GameClass { get; set; }
         public string GameRace { get; set; }
         public string GameSex { get; set; }
         public string Guid { get; set; }
+
+        public Details Details { get; set; }
+        public CsLuaDictionary<string, string> AdditionalFields { get; set; }
+
+        public static string GetAdditionalField(Profile profile, string id)
+        {
+            return profile.AdditionalFields.ContainsKey(id) ? profile.AdditionalFields[id] : null;
+        }
+
+        public static void SetAdditionalField(Profile profile, string id, string value)
+        {
+            if (value == null && profile.AdditionalFields.ContainsKey(id))
+            {
+                profile.AdditionalFields.Remove(id);
+            }
+            else
+            {
+                profile.AdditionalFields[id] = value;
+            }
+        }
     }
 }

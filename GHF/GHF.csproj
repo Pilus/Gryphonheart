@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="External\FlagQuickButtonInterface.cs" />
     <Compile Include="GHFAddOn.cs" />
+    <Compile Include="Model\AdditionalFields\IField.cs" />
+    <Compile Include="Model\AdditionalFields\SupportedFields.cs" />
+    <Compile Include="Model\AdditionalFields\TextField.cs" />
     <Compile Include="Model\Details.cs" />
     <Compile Include="Model\IDetails.cs" />
     <Compile Include="Model\IModelProvider.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="Model\MSP\IMSPFields.cs" />
     <Compile Include="Model\MSP\MSPFieldNames.cs" />
     <Compile Include="Model\MSP\MSPProxy.cs" />
+    <Compile Include="Model\MSP\MspProxyException.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\ProfileFormatter.cs" />
     <Compile Include="Presenter\CharacterMenu\DetailsTab.cs" />
