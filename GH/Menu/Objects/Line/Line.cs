@@ -18,12 +18,15 @@
 
         private readonly double objectSpacing;
 
+        private readonly LayoutSettings layoutSettings;
+
         public Line(LineProfile profile, IFrame parent, LayoutSettings layoutSettings, int lineNumber)
         {
             this.objects = new CsLuaList<IMenuObject>();
             this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Line" + lineNumber,
                 parent);
             this.objectSpacing = layoutSettings.objectSpacing;
+            this.layoutSettings = layoutSettings;
 
             profile.Foreach(objectProfile =>
             {
@@ -302,7 +305,7 @@
 
         public void AddElement(IObjectProfile profile)
         {
-            throw new NotImplementedException();
+            this.objects.Add(BaseObject.CreateMenuObject(profile, this, this.layoutSettings));
         }
 
         public void RemoveElement(string label)
@@ -328,6 +331,11 @@
         public void Clear()
         {
             this.objects.Foreach(obj => obj.Clear());
+        }
+
+        public int GetNumObjects()
+        {
+            return this.objects.Count;
         }
     }
 }

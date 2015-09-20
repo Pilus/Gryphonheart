@@ -60,12 +60,12 @@
             Action clickAction = new Action(() => { invoked++; });
 
             Action<IButton> providedAction = null;
-            buttonMock.Setup(f => f.SetScript(ButtonHandler.OnClick, It.IsAny<Action<IButton>>()))
+            buttonMock.Setup(f => f.SetScript(ButtonHandler.OnClick, It.IsAny<Action<INativeUIObject>>()))
                 .Callback((ButtonHandler handler, Action<IButton> action) => providedAction = action);
 
             viewUnderTest.SetTrackButtonOnClick(clickAction);
 
-            buttonMock.Verify(f => f.SetScript(ButtonHandler.OnClick, It.IsAny<Action<IButton>>()), Times.Once);
+            buttonMock.Verify(f => f.SetScript(ButtonHandler.OnClick, It.IsAny<Action<INativeUIObject>>()), Times.Once);
             Assert.IsTrue(providedAction != null, "SetScript action not received.");
             providedAction(buttonMock.Object);
 
@@ -154,7 +154,7 @@
         public void ViewShouldTriggerTheProvidedUpdateFunctionEvery100ms()
         {
             Action<IFrame> frameOnUpdate = null;
-            this.frameMock.Setup(frame => frame.SetScript(FrameHandler.OnUpdate, It.IsAny<Action<IFrame>>()))
+            this.frameMock.Setup(frame => frame.SetScript(FrameHandler.OnUpdate, It.IsAny<Action<INativeUIObject>>()))
                 .Callback<FrameHandler, Action<IFrame>>((handler, action) => frameOnUpdate = action);
 
             var viewUnderTest = new View(this.entitySelectionDropdownHandlerMock.Object);
@@ -401,7 +401,7 @@
                 .Returns(() => text);
 
             Action<IButton> clickAction = null;
-            mock.Setup(b => b.SetScript(ButtonHandler.OnClick, It.IsAny<Action<IButton>>()))
+            mock.Setup(b => b.SetScript(ButtonHandler.OnClick, It.IsAny<Action<INativeUIObject>>()))
                 .Callback((ButtonHandler handler, Action<IButton> action) => clickAction = action);
             mock.Setup(b => b.Click()).Callback(() => clickAction(mock.Object));
 

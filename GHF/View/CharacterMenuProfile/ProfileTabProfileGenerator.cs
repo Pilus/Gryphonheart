@@ -4,9 +4,11 @@ namespace GHF.View
 {
     using System;
     using CharacterMenuProfile;
+    using CsLua.Collection;
     using GH.Menu;
     using GH.Menu.Objects;
     using GH.Menu.Objects.Button;
+    using GH.Menu.Objects.DropDown;
     using GH.Menu.Objects.DropDown.ButtonWithDropDown;
     using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.EditBox;
@@ -16,10 +18,11 @@ namespace GHF.View
     using GH.Menu.Objects.Panel;
     using GH.Menu.Objects.Text;
     using GHF.View.CharacterMenuProfile.CharacterList;
+    using Model.AdditionalFields;
 
     public class ProfileTabProfileGenerator
     {
-        public PageProfile GenerateProfile(Action<string, object> valueUpdater)
+        public PageProfile GenerateProfile(Action<string, object> valueUpdater, Func<CsLuaDictionary<IField, Action>> getAvailableAdditionalFieldActions)
         {
             return new PageProfile("Profile")
             {
@@ -77,13 +80,19 @@ namespace GHF.View
                             new ButtonWithDropDownProfile()
                             {
                                 align = ObjectAlign.r,
-                                text = "Add Extra Fields",
+                                text = "Add Additional Fields",
                                 tooltip = "Click to add additional fields, such as title, nick name or others.",
                                 height = 26,
                                 width = 120,
-                                //dataFunc = () => {
-                                //    return GenerateDropDownData(IsFieldAdded, AddAdditionalField);
-                                //},
+                                dataFunc = () => {
+                                    var fields = getAvailableAdditionalFieldActions();
+                                    var data = new CsLuaList<DropDownData>();
+                                    foreach (var fieldPair in fields)
+                                    {
+                                        data.Add(new DropDownData(fieldPair.Key.Title, fieldPair.Value));
+                                    }
+                                    return data;
+                                },
                             } 
                         },
                     },

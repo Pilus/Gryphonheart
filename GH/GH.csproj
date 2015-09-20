@@ -167,6 +167,10 @@
     <Compile Include="Presenter\RoundButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Misc\SavedDataHandler.cs" />
+    <Compile Include="UIModules\EasyMenu\EasyDropDownMenuItem.cs" />
+    <Compile Include="UIModules\EasyMenu\EasyDropDownMenuList.cs" />
+    <Compile Include="UIModules\EasyMenu\EasyMenuHandler.cs" />
+    <Compile Include="UIModules\EasyMenu\IEasyDropDownMenuContent.cs" />
     <Compile Include="UIModules\SlashCommand.cs" />
     <Compile Include="View\ButtonOptionsMenuProfileGenerator.cs" />
     <Compile Include="Menu\Menus\IMenuProfileGenerator.cs" />

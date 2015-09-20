@@ -12,11 +12,12 @@
         private FrameStrata frameStrata;
 
         public readonly List<IFrame> Children = new List<IFrame>();
+        public readonly List<ILayeredRegion> Regions = new List<ILayeredRegion>();
+
         private readonly UiInitUtil util;
         private readonly List<string> registeredEvents = new List<string>();
 
         private readonly Script<FrameHandler, IFrame> scriptHandler;
-        private readonly List<ILayeredRegion> regions = new List<ILayeredRegion>();
 
         public Frame(UiInitUtil util, string objectType, FrameType frameType, IRegion parent)
             : base(util, objectType, frameType, parent)
@@ -85,7 +86,7 @@
         {
             var obj = (ILayeredRegion)this.util.CreateObject(item, this);
             obj.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer.level));
-            this.regions.Add(obj);
+            this.Regions.Add(obj);
         }
 
 
@@ -118,7 +119,7 @@
             }) as IFontString;
             fontString.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer));
 
-            this.regions.Add(fontString);
+            this.Regions.Add(fontString);
             return fontString;
         }
 
@@ -140,7 +141,7 @@
             }) as ITexture;
 
             texture.SetDrawLayer(this.util.ConvertEnum<DrawLayer>(layer));
-            this.regions.Add(texture);
+            this.Regions.Add(texture);
             return texture;
         }
 
@@ -276,12 +277,12 @@
 
         public int GetNumRegions()
         {
-            return this.regions.Count;
+            return this.Regions.Count;
         }
 
         public ILayeredRegion[] GetRegions()
         {
-            return this.regions.ToArray();
+            return this.Regions.ToArray();
         }
 
         public double GetScale()

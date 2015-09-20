@@ -134,7 +134,28 @@ namespace GH.Menu.Objects.Panel
             {
                 return;
             }
+
             this.innerPage.RemoveElement(label);
+        }
+
+        public int GetNumLines()
+        {
+            if (this.innerPage == null)
+            {
+                return 0;
+            }
+
+            return this.innerPage.GetNumLines();
+        }
+
+        public int GetNumObjects(int lineIndex)
+        {
+            if (this.innerPage == null)
+            {
+                return 0;
+            }
+
+            return this.innerPage.GetNumObjects(lineIndex);
         }
     }
 }

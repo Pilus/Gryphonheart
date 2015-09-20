@@ -43,11 +43,21 @@
 
         public void Click(string text)
         {
-            var button = (IButton)this.util.GetVisibleFrames()
+            var visibleFrames = this.util.GetVisibleFrames().ToList();
+            var button = (IButton)visibleFrames
                 .FirstOrDefault(f => f is IButton && this.ButtonMatchesText(f as IButton, text));
 
             if (button != null)
             {
+                this.Click(button);
+                return;
+            }
+
+            var label = visibleFrames.Where(f => f is IButton).SelectMany(f => f.GetRegions()).FirstOrDefault(r =>
+                (r is IFontString && text.Equals((r as IFontString).GetText())));
+            if (label != null)
+            {
+                button = (IButton) label.GetParent();
                 this.Click(button);
                 return;
             }

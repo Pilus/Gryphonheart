@@ -12,6 +12,8 @@
 
     public class Page : IPage
     {
+        private LayoutSettings layoutSettings;
+
         public IFrame Frame { get; private set; }
 
         private readonly CsLuaList<ILine> lines;
@@ -24,7 +26,8 @@
             this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Page" + pageNumber,
                 parent);
             this.lineSpacing = layoutSettings.lineSpacing;
-            
+            this.layoutSettings = layoutSettings;
+
             profile.Foreach(lineProfile =>
             {
                 this.lines.Add(new Line(lineProfile, this.Frame, layoutSettings, this.lines.Count + 1));
@@ -54,6 +57,20 @@
         public void Hide()
         {
             this.Frame.Hide();
+        }
+
+        public int GetNumLines()
+        {
+            return this.lines.Count;
+        }
+
+        public int GetNumObjects(int lineNum)
+        {
+            if (this.lines.Count > lineNum && this.lines.Count > 0)
+            {
+                return this.lines[lineNum].GetNumObjects();
+            }
+            return 0;
         }
 
 
@@ -124,7 +141,18 @@
 
         public void AddElement(int lineIndex, IObjectProfile profile)
         {
-            throw new System.NotImplementedException();
+            ILine line;
+            if (this.lines.Count > lineIndex)
+            {
+                line = this.lines[lineIndex];
+            }
+            else
+            {
+                line = new Line(new LineProfile(), this.Frame, this.layoutSettings, this.lines.Count + 1);
+                this.lines.Add(line);
+            }
+
+            line.AddElement(profile);
         }
 
         public void SetValue(object value)

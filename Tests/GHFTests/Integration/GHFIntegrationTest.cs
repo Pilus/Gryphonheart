@@ -8,7 +8,9 @@
     using WoWSimulator;
     using Wrappers;
     using CsLuaAttributes;
+    using GHF.Model;
     using GHF.Model.MSP;
+    using Lua;
     using Moq;
 
     [TestClass]
@@ -141,6 +143,53 @@
             session2.Actor.VerifyVisible("Interface\\Icons\\INV_Staff_13"); // Mage
             session2.Actor.VerifyVisible("Pilus");
             session2.Actor.VerifyVisible("Interface\\Icons\\INV_Sword_27"); // Warrior
+        }
+
+
+        [TestMethod]
+        public void ProfileWithAdditionalFieldsTest()
+        {
+            var session = new SessionBuilder()
+                .WithPlayerName("Tester")
+                .WithPlayerClass("Priest")
+                .WithPlayerGuid("g1")
+                .WithPlayerRace("Human")
+                .WithPlayerSex(2)
+                .WithGH()
+                .WithGHF()
+                .Build();
+
+            session.RunStartup();
+
+            var ghTestable = new GHAddOnTestable(session);
+            var menuTestable = new GHMenuTestable(session);
+
+            ghTestable.MouseOverMainButton();
+            ghTestable.ClickSubButton("Interface\\Icons\\Spell_Misc_EmotionHappy");
+
+            menuTestable.SelectMenu("GHF_CharacterMenu");
+
+            session.Actor.Click("Add Additional Fields");
+            session.Actor.Click("Title");
+
+            menuTestable.VerifyLabelVisible("Title:");
+            menuTestable.SetObjectValue("Title:", "Cleric");
+
+            session.Actor.Click("Add Additional Fields");
+            session.Actor.Click("Age");
+
+            menuTestable.VerifyLabelVisible("Age:");
+            menuTestable.SetObjectValue("Age:", "52");
+
+            menuTestable.CloseMenu();
+
+            var savedVars = session.GetSavedVariables();
+
+            var savedProfiles = (NativeLuaTable)savedVars[ModelProvider.SavedAccountProfiles];
+            var testProfileTable = (NativeLuaTable)savedProfiles["Tester"];
+            var testProfile = testProfileTable["obj"] as string;
+            Assert.IsTrue(testProfile.Contains("Cleric"));
+            Assert.IsTrue(testProfile.Contains("52"));
         }
     }
 }

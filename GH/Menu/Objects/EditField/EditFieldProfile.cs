@@ -4,7 +4,7 @@
 
     public class EditFieldProfile : IObjectProfileWithText
     {
-        public string type { get { return "EditField"; } }
+        public string type { get { return EditFieldObject.Type; } }
 
         public string label { get; set; }
 

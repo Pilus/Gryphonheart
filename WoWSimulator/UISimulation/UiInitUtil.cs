@@ -110,6 +110,13 @@
                     (parent as Frame).Children.Add(obj as IFrame);
                 }
             }
+            else if (obj is ILayeredRegion)
+            {
+                if (parent is Frame)
+                {
+                    (parent as Frame).Regions.Add(obj as ILayeredRegion);
+                }
+            }
 
             return obj;
         }

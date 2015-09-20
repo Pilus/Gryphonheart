@@ -83,6 +83,7 @@
       <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\Xml\GrinderFrame.xml">

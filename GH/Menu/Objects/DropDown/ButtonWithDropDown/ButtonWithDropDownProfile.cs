@@ -11,5 +11,7 @@ namespace GH.Menu.Objects.DropDown.ButtonWithDropDown
         public new string type { get { return ButtonWithDropDownObject.Type; } }
 
         public Func<CsLuaList<DropDownData>> dataFunc;
+
+        public string dropDownTitle;
     }
 }

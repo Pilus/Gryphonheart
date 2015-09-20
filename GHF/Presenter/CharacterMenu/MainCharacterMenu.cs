@@ -10,6 +10,7 @@ namespace GHF.Presenter.CharacterMenu
     using GH.Menu.Menus;
     using GHF.View.CharacterMenuProfile.CharacterList;
     using Model;
+    using Model.AdditionalFields;
     using View.CharacterMenu;
     using View.CharacterMenuProfile;
 
@@ -23,12 +24,12 @@ namespace GHF.Presenter.CharacterMenu
         private CharacterListToggleObject listToggle;
         private CharacterListFrame listFrame;
 
-        public MainCharacterMenu(IModelProvider model)
+        public MainCharacterMenu(IModelProvider model, SupportedFields fields)
         {
             this.model = model;
             this.tabs = new CsLuaList<ICharacterMenuTab>()
                 {
-                    new ProfileTab(),
+                    new ProfileTab(fields),
                     new DetailsTab(),
                 };
 

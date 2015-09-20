@@ -19,7 +19,7 @@ namespace GHF.Presenter.CharacterMenu
 
         public PageProfile GetGeneratedProfile()
         {
-            return DetailsTabProfileGenerator.GenerateProfile(this.IsFieldAdded, this.AddAdditionalField);
+            return DetailsTabProfileGenerator.GenerateProfile(this.IsFieldAdded);
         }
 
         public void Load(IMenu menu, Profile profile)
@@ -29,7 +29,7 @@ namespace GHF.Presenter.CharacterMenu
             this.additionalFields = new CsLuaList<string>();
             this.loadedMenu.SetValue(DetailsTabLabels.Background, profile.Details.Background);
 
-            this.AddAndUpdateFieldIfNeeded(DetailsTabLabels.Goals, this.currentDetails.Goals);
+            //this.AddAndUpdateFieldIfNeeded(DetailsTabLabels.Goals, this.currentDetails.Goals);
         }
 
         public void Save()
@@ -40,21 +40,6 @@ namespace GHF.Presenter.CharacterMenu
             //this.currentDetails.CurrentLocation = this.loadedMenu.GetValue(DetailsTabLabels.CurrentLocation) as string;
         }
 
-        private void AddAndUpdateFieldIfNeeded(string label, string value)
-        {
-            if (string.IsNullOrEmpty(value)) return;
-            this.AddAdditionalField(label);
-            this.loadedMenu.SetValue(label, value);
-        }
-
-        private void AddAdditionalField(string label)
-        {
-            this.ThrowIfMenuIsNotLoaded();
-            var panel = this.loadedMenu.GetFrameById(DetailsTabLabels.AdditionalDetailsPanel) as PanelObject;
-            this.additionalFields.Add(label);
-            panel.AddElement(this.additionalFields.Count, DetailsTabProfileGenerator.GetFieldProfile(label));
-            this.loadedMenu.UpdatePosition();
-        }
 
         private bool IsFieldAdded(string label)
         {

@@ -9,15 +9,18 @@ namespace GHF.Presenter
     using GH.Model.Defaults;
     using GH.Model.QuickButtons;
     using Model;
+    using Model.AdditionalFields;
 
     public class Presenter : IPresenter
     {
         private readonly IModelProvider model;
         private MainCharacterMenu characterMenu;
+        private readonly SupportedFields supportedFields;
 
-        public Presenter(IModelProvider model)
+        public Presenter(IModelProvider model, SupportedFields supportedFields)
         {
             this.model = model;
+            this.supportedFields = supportedFields;
             this.model.Integration.RegisterDefaultButton(new QuickButton(
                 "ghfProfile",
                 5,
@@ -32,7 +35,7 @@ namespace GHF.Presenter
         {
             if (this.characterMenu == null)
             {
-                this.characterMenu = new MainCharacterMenu(this.model);
+                this.characterMenu = new MainCharacterMenu(this.model, this.supportedFields);
             }
             
             this.characterMenu.Show();

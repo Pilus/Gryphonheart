@@ -33,6 +33,7 @@
                 .WithIgnoredXmlTemplate("UIPanelButtonDisabledTexture")
                 .WithIgnoredXmlTemplate("UIPanelButtonHighlightTexture")
                 .WithIgnoredXmlTemplate("UIPanelScrollBarButton")
+                .WithIgnoredXmlTemplate("UIDropDownMenuTemplate")
                 .WithAddOn(new GHAddOn())
                 .WithPostBuildAction(session =>
                 {

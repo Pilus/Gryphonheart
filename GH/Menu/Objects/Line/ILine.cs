@@ -7,5 +7,7 @@ namespace GH.Menu.Objects.Line
     public interface ILine : IMenuContainer, IMenuRegion
     {
         void AddElement(IObjectProfile profile);
+
+        int GetNumObjects();
     }
 }

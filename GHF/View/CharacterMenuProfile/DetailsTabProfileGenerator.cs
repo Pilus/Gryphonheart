@@ -17,7 +17,7 @@ namespace GHF.View.CharacterMenuProfile
 
     public static class DetailsTabProfileGenerator
     {
-        public static PageProfile GenerateProfile(Func<string, bool> IsFieldAdded, Action<string> AddAdditionalField)
+        public static PageProfile GenerateProfile(Func<string, bool> IsFieldAdded)
         {
             return new PageProfile("Details")
             {

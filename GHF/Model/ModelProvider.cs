@@ -1,5 +1,6 @@
 ﻿namespace GHF.Model
 {
+    using AdditionalFields;
     using BlizzardApi.EventEnums;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
@@ -22,15 +23,11 @@
         
         public IObjectStore<Profile, string> AccountProfiles { get; private set; }
 
-        private ISubscriptionCenter<Profile, string> subscriptionCenter;
-        private MSPProxy msp;
-
-
         public ModelProvider()
         {
             var formatter = new TableFormatter<Profile>();
-            this.subscriptionCenter = new SubscriptionCenter<Profile, string>();
-            this.AccountProfiles = new ObjectStore<Profile, string>(formatter, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), this.subscriptionCenter);
+            var subscriptionCenter = new SubscriptionCenter<Profile, string>();
+            this.AccountProfiles = new ObjectStore<Profile, string>(formatter, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
             this.Integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
@@ -38,25 +35,28 @@
 
             var playerName = Global.Api.UnitName(UnitId.player);
             var version = Global.Api.GetAddOnMetadata(Strings.tostring(AddOnReference.GH), "Version");
-            this.msp = new MSPProxy(new ProfileFormatter(), version);
-            this.subscriptionCenter.SubscribeForUpdates(this.msp.Set, profile => profile.Id.Equals(playerName));
+            var supportedFields = new SupportedFields();
+            var msp = new MSPProxy(new ProfileFormatter(), version, supportedFields);
 
-            new Presenter(this);
+            subscriptionCenter.SubscribeForUpdates(msp.Set, profile => profile.Id.Equals(playerName));
+
+            new Presenter(this, supportedFields);
         }
 
         private void SetPlayerProfileIfMissing()
         {
             var playerName = Global.Api.UnitName(UnitId.player);
-            var className = Global.Api.UnitClass(UnitId.player).Value2;
-            var gameRace = Global.Api.UnitRace(UnitId.player).Value2;
-            var sex = Strings.tostring(Global.Api.UnitSex(UnitId.player));
-            var guid = Global.Api.UnitGUID(UnitId.player);
-
             var ownProfile = this.AccountProfiles.Get(playerName);
+
             if (ownProfile != null)
             {
                 return;
             }
+
+            var className = Global.Api.UnitClass(UnitId.player).Value2;
+            var gameRace = Global.Api.UnitRace(UnitId.player).Value2;
+            var sex = Strings.tostring(Global.Api.UnitSex(UnitId.player));
+            var guid = Global.Api.UnitGUID(UnitId.player);
 
             var profile = new Profile(playerName, className, gameRace, sex, guid);
 

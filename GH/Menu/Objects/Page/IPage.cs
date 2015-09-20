@@ -12,5 +12,9 @@ namespace GH.Menu.Objects.Page
         void Show();
 
         void Hide();
+
+        int GetNumLines();
+
+        int GetNumObjects(int lineNum);
     }
 }
