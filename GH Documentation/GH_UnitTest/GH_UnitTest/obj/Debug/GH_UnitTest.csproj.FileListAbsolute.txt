@@ -7,3 +7,6 @@ C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\G
 C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\bin\Debug\GH_UnitTest.pdb
 C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.exe
 C:\Games\World of Warcraft 3.3.0\Interface\AddOns\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.pdb
+D:\World of Warcraft\Interface\Gryphonheart\GH Documentation\GH_UnitTest\GH_UnitTest\bin\Debug\GH_UnitTest.exe.config
+D:\World of Warcraft\Interface\Gryphonheart\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.exe
+D:\World of Warcraft\Interface\Gryphonheart\GH Documentation\GH_UnitTest\GH_UnitTest\obj\Debug\GH_UnitTest.pdb

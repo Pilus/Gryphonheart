@@ -38,6 +38,9 @@
     <Reference Include="CsLuaAttributes">
       <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
     </Reference>
+    <Reference Include="CsLuaSerialization">
+      <HintPath>..\CsLuaSerialization\obj\Debug\CsLuaSerialization.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

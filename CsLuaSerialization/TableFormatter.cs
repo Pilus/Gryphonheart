@@ -1,23 +1,27 @@
-﻿namespace CsLua.Collection
+﻿[assembly: CsLuaAttributes.CsLuaLibrary]
+
+namespace CsLuaSerialization
 {
     using System;
-    using Lua;
-    using System.Runtime.Serialization;
-    using System.Reflection;
-    using System.Text.RegularExpressions;
     using System.Linq;
-
+    using System.Reflection;
+    using System.Runtime.Serialization;
+    using System.Text.RegularExpressions;
+    using CsLua.Collection;
+    using Lua;
+    
     public class TableFormatter<T> : ITableFormatter<T>
     {
         private static Regex backingFieldRegex = new Regex(@"<(\w+)>k__BackingField");
         private const string typeIndex = "__type";
+        private const string arraySizeIndex = "__size";
         
         public NativeLuaTable Serialize(T graph)
         {
-            return this.SerializeGraph(graph);
+            return (NativeLuaTable)SerializeValue(graph);
         }
 
-        private NativeLuaTable SerializeGraph(object graph)
+        private static NativeLuaTable SerializeGraph(object graph)
         {
             var type = graph.GetType();
             var members = FormatterServices.GetSerializableMembers(type);
@@ -28,7 +32,7 @@
 
             for (var i = 0; i < objs.Length; i++)
             {
-                var value = this.SerializeValue(objs[i]);
+                var value = SerializeValue(objs[i]);
                 if (value != null)
                 {
                     table[GetIndexFromInfo(members[i])] = value;
@@ -40,7 +44,7 @@
             return table;
         }
 
-        private object SerializeValue(object value)
+        private static object SerializeValue(object value)
         {
             if (value == null)
             {
@@ -58,10 +62,30 @@
                 return SerializeISerializeable(value as ISerializable);
             }
 
-            return this.SerializeGraph(value);
+            if (value.GetType().IsArray)
+            {
+                return SerializeArray(value as Array);
+            }
+
+            return SerializeGraph(value);
         }
 
-        private NativeLuaTable SerializeISerializeable(ISerializable value)
+        private static NativeLuaTable SerializeArray(Array value)
+        {
+            var type = value.GetType();
+            NativeLuaTable table = new NativeLuaTable();
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                table[i] = value.GetValue(i);
+            }
+
+            table[typeIndex] = type.FullName;
+            table[arraySizeIndex] = value.Length;
+            return table;
+        }
+
+        private static NativeLuaTable SerializeISerializeable(ISerializable value)
         {
             var type = value.GetType();
             var info = new SerializationInfo(type, new DummyFormatterConverter());
@@ -70,7 +94,7 @@
             NativeLuaTable table = new NativeLuaTable();
             foreach (var i in info)
             {
-                table[i.Name] = this.SerializeValue(i.Value);
+                table[i.Name] = SerializeValue(i.Value);
             }
 
             table[typeIndex] = type.FullName;
@@ -89,7 +113,7 @@
 
         public T Deserialize(NativeLuaTable table)
         {
-            return (T)DeserializeTable(table);
+            return (T)DeserializeValue(table);
         }
 
         private static object DeserializeValue(object value)
@@ -102,31 +126,59 @@
             return value;
         }
 
+        private static Type LoadType(string typeName)
+        {
+            var type = Type.GetType(typeName);
+            if (type != null)
+            {
+                return type;
+            }
+
+            var assembly = Assembly.Load(typeName.Split('.')[0]);
+
+            return assembly.GetType(typeName);
+        }
+
         private static object DeserializeTable(NativeLuaTable table)
         {
-            var typeName = table[typeIndex];
-            
-            //Assembly.gett
-            //FormatterServices.GetTypeFromAssembly()
+            var typeName = table[typeIndex] as string;
+            if (typeName.EndsWith("[]"))
+            {
+                return DeserializeArray(table);
+            }
+
+            var type = LoadType(typeName);
 
             var members = FormatterServices.GetSerializableMembers(type);
 
             var obj = FormatterServices.GetUninitializedObject(type);
-            
-            var data = new object[]{ };
-            
-            for (var i=0; i < members.Length; i++)
-            {
-                var member = members[i];
-                var value = table[GetIndexFromInfo(member)];
-                data[i] = DeserializeValue(value);
-            }
+
+            var data =
+                members.Select(member => table[GetIndexFromInfo(member)])
+                    .Select(DeserializeValue)
+                    .ToArray();
 
             FormatterServices.PopulateObjectMembers(obj, members, data);
 
             return obj;
         }
 
+        private static object DeserializeArray(NativeLuaTable table)
+        {
+            var typeName = (table[typeIndex] as string).Replace("[]", "");
+            var size = (int)table[arraySizeIndex];
+
+            var arrayType = LoadType(typeName);
+
+            var array = Array.CreateInstance(arrayType, size);
+
+            for (var i = 0; i < size; i++)
+            {
+                array.SetValue(table[i], i);
+            }
+
+            return array;
+        }
     }
 
     internal class DummyFormatterConverter : IFormatterConverter

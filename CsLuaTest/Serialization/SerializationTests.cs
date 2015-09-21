@@ -1,7 +1,7 @@
 ﻿namespace CsLuaTest.Serialization
 {
-    using CsLua;
     using CsLua.Collection;
+    using CsLuaSerialization;
     using Lua;
 
     public class SerializationTests : BaseTest
@@ -22,6 +22,11 @@
             var tableFormatter = new TableFormatter<ClassWithNativeObjects>();
             
             var res = tableFormatter.Serialize(theClass);
+
+            Assert(theClass.AString, res["AString"]);
+            Assert(theClass.ANumber, res["ANumber"]);
+            Assert("CsLuaTest.Serialization.ClassWithNativeObjects", res["__type"]);
+
             var processedClass = tableFormatter.Deserialize(res);
 
             Assert(theClass.AString, processedClass.AString);
@@ -35,6 +40,18 @@
             var tableFormatter = new TableFormatter<ClassWithSubObject>();
 
             var res = tableFormatter.Serialize(theClass);
+
+            Assert("CsLuaTest.Serialization.ClassWithSubObject", res["__type"]);
+            var arrayRes = res["AnArray"] as NativeLuaTable;
+            Assert("System.String[]", arrayRes["__type"]);
+            Assert(theClass.AnArray[0], arrayRes[0]);
+            Assert(theClass.AnArray[1], arrayRes[1]);
+
+            var subRes = res["AClass"] as NativeLuaTable;
+            Assert("CsLuaTest.Serialization.ClassWithNativeObjects", subRes["__type"]);
+            Assert(theClass.AClass.AString, subRes["AString"]);
+            Assert(theClass.AClass.ANumber, subRes["ANumber"]);
+
             var processedClass = tableFormatter.Deserialize(res);
 
             Assert(theClass.AnArray[0], processedClass.AnArray[0]);
@@ -55,6 +72,7 @@
 
             var res = tableFormatter.Serialize(list);
             var processedClass = tableFormatter.Deserialize(res);
+
 
             Assert(1, processedClass.Count);
             Assert(theClass.AString, processedClass[0].AString);
