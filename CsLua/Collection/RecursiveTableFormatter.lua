@@ -2,7 +2,7 @@
 
 CsLua = CsLua or {};
 CsLua.Collection = CsLua.Collection or {};
-CsLua.Collection.TableFormatter = function()
+CsLua.Collection.RecursiveFormatter = function()
 	local class = {}
 
 	local useCompact = false;
@@ -12,7 +12,7 @@ CsLua.Collection.TableFormatter = function()
 		return class;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "TableFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {{"CsLua.Collection.ITableFormatter"}});
+	CsLua.CreateSimpleClass(class, class, "RecursiveFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {{"CsLua.Collection.ITableFormatter"}});
 
 	local Compact;
 	Compact = function(t, target)
@@ -52,7 +52,7 @@ CsLua.Collection.TableFormatter = function()
 	class.Serialize = function(graph)
 		assert(type(graph) == "table" and type(graph.__Serialize) == "function", "Argument must be a serializable class.");
 			
-		local serInfo = CsLua.Collection.SerializedInfo().__Cstor();
+		local serInfo = CsLua.Collection.RecursiveSerializedInfo().__Cstor();
 			
 		local obj = graph;
 		while (obj) do
@@ -70,14 +70,14 @@ CsLua.Collection.TableFormatter = function()
 		if (useCompact) then
 			info = Decompact(info);
 		end
-		local serInfo = CsLua.Collection.SerializedInfo().__Cstor(info);
+		local serInfo = CsLua.Collection.RecursiveSerializedInfo().__Cstor(info);
 		return serInfo.GetGraph();
 	end
 		
 	return class;
 end
 	
-CsLua.Collection.SerializedInfo = function()
+CsLua.Collection.RecursiveSerializedInfo = function()
 	local class = {}
 
 	local info;
@@ -89,7 +89,7 @@ CsLua.Collection.SerializedInfo = function()
 		return class;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "SerializedInfo", "CsLua.Collection.SerializedInfo", Cstor);
+	CsLua.CreateSimpleClass(class, class, "RecursiveSerializedInfo", "CsLua.Collection.RecursiveSerializedInfo", Cstor);
 
 	
 		

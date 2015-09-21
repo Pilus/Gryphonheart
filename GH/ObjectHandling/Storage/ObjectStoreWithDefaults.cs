@@ -19,7 +19,7 @@
             this.savedDataHandler = new SavedDataHandler(tableName);
             this.defaultObjects = new CsLuaList<T1>();
             this.objects = new CsLuaList<T1>();
-            this.formatter = new TableFormatter<T1>(true);
+            this.formatter = new RecursiveTableFormatter<T1>(true);
         }
 
         public void SetDefault(T1 obj)

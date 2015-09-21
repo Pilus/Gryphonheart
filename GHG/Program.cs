@@ -9,7 +9,7 @@ namespace GHG
     {
         static void Main(string[] args)
         {
-            var formatter = new TableFormatter<Group>();
+            var formatter = new RecursiveTableFormatter<Group>();
 
             var group = new Group();
             group.AddRank("First rank");
