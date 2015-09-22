@@ -342,6 +342,8 @@ CsLuaMeta.GenericsList = function(...)
 end
 
 CsLuaMeta.Generic = function(name, innerGenerics)
+	assert(type(name) == "string",  "Unexpected input to CsLuaMeta.Generic name. Expected string, got: "..tostring(name))
+	if innerGenerics then assert(innerGenerics.__fullTypeName == "CsLuaMeta.GenericsList", "Unexpected input to CsLuaMeta.Generic inner generic. Got obj type "..tostring(innerGenerics.__fullTypeName)); end
 	local class = {};
 	class.innerGenerics = innerGenerics;
 	class.name = name;
@@ -618,7 +620,22 @@ CsLuaMeta.CreateClass = function(info)
 		meta.__Initialize = function(t) for i, v in pairs(t) do class[i] = v; end  return class; end
 		meta.__type = info.name;
 		if (serialize) then
-			meta.__Serialize = serialize.value;
+			meta.__Serialize = function(f)
+				local t = {};
+				if (inheritiedClass and inheritiedClass.__Serialize) then
+					t = inheritiedClass.__Serialize(f);
+				end
+				serialize.value(f,t);
+				return t;
+			end
+		end
+		if (deserialize) then
+			meta.__Deserialize = function(f, t)
+				if (inheritiedClass and inheritiedClass.__Deserialize) then
+					t = inheritiedClass.__Deserialize(f);
+				end
+				deserialize.value(f, t);
+			end
 		end
 		meta.__fullTypeName = info.fullName;
 		meta.__TableString = function()
@@ -663,19 +680,12 @@ CsLuaMeta.CreateClass = function(info)
 		end
 
 		meta.__Cstor = function(...)
-			local args = {...};
-			if #(args) == 1 and type(args[1]) == "table" and args[1].__fullTypeName == "CsLua.Collection.SerializedInfo" then
-				if (inheritiedClass) then
-					inheritiedClass.__Cstor(args[1]);
-				end
-				deserialize.value(args[1]);
-			else	
-				if constructor then
-					constructor(...);
-				elseif inheritiedClass then
-					inheritiedClass.__Cstor(...);
-				end
+			if constructor then
+				constructor(...);
+			elseif inheritiedClass then
+				inheritiedClass.__Cstor(...);
 			end
+
 			return class;
 		end
 
@@ -846,20 +856,26 @@ System.Array = function(generic)
 	local signature;
 
 	local initializeSignature = function()
-		local genericsList;
-		if generic then
-			genericsList = CsLuaMeta.GenericsList(generic);
-		elseif class[0] then
-			local sig = CsLuaMeta.GetSignatures(class[0])[1]; -- Choose the highest level
-			genericsList = CsLuaMeta.GenericsList(CsLuaMeta.Generic(sig[1], sig[2]));
-		else
-			CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
+		if not(generic) then
+			if class[0] then
+				local sig = CsLuaMeta.GetSignatures(class[0])[1]; -- Choose the highest level
+				generic = CsLuaMeta.GenericsList(CsLuaMeta.Generic(sig[1][1], sig[1][2]))
+			else
+				CsLuaMeta.Throw(CsLua.CsException().__Cstor("Could not get signature of implicit array because it is empty."));
+			end
 		end
 
-		signature = {{"object"}, { "System.Array", genericsList}};
+		signature = {{"object"}, {"System.Array", generic} };
 	end
 
-	local cstor = function(zeroBasedArray)
+	local cstor = function(arg)
+		
+		if type(arg) == "number" then
+			class.Length = arg;
+			return;
+		end
+
+		local zeroBasedArray = arg;
 		class.Length = #(zeroBasedArray) > 0 and #(zeroBasedArray) + 1 or (zeroBasedArray[0] and 1 or 0);
 		for i=0,class.Length-1 do
 			class[i] = zeroBasedArray[i];
@@ -883,11 +899,33 @@ System.Array = function(generic)
 		end;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "Array", "System.Array", cstor);
+	local serialize = function(f)
+		local t = {};
+
+		for i=0, class.Length - 1 do
+			t[i] = class[i];
+		end
+
+		t.__type = 'System.Array';
+		t.__generic = generic;
+		t.__size = class.Length;
+		return t;
+	end
+
+	local deserialize = function(f, t)
+		for i=0,class.Length-1 do
+			class[i] = t[i];
+		end
+		initializeSignature();
+	end
+
+	CsLua.CreateSimpleClass(class, class, "Array", "System.Array", cstor, nil, serialize, deserialize);
 
 	class.__GetSignature = function()
 		return signature;
 	end
+
+	
 
 	return class;
 end

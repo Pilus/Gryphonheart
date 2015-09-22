@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collection\TableFormatter.cs" />
     <Compile Include="CsException.cs" />
     <Compile Include="Collection\CsLuaDictionary.cs" />
     <Compile Include="Collection\CsLuaList.cs" />
@@ -61,6 +62,7 @@
     <None Include="Collection\CsLuaDictionary.lua" />
     <None Include="Collection\CsLuaList.lua" />
     <None Include="Collection\MultipleValues.lua" />
+    <None Include="Collection\TableFormatter.lua" />
     <None Include="Collection\RecursiveTableFormatter.lua" />
     <None Include="CsException.lua" />
     <None Include="Misc.lua" />

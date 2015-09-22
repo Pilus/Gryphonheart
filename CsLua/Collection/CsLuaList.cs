@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using Lua;
+    using System.Runtime.Serialization;
 
-    [Serializable]
-    public class CsLuaList<T> : IList<T>
+    public class CsLuaList<T> : IList<T>, ISerializable
     {
         protected IList<T> list;
 
@@ -233,6 +233,15 @@
         public CsLuaList<T> Distinct()
         {
             return new CsLuaList<T>(this.list.Distinct().ToList());
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("__size", this.Count);
+            for (var i = 0; i < this.Count; i++)
+            {
+                info.AddValue(string.Format("<int;{0}>",i), this[i]);
+            }
         }
     }
 }

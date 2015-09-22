@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLuaTest", "CsLuaTest\CsLuaTest.csproj", "{AC8558C0-FB17-40CC-B739-0DEDCDE5504E}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lua", "Lua\Lua.csproj", "{E9EBE6E6-D167-480A-AC2C-B6A00D5B8715}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLuaTestRunner", "CsLuaTestRunner\CsLuaTestRunner.csproj", "{EB646944-4977-41FC-8A7A-938C13D51C07}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsLuaSerialization", "CsLuaSerialization\CsLuaSerialization.csproj", "{1A4C12D7-411C-4A0E-A88C-BD696F21F9A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{EB646944-4977-41FC-8A7A-938C13D51C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB646944-4977-41FC-8A7A-938C13D51C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB646944-4977-41FC-8A7A-938C13D51C07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A4C12D7-411C-4A0E-A88C-BD696F21F9A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A4C12D7-411C-4A0E-A88C-BD696F21F9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A4C12D7-411C-4A0E-A88C-BD696F21F9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A4C12D7-411C-4A0E-A88C-BD696F21F9A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

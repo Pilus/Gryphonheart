@@ -1,18 +1,16 @@
-﻿[assembly: CsLuaAttributes.CsLuaLibrary]
-
-namespace CsLuaSerialization
+﻿namespace CsLua.Collection
 {
     using System;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
     using System.Text.RegularExpressions;
-    using CsLua.Collection;
     using Lua;
     
     public class TableFormatter<T> : ITableFormatter<T>
     {
         private static Regex backingFieldRegex = new Regex(@"<(\w+)>k__BackingField");
+        private static Regex nonStringIndexRegex = new Regex(@"<(\w+);(.+)>");
         private const string typeIndex = "__type";
         private const string arraySizeIndex = "__size";
         
@@ -94,11 +92,31 @@ namespace CsLuaSerialization
             NativeLuaTable table = new NativeLuaTable();
             foreach (var i in info)
             {
-                table[i.Name] = SerializeValue(i.Value);
+                table[GetIndexFromSerializationEntry(i)] = SerializeValue(i.Value);
             }
 
             table[typeIndex] = type.FullName;
             return table;
+        }
+
+        private static object GetIndexFromSerializationEntry(SerializationEntry entry)
+        {
+            var nonStringIndexMatch = nonStringIndexRegex.Match(entry.Name);
+            if (nonStringIndexMatch.Success)
+            {
+                var type = nonStringIndexMatch.Groups[1].Value;
+                var value = nonStringIndexMatch.Groups[2].Value;
+
+                if (type == "int")
+                {
+                    return int.Parse(value);
+                }
+                else
+                {
+                    throw new CsException("Unknown serialization type: " + value);
+                }
+            }
+            return entry.Name;
         }
 
         private static string GetIndexFromInfo(MemberInfo info)

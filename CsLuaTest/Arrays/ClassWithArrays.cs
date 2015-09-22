@@ -23,7 +23,17 @@
         {
             return "int";
         }
-        
+
+        public string TypeDependent(long[] args)
+        {
+            return "long";
+        }
+
+        public string TypeDependent(double[] args)
+        {
+            return "double";
+        }
+
         public string TypeDependent(AClass<int>[] args)
         {
             return "Aint";

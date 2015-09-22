@@ -29,12 +29,7 @@ CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, in
 	end
 	class.__TableString = function() return tostring(class); end
 	class.__Cstor = function(...)
-		local args = {...};
-		if deserialize and #(args) == 1 and type(args[1]) == "table" and args[1].GetValue then
-			deserialize(...);
-		elseif cstor then
-			cstor(...);
-		end
+		cstor(...);
 		return publicClass;
 	end
 	class.__Initialize = function(data)
@@ -44,6 +39,7 @@ CsLua.CreateSimpleClass = function(class, publicClass, name, fullName, cstor, in
 		return publicClass;
 	end
 	class.__Serialize = serialize;
+	class.__Deserialize = deserialize;
 end
 
 string.startsWith = function(str,pattern)

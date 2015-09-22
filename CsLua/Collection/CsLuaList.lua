@@ -21,19 +21,24 @@ CsLua.Collection.CsLuaList = function(generics)
 	local Initialize = function(nativeTable)
 		t[0] = nativeTable[0];
 		for i, v in ipairs(nativeTable) do
-			t[i] = v;   
+			t[i] = v;
 		end
 	end
 
-	local Serialize = function(info)
-		for i, v in pairs(t) do
-			info.AddValue(publicClass, i, v, generics);
+	local Serialize = function(f)
+		local data = {};
+		for i=0,publicClass.Count-1 do
+			data[i] = f(t[i]);
 		end
+		data.__type = publicClass.__fullTypeName;
+		data.__generic = generics;
+		data.__size = publicClass.Count;
+		return data;
 	end
 
-	local Deserialize = function(info)
-		for _, key in ipairs(info.GetValueKeys(publicClass)) do
-			t[key] = info.GetValue(publicClass, key, generics);
+	local Deserialize = function(f, data)
+		for i=0,data.__size-1 do
+			t[i] = f(data[i]);
 		end
 	end
 
@@ -305,7 +310,7 @@ CsLua.Collection.CsLuaList = function(generics)
 		end,
 	});
 
-	return publicClass;    
+	return publicClass;
 end
 
 
