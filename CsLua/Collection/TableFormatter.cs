@@ -176,6 +176,12 @@
         private static object DeserializeISerializeable(NativeLuaTable table, Type type)
         {
             var constructor = type.GetConstructor(new Type[] {typeof(SerializationInfo), typeof(StreamingContext) });
+
+            if (constructor == null)
+            {
+                throw new CsException(string.Format("{0} does not implement the constructor for ISerializeable.", type.Name));
+            }
+
             var info = new SerializationInfo(type, new DummyFormatterConverter());
 
             Table.Foreach(table, (key, value) =>

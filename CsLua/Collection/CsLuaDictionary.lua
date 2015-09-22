@@ -27,7 +27,25 @@ CsLua.Collection.CsLuaDictionary = function(generics)
 		end
 	end
 
-	CsLua.CreateSimpleClass(class, publicClass, "CsLuaDictionary", "CsLua.Collection.CsLuaDictionary", Cstor, Initialize, nil, nil, {
+	local Serialize = function(f)
+		local data = {};
+		for i,v in pairs(t) do
+			data[i] = f(v);
+		end
+		data.__type = publicClass.__fullTypeName;
+		data.__generic = generics;
+		return data;
+	end
+
+	local Deserialize = function(f, data)
+		for i,v in pairs(data) do
+			if not(i == "__type" or i == "__generic") then
+				t[i] = f(v);
+			end
+		end
+	end
+
+	CsLua.CreateSimpleClass(class, publicClass, "CsLuaDictionary", "CsLua.Collection.CsLuaDictionary", Cstor, Initialize, Serialize, Deserialize, {
 		{"System.Collection.Generic.Dictionary"}, {"System.Collection.Generic.IDictionary"}
 	});
 

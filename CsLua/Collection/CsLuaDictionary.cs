@@ -11,13 +11,6 @@ namespace CsLua.Collection
 
     public class CsLuaDictionary<TK, TV> : Dictionary<TK, TV>, ISerializable
     {
-        #region Constants
-        private const string DictionaryNodeName = "Dictionary";
-        private const string ItemNodeName = "Item";
-        private const string KeyNodeName = "Key";
-        private const string ValueNodeName = "Value";
-        #endregion
-
         public CsLuaDictionary(NativeLuaTable nativeTable)
         {
 
@@ -28,40 +21,39 @@ namespace CsLua.Collection
 
         }
 
+        public CsLuaDictionary(SerializationInfo info, StreamingContext context)
+        {
+            foreach (var i in info)
+            {
+                if (i.Value is KeyValuePair<object, object>)
+                {
+                    var pair = (KeyValuePair<object, object>) i.Value;
+                    var key = (TK) pair.Key;
+                    var value = (TV) pair.Value;
+                    this[key] = value;
+                }
+                else
+                {
+                    var key = (TK) (i.Name as object);
+                    var value = (TV)i.Value;
+                    this[key] = value;
+                }
+            }
+        }
+
         public NativeLuaTable ToNativeLuaTable()
         {
             return null;
         }
 
-
-        protected CsLuaDictionary(SerializationInfo info, StreamingContext context)
-        {
-            int itemCount = info.GetInt32("ItemCount");
-            for (int i = 0; i < itemCount; i++)
-            {
-                KeyValuePair<TK, TV> kvp = (KeyValuePair<TK, TV>)info.GetValue(String.Format("Item{0}", i), typeof(KeyValuePair<TK, TV>));
-                this.Add(kvp.Key, kvp.Value);
-            }
-        }
-
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            if (typeof(TK).Equals(typeof(string)))
+            var c = 0;
+            foreach (var pair in this)
             {
-                foreach (var pair in this)
-                {
-                    info.AddValue(pair.Key as string, pair.Value);
-                }
-            }
-            else
-            {
-                info.AddValue("ItemCount", this.Count);
-                int itemIdx = 0;
-                foreach (KeyValuePair<TK, TV> kvp in this)
-                {
-                    info.AddValue(String.Format("Item{0}", itemIdx), kvp, typeof(KeyValuePair<TK, TV>));
-                    itemIdx++;
-                }
+                var value = new KeyValuePair<object, object>(pair.Key, pair.Value);
+                info.AddValue(c + "", value);
+                c++;
             }
         }
     }

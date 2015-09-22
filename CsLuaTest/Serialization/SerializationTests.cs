@@ -12,6 +12,7 @@
             this.Tests["TestBasicSerializableClass"] = TestBasicSerializableClass;
             this.Tests["TestClassWithSubObject"] = TestClassWithSubObject;
             this.Tests["TestClassInCsLuaList"] = TestClassInCsLuaList;
+            this.Tests["TestSerializeDictionary"] = TestSerializeDictionary;
         }
 
         private static void TestBasicSerializableClass()
@@ -78,12 +79,30 @@
 
             var processedClass = tableFormatter.Deserialize(res);
 
-
             Assert(1, processedClass.Count);
             Assert(theClass.AString, processedClass[0].AString);
             Assert(theClass.ANumber, processedClass[0].ANumber);
         }
 
-        
+        private static void TestSerializeDictionary()
+        {
+            var dict = new CsLuaDictionary<object, object>()
+            {
+                { 43, "something" },
+                { "an index", "Someting else" }
+            };
+
+            var tableFormatter = new TableFormatter<CsLuaDictionary<object, object>>();
+
+            var res = tableFormatter.Serialize(dict);
+
+            Assert(dict[43], res[43]);
+            Assert(dict["an index"], res["an index"]);
+
+            var processedDict = tableFormatter.Deserialize(res);
+
+            Assert(dict[43], processedDict[43]);
+            Assert(dict["an index"], processedDict["an index"]);
+        }
     }
 }
