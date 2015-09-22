@@ -7,6 +7,7 @@
     using Lua;
     using System.Runtime.Serialization;
 
+    [Serializable]
     public class CsLuaList<T> : IList<T>, ISerializable
     {
         protected IList<T> list;
@@ -14,6 +15,17 @@
         public CsLuaList()
         {
             this.list = new List<T>();
+        }
+
+        public CsLuaList(SerializationInfo info, StreamingContext context)
+        {
+            this.list = new List<T>();
+            var c = (int)info.GetValue("__size", typeof(int));
+            for (var i = 0; i < c; i++)
+            {
+                var pair = (KeyValuePair<object, object>)info.GetValue(i + "", typeof(KeyValuePair<object, object>));
+                this.list.Add((T)pair.Value);
+            }
         }
 
         protected CsLuaList(NativeLuaTable table)
@@ -240,7 +252,8 @@
             info.AddValue("__size", this.Count);
             for (var i = 0; i < this.Count; i++)
             {
-                info.AddValue(string.Format("<int;{0}>",i), this[i]);
+                var value = new KeyValuePair<object, object>(i, this[i]);
+                info.AddValue("" + i, value);
             }
         }
     }

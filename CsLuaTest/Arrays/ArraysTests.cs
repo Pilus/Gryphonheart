@@ -26,7 +26,7 @@
             Assert("int", arrayClass.TypeDependent(a3));
 
             var a3b = new[] { 1.1, 3.2 };
-            Assert("double", arrayClass.TypeDependent(a3));
+            Assert("double", arrayClass.TypeDependent(a3b));
 
             var a4 = new object[] { true, 1, "ok" };
             Assert("object", arrayClass.TypeDependent(a4));

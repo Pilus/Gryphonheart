@@ -1,6 +1,7 @@
 ﻿namespace CsLua.Collection
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
@@ -92,31 +93,19 @@
             NativeLuaTable table = new NativeLuaTable();
             foreach (var i in info)
             {
-                table[GetIndexFromSerializationEntry(i)] = SerializeValue(i.Value);
+                if (i.Value is KeyValuePair<object, object>)
+                {
+                    var pair = (KeyValuePair<object, object>) i.Value;
+                    table[pair.Key] = SerializeValue(pair.Value);
+                }
+                else
+                {
+                    table[i.Name] = SerializeValue(i.Value);
+                }
             }
 
             table[typeIndex] = type.FullName;
             return table;
-        }
-
-        private static object GetIndexFromSerializationEntry(SerializationEntry entry)
-        {
-            var nonStringIndexMatch = nonStringIndexRegex.Match(entry.Name);
-            if (nonStringIndexMatch.Success)
-            {
-                var type = nonStringIndexMatch.Groups[1].Value;
-                var value = nonStringIndexMatch.Groups[2].Value;
-
-                if (type == "int")
-                {
-                    return int.Parse(value);
-                }
-                else
-                {
-                    throw new CsException("Unknown serialization type: " + value);
-                }
-            }
-            return entry.Name;
         }
 
         private static string GetIndexFromInfo(MemberInfo info)
@@ -166,11 +155,14 @@
             }
 
             var type = LoadType(typeName);
+            var obj = FormatterServices.GetUninitializedObject(type);
+            
+            if (obj is ISerializable)
+            {
+                return DeserializeISerializeable(table, type);
+            }
 
             var members = FormatterServices.GetSerializableMembers(type);
-
-            var obj = FormatterServices.GetUninitializedObject(type);
-
             var data =
                 members.Select(member => table[GetIndexFromInfo(member)])
                     .Select(DeserializeValue)
@@ -179,6 +171,28 @@
             FormatterServices.PopulateObjectMembers(obj, members, data);
 
             return obj;
+        }
+
+        private static object DeserializeISerializeable(NativeLuaTable table, Type type)
+        {
+            var constructor = type.GetConstructor(new Type[] {typeof(SerializationInfo), typeof(StreamingContext) });
+            var info = new SerializationInfo(type, new DummyFormatterConverter());
+
+            Table.Foreach(table, (key, value) =>
+            {
+                var deserializedValue = DeserializeValue(value);
+                if (key is string)
+                {
+                    info.AddValue((string)key, deserializedValue, deserializedValue.GetType());
+                }
+                else
+                {
+                    var pair = new KeyValuePair<object, object>(key, deserializedValue);
+                    info.AddValue("" + key, pair, pair.GetType());
+                }
+            });
+
+            return constructor.Invoke(new object[] { info, new StreamingContext() });
         }
 
         private static object DeserializeArray(NativeLuaTable table)
@@ -208,7 +222,7 @@
 
         public object Convert(object value, Type type)
         {
-            throw new NotImplementedException();
+            return value;
         }
 
         public bool ToBoolean(object value)

@@ -857,7 +857,10 @@ System.Array = function(generic)
 
 	local initializeSignature = function()
 		if not(generic) then
-			if class[0] then
+			if type(class[0]) == "number" then
+				local typeName = (math.floor(class[0]) == class[0]) and "int" or "double";
+				generic = CsLuaMeta.GenericsList(CsLuaMeta.Generic(typeName))
+			elseif class[0] then
 				local sig = CsLuaMeta.GetSignatures(class[0])[1]; -- Choose the highest level
 				generic = CsLuaMeta.GenericsList(CsLuaMeta.Generic(sig[1][1], sig[1][2]))
 			else
