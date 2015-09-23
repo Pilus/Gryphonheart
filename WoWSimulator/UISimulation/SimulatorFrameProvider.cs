@@ -124,11 +124,6 @@ namespace WoWSimulator.UISimulation
             }
         }
 
-        public void TriggerEvent(object eventName, params object[] eventArgs)
-        {
-            this.util.TriggerEvent(eventName.ToString(), eventArgs);
-        }
-
         public void TriggerHandler(object handler, params object[] args)
         {
             throw new NotImplementedException();

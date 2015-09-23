@@ -40,6 +40,9 @@
 
             subscriptionCenter.SubscribeForUpdates(msp.Set, profile => profile.Id.Equals(playerName));
 
+            var requestStrategy = new MspRequestStrategy();
+            var activityScanner = new PlayerActivityScanner((name, activity) => { msp.Request(name, requestStrategy.GetFieldsToRequest(activity)); });
+
             new Presenter(this, supportedFields);
         }
 

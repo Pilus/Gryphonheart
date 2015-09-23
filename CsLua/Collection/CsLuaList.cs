@@ -109,7 +109,12 @@
 
         public NativeLuaTable ToNativeLuaTable()
         {
-            throw new NotImplementedException();
+            var t = new NativeLuaTable();
+            for (var i = 0; i < this.list.Count; i++)
+            {
+                t[i] = this.list[i];
+            }
+            return t;
         }
 
         public CsLuaList<T> Take(int i)

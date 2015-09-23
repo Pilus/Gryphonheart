@@ -191,6 +191,11 @@
             }
         }
 
+        public void TriggerEvent(object eventName, params object[] eventArgs)
+        {
+            this.TriggerEvent(eventName.ToString(), eventArgs);
+        }
+
         public void UpdateTick(float elapsed)
         {
             foreach (var frame in this.frames.Where(f => f.HasScript(FrameHandler.OnUpdate)))

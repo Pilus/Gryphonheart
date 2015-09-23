@@ -60,6 +60,9 @@
     <Compile Include="Model\MSP\MSPFieldNames.cs" />
     <Compile Include="Model\MSP\MSPProxy.cs" />
     <Compile Include="Model\MSP\MspProxyException.cs" />
+    <Compile Include="Model\MSP\MspRequestStrategy.cs" />
+    <Compile Include="Model\PlayerActivity.cs" />
+    <Compile Include="Model\PlayerActivityScanner.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\ProfileFormatter.cs" />
     <Compile Include="Presenter\CharacterMenu\DetailsTab.cs" />

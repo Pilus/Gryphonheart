@@ -6,6 +6,10 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using WoWSimulator;
+    using Tests.Util;
+    using GH.Texture;
+    using System;
+    using Lua;
 
     [TestClass]
     public class GhfMspIntegrationTests
@@ -54,7 +58,7 @@
                 Assert.AreEqual(expected.Value, fieldsMock[expected.Key]);
             }
 
-            
+
             var ghTestable = new GHAddOnTestable(session);
             var menuTestable = new GHMenuTestable(session);
 
@@ -81,6 +85,72 @@
                 Assert.IsTrue(fieldsMock.ContainsKey(expected.Key));
                 Assert.AreEqual(expected.Value, fieldsMock[expected.Key]);
             }
+        }
+
+        [TestMethod]
+        public void VerifyMspTargetingDisplay()
+        {
+            var targetMock = new TargetingMock();
+            var session = new SessionBuilder()
+                .WithPlayerName("Tester")
+                .WithPlayerClass("Warrior")
+                .WithPlayerGuid("g1")
+                .WithPlayerRace("Human")
+                .WithPlayerSex(2)
+                .WithGH()
+                .WithGHF()
+                .WithApiMock(targetMock)
+                .Build();
+
+            var otherMspUser = "Othermsp";
+
+            var mspMock = new Mock<ILibMSPWrapper>();
+            var fieldsMock = new MspFieldsMock();
+            MspFieldsMock otherMspFields = null;
+            Action<string> updateAction = null;
+            mspMock.Setup(m => m.GetEmptyFieldsObj()).Returns(fieldsMock);
+            mspMock.Setup(m => m.GetOther(otherMspUser)).Returns(() => otherMspFields);
+            mspMock.Setup(m => m.HasOther(otherMspUser)).Returns(() => otherMspFields != null);
+            mspMock.Setup(m => m.AddReceivedAction(It.IsAny<Action<string>>()))
+                .Callback<Action<string>>((a) => { updateAction = a; });
+            mspMock.Setup(m => m.Request(otherMspUser, It.IsAny<NativeLuaTable>()));
+
+            session.SetGlobal("libMSPWrapper", mspMock.Object);
+
+            session.RunStartup();
+
+            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRound));
+
+            // Target the player
+            targetMock.TargetPlayer(otherMspUser, session);
+
+            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRound));
+            mspMock.Verify(m => m.Request(otherMspUser, It.IsAny<NativeLuaTable>()), Times.Once());
+            mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(1));
+
+            // Mock receiving the data
+            otherMspFields = new MspFieldsMock()
+            {
+                { "NA", "Other Person" },
+            };
+            updateAction(otherMspUser);
+
+            mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(2));
+            session.Actor.VerifyVisible(TextureResources.GhRound);
+
+            // Clear the target
+            targetMock.ClearTarget(session);
+
+            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRound));
+
+            // Retarget the player
+            targetMock.TargetPlayer(otherMspUser, session);
+
+            mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(3));
+            mspMock.Verify(m => m.Request(otherMspUser), Times.Exactly(2));
+            session.Actor.VerifyVisible(TextureResources.GhRound);
+
+            // TODO: Click the icon and verify the details menu
         }
     }
 }

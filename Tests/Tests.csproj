@@ -65,6 +65,7 @@
     <Compile Include="GHFTests\Integration\MspFieldsMock.cs" />
     <Compile Include="GHMenuTestable.cs" />
     <Compile Include="GHSessionBuilderExtension.cs" />
+    <Compile Include="Util\TargetingMock.cs" />
     <Compile Include="Wrappers\ButtonTemplateWrapper.cs" />
     <Compile Include="Wrappers\EditBoxWithFiltersWrapper.cs" />
     <Compile Include="GHCTests\Integration\GHCIntegrationTest.cs" />
@@ -83,6 +84,10 @@
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CsLuaTestUtils\CsLuaTestUtils.csproj">
+      <Project>{52b30640-cbf4-43db-93b1-7b1d66c48924}</Project>
+      <Name>CsLuaTestUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\CsLua\CsLua.csproj">
       <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>

@@ -12,6 +12,7 @@
     using GHF.Model.MSP;
     using Lua;
     using Moq;
+    using CsLuaTestUtils;
 
     [TestClass]
     public class GHFIntegrationTest
@@ -186,10 +187,9 @@
             var savedVars = session.GetSavedVariables();
 
             var savedProfiles = (NativeLuaTable)savedVars[ModelProvider.SavedAccountProfiles];
-            var testProfileTable = (NativeLuaTable)savedProfiles["Tester"];
-            var testProfile = testProfileTable["obj"] as string;
-            Assert.IsTrue(testProfile.Contains("Cleric"));
-            Assert.IsTrue(testProfile.Contains("52"));
+            var additionalFields = TestUtil.GetTableValue<NativeLuaTable>(savedProfiles, "Tester", "AdditionalFields");
+            Assert.AreEqual("Cleric", additionalFields["title"]);
+            Assert.AreEqual("52", additionalFields["age"]);
         }
     }
 }

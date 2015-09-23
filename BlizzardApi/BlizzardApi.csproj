@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventEnums\SystemEvent.cs" />
+    <Compile Include="EventEnums\UnitInfoEvent.cs" />
     <Compile Include="Global\AddOn.cs" />
     <Compile Include="Global\Container.cs" />
     <Compile Include="Global\Currency.cs" />

@@ -3,6 +3,8 @@
     using AdditionalFields;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
+    using CsLua.Collection;
+    using Lua;
 
     public class MSPProxy
     {
@@ -24,6 +26,11 @@
             var fields = this.Parse(profile);
             this.msp.SetMy(fields);
             this.msp.Update();
+        }
+
+        public void Request(string playerName, CsLuaList<string> fields)
+        {
+            this.msp.Request(playerName, fields.ToNativeLuaTable());
         }
 
         private IMSPFields Parse(Profile profile)

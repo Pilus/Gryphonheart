@@ -18,7 +18,8 @@
         bool Request(string player);
 
         void SetMy(IMSPFields values);
-        IMSPFields GetOthers(string player);
+        IMSPFields GetOther(string player);
+        bool HasOther(string player);
         void AddReceivedAction(Action<string> received);
         IMSPFields GetEmptyFieldsObj();
     }

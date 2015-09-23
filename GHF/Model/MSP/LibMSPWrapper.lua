@@ -13,6 +13,9 @@ libMSPWrapper = {
 	GetOther = function(charName)
 		return msp.char[charName];
 	end
+	HasOther = function(charName)
+		return not(msp.char[charName] == nil);
+	end
 	AddReceivedAction = function(action)
 		table.insert(msp.callback.received, action)
 	end

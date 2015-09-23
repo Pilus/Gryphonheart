@@ -12,5 +12,6 @@
         void ShowEasyMenu(NativeLuaTable menu);
         void VerifyVisible(string text);
         void VerifyVisible(string text, bool exact);
+        bool IsVisible(string text);
     }
 }

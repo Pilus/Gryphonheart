@@ -94,6 +94,19 @@
             this.VerifyVisible(text, false);
         }
 
+        public bool IsVisible(string text)
+        {
+            try
+            {
+                this.VerifyVisible(text, false);
+                return true;
+            }
+            catch (UiSimuationException)
+            {
+                return false;
+            }
+        }
+
         public void VerifyVisible(string text, bool exact)
         {
             var analyzedText = string.Empty;

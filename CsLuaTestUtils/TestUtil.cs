@@ -2,9 +2,22 @@
 {
     using CsLua.Wrapping;
     using Moq;
+    using Lua;
+    using System.Linq;
 
     public class TestUtil
     {
+        public static T GetTableValue<T>(NativeLuaTable t, params object[] indexes)
+        {
+            var value = t[indexes[0]];
+            if (indexes.Length == 1)
+            {
+                return (T)value;
+            }
+            return GetTableValue<T>((NativeLuaTable) value, indexes.Skip(1).ToArray());
+        }
+
+
         public static IMultipleValues<T1, T2> StructureMultipleValues<T1, T2>(T1 value1, T2 value2)
         {
             var mock = new Mock<IMultipleValues<T1, T2>>();

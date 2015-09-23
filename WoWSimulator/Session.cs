@@ -47,10 +47,10 @@
             foreach (var addon in this.addOns)
             {
                 addon.Value();
-                this.FrameProvider.TriggerEvent(SystemEvent.ADDON_LOADED, addon.Key);
+                this.Util.TriggerEvent(SystemEvent.ADDON_LOADED, addon.Key);
             }
 
-            this.FrameProvider.TriggerEvent(SystemEvent.VARIABLES_LOADED, null);
+            this.Util.TriggerEvent(SystemEvent.VARIABLES_LOADED, null);
         }
 
         public void RunUpdate()
