@@ -8,8 +8,10 @@ namespace GHF.Presenter
     using GH.Integration;
     using GH.Model.Defaults;
     using GH.Model.QuickButtons;
+    using GH.UIModules.TargetDetails;
     using Model;
     using Model.AdditionalFields;
+    using TargetMenu;
 
     public class Presenter : IPresenter
     {
@@ -29,6 +31,9 @@ namespace GHF.Presenter
                 "Interface\\Icons\\Spell_Misc_EmotionHappy",
                 ShowCharacterMenu,
                 AddOnReference.GHF));
+
+            var targetDetailsUi = this.model.Integration.GetModule<TargetDetails>();
+            new TargetProfileMenu(this.model, targetDetailsUi);
         }
 
         private void ShowCharacterMenu()

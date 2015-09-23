@@ -4,6 +4,7 @@
     {
         ButtonPosition,
         QuickButtonShowAnimation,
-        QuickButtonHideAnimation
+        QuickButtonHideAnimation,
+        TargetDetailsButtonPosition,
     }
 }

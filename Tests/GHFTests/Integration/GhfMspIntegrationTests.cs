@@ -119,12 +119,12 @@
 
             session.RunStartup();
 
-            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRound));
+            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRoundTarget));
 
             // Target the player
             targetMock.TargetPlayer(otherMspUser, session);
 
-            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRound));
+            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRoundTarget));
             mspMock.Verify(m => m.Request(otherMspUser, It.IsAny<NativeLuaTable>()), Times.Once());
             mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(1));
 
@@ -136,19 +136,19 @@
             updateAction(otherMspUser);
 
             mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(2));
-            session.Actor.VerifyVisible(TextureResources.GhRound);
+            session.Actor.VerifyVisible(TextureResources.GhRoundTarget);
 
             // Clear the target
             targetMock.ClearTarget(session);
 
-            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRound));
+            Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRoundTarget));
 
             // Retarget the player
             targetMock.TargetPlayer(otherMspUser, session);
 
             mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(3));
             mspMock.Verify(m => m.Request(otherMspUser), Times.Exactly(2));
-            session.Actor.VerifyVisible(TextureResources.GhRound);
+            session.Actor.VerifyVisible(TextureResources.GhRoundTarget);
 
             // TODO: Click the icon and verify the details menu
         }

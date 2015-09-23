@@ -28,6 +28,17 @@
             this.msp.Update();
         }
 
+        public PublicProfile Get(string playerName)
+        {
+            var fields = this.msp.GetOther(playerName);
+            if (fields == null)
+            {
+                return null;
+            }
+
+            return null;
+        }
+
         public void Request(string playerName, CsLuaList<string> fields)
         {
             this.msp.Request(playerName, fields.ToNativeLuaTable());

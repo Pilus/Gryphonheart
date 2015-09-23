@@ -3,6 +3,6 @@
     public static class TextureResources
     {
         private static readonly string prefix = @"GH\Texture\";
-        public static string GhRound { get { return prefix + "GhRoundIcon"; } }
+        public static string GhRoundTarget { get { return prefix + "GhRoundIcon"; } }
     }
 }

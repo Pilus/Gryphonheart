@@ -30,11 +30,6 @@
             this.titleBar.SetIcon(icon);
         }
 
-        public void SetOnCloseAction(Action onClose)
-        {
-            
-        }
-
         public void ApplyTheme(IMenuTheme theme)
         {
             this.titleBar.ApplyTheme(theme);

@@ -8,5 +8,7 @@
     {
         IObjectStore<Profile, string> AccountProfiles { get; } 
         IAddOnIntegration Integration { get; }
+
+        PublicProfile GetPublicProfile(string characterName);
     }
 }

@@ -172,7 +172,10 @@
     <Compile Include="UIModules\EasyMenu\EasyDropDownMenuList.cs" />
     <Compile Include="UIModules\EasyMenu\EasyMenuHandler.cs" />
     <Compile Include="UIModules\EasyMenu\IEasyDropDownMenuContent.cs" />
+    <Compile Include="UIModules\ISingletonModule.cs" />
     <Compile Include="UIModules\SlashCommand.cs" />
+    <Compile Include="UIModules\TargetDetails\TargetDetailPageInfo.cs" />
+    <Compile Include="UIModules\TargetDetails\TargetDetails.cs" />
     <Compile Include="View\ButtonOptionsMenuProfileGenerator.cs" />
     <Compile Include="Menu\Menus\IMenuProfileGenerator.cs" />
   </ItemGroup>

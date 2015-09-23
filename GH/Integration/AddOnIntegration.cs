@@ -6,16 +6,36 @@ namespace GH.Integration
     using CsLua;
     using CsLua.Collection;
     using GH.Model;
+    using ObjectHandling.Storage;
+    using UIModules;
 
     public class AddOnIntegration : IAddOnIntegration
     {
         public static string GlobalReference = "GH_AddOnIntegration";
 
-        private CsLuaList<AddOnReference> addOns = new CsLuaList<AddOnReference>();
+        private readonly CsLuaList<AddOnReference> addOns = new CsLuaList<AddOnReference>();
 
-        private CsLuaList<IQuickButton> quickButtons = new CsLuaList<IQuickButton>();
+        private readonly CsLuaList<IQuickButton> quickButtons = new CsLuaList<IQuickButton>();
 
         private bool quickButtonsRetrieved;
+
+        private readonly CsLuaList<ISingletonModule> singletonModules = new CsLuaList<ISingletonModule>();
+
+        private IObjectStoreWithDefaults<ISetting, SettingIds> settings;
+
+        private bool settingsLoaded;
+
+        public void LoadSettings()
+        {
+            this.settingsLoaded = true;
+            this.singletonModules.Foreach(module => module.LoadSettings(this.settings));
+        }
+
+        public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
+        {
+            this.settings = settings;
+            this.singletonModules.Foreach(module => module.SetDefaults(this.settings));
+        }
 
         public void RegisterAddOn(AddOnReference addonName)
         {
@@ -44,6 +64,29 @@ namespace GH.Integration
         {
             this.quickButtonsRetrieved = true;
             return this.quickButtons;
+        }
+
+        public T GetModule<T>() where T : ISingletonModule, new()
+        {
+            var module = this.singletonModules.FirstOrDefault(m => m is T);
+            if (module != null)
+            {
+                return (T)module;
+            }
+
+            var newModule = new T();
+            this.singletonModules.Add(newModule);
+
+            if (this.settings != null)
+            {
+                newModule.SetDefaults(this.settings);
+            }
+            if (this.settingsLoaded)
+            {
+                newModule.LoadSettings(this.settings);
+            }
+
+            return newModule;
         }
     }
 }

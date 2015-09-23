@@ -18,6 +18,8 @@ namespace GH.Menu.Menus
         void AnimatedShow();
         void Show();
 
+        void Hide();
+
         void AddElement(int pageIndex, int lineIndex, IObjectProfile profile);
         void RemoveElement(string label);
 

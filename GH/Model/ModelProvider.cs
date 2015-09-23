@@ -11,10 +11,10 @@
 
     public class ModelProvider : IModelProvider
     {
-        private IAddOnIntegration integration;
+        private readonly AddOnIntegration integration;
         private Presenter presenter;
 
-        public ModelProvider(IAddOnIntegration integration)
+        public ModelProvider(AddOnIntegration integration)
         {
             this.integration = integration;
             DefaultQuickButtons.RegisterDefaultButtons(this.integration);
@@ -22,6 +22,7 @@
             this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>("GH_Buttons");
             
             this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>("GH_Settings");
+            this.integration.SetDefaults(this.Settings);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
         }
@@ -33,6 +34,7 @@
 
             this.ButtonStore.LoadFromSaved();
             this.Settings.LoadFromSaved();
+            this.integration.LoadSettings();
             this.presenter = new Presenter(this);
         }
 

@@ -193,6 +193,11 @@ namespace GH.Menu.Menus
             this.Frame.Show();
         }
 
+        public virtual void Hide()
+        {
+            this.Frame.Hide();
+        }
+
         public void RemoveElement(string label)
         {
             throw new CsException("RemoveElement is not supported on a frame level");
