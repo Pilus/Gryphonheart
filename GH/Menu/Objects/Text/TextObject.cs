@@ -10,8 +10,11 @@
 
     public class TextObject : BaseObject
     {
-        private readonly IFontString labelFrame;
-        private readonly TextProfile profile;
+        private const string Template = "GH_TextObject_Template";
+
+        public static string Type = "Text";
+
+        private readonly ITextObjectFrame frame;
 
         private static readonly CsLuaDictionary<TextColor, Color> ColorMapping = new CsLuaDictionary<TextColor, Color>()
         {
@@ -20,55 +23,54 @@
             { TextColor.yellow, new Color(1, 0.82, 0)},
         };
 
-        public TextObject(TextProfile profile, IObjectContainer parent, LayoutSettings settings) : base(profile, parent, settings)
-        {
-            var frame = (ITextObjectFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_TextObject_Template");
-            this.Frame = frame;
-            this.labelFrame = frame.Label;
-            this.profile = profile;
+        private double? width;
 
-            this.SetUpFromProfile();
+        public TextObject() : base(Type, FrameType.Frame, Template)
+        {
+            this.frame = (ITextObjectFrame) this.Frame;
         }
 
-        public static TextObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
-            return new TextObject((TextProfile)profile, parent, settings);
+            base.Prepare(profile, handler);
+            this.SetUpFromProfile((TextProfile)profile);
         }
 
-        public static string Type = "Text";
-
-
-        private void SetUpFromProfile()
+        private void SetUpFromProfile(TextProfile profile)
         {
             
-            var fontSize = this.profile.fontSize ?? 11;
-            var fontPath = this.profile.font ?? "Fonts\\FRIZQT__.TTF";
+            var fontSize = profile.fontSize ?? 11;
+            var fontPath = profile.font ?? "Fonts\\FRIZQT__.TTF";
 
-            this.labelFrame.SetFont(fontPath, fontSize);
-            this.labelFrame.SetJustifyH(GetJustifyH(this.profile.align));
+            var label = this.frame.Label;
+            label.SetFont(fontPath, fontSize);
+            label.SetJustifyH(GetJustifyH(profile.align));
 
-            this.labelFrame.SetWordWrap(true);
-            this.labelFrame.SetNonSpaceWrap(false);
+            label.SetWordWrap(true);
+            label.SetNonSpaceWrap(false);
 
-            var color = ColorMapping[this.profile.color];
-            this.labelFrame.SetTextColor(color.R, color.G, color.B);
-            this.SetTextAndUpdateSize(this.profile.text);
+            var color = ColorMapping[profile.color];
+            label.SetTextColor(color.R, color.G, color.B);
+            this.SetTextAndUpdateSize(profile.text);
+
+            this.width = profile.width;
         }
 
         private void SetTextAndUpdateSize(string text)
         {
-            this.labelFrame.SetText(text);
+            var label = this.frame.Label;
+            label.SetText(text);
 
-            if (this.profile.width != null)
+            if (this.width != null)
             {
-                this.Frame.SetWidth((double)this.profile.width);
-                this.labelFrame.SetWidth((double)this.profile.width);
-                this.Frame.SetHeight(this.labelFrame.GetHeight() + 15);
+                this.Frame.SetWidth((double)this.width);
+                label.SetWidth((double)this.width);
+                this.Frame.SetHeight(label.GetHeight() + 15);
             }
             else
             {
-                this.Frame.SetWidth(this.labelFrame.GetWidth());
-                this.Frame.SetHeight(this.labelFrame.GetHeight());
+                this.Frame.SetWidth(label.GetWidth());
+                this.Frame.SetHeight(label.GetHeight());
             }
         }
 
@@ -85,12 +87,12 @@
             }
         }
 
-        public override object GetValue()
+        public object GetValue()
         {
-            return this.labelFrame.GetText();
+            return this.frame.Label.GetText();
         }
 
-        public override void SetValue(object value)
+        public void SetValue(object value)
         {
             this.SetTextAndUpdateSize((string)value);
         }

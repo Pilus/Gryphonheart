@@ -11,5 +11,6 @@ namespace GH.Model
         IObjectStoreWithDefaults<IQuickButton, string> ButtonStore { get; }
         IObjectStoreWithDefaults<ISetting, SettingIds> Settings { get; }
         bool IsAddOnLoaded(AddOnReference addonReference);
+        AddOnIntegration Integration { get; }
     }
 }

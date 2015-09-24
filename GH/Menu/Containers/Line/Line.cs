@@ -13,7 +13,7 @@
     using GH.Menu.Objects;
     using GH.Menu.Objects.Line;
 
-    public class Line : BaseContainer<IMenuObject>, ILine
+    public class Line : BaseContainer<IMenuObject, IObjectProfile>, ILine
     {
         private double objectSpacing;
 
@@ -30,7 +30,7 @@
             var lineProfile = (LineProfile)profile;
             lineProfile.Foreach(objectProfile =>
             {
-                this.content.Add((IMenuObject)handler.CreateRegion(objectProfile));
+                this.Content.Add((IMenuObject)handler.CreateRegion(objectProfile));
             });
         }
 
@@ -41,9 +41,9 @@
             this.Frame.SetParent(parent);
             this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
-            var leftObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
-            var centerObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
-            var rightObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
+            var leftObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
+            var centerObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
+            var rightObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
 
             var leftWidth = leftObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
             var centerWidth = centerObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
@@ -207,12 +207,12 @@
         {
             double? width = null;
 
-            var objectsWithFlexibleWidth = this.content.Where(obj => obj.GetPreferredWidth() == null);
+            var objectsWithFlexibleWidth = this.Content.Where(obj => obj.GetPreferredWidth() == null);
             if (!objectsWithFlexibleWidth.Any())
             {
-                var leftObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
-                var centerObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
-                var rightObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
+                var leftObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
+                var centerObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
+                var rightObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
 
                 var leftWidth = leftObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
                 var centerWidth = centerObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
@@ -240,7 +240,7 @@
         public double GetHeightAboveMedian()
         {
             double height = 0;
-            this.content.Foreach(obj =>
+            this.Content.Foreach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
                 var preferredOffset = obj.GetPreferredCenterY();
@@ -255,7 +255,7 @@
         public double GetHeightBelowMedian()
         {
             double height = 0;
-            this.content.Foreach(obj =>
+            this.Content.Foreach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
                 var preferredOffset = obj.GetPreferredCenterY();
@@ -269,7 +269,7 @@
 
         public double? GetPreferredHeight()
         {
-            var objectsWithFlexibleHeight = this.content.Where(obj => obj.GetPreferredHeight() == null);
+            var objectsWithFlexibleHeight = this.Content.Where(obj => obj.GetPreferredHeight() == null);
 
             if (!objectsWithFlexibleHeight.Any())
             {

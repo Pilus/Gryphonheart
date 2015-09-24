@@ -46,7 +46,7 @@
         {
             var targetFrame = (IFrame)Global.Api.GetGlobal("TargetFrame", typeof(IFrame));
             // TODO: Calculate the default position based on the target frame.
-            settings.SetDefault(new Setting(PositionSettingIds, new[] { 200, 100 }));
+            settings.SetDefault(new Setting(PositionSettingIds, new double[] { 200, 100 }));
         }
 
         public void AddPages(CsLuaList<PageProfile> pageProfiles, Func<bool> enabled)

@@ -9,38 +9,30 @@
 
     public class CustomDropDownObject : BaseObject
     {
-        private readonly CustomDropDownProfile profile;
-        private readonly ICustomDropDownFrame frame;
-
-        public CustomDropDownObject(CustomDropDownProfile profile, IObjectContainer parent, LayoutSettings settings)
-            : base(profile, parent, settings)
-        {
-            this.profile = profile;
-
-            this.frame = (ICustomDropDownFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_CustomDropDown_Template");
-            this.Frame = this.frame;
-            this.SetUp();
-        }
-
-        public static CustomDropDownObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
-        {
-            return new CustomDropDownObject((CustomDropDownProfile)profile, parent, settings);
-        }
+        private const string Template = "GH_CustomDropDown_Template";
 
         public static string Type = "CustomDD";
 
-        private void SetUp()
+        private readonly ICustomDropDownFrame frame;
+
+        public CustomDropDownObject() : base(Type, FrameType.Frame, Template)
         {
-            this.UpdateDimensions();
+            this.frame = (ICustomDropDownFrame) this.Frame;
         }
 
-        private void UpdateDimensions()
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
-            if (this.profile.width != null)
+            base.Prepare(profile, handler);
+            this.ApplyProfile((CustomDropDownProfile)profile);
+        }
+
+        private void ApplyProfile(CustomDropDownProfile profile)
+        {
+            if (profile.width != null)
             {
-                this.frame.DropDownMenu.SetWidth((double) this.profile.width);
-                this.frame.SetWidth((double)this.profile.width + 6);
-                this.frame.MiddleDropDownTexture.SetWidth((double)this.profile.width - 40);
+                this.frame.DropDownMenu.SetWidth((double) profile.width);
+                this.frame.SetWidth((double)profile.width + 6);
+                this.frame.MiddleDropDownTexture.SetWidth((double)profile.width - 40);
             }
             else
             {
@@ -48,16 +40,6 @@
                 this.frame.SetWidth(126);
             }
             this.frame.SetHeight(this.frame.DropDownMenu.GetHeight() + this.frame.Label.GetHeight() + 5);
-        }
-
-        public override object GetValue()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void SetValue(object value)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

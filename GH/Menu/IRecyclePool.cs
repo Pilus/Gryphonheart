@@ -1,10 +1,10 @@
 ﻿namespace GH.Menu
 {
-    using CsLua.Collection;
+    using System;
 
     public interface IRecyclePool
     {
-        IElement Retrieve(IElementProfile profile);
+        IElement Retrieve(Type type);
         void Store(IElement element);
     }
 }

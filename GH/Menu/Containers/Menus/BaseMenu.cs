@@ -1,18 +1,12 @@
 ﻿
 namespace GH.Menu.Menus
 {
-    using System;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
-    using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using CsLua.Collection;
-    using Objects;
     using Objects.Page;
-    using Theme;
     using GH.Menu.Containers;
 
-    public class BaseMenu : BaseContainer<IPage>, IMenu
+    public class BaseMenu : BaseContainer<IPage, PageProfile>, IMenu
     {
 
         public Inserts Inserts;
@@ -22,6 +16,7 @@ namespace GH.Menu.Menus
 
         public BaseMenu() : base("Menu")
         {
+            this.Inserts = new Inserts();
             this.Frame.SetParent(Global.Frames.UIParent);
         }
 
@@ -36,6 +31,8 @@ namespace GH.Menu.Menus
             this.Inserts = new Inserts();
             this.menuWidth = menuProfile.width;
             this.menuHeight = menuProfile.height;
+
+            this.Frame["Name"] = menuProfile.name;
         }
 
 
@@ -65,8 +62,8 @@ namespace GH.Menu.Menus
         
         public void UpdatePosition()
         {
-            var pageWidth = this.content.Max(page => page.GetPreferredWidth() ?? -1);
-            var pageHeight = this.content.Max(page => page.GetPreferredHeight() ?? -1);
+            var pageWidth = this.Content.Max(page => page.GetPreferredWidth() ?? -1);
+            var pageHeight = this.Content.Max(page => page.GetPreferredHeight() ?? -1);
 
             var widthAvailableToPages = pageWidth;
             if (this.menuWidth != null)
@@ -98,7 +95,7 @@ namespace GH.Menu.Menus
                 throw new MenuConfigurationException("The menu must either define a height or have a page with no objects with flexible height");
             }
 
-            this.content.Foreach(page => page.SetPosition(this.Frame, this.Inserts.Left, this.Inserts.Top, widthAvailableToPages, heightAvailableToPages));
+            this.Content.Foreach(page => page.SetPosition(this.Frame, this.Inserts.Left, this.Inserts.Top, widthAvailableToPages, heightAvailableToPages));
         }
 
         public virtual void AnimatedShow()

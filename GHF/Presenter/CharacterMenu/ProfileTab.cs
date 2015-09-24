@@ -6,8 +6,10 @@ namespace GHF.Presenter.CharacterMenu
     using CsLua;
     using CsLua.Collection;
     using GH.Menu;
+    using GH.Menu.Containers.Line;
     using GH.Menu.Menus;
     using GH.Menu.Objects;
+    using GH.Menu.Objects.Line;
     using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
     using GHF.View;
@@ -20,13 +22,15 @@ namespace GHF.Presenter.CharacterMenu
     {
         private readonly ProfileTabProfileGenerator profileGenerator;
         private readonly SupportedFields supportedFields;
+        private readonly IMenuHandler menuHandler;
         private Profile currentProfile;
         private IMenu loadedMenu;
         private readonly CsLuaList<string> shownAdditionalFields = new CsLuaList<string>();
 
-        public ProfileTab(SupportedFields supportedFields)
+        public ProfileTab(SupportedFields supportedFields, IMenuHandler menuHandler)
         {
             this.supportedFields = supportedFields;
+            this.menuHandler = menuHandler;
             this.profileGenerator = new ProfileTabProfileGenerator();
         }
 
@@ -83,19 +87,21 @@ namespace GHF.Presenter.CharacterMenu
             {
                 var panel = (PanelObject)this.loadedMenu.GetFrameById(ProfileTabLabels.AdditionalFieldsPanel);
                 
-                var lastLineIndex = panel.GetNumLines();
-                var numObjects = panel.GetNumObjects(lastLineIndex);
+                var line = panel.GetElement(panel.GetNumElements());
+                var numObjects = line.GetNumElements();
                 if (numObjects < 2)
                 {
                     var profile = fieldMeta.GenerateProfile(numObjects == 0 ? ObjectAlign.l : ObjectAlign.r);
-                    panel.AddElement(lastLineIndex, profile);
+                    line.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
                 }
                 else
                 {
                     var profile = fieldMeta.GenerateProfile(ObjectAlign.l);
-                    panel.AddElement(lastLineIndex, profile);
+                    var newLine = (ILine) this.menuHandler.CreateRegion(new LineProfile());
+                    panel.AddElement(newLine);
+                    newLine.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
                 }
-                var obj = panel.GetFrameById(fieldMeta.Id);
+                var obj = (IMenuObjectWithValue)panel.GetFrameById(fieldMeta.Id);
                 obj.SetValue(value);
                 this.shownAdditionalFields.Add(key);
             }

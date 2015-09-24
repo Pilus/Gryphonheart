@@ -12,7 +12,7 @@
         void AddElement(T element);
         void AddElement(T element, int index);
         void RemoveElement(int index);
-        int GetNumElements(int index);
+        int GetNumElements();
         T GetElement(int index);
     }
 }

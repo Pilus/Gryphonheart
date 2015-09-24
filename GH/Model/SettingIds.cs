@@ -6,5 +6,12 @@
         QuickButtonShowAnimation,
         QuickButtonHideAnimation,
         TargetDetailsButtonPosition,
+
+        // Menu Settings
+        MenuTitleBarTextColor,
+        MenuTitleBarBackgroundColor,
+        MenuBackgroundTexturePath,
+        MenuBackgroundTextureInserts,
+        MenuButtonColor,
     }
 }

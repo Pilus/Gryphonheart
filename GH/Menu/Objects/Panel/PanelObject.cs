@@ -10,48 +10,49 @@ namespace GH.Menu.Objects.Panel
     using Lua;
     using Page;
     using BlizzardApi.Global;
+    using Containers;
+    using Containers.Line;
     using Theme;
+    using Toolbar;
 
-    public class PanelObject : BaseObject, IObjectContainer
+    public class PanelObject : BaseObject, IContainer<ILine>, IMenuObject
     {
-        private readonly PanelProfile profile;
-        private IPage innerPage;
-        private readonly IFrame parentFrame;
-        private readonly LayoutSettings settings;
-        private const double BorderSize = 0;
-        private const double ExtraTopSize = 0;
-        private readonly string name;
-
-        public PanelObject(PanelProfile profile, IObjectContainer parent, LayoutSettings settings) : base(profile, parent, settings)
-        {
-            this.profile = profile;
-            this.parentFrame = parent.Frame;
-            this.settings = settings;
-            this.name = UniqueName(Type);
-            this.CreateFrame();
-        }
-
-        public static PanelObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
-        {
-            return new PanelObject((PanelProfile) profile, parent, settings);
-        }
-
         public static string Type = "Panel";
 
-        public override void SetPosition(double xOff, double yOff, double width, double height)
+        private const double BorderSize = 0;
+        private const double ExtraTopSize = 0;
+
+        private string name;
+
+        private IPage innerPage;
+
+        public PanelObject() : base(Type)
         {
-            this.Frame.SetHeight(height);
-            this.Frame.SetWidth(width);
-            this.Frame.SetPoint(FramePoint.TOPLEFT, this.parentFrame, FramePoint.TOPLEFT, xOff, -0);
-            if (this.innerPage != null)
-            { 
-                this.innerPage.SetPosition(
+            
+        }
+
+        
+
+        public override void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
+        {
+            base.SetPosition(parent, xOff, yOff, width, height);
+            this.innerPage.SetPosition(
+                    this.Frame,
                     BorderSize,
                     BorderSize + ExtraTopSize,
                     width - (BorderSize * 2),
                     height - (BorderSize * 2 + ExtraTopSize));
-            }
+            this.Frame.SetFrameLevel(parent.GetFrameLevel() + 1);
         }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            this.innerPage = (IPage)handler.CreateRegion(new PageProfile());
+            base.Prepare(profile, handler);
+            var panelProfile = (PanelProfile) profile;
+            this.name = panelProfile.name;
+        }
+
 
         public override double? GetPreferredHeight()
         {
@@ -83,79 +84,39 @@ namespace GH.Menu.Objects.Panel
             return null;
         }
 
-        public override object GetValue()
+        public void SetValue(string id, object value)
         {
-            throw new CsException("Cannot get value on a panel object.");
+            this.innerPage.SetValue(id, value);
         }
 
-        public override void SetValue(object value)
+        public object GetValue(string id)
         {
-            throw new CsException("Cannot force value on a panel object.");
+            return this.innerPage.GetValue(id);
         }
 
-        private void CreateFrame()
+        public void AddElement(ILine element)
         {
-            this.Frame = Global.FrameProvider.CreateFrame(FrameType.Frame, this.name, this.parentFrame) as IFrame;
-            this.Frame.SetFrameLevel(this.parentFrame.GetFrameLevel() + 1);
-            
-            if (this.profile.Count > 0)
-            { 
-                this.innerPage = new Page(this.profile, this.Frame, this.settings, 1);
-            }
+            this.innerPage.AddElement(element);
         }
 
-        public void ApplyTheme(IMenuTheme theme)
+        public void AddElement(ILine element, int index)
         {
-            if (this.innerPage != null)
-            {
-                this.innerPage.ApplyTheme(theme);
-            }
+            this.innerPage.AddElement(element, index);
         }
 
-        public override IMenuObject GetFrameById(string id)
+        public void RemoveElement(int index)
         {
-            if (id == this.profile.label) return this;
-            return this.innerPage != null ? this.innerPage.GetFrameById(id) : null;
+            this.innerPage.RemoveElement(index);
         }
 
-        public void AddElement(int lineIndex, IObjectProfile profile)
+        public int GetNumElements()
         {
-            if (this.innerPage == null)
-            {
-                this.innerPage = new Page(new PageProfile() { new LineProfile() { profile }}, this.Frame, this.settings, 1);
-            }
-
-            this.innerPage.AddElement(lineIndex, profile);
+            return this.innerPage.GetNumElements();
         }
 
-        public void RemoveElement(string label)
+        public ILine GetElement(int index)
         {
-            if (this.innerPage == null)
-            {
-                return;
-            }
-
-            this.innerPage.RemoveElement(label);
-        }
-
-        public int GetNumLines()
-        {
-            if (this.innerPage == null)
-            {
-                return 0;
-            }
-
-            return this.innerPage.GetNumLines();
-        }
-
-        public int GetNumObjects(int lineIndex)
-        {
-            if (this.innerPage == null)
-            {
-                return 0;
-            }
-
-            return this.innerPage.GetNumObjects(lineIndex);
+            return this.innerPage.GetElement(index);
         }
     }
 }

@@ -17,9 +17,13 @@ namespace GH.Menu.Menus
 
         private IPage currentPage;
 
-        public TabMenu(MenuProfile profile) : base(profile)
+        public TabMenu() : base()
         {
-            this.UpdatePosition();
+        }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
             this.DisplayTab(0);
         }
 
@@ -66,9 +70,9 @@ namespace GH.Menu.Menus
             this.tabButtons = new CsLuaDictionary<int, IButton>();
             var setTabFunc = (Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
 
-            for (var i = 0; i < this.content.Count; i++)
+            for (var i = 0; i < this.Content.Count; i++)
             {
-                var page = this.content[i];
+                var page = this.Content[i];
                 page.Hide();
                 var button = this.CreateButtonFrame(i);
                 button.SetText(page.Name);
@@ -85,7 +89,7 @@ namespace GH.Menu.Menus
                     page.Show();
                 });
             }
-            ((Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.__obj, this.Pages.Count);
+            ((Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.__obj, this.Content.Count);
         }
 
         private static void InvokeClick(IButton button)

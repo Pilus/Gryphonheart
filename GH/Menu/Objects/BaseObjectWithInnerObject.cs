@@ -8,7 +8,7 @@ namespace GH.Menu.Objects
     using Lua;
     using GH.Menu.Containers;
 
-    public abstract class BaseObjectWithInnerObject : BaseContainer<IMenuObject>, IContainer<IMenuObject>, IMenuRegion
+    public abstract class BaseObjectWithInnerObject : BaseContainer<IMenuObject, IObjectProfile>, IMenuRegion
     {
         public BaseObjectWithInnerObject() : base("Wrapper")
         {
@@ -17,7 +17,7 @@ namespace GH.Menu.Objects
 
         private IMenuObject GetInner()
         {
-            return this.content.First();
+            return this.Content.First();
         }
 
         public abstract void SetPosition(IFrame parent, double xOff, double yOff, double width, double height);
@@ -34,13 +34,13 @@ namespace GH.Menu.Objects
 
         public override void AddElement(IMenuObject element)
         {
-            this.content.Clear();
+            this.Content.Clear();
             base.AddElement(element);
         }
 
         public override void AddElement(IMenuObject element, int index)
         {
-            this.content.Clear();
+            this.Content.Clear();
             base.AddElement(element, index);
         }
     }

@@ -1,5 +1,6 @@
 ﻿namespace MenuTest
 {
+    using GH.Menu;
     using GH.Menu.Menus;
     using GH.Menu.Objects;
     using GH.Menu.Objects.Button;
@@ -10,9 +11,9 @@
 
     public class EditBoxesTest
     {
-        public EditBoxesTest()
+        public EditBoxesTest(IMenuHandler handler)
         {
-            var menu = BaseMenu.CreateMenu(
+            var menu = handler.CreateMenu(
                 new MenuProfile("edit box test", 400, () => { Core.print("OK"); }, true, () => Core.print("Show"), null, null)
                 {
                     title = "Edit box tests",

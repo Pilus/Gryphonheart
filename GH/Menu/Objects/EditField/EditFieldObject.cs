@@ -6,59 +6,63 @@
 
     public class EditFieldObject : BaseObject
     {
+        private const string Template = "GH_EditFieldFrame_Template";
+
         private readonly IEditFieldFrame frame;
-        private readonly EditFieldProfile profile;
+
+        private double? width;
+        private double? height;
 
         public static string Type = "EditField";
 
-        public static EditFieldObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
+        public EditFieldObject() : base(Type, FrameType.Frame, Template)
         {
-            return new EditFieldObject((EditFieldProfile)profile, parent, settings);
+            this.frame = (IEditFieldFrame)this.Frame;
         }
 
-        public EditFieldObject(EditFieldProfile profile, IObjectContainer parent, LayoutSettings settings)
-            : base(profile, parent, settings)
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
-            this.frame = (IEditFieldFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditFieldFrame_Template");
-            this.Frame = this.frame;
-            this.profile = profile;
-
-            this.SetUpFromProfile();
-            this.SetUpTabbableObject(new TabableEditBox(this.frame.Text));
+            base.Prepare(profile, handler);
+            this.SetUpFromProfile((EditFieldProfile)profile);
+            // this.SetUpTabbableObject(new TabableEditBox(this.frame.Text));
         }
 
-        private void SetUpFromProfile()
+
+        private void SetUpFromProfile(EditFieldProfile profile)
         {
-            if (this.profile.width != null)
+            this.width = profile.width;
+            this.height = profile.height;
+
+            if (profile.width != null)
             {
-                this.frame.SetWidth((double)this.profile.width);
+                this.frame.SetWidth((double)profile.width);
             }
 
-            if (this.profile.height != null)
+            if (profile.height != null)
             {
-                this.frame.SetHeight((double)this.profile.height);
+                this.frame.SetHeight((double)profile.height);
             }
 
         }
 
-        public override object GetValue()
+        public object GetValue()
         {
             return this.frame.Text.GetText();
         }
 
-        public override void SetValue(object value)
+        public void SetValue(object value)
         {
             this.frame.Text.SetText((string)value ?? "");
         }
 
         public override double? GetPreferredWidth()
         {
-            return this.profile.width;
+            return this.width;
         }
 
         public override double? GetPreferredHeight()
         {
-            return this.profile.height;
+            return this.height;
         }
     }
 }

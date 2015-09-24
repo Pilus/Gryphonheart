@@ -71,6 +71,7 @@
     <Compile Include="Menu\IRecyclePool.cs" />
     <Compile Include="Menu\Containers\Menus\NoValueHandlingException.cs" />
     <Compile Include="Menu\Containers\Menus\Window\MinimizeableTitleBar.cs" />
+    <Compile Include="Menu\MenuException.cs" />
     <Compile Include="Menu\MenuHandler.cs" />
     <Compile Include="Menu\Objects\Button\ButtonObject.cs" />
     <Compile Include="Menu\Objects\Button\IButtonTemplate.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Menu\MenuConfigurationException.cs" />
     <Compile Include="Menu\Containers\Menus\Window\ContentContainer.cs" />
     <Compile Include="Menu\Containers\Menus\Window\TitleBar.cs" />
+    <Compile Include="Menu\RecyclePool.cs" />
     <Compile Include="Menu\Theme\IMenuTheme.cs" />
     <Compile Include="Menu\Containers\Menus\Window\MenuWindow.cs" />
     <Compile Include="Menu\Objects\BaseObjectWithInnerObject.cs" />
@@ -136,7 +138,6 @@
     <Compile Include="Menu\Containers\Page\PageProfile.cs" />
     <Compile Include="Menu\Objects\TextColor.cs" />
     <Compile Include="Menu\Theme\MenuTheme.cs" />
-    <Compile Include="Menu\Theme\ThemeHandler.cs" />
     <Compile Include="Misc\ISavedDataHandler.cs" />
     <Compile Include="Misc\Misc.cs" />
     <Compile Include="Model\Defaults\DefaultQuickButtons.cs" />

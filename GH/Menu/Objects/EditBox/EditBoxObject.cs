@@ -8,71 +8,72 @@
 
     public class EditBoxObject : BaseObject
     {
-        private readonly IEditBoxWithFilters frame;
-        private readonly EditBoxProfile profile;
-
-        public EditBoxObject(EditBoxProfile profile, IObjectContainer parent, LayoutSettings settings)
-            : base(profile, parent, settings)
-        {
-            this.frame = (IEditBoxWithFilters)Global.FrameProvider.CreateFrame(FrameType.EditBox, UniqueName(Type), parent.Frame, "GH_EditBoxWithFilters_Template");
-            this.Frame = this.frame;
-            this.profile = profile;
-
-            this.SetUpFromProfile();
-        }
-
-        public static EditBoxObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
-        {
-            return new EditBoxObject((EditBoxProfile)profile, parent, settings);
-        }
+        private const string Template = "GH_EditBoxWithFilters_Template";
 
         public static string Type = "Editbox";
 
-        private void SetUpFromProfile()
-        {
-            this.frame.NumbersOnly = this.profile.numbersOnly;
-            this.frame.VariablesOnly = this.profile.variablesOnly;
+        private readonly IEditBoxWithFilters frame;
 
-            if (this.profile.width != null)
+        private double? width;
+
+        public EditBoxObject() : base(Type, FrameType.EditBox, Template)
+        {
+            this.frame = (IEditBoxWithFilters) this.Frame;
+        }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
+            this.SetUpFromProfile((EditBoxProfile) profile);
+        }
+
+
+        private void SetUpFromProfile(EditBoxProfile profile)
+        {
+            this.frame.NumbersOnly = profile.numbersOnly;
+            this.frame.VariablesOnly = profile.variablesOnly;
+
+            if (profile.width != null)
             {
-                this.frame.SetWidth((double)this.profile.width);
+                this.frame.SetWidth((double)profile.width);
             }
 
             this.frame.SetScript(EditBoxHandler.OnTextChanged, (self) =>
             {
-                if (this.profile.OnTextChanged != null)
+                if (profile.OnTextChanged != null)
                 {
-                    this.profile.OnTextChanged(this.frame.GetText());
+                    profile.OnTextChanged(this.frame.GetText());
                 }
             });
 
             this.frame.SetScript(EditBoxHandler.OnEnterPressed, (self) =>
             {
-                if (this.profile.OnEnterPressed != null)
+                if (profile.OnEnterPressed != null)
                 {
-                    this.profile.OnEnterPressed();
+                    profile.OnEnterPressed();
                 }
             });
 
-            if (this.profile.size != null)
+            if (profile.size != null)
             {
-                this.frame.SetMaxLetters((int)this.profile.size);
+                this.frame.SetMaxLetters((int)profile.size);
             }
             
-            if (this.profile.startText != null)
+            if (profile.startText != null)
             { 
-                this.frame.SetText(this.profile.startText);
+                this.frame.SetText(profile.startText);
             }
 
-            this.SetUpTabbableObject(new TabableEditBox(this.frame));
+            this.width = profile.width;
+            //this.SetUpTabbableObject(new TabableEditBox(this.frame));
         }
 
-        public override object GetValue()
+        public object GetValue()
         {
             return this.frame.GetText();
         }
 
-        public override void SetValue(object value)
+        public void SetValue(object value)
         {
             this.frame.SetText((string)value ?? "");
         }
@@ -84,7 +85,7 @@
 
         public override double? GetPreferredWidth()
         {
-            return this.profile.width;
+            return this.width;
         }
     }
 }

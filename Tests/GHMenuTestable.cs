@@ -19,9 +19,21 @@
 
         public void SelectMenu(string name)
         {
-            this.currentMenu = this.session.GetGlobal<IFrame>(name);
-            if (this.currentMenu == null)
-                throw new UiSimuationException(string.Format("No menu found with name {0}.", name));
+            var c = 1;
+
+            IFrame menu = this.session.GetGlobal<IFrame>("Menu" + c);
+            while (menu != null)
+            {
+                if (name == menu["Name"])
+                {
+                    this.currentMenu = menu;
+                    return;
+                }
+                c++;
+                menu = this.session.GetGlobal<IFrame>("Menu" + c);
+            }
+
+            throw new UiSimuationException(string.Format("No menu found with name {0}. Searched {1} menus.", name, c));
         }
 
         private void VerifyCurrentMenu()

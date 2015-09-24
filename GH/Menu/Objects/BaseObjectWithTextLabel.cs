@@ -52,7 +52,7 @@ namespace GH.Menu.Objects
 
         public double GetPreferredCenterY()
         {
-            return this.content.FirstOrDefault().GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
+            return this.Content.FirstOrDefault().GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
         }
 
         public override void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
@@ -63,7 +63,7 @@ namespace GH.Menu.Objects
             this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
             var textLabelHeight = this.textLabel.GetHeight() + GabUnderText;
-            this.content.FirstOrDefault().SetPosition(this.Frame, xOff, yOff + textLabelHeight, width, height - textLabelHeight);
+            this.Content.FirstOrDefault().SetPosition(this.Frame, xOff, yOff + textLabelHeight, width, height - textLabelHeight);
         }
     }
 }

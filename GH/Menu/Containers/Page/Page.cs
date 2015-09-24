@@ -12,7 +12,7 @@
     using Lua;
     using Theme;
 
-    public class Page : BaseContainer<ILine>, IPage
+    public class Page : BaseContainer<ILine, LineProfile>, IPage
     {
         private double lineSpacing;
 
@@ -43,11 +43,11 @@
         
         public double? GetPreferredWidth()
         {
-            var gotLineWithNoLimit = this.content.Any(line => line.GetPreferredWidth() == null);
+            var gotLineWithNoLimit = this.Content.Any(line => line.GetPreferredWidth() == null);
             
-            if (!gotLineWithNoLimit)
+            if (!gotLineWithNoLimit && this.Content.Any())
             {
-                return this.content.Max(line => line.GetPreferredWidth() ?? 0);
+                return this.Content.Max(line => line.GetPreferredWidth() ?? 0);
             }
 
             return null;
@@ -55,11 +55,11 @@
 
         public double? GetPreferredHeight()
         {
-            var gotLineWithNoLimit = this.content.Any(line => line.GetPreferredHeight() == null);
+            var gotLineWithNoLimit = this.Content.Any(line => line.GetPreferredHeight() == null);
 
             if (!gotLineWithNoLimit)
             {
-                return this.content.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lineSpacing * LuaMath.max(this.lines.Count - 1, 0));
+                return this.Content.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lineSpacing * LuaMath.max(this.Content.Count - 1, 0));
             }
 
             return null;
@@ -74,8 +74,8 @@
             this.Frame.SetHeight(height);
             this.Frame.SetPoint(FramePoint.TOPLEFT, xOff, -yOff);
 
-            var linesWithNoHeightLimit = this.content.Where(line => line.GetPreferredHeight() == null);
-            var linesWithHeightLimit = this.content.Where(line => line.GetPreferredHeight() != null);
+            var linesWithNoHeightLimit = this.Content.Where(line => line.GetPreferredHeight() == null);
+            var linesWithHeightLimit = this.Content.Where(line => line.GetPreferredHeight() != null);
 
             double heightUsed = 0;
             linesWithHeightLimit.Foreach(line =>
@@ -91,7 +91,7 @@
             }
 
             heightUsed = 0;
-            this.content.Foreach(line =>
+            this.Content.Foreach(line =>
             {
                 var lineHeight = line.GetPreferredHeight() ?? heightPrFlexObject;
                 line.SetPosition(this.Frame, 0, heightUsed, width, lineHeight);

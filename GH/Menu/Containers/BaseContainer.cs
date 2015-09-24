@@ -5,34 +5,35 @@
     using GH.Menu.Objects;
     using GH.Menu.Theme;
     using CsLua.Collection;
+    using Objects.Page;
 
-    public abstract class BaseContainer<T> : BaseElement, IContainer<T> where T : IMenuRegion
+    public abstract class BaseContainer<T, TProfile> : BaseElement, IContainer<T> where T : IMenuRegion
     {
-        protected CsLuaList<T> content;
+        protected CsLuaList<T> Content;
 
         public BaseContainer(string typeName) : base(typeName)
         {
-
+            this.Content = new CsLuaList<T>();
         }
 
         public virtual void AddElement(T element)
         {
-            this.content.Add(element);
+            this.Content.Add(element);
         }
 
         public virtual void AddElement(T element, int index)
         {
-            this.content.Insert(index, element);
+            this.Content.Insert(index, element);
         }
 
         public virtual T GetElement(int index)
         {
-            return this.content[index];
+            return this.Content[index];
         }
 
         public IMenuObject GetFrameById(string id)
         {
-            foreach (var obj in this.content)
+            foreach (var obj in this.Content)
             {
                 if (obj is IMenuObject)
                 {
@@ -54,9 +55,9 @@
             return null;
         }
 
-        public virtual int GetNumElements(int index)
+        public virtual int GetNumElements()
         {
-            return this.content.Count;
+            return this.Content.Count;
         }
 
         public virtual object GetValue(string id)
@@ -72,28 +73,27 @@
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(profile, handler);
-            this.content = new CsLuaList<T>();
+            this.Content = new CsLuaList<T>();
 
-            var containerProfile = (IContainerProfile<T>)profile;
+            var containerProfile = (IContainerProfile<TProfile>)profile;
             containerProfile.Foreach(p =>
             {
                 var regionProfile = (IMenuRegionProfile)p;
                 var region = (T)handler.CreateRegion(regionProfile);
-                this.content.Add(region);
-                region.Prepare(regionProfile, handler);
+                this.Content.Add(region);
             });
             
         }
 
         public override void Recycle()
         {
-            this.content.Foreach(o => o.Recycle());
+            this.Content.Foreach(o => o.Recycle());
             base.Recycle();
         }
 
         public virtual void RemoveElement(int index)
         {
-            this.content.RemoveAt(index);
+            this.Content.RemoveAt(index);
         }
 
         public virtual void SetValue(string id, object value)
@@ -107,12 +107,12 @@
 
         public override void ApplyTheme(IMenuTheme theme)
         {
-            this.content.Foreach(c => c.ApplyTheme(theme));
+            this.Content.Foreach(c => c.ApplyTheme(theme));
         }
 
         public override void Clear()
         {
-            this.content.Foreach(c => c.Clear());
+            this.Content.Foreach(c => c.Clear());
         }
     }
 }

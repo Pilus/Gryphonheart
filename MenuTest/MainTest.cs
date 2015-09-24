@@ -1,6 +1,7 @@
 ﻿namespace MenuTest
 {
     using System;
+    using GH.Menu;
     using GH.Menu.Menus;
     using GH.Menu.Objects;
     using GH.Menu.Objects.Button;
@@ -11,9 +12,9 @@
 
     public class MainTest
     {
-        public MainTest()
+        public MainTest(IMenuHandler handler)
         {
-            var menu = BaseMenu.CreateMenu(
+            var menu = handler.CreateMenu(
                 new MenuProfile("Main test", 400, () => { Core.print("OK"); }, true, () => Core.print("Show"), null, null)
                 {
                     title = "Menu tests",
@@ -30,7 +31,7 @@
                                 text = "Buttons",
                                 onClick = (() =>
                                 {
-                                    new ButtonsTest();
+                                    new ButtonsTest(handler);
                                 })
                             }
                         },
@@ -44,7 +45,7 @@
                                 text = "EditBoxes",
                                 onClick = (() =>
                                 {
-                                    new EditBoxesTest();
+                                    new EditBoxesTest(handler);
                                 })
                             }
                         },

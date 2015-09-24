@@ -1,5 +1,6 @@
 ﻿namespace MenuTest
 {
+    using GH.Menu;
     using GH.Menu.Menus;
     using GH.Menu.Objects;
     using GH.Menu.Objects.Button;
@@ -9,9 +10,9 @@
 
     public class ButtonsTest
     {
-        public ButtonsTest()
+        public ButtonsTest(IMenuHandler handler)
         {
-            var menu = BaseMenu.CreateMenu(
+            var menu = handler.CreateMenu(
                 new MenuProfile("Buttons test", 400, () => { Core.print("OK"); }, true, () => Core.print("Show"), null, null)
                 {
                     title = "Buttons tests",

@@ -37,8 +37,10 @@
 
             this.setUp = true;
             var menuProfile = this.profileGenerator.GenerateMenuProfile();
-            this.menu = BaseMenu.CreateMenu(menuProfile);
-            this.menu["name"] = Name;
+
+            var menuHandler = model.Integration.GetModule<MenuHandler>();
+            this.menu = menuHandler.CreateMenu(menuProfile);
+            this.menu.Frame["name"] = Name;
             Global.Api.InterfaceOptions_AddCategory(this.menu.Frame);
         }
     }

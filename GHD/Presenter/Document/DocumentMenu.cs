@@ -32,7 +32,7 @@ namespace GHD.Presenter.Document
             this.inputProvider = new TextBoxInputInterpreter();
             this.cursor = new Cursor();
 
-            this.menu = BaseMenu.CreateMenu(profileGenerator.GenerateMenuProfile());
+            //this.menu = BaseMenu.CreateMenu(profileGenerator.GenerateMenuProfile());
             this.SetupDocumentArea(this.menu.GetFrameById(DocumentMenuLabels.DocumentArea) as IFrame);
         }
 

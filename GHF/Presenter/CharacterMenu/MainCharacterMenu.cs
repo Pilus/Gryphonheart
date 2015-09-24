@@ -26,10 +26,12 @@ namespace GHF.Presenter.CharacterMenu
 
         public MainCharacterMenu(IModelProvider model, SupportedFields fields)
         {
+            var menuHandler = model.Integration.GetModule<MenuHandler>();
+
             this.model = model;
             this.tabs = new CsLuaList<ICharacterMenuTab>()
                 {
-                    new ProfileTab(fields),
+                    new ProfileTab(fields, menuHandler),
                     new DetailsTab(),
                 };
 
@@ -38,7 +40,8 @@ namespace GHF.Presenter.CharacterMenu
             var characterMenuProfileGenerator = new CharacterMenuProfileGenerator(pages, this.Save);
             var menuProfile = characterMenuProfileGenerator.GenerateMenuProfile();
 
-            this.menu = BaseMenu.CreateMenu(menuProfile);
+            
+            this.menu = menuHandler.CreateMenu(menuProfile);
 
             this.listFrame = new CharacterListFrame(this.menu.Frame);
             this.listToggle = new CharacterListToggleObject(this.menu.Frame, this.menu.GetFrameById(ProfileTabLabels.ToggleCharacterList).Frame, this.listFrame.Toggle);
