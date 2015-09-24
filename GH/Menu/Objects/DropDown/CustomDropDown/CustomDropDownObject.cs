@@ -12,7 +12,7 @@
         private readonly CustomDropDownProfile profile;
         private readonly ICustomDropDownFrame frame;
 
-        public CustomDropDownObject(CustomDropDownProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public CustomDropDownObject(CustomDropDownProfile profile, IObjectContainer parent, LayoutSettings settings)
             : base(profile, parent, settings)
         {
             this.profile = profile;
@@ -22,7 +22,7 @@
             this.SetUp();
         }
 
-        public static CustomDropDownObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public static CustomDropDownObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
         {
             return new CustomDropDownObject((CustomDropDownProfile)profile, parent, settings);
         }

@@ -1,70 +1,47 @@
 ﻿
 namespace GH.Menu.Objects
 {
+    using System;
     using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Lua;
+    using GH.Menu.Containers;
 
-    public abstract class BaseObjectWithInnerObject : IMenuObject
+    public abstract class BaseObjectWithInnerObject : BaseContainer<IMenuObject>, IContainer<IMenuObject>, IMenuRegion
     {
-        private IMenuObject innerObject;
-
-        public BaseObjectWithInnerObject(IMenuObject innerObject)
+        public BaseObjectWithInnerObject() : base("Wrapper")
         {
-            this.innerObject = innerObject;
+            
         }
 
-        public virtual ObjectAlign GetAlignment()
+        private IMenuObject GetInner()
         {
-            return this.innerObject.GetAlignment();
+            return this.content.First();
         }
 
-        public virtual IMenuObject GetFrameById(string id)
-        {
-            return this.innerObject.GetFrameById(id);
-        }
-
-        public virtual double GetPreferredCenterX()
-        {
-            return this.innerObject.GetPreferredCenterX();
-        }
-
-        public virtual double GetPreferredCenterY()
-        {
-            return this.innerObject.GetPreferredCenterY();
-        }
-
-        public virtual object GetValue()
-        {
-            return this.innerObject.GetValue();
-        }
-
-        public virtual void SetValue(object value)
-        {
-            this.innerObject.SetValue(value);
-        }
-
-        public virtual void Clear()
-        {
-            this.innerObject.Clear();
-        }
-
-        public virtual void SetPosition(double xOff, double yOff, double width, double height)
-        {
-            this.innerObject.SetPosition(xOff, yOff, width, height);
-        }
+        public abstract void SetPosition(IFrame parent, double xOff, double yOff, double width, double height);
 
         public virtual double? GetPreferredWidth()
         {
-            return this.innerObject.GetPreferredWidth();
+            return this.GetInner().GetPreferredWidth();
         }
 
         public virtual double? GetPreferredHeight()
         {
-            return this.innerObject.GetPreferredHeight();
+            return this.GetInner().GetPreferredHeight();
         }
 
-        public IFrame Frame { get; protected set; }
+        public override void AddElement(IMenuObject element)
+        {
+            this.content.Clear();
+            base.AddElement(element);
+        }
+
+        public override void AddElement(IMenuObject element, int index)
+        {
+            this.content.Clear();
+            base.AddElement(element, index);
+        }
     }
 }

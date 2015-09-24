@@ -1,7 +1,7 @@
 ﻿
 namespace GH.Menu.Objects
 {
-    public interface IObjectProfile
+    public interface IObjectProfile : IMenuRegionProfile
     {
         string type { get; }
         string label { get; set; }

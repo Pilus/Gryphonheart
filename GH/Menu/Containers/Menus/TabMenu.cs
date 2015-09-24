@@ -66,9 +66,9 @@ namespace GH.Menu.Menus
             this.tabButtons = new CsLuaDictionary<int, IButton>();
             var setTabFunc = (Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
 
-            for (var i = 0; i < this.Pages.Count; i++)
+            for (var i = 0; i < this.content.Count; i++)
             {
-                var page = this.Pages[i];
+                var page = this.content[i];
                 page.Hide();
                 var button = this.CreateButtonFrame(i);
                 button.SetText(page.Name);

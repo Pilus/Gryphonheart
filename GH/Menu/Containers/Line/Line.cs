@@ -1,4 +1,4 @@
-﻿namespace GH.Menu.Objects.Line
+﻿namespace GH.Menu.Containers.Line
 {
     using System;
     using BlizzardApi;
@@ -9,40 +9,41 @@
     using Lua;
     using BlizzardApi.Global;
     using Theme;
+    using GH.Menu.Containers;
+    using GH.Menu.Objects;
+    using GH.Menu.Objects.Line;
 
-    public class Line : ILine
+    public class Line : BaseContainer<IMenuObject>, ILine
     {
-        public IFrame Frame { get; private set; }
+        private double objectSpacing;
 
-        private readonly CsLuaList<IMenuObject> objects;
-
-        private readonly double objectSpacing;
-
-        private readonly LayoutSettings layoutSettings;
-
-        public Line(LineProfile profile, IFrame parent, LayoutSettings layoutSettings, int lineNumber)
+        public Line() : base("Line")
         {
-            this.objects = new CsLuaList<IMenuObject>();
-            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "Line" + lineNumber,
-                parent);
-            this.objectSpacing = layoutSettings.objectSpacing;
-            this.layoutSettings = layoutSettings;
 
-            profile.Foreach(objectProfile =>
+        }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
+            this.objectSpacing = handler.Layout.objectSpacing;
+
+            var lineProfile = (LineProfile)profile;
+            lineProfile.Foreach(objectProfile =>
             {
-                this.objects.Add(BaseObject.CreateMenuObject(objectProfile, this, layoutSettings));
+                this.content.Add((IMenuObject)handler.CreateRegion(objectProfile));
             });
         }
 
-        public void SetPosition(double xOff, double yOff, double width, double height)
+        public void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
         {
             this.Frame.SetWidth(width);
             this.Frame.SetHeight(height);
-            this.Frame.SetPoint(FramePoint.TOPLEFT, this.Frame.GetParent(), FramePoint.TOPLEFT, xOff, -yOff);
+            this.Frame.SetParent(parent);
+            this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
-            var leftObjects = this.objects.Where(obj => obj.GetAlignment() == ObjectAlign.l);
-            var centerObjects = this.objects.Where(obj => obj.GetAlignment() == ObjectAlign.c);
-            var rightObjects = this.objects.Where(obj => obj.GetAlignment() == ObjectAlign.r);
+            var leftObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
+            var centerObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
+            var rightObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
 
             var leftWidth = leftObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
             var centerWidth = centerObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
@@ -86,7 +87,7 @@
             {
                 var w = (double) obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
-                obj.SetPosition(x, GetYPosition(obj, heightAboveMedian), w, h ?? height);
+                obj.SetPosition(this.Frame, x, GetYPosition(obj, heightAboveMedian), w, h ?? height);
                 x += w + gabWidth * 2;
             });
         }
@@ -98,7 +99,7 @@
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
-                obj.SetPosition(x, GetYPosition(obj, heightAboveMedian),  w ?? centerFlexUnitSize, h ?? height);
+                obj.SetPosition(this.Frame, x, GetYPosition(obj, heightAboveMedian),  w ?? centerFlexUnitSize, h ?? height);
                 x += (w ?? centerFlexUnitSize) + this.objectSpacing;
             });
         }
@@ -111,7 +112,7 @@
             {
                 var h = obj.GetPreferredHeight();
                 var w = obj.GetPreferredWidth();
-                obj.SetPosition(x, GetYPosition(obj, heightAboveMedian),  w ?? leftFlexUnitSize, h ?? height);
+                obj.SetPosition(this.Frame, x, GetYPosition(obj, heightAboveMedian),  w ?? leftFlexUnitSize, h ?? height);
                 x += (w ?? leftFlexUnitSize) + this.objectSpacing;
             });
         }
@@ -130,7 +131,7 @@
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
-                obj.SetPosition(x, GetYPosition(obj, heightAboveMedian),  w ?? rightFlexUnitSize, h ?? height);
+                obj.SetPosition(this.Frame, x, GetYPosition(obj, heightAboveMedian),  w ?? rightFlexUnitSize, h ?? height);
                 x += (w ?? rightFlexUnitSize) + this.objectSpacing;
             });
         }
@@ -181,7 +182,7 @@
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
-                obj.SetPosition(x, GetYPosition(obj, heightAboveMedian), w ?? flexUnitSize, h ?? height);
+                obj.SetPosition(this.Frame, x, GetYPosition(obj, heightAboveMedian), w ?? flexUnitSize, h ?? height);
                 x += (w ?? flexUnitSize) + this.objectSpacing;
             });
 
@@ -190,7 +191,7 @@
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
-                obj.SetPosition(x, GetYPosition(obj, heightAboveMedian), w ?? flexUnitSize, h ?? height);
+                obj.SetPosition(this.Frame, x, GetYPosition(obj, heightAboveMedian), w ?? flexUnitSize, h ?? height);
                 x += (w ?? flexUnitSize) + this.objectSpacing;
             });
         }
@@ -206,12 +207,12 @@
         {
             double? width = null;
 
-            var objectsWithFlexibleWidth = this.objects.Where(obj => obj.GetPreferredWidth() == null);
+            var objectsWithFlexibleWidth = this.content.Where(obj => obj.GetPreferredWidth() == null);
             if (!objectsWithFlexibleWidth.Any())
             {
-                var leftObjects = this.objects.Where(obj => obj.GetAlignment() == ObjectAlign.l);
-                var centerObjects = this.objects.Where(obj => obj.GetAlignment() == ObjectAlign.c);
-                var rightObjects = this.objects.Where(obj => obj.GetAlignment() == ObjectAlign.r);
+                var leftObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
+                var centerObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
+                var rightObjects = this.content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
 
                 var leftWidth = leftObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
                 var centerWidth = centerObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
@@ -239,7 +240,7 @@
         public double GetHeightAboveMedian()
         {
             double height = 0;
-            this.objects.Foreach(obj =>
+            this.content.Foreach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
                 var preferredOffset = obj.GetPreferredCenterY();
@@ -254,7 +255,7 @@
         public double GetHeightBelowMedian()
         {
             double height = 0;
-            this.objects.Foreach(obj =>
+            this.content.Foreach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
                 var preferredOffset = obj.GetPreferredCenterY();
@@ -268,74 +269,13 @@
 
         public double? GetPreferredHeight()
         {
-            var objectsWithFlexibleHeight = this.objects.Where(obj => obj.GetPreferredHeight() == null);
+            var objectsWithFlexibleHeight = this.content.Where(obj => obj.GetPreferredHeight() == null);
 
             if (!objectsWithFlexibleHeight.Any())
             {
                 return this.GetHeightAboveMedian() + this.GetHeightBelowMedian();
             }
             return null;
-        }
-
-        public IMenuObject GetFrameById(string id)
-        {
-            return this.objects.Select(obj => obj.GetFrameById(id)).FirstOrDefault(frame => frame != null);
-        }
-
-        public void ApplyTheme(IMenuTheme theme)
-        {
-            this.objects.Foreach(obj =>
-            {
-                if (obj is IThemedElement)
-                {
-                    ((IThemedElement) obj).ApplyTheme(theme);
-                }
-            });
-        }
-
-        public object GetValue()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetValue(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddElement(IObjectProfile profile)
-        {
-            this.objects.Add(BaseObject.CreateMenuObject(profile, this, this.layoutSettings));
-        }
-
-        public void RemoveElement(string label)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ObjectAlign GetAlignment()
-        {
-            return ObjectAlign.c;
-        }
-
-        public double GetPreferredCenterX()
-        {
-            return 0;
-        }
-
-        public double GetPreferredCenterY()
-        {
-            return 0;
-        }
-
-        public void Clear()
-        {
-            this.objects.Foreach(obj => obj.Clear());
-        }
-
-        public int GetNumObjects()
-        {
-            return this.objects.Count;
         }
     }
 }

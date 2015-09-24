@@ -8,21 +8,22 @@
     public class ButtonWithDropDownObject : ButtonObject
     {
         public new static string Type = "ButtonWithDropDown";
+
         private readonly IButtonTemplate button;
         private readonly EasyMenuHandler menuHandler;
-        private readonly ButtonWithDropDownProfile profile;
+        private ButtonWithDropDownProfile profile;
 
-        public new static ButtonWithDropDownObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public ButtonWithDropDownObject() : base()
         {
-            return new ButtonWithDropDownObject((ButtonWithDropDownProfile)profile, parent, settings);
-        }
-
-        public ButtonWithDropDownObject(ButtonWithDropDownProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
-        {
-            this.profile = profile;
             this.button = (IButtonTemplate)this.Frame;
             this.button.SetScript(ButtonHandler.OnClick, this.OnClick);
             this.menuHandler = new EasyMenuHandler();
+        }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
+            this.profile = (ButtonWithDropDownProfile)profile;
         }
 
         private void OnClick(INativeUIObject obj, object arg1, object arg2)

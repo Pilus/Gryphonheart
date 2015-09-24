@@ -4,7 +4,7 @@
     using BlizzardApi.WidgetInterfaces;
     using Theme;
 
-    public class MenuWindow : IThemedElement
+    public class MenuWindow
     {
         private readonly ContentContainer contentContainer;
         private readonly TitleBar titleBar;

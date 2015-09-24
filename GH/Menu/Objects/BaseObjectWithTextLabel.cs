@@ -12,29 +12,27 @@ namespace GH.Menu.Objects
     {
         private const double GabUnderText = -5.0;
 
-        private readonly IMenuObject innerObject;
-        private readonly IObjectProfileWithText profile;
-        private readonly IMenuContainer parent;
+        //private readonly IMenuObject innerObject;
+        //private readonly IObjectProfileWithText profile;
         private readonly ITextLabelWithTooltip textLabel;
 
-        public BaseObjectWithTextLabel(IObjectProfileWithText profile, IMenuContainer parent, LayoutSettings settings, IMenuObject innerObject) : base(innerObject)
+        public BaseObjectWithTextLabel() : base()
         {
-            this.innerObject = innerObject;
-            this.profile = profile;
-            this.parent = parent;
-            
-            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, BaseObject.UniqueName("ObjectWithTextLabel"), parent.Frame);
             this.textLabel = (ITextLabelWithTooltip)Global.FrameProvider.CreateFrame(FrameType.Frame, "$parentLabel", this.Frame, "GH_TextLabel_Template");
             this.textLabel.SetPoint(FramePoint.TOPLEFT, 0, 0);
-            this.textLabel.Label.SetText(profile.text);
-            this.textLabel.Tooltip = profile.tooltip;
+        }
 
-            this.innerObject.Frame.SetParent(this.Frame);
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
+            var textProfile = (IObjectProfileWithText)profile;
+            this.textLabel.Label.SetText(textProfile.text);
+            this.textLabel.Tooltip = textProfile.tooltip;
         }
 
         public override double? GetPreferredWidth()
         {
-            var innerPreferredWidth = this.innerObject.GetPreferredWidth();
+            var innerPreferredWidth = base.GetPreferredWidth();
             if (innerPreferredWidth != null)
             {
                 return LuaMath.max((double)innerPreferredWidth, this.textLabel.GetWidth());
@@ -44,7 +42,7 @@ namespace GH.Menu.Objects
 
         public override double? GetPreferredHeight()
         {
-            var innerPreferredHeight = this.innerObject.GetPreferredHeight();
+            var innerPreferredHeight = base.GetPreferredHeight();
             if (innerPreferredHeight != null)
             {
                 return innerPreferredHeight + this.textLabel.GetHeight() + GabUnderText;
@@ -52,19 +50,20 @@ namespace GH.Menu.Objects
             return null;
         }
 
-        public override double GetPreferredCenterY()
+        public double GetPreferredCenterY()
         {
-            return this.innerObject.GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
+            return this.content.FirstOrDefault().GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
         }
 
-        public override void SetPosition(double xOff, double yOff, double width, double height)
+        public override void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
         {
+            this.Frame.SetParent(parent);
             this.Frame.SetWidth(width);
             this.Frame.SetHeight(height);
-            this.Frame.SetPoint(FramePoint.TOPLEFT, this.parent.Frame, FramePoint.TOPLEFT, xOff, -yOff);
+            this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
             var textLabelHeight = this.textLabel.GetHeight() + GabUnderText;
-            this.innerObject.SetPosition(xOff, yOff + textLabelHeight, width, height - textLabelHeight);
+            this.content.FirstOrDefault().SetPosition(this.Frame, xOff, yOff + textLabelHeight, width, height - textLabelHeight);
         }
     }
 }

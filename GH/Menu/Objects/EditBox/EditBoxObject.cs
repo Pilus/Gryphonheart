@@ -11,7 +11,7 @@
         private readonly IEditBoxWithFilters frame;
         private readonly EditBoxProfile profile;
 
-        public EditBoxObject(EditBoxProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public EditBoxObject(EditBoxProfile profile, IObjectContainer parent, LayoutSettings settings)
             : base(profile, parent, settings)
         {
             this.frame = (IEditBoxWithFilters)Global.FrameProvider.CreateFrame(FrameType.EditBox, UniqueName(Type), parent.Frame, "GH_EditBoxWithFilters_Template");
@@ -21,7 +21,7 @@
             this.SetUpFromProfile();
         }
 
-        public static EditBoxObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public static EditBoxObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
         {
             return new EditBoxObject((EditBoxProfile)profile, parent, settings);
         }

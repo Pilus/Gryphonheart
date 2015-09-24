@@ -14,71 +14,34 @@ namespace GH.Menu.Objects
     using Dummy;
     using EditBox;
     using EditField;
+    using GH.Menu.Theme;
     using Line;
     using Lua;
     using Menus;
     using Panel;
     using Text;
 
-    public abstract class BaseObject : IMenuObject
+    public abstract class BaseObject : BaseElement, IMenuObject
     {
-        private readonly IObjectProfile profile;
-        private readonly IMenuContainer parent;
-        private readonly LayoutSettings settings;
+        private IObjectProfile profile;
 
-        public IFrame Frame { get; protected set; }
-
-        protected BaseObject(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public BaseObject(string typeName) : base(typeName)
         {
-            this.profile = profile;
-            this.parent = parent;
-            this.settings = settings;
+            
         }
 
-        public static string UniqueName(string type)
+        public BaseObject(string typeName, FrameType frameType, string inherits) : base(typeName, frameType, inherits)
         {
-            var c = 1;
-            while (true)
-            {
-                var n = type + Strings.tostring(c);
-                var obj = Global.Api.GetGlobal(n);
-                if (obj == null)
-                {
-                    return n;
-                }
-                c++;
-            }
+
         }
 
-        private static readonly CsLuaDictionary<string, Func<IObjectProfile, IMenuContainer, LayoutSettings, IMenuObject>>
-            MenuInitializationMapping = new CsLuaDictionary<string, Func<IObjectProfile, IMenuContainer, LayoutSettings, IMenuObject>>()
-            {
-                { PanelObject.Type, PanelObject.Initialize },
-                { TextObject.Type, TextObject.Initialize },
-                { CustomDropDownObject.Type, CustomDropDownObject.Initialize },
-                { DummyObject.Type, DummyObject.Initialize },
-                { EditBoxObject.Type, EditBoxObject.Initialize },
-                { ButtonObject.Type, ButtonObject.Initialize },
-                { EditFieldObject.Type, EditFieldObject.Initialize },
-                { ButtonWithDropDownObject.Type, ButtonWithDropDownObject.Initialize },
-            };
-
-        public static IMenuObject CreateMenuObject(IObjectProfile profile, IMenuContainer parent, LayoutSettings layoutSettings)
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
-            if (MenuInitializationMapping.ContainsKey(profile.type))
-            {
-                var obj = MenuInitializationMapping[profile.type](profile, parent, layoutSettings);
-                if (profile is IObjectProfileWithText)
-                {
-                    obj = new BaseObjectWithTextLabel((IObjectProfileWithText)profile, parent, layoutSettings, obj);
-                }
-
-                return obj;
-            }
-            //return GHMStub.NewObject(profile, parent.Frame.self, layoutSettings);
-            throw new CsException("Unknown object profile: " + profile.type);
+            base.Prepare(profile, handler);
+            this.profile = (IObjectProfile)profile;
         }
 
+        /* TODO: Find a good way to do tab order pr. menu
         protected void SetUpTabbableObject(ITabableObject obj)
         {
             if (this.settings.TabOrder == null)
@@ -106,7 +69,7 @@ namespace GH.Menu.Objects
                     }
                 }
             });
-        }
+        } */
 
         public virtual ObjectAlign GetAlignment()
         {
@@ -118,15 +81,21 @@ namespace GH.Menu.Objects
             return this.profile.label == id ? this : null;
         }
 
-        public virtual void Clear()
+        public override void Clear()
         {
         }
 
-        public virtual void SetPosition(double xOff, double yOff, double width, double height)
+        public override void ApplyTheme(IMenuTheme theme)
         {
+            
+        }
+
+        public virtual void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
+        {
+            this.Frame.SetParent(parent);
             this.Frame.SetWidth(width);
             this.Frame.SetHeight(height);
-            this.Frame.SetPoint(FramePoint.TOPLEFT, this.parent.Frame, FramePoint.TOPLEFT, xOff, -yOff);
+            this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
         }
 
         public virtual double? GetPreferredWidth()
@@ -139,16 +108,6 @@ namespace GH.Menu.Objects
             return this.Frame.GetHeight();
         }
 
-        public virtual object GetValue()
-        {
-            throw new NoValueHandlingException();
-        }
-
-        public virtual void SetValue(object value)
-        {
-            throw new NoValueHandlingException();
-        }
-
         public virtual double GetPreferredCenterX()
         {
             return 0;
@@ -157,6 +116,11 @@ namespace GH.Menu.Objects
         public virtual double GetPreferredCenterY()
         {
             return 0;
+        }
+
+        public string GetId()
+        {
+            return this.profile.label;
         }
     }
 }

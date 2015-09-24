@@ -7,17 +7,8 @@ namespace GH.Menu.Objects
     public interface IMenuObject : IMenuRegion
     {
         ObjectAlign GetAlignment();
-
-        IMenuObject GetFrameById(string id);
-
+        string GetId();
         double GetPreferredCenterX();
-
         double GetPreferredCenterY();
-
-        object GetValue();
-
-        void SetValue(object value);
-
-        void Clear();
     }
 }

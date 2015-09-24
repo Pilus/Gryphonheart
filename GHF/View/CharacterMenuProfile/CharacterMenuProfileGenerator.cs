@@ -25,7 +25,7 @@ namespace GHF.View.CharacterMenu
             var menu = new MenuProfile("GHF_CharacterMenu", 400, () => { })
             {
                 height = 360,
-                theme = MenuTheme.TabTheme,
+                theme = MenuThemeType.TabTheme,
                 onHide = onHide,
                 title = "Gryphonheart Flags - My profile",
                 icon = "Interface\\Icons\\Spell_Misc_EmotionHappy",

@@ -8,7 +8,7 @@
     using System.Runtime.Serialization;
 
     [Serializable]
-    public class CsLuaList<T> : IList<T>, ISerializable
+    public class CsLuaList<T> : ICsLuaList<T>
     {
         protected IList<T> list;
 

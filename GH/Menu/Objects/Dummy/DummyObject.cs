@@ -6,29 +6,32 @@ namespace GH.Menu.Objects.Dummy
     using BlizzardApi.WidgetInterfaces;
     using Debug;
 
-    class DummyObject : BaseObject
+    class DummyObject : BaseObject, IMenuObjectWithValue
     {
-        public DummyObject(DummyProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
-        {
-            this.Frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame);
-            this.Frame.SetWidth(profile.width ?? 10);
-            this.Frame.SetHeight(profile.height ?? 10);
-        }
-
-        public static DummyObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
-        {
-            return new DummyObject((DummyProfile)profile, parent, settings);
-        }
-
         public static string Type = "Dummy";
 
+        public DummyObject() : base(Type)
+        {
+            
+        }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
+            var dummyProfile = (DummyProfile)profile;
+            this.Frame.SetWidth(dummyProfile.width ?? 10);
+            this.Frame.SetHeight(dummyProfile.height ?? 10);
+            this.value = null;
+        }
+
+
         private object value;
-        public override object GetValue()
+        public object GetValue()
         {
             return value;
         }
 
-        public override void SetValue(object value)
+        public void SetValue(object value)
         {
             this.value = value;
         }

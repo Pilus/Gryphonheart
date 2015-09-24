@@ -7,7 +7,7 @@
     using CsLua.Collection;
     using Theme;
 
-    public class ContentContainer : IThemedElement
+    public class ContentContainer
     {
         private readonly IFrame content;
         private readonly IFrame borderFrame;

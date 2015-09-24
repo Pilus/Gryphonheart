@@ -7,7 +7,7 @@
     using Menus;
     using Theme;
 
-    public class ButtonObject : BaseObject, IThemedElement
+    public class ButtonObject : BaseObject, IMenuObject
     {
         private const string ButtonTemplate = "GH_Button_Template";
         private const double CompactBorder = 8;
@@ -19,17 +19,16 @@
         private bool ignoreTheme;
         private Action clickAction;
 
-        public static ButtonObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public ButtonObject() : base(Type, FrameType.Button, ButtonTemplate)
         {
-            return new ButtonObject((ButtonProfile)profile, parent, settings);
-        }
-
-        public ButtonObject(ButtonProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
-        {
-            this.Frame = (IFrame) Global.FrameProvider.CreateFrame(FrameType.Button, UniqueName(Type), parent.Frame, ButtonTemplate);
             this.button = (IButtonTemplate) this.Frame;
             this.tooltipHandler = new TooltipHandler(this.Frame);
-            this.SetupFrame(profile);
+        }
+
+        public override void Prepare(IElementProfile profile, IMenuHandler handler)
+        {
+            base.Prepare(profile, handler);
+            this.SetupFrame((ButtonProfile)profile);
         }
 
         private void SetupFrame(ButtonProfile profile)
@@ -82,7 +81,7 @@
             }
         }
 
-        public void ApplyTheme(IMenuTheme theme)
+        public override void ApplyTheme(IMenuTheme theme)
         {
             if (this.ignoreTheme)
             {

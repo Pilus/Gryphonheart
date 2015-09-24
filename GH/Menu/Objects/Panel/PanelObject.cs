@@ -12,7 +12,7 @@ namespace GH.Menu.Objects.Panel
     using BlizzardApi.Global;
     using Theme;
 
-    public class PanelObject : BaseObject, IMenuContainer
+    public class PanelObject : BaseObject, IObjectContainer
     {
         private readonly PanelProfile profile;
         private IPage innerPage;
@@ -22,7 +22,7 @@ namespace GH.Menu.Objects.Panel
         private const double ExtraTopSize = 0;
         private readonly string name;
 
-        public PanelObject(PanelProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
+        public PanelObject(PanelProfile profile, IObjectContainer parent, LayoutSettings settings) : base(profile, parent, settings)
         {
             this.profile = profile;
             this.parentFrame = parent.Frame;
@@ -31,7 +31,7 @@ namespace GH.Menu.Objects.Panel
             this.CreateFrame();
         }
 
-        public static PanelObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public static PanelObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
         {
             return new PanelObject((PanelProfile) profile, parent, settings);
         }

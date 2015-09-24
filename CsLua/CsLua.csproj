@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collection\ICsLuaList.cs" />
     <Compile Include="Collection\TableFormatter.cs" />
     <Compile Include="CsException.cs" />
     <Compile Include="Collection\CsLuaDictionary.cs" />

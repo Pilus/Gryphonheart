@@ -9,7 +9,7 @@
     using System;
     using Theme;
 
-    public class TitleBar : IThemedElement
+    public class TitleBar
     {
         public const double BarHeight = 26;
         public const double BorderSize = 4;

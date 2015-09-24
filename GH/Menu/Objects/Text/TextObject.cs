@@ -20,7 +20,7 @@
             { TextColor.yellow, new Color(1, 0.82, 0)},
         };
 
-        public TextObject(TextProfile profile, IMenuContainer parent, LayoutSettings settings) : base(profile, parent, settings)
+        public TextObject(TextProfile profile, IObjectContainer parent, LayoutSettings settings) : base(profile, parent, settings)
         {
             var frame = (ITextObjectFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_TextObject_Template");
             this.Frame = frame;
@@ -30,7 +30,7 @@
             this.SetUpFromProfile();
         }
 
-        public static TextObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public static TextObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
         {
             return new TextObject((TextProfile)profile, parent, settings);
         }

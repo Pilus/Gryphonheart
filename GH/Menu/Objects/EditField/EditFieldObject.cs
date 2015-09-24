@@ -11,12 +11,12 @@
 
         public static string Type = "EditField";
 
-        public static EditFieldObject Initialize(IObjectProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public static EditFieldObject Initialize(IObjectProfile profile, IObjectContainer parent, LayoutSettings settings)
         {
             return new EditFieldObject((EditFieldProfile)profile, parent, settings);
         }
 
-        public EditFieldObject(EditFieldProfile profile, IMenuContainer parent, LayoutSettings settings)
+        public EditFieldObject(EditFieldProfile profile, IObjectContainer parent, LayoutSettings settings)
             : base(profile, parent, settings)
         {
             this.frame = (IEditFieldFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, UniqueName(Type), parent.Frame, "GH_EditFieldFrame_Template");

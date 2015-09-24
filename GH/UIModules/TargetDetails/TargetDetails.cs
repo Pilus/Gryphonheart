@@ -74,7 +74,7 @@
         {
             return new MenuProfile(Misc.GetUniqueGlobalName("TargetDetailsMenu"), 400, () => { })
             {
-                theme = MenuTheme.TabTheme,
+                theme = MenuThemeType.TabTheme,
             };
         }
         
