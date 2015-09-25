@@ -5,6 +5,7 @@
     using BlizzardApi.MiscEnums;
     using CsLua.Collection;
     using Lua;
+    using System;
 
     public class MSPProxy
     {
@@ -39,9 +40,19 @@
             return null;
         }
 
+        public bool HasOther(string playerName)
+        {
+            return this.msp.HasOther(playerName);
+        }
+
         public void Request(string playerName, CsLuaList<string> fields)
         {
             this.msp.Request(playerName, fields.ToNativeLuaTable());
+        }
+
+        public void SubscribeForChanges(Action<string> action)
+        {
+            this.msp.AddReceivedAction(action);
         }
 
         private IMSPFields Parse(Profile profile)

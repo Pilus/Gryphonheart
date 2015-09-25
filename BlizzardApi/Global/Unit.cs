@@ -44,6 +44,13 @@ namespace BlizzardApi.Global
         /// <returns></returns>
         bool UnitIsFriend(UnitId unit, UnitId otherUnit);
 
+        /// <summary>
+        /// Returns 1 if the specified unit exists, nil otherwise.
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <returns></returns>
+        bool UnitExists(UnitId unit);
+
         /*
         PROTECTED AssistUnit("unit") - Instructs your character to assist the specified unit.
         CheckInteractDistance("unit",distIndex)
@@ -77,7 +84,7 @@ namespace BlizzardApi.Global
         UnitDebuff("unit", index [,raidFilter]) - Retrieves info about a debuff of a certain unit. (updated 2.0)
         UnitDefense("unit") - Returns the base defense skill of the specified unit.
         UnitDetailedThreatSituation("unit", "mob") - Returns detailed information about the specified unit's threat on a mob. (added 3.0)
-        UnitExists("unit") - Returns 1 if the specified unit exists, nil otherwise.
+        
         UnitFactionGroup("unit") - Returns the faction group id and name of the specified unit. (eg. "Alliance") - string returned is localization-independent (used in filepath)
         UnitGroupRolesAssigned("unit") - Returns the assigned role in a group formed via the Dungeon Finder Tool. (added 3.3)
         UnitGUID("unit") - Returns the GUID as a string for the specified unit matching the GUIDs used by the new combat logs. (added 2.4)

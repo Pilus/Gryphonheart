@@ -6,13 +6,14 @@ namespace GH.Menu.Objects
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Debug;
+    using GH.Menu.Objects.Line;
+    using GH.Menu.Theme;
     using Lua;
 
     public class BaseObjectWithTextLabel : BaseObjectWithInnerObject
     {
         private const double GabUnderText = -5.0;
 
-        //private readonly IMenuObject innerObject;
         //private readonly IObjectProfileWithText profile;
         private readonly ITextLabelWithTooltip textLabel;
 
@@ -30,9 +31,15 @@ namespace GH.Menu.Objects
             this.textLabel.Tooltip = textProfile.tooltip;
         }
 
+        public override void ApplyTheme(IMenuTheme theme)
+        {
+            // TODO: Set text color when available in theme.
+            base.ApplyTheme(theme);
+        }
+
         public override double? GetPreferredWidth()
         {
-            var innerPreferredWidth = base.GetPreferredWidth();
+            var innerPreferredWidth = this.Inner.GetPreferredWidth();
             if (innerPreferredWidth != null)
             {
                 return LuaMath.max((double)innerPreferredWidth, this.textLabel.GetWidth());
@@ -42,7 +49,7 @@ namespace GH.Menu.Objects
 
         public override double? GetPreferredHeight()
         {
-            var innerPreferredHeight = base.GetPreferredHeight();
+            var innerPreferredHeight = this.Inner.GetPreferredHeight();
             if (innerPreferredHeight != null)
             {
                 return innerPreferredHeight + this.textLabel.GetHeight() + GabUnderText;
@@ -50,9 +57,9 @@ namespace GH.Menu.Objects
             return null;
         }
 
-        public double GetPreferredCenterY()
+        public override double GetPreferredCenterY()
         {
-            return this.Content.FirstOrDefault().GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
+            return this.Inner.GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
         }
 
         public override void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
@@ -63,7 +70,7 @@ namespace GH.Menu.Objects
             this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
             var textLabelHeight = this.textLabel.GetHeight() + GabUnderText;
-            this.Content.FirstOrDefault().SetPosition(this.Frame, xOff, yOff + textLabelHeight, width, height - textLabelHeight);
+            this.Inner.SetPosition(this.Frame, xOff, yOff + textLabelHeight, width, height - textLabelHeight);
         }
     }
 }

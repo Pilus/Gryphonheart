@@ -57,20 +57,20 @@
         public TabOrder TabOrder { get; private set; }
 
 
-        private IMenu InitializeMenu(MenuProfile profile)
+        private Type GetMenuObjectType(MenuProfile profile)
         {
             switch (profile.theme)
             {
                 case MenuThemeType.StdTheme:
-                    return new WindowedMenu();
+                    return typeof(WindowedMenu);
                 case MenuThemeType.BlankTheme:
                     if (profile.useWindow)
                     {
-                        return new WindowedMenu();
+                        return typeof(WindowedMenu);
                     }
-                    return new BaseMenu();
+                    return typeof(BaseMenu);
                 case MenuThemeType.TabTheme:
-                    return new TabMenu();
+                    return typeof(TabMenu);
                 case MenuThemeType.BlankWizardTheme:
                     throw new NotImplementedException();
                 default:
@@ -80,7 +80,8 @@
 
         public IMenu CreateMenu(MenuProfile profile)
         {
-            var menu = this.InitializeMenu(profile);
+            var type = this.GetMenuObjectType(profile);
+            var menu = (IMenu)this.RecyclePool.Retrieve(type);
             menu.Prepare(profile, this);
             menu.UpdatePosition();
             menu.ApplyTheme(this.Theme);
@@ -89,6 +90,11 @@
 
         public IMenuRegion CreateRegion(IMenuRegionProfile profile)
         {
+            return this.CreateRegion(profile, false);
+        }
+
+        public IMenuRegion CreateRegion(IMenuRegionProfile profile, bool skipWrappingObject)
+        {
             var profileType = profile.GetType();
             if (!ProfileMapping.ContainsKey(profileType))
             {
@@ -96,7 +102,12 @@
             }
             var type = ProfileMapping[profileType];
 
-            var region = (IMenuRegion) (this.RecyclePool.Retrieve(type) ?? Activator.CreateInstance(type));
+            if (!skipWrappingObject && profile is IObjectProfileWithText && !string.IsNullOrEmpty(((IObjectProfileWithText)profile).text))
+            {
+                type = typeof(BaseObjectWithTextLabel);
+            }
+
+            var region = (IMenuRegion)this.RecyclePool.Retrieve(type);
             region.Prepare(profile, this);
             return region;
         }

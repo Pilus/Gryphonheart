@@ -19,7 +19,7 @@
     {
         public const string SavedAccountProfiles = "GHF_AccountProfiles";
 
-        private readonly MSPProxy msp;
+        public MSPProxy Msp { get; private set; }
 
         public IAddOnIntegration Integration { get; private set; }
         public IObjectStore<Profile, string> AccountProfiles { get; private set; }
@@ -37,12 +37,12 @@
             var playerName = Global.Api.UnitName(UnitId.player);
             var version = Global.Api.GetAddOnMetadata(Strings.tostring(AddOnReference.GH), "Version");
             var supportedFields = new SupportedFields();
-            this.msp = new MSPProxy(new ProfileFormatter(), version, supportedFields);
+            this.Msp = new MSPProxy(new ProfileFormatter(), version, supportedFields);
 
-            subscriptionCenter.SubscribeForUpdates(this.msp.Set, profile => profile.Id.Equals(playerName));
+            subscriptionCenter.SubscribeForUpdates(this.Msp.Set, profile => profile.Id.Equals(playerName));
 
             var requestStrategy = new MspRequestStrategy();
-            var activityScanner = new PlayerActivityScanner((name, activity) => { this.msp.Request(name, requestStrategy.GetFieldsToRequest(activity)); });
+            var activityScanner = new PlayerActivityScanner((name, activity) => { this.Msp.Request(name, requestStrategy.GetFieldsToRequest(activity)); });
 
             new Presenter(this, supportedFields);
         }
@@ -75,7 +75,7 @@
 
         public PublicProfile GetPublicProfile(string characterName)
         {
-            return this.msp.Get(characterName);
+            return this.Msp.Get(characterName);
         }
     }
 }

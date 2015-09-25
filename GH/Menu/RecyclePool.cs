@@ -10,7 +10,7 @@ namespace GH.Menu
 
         public IElement Retrieve(Type type)
         {
-            return this.list.FirstOrDefault(e => e.GetType() == type);
+            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)Activator.CreateInstance(type);
         }
 
         public void Store(IElement element)

@@ -119,6 +119,8 @@
 
             session.RunStartup();
 
+            mspMock.Verify(m => m.AddReceivedAction(It.IsAny<Action<string>>()), Times.Once(), "Received callback for msp should have been set up");
+
             Assert.IsFalse(session.Actor.IsVisible(TextureResources.GhRoundTarget));
 
             // Target the player
@@ -147,7 +149,7 @@
             targetMock.TargetPlayer(otherMspUser, session);
 
             mspMock.Verify(m => m.HasOther(otherMspUser), Times.Exactly(3));
-            mspMock.Verify(m => m.Request(otherMspUser), Times.Exactly(2));
+            mspMock.Verify(m => m.Request(otherMspUser, It.IsAny<NativeLuaTable>()), Times.Exactly(2));
             session.Actor.VerifyVisible(TextureResources.GhRoundTarget);
 
             // TODO: Click the icon and verify the details menu

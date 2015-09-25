@@ -35,20 +35,21 @@
         {
             foreach (var obj in this.Content)
             {
-                if (obj is IMenuObject)
-                {
-                    var menuObject = (IMenuObject) obj;
-                    if (id.Equals(menuObject.GetId()))
-                    {
-                        return menuObject;
-                    }
-                }
-                else if (obj is IContainer)
+                if (obj is IContainer)
                 {
                     var res = ((IContainer)obj).GetFrameById(id);
                     if (res != null)
                     {
                         return res;
+                    }
+                }
+
+                if (obj is IMenuObject)
+                {
+                    var menuObject = (IMenuObject)obj;
+                    if (id.Equals(menuObject.GetId()))
+                    {
+                        return menuObject;
                     }
                 }
             }

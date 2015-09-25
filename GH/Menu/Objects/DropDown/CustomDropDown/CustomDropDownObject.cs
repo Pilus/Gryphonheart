@@ -1,5 +1,6 @@
 ﻿namespace GH.Menu.Objects.DropDown.CustomDropDown
 {
+    using System;
     using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
@@ -7,7 +8,7 @@
     using Line;
     using Panel;
 
-    public class CustomDropDownObject : BaseObject
+    public class CustomDropDownObject : BaseObject, IMenuObjectWithValue
     {
         private const string Template = "GH_CustomDropDown_Template";
 
@@ -20,10 +21,20 @@
             this.frame = (ICustomDropDownFrame) this.Frame;
         }
 
+        public object GetValue()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(profile, handler);
             this.ApplyProfile((CustomDropDownProfile)profile);
+        }
+
+        public void SetValue(object value)
+        {
+            throw new NotImplementedException();
         }
 
         private void ApplyProfile(CustomDropDownProfile profile)

@@ -17,7 +17,7 @@
         double GetHeight();
         double GetLeft();
         int GetNumPoints();
-        IMultipleValues<FramePoint, IRegion, FramePoint, double, double> GetPoint(int pointNum);
+        IMultipleValues<FramePoint, IRegion, FramePoint?, double?, double?> GetPoint(int pointNum);
         IMultipleValues<double, double, double, double> GetRect();
         double GetRight();
         IMultipleValues<double, double> GetSize();

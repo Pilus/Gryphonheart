@@ -16,7 +16,6 @@
         public ButtonWithDropDownObject() : base()
         {
             this.button = (IButtonTemplate)this.Frame;
-            this.button.SetScript(ButtonHandler.OnClick, this.OnClick);
             this.menuHandler = new EasyMenuHandler();
         }
 
@@ -24,6 +23,7 @@
         {
             base.Prepare(profile, handler);
             this.profile = (ButtonWithDropDownProfile)profile;
+            this.button.SetScript(ButtonHandler.OnClick, this.OnClick);
         }
 
         private void OnClick(INativeUIObject obj, object arg1, object arg2)

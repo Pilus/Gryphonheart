@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using System.Linq;
+    using CsLuaTestUtils;
 
     public class Region : UIObject, IRegion
     {
@@ -11,7 +13,7 @@
         private double height = 0;
         private IRegion parent;
         private readonly UiInitUtil util;
-        private readonly List<Point> points = new List<Point>();
+        private readonly Dictionary<FramePoint, Point> points = new Dictionary<FramePoint, Point>();
 
         public Region(UiInitUtil util, string objectType, LayoutFrameType layout, IRegion parent)
             : base(util, objectType, layout, parent)
@@ -160,9 +162,10 @@
             return this.points.Count;
         }
 
-        public CsLua.Wrapping.IMultipleValues<FramePoint, IRegion, FramePoint, double, double> GetPoint(int pointNum)
+        public CsLua.Wrapping.IMultipleValues<FramePoint, IRegion, FramePoint?, double?, double?> GetPoint(int pointNum)
         {
-            throw new System.NotImplementedException();
+            var point = this.points[this.points.Keys.ToList()[pointNum]];
+            return TestUtil.StructureMultipleValues(point._Point, point.RelativeFrame, point.RelativePoint, point.XOfs, point.YOfs);
         }
 
         public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetRect()
@@ -261,9 +264,14 @@
             this.parent = (IRegion)parent;
         }
 
+        private void AddPoint(Point point)
+        {
+            this.points[point._Point] = point;
+        }
+
         public void SetPoint(FramePoint point)
         {
-            this.points.Add(new Point()
+            this.AddPoint(new Point()
             {
                 _Point = point,
             });
@@ -271,7 +279,7 @@
 
         public void SetPoint(FramePoint point, double xOfs, double yOfs)
         {
-            this.points.Add(new Point()
+            this.AddPoint(new Point()
             {
                 _Point = point,
                 XOfs = xOfs,
@@ -281,7 +289,7 @@
 
         public void SetPoint(FramePoint point, IRegion relativeFrame, FramePoint relativePoint)
         {
-            this.points.Add(new Point()
+            this.AddPoint(new Point()
             {
                 _Point = point,
                 RelativeFrame = relativeFrame,
@@ -296,7 +304,7 @@
 
         public void SetPoint(FramePoint point, IRegion relativeFrame, FramePoint relativePoint, double xOfs, double yOfs)
         {
-            this.points.Add(new Point()
+            this.AddPoint(new Point()
             {
                 _Point = point,
                 RelativeFrame = relativeFrame,

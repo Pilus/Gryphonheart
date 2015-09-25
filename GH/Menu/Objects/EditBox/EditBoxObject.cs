@@ -6,7 +6,7 @@
     using BlizzardApi.WidgetInterfaces;
     using Debug;
 
-    public class EditBoxObject : BaseObject
+    public class EditBoxObject : BaseObject, IMenuObjectWithValue
     {
         private const string Template = "GH_EditBoxWithFilters_Template";
 

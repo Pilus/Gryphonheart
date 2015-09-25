@@ -4,7 +4,7 @@
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
 
-    public class EditFieldObject : BaseObject
+    public class EditFieldObject : BaseObject, IMenuObjectWithValue
     {
         private const string Template = "GH_EditFieldFrame_Template";
 

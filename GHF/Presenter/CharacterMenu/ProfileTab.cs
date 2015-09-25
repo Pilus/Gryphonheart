@@ -86,21 +86,24 @@ namespace GHF.Presenter.CharacterMenu
             if (fieldMeta != null)
             {
                 var panel = (PanelObject)this.loadedMenu.GetFrameById(ProfileTabLabels.AdditionalFieldsPanel);
-                
-                var line = panel.GetElement(panel.GetNumElements());
-                var numObjects = line.GetNumElements();
-                if (numObjects < 2)
-                {
-                    var profile = fieldMeta.GenerateProfile(numObjects == 0 ? ObjectAlign.l : ObjectAlign.r);
-                    line.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
-                }
-                else
+
+                var numberOfLines = panel.GetNumElements();
+                if (numberOfLines == 0 || panel.GetElement(numberOfLines-1).GetNumElements() == 2)
                 {
                     var profile = fieldMeta.GenerateProfile(ObjectAlign.l);
-                    var newLine = (ILine) this.menuHandler.CreateRegion(new LineProfile());
+                    var newLine = (ILine)this.menuHandler.CreateRegion(new LineProfile());
                     panel.AddElement(newLine);
                     newLine.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
                 }
+                else
+                {
+                    var line = panel.GetElement(numberOfLines-1);
+                    var profile = fieldMeta.GenerateProfile(ObjectAlign.r);
+                    line.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
+                }
+
+                this.loadedMenu.UpdatePosition();
+
                 var obj = (IMenuObjectWithValue)panel.GetFrameById(fieldMeta.Id);
                 obj.SetValue(value);
                 this.shownAdditionalFields.Add(key);

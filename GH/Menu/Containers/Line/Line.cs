@@ -26,12 +26,6 @@
         {
             base.Prepare(profile, handler);
             this.objectSpacing = handler.Layout.objectSpacing;
-
-            var lineProfile = (LineProfile)profile;
-            lineProfile.Foreach(objectProfile =>
-            {
-                this.Content.Add((IMenuObject)handler.CreateRegion(objectProfile));
-            });
         }
 
         public void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)

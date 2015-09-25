@@ -161,6 +161,6 @@
             mock.SetupGet(x => x.Value11).Returns(value11);
 
             return mock.Object;
-        } 
+        }
     }
 }

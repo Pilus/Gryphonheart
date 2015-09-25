@@ -30,6 +30,7 @@
             apiMock.Setup(api => api.UnitIsPlayer(UnitId.target)).Returns(() => targetName != null);
             apiMock.Setup(api => api.UnitIsFriend(UnitId.target, UnitId.player)).Returns(() => targetName != null);
             apiMock.Setup(api => api.UnitIsFriend(UnitId.player, UnitId.target)).Returns(() => targetName != null);
+            apiMock.Setup(api => api.UnitExists(UnitId.target)).Returns(() => targetName != null);
         }
     }
 }

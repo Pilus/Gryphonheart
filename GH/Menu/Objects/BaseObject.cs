@@ -23,7 +23,8 @@ namespace GH.Menu.Objects
 
     public abstract class BaseObject : BaseElement, IMenuObject
     {
-        private IObjectProfile profile;
+        private string id;
+        private ObjectAlign alignment;
 
         public BaseObject(string typeName) : base(typeName)
         {
@@ -38,7 +39,9 @@ namespace GH.Menu.Objects
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(profile, handler);
-            this.profile = (IObjectProfile)profile;
+            var objProfile = (IObjectProfile)profile;
+            this.id = objProfile.label;
+            this.alignment = objProfile.align;
         }
 
         /* TODO: Find a good way to do tab order pr. menu
@@ -73,12 +76,7 @@ namespace GH.Menu.Objects
 
         public virtual ObjectAlign GetAlignment()
         {
-            return this.profile.align;
-        }
-
-        public virtual IMenuObject GetFrameById(string id)
-        {
-            return this.profile.label == id ? this : null;
+            return this.alignment;
         }
 
         public override void Clear()
@@ -120,7 +118,7 @@ namespace GH.Menu.Objects
 
         public string GetId()
         {
-            return this.profile.label;
+            return this.id;
         }
     }
 }

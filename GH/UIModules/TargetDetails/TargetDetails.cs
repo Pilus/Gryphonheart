@@ -11,6 +11,8 @@
     using ObjectHandling.Storage;
     using Presenter;
     using Texture;
+    using BlizzardApi.EventEnums;
+    using BlizzardApi.MiscEnums;
 
     public class TargetDetails : ISingletonModule
     {
@@ -28,6 +30,27 @@
             this.button = new RoundButton(ButtonSize);
             this.button.SetIcon(TextureResources.GhRoundTarget);
             this.button.ClickCallback = this.OnClick;
+            this.button.Button.Hide();
+            Misc.RegisterEvent(UnitInfoEvent.PLAYER_TARGET_CHANGED, this.OnTargetChange);
+        }
+
+        private void OnTargetChange(UnitInfoEvent eventName, object arg)
+        {
+            this.EvaluateVisibility();
+        }
+
+        public void EvaluateVisibility()
+        { 
+            if (!Global.Api.UnitExists(UnitId.target))
+            {
+                this.button.Button.Hide();
+                return;
+            }
+
+            if (this.pages.Any(p => p.Enabled()))
+            {
+                this.button.Button.Show();
+            }
         }
 
         public void LoadSettings(IObjectStoreWithDefaults<ISetting, SettingIds> settings)

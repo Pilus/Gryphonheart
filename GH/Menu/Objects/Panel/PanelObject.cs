@@ -47,9 +47,11 @@ namespace GH.Menu.Objects.Panel
 
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
-            this.innerPage = (IPage)handler.CreateRegion(new PageProfile());
             base.Prepare(profile, handler);
-            var panelProfile = (PanelProfile) profile;
+            var panelProfile = (PanelProfile)profile;
+            var innerPageProfile = new PageProfile();
+            panelProfile.Foreach(innerPageProfile.Add);
+            this.innerPage = (IPage)handler.CreateRegion(innerPageProfile);
             this.name = panelProfile.name;
         }
 
@@ -117,6 +119,11 @@ namespace GH.Menu.Objects.Panel
         public ILine GetElement(int index)
         {
             return this.innerPage.GetElement(index);
+        }
+
+        public IMenuObject GetFrameById(string id)
+        {
+            return this.innerPage.GetFrameById(id);
         }
     }
 }

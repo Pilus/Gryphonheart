@@ -75,7 +75,7 @@
             }
         }
 
-        private readonly Regex textLabelObjectRegex = new Regex(@"ObjectWithTextLabel\d+$");
+        private readonly Regex textLabelObjectRegex = new Regex(@"Wrapper\d+$");
 
         private IFrame GetObjectOfLabel(IFontString label)
         {

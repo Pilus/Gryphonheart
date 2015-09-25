@@ -11,6 +11,8 @@
     {
         private IMenuHandler handler;
 
+        private bool prepared;
+
         public IFrame Frame { get; private set; }
 
         public BaseElement(string typeName) : this(typeName, FrameType.Frame, null)
@@ -26,13 +28,20 @@
         public abstract void ApplyTheme(IMenuTheme theme);
 
         public virtual void Prepare(IElementProfile profile, IMenuHandler handler)
-        {
+        { 
+            if (this.prepared)
+            {
+                throw new MenuException("Element is already prepared.");
+            }
+
+            this.prepared = true;
             this.handler = handler;
             this.Frame.Show();
         }
 
         public virtual void Recycle()
         {
+            this.prepared = false;
             this.Frame.Hide();
             this.handler.RecyclePool.Store(this);
         }

@@ -33,7 +33,7 @@
 
         private void SetupFrame(ButtonProfile profile)
         {
-            this.button.Text.SetText(profile.text);
+            this.button.SetText(profile.text);
             if (profile.compact == true)
             {
                 this.button.SetHeight(this.button.Text.GetHeight() + CompactBorder);

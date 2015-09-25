@@ -11,6 +11,7 @@
         LayoutSettings Layout { get; }
         IMenu CreateMenu(MenuProfile profile);
         IMenuRegion CreateRegion(IMenuRegionProfile profile);
+        IMenuRegion CreateRegion(IMenuRegionProfile profile, bool skipWrappingObject);
         IRecyclePool RecyclePool { get; }
         TabOrder TabOrder { get; }
     }

@@ -83,6 +83,7 @@
     <Compile Include="View\CharacterMenuProfile\DetailsTabProfileGenerator.cs" />
     <Compile Include="View\CharacterMenuProfile\ProfileTabLabels.cs" />
     <Compile Include="View\CharacterMenuProfile\ProfileTabProfileGenerator.cs" />
+    <Compile Include="View\TargetMenuProfile\TargetMenuProfileGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
