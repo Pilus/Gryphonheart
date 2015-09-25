@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace GH.Menu
+﻿namespace GH.Menu
 {
+    using System;
+    using CsLua;
     using CsLua.Collection;
 
     public class RecyclePool : IRecyclePool
@@ -10,7 +10,7 @@ namespace GH.Menu
 
         public IElement Retrieve(Type type)
         {
-            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)Activator.CreateInstance(type);
+            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)CsLuaStatic.CreateInstance(type);
         }
 
         public void Store(IElement element)

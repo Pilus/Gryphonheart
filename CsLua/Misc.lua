@@ -48,3 +48,8 @@ string.startsWith = function(str,pattern)
 	end
 	return false;
 end
+
+CsLua.CsLuaStatic = CsLua.CsLuaStatic or {};
+CsLua.CsLuaStatic.CreateInstance = function(typeObj)
+	error("CreateInstance Not implemented");
+end
