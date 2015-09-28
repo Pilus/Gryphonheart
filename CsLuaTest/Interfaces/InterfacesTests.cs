@@ -22,6 +22,9 @@
         {
             var theClass = new ClassA<int, string>();
             theClass.Method("test");
+
+            var value = theClass.MethodWithGenericInReturn<string>("test");
+            Assert("test", value);
         }
 
     }
