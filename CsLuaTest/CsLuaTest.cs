@@ -16,6 +16,7 @@ namespace CsLuaTest
     using TryCatchFinally;
     using Wrap;
     using Static;
+    using StringExtensions;
     using Type;
     using TypeMethods;
 
@@ -40,6 +41,7 @@ namespace CsLuaTest
                 new ParamsTests(),
                 new ArraysTests(),
                 new TypeTests(),
+                new StringExtensionTests(),
             };
 
             tests.Foreach(test => test.PerformTests(new IndentedLineWriter()));
