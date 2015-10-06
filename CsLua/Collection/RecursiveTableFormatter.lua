@@ -2,7 +2,7 @@
 
 CsLua = CsLua or {};
 CsLua.Collection = CsLua.Collection or {};
-CsLua.Collection.RecursiveFormatter = function()
+CsLua.Collection.RecursiveTableFormatter = function()
 	local class = {}
 
 	local useCompact = false;
@@ -12,7 +12,7 @@ CsLua.Collection.RecursiveFormatter = function()
 		return class;
 	end
 
-	CsLua.CreateSimpleClass(class, class, "RecursiveFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {{"CsLua.Collection.ITableFormatter"}});
+	CsLua.CreateSimpleClass(class, class, "RecursiveTableFormatter", "CsLua.Collection.CsLuaList", Cstor, nil, nil, nil, {{"CsLua.Collection.ITableFormatter"}});
 
 	local Compact;
 	Compact = function(t, target)
