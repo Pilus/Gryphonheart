@@ -11,6 +11,7 @@
             this.Tests["TestGenericProperty"] = TestGenericProperty;
             this.Tests["TestGenericReturnArg"] = TestGenericReturnArg;
             this.Tests["TestGenericReturnSpecificForMethod"] = TestGenericReturnSpecificForMethod;
+            this.Tests["TestGenericStatic"] = TestGenericStatic;
         }
 
         private static void TestGenericMethod()
@@ -81,6 +82,24 @@
             var obj = new ClassA("test5");
             var value5 = theClass.GenericAtMethod(obj);
             Assert("test5", value5);
+        }
+
+        private static void TestGenericStatic()
+        {
+            ClassWithGenericElements<int>.StaticT = 2;
+            ClassWithGenericElements<int>.StaticString = "X";
+
+            ClassWithGenericElements<bool>.StaticT = true;
+            ClassWithGenericElements<bool>.StaticString = "Y";
+
+            ClassWithGenericElements.StaticString = "Z";
+
+            Assert(2, ClassWithGenericElements<int>.StaticT);
+            Assert("X", ClassWithGenericElements<int>.StaticString);
+            Assert(true, ClassWithGenericElements<bool>.StaticT);
+            Assert("Y", ClassWithGenericElements<bool>.StaticString);
+
+            Assert("Z", ClassWithGenericElements.StaticString);
         }
     }
 }
