@@ -92,6 +92,9 @@
     <Compile Include="General\NonStaticClass.cs" />
     <Compile Include="Params\ClassWithParams.cs" />
     <Compile Include="Params\ParamsTests.cs" />
+    <Compile Include="Static\BaseClassWithStatic.cs" />
+    <Compile Include="Static\GenericClassWithStatic.cs" />
+    <Compile Include="Static\InheritingClass.cs" />
     <Compile Include="Static\StaticClass.cs" />
     <Compile Include="Interfaces\InterfacesTests.cs" />
     <Compile Include="Interfaces\InterfaceWithGenerics.cs" />
