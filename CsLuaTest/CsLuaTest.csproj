@@ -64,6 +64,7 @@
     <Compile Include="Arrays\ArraysTests.cs" />
     <Compile Include="Arrays\ClassWithArrays.cs" />
     <Compile Include="General\ACommonName.cs" />
+    <Compile Include="General\ClassInitializerAndCstor.cs" />
     <Compile Include="General\ClassWithEquals.cs" />
     <Compile Include="General\ClassWithProperty.cs" />
     <Compile Include="Generics\ClassA.cs" />

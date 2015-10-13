@@ -14,6 +14,7 @@
             this.Tests["MinusEqualsShouldBeHandled"] = MinusEqualsShouldBeHandled;
             this.Tests["CommonStringExtensionsShouldWork"] = CommonStringExtensionsShouldWork;
             this.Tests["HandleAmbigurityBetweenPropertyNameAndType"] = HandleAmbigurityBetweenPropertyNameAndType;
+            this.Tests["TestClassWithInitializerAndConstructor"] = TestClassWithInitializerAndConstructor;
         }
 
         private static void NonStaticClassWithStaticMethod()
@@ -83,6 +84,13 @@
 
             var s = c.Run("A", "B");
             Assert("AB", s);
+        }
+
+        private static void TestClassWithInitializerAndConstructor()
+        {
+            var c = new ClassInitializerAndCstor("A") { Value = "B" };
+
+            Assert("B", c.Value);
         }
     }
 }
