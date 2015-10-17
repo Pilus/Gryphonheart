@@ -7,6 +7,7 @@
             Name = "Type";
             this.Tests["TestGetTypeOfNumber"] = TestGetTypeOfNumber;
             this.Tests["TestGetTypeOfClass"] = TestGetTypeOfClass;
+            this.Tests["TestIsInstanceOf"] = TestIsInstanceOf;
         }
 
         private static void TestGetTypeOfNumber()
@@ -26,6 +27,21 @@
 
             Assert("ClassA", type.Name);
             Assert("CsLuaTest.Type", type.Namespace);
+        }
+
+        private static void TestIsInstanceOf()
+        {
+            var obj = new ClassA();
+            
+            Assert(true, obj is ClassA);
+            Assert(true, obj is InterfaceA);
+
+            var typeClass = typeof(ClassA);
+            Assert(true, typeClass.IsInstanceOfType(obj));
+            
+
+            var typeInterface = typeof(InterfaceA);
+            Assert(true, typeInterface.IsInstanceOfType(obj));
         }
     }
 }

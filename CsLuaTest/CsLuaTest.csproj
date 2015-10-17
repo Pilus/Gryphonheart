@@ -129,6 +129,7 @@
     <Compile Include="TypeMethods\Class1.cs" />
     <Compile Include="TypeMethods\TypeMethodsTests.cs" />
     <Compile Include="Type\ClassA.cs" />
+    <Compile Include="Type\InterfaceA.cs" />
     <Compile Include="Type\TypeTests.cs" />
     <Compile Include="Wrap\ClassA.cs" />
     <Compile Include="Wrap\IA.cs" />

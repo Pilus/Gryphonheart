@@ -1,6 +1,9 @@
 ﻿
 namespace CsLuaTest
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using AmbigousMethods;
     using Arrays;
     using CsLua.Collection;
@@ -25,7 +28,7 @@ namespace CsLuaTest
     {
         public void Execute()
         {
-            var tests = new CsLuaList<ITestSuite>()
+            var tests = new List<ITestSuite>()
             {
                 new TryCatchFinallyTests(),
                 new GeneralTests(),
@@ -44,7 +47,7 @@ namespace CsLuaTest
                 new StringExtensionTests(),
             };
 
-            tests.Foreach(test => test.PerformTests(new IndentedLineWriter()));
+            tests.ForEach(test => test.PerformTests(new IndentedLineWriter()));
             Core.print("CsLua test completed.");
             Core.print(BaseTest.TestCount, "tests run.", BaseTest.FailCount, "failed.");
         }
