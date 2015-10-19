@@ -4,6 +4,7 @@
     using CsLua.Collection;
     using CsLua;
     using Lua;
+    using System.Collections.Generic;
 
     public abstract class BaseTest : ITestSuite
     {
@@ -13,14 +14,14 @@
         public static int TestCount;
         public static int FailCount;
 
-        public CsLuaDictionary<string, Action> Tests
+        public Dictionary<string, Action> Tests
         {
             get; protected set;
         }
 
         public BaseTest()
         {
-            this.Tests = new CsLuaDictionary<string, Action>();
+            this.Tests = new Dictionary<string, Action>();
         }
 
         public void PerformTests(IndentedLineWriter lineWriter)
