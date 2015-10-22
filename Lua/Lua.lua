@@ -2,7 +2,9 @@
 table.Foreach = foreach;
 table.contains = tcontains;
 
+_G.__isNamespace = true;
 Lua = {
+    __isNamespace = true;
     Core = _G,
     Strings = _G,
     LuaMath = _G,
