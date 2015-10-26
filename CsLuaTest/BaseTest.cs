@@ -41,7 +41,7 @@
                         test();
                         lineWriter.WriteLine(testName + " Success");
                     }
-                    catch (CsException ex)
+                    catch (Exception ex)
                     {
                         FailCount++;
                         lineWriter.WriteLine(testName + " Failed");
