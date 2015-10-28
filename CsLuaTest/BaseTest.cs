@@ -46,7 +46,11 @@
                         FailCount++;
                         lineWriter.WriteLine(testName + " Failed");
                         lineWriter.indent++;
-                        lineWriter.WriteLine(ex.Message);
+                        foreach (var errorLine in ex.Message.Split('\n'))
+                        {
+                            lineWriter.WriteLine(errorLine);
+                        }
+                        
                         lineWriter.indent--;
                     }
                 }
