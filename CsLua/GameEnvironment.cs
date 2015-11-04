@@ -1,5 +1,7 @@
 ﻿namespace CsLua
 {
+    using System;
+
     public static class GameEnvironment
     {
         public static bool IsExecutingInGame {
@@ -10,7 +12,7 @@
 
         public static void ExecuteLuaCode(string code)
         {
-            throw new CsException("Lua code can only be executed in-game.");
+            throw new Exception("Lua code can only be executed in-game.");
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿
 namespace CsLuaTest.TryCatchFinally
 {
-    using CsLua;
-    class CustomException : CsException
+    using System;
+    
+    class CustomException : Exception
     {
         public CustomException(string msg) : base(msg)
         {

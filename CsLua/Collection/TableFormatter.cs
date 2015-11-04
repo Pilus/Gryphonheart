@@ -179,7 +179,7 @@
 
             if (constructor == null)
             {
-                throw new CsException(string.Format("{0} does not implement the constructor for ISerializeable.", type.Name));
+                throw new Exception(string.Format("{0} does not implement the constructor for ISerializeable.", type.Name));
             }
 
             var info = new SerializationInfo(type, new DummyFormatterConverter());

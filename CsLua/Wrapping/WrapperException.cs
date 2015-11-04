@@ -1,7 +1,9 @@
 ﻿
 namespace CsLua.Wrapping
 {
-    public class WrapperException : CsException
+    using System;
+
+    public class WrapperException : Exception
     {
         public WrapperException(string message)
             : base(message)

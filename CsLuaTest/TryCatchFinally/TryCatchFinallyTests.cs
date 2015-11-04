@@ -1,6 +1,7 @@
 ﻿
 namespace CsLuaTest.TryCatchFinally
 {
+    using System;
     using CsLua;
 
     public class TryCatchFinallyTests : BaseTest
@@ -22,9 +23,9 @@ namespace CsLuaTest.TryCatchFinally
         {
             try
             {
-                throw new CsException("Ok");
+                throw new Exception("Ok");
             }
-            catch (CsException ex)
+            catch (Exception ex)
             {
                 Assert("Ok", ex.Message);
             }
@@ -71,7 +72,7 @@ namespace CsLuaTest.TryCatchFinally
             {
                 s += "b";
             }
-            catch (CsException)
+            catch (Exception)
             {
                 s += "x";
             }
@@ -89,14 +90,14 @@ namespace CsLuaTest.TryCatchFinally
             try
             {
                 s += "b";
-                throw new CsException("Error");
+                throw new Exception("Error");
 // Disable warning for unreachable code, as it is the purpose to test that the resulting lua code does not execute the rest of the block.
 #pragma warning disable
                 s += "x";
 #pragma warning restore
 
             }
-            catch (CsException)
+            catch (Exception)
             {
                 s += "c";
             }
@@ -120,7 +121,7 @@ namespace CsLuaTest.TryCatchFinally
             {
                 s += "c";
             }
-            catch (CsException)
+            catch (Exception)
             {
                 s += "x";
             }
@@ -139,14 +140,14 @@ namespace CsLuaTest.TryCatchFinally
                 try
                 {
                     s += "b";
-                    throw new CsException("Error");
+                    throw new Exception("Error");
                 }
                 catch (CustomException)
                 {
                     s += "x";
                 }
             }
-            catch (CsException)
+            catch (Exception)
             {
                 s += "c";
             }
@@ -162,7 +163,7 @@ namespace CsLuaTest.TryCatchFinally
                 try
                 {
                     s += "b";
-                    throw new CsException("Error");
+                    throw new Exception("Error");
                 }
                 catch (CustomException)
                 {
@@ -173,7 +174,7 @@ namespace CsLuaTest.TryCatchFinally
                     s += "c";
                 }
             }
-            catch (CsException)
+            catch (Exception)
             {
                 s += "d";
             }
