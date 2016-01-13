@@ -30,8 +30,8 @@ namespace CsLuaTest
         {
             var tests = new List<ITestSuite>()
             {
-                new TryCatchFinallyTests(),
                 new GeneralTests(),
+                new TryCatchFinallyTests(),
                 new AmbigousMethodsTests(),
                 new OverrideTest(),
                 new SerializationTests(),

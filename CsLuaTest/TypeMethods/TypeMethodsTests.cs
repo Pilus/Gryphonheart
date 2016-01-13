@@ -27,6 +27,9 @@
 
         private static void TestToString()
         {
+            var value = 43.ToString();
+            Assert("43", value);
+
             Assert("43", (43).ToString());
             Assert("43", 43.ToString());
 

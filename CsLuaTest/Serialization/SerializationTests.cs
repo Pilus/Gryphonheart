@@ -80,7 +80,11 @@
             var processedClass = tableFormatter.Deserialize(res);
 
             Assert(1, processedClass.Count);
-            Assert(theClass.AString, processedClass[0].AString);
+            var res1 = processedClass[0];
+            Assert(theClass.AString, res1.AString);
+
+            var res2 = processedClass[0].AString;
+            Assert(theClass.AString, res2);
             Assert(theClass.ANumber, processedClass[0].ANumber);
         }
 
