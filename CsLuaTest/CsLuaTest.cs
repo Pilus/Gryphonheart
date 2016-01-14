@@ -31,6 +31,7 @@ namespace CsLuaTest
             var tests = new List<ITestSuite>()
             {
                 new GeneralTests(),
+                new TypeTests(),
                 new TryCatchFinallyTests(),
                 new AmbigousMethodsTests(),
                 new OverrideTest(),
@@ -43,7 +44,6 @@ namespace CsLuaTest
                 new TypeMethodsTests(),
                 new ParamsTests(),
                 new ArraysTests(),
-                new TypeTests(),
                 new StringExtensionTests(),
             };
 

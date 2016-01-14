@@ -7,6 +7,7 @@
             Name = "Type";
             this.Tests["TestGetTypeOfNumber"] = TestGetTypeOfNumber;
             this.Tests["TestGetTypeOfClass"] = TestGetTypeOfClass;
+            this.Tests["TestIsType"] = TestIsType;
             this.Tests["TestIsInstanceOf"] = TestIsInstanceOf;
         }
 
@@ -27,6 +28,14 @@
 
             Assert("ClassA", type.Name);
             Assert("CsLuaTest.Type", type.Namespace);
+        }
+
+        private static void TestIsType()
+        {
+            Assert(true, new ClassA() is ClassA);
+            Assert(true, new ClassB() is ClassA);
+            Assert(false, new ClassA() is ClassB);
+            Assert(true, new ClassB() is ClassB);
         }
 
         private static void TestIsInstanceOf()
