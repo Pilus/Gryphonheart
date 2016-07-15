@@ -1,9 +1,10 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
     using System;
-    using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using CsLuaFramework.Wrapping;
+    using XMLHandler;
 
     public class Button : Frame, IButton
     {
@@ -106,7 +107,7 @@
             throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetDisabledTextColor()
+        public IMultipleValues<double, double, double, double> GetDisabledTextColor()
         {
             throw new NotImplementedException();
         }
@@ -126,7 +127,7 @@
             throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetHighLightTextColor()
+        public IMultipleValues<double, double, double, double> GetHighLightTextColor()
         {
             throw new NotImplementedException();
         }
@@ -146,7 +147,7 @@
             throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double> GetPushedTextOffset()
+        public IMultipleValues<double, double> GetPushedTextOffset()
         {
             throw new NotImplementedException();
         }
@@ -311,32 +312,32 @@
             throw new NotImplementedException();
         }
 
-        public void SetScript(ButtonHandler handler, Action<INativeUIObject> function)
+        public void SetScript(ButtonHandler handler, Action<IUIObject> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object> function)
+        public void SetScript(ButtonHandler handler, Action<IUIObject, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object, object> function)
+        public void SetScript(ButtonHandler handler, Action<IUIObject, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object, object, object> function)
+        public void SetScript(ButtonHandler handler, Action<IUIObject, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(ButtonHandler handler, Action<INativeUIObject, object, object, object, object> function)
+        public void SetScript(ButtonHandler handler, Action<IUIObject, object, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public Action<INativeUIObject, object, object, object, object> GetScript(ButtonHandler handler)
+        public Action<IButton, object, object, object, object> GetScript(ButtonHandler handler)
         {
             return this.scriptHandler.GetScript(handler);
         }
@@ -346,7 +347,7 @@
             return this.scriptHandler.HasScript(handler);
         }
 
-        public void HookScript(ButtonHandler handler, Action<INativeUIObject, object, object, object, object> function)
+        public void HookScript(ButtonHandler handler, Action<IUIObject, object, object, object, object> function)
         {
             this.scriptHandler.HookScript(handler, function);
         }

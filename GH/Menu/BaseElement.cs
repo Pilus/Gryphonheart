@@ -1,27 +1,33 @@
 ﻿namespace GH.Menu
 {
-    using System;
     using BlizzardApi.WidgetInterfaces;
     using GH.Menu.Theme;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
+    using CsLuaFramework.Wrapping;
     using Lua;
 
     public abstract class BaseElement : IElement
     {
+        private readonly IWrapper wrapper;
+
         private IMenuHandler handler;
 
         private bool prepared;
 
-        public IFrame Frame { get; private set; }
+        public IFrame Frame { get; }
 
-        public BaseElement(string typeName) : this(typeName, FrameType.Frame, null)
+        public NativeLuaTable NativeFrame { get; }
+
+        public BaseElement(string typeName, IWrapper wrapper) : this(typeName, FrameType.Frame, null, wrapper)
         {
         }
 
-        public BaseElement(string typeName, FrameType frameType, string inherits)
+        public BaseElement(string typeName, FrameType frameType, string inherits, IWrapper wrapper)
         {
+            this.wrapper = wrapper;
             this.Frame = (IFrame)Global.FrameProvider.CreateFrame(frameType, UniqueName(typeName), null, inherits);
+            this.NativeFrame = this.wrapper.Unwrap(this.Frame);
         }
 
 

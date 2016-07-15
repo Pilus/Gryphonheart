@@ -1,7 +1,7 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLuaFramework.Attributes;
     using WidgetEnums;
-    using CsLuaAttributes;
 
     [ProvideSelf]
     public interface IGameTooltip : IFrame

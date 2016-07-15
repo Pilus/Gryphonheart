@@ -1,13 +1,11 @@
 ﻿
 namespace GHD.Document.Containers
 {
-    using BlizzardApi;
+    using System;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
-    using CsLua;
-    using CsLua.Collection;
     using GHD.Document.Elements;
     using GHD.Document.Flags;
     using Lua;
@@ -71,7 +69,7 @@ namespace GHD.Document.Containers
                     return true;
             }
 
-            throw new CsException("Unknown navigation event for line: " + type);
+            throw new Exception("Unknown navigation event for line: " + type);
         }
 
         public override double GetWidth()

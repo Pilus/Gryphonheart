@@ -2,14 +2,13 @@
 namespace GHD.Document.Flags
 {
     using System;
-    using CsLua;
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using GH;
     using GHD.Document.Data;
 
     public static class FlagsManager
     {
-        public static IFlags LoadFlags(CsLuaList<IFlagData> flagData)
+        public static IFlags LoadFlags(List<IFlagData> flagData)
         {
             var flags = new Flags();
             foreach (var data in flagData)
@@ -34,7 +33,7 @@ namespace GHD.Document.Flags
                     }
                     if (!(details is Color))
                     {
-                        throw new CsException("Expected Color as BackgroundColor");
+                        throw new Exception("Expected Color as BackgroundColor");
                     }
                     flags.BackgroundColor = (Color)details;
                     break;
@@ -44,7 +43,7 @@ namespace GHD.Document.Flags
                 case FlagType.Color:
                     if (!(details is Color))
                     {
-                        throw new CsException("Expected Color as Color");
+                        throw new Exception("Expected Color as Color");
                     }
                     flags.Color = (Color)details;
                     break;
@@ -61,7 +60,7 @@ namespace GHD.Document.Flags
                     flags.UnderLine = (bool) details;
                     break;
                 default:
-                    throw new CsException("Unknown flag type: " + type);
+                    throw new Exception("Unknown flag type: " + type);
             }
         }
     }

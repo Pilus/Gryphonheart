@@ -2,7 +2,7 @@
 namespace GH.Menu.Objects.DropDown.CustomDropDown
 {
     using System;
-    using CsLua.Collection;
+    using System.Collections.Generic;
 
     public class CustomDropDownProfile : IObjectProfileWithText
     {
@@ -14,8 +14,8 @@ namespace GH.Menu.Objects.DropDown.CustomDropDown
         public bool returnIndex;
         public string text { get; set; }
         public Action OnSelect;
-        public Func<CsLuaList<DropDownData>> dataFunc;
-        public CsLuaList<object> data;
+        public Func<List<DropDownData>> dataFunc;
+        public List<object> data;
         public double? width;
         public bool outputOnly;
         public Action OnLoad;

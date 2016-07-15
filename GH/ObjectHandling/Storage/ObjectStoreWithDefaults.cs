@@ -1,32 +1,34 @@
 ﻿namespace GH.ObjectHandling.Storage
 {
-    using CsLua;
-    using CsLua.Collection;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CsLuaFramework;
     using Debug;
     using Lua;
     using Misc;
 
-    public class ObjectStoreWithDefaults<T1, T2> : IObjectStoreWithDefaults<T1, T2> where T1 : IIdObject<T2>
+    public class ObjectStoreWithDefaults<T1, T2> : IObjectStoreWithDefaults<T1, T2> where T1 : class, IIdObject<T2>
     {
-        private readonly CsLuaList<T1> defaultObjects;
-        private readonly ITableFormatter<T1> formatter;
-        private readonly CsLuaList<T1> objects;
+        private readonly List<T1> defaultObjects;
+        private readonly ISerializer serializer;
+        private readonly List<T1> objects;
         private readonly ISavedDataHandler savedDataHandler;
         private bool savedDataLoaded;
 
-        public ObjectStoreWithDefaults(string tableName)
+        public ObjectStoreWithDefaults(ISerializer serializer, string tableName)
         {
             this.savedDataHandler = new SavedDataHandler(tableName);
-            this.defaultObjects = new CsLuaList<T1>();
-            this.objects = new CsLuaList<T1>();
-            this.formatter = new RecursiveTableFormatter<T1>(true);
+            this.defaultObjects = new List<T1>();
+            this.objects = new List<T1>();
+            this.serializer = serializer;
         }
 
         public void SetDefault(T1 obj)
         {
             if (this.defaultObjects.Any(o => o.Id.Equals(obj.Id)))
             {
-                throw new CsException("Default button with that id have already been set");
+                throw new Exception("Default button with that id have already been set");
             }
             this.defaultObjects.Add(obj);
         }
@@ -45,13 +47,13 @@
             {
                 return defaultObj;
             }
-            throw new CsException(Strings.strconcat("No default value found for id: ", Strings.tostring(id)));
+            throw new Exception(Strings.strconcat("No default value found for id: ", Strings.tostring(id)));
         }
 
-        public CsLuaList<T2> GetIds()
+        public List<T2> GetIds()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.Select(o => o.Id).Union(this.defaultObjects.Select(o => o.Id)).Distinct();
+            return this.objects.Select(o => o.Id).Union(this.defaultObjects.Select(o => o.Id)).Distinct().ToList();
         }
 
         public void Set(T2 id, T1 obj)
@@ -64,12 +66,12 @@
             }
 
             this.objects.Add(obj);
-            var info = this.formatter.Serialize(obj);
+            var info = this.serializer.Serialize(obj);
 
             var defaultObj = this.defaultObjects.FirstOrDefault(o => o.Id.Equals(id));
             if (defaultObj != null)
             {
-                info = DifferenceUA(info, this.formatter.Serialize(defaultObj));
+                info = DifferenceUA(info, this.serializer.Serialize(defaultObj));
             }
 
             this.savedDataHandler.SetVar(obj.Id as string, info);
@@ -99,7 +101,7 @@
         {
             if (!this.savedDataLoaded)
             {                
-                throw new CsException("It is not possible to interact with objects before the saved data is loaded.");
+                throw new Exception("It is not possible to interact with objects before the saved data is loaded.");
             }
         }
 
@@ -108,9 +110,9 @@
             T1 defaultObj = this.defaultObjects.FirstOrDefault(o => o.Id.Equals(id));
             if (defaultObj != null)
             {
-                info = MergeUA(info, this.formatter.Serialize(defaultObj));
+                info = MergeUA(info, this.serializer.Serialize(defaultObj));
             }
-            this.objects.Add((T1) this.formatter.Deserialize(info));
+            this.objects.Add(this.serializer.Deserialize<T1>(info));
         }
 
         /// <summary>
@@ -180,9 +182,9 @@
         }
 
 
-        public CsLuaList<T1> GetAll()
+        public List<T1> GetAll()
         {
-            return this.objects.Union(this.defaultObjects);
+            return this.objects.Union(this.defaultObjects).ToList();
         }
     }
 }

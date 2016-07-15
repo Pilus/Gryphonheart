@@ -31,14 +31,14 @@ namespace GHD.View.DocumentMenu.ToolbarCatagories
                     {
                         tooltip = "Undo",
                         texture = "Interface\\AddOns\\GHD\\Textures\\ButtonIcons",
-					    texCoord = ButtonTexCoordProvider.GetTexCoord(2, 2),
+                        texCoord = ButtonTexCoordProvider.GetTexCoord(2, 2),
                         onClick = this.undo,
                     },
                     new StandardButtonWithTextureProfile()
                     {
                         tooltip = "Redo",
                         texture = "Interface\\AddOns\\GHD\\Textures\\ButtonIcons",
-					    texCoord = ButtonTexCoordProvider.GetTexCoord(3, 2),
+                        texCoord = ButtonTexCoordProvider.GetTexCoord(3, 2),
                         onClick = this.redo,
                     },
                 },
@@ -48,14 +48,14 @@ namespace GHD.View.DocumentMenu.ToolbarCatagories
                     {
                         tooltip = "Revert",
                         texture = "Interface\\AddOns\\GHD\\Textures\\ButtonIcons",
-					    texCoord = ButtonTexCoordProvider.GetTexCoord(4, 2),
+                        texCoord = ButtonTexCoordProvider.GetTexCoord(4, 2),
                         onClick = this.revert,
                     },
                     new StandardButtonWithTextureProfile()
                     {
                         tooltip = "Save",
                         texture = "Interface\\AddOns\\GHD\\Textures\\ButtonIcons",
-					    texCoord = ButtonTexCoordProvider.GetTexCoord(4, 1),
+                        texCoord = ButtonTexCoordProvider.GetTexCoord(4, 1),
                         onClick = this.save,
                     },
                 },

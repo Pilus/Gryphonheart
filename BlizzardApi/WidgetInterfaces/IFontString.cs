@@ -1,6 +1,6 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLuaAttributes;
+    using CsLuaFramework.Attributes;
 
     [ProvideSelf]
     public interface IFontString : IFontInstance, ILayeredRegion

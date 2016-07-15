@@ -1,12 +1,9 @@
 ﻿
 namespace GHD.Document.Containers
 {
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
-    using CsLua;
-    using CsLua.Collection;
     using Elements;
     using Flags;
 

@@ -1,9 +1,9 @@
 ﻿namespace WoWSimulator.UISimulation
 {
     using System;
-    using CsLua.Wrapping;
-    using Lua;
     using BlizzardApi.Global;
+    using CsLuaFramework.Wrapping;
+    using Lua;
 
     public class MockObjectWrapper : IWrapper
     {
@@ -14,40 +14,29 @@
             this.api = api;
         }
 
-        public object TryUnwrapObject<T>(T obj)
+        public NativeLuaTable Unwrap<T>(T obj) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public T WrapGlobalObject<T>(string name)
+        public T Wrap<T>(string globalVarName) where T : class
         {
-            return this.WrapGlobalObject<T>(name, false, null);
+            return (T)this.api.GetGlobal(globalVarName);
         }
 
-        public T WrapGlobalObject<T>(string name, bool skipValidation)
+        public T Wrap<T>(string globalVarName, Func<NativeLuaTable, Type> typeTranslator) where T : class
         {
-            return this.WrapGlobalObject<T>(name, skipValidation, null);
+            throw new NotImplementedException();
         }
 
-        public T WrapGlobalObject<T>(string name, bool skipValidation, Func<NativeLuaTable, string> targetTypeTranslator)
+        public T Wrap<T>(NativeLuaTable luaTable) where T : class
         {
-            var obj = this.api.GetGlobal(name);
-            return this.WrapObject<T>(obj, skipValidation, null);
+            throw new NotImplementedException();
         }
 
-        public T WrapObject<T>(object obj)
+        public T Wrap<T>(NativeLuaTable luaTable, Func<NativeLuaTable, Type> typeTranslator) where T : class
         {
-            return this.WrapObject<T>(obj, false, null);
-        }
-
-        public T WrapObject<T>(object obj, bool skipValidation)
-        {
-            return this.WrapObject<T>(obj, skipValidation, null);
-        }
-
-        public T WrapObject<T>(object obj, bool skipValidation, Func<NativeLuaTable, string> targetTypeTranslator)
-        {
-            return (T) obj;
+            throw new NotImplementedException();
         }
     }
 }

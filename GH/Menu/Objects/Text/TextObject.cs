@@ -1,12 +1,8 @@
 ﻿namespace GH.Menu.Objects.Text
 {
-    using BlizzardApi;
-    using BlizzardApi.Global;
+    using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
-    using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
-    using Line;
-    using Panel;
+    using CsLuaFramework.Wrapping;
 
     public class TextObject : BaseObject
     {
@@ -16,7 +12,7 @@
 
         private readonly ITextObjectFrame frame;
 
-        private static readonly CsLuaDictionary<TextColor, Color> ColorMapping = new CsLuaDictionary<TextColor, Color>()
+        private static readonly Dictionary<TextColor, Color> ColorMapping = new Dictionary<TextColor, Color>()
         {
             { TextColor.white, new Color(1, 1, 1)},
             { TextColor.black, new Color(0, 0, 0)},
@@ -25,7 +21,7 @@
 
         private double? width;
 
-        public TextObject() : base(Type, FrameType.Frame, Template)
+        public TextObject(IWrapper wrapper) : base(Type, FrameType.Frame, Template, wrapper)
         {
             this.frame = (ITextObjectFrame) this.Frame;
         }

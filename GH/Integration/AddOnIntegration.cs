@@ -3,8 +3,8 @@
 namespace GH.Integration
 {
     using System;
-    using CsLua;
-    using CsLua.Collection;
+    using System.Collections.Generic;
+    using System.Linq;
     using GH.Model;
     using ObjectHandling.Storage;
     using UIModules;
@@ -13,13 +13,13 @@ namespace GH.Integration
     {
         public static string GlobalReference = "GH_AddOnIntegration";
 
-        private readonly CsLuaList<AddOnReference> addOns = new CsLuaList<AddOnReference>();
+        private readonly List<AddOnReference> addOns = new List<AddOnReference>();
 
-        private readonly CsLuaList<IQuickButton> quickButtons = new CsLuaList<IQuickButton>();
+        private readonly List<IQuickButton> quickButtons = new List<IQuickButton>();
 
         private bool quickButtonsRetrieved;
 
-        private readonly CsLuaList<ISingletonModule> singletonModules = new CsLuaList<ISingletonModule>();
+        private readonly List<ISingletonModule> singletonModules = new List<ISingletonModule>();
 
         private IObjectStoreWithDefaults<ISetting, SettingIds> settings;
 
@@ -28,20 +28,20 @@ namespace GH.Integration
         public void LoadSettings()
         {
             this.settingsLoaded = true;
-            this.singletonModules.Foreach(module => module.LoadSettings(this.settings));
+            this.singletonModules.ForEach(module => module.LoadSettings(this.settings));
         }
 
         public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
         {
             this.settings = settings;
-            this.singletonModules.Foreach(module => module.SetDefaults(this.settings));
+            this.singletonModules.ForEach(module => module.SetDefaults(this.settings));
         }
 
         public void RegisterAddOn(AddOnReference addonName)
         {
             if (addOns.Contains(addonName))
             {
-                throw new CsException("AddOn already registered");
+                throw new Exception("AddOn already registered");
             }
             addOns.Add(addonName);
         }
@@ -60,7 +60,7 @@ namespace GH.Integration
             this.quickButtons.Add(button);
         }
 
-        public CsLuaList<IQuickButton> RetrieveDefaultButtons()
+        public List<IQuickButton> RetrieveDefaultButtons()
         {
             this.quickButtonsRetrieved = true;
             return this.quickButtons;

@@ -2,9 +2,6 @@
 
 namespace Tests.IntegrationTest.GHDTests
 {
-    using System;
-    using BlizzardApi;
-    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using GHD.Document.Buffer;
     using GHD.Document.Containers;
@@ -13,6 +10,7 @@ namespace Tests.IntegrationTest.GHDTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using BlizzardApi.Global;
+    using CsLuaFramework.Wrapping;
 
     //[TestClass]
     public class LineTests
@@ -176,7 +174,7 @@ namespace Tests.IntegrationTest.GHDTests
 
         private static void VerifyLabel(int num, string expectedString)
         {
-            var label = Global.Api.GetGlobal("FormattedTextFrame" + num + "Label", typeof(IFontString), true) as IFontString;
+            var label = new Wrapper().Wrap<IFontString>("FormattedTextFrame" + num + "Label");
             if (expectedString == null)
             {
                 Assert.AreEqual(null, label);

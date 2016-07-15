@@ -2,6 +2,7 @@
 {
     using System;
     using BlizzardApi.WidgetInterfaces;
+    using XMLHandler;
 
     public class CheckButton : Button, ICheckButton
     {

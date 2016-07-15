@@ -30,15 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsLuaAttributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CsLuaFramework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
+      <HintPath>..\CsLuaConverter\CsLuaFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Lua, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -74,7 +77,6 @@
     <Compile Include="WidgetInterfaces\IGameTooltip.cs" />
     <Compile Include="WidgetInterfaces\IIndexer.cs" />
     <Compile Include="WidgetInterfaces\ILayeredRegion.cs" />
-    <Compile Include="WidgetInterfaces\INativeUIObject.cs" />
     <Compile Include="WidgetInterfaces\IRegion.cs" />
     <Compile Include="MiscEnums\Unit.cs" />
     <Compile Include="WidgetInterfaces\IButton.cs" />
@@ -92,16 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Global\Custom.lua" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CsLua\CsLua.csproj">
-      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
-      <Name>CsLua</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lua\Lua.csproj">
-      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
-      <Name>Lua</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,6 @@
 
 namespace GH.Menu.Menus
 {
-    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
     public interface IGHM_Window : IFrame

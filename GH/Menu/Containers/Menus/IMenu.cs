@@ -1,7 +1,6 @@
 ﻿
 namespace GH.Menu.Menus
 {
-    using BlizzardApi.WidgetInterfaces;
     using GH.Menu.Objects.Page;
     using Objects;
 

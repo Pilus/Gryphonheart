@@ -4,40 +4,42 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
     using GHF.Model;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Lua;
 
     public class CharacterListFrame
     {
         private const double YOffset = -20;
         private IFrame frame;
-        private CsLuaList<CharacterListButtonHandler> buttons;
+        private List<CharacterListButtonHandler> buttons;
 
         public CharacterListFrame(IFrame parent)
         {
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, parent.GetName() + "CharacterList", parent);
             this.frame.SetPoint(FramePoint.TOPRIGHT, parent, FramePoint.TOPLEFT, 0, YOffset);
             this.frame.SetWidth(CharacterListButtonHandler.Width);
-            this.buttons = new CsLuaList<CharacterListButtonHandler>();
+            this.buttons = new List<CharacterListButtonHandler>();
             SetBackdrop(this.frame, "");
         }
 
         private static void SetBackdrop(IFrame frame, string texture)
         {
-            var backdrop = new CsLuaDictionary<object, object>();
+            var backdrop = new NativeLuaTable();
             backdrop["bgFile"] = texture;
             backdrop["edgeFile"] = "Interface/Tooltips/UI-Tooltip-Border";
             backdrop["tile"] = false;
             backdrop["tileSize"] = 16;
             backdrop["edgeSize"] = 16;
-            var inserts = new CsLuaDictionary<object, object>();
+            var inserts = new NativeLuaTable();
             backdrop["left"] = 4;
             backdrop["right"] = 4;
             backdrop["top"] = 4;
             backdrop["bottom"] = 4;
             backdrop["insets"] = inserts;
-            frame.SetBackdrop(backdrop.ToNativeLuaTable());
+            frame.SetBackdrop(backdrop);
         }
 
         public void Toggle()
@@ -52,7 +54,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             }
         }
 
-        public void SetUp(CsLuaList<Profile> profiles, string initialId, Action<string> toggleProfile, Action save)
+        public void SetUp(List<Profile> profiles, string initialId, Action<string> toggleProfile, Action save)
         {
             this.PrepareButtons(profiles.Count);
 
@@ -71,7 +73,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
                 button.SetClick(() =>
                 {
                     save();
-                    this.buttons.Foreach(b => b.Highlight(false));
+                    this.buttons.ForEach(b => b.Highlight(false));
                     button.Highlight(true);
                     toggleProfile(profile.Id);
                 });

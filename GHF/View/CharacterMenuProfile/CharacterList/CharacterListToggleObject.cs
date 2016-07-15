@@ -3,10 +3,8 @@
 namespace GHF.View.CharacterMenuProfile.CharacterList
 {
     using System;
-    using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using GH.Debug;
     using BlizzardApi.Global;
     using GH.Menu.Objects;
 
@@ -48,7 +46,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             this.labelFrame.Tooltip = UntoggledTooltip;
         }
 
-        private void Toggle(INativeUIObject _, object arg1, object arg2)
+        private void Toggle(IUIObject _, object arg1, object arg2)
         {
             this.toggled = !this.toggled;
             if (this.toggled)

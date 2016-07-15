@@ -1,12 +1,12 @@
 ﻿namespace GH.Menu.Menus.Window
 {
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
     using Presenter;
     using System;
+    using System.Collections.Generic;
+    using Lua;
     using Theme;
 
     public class TitleBar
@@ -117,19 +117,19 @@
 
         private static void SetBackdrop(IFrame frame, string texture)
         {
-            var backdrop = new CsLuaDictionary<object, object>();
+            var backdrop = new NativeLuaTable();
             backdrop["bgFile"] = texture;
             backdrop["edgeFile"] = "Interface/Tooltips/UI-Tooltip-Border";
             backdrop["tile"] = false;
             backdrop["tileSize"] = 16;
             backdrop["edgeSize"] = 16;
-            var inserts = new CsLuaDictionary<object, object>();
+            var inserts = new NativeLuaTable();
             backdrop["left"] = BorderSize;
             backdrop["right"] = BorderSize;
             backdrop["top"] = BorderSize;
             backdrop["bottom"] = BorderSize;
             backdrop["insets"] = inserts;
-            frame.SetBackdrop(backdrop.ToNativeLuaTable());
+            frame.SetBackdrop(backdrop);
         }
     }
 }

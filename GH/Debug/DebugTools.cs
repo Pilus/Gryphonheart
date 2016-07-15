@@ -1,10 +1,9 @@
 ﻿namespace GH.Debug
 {
     using System;
-    using BlizzardApi;
+    using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
     using Lua;
     using BlizzardApi.Global;
 
@@ -47,18 +46,18 @@
             bgFrame.SetAllPoints(frame);
             bgFrame.SetFrameLevel(100);
             bgFrame.SetFrameStrata(FrameStrata.HIGH);
-            var backdrop = new CsLuaDictionary<object, object>();
+            var backdrop = new NativeLuaTable();
             backdrop["bgFile"] = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background";
             backdrop["tile"] = false;
             backdrop["tileSize"] = 0;
             backdrop["edgeSize"] = 16;
-            var inserts = new CsLuaDictionary<object, object>();
+            var inserts = new NativeLuaTable();
             backdrop["left"] = 4;
             backdrop["right"] = 4;
             backdrop["top"] = 4;
             backdrop["bottom"] = 0;
             backdrop["insets"] = inserts;
-            bgFrame.SetBackdrop(backdrop.ToNativeLuaTable());
+            bgFrame.SetBackdrop(backdrop);
             bgFrame.SetBackdropColor(LuaMath.random(100) / 100, LuaMath.random(100) / 100, LuaMath.random(100) / 100, 0.8);
             
         }

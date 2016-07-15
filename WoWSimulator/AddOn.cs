@@ -2,13 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using CsLua.Collection;
-    using CsLuaAttributes;
+    using CsLuaFramework;
+    using CsLuaFramework.Attributes;
 
     public class AddOn
     {
         private readonly ICsLuaAddOn csLuaAddOn;
-        public readonly Dictionary<string, string> TocValues = new CsLuaDictionary<string, string>();
+        public readonly Dictionary<string, string> TocValues = new Dictionary<string, string>();
         public AddOn(ICsLuaAddOn csLuaAddOn)
         {
             this.csLuaAddOn = csLuaAddOn;

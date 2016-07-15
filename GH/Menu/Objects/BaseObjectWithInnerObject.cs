@@ -1,19 +1,16 @@
 ﻿
 namespace GH.Menu.Objects
 {
-    using System;
-    using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using Lua;
-    using GH.Menu.Containers;
+    using CsLuaFramework.Wrapping;
     using GH.Menu.Theme;
 
     public abstract class BaseObjectWithInnerObject : BaseElement, IMenuObject, IContainer<IMenuObject>
     {
         protected IMenuObject Inner;
 
-        public BaseObjectWithInnerObject() : base("Wrapper")
+        public BaseObjectWithInnerObject(IWrapper wrapper) : base("Wrapper", wrapper)
         {
             
         }

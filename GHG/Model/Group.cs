@@ -1,20 +1,21 @@
 ﻿namespace GHG.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using CsLua;
-    using CsLua.Collection;
     using GH;
     using GH.Misc;
 
     [System.Serializable]
     public class Group
     {
-        private readonly CsLuaGuid guid;
-        private readonly CsLuaList<LogEvent> logEvents;
+        private readonly Guid guid;
+        private readonly List<LogEvent> logEvents;
 
-        private readonly CsLuaList<GroupMember> members;
-        private readonly CsLuaList<GroupRank> ranks;
+        private readonly List<GroupMember> members;
+        private readonly List<GroupRank> ranks;
         private bool cryptatedDataInitialized = false;
 
         private bool deleted;
@@ -22,16 +23,16 @@
 
         public Group()
         {
-            this.guid = CsLuaGuid.NewGuid();
+            this.guid = Guid.NewGuid();
             this.Name = string.Empty;
             this.Icon = string.Empty;
-            this.members = new CsLuaList<GroupMember>();
-            this.ranks = new CsLuaList<GroupRank>();
-            this.logEvents = new CsLuaList<LogEvent>();
+            this.members = new List<GroupMember>();
+            this.ranks = new List<GroupRank>();
+            this.logEvents = new List<LogEvent>();
             this.deleted = true; // temp to stop warning
         }
 
-        public CsLuaGuid Guid
+        public Guid Guid
         {
             get { return this.guid; }
         }
@@ -63,7 +64,7 @@
             this.version = Misc.GetTimeBasedVersion();
         }
 
-        public GroupMember GetMember(CsLuaGuid guid)
+        public GroupMember GetMember(Guid guid)
         {
             return this.members.Where(m => m.Guid.Equals(guid)).First();
         }
@@ -80,7 +81,7 @@
             return this.members[i];
         }
 
-        public bool IsPlayerMemberOfGroup(CsLuaGuid guid)
+        public bool IsPlayerMemberOfGroup(Guid guid)
         {
             return this.members.Where(m => m.Guid.Equals(guid)).Any();
         }
@@ -90,18 +91,18 @@
             return this.members.Where(m => m.Name.Equals(name)).Any();
         }
 
-        public void AddMember(CsLuaGuid guid, string name)
+        public void AddMember(Guid guid, string name)
         {
             this.AddMember(guid, name, this.ranks.Last().Guid);
         }
 
-        public void AddMember(CsLuaGuid guid, string name, CsLuaGuid rankGuid)
+        public void AddMember(Guid guid, string name, Guid rankGuid)
         {
             this.members.Add(new GroupMember(guid, name, rankGuid));
             this.logEvents.Add(new LogEvent(LogEventType.Invite, Global.Api.UnitName(UnitId.player), new[] {this.Name}));
         }
 
-        public void RemoveMember(CsLuaGuid guid)
+        public void RemoveMember(Guid guid)
         {
             GroupMember member = this.GetMember(guid);
             this.members.Remove(member);
@@ -118,7 +119,7 @@
             this.ranks.Add(rank);
         }
 
-        public GroupRank GetRank(CsLuaGuid guid)
+        public GroupRank GetRank(Guid guid)
         {
             return this.ranks.Where(r => r.Guid.Equals(guid)).FirstOrDefault();
         }
@@ -148,10 +149,10 @@
                 }
             }
 
-            throw new CsException("Rank not found.");
+            throw new Exception("Rank not found.");
         }
 
-        public int GetRankIndex(CsLuaGuid rankGuid)
+        public int GetRankIndex(Guid rankGuid)
         {
             for (int i = 1; i <= this.ranks.Count; i++)
             {
@@ -161,24 +162,24 @@
                 }
             }
 
-            throw new CsException("Rank not found.");
+            throw new Exception("Rank not found.");
         }
 
-        public GroupRank GetRankOfMember(CsLuaGuid memberGuid)
+        public GroupRank GetRankOfMember(Guid memberGuid)
         {
             GroupMember member = this.GetMember(memberGuid);
             return this.GetRank(member.RankGuid);
         }
 
-        public void SetRankOfMember(CsLuaGuid memberGuid, CsLuaGuid rankGuid)
+        public void SetRankOfMember(Guid memberGuid, Guid rankGuid)
         {
             GroupMember member = this.GetMember(memberGuid);
             if (member == null)
             {
-                throw new CsException("Member not found in group.");
+                throw new Exception("Member not found in group.");
             }
 
-            CsLuaGuid oldRankGuid = member.RankGuid;
+            Guid oldRankGuid = member.RankGuid;
             member.RankGuid = rankGuid;
 
             LogEventType eventType = this.GetRankIndex(oldRankGuid) >= this.GetRankIndex(rankGuid)
@@ -200,7 +201,7 @@
                 replacementRank = this.ranks[rankIndex + 1];
             }   
 
-            //this.members.Where(m => m.RankGuid.Equals(rank.Guid)).Foreach(m => m.RankGuid = replacementRank.Guid); // Commented out to to cslua issue
+            //this.members.Where(m => m.RankGuid.Equals(rank.Guid)).ForEach(m => m.RankGuid = replacementRank.Guid); // Commented out to to cslua issue
 
             this.ranks.Remove(rank);
         }

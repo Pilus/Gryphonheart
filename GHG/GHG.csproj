@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lua">
+      <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -81,17 +84,9 @@
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CsLua\CsLua.csproj">
-      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
-      <Name>CsLua</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
       <Name>GH</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lua\Lua.csproj">
-      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
-      <Name>Lua</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

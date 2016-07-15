@@ -1,6 +1,5 @@
 ﻿namespace GH.Menu.Theme
 {
-    using System;
     using Menus;
 
     public class MenuTheme : IMenuTheme

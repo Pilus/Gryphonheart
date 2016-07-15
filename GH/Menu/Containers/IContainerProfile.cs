@@ -1,8 +1,8 @@
 ﻿namespace GH.Menu.Containers
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
 
-    public interface IContainerProfile<T> : ICsLuaList<T>, IElementProfile
+    public interface IContainerProfile<T> : IList<T>, IElementProfile
     {
     }
 }

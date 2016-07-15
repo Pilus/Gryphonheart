@@ -1,10 +1,10 @@
 ﻿
 namespace GH.Menu.Objects.Line
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using GH.Menu.Containers;
 
-    public class LineProfile : CsLuaList<IObjectProfile>, IContainerProfile<IObjectProfile>, IMenuRegionProfile
+    public class LineProfile : List<IObjectProfile>, IContainerProfile<IObjectProfile>, IMenuRegionProfile
     {
         
     }

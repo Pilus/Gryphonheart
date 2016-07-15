@@ -1,6 +1,6 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using CsLuaAttributes;
+    using CsLuaFramework.Attributes;
 
     [ProvideSelf]
     public interface IUIObject : IIndexer<object, object>
@@ -12,11 +12,5 @@
         bool IsForbidden();
         bool IsObjectType(string type);
         void SetAlpha(double alpha);
-
-        INativeUIObject __obj
-        {
-            get;
-            set;
-        }
     }
 }

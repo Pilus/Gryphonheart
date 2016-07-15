@@ -1,7 +1,6 @@
 ﻿namespace GH.Menu.Objects
 {
     using System;
-    using BlizzardApi.WidgetInterfaces;
 
     public interface ITabableObject
     {

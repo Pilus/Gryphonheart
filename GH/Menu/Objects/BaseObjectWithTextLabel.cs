@@ -1,12 +1,10 @@
 ﻿
 namespace GH.Menu.Objects
 {
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using Debug;
-    using GH.Menu.Objects.Line;
+    using CsLuaFramework.Wrapping;
     using GH.Menu.Theme;
     using Lua;
 
@@ -17,7 +15,7 @@ namespace GH.Menu.Objects
         //private readonly IObjectProfileWithText profile;
         private readonly ITextLabelWithTooltip textLabel;
 
-        public BaseObjectWithTextLabel() : base()
+        public BaseObjectWithTextLabel(IWrapper wrapper) : base(wrapper)
         {
             this.textLabel = (ITextLabelWithTooltip)Global.FrameProvider.CreateFrame(FrameType.Frame, "$parentLabel", this.Frame, "GH_TextLabel_Template");
             this.textLabel.SetPoint(FramePoint.TOPLEFT, 0, 0);

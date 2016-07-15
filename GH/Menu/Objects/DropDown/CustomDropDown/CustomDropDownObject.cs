@@ -1,12 +1,8 @@
 ﻿namespace GH.Menu.Objects.DropDown.CustomDropDown
 {
     using System;
-    using BlizzardApi;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
-    using BlizzardApi.WidgetInterfaces;
-    using Line;
-    using Panel;
+    using CsLuaFramework.Wrapping;
 
     public class CustomDropDownObject : BaseObject, IMenuObjectWithValue
     {
@@ -16,7 +12,7 @@
 
         private readonly ICustomDropDownFrame frame;
 
-        public CustomDropDownObject() : base(Type, FrameType.Frame, Template)
+        public CustomDropDownObject(IWrapper wrapper) : base(Type, FrameType.Frame, Template, wrapper)
         {
             this.frame = (ICustomDropDownFrame) this.Frame;
         }

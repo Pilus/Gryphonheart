@@ -1,9 +1,10 @@
 ﻿namespace GH.UIModules.TargetDetails
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
     using Menu.Menus;
     using Menu.Objects.Page;
     using Misc;
@@ -20,13 +21,13 @@
         private const SettingIds PositionSettingIds = SettingIds.TargetDetailsButtonPosition;
 
         private readonly RoundButton button;
-        private readonly CsLuaList<TargetDetailPageInfo> pages;
+        private readonly List<TargetDetailPageInfo> pages;
 
         private IMenu currentMenu;
 
         public TargetDetails()
         {
-            this.pages = new CsLuaList<TargetDetailPageInfo>();
+            this.pages = new List<TargetDetailPageInfo>();
             this.button = new RoundButton(ButtonSize);
             this.button.SetIcon(TextureResources.GhRoundTarget);
             this.button.ClickCallback = this.OnClick;
@@ -67,12 +68,12 @@
 
         public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
         {
-            var targetFrame = (IFrame)Global.Api.GetGlobal("TargetFrame", typeof(IFrame));
+            var targetFrame = Global.Api.GetGlobal("TargetFrame"); // TODO: Use wrapper
             // TODO: Calculate the default position based on the target frame.
             settings.SetDefault(new Setting(PositionSettingIds, new double[] { 200, 100 }));
         }
 
-        public void AddPages(CsLuaList<PageProfile> pageProfiles, Func<bool> enabled)
+        public void AddPages(List<PageProfile> pageProfiles, Func<bool> enabled)
         {
             this.pages.Add(new TargetDetailPageInfo(pageProfiles, enabled));
         }
@@ -84,7 +85,8 @@
                 var profile = GenerateMenuProfile();
                 this.pages
                     .Where(page => page.Enabled())
-                    .Foreach(page => page.Profiles.Foreach(profile.Add));
+                    .ToList()
+                    .ForEach(page => page.Profiles.ForEach(profile.Add));
             }
             else
             {

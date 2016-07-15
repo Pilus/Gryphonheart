@@ -1,11 +1,11 @@
 ﻿namespace MenuTest
 {
     using BlizzardApi.Global;
-    using Lua;
     using CsLuaAttributes;
     using GH.Integration;
     using GH.Menu;
     using GH.UIModules;
+    using Lua;
 
     [CsLuaAddOn("MenuTest", "Menu test", 60200, Author = "The Gryphonheart Team", Notes = "Test addon for testing GH menu. Not intended for release.")]
     public class MenuTestAddOn : ICsLuaAddOn

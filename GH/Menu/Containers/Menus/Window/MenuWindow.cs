@@ -1,6 +1,5 @@
 ﻿namespace GH.Menu.Menus.Window
 {
-    using System;
     using BlizzardApi.WidgetInterfaces;
     using Theme;
 

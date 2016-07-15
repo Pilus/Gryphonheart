@@ -1,9 +1,9 @@
 ﻿namespace GH.UIModules.EasyMenu
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using Lua;
 
-    public class EasyDropDownMenuList : CsLuaList<EasyDropDownMenuItem>, IEasyDropDownMenuContent
+    public class EasyDropDownMenuList : List<EasyDropDownMenuItem>, IEasyDropDownMenuContent
     {
         private readonly string title;
 
@@ -30,7 +30,7 @@
                 Table.insert(entry, titleEntry);
             }
 
-            this.Foreach(item =>
+            this.ForEach(item =>
             {
                 Table.insert(entry, item.GenerateMenuTable());
             });

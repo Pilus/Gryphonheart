@@ -1,7 +1,6 @@
 ﻿namespace GHF.Model
 {
     using GH.Integration;
-    using GH.ObjectHandling;
     using GH.ObjectHandling.Storage;
     using GHF.Model.MSP;
 

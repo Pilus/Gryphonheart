@@ -1,10 +1,9 @@
 ﻿namespace GH.Menu.Objects.Button
 {
     using System;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using Menus;
+    using CsLuaFramework.Wrapping;
     using Theme;
 
     public class ButtonObject : BaseObject, IMenuObject
@@ -19,7 +18,7 @@
         private bool ignoreTheme;
         private Action clickAction;
 
-        public ButtonObject() : base(Type, FrameType.Button, ButtonTemplate)
+        public ButtonObject(IWrapper wrapper) : base(Type, FrameType.Button, ButtonTemplate, wrapper)
         {
             this.button = (IButtonTemplate) this.Frame;
             this.tooltipHandler = new TooltipHandler(this.Frame);
@@ -73,7 +72,7 @@
             this.button.Show();
         }
 
-        private void OnClick(INativeUIObject obj, object arg1, object arg2)
+        private void OnClick(IUIObject obj, object arg1, object arg2)
         {
             if (this.clickAction != null)
             {

@@ -1,13 +1,12 @@
 ﻿
 namespace GHG.Model
 {
-    using CsLua;
-    using Lua;
+    using System;
 
     [System.Serializable]
     public class GroupMember
     {
-        public CsLuaGuid Guid
+        public Guid Guid
         {
             get;
             private set;
@@ -19,7 +18,7 @@ namespace GHG.Model
             set;
         }
 
-        public CsLuaGuid RankGuid
+        public Guid RankGuid
         {
             get;
             set;
@@ -37,7 +36,7 @@ namespace GHG.Model
             set;
         }
 
-        public GroupMember(CsLuaGuid guid, string name, CsLuaGuid rankGuid)
+        public GroupMember(Guid guid, string name, Guid rankGuid)
         {
             this.Guid = guid;
             this.Name = name;

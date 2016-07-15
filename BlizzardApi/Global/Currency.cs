@@ -2,7 +2,7 @@
 
 namespace BlizzardApi.Global
 {
-    using CsLua.Wrapping;
+    using CsLuaFramework.Wrapping;
 
     public partial interface IApi
     {
@@ -33,8 +33,8 @@ namespace BlizzardApi.Global
         /// Retrieve Information about a currency at index including it's amount.
         /// </summary>
         /// <param name="id">Index of the currency to retrieve. Known range includes 61 to 777.</param>
-        /// <returns>name, CurrentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered</returns>
-        IMultipleValues<string, int, string, int, int, int, bool> GetCurrencyInfo(int id);
+        /// <returns>name, CurrentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered, ??</returns>
+        IMultipleValues<string, int, string, int, int, int, bool, int> GetCurrencyInfo(int id);
 
         /// <summary>
         /// Returns the number of entries in the currency list.

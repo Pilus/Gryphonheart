@@ -1,29 +1,31 @@
 ﻿namespace GH.ObjectHandling.Storage
 {
-    using CsLua;
-    using CsLua.Collection;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CsLuaFramework;
     using Lua;
     using Misc;
     using Subscription;
 
-    public class ObjectStore<T1, T2> : IObjectStore<T1, T2> where T1 : IIdObject<T2>
+    public class ObjectStore<T1, T2> : IObjectStore<T1, T2>  where T1 : class, IIdObject<T2>
     {
-        private readonly ITableFormatter<T1> formatter;
-        private readonly CsLuaList<T1> objects;
+        private readonly ISerializer serializer;
+        private readonly List<T1> objects;
         private readonly ISavedDataHandler savedDataHandler;
         private readonly ISubscriptionCenter<T1, T2> subscriptionCenter;
 
         private bool savedDataLoaded;
 
-        public ObjectStore(ITableFormatter<T1> formatter, ISavedDataHandler savedDataHandler, ISubscriptionCenter<T1, T2> subscriptionCenter)
+        public ObjectStore(ISerializer serializer, ISavedDataHandler savedDataHandler, ISubscriptionCenter<T1, T2> subscriptionCenter)
         {
-            this.formatter = formatter;
-            this.objects = new CsLuaList<T1>();
+            this.serializer = serializer;
+            this.objects = new List<T1>();
             this.savedDataHandler = savedDataHandler;
             this.subscriptionCenter = subscriptionCenter;
         }
 
-        public ObjectStore(ITableFormatter<T1> formatter, ISavedDataHandler savedDataHandler) : this(formatter, savedDataHandler, null)
+        public ObjectStore(ISerializer serializer, ISavedDataHandler savedDataHandler) : this(serializer, savedDataHandler, null)
         {
         }
 
@@ -33,13 +35,13 @@
             return this.objects.FirstOrDefault(o => o.Id.Equals((id)));
         }
 
-        public CsLuaList<T2> GetIds()
+        public List<T2> GetIds()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.Select(o => o.Id);
+            return this.objects.Select(o => o.Id).ToList();
         }
 
-        public CsLuaList<T1> GetAll()
+        public List<T1> GetAll()
         {
             this.ThrowIfSavedDataIsNotLoaded();
             return this.objects;
@@ -60,7 +62,7 @@
             }
             this.objects.Add(obj);
 
-            var info = this.formatter.Serialize(obj);
+            var info = this.serializer.Serialize(obj);
             this.savedDataHandler.SetVar(id, info);
 
             if (this.subscriptionCenter != null)
@@ -92,14 +94,14 @@
 
         private void LoadObject(NativeLuaTable info)
         {
-            this.objects.Add(this.formatter.Deserialize(info));
+            this.objects.Add(this.serializer.Deserialize<T1>(info));
         }
 
         private void ThrowIfSavedDataIsNotLoaded()
         {
             if (!this.savedDataLoaded)
             {
-                throw new CsException("It is not possible to interact with objects before the saved data is loaded.");
+                throw new Exception("It is not possible to interact with objects before the saved data is loaded.");
             }
         }
     }

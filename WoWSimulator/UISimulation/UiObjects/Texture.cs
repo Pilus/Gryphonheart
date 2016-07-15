@@ -1,7 +1,10 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
+    using System;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using CsLuaFramework.Wrapping;
+    using XMLHandler;
 
     public class Texture : Region, ITexture
     {
@@ -35,12 +38,12 @@
 
         public AlphaMode GetBlendMode()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double, double, double, double, double> GetTexCoord()
+        public IMultipleValues<double, double, double, double, double, double, double, double> GetTexCoord()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public string GetTexture()
@@ -48,44 +51,44 @@
             return this.texturePath;
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetVertexColor()
+        public IMultipleValues<double, double, double, double> GetVertexColor()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int IsDesaturated()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetBlendMode(AlphaMode mode)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool SetDesaturated(int flag)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetGradient(Orientation orientation, double minR, double minG, double minB, double maxR, double maxG, double maxB)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetGradientAlpha(Orientation orientation, double minR, double minG, double minB, double minA, double maxR, double maxG, double maxB, double maxA)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetRotation(double angle)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetRotation(double angle, double cx, double cy)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetTexCoord(double minX, double maxX, double minY, double maxY)
@@ -95,7 +98,7 @@
 
         public void SetTexCoord(double ULx, double ULy, double LLx, double LLy, double URx, double URy, double LRx, double LRy)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetTexture(string texturePath)
@@ -110,7 +113,7 @@
 
         public void SetTexture(double r, double g, double b, double a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
@@ -121,7 +124,7 @@
 
         public void SetVertexColor(double r, double g, double b, double alpha)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

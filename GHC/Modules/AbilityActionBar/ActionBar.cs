@@ -3,10 +3,12 @@
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
     using GH.Misc;
     using GH.Presenter;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Lua;
 
     public class ActionBar : DragableButton, IActionBar
     {
@@ -15,15 +17,15 @@
         private const string NamePrefix = "GH_ActionBar";
 
         private readonly Func<IFrame, IActionButtonProxy> buttonFactory;
-        private readonly CsLuaList<IActionButtonProxy> actionButtons;
-        private readonly CsLuaList<IActionButtonProxy> unusedActionButtons;
+        private readonly List<IActionButtonProxy> actionButtons;
+        private readonly List<IActionButtonProxy> unusedActionButtons;
 
         public ActionBar(Func<IFrame, IActionButtonProxy> buttonFactory) : base(ButtonSize + ContainerEdge * 2, Misc.GetUniqueGlobalName(NamePrefix))
         {
             this.buttonFactory = buttonFactory;
             this.SetUpContainer();
-            this.actionButtons = new CsLuaList<IActionButtonProxy>();
-            this.unusedActionButtons = new CsLuaList<IActionButtonProxy>();
+            this.actionButtons = new List<IActionButtonProxy>();
+            this.unusedActionButtons = new List<IActionButtonProxy>();
         }
 
         public void AddButton(string id, string iconPath, Action<string> clickFunc, Action<string, IGameTooltip> tooltipFunc, Func<string, ICooldownInfo> cooldownInfoFunc)
@@ -106,19 +108,19 @@
         {
             this.containerFrame.Hide();
             this.containerFrame.SetPoint(FramePoint.BOTTOM, Global.Frames.UIParent, FramePoint.BOTTOM, 0, 150);
-            var backdrop = new CsLuaDictionary<object, object>();
+            var backdrop = new NativeLuaTable();
             backdrop["bgFile"] = "Interface/Tooltips/UI-Tooltip-Background";
             backdrop["edgeFile"] = "Interface/Tooltips/UI-Tooltip-Border";
             backdrop["tile"] = false;
             backdrop["tileSize"] = 16;
             backdrop["edgeSize"] = 16;
-            var inserts = new CsLuaDictionary<object, object>();
+            var inserts = new NativeLuaTable();
             inserts["left"] = 5;
             inserts["right"] = 5;
             inserts["top"] = 5;
             inserts["bottom"] = 5;
             backdrop["insets"] = inserts;
-            this.containerFrame.SetBackdrop(backdrop.ToNativeLuaTable());
+            this.containerFrame.SetBackdrop(backdrop);
         }
 
         private IActionButtonProxy GetActionButton(string id)

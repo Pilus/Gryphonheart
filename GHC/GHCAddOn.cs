@@ -3,12 +3,12 @@ namespace GHC
 {
     using BlizzardApi.EventEnums;
     using BlizzardApi.Global;
-    using CsLuaAttributes;
-    using GH;
+    using CsLuaFramework;
+    using CsLuaFramework.Attributes;
+    using CsLuaFramework.Wrapping;
     using GH.Integration;
     using GH.Misc;
     using GH.Model;
-    using GH.Model.Defaults;
     using Lua;
     using Modules.AbilityActionBar;
 
@@ -44,7 +44,7 @@ namespace GHC
         {
             var duration = 5;
             double? castTime = null;
-            var bar = new ActionBar((frame) => new ActionButtonProxy(frame));
+            var bar = new ActionBar((frame) => new ActionButtonProxy(frame, new Wrapper()));
             bar.AddButton("test", "Interface/ICONS/INV_Misc_Bag_11", s =>
             {
                 castTime = Global.Api.GetTime();

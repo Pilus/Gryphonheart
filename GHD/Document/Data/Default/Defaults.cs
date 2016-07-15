@@ -2,12 +2,12 @@
 
 namespace GHD.Document.Data.Default
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using GH;
 
     public static class Defaults
     {
-        public static CsLuaList<IFlagData> DocumentWideFlags = new CsLuaList<IFlagData>()
+        public static List<IFlagData> DocumentWideFlags = new List<IFlagData>()
         {
             new DefaultFlag(FlagType.Alignment, "Left"),
             new DefaultFlag(FlagType.BackgroundColor, null),

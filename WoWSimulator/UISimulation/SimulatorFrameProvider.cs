@@ -4,11 +4,11 @@ namespace WoWSimulator.UISimulation
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Lua;
     using XMLHandler;
-    using ObjFrameType = FrameType;
+    using FrameType = BlizzardApi.WidgetEnums.FrameType;
+    using ObjFrameType = XMLHandler.FrameType;
 
     public class SimulatorFrameProvider : ISimulatorFrameProvider
     {

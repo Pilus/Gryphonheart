@@ -23,7 +23,7 @@
             this.tooltipText = text;
         }
 
-        private void OnShow(INativeUIObject obj, object arg1)
+        private void OnShow(IUIObject obj, object arg1)
         {
             if (string.IsNullOrEmpty(this.tooltipText))
             {
@@ -37,7 +37,7 @@
             tooltipFrame.Show();
         }
 
-        private void OnHide(INativeUIObject obj, object arg1)
+        private void OnHide(IUIObject obj, object arg1)
         {
             var tooltipFrame = Global.Frames.GameTooltip;
             if (tooltipFrame.GetOwner().Equals(this.frame))

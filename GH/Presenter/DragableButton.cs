@@ -2,11 +2,9 @@
 namespace GH.Presenter
 {
     using System;
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using Lua;
 
     public class DragableButton
     {
@@ -60,7 +58,7 @@ namespace GH.Presenter
             this.Button.SetScript(FrameHandler.OnHide, this.OnHide);
         }
 
-        private void OnEnter(INativeUIObject self, object arg1)
+        private void OnEnter(IUIObject self, object arg1)
         {
             if (this.EnterCallback != null)
             {
@@ -68,7 +66,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnLeave(INativeUIObject self, object arg1)
+        private void OnLeave(IUIObject self, object arg1)
         {
             if (this.LeaveCallback != null)
             {
@@ -76,7 +74,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnClick(INativeUIObject self, object arg1, object arg2)
+        private void OnClick(IUIObject self, object arg1, object arg2)
         {
             if (this.ClickCallback != null)
             {
@@ -84,7 +82,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnDragStart(INativeUIObject self, object arg1)
+        private void OnDragStart(IUIObject self, object arg1)
         {
             this.beingDragged = true;
 
@@ -106,7 +104,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnDragStop(INativeUIObject self)
+        private void OnDragStop(IUIObject self)
         {
             this.beingDragged = false;
             if (this.PositionChangeCallback != null)
@@ -115,7 +113,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnUpdate(INativeUIObject self, object arg1)
+        private void OnUpdate(IUIObject self, object arg1)
         {
             if (this.beingDragged && (Global.Api.IsShiftKeyDown() || this.DragWithoutShift))
             {
@@ -133,7 +131,7 @@ namespace GH.Presenter
             }
         }
 
-        private void OnHide(INativeUIObject self)
+        private void OnHide(IUIObject self)
         {
             if (this.HideCallback != null)
             {

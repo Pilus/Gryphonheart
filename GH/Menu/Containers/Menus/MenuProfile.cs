@@ -2,12 +2,11 @@
 namespace GH.Menu.Menus
 {
     using System;
+    using System.Collections.Generic;
     using Containers;
-    using CsLua.Collection;
-    using Objects.Line;
     using Objects.Page;
 
-    public class MenuProfile : CsLuaList<PageProfile>, IContainerProfile<PageProfile>
+    public class MenuProfile : List<PageProfile>, IContainerProfile<PageProfile>
     {
         public string name;
 

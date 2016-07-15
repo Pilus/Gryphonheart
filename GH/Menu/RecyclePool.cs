@@ -1,16 +1,16 @@
 ﻿namespace GH.Menu
 {
     using System;
-    using CsLua;
-    using CsLua.Collection;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class RecyclePool : IRecyclePool
     {
-        private CsLuaList<IElement> list = new CsLuaList<IElement>();
+        private List<IElement> list = new List<IElement>();
 
         public IElement Retrieve(Type type)
         {
-            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)CsLuaStatic.CreateInstance(type);
+            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)Activator.CreateInstance(type);
         }
 
         public void Store(IElement element)

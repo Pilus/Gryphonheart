@@ -2,13 +2,11 @@
 
 namespace GHD.View.DocumentMenu
 {
-    using GH.Menu;
     using GH.Menu.Menus;
     using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.Line;
     using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Toolbar;
-    using Lua;
     using ToolbarCatagories;
 
     public class DocumentMenuProfileGenerator : IMenuProfileGenerator

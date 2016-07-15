@@ -1,10 +1,10 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
+    using CsLuaFramework.Attributes;
+    using CsLuaFramework.Wrapping;
     using EventEnums;
     using Lua;
     using WidgetEnums;
-    using CsLua.Wrapping;
-    using CsLuaAttributes;
 
     [ProvideSelf]
     public interface IFrame : IRegion, IScript<FrameHandler, IFrame>

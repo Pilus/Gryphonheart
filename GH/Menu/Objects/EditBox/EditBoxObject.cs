@@ -1,10 +1,7 @@
 ﻿namespace GH.Menu.Objects.EditBox
 {
-    using BlizzardApi;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
-    using BlizzardApi.WidgetInterfaces;
-    using Debug;
+    using CsLuaFramework.Wrapping;
 
     public class EditBoxObject : BaseObject, IMenuObjectWithValue
     {
@@ -16,7 +13,7 @@
 
         private double? width;
 
-        public EditBoxObject() : base(Type, FrameType.EditBox, Template)
+        public EditBoxObject(IWrapper wrapper) : base(Type, FrameType.EditBox, Template, wrapper)
         {
             this.frame = (IEditBoxWithFilters) this.Frame;
         }

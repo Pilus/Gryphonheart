@@ -1,7 +1,7 @@
 ﻿
 namespace GH.Menu.Menus
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using Lua;
 
     public class Inserts
@@ -26,13 +26,13 @@ namespace GH.Menu.Menus
 
         public NativeLuaTable ToNativeLuaTable()
         {
-            return new CsLuaDictionary<string,double>()
-            {
-                { "Top", this.Top },
-                { "Bottom", this.Bottom },
-                { "Left", this.Left },
-                { "Right", this.Right },
-            }.ToNativeLuaTable();
+            var t = new NativeLuaTable();
+            t["Top"] = this.Top;
+            t["Bottom"] = this.Bottom;
+            t["Left"] = this.Left;
+            t["Right"] = this.Right;
+
+            return t;
         }
     }
 }

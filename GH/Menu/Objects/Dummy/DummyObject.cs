@@ -1,16 +1,13 @@
 ﻿
 namespace GH.Menu.Objects.Dummy
 {
-    using BlizzardApi.Global;
-    using BlizzardApi.WidgetEnums;
-    using BlizzardApi.WidgetInterfaces;
-    using Debug;
+    using CsLuaFramework.Wrapping;
 
     class DummyObject : BaseObject, IMenuObjectWithValue
     {
         public static string Type = "Dummy";
 
-        public DummyObject() : base(Type)
+        public DummyObject(IWrapper wrapper) : base(Type, wrapper)
         {
             
         }

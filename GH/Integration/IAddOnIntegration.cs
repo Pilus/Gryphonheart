@@ -1,9 +1,8 @@
-﻿using CsLua.Collection;
-using GH.Model;
+﻿using GH.Model;
 
 namespace GH.Integration
 {
-    using ObjectHandling.Storage;
+    using System.Collections.Generic;
     using UIModules;
 
     public interface IAddOnIntegration
@@ -11,7 +10,7 @@ namespace GH.Integration
         void RegisterAddOn(AddOnReference addonName);
         bool IsAddOnLoaded(AddOnReference addOnName);
         void RegisterDefaultButton(IQuickButton button);
-        CsLuaList<IQuickButton> RetrieveDefaultButtons();
+        List<IQuickButton> RetrieveDefaultButtons();
         T GetModule<T>() where T : ISingletonModule, new();
     }
 }

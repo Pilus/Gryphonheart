@@ -2,9 +2,9 @@
 
 namespace GH.Menu.Objects.Toolbar
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
 
-    public class ToolbarPageProfile : CsLuaList<ToolbarCatagoryProfile>
+    public class ToolbarPageProfile : List<ToolbarCatagoryProfile>
     {
         public ToolbarPageProfile(string name)
         {

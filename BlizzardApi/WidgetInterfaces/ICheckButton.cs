@@ -1,8 +1,6 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using WidgetEnums;
-    using CsLuaAttributes;
-    using System;
+    using CsLuaFramework.Attributes;
 
     [ProvideSelf]
     public interface ICheckButton : IButton

@@ -1,8 +1,7 @@
 ﻿
 namespace GHG.Model
 {
-    using CsLua;
-    using Lua;
+    using System;
 
     [System.Serializable]
     public class GroupRank
@@ -10,7 +9,7 @@ namespace GHG.Model
         public GroupRank(string name, bool isFirst)
         {
             this.Name = name;
-            this.Guid = CsLuaGuid.NewGuid();
+            this.Guid = Guid.NewGuid();
             if (isFirst)
             {
                 this.CanEditRanksAndPermissions = true;
@@ -18,7 +17,7 @@ namespace GHG.Model
         }
 
 
-        public CsLuaGuid Guid
+        public Guid Guid
         {
             get;
             private set;

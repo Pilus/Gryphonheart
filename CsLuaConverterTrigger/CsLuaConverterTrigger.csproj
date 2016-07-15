@@ -37,14 +37,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
-      <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
-      <Name>BlizzardApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CsLua\CsLua.csproj">
-      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
-      <Name>CsLua</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GHC\GHC.csproj">
       <Project>{4b177d62-5e1f-4839-ab79-c4e3b6cd78f7}</Project>
       <Name>GHC</Name>
@@ -76,10 +68,6 @@
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
       <Name>GH</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lua\Lua.csproj">
-      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
-      <Name>Lua</Name>
     </ProjectReference>
     <ProjectReference Include="..\MenuTest\MenuTest.csproj">
       <Project>{342f64f4-25cf-422f-9575-5e123f7d02e4}</Project>

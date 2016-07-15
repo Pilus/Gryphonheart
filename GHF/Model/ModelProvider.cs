@@ -4,11 +4,10 @@
     using BlizzardApi.EventEnums;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using CsLua.Collection;
+    using CsLuaFramework;
+    using CsLuaFramework.Wrapping;
     using GH.Integration;
     using GH.Misc;
-    using GH.Model;
-    using GH.ObjectHandling;
     using GH.ObjectHandling.Storage;
     using GH.ObjectHandling.Subscription;
     using Lua;
@@ -24,11 +23,10 @@
         public IAddOnIntegration Integration { get; private set; }
         public IObjectStore<Profile, string> AccountProfiles { get; private set; }
 
-        public ModelProvider()
+        public ModelProvider(ISerializer serializer, IWrapper wrapper)
         {
-            var formatter = new TableFormatter<Profile>();
             var subscriptionCenter = new SubscriptionCenter<Profile, string>();
-            this.AccountProfiles = new ObjectStore<Profile, string>(formatter, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
+            this.AccountProfiles = new ObjectStore<Profile, string>(serializer, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
             this.Integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
@@ -37,7 +35,7 @@
             var playerName = Global.Api.UnitName(UnitId.player);
             var version = Global.Api.GetAddOnMetadata(Strings.tostring(AddOnReference.GH), "Version");
             var supportedFields = new SupportedFields();
-            this.Msp = new MSPProxy(new ProfileFormatter(), version, supportedFields);
+            this.Msp = new MSPProxy(new ProfileFormatter(), version, supportedFields, wrapper);
 
             subscriptionCenter.SubscribeForUpdates(this.Msp.Set, profile => profile.Id.Equals(playerName));
 

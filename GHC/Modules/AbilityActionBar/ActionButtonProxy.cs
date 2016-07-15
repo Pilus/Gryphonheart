@@ -5,10 +5,11 @@
     using BlizzardApi.WidgetInterfaces;
     using GH.Misc;
     using System;
-    using CsLua;
+    using CsLuaFramework.Wrapping;
 
     public class ActionButtonProxy : IActionButtonProxy
     {
+        private IWrapper wrapper;
         private ICheckButton button;
         private Action<string, IGameTooltip> updateFunc;
         private ITexture iconTexture;
@@ -20,11 +21,13 @@
 
         public string Id { get; set; }
 
-        public ActionButtonProxy(IFrame parent)
+        public ActionButtonProxy(IFrame parent, IWrapper wrapper)
         {
+            this.wrapper = this.wrapper;
+
             if (actionButtonProxyMethods == null)
             {
-                actionButtonProxyMethods = CsLuaStatic.Wrapper.WrapGlobalObject<IActionButtonProxyMethods>("_G");
+                actionButtonProxyMethods = this.wrapper.Wrap<IActionButtonProxyMethods>("_G");
             }
 
             this.button = Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "ActionButton"), parent, "ActionButtonTemplate") as ICheckButton;
@@ -35,7 +38,7 @@
 
         public void SetOnClick(Action<string> func)
         {
-            this.button.SetScript(ButtonHandler.OnClick, (INativeUIObject b) =>
+            this.button.SetScript(ButtonHandler.OnClick, (IUIObject b) =>
             {
                 this.button.SetChecked(false);
                 func(this.Id);
@@ -97,9 +100,9 @@
         private void IdentifyFrameElements()
         {
             var buttonName = this.button.GetName();
-            this.iconTexture = Global.Api.GetGlobal(buttonName + "Icon", typeof(ITexture)) as ITexture;
-            this.cooldownFrame = Global.Api.GetGlobal(buttonName + "Cooldown", typeof(IFrame)) as IFrame;
-            this.hotKeyFont = Global.Api.GetGlobal(buttonName + "HotKey", typeof(IFontString)) as IFontString;
+            this.iconTexture = this.wrapper.Wrap<ITexture>(buttonName + "Icon");
+            this.cooldownFrame = this.wrapper.Wrap<IFrame>(buttonName + "Cooldown") ;
+            this.hotKeyFont = this.wrapper.Wrap<IFontString>(buttonName + "HotKey");
         }
 
         private void SetupHandlersForTooltips()
@@ -125,7 +128,7 @@
             this.button.SetScript(FrameHandler.OnUpdate, this.OnUpdate);
         }
 
-        private void OnUpdate(INativeUIObject _, object elapsed)
+        private void OnUpdate(IUIObject _, object elapsed)
         {
             var cooldown = this.getCooldown();
             actionButtonProxyMethods.CooldownFrame_SetTimer(this.cooldownFrame, cooldown.StartTime ?? 0, cooldown.Duration, cooldown.Active ? 1 : 0);

@@ -33,9 +33,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsLuaAttributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
+    <Reference Include="CsLuaFramework">
+      <HintPath>..\CsLuaConverter\CsLuaFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Lua">
+      <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -100,17 +102,9 @@
       <Project>{4FA81A8F-BE0D-4DAD-9E55-0AD7146FC259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CsLua\CsLua.csproj">
-      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
-      <Name>CsLua</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
       <Name>GH</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lua\Lua.csproj">
-      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
-      <Name>Lua</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

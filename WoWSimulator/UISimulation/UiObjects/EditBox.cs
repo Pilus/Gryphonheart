@@ -3,8 +3,8 @@
     using System;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Wrapping;
-    using FrameType = FrameType;
+    using CsLuaFramework.Wrapping;
+    using FrameType = XMLHandler.FrameType;
 
     public class EditBox : Frame, IEditBox
     {
@@ -47,32 +47,32 @@
             throw new NotImplementedException();
         }
 
-        public void SetScript(EditBoxHandler handler, Action<INativeUIObject> function)
+        public void SetScript(EditBoxHandler handler, Action<IUIObject> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(EditBoxHandler handler, Action<INativeUIObject, object> function)
+        public void SetScript(EditBoxHandler handler, Action<IUIObject, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(EditBoxHandler handler, Action<INativeUIObject, object, object> function)
+        public void SetScript(EditBoxHandler handler, Action<IUIObject, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(EditBoxHandler handler, Action<INativeUIObject, object, object, object> function)
+        public void SetScript(EditBoxHandler handler, Action<IUIObject, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(EditBoxHandler handler, Action<INativeUIObject, object, object, object, object> function)
+        public void SetScript(EditBoxHandler handler, Action<IUIObject, object, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public Action<INativeUIObject, object, object, object, object> GetScript(EditBoxHandler handler)
+        public Action<IEditBox, object, object, object, object> GetScript(EditBoxHandler handler)
         {
             return this.scriptHandler.GetScript(handler);
         }
@@ -82,7 +82,7 @@
             return this.scriptHandler.HasScript(handler);
         }
 
-        public void HookScript(EditBoxHandler handler, Action<INativeUIObject, object, object, object, object> function)
+        public void HookScript(EditBoxHandler handler, Action<IUIObject, object, object, object, object> function)
         {
             this.scriptHandler.HookScript(handler, function);
         }

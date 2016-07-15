@@ -1,23 +1,19 @@
 ﻿namespace GH.Menu.Containers.Line
 {
-    using System;
-    using BlizzardApi;
+    using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
-    using Debug;
+    using CsLuaFramework.Wrapping;
     using Lua;
-    using BlizzardApi.Global;
-    using Theme;
     using GH.Menu.Containers;
     using GH.Menu.Objects;
-    using GH.Menu.Objects.Line;
 
     public class Line : BaseContainer<IMenuObject, IObjectProfile>, ILine
     {
         private double objectSpacing;
 
-        public Line() : base("Line")
+        public Line(IWrapper wrapper) : base("Line", wrapper)
         {
 
         }
@@ -35,9 +31,9 @@
             this.Frame.SetParent(parent);
             this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
-            var leftObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.l);
-            var centerObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.c);
-            var rightObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.r);
+            var leftObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.l).ToList();
+            var centerObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.c).ToList();
+            var rightObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.r).ToList();
 
             var leftWidth = leftObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
             var centerWidth = centerObjects.Sum(obj => (obj.GetPreferredWidth() ?? 0) + this.objectSpacing);
@@ -56,7 +52,7 @@
                 rightWidth -= this.objectSpacing;
             }
 
-            var centerObjectsWithFlixibleWidth = centerObjects.Where(obj => this.GetPreferredWidth() == null);
+            var centerObjectsWithFlixibleWidth = centerObjects.Where(obj => this.GetPreferredWidth() == null).ToList();
             if (centerObjects.Any() && !leftObjects.Any() && !rightObjects.Any() &&
                 !centerObjectsWithFlixibleWidth.Any())
             {
@@ -72,12 +68,12 @@
             }
         }
 
-        private void SetUpLineWithOnlyNonFlexibleCenterObjects(double width, double centerWidth, double height, CsLuaList<IMenuObject> centerObjects )
+        private void SetUpLineWithOnlyNonFlexibleCenterObjects(double width, double centerWidth, double height, List<IMenuObject> centerObjects )
         {
             var heightAboveMedian = this.GetHeightAboveMedian();
             var gabWidth = (width - centerWidth) / (centerObjects.Count * 2);
             var x = gabWidth;
-            centerObjects.Foreach(obj =>
+            centerObjects.ForEach(obj =>
             {
                 var w = (double) obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
@@ -86,10 +82,10 @@
             });
         }
 
-        private void PositionCenterObjects(double xOff, double height, CsLuaList<IMenuObject> centerObjects, double heightAboveMedian, double centerFlexUnitSize)
+        private void PositionCenterObjects(double xOff, double height, List<IMenuObject> centerObjects, double heightAboveMedian, double centerFlexUnitSize)
         {
             var x = xOff;
-            centerObjects.Foreach(obj =>
+            centerObjects.ForEach(obj =>
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
@@ -98,11 +94,11 @@
             });
         }
 
-        private void PositionLeftSide(double allocatedWidth, double leftWidth, double height, CsLuaList<IMenuObject> leftObjects, CsLuaList<IMenuObject> leftObjectsWithFlixibleWidth, double heightAboveMedian)
+        private void PositionLeftSide(double allocatedWidth, double leftWidth, double height, List<IMenuObject> leftObjects, List<IMenuObject> leftObjectsWithFlixibleWidth, double heightAboveMedian)
         {
             var leftFlexUnitSize = (allocatedWidth - leftWidth) / leftObjectsWithFlixibleWidth.Count;
             double x = 0;
-            leftObjects.Foreach(obj =>
+            leftObjects.ForEach(obj =>
             {
                 var h = obj.GetPreferredHeight();
                 var w = obj.GetPreferredWidth();
@@ -111,7 +107,7 @@
             });
         }
 
-        private void PositionRightSide(double allocatedWidth, double rightWidth, double width, double height, CsLuaList<IMenuObject> rightObjects, CsLuaList<IMenuObject> rightObjectsWithFlixibleWidth, double heightAboveMedian)
+        private void PositionRightSide(double allocatedWidth, double rightWidth, double width, double height, List<IMenuObject> rightObjects, List<IMenuObject> rightObjectsWithFlixibleWidth, double heightAboveMedian)
         {
             var rightFlexUnitSize = (allocatedWidth - rightWidth) / rightObjectsWithFlixibleWidth.Count;
             double rightFlexSize = 0;
@@ -121,7 +117,7 @@
             }
 
             var x = width - rightWidth - rightFlexSize;
-            rightObjects.Foreach(obj =>
+            rightObjects.ForEach(obj =>
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
@@ -130,11 +126,11 @@
             });
         }
 
-        private void SetUpLineWithCenterObject(double width, double height, double leftWidth, double centerWidth, double rightWidth, CsLuaList<IMenuObject> leftObjects, CsLuaList<IMenuObject> centerObjects, CsLuaList<IMenuObject> centerObjectsWithFlexibleWidth, 
-            CsLuaList<IMenuObject> rightObjects)
+        private void SetUpLineWithCenterObject(double width, double height, double leftWidth, double centerWidth, double rightWidth, List<IMenuObject> leftObjects, List<IMenuObject> centerObjects, List<IMenuObject> centerObjectsWithFlexibleWidth, 
+            List<IMenuObject> rightObjects)
         {
-            var leftObjectsWithFlixibleWidth = leftObjects.Where(obj => this.GetPreferredWidth() == null);
-            var rightObjectsWithFlixibleWidth = rightObjects.Where(obj => this.GetPreferredWidth() == null);
+            var leftObjectsWithFlixibleWidth = leftObjects.Where(obj => this.GetPreferredWidth() == null).ToList();
+            var rightObjectsWithFlixibleWidth = rightObjects.Where(obj => this.GetPreferredWidth() == null).ToList();
 
             double centerFlexUnitSize = 0;
             if (centerObjectsWithFlexibleWidth.Any())
@@ -157,10 +153,10 @@
         }
 
         private void SetUpLineWithoutCenterObject(double width, double leftWidth, double rightWidth, double height, 
-            CsLuaList<IMenuObject> leftObjects, CsLuaList<IMenuObject> rightObjects)
+            List<IMenuObject> leftObjects, List<IMenuObject> rightObjects)
         {
-            var leftObjectsWithFlixibleWidth = leftObjects.Where(obj => obj.GetPreferredWidth() == null);
-            var rightObjectsWithFlixibleWidth = rightObjects.Where(obj => obj.GetPreferredWidth() == null);
+            var leftObjectsWithFlixibleWidth = leftObjects.Where(obj => obj.GetPreferredWidth() == null).ToList();
+            var rightObjectsWithFlixibleWidth = rightObjects.Where(obj => obj.GetPreferredWidth() == null).ToList();
 
             // set up left side and right side
             double flexUnitSize = 0;
@@ -172,7 +168,7 @@
             var heightAboveMedian = this.GetHeightAboveMedian();
 
             double x = 0;
-            leftObjects.Foreach(obj =>
+            leftObjects.ForEach(obj =>
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
@@ -181,7 +177,7 @@
             });
 
             x = width - rightWidth - flexUnitSize * rightObjectsWithFlixibleWidth.Count;
-            rightObjects.Foreach(obj =>
+            rightObjects.ForEach(obj =>
             {
                 var w = obj.GetPreferredWidth();
                 var h = obj.GetPreferredHeight();
@@ -234,7 +230,7 @@
         public double GetHeightAboveMedian()
         {
             double height = 0;
-            this.Content.Foreach(obj =>
+            this.Content.ForEach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
                 var preferredOffset = obj.GetPreferredCenterY();
@@ -249,7 +245,7 @@
         public double GetHeightBelowMedian()
         {
             double height = 0;
-            this.Content.Foreach(obj =>
+            this.Content.ForEach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
                 var preferredOffset = obj.GetPreferredCenterY();

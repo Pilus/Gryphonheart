@@ -3,9 +3,10 @@
 
 namespace GHF.Presenter.CharacterMenu
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using CsLua.Collection;
     using GH.Menu;
     using GH.Menu.Menus;
     using GHF.View.CharacterMenuProfile.CharacterList;
@@ -16,9 +17,9 @@ namespace GHF.Presenter.CharacterMenu
 
     public class MainCharacterMenu
     {
-        private CsLuaList<ICharacterMenuTab> tabs;
+        private List<ICharacterMenuTab> tabs;
         private IMenu menu;
-        private CsLuaList<Profile> profiles;
+        private List<Profile> profiles;
         private Profile currentProfile;
         private IModelProvider model;
         private CharacterListToggleObject listToggle;
@@ -29,13 +30,13 @@ namespace GHF.Presenter.CharacterMenu
             var menuHandler = model.Integration.GetModule<MenuHandler>();
 
             this.model = model;
-            this.tabs = new CsLuaList<ICharacterMenuTab>()
+            this.tabs = new List<ICharacterMenuTab>()
                 {
                     new ProfileTab(fields, menuHandler),
                     new DetailsTab(),
                 };
 
-            var pages = this.tabs.Select(tab => tab.GetGeneratedProfile());
+            var pages = this.tabs.Select(tab => tab.GetGeneratedProfile()).ToList();
 
             var characterMenuProfileGenerator = new CharacterMenuProfileGenerator(pages, this.Save);
             var menuProfile = characterMenuProfileGenerator.GenerateMenuProfile();

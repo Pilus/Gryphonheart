@@ -41,13 +41,13 @@
                     optionsContainer.SetWidth(400);
                     optionsContainer.SetHeight(500);
 
-                    Action<INativeUIObject, int> PanelTemplates_SetNumTabs = GHSessionBuilderExtension.PanelTemplates_SetNumTabs;
+                    Action<IUIObject, int> PanelTemplates_SetNumTabs = GHSessionBuilderExtension.PanelTemplates_SetNumTabs;
                     session.SetGlobal("PanelTemplates_SetNumTabs", PanelTemplates_SetNumTabs);
                     session.SetGlobal("PanelTemplates_SetTab", PanelTemplates_SetNumTabs);
                 });
         }
 
-        private static void PanelTemplates_SetNumTabs(INativeUIObject _, int i)
+        private static void PanelTemplates_SetNumTabs(IUIObject _, int i)
         {
 
         }

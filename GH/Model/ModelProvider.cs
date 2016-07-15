@@ -1,11 +1,12 @@
 ﻿namespace GH.Model
 {
-    using ObjectHandling;
     using Misc;
     using Presenter;
 
     using GH.Model.Defaults;
     using BlizzardApi.EventEnums;
+    using CsLuaFramework;
+    using CsLuaFramework.Wrapping;
     using GH.Integration;
     using ObjectHandling.Storage;
 
@@ -15,14 +16,19 @@
 
         private Presenter presenter;
 
-        public ModelProvider(AddOnIntegration integration)
+        private readonly IWrapper wrapper;
+
+        public ModelProvider(AddOnIntegration integration, IWrapper wrapper)
         {
             this.Integration = integration;
+            this.wrapper = wrapper;
             DefaultQuickButtons.RegisterDefaultButtons(this.Integration);
 
-            this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>("GH_Buttons");
+            var serializer = new Serializer();
+
+            this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>(serializer, "GH_Buttons");
             
-            this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>("GH_Settings");
+            this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>(serializer, "GH_Settings");
             this.Integration.SetDefaults(this.Settings);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
@@ -30,13 +36,13 @@
 
         private void OnVariablesLoaded(SystemEvent eventName, object _)
         {
-            this.Integration.RetrieveDefaultButtons().Foreach(this.ButtonStore.SetDefault);
+            this.Integration.RetrieveDefaultButtons().ForEach(this.ButtonStore.SetDefault);
             DefaultSettings.AddToModel(this.Settings);
 
             this.ButtonStore.LoadFromSaved();
             this.Settings.LoadFromSaved();
             this.Integration.LoadSettings();
-            this.presenter = new Presenter(this);
+            this.presenter = new Presenter(this, this.wrapper);
         }
 
         public bool IsAddOnLoaded(AddOnReference addonReference)

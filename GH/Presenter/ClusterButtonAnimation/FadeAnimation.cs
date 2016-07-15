@@ -1,10 +1,9 @@
 ﻿
 namespace GH.Presenter.ClusterButtonAnimation
 {
+    using System;
+    using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using CsLua.Collection;
-    using Lua;
 
     public class FadeAnimation : AnimationBase, IClusterButtonAnimation
     {
@@ -14,9 +13,9 @@ namespace GH.Presenter.ClusterButtonAnimation
             
         }
 
-        public void AnimateButtons(IButton parent, CsLuaList<IButton> buttons, bool show)
+        public void AnimateButtons(IButton parent, List<IButton> buttons, bool show)
         {
-            throw new CsException("Not implemented");
+            throw new Exception("Not implemented");
         }
     }
 }

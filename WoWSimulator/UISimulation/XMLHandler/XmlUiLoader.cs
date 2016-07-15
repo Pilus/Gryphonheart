@@ -1,10 +1,8 @@
 ﻿namespace WoWSimulator.UISimulation.XMLHandler
 {
-    using System;
     using System.IO;
-    using System.Xml.Serialization;
     using System.Xml;
-    using System.Xml.Schema;
+    using System.Xml.Serialization;
 
     public static class XmlUiLoader
     {

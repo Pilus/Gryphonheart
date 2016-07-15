@@ -3,6 +3,7 @@
     using System;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+    using XMLHandler;
 
     public class FontString : Region, IFontString
     {
@@ -26,17 +27,17 @@
 
         public bool CanNonSpaceWrap()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetStringHeight()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetStringWidth()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public string GetText()
@@ -46,12 +47,12 @@
 
         public void SetAlphaGradient(int start, int length)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetFormattedText(string formatstring, object arg1)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetNonSpaceWrap(object wrapFlag)
@@ -66,7 +67,7 @@
 
         public void SetTextHeight(double pixelHeight)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetWordWrap(bool enable)
@@ -81,7 +82,7 @@
 
         public void SetFont(string path, double height, string flags)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetJustifyH(JustifyH justifyH)
@@ -91,7 +92,7 @@
 
         public void SetJustifyV(JustifyV justifyV)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetTextColor(double r, double g, double b)
@@ -101,7 +102,7 @@
 
         public void SetTextColor(double r, double g, double b, double a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public DrawLayer GetDrawLayer()
@@ -116,12 +117,12 @@
 
         public void SetVertexColor(double r, double g, double b)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetVertexColor(double r, double g, double b, double alpha)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

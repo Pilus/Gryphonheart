@@ -3,8 +3,6 @@ namespace Tests
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Moq;

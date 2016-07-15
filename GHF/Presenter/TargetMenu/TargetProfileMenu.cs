@@ -1,8 +1,8 @@
 ﻿namespace GHF.Presenter.TargetMenu
 {
+    using System.Collections.Generic;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using CsLua.Collection;
     using GH.Menu.Objects.Page;
     using GH.UIModules.TargetDetails;
     using GHF.View.TargetMenuProfile;
@@ -20,9 +20,9 @@
             this.model.Msp.SubscribeForChanges(this.OnProfileChanged);
         }
 
-        private static CsLuaList<PageProfile> GenerateProfile()
+        private static List<PageProfile> GenerateProfile()
         {
-            return new CsLuaList<PageProfile>() { TargetMenuProfileGenerator.GenerateProfile() };
+            return new List<PageProfile>() { TargetMenuProfileGenerator.GenerateProfile() };
         }
 
         private bool ProfileEnabled()

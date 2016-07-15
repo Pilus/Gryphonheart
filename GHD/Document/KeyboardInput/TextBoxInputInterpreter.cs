@@ -3,7 +3,6 @@ namespace GHD.Document.KeyboardInput
 {
     using System;
     using BlizzardApi.Global;
-    using CsLua;
     using Lua;
 
     public class TextBoxInputInterpreter : IKeyboardInputProvider
@@ -37,7 +36,7 @@ namespace GHD.Document.KeyboardInput
         {
             if (this.callback == null)
             {
-                throw new CsException("Callback not set.");
+                throw new Exception("Callback not set.");
             }
             this.textBox.Show();
             this.ResetText();
@@ -118,7 +117,7 @@ namespace GHD.Document.KeyboardInput
                     this.callback(Global.Api.IsShiftKeyDown() ? EditInputType.MarkRight : EditInputType.Right, null);
                     break;
                 default:
-                    throw new CsException("Unknown key " + key);
+                    throw new Exception("Unknown key " + key);
             }
         }
 

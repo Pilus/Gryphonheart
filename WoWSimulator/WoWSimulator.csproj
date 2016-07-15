@@ -30,12 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsLuaAttributes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CsLuaConverter\CsLuaAttributes.dll</HintPath>
+    <Reference Include="CsLuaFramework">
+      <HintPath>..\CsLuaConverter\CsLuaFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Lua">
+      <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\GrinderUnitTests\Moq.dll</HintPath>
+      <HintPath>..\CsLuaConverter\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,17 +87,9 @@
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CsLuaTestUtils\CsLuaTestUtils.csproj">
-      <Project>{52b30640-cbf4-43db-93b1-7b1d66c48924}</Project>
-      <Name>CsLuaTestUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CsLua\CsLua.csproj">
-      <Project>{b91182f7-751e-46eb-8549-3d9ab6e34b7f}</Project>
-      <Name>CsLua</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lua\Lua.csproj">
-      <Project>{e9ebe6e6-d167-480a-ac2c-b6a00d5b8715}</Project>
-      <Name>Lua</Name>
+    <ProjectReference Include="..\TestUtils\TestUtils.csproj">
+      <Project>{52B30640-CBF4-43DB-93B1-7B1D66C48924}</Project>
+      <Name>TestUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

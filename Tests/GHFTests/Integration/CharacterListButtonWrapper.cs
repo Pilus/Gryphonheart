@@ -4,7 +4,7 @@
     using GHF.View.CharacterMenuProfile.CharacterList;
     using WoWSimulator.UISimulation;
     using WoWSimulator.UISimulation.UiObjects;
-    using Wrappers;
+    using WoWSimulator.UISimulation.XMLHandler;
 
     public class CharacterListButtonWrapper : CheckButton, ICharacterListButton
     {

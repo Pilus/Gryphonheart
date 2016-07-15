@@ -1,21 +1,21 @@
 ﻿namespace GH.ObjectHandling.Storage
 {
-    using CsLua.Collection;
+    using CsLuaFramework;
     using Misc;
 
-    public class SingleObjectContainer<T> : ISingleObjectContainer<T>
+    public class SingleObjectContainer<T> : ISingleObjectContainer<T> where T : class
     {
         private readonly ISavedDataHandler savedDataHandler;
         private readonly string key;
         private readonly T defaultValue;
-        private readonly ITableFormatter<T> formatter;
+        private readonly ISerializer serializer;
 
-        public SingleObjectContainer(ISavedDataHandler savedDataHandler, string key, T defaultValue, ITableFormatter<T> formatter)
+        public SingleObjectContainer(ISavedDataHandler savedDataHandler, string key, T defaultValue, ISerializer serializer)
         {
             this.savedDataHandler = savedDataHandler;
             this.key = key;
             this.defaultValue = defaultValue;
-            this.formatter = formatter;
+            this.serializer = serializer;
         }
 
         public T Get()
@@ -25,12 +25,12 @@
             {
                 return this.defaultValue;
             }
-            return (T) this.formatter.Deserialize(value);
+            return this.serializer.Deserialize<T>(value);
         }
 
         public void Set(T obj)
         {
-            var value = this.formatter.Serialize(obj);
+            var value = this.serializer.Serialize(obj);
             this.savedDataHandler.SetVar(this.key, value);
         }
     }

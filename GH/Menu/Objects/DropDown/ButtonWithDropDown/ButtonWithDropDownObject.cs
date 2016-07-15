@@ -3,6 +3,7 @@
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Button;
+    using CsLuaFramework.Wrapping;
     using UIModules.EasyMenu;
 
     public class ButtonWithDropDownObject : ButtonObject
@@ -13,7 +14,7 @@
         private readonly EasyMenuHandler menuHandler;
         private ButtonWithDropDownProfile profile;
 
-        public ButtonWithDropDownObject() : base()
+        public ButtonWithDropDownObject(IWrapper wrapper) : base(wrapper)
         {
             this.button = (IButtonTemplate)this.Frame;
             this.menuHandler = new EasyMenuHandler();
@@ -26,12 +27,12 @@
             this.button.SetScript(ButtonHandler.OnClick, this.OnClick);
         }
 
-        private void OnClick(INativeUIObject obj, object arg1, object arg2)
+        private void OnClick(IUIObject obj, object arg1, object arg2)
         {
             var menuList = new EasyDropDownMenuList(this.profile.dropDownTitle);
             var data = this.profile.dataFunc();
 
-            data.Foreach(d =>
+            data.ForEach(d =>
             {
                 menuList.Add(new EasyDropDownMenuItem(d.text, null, d.onSelect));
             });

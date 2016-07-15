@@ -1,6 +1,8 @@
 ﻿namespace GH.Presenter
 {
+    using System.Linq;
     using BlizzardApi.Global;
+    using CsLuaFramework.Wrapping;
     using Menu;
     using Menu.Menus;
     using Model;
@@ -14,10 +16,10 @@
         private IMenu menu;
         private bool setUp;
 
-        public ButtonOptionsMenu(IModelProvider model)
+        public ButtonOptionsMenu(IModelProvider model, IWrapper wrapper)
         {
             this.model = model;
-            this.profileGenerator = new ButtonOptionsMenuProfileGenerator(this.OnShow);
+            this.profileGenerator = new ButtonOptionsMenuProfileGenerator(this.OnShow, wrapper);
         }
 
         private void OnShow()

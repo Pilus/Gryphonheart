@@ -2,22 +2,22 @@
 namespace GH.Menu.Menus
 {
     using System;
-    using BlizzardApi;
+    using System.Collections.Generic;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using CsLua.Collection;
-    using Debug;
+    using CsLuaFramework.Wrapping;
+    using Lua;
     using Objects.Page;
 
     public class TabMenu : WindowedMenu
     {
-        private CsLuaDictionary<int, IButton> tabButtons;
+
+        private Dictionary<int, IButton> tabButtons;
 
         private IPage currentPage;
 
-        public TabMenu() : base()
+        public TabMenu(IWrapper wrapper) : base(wrapper)
         {
         }
 
@@ -36,7 +36,7 @@ namespace GH.Menu.Menus
 
             if (!this.tabButtons.ContainsKey(tabIndex))
             {
-                throw new CsException("No tab found for index " + tabIndex);
+                throw new Exception("No tab found for index " + tabIndex);
             }
             InvokeClick(this.tabButtons[tabIndex]);
         }
@@ -58,7 +58,7 @@ namespace GH.Menu.Menus
             }
             else
             {
-                throw new CsException("There is no previous button to anchor button " + (index) + " to.");
+                throw new Exception("There is no previous button to anchor button " + (index) + " to.");
             }
 
             this.tabButtons[index] = button;
@@ -67,8 +67,8 @@ namespace GH.Menu.Menus
 
         private void CreateTabButtons()
         {
-            this.tabButtons = new CsLuaDictionary<int, IButton>();
-            var setTabFunc = (Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
+            this.tabButtons = new Dictionary<int, IButton>();
+            var setTabFunc = (Action<NativeLuaTable, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
 
             for (var i = 0; i < this.Content.Count; i++)
             {
@@ -79,7 +79,7 @@ namespace GH.Menu.Menus
 
                 button.SetScript(ButtonHandler.OnClick, (self) =>
                 {
-                    setTabFunc(this.Frame.__obj, button.GetID());
+                    setTabFunc(this.NativeFrame, button.GetID());
                     if (this.currentPage != null)
                     {
                         this.currentPage.Hide();
@@ -89,7 +89,7 @@ namespace GH.Menu.Menus
                     page.Show();
                 });
             }
-            ((Action<INativeUIObject, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame.__obj, this.Content.Count);
+            ((Action<NativeLuaTable, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.NativeFrame, this.Content.Count);
         }
 
         private static void InvokeClick(IButton button)

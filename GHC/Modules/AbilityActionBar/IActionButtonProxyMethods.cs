@@ -1,6 +1,5 @@
 ﻿namespace GHC.Modules.AbilityActionBar
 {
-    using System;
     using BlizzardApi.WidgetInterfaces;
 
     public interface IActionButtonProxyMethods

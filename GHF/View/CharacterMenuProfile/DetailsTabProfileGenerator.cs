@@ -2,11 +2,9 @@
 namespace GHF.View.CharacterMenuProfile
 {
     using System;
-    using CsLua.Collection;
-    using GH.Menu;
+    using System.Collections.Generic;
     using GH.Menu.Objects;
     using GH.Menu.Objects.DropDown;
-    using GH.Menu.Objects.DropDown.ButtonWithDropDown;
     using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.EditField;
     using GH.Menu.Objects.Line;
@@ -82,9 +80,9 @@ namespace GHF.View.CharacterMenuProfile
             }
         }
 
-        public static CsLuaList<string> GetDefaultFields()
+        public static List<string> GetDefaultFields()
         {
-            return new CsLuaList<string>()
+            return new List<string>()
             {
                 DetailsTabLabels.Goals,
             };
@@ -100,9 +98,9 @@ namespace GHF.View.CharacterMenuProfile
             };
         }
 
-        private static CsLuaList<DropDownData> GenerateDropDownData(Func<string, bool> IsFieldAdded, Action<string> AddAdditionalField)
+        private static List<DropDownData> GenerateDropDownData(Func<string, bool> IsFieldAdded, Action<string> AddAdditionalField)
         {
-            var list = new CsLuaList<DropDownData>();
+            var list = new List<DropDownData>();
 
             foreach (var fieldLabel in GetDefaultFields())
             {

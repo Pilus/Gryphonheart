@@ -1,9 +1,14 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
+    using System;
     using System.Collections.Generic;
+    using BlizzardApi.EventEnums;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using FrameType = FrameType;
+    using CsLuaFramework.Wrapping;
+    using Lua;
+    using XMLHandler;
+    using FrameType = XMLHandler.FrameType;
 
     public class Frame : Region, IFrame
     {
@@ -147,62 +152,62 @@
 
         public ITexture CreateTexture(string name, string inheritsFrom)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public ITexture CreateTexture(string name, Layer layer, string inheritsFrom)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IRegion CreateTitleRegion()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void DisableDrawLayer(Layer layer)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void EnableDrawLayer(Layer layer)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void EnableKeyboard(bool enableFlag)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void EnableMouse(bool enableFlag)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void EnableMouseWheel(bool enableFlag)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object GetAttribute(string prefix, string name, string suffix)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object GetBackdrop()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetBackdropBorderColor()
+        public IMultipleValues<double, double, double, double> GetBackdropBorderColor()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetBackdropColor()
+        public IMultipleValues<double, double, double, double> GetBackdropColor()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IFrame[] GetChildren()
@@ -212,27 +217,27 @@
 
         public object GetClampRectInsets()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object GetDepth()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetEffectiveAlpha()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetEffectiveDepth()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetEffectiveScale()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int GetFrameLevel()
@@ -247,12 +252,12 @@
 
         public string GetFrameType()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetHitRectInsets()
+        public IMultipleValues<double, double, double, double> GetHitRectInsets()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int GetID()
@@ -260,14 +265,14 @@
             return this.id;
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double> GetMaxResize()
+        public IMultipleValues<double, double> GetMaxResize()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double> GetMinResize()
+        public IMultipleValues<double, double> GetMinResize()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int GetNumChildren()
@@ -287,22 +292,22 @@
 
         public double GetScale()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IRegion GetTitleRegion()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void IgnoreDepth(bool ignoreFlag)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsClampedToScreen()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsEventRegistered(string eventName)
@@ -312,62 +317,62 @@
 
         public bool IsFrameType(string type)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsIgnoringDepth()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsKeyboardEnabled()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsMouseEnabled()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsMouseWheelEnabled()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsMovable()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsResizable()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsToplevel()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsUserPlaced()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Lower()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Raise()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void RegisterAllEvents()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void RegisterEvent(string eventName)
@@ -378,7 +383,7 @@
             }
         }
 
-        public void RegisterEvent(BlizzardApi.EventEnums.SystemEvent eventName)
+        public void RegisterEvent(SystemEvent eventName)
         {
             this.RegisterEvent(eventName.ToString());
         }
@@ -393,44 +398,44 @@
             //throw new System.NotImplementedException();
         }
 
-        public void SetBackdrop(Lua.NativeLuaTable backdropTable)
+        public void SetBackdrop(NativeLuaTable backdropTable)
         {
             //throw new System.NotImplementedException();
         }
 
         public void SetBackdropBorderColor(double r, double g, double b)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetBackdropBorderColor(double r, double g, double b, double a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetBackdropColor(double r, double g, double b)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetBackdropColor(double r, double g, double b, double a)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetClampedToScreen(bool clamped)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetClampRectInsets(double left, double right, double top, double bottom)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetDepth(double depth)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetFrameLevel(int level)
@@ -445,7 +450,7 @@
 
         public void SetHitRectInsets(double left, double right, double top, double bottom)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetID(int id)
@@ -455,12 +460,12 @@
 
         public void SetMaxResize(double maxWidth, double maxHeight)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetMinResize(double minWidth, double minHeight)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetMovable(bool isMovable)
@@ -470,37 +475,37 @@
 
         public void SetResizable(bool isResizable)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetScale(double scale)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetToplevel(bool isTopLevel)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetUserPlaced(bool isUserPlaced)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void StartMoving()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void StartSizing(FramePoint point)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void StopMovingOrSizing()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void UnregisterAllEvents()
@@ -513,32 +518,32 @@
             this.registeredEvents.Remove(eventName);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<INativeUIObject> function)
+        public void SetScript(FrameHandler handler, Action<IUIObject> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object> function)
+        public void SetScript(FrameHandler handler, Action<IUIObject, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object, object> function)
+        public void SetScript(FrameHandler handler, Action<IUIObject, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object, object, object> function)
+        public void SetScript(FrameHandler handler, Action<IUIObject, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public void SetScript(FrameHandler handler, System.Action<INativeUIObject, object, object, object, object> function)
+        public void SetScript(FrameHandler handler, Action<IUIObject, object, object, object, object> function)
         {
             this.scriptHandler.SetScript(handler, function);
         }
 
-        public System.Action<INativeUIObject, object, object, object, object> GetScript(FrameHandler handler)
+        public Action<IFrame, object, object, object, object> GetScript(FrameHandler handler)
         {
             return this.scriptHandler.GetScript(handler);
         }
@@ -548,7 +553,7 @@
             return this.scriptHandler.HasScript(handler);
         }
 
-        public void HookScript(FrameHandler handler, System.Action<INativeUIObject, object, object, object, object> function)
+        public void HookScript(FrameHandler handler, Action<IUIObject, object, object, object, object> function)
         {
             this.scriptHandler.HookScript(handler, function);
         }

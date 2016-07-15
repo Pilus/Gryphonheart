@@ -1,9 +1,9 @@
 ﻿namespace GH.View
 {
     using System;
-    using BlizzardApi;
+    using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
+    using CsLuaFramework.Wrapping;
     using Menu.Menus;
     using Menu.Objects;
     using Menu.Objects.DropDown;
@@ -11,20 +11,21 @@
     using Menu.Objects.Line;
     using Menu.Objects.Page;
     using Menu.Objects.Text;
-    using BlizzardApi.Global;
-    using CsLua;
 
     public class ButtonOptionsMenuProfileGenerator : IMenuProfileGenerator
     {
         private readonly Action onShow;
-        public ButtonOptionsMenuProfileGenerator(Action onShow)
+        private readonly IWrapper wrapper;
+
+        public ButtonOptionsMenuProfileGenerator(Action onShow, IWrapper wrapper)
         {
             this.onShow = onShow;
+            this.wrapper = wrapper;
         }
 
         public MenuProfile GenerateMenuProfile()
         {
-            var optionsFrame = CsLuaStatic.Wrapper.WrapGlobalObject<IFrame>("InterfaceOptionsFramePanelContainer");
+            var optionsFrame = wrapper.Wrap<IFrame>("InterfaceOptionsFramePanelContainer");
             var optionsMenuWidth = optionsFrame.GetWidth() - 20;
             var optionsMenuHeight = optionsFrame.GetHeight() - 20;
 
@@ -68,9 +69,9 @@
             };
         }
 
-        private CsLuaList<DropDownData> GetDropDownData()
+        private List<DropDownData> GetDropDownData()
         {
-            var list = new CsLuaList<DropDownData>();
+            var list = new List<DropDownData>();
 
             list.Add(new DropDownData() { text = "Choice A", value = "a"});
             list.Add(new DropDownData() { text = "Choice B", value = "b" });

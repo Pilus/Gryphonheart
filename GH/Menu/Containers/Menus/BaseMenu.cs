@@ -1,8 +1,10 @@
 ﻿
 namespace GH.Menu.Menus
 {
+    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
+    using CsLuaFramework.Wrapping;
     using Objects.Page;
     using GH.Menu.Containers;
 
@@ -14,7 +16,7 @@ namespace GH.Menu.Menus
         private double? menuWidth;
         private double? menuHeight;
 
-        public BaseMenu() : base("Menu")
+        public BaseMenu(IWrapper wrapper) : base("Menu", wrapper)
         {
             this.Inserts = new Inserts();
             this.Frame.SetParent(Global.Frames.UIParent);
@@ -95,7 +97,7 @@ namespace GH.Menu.Menus
                 throw new MenuConfigurationException("The menu must either define a height or have a page with no objects with flexible height");
             }
 
-            this.Content.Foreach(page => page.SetPosition(this.Frame, this.Inserts.Left, this.Inserts.Top, widthAvailableToPages, heightAvailableToPages));
+            this.Content.ForEach(page => page.SetPosition(this.Frame, this.Inserts.Left, this.Inserts.Top, widthAvailableToPages, heightAvailableToPages));
         }
 
         public virtual void AnimatedShow()

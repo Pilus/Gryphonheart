@@ -1,8 +1,7 @@
 ﻿
 namespace GH.Presenter.ClusterButtonAnimation
 {
-    using CsLua;
-    using Lua;
+    using System;
 
     public class ClusterButtonAnimationFactory : IClusterButtonAnimationFactory
     {
@@ -15,7 +14,7 @@ namespace GH.Presenter.ClusterButtonAnimation
                 case ClusterButtonAnimationType.Instant:
                     return new InstantAnimation(r);
                 default:
-                    throw new CsException("Unknown cluster button type.");
+                    throw new Exception("Unknown cluster button type.");
             }
         }
     }

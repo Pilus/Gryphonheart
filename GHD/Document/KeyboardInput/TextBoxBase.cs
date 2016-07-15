@@ -3,7 +3,6 @@
 namespace GHD.Document.KeyboardInput
 {
     using System;
-    using BlizzardApi;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using BlizzardApi.Global;
@@ -73,14 +72,14 @@ namespace GHD.Document.KeyboardInput
         public Action OnCursorChanged { get; set; }
         public Action OnUpdate { get; set; }
 
-        private void OnUpdateHandler(INativeUIObject self)
+        private void OnUpdateHandler(IUIObject self)
         {
             if (this.OnUpdate != null)
             {
                 this.OnUpdate();
             }
         }
-        private void OnTextChangedHandler(INativeUIObject self)
+        private void OnTextChangedHandler(IUIObject self)
         {
             if (this.OnTextChanged != null)
             {
@@ -88,7 +87,7 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
-        private void OnCursorChangedHandler(INativeUIObject self)
+        private void OnCursorChangedHandler(IUIObject self)
         {
             if (this.OnCursorChanged != null)
             {
@@ -96,21 +95,21 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
-        private void OnEscapePressedHandler(INativeUIObject self)
+        private void OnEscapePressedHandler(IUIObject self)
         {
             if (this.OnEscapePressed != null)
             {
                 this.OnEscapePressed();
             }
         }
-        private void OnTabPressedHandler(INativeUIObject self)
+        private void OnTabPressedHandler(IUIObject self)
         {
             if (this.OnTabPressed != null)
             {
                 this.OnTabPressed();
             }
         }
-        private void OnEnterPressedHandler(INativeUIObject self)
+        private void OnEnterPressedHandler(IUIObject self)
         {
             if (this.OnEnterPressed != null)
             {
@@ -118,7 +117,7 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
-        private void OnArrowPressedHandler(INativeUIObject self, object key)
+        private void OnArrowPressedHandler(IUIObject self, object key)
         {
             if (this.OnArrowPressed != null)
             {

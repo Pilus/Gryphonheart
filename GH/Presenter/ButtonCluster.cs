@@ -1,11 +1,11 @@
 ﻿namespace GH.Presenter
 {
-    using BlizzardApi;
+    using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
+    using CsLuaFramework.Wrapping;
     using Debug;
-    using Integration;
     using Lua;
     using Model;
 
@@ -15,8 +15,10 @@
         private const double HideTimeSec = 1.0;
 
         private readonly IModelProvider model;
+        private readonly IWrapper wrapper;
+
         private RoundButton mainButton;
-        private readonly CsLuaList<RoundButton> buttons;
+        private readonly List<RoundButton> buttons;
         private double lastActive;
         private bool buttonsShown;
 
@@ -24,12 +26,13 @@
         private IClusterButtonAnimation showAnimation;
         private IClusterButtonAnimation hideAnimation;
 
-        public ButtonCluster(IModelProvider model, IClusterButtonAnimationFactory animationFactory)
+        public ButtonCluster(IModelProvider model, IClusterButtonAnimationFactory animationFactory, IWrapper wrapper)
         {
             this.model = model;
             this.animationFactory = animationFactory;
+            this.wrapper = wrapper;
             this.lastActive = 0;
-            this.buttons = new CsLuaList<RoundButton>();
+            this.buttons = new List<RoundButton>();
             this.UpdateClusterButtonAnimations();
             this.SetUpMainButton();
         }
@@ -84,7 +87,7 @@
         private void HideQuickButtons()
         {
             this.buttonsShown = false;
-            var activeButtons = this.buttons.Where(b => b.Button.IsShown()).Select(b => b.Button);
+            var activeButtons = this.buttons.Where(b => b.Button.IsShown()).Select(b => b.Button).ToList();
             this.hideAnimation.AnimateButtons(this.mainButton.Button, activeButtons, false);
         }
 
@@ -95,10 +98,11 @@
         {
             var quickButtons = this.model.ButtonStore.GetAll()
                 .Where(qb => this.model.IsAddOnLoaded(qb.RequiredAddOn))
-                .OrderBy(qb => qb.Order);
+                .OrderBy(qb => qb.Order)
+                .ToList();
 
             this.buttonsShown = true;
-            var activeButtons = new CsLuaList<IButton>();
+            var activeButtons = new List<IButton>();
 
             while (this.buttons.Count < quickButtons.Count)
             {
@@ -119,8 +123,8 @@
 
                 button.LeaveCallback = () =>
                 {
-                    var tooltipOwner = Global.Frames.GameTooltip.GetOwner();
-                    if (tooltipOwner != null && tooltipOwner.__obj == button.Button.__obj)
+                    var tooltipOwner = this.wrapper.Unwrap(Global.Frames.GameTooltip.GetOwner());
+                    if (tooltipOwner != null && tooltipOwner == this.wrapper.Unwrap(button.Button))
                     {
                         Global.Frames.GameTooltip.Hide();
                     }
@@ -128,8 +132,8 @@
 
                 button.HideCallback = () =>
                 {
-                    var tooltipOwner = Global.Frames.GameTooltip.GetOwner();
-                    if (tooltipOwner != null && tooltipOwner.__obj == button.Button.__obj)
+                    var tooltipOwner = this.wrapper.Unwrap(Global.Frames.GameTooltip.GetOwner());
+                    if (tooltipOwner != null && tooltipOwner == this.wrapper.Unwrap(button.Button))
                     {
                         Global.Frames.GameTooltip.Hide();
                     }

@@ -1,7 +1,9 @@
 ﻿namespace GHF
 {
     using BlizzardApi.Global;
-    using CsLuaAttributes;
+    using CsLuaFramework;
+    using CsLuaFramework.Attributes;
+    using CsLuaFramework.Wrapping;
     using Lua;
     using Model;
 
@@ -17,7 +19,7 @@
             }
             Global.Api.SetGlobal("msp_RPAddOn", "GHF");
 
-            var model = new ModelProvider();
+            var model = new ModelProvider(new Serializer(), new Wrapper());
         }
     }
 }

@@ -1,19 +1,18 @@
 ﻿namespace GH.Menu.Containers
 {
-    using System;
-    using BlizzardApi.WidgetInterfaces;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CsLuaFramework.Wrapping;
     using GH.Menu.Objects;
     using GH.Menu.Theme;
-    using CsLua.Collection;
-    using Objects.Page;
 
     public abstract class BaseContainer<T, TProfile> : BaseElement, IContainer<T> where T : IMenuRegion
     {
-        protected CsLuaList<T> Content;
+        protected List<T> Content;
 
-        public BaseContainer(string typeName) : base(typeName)
+        public BaseContainer(string typeName, IWrapper wrapper) : base(typeName, wrapper)
         {
-            this.Content = new CsLuaList<T>();
+            this.Content = new List<T>();
         }
 
         public virtual void AddElement(T element)
@@ -74,10 +73,10 @@
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(profile, handler);
-            this.Content = new CsLuaList<T>();
+            this.Content = new List<T>();
 
             var containerProfile = (IContainerProfile<TProfile>)profile;
-            containerProfile.Foreach(p =>
+            containerProfile.ToList().ForEach(p =>
             {
                 var regionProfile = (IMenuRegionProfile)p;
                 var region = (T)handler.CreateRegion(regionProfile);
@@ -88,7 +87,7 @@
 
         public override void Recycle()
         {
-            this.Content.Foreach(o => o.Recycle());
+            this.Content.ForEach(o => o.Recycle());
             base.Recycle();
         }
 
@@ -108,12 +107,12 @@
 
         public override void ApplyTheme(IMenuTheme theme)
         {
-            this.Content.Foreach(c => c.ApplyTheme(theme));
+            this.Content.ForEach(c => c.ApplyTheme(theme));
         }
 
         public override void Clear()
         {
-            this.Content.Foreach(c => c.Clear());
+            this.Content.ForEach(c => c.Clear());
         }
     }
 }

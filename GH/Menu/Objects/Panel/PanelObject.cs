@@ -1,19 +1,10 @@
 ﻿
 namespace GH.Menu.Objects.Panel
 {
-    using System;
-    using BlizzardApi;
-    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using Line;
-    using Lua;
     using Page;
-    using BlizzardApi.Global;
-    using Containers;
     using Containers.Line;
-    using Theme;
-    using Toolbar;
+    using CsLuaFramework.Wrapping;
 
     public class PanelObject : BaseObject, IContainer<ILine>, IMenuObject
     {
@@ -26,7 +17,7 @@ namespace GH.Menu.Objects.Panel
 
         private IPage innerPage;
 
-        public PanelObject() : base(Type)
+        public PanelObject(IWrapper wrapper) : base(Type, wrapper)
         {
             
         }
@@ -50,7 +41,7 @@ namespace GH.Menu.Objects.Panel
             base.Prepare(profile, handler);
             var panelProfile = (PanelProfile)profile;
             var innerPageProfile = new PageProfile();
-            panelProfile.Foreach(innerPageProfile.Add);
+            panelProfile.ForEach(innerPageProfile.Add);
             this.innerPage = (IPage)handler.CreateRegion(innerPageProfile);
             this.name = panelProfile.name;
         }

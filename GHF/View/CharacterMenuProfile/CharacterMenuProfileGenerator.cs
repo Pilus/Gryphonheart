@@ -4,17 +4,16 @@
 namespace GHF.View.CharacterMenu
 {
     using System;
-    using CsLua.Collection;
-    using GH.Menu;
+    using System.Collections.Generic;
     using GH.Menu.Menus;
     using GH.Menu.Objects.Page;
 
     public class CharacterMenuProfileGenerator : IMenuProfileGenerator
     {
-        private CsLuaList<PageProfile> pages;
+        private List<PageProfile> pages;
         private Action onHide;
 
-        public CharacterMenuProfileGenerator(CsLuaList<PageProfile> pages, Action onHide)
+        public CharacterMenuProfileGenerator(List<PageProfile> pages, Action onHide)
         {
             this.pages = pages;
             this.onHide = onHide;

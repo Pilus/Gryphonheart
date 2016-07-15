@@ -2,7 +2,6 @@
 
 namespace GHD.Presenter.Document
 {
-    using BlizzardApi;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;

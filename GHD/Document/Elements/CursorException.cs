@@ -1,9 +1,9 @@
 ﻿
 namespace GHD.Document.Elements
 {
-    using CsLua;
+    using System;
 
-    public class CursorException : CsException
+    public class CursorException : Exception
     {
         public CursorException(string msg)
             : base(msg)

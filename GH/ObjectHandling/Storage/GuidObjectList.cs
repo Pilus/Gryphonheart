@@ -1,44 +1,44 @@
 ﻿namespace GH.ObjectHandling.Storage
 {
     using System;
-    using CsLua;
-    using CsLua.Collection;
+    using System.Collections.Generic;
+    using CsLuaFramework;
     using Lua;
     using Misc;
 
-    public class GuidObjectList<T> : IGuidObjectList<T>
+    public class GuidObjectList<T> : IGuidObjectList<T> where T : class
     {
-        private readonly CsLuaDictionary<CsLuaGuid, T> objects;
-        private readonly ITableFormatter<T> formatter;
+        private readonly Dictionary<Guid, T> objects;
+        private readonly ISerializer serializer;
         private readonly ISavedDataHandler savedDataHandler;
         private bool savedDataLoaded;
 
-        public GuidObjectList(ITableFormatter<T> formatter, ISavedDataHandler savedDataHandler)
+        public GuidObjectList(ISerializer serializer, ISavedDataHandler savedDataHandler)
         {
-            this.formatter = formatter;
+            this.serializer = serializer;
             this.savedDataHandler = savedDataHandler;
-            this.objects = new CsLuaDictionary<CsLuaGuid, T>();
+            this.objects = new Dictionary<Guid, T>();
         }
 
-        public T Get(CsLuaGuid guid)
+        public T Get(Guid guid)
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
         }
 
-        public void Set(CsLuaGuid guid, T obj)
+        public void Set(Guid guid, T obj)
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
         }
 
-        public void Remove(CsLuaGuid guid)
+        public void Remove(Guid guid)
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
         }
 
-        public CsLuaList<CsLuaGuid> GetGuids()
+        public List<Guid> GetGuids()
         {
             this.ThrowIfSavedDataIsNotLoaded();
             throw new NotImplementedException();
@@ -49,21 +49,21 @@
             var data = this.savedDataHandler.GetAll();
             if (data != null)
             {
-                Table.Foreach(data, (key, value) => this.LoadObject((CsLuaGuid) key, (NativeLuaTable) value));
+                Table.Foreach(data, (key, value) => this.LoadObject((Guid) key, (NativeLuaTable) value));
             }
             this.savedDataLoaded = true;
         }
 
-        private void LoadObject(CsLuaGuid guid, NativeLuaTable info)
+        private void LoadObject(Guid guid, NativeLuaTable info)
         {
-            this.objects[guid] = (T) this.formatter.Deserialize(info);
+            this.objects[guid] = this.serializer.Deserialize<T>(info);
         }
 
         private void ThrowIfSavedDataIsNotLoaded()
         {
             if (!this.savedDataLoaded)
             {
-                throw new CsException("It is not possible to interact with objects before the saved data is loaded.");
+                throw new Exception("It is not possible to interact with objects before the saved data is loaded.");
             }
         }
     }

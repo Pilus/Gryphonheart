@@ -1,22 +1,19 @@
 ﻿namespace GH.Menu.Objects.Page
 {
-    using BlizzardApi.Global;
+    using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using CsLua.Collection;
-    using Debug;
+    using CsLuaFramework.Wrapping;
     using GH.Menu.Containers;
     using GH.Menu.Containers.Line;
     using Line;
     using Lua;
-    using Theme;
 
     public class Page : BaseContainer<ILine, LineProfile>, IPage
     {
         private double lineSpacing;
 
-        public Page() : base("Page")
+        public Page(IWrapper wrapper) : base("Page", wrapper)
         {
             
         }
@@ -74,11 +71,11 @@
             this.Frame.SetHeight(height);
             this.Frame.SetPoint(FramePoint.TOPLEFT, xOff, -yOff);
 
-            var linesWithNoHeightLimit = this.Content.Where(line => line.GetPreferredHeight() == null);
-            var linesWithHeightLimit = this.Content.Where(line => line.GetPreferredHeight() != null);
+            var linesWithNoHeightLimit = this.Content.Where(line => line.GetPreferredHeight() == null).ToList();
+            var linesWithHeightLimit = this.Content.Where(line => line.GetPreferredHeight() != null).ToList();
 
             double heightUsed = 0;
-            linesWithHeightLimit.Foreach(line =>
+            linesWithHeightLimit.ForEach(line =>
             {
                 heightUsed += line.GetPreferredHeight() ?? 0 + this.lineSpacing;
             });
@@ -91,7 +88,7 @@
             }
 
             heightUsed = 0;
-            this.Content.Foreach(line =>
+            this.Content.ForEach(line =>
             {
                 var lineHeight = line.GetPreferredHeight() ?? heightPrFlexObject;
                 line.SetPosition(this.Frame, 0, heightUsed, width, lineHeight);

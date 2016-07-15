@@ -1,6 +1,7 @@
 ﻿
 namespace GH.Menu.Menus
 {
+    using CsLuaFramework.Wrapping;
     using Theme;
     using Window;
 
@@ -9,7 +10,7 @@ namespace GH.Menu.Menus
         private const double BorderSize = 10;
         private readonly MenuWindow window;
 
-        public WindowedMenu() : base()
+        public WindowedMenu(IWrapper wrapper) : base(wrapper)
         {
             this.Inserts.Top = BorderSize;
             this.Inserts.Bottom = BorderSize;

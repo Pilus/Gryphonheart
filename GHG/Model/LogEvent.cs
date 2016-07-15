@@ -1,8 +1,8 @@
 ﻿
 namespace GHG.Model
 {
-    using Lua;
     using System;
+    using Lua;
 
     [Serializable]
     class LogEvent

@@ -1,9 +1,10 @@
 ﻿
 namespace GHD.Document.Buffer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Containers;
-    using CsLua;
-    using CsLua.Collection;
     using GHD.Document.Data;
     using GHD.Document.Elements;
     using GHD.Document.Flags;
@@ -11,13 +12,13 @@ namespace GHD.Document.Buffer
 
     public class DocumentBuffer : IDocumentBuffer
     {
-        private CsLuaList<BufferElement> elements;
+        private List<BufferElement> elements;
 
         public DocumentBuffer()
         {
             // TODO: Init the document deleter
             this.Deleter = null;
-            this.elements = new CsLuaList<BufferElement>();
+            this.elements = new List<BufferElement>();
         }
 
         public DocumentBuffer(IDocumentData data)
@@ -73,7 +74,7 @@ namespace GHD.Document.Buffer
 
             if (constraint.MaxWidth == null)
             {
-                throw new CsException("A max width must be provided in the constraint.");
+                throw new Exception("A max width must be provided in the constraint.");
             }
 
             var first = this.elements.First();
@@ -109,7 +110,7 @@ namespace GHD.Document.Buffer
 
             if (constraint.MaxWidth == null)
             {
-                throw new CsException("A max width must be provided in the constraint.");
+                throw new Exception("A max width must be provided in the constraint.");
             }
 
 
@@ -132,7 +133,7 @@ namespace GHD.Document.Buffer
 
             if (constraint.MaxWidth == null)
             {
-                throw new CsException("A max width must be provided in the constraint.");
+                throw new Exception("A max width must be provided in the constraint.");
             }
 
             var first = this.elements.First();
@@ -164,12 +165,12 @@ namespace GHD.Document.Buffer
 
             if (constraint.MaxWidth == null)
             {
-                throw new CsException("A max width must be provided in the constraint.");
+                throw new Exception("A max width must be provided in the constraint.");
             }
 
             if (constraint.MaxHeight == null)
             {
-                throw new CsException("A max height must be provided in the constraint.");
+                throw new Exception("A max height must be provided in the constraint.");
             }
 
             var first = this.elements.First();
@@ -212,7 +213,7 @@ namespace GHD.Document.Buffer
         {
             if (this.EndOfBuffer())
             {
-                throw new CsException("Buffer is empty.");
+                throw new Exception("Buffer is empty.");
             }
         }
     }

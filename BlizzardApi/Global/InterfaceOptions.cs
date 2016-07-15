@@ -2,7 +2,6 @@
 
 namespace BlizzardApi.Global
 {
-
     using WidgetInterfaces;
 
     public partial interface IApi

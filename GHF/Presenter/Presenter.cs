@@ -2,11 +2,8 @@
 
 namespace GHF.Presenter
 {
-    using BlizzardApi.Global;
-    using BlizzardApi.MiscEnums;
     using CharacterMenu;
     using GH.Integration;
-    using GH.Model.Defaults;
     using GH.Model.QuickButtons;
     using GH.UIModules.TargetDetails;
     using Model;

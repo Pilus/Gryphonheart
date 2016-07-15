@@ -1,9 +1,9 @@
 ﻿
 namespace GHC.Modules.AbilityActionBar
 {
-    using CsLua;
+    using System;
 
-    public class ActionBarException : CsException
+    public class ActionBarException : Exception
     {
         public ActionBarException(string msg) : base(msg)
         {

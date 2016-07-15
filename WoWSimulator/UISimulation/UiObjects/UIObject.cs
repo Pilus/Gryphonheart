@@ -2,13 +2,12 @@
 {
     using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
-    using Moq;
+    using XMLHandler;
 
     public class UIObject : IUIObject
     {
         private double alpha = 1.0;
-        private readonly Dictionary<object, object> innerDictionary = new CsLuaDictionary<object, object>();
+        private readonly Dictionary<object, object> innerDictionary = new Dictionary<object, object>();
         private string name;
         private readonly string objectType;
 
@@ -67,19 +66,6 @@
         public void SetAlpha(double alpha)
         {
             this.alpha = alpha;
-        }
-
-        public INativeUIObject __obj
-        {
-            get
-            {
-                //throw new UiSimuationException("Native object is not available in simulation");
-                return new Mock<INativeUIObject>().Object;
-            }
-            set
-            {
-                throw new UiSimuationException("Native object is not available in simulation");
-            }
         }
 
         public object this[object key]

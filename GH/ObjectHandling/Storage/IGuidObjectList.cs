@@ -1,17 +1,17 @@
 ﻿namespace GH.ObjectHandling.Storage
 {
-    using CsLua;
-    using CsLua.Collection;
+    using System;
+    using System.Collections.Generic;
 
     public interface IGuidObjectList<T>
     {
-        T Get(CsLuaGuid guid);
+        T Get(Guid guid);
 
-        void Set(CsLuaGuid guid, T obj);
+        void Set(Guid guid, T obj);
 
-        void Remove(CsLuaGuid guid);
+        void Remove(Guid guid);
 
-        CsLuaList<CsLuaGuid> GetGuids();
+        List<Guid> GetGuids();
 
         void LoadFromSaved();
     }

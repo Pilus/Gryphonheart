@@ -1,24 +1,26 @@
 ﻿namespace GHD.Document.Data.Default
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class DefaultMerger
     {
-        public static CsLuaList<IFlagData> RemoveDefaults(CsLuaList<IFlagData> flags)
+        public static List<IFlagData> RemoveDefaults(List<IFlagData> flags)
         {
             return
                 flags.Where(
                     flag =>
                         !Defaults.DocumentWideFlags.Any(
-                            defaultFlag => defaultFlag.FlagType == flag.FlagType && defaultFlag.Details == flag.Details));
+                            defaultFlag => defaultFlag.FlagType == flag.FlagType && defaultFlag.Details == flag.Details))
+                            .ToList();
         }
 
-        public static CsLuaList<IFlagData> AddDefaults(CsLuaList<IFlagData> flags)
+        public static List<IFlagData> AddDefaults(List<IFlagData> flags)
         {
-            return
-                flags.AddRange(
-                    Defaults.DocumentWideFlags.Where(
-                        defaultFlag => !flags.Any(flag => flag.FlagType == defaultFlag.FlagType)));
+            flags.AddRange(
+                Defaults.DocumentWideFlags.Where(
+                    defaultFlag => !flags.Any(flag => flag.FlagType == defaultFlag.FlagType)));
+            return flags;
         }
     }
 }

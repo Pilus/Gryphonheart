@@ -1,11 +1,9 @@
 ﻿
 namespace GHD.Document.Containers
 {
-    using BlizzardApi;
+    using System;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using CsLua.Collection;
     using Data;
     using Elements;
     using GHD.Document.Flags;
@@ -166,7 +164,7 @@ namespace GHD.Document.Containers
                     return true;
             }
 
-            throw new CsException("Unknown navigation event for page: " + type);
+            throw new Exception("Unknown navigation event for page: " + type);
         }
     }
 }

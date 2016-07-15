@@ -1,10 +1,10 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
-    using BlizzardApi.WidgetInterfaces;
     using System;
-    using BlizzardApi.WidgetEnums;
-    using FrameType = FrameType;
     using System.Collections.Generic;
+    using BlizzardApi.WidgetEnums;
+    using BlizzardApi.WidgetInterfaces;
+    using FrameType = XMLHandler.FrameType;
 
     public class GameTooltip : Frame, IGameTooltip
     {

@@ -1,12 +1,10 @@
 ﻿
 namespace Tests.GHCTests.Integration
 {
-    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using WoWSimulator;
     using GHC;
     using GH;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetInterfaces;
 
     [TestClass]

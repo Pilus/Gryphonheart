@@ -1,6 +1,5 @@
 ﻿namespace Tests.Util
 {
-    using System;
     using BlizzardApi.Global;
     using Moq;
     using WoWSimulator.ApiMocks;

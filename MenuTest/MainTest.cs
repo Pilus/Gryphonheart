@@ -1,11 +1,9 @@
 ﻿namespace MenuTest
 {
-    using System;
     using GH.Menu;
     using GH.Menu.Menus;
     using GH.Menu.Objects;
     using GH.Menu.Objects.Button;
-    using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.Line;
     using GH.Menu.Objects.Page;
     using Lua;

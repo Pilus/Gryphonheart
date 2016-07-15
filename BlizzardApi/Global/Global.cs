@@ -1,12 +1,12 @@
-﻿[assembly:CsLuaAttributes.CsLuaLibrary]
+﻿[assembly: CsLuaFramework.Attributes.CsLuaLibrary]
 
 namespace BlizzardApi.Global
 {
     using System;
-    using CsLua.Wrapping;
+    using CsLuaFramework.Wrapping;
     using Lua;
+    using WidgetEnums;
     using WidgetInterfaces;
-    using CsLua;
 
     public static class Global
     {
@@ -14,13 +14,15 @@ namespace BlizzardApi.Global
         private static IFrames frames;
         private static IFrameProvider frameProvider;
 
+        public static IWrapper Wrapper = new Wrapper();
+
         public static IApi Api
         { 
             get
             {
                 if (api == null)
                 {
-                    api = CsLuaStatic.Wrapper.WrapGlobalObject<IApi>("_G", true);
+                    api = Wrapper.Wrap<IApi>("_G");
                 }
                 return api;
             }
@@ -35,7 +37,7 @@ namespace BlizzardApi.Global
             {
                 if (frames == null)
                 {
-                    frames = CsLuaStatic.Wrapper.WrapGlobalObject<IFrames>("_G", true);
+                    frames = Wrapper.Wrap<IFrames>("_G");
                 }
                 return frames;
             }
@@ -51,7 +53,7 @@ namespace BlizzardApi.Global
             {
                 if (frameProvider == null)
                 {
-                    frameProvider = CsLuaStatic.Wrapper.WrapGlobalObject<IFrameProvider>("_G", true, FrameTypeTranslator);
+                    frameProvider = Wrapper.Wrap<IFrameProvider>("_G", FrameTypeTranslator);
                 }
                 return frameProvider;
             }
@@ -61,14 +63,40 @@ namespace BlizzardApi.Global
             }
         }
 
-        private static string FrameTypeTranslator(NativeLuaTable obj)
+        private static Type FrameTypeTranslator(NativeLuaTable obj) 
         {
-            if (obj["GetObjectType"] != null)
-            {
-                return "BlizzardApi.WidgetInterfaces.I" + (obj["GetObjectType"] as Func<NativeLuaTable, string>)(obj);
-            }
+            if (obj["GetObjectType"] == null) return null;
 
-            return null;
+            var type = (obj["GetObjectType"] as Func<NativeLuaTable, string>)(obj);
+            var frameType = (FrameType)Enum.Parse(typeof (FrameType), type);
+
+            switch (frameType)
+            {
+                case FrameType.Frame:
+                    return typeof (IFrame);
+                case FrameType.Button:
+                    return typeof(IButton);
+                case FrameType.CheckButton:
+                    return typeof(ICheckButton);
+                case FrameType.EditBox:
+                    return typeof(IEditBox);
+                case FrameType.GameTooltip:
+                    return typeof(IGameTooltip);
+                case FrameType.ScrollFrame:
+                    return typeof(IScrollFrame);
+                case FrameType.FontString:
+                    return typeof(IFontString);
+                case FrameType.FontInstance:
+                    return typeof (IFontInstance);
+                case FrameType.Slider:
+                    return typeof (ISlider);
+                case FrameType.StatusBar:
+                    return typeof (IStatusBar);
+                case FrameType.Texture:
+                    return typeof (ITexture);
+                default:
+                    throw new Exception("Could not translate frame type " + type);
+            }
         }
     }
 }

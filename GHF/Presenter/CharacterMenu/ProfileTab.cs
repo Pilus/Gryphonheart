@@ -3,8 +3,8 @@
 namespace GHF.Presenter.CharacterMenu
 {
     using System;
-    using CsLua;
-    using CsLua.Collection;
+    using System.Collections.Generic;
+    using System.Linq;
     using GH.Menu;
     using GH.Menu.Containers.Line;
     using GH.Menu.Menus;
@@ -13,7 +13,6 @@ namespace GHF.Presenter.CharacterMenu
     using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
     using GHF.View;
-    using Lua;
     using Model;
     using Model.AdditionalFields;
     using View.CharacterMenuProfile;
@@ -25,7 +24,7 @@ namespace GHF.Presenter.CharacterMenu
         private readonly IMenuHandler menuHandler;
         private Profile currentProfile;
         private IMenu loadedMenu;
-        private readonly CsLuaList<string> shownAdditionalFields = new CsLuaList<string>();
+        private readonly List<string> shownAdditionalFields = new List<string>();
 
         public ProfileTab(SupportedFields supportedFields, IMenuHandler menuHandler)
         {
@@ -43,7 +42,7 @@ namespace GHF.Presenter.CharacterMenu
         {
             if (this.currentProfile == null)
             {
-                throw new CsException("No profile data loaded.");
+                throw new Exception("No profile data loaded.");
             }
 
             switch (key)
@@ -61,7 +60,7 @@ namespace GHF.Presenter.CharacterMenu
                     this.currentProfile.Appearance = (string) obj;
                     break;
                 default:
-                    throw new CsException("Unknown menu label key " + key);
+                    throw new Exception("Unknown menu label key " + key);
             }
         }
 
@@ -110,12 +109,12 @@ namespace GHF.Presenter.CharacterMenu
             }
         }
 
-        private CsLuaDictionary<IField, Action> GetAvailableAdditionalFieldActions()
+        private Dictionary<IField, Action> GetAvailableAdditionalFieldActions()
         {
-            var fields = this.supportedFields.Fields.Where(field => !this.shownAdditionalFields.Contains(field.Id));
-            var fieldActions = new CsLuaDictionary<IField, Action>();
+            var fields = this.supportedFields.Fields.Where(field => !this.shownAdditionalFields.Contains(field.Id)).ToList();
+            var fieldActions = new Dictionary<IField, Action>();
 
-            fields.Foreach(field =>
+            fields.ForEach(field =>
             {
                 fieldActions[field] = () => { this.AddAdditionalField(field.Id, string.Empty); };
             });
@@ -127,7 +126,7 @@ namespace GHF.Presenter.CharacterMenu
         {
             this.currentProfile.Appearance = this.loadedMenu.GetValue(ProfileTabLabels.Appearance) as string;
 
-            this.shownAdditionalFields.Foreach(additionalFieldId =>
+            this.shownAdditionalFields.ForEach(additionalFieldId =>
             {
                 var value = this.loadedMenu.GetValue(additionalFieldId) as string;
                 this.currentProfile.AdditionalFields[additionalFieldId] = value;

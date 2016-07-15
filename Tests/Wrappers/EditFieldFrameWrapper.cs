@@ -1,10 +1,10 @@
 ﻿namespace Tests.Wrappers
 {
     using BlizzardApi.WidgetInterfaces;
-    using GH.Menu.Objects;
     using GH.Menu.Objects.EditField;
     using WoWSimulator.UISimulation;
     using WoWSimulator.UISimulation.UiObjects;
+    using WoWSimulator.UISimulation.XMLHandler;
 
     public class EditFieldFrameWrapper : Frame, IEditFieldFrame
     {

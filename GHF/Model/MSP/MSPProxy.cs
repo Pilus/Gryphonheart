@@ -2,10 +2,11 @@
 {
     using AdditionalFields;
     using BlizzardApi.Global;
-    using BlizzardApi.MiscEnums;
-    using CsLua.Collection;
-    using Lua;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CsLuaFramework.Wrapping;
+    using Lua;
 
     public class MSPProxy
     {
@@ -14,12 +15,12 @@
         private readonly string addOnsVersion;
         private readonly SupportedFields supportedFields;
 
-        public MSPProxy(ProfileFormatter formatter, string ghAddOnVersion, SupportedFields supportedFields)
+        public MSPProxy(ProfileFormatter formatter, string ghAddOnVersion, SupportedFields supportedFields, IWrapper wrapper)
         {
             this.formatter = formatter;
             this.addOnsVersion = "GH/" + ghAddOnVersion;
             this.supportedFields = supportedFields;
-            this.msp = (ILibMSPWrapper) Global.Api.GetGlobal("libMSPWrapper", typeof(ILibMSPWrapper));
+            this.msp = wrapper.Wrap<ILibMSPWrapper>("libMSPWrapper");
         }
 
         public void Set(Profile profile)
@@ -45,14 +46,26 @@
             return this.msp.HasOther(playerName);
         }
 
-        public void Request(string playerName, CsLuaList<string> fields)
+        public void Request(string playerName, List<string> fields)
         {
-            this.msp.Request(playerName, fields.ToNativeLuaTable());
+            this.msp.Request(playerName, this.ListToLuaTable(fields));
         }
 
         public void SubscribeForChanges(Action<string> action)
         {
             this.msp.AddReceivedAction(action);
+        }
+
+        private NativeLuaTable ListToLuaTable(List<string> list)
+        {
+            var t = new NativeLuaTable();
+
+            for (var index = 0; index < list.Count; index++)
+            {
+                t[index] = list[index];
+            }
+
+            return t;
         }
 
         private IMSPFields Parse(Profile profile)

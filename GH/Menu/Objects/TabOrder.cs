@@ -1,14 +1,14 @@
 ﻿namespace GH.Menu.Objects
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.Global;
-    using CsLua.Collection;
-    using Debug;
 
     public class TabOrder
     {
         private const double OnSameLineTreheshold = 10.0;
 
-        private CsLuaList<ITabableObject> objects = new CsLuaList<ITabableObject>();
+        private List<ITabableObject> objects = new List<ITabableObject>();
 
         public void AddObject(ITabableObject obj)
         {

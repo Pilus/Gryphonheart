@@ -1,15 +1,15 @@
 ﻿namespace GHF.Model.MSP
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
 
     public class MspRequestStrategy
     {
-        private CsLuaList<string> nameOnly = new CsLuaList<string>()
+        private List<string> nameOnly = new List<string>()
         {
             MSPFieldNames.Name
         };
 
-        public CsLuaList<string> GetFieldsToRequest(PlayerActivity activity)
+        public List<string> GetFieldsToRequest(PlayerActivity activity)
         {
             return nameOnly;
         }

@@ -1,10 +1,8 @@
 ﻿
 namespace GHD.Presenter
 {
-    using BlizzardApi.Global;
     using Document;
     using GH.Integration;
-    using GH.Model.Defaults;
     using GH.Model.QuickButtons;
     using Model;
 

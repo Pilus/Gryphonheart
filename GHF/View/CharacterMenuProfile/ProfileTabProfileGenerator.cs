@@ -3,11 +3,9 @@
 namespace GHF.View
 {
     using System;
+    using System.Collections.Generic;
     using CharacterMenuProfile;
-    using CsLua.Collection;
-    using GH.Menu;
     using GH.Menu.Objects;
-    using GH.Menu.Objects.Button;
     using GH.Menu.Objects.DropDown;
     using GH.Menu.Objects.DropDown.ButtonWithDropDown;
     using GH.Menu.Objects.Dummy;
@@ -16,13 +14,12 @@ namespace GHF.View
     using GH.Menu.Objects.Line;
     using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
-    using GH.Menu.Objects.Text;
     using GHF.View.CharacterMenuProfile.CharacterList;
     using Model.AdditionalFields;
 
     public class ProfileTabProfileGenerator
     {
-        public PageProfile GenerateProfile(Action<string, object> valueUpdater, Func<CsLuaDictionary<IField, Action>> getAvailableAdditionalFieldActions)
+        public PageProfile GenerateProfile(Action<string, object> valueUpdater, Func<Dictionary<IField, Action>> getAvailableAdditionalFieldActions)
         {
             return new PageProfile("Profile")
             {
@@ -86,7 +83,7 @@ namespace GHF.View
                                 width = 120,
                                 dataFunc = () => {
                                     var fields = getAvailableAdditionalFieldActions();
-                                    var data = new CsLuaList<DropDownData>();
+                                    var data = new List<DropDownData>();
                                     foreach (var fieldPair in fields)
                                     {
                                         data.Add(new DropDownData(fieldPair.Key.Title, fieldPair.Value));

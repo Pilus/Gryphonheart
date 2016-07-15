@@ -4,6 +4,7 @@
     using GH.Menu.Objects.Text;
     using WoWSimulator.UISimulation;
     using WoWSimulator.UISimulation.UiObjects;
+    using WoWSimulator.UISimulation.XMLHandler;
 
     public class TextObjectFrameWrapper : Frame, ITextObjectFrame
     {

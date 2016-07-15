@@ -3,11 +3,8 @@ namespace GHD.Document.Elements
 {
     using System;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua;
-    using CsLua.Collection;
     using GHD.Document.Buffer;
     using GHD.Document.Containers;
-    using GHD.Document.Data;
     using GHD.Document.Flags;
     using Lua;
 
@@ -36,7 +33,7 @@ namespace GHD.Document.Elements
         {
             if (newText == null)
             {
-                throw new CsException("Can not set text to null.");
+                throw new Exception("Can not set text to null.");
             }
 
             this.text = newText;
@@ -101,7 +98,7 @@ namespace GHD.Document.Elements
                     this.CursorChanged();
                     return true;
             }
-            throw new CsException("Unhandled navigation type " + type);
+            throw new Exception("Unhandled navigation type " + type);
         }
 
         /// <summary>
@@ -177,7 +174,7 @@ namespace GHD.Document.Elements
 
             if (dimensionConstraint.MaxWidth == null)
             {
-                throw new CsException("The formatted text object must be given a width constraint on insert.");
+                throw new Exception("The formatted text object must be given a width constraint on insert.");
             }
 
             var availableDimension = new DimensionConstraint()

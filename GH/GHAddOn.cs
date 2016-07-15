@@ -1,7 +1,9 @@
 ﻿namespace GH
 {
     using BlizzardApi.Global;
-    using CsLuaAttributes;
+    using CsLuaFramework;
+    using CsLuaFramework.Attributes;
+    using CsLuaFramework.Wrapping;
     using GH.Integration;
     using Lua;
     using Model;
@@ -15,7 +17,9 @@
             integration.RegisterAddOn(AddOnReference.GH);
             Global.Api.SetGlobal(AddOnIntegration.GlobalReference, integration);
 
-            var model = new ModelProvider(integration);
+            var wrapper = new Wrapper();
+
+            var model = new ModelProvider(integration, wrapper);
             Core.print("Gryphonheart AddOns loaded.");
         }
     }

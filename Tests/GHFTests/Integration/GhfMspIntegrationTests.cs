@@ -1,7 +1,6 @@
 ﻿namespace Tests.GHFTests.Integration
 {
     using System.Collections.Generic;
-    using GH;
     using GHF.Model.MSP;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;

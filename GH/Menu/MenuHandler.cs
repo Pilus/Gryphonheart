@@ -1,9 +1,8 @@
 ﻿namespace GH.Menu
 {
     using System;
+    using System.Collections.Generic;
     using Containers.Line;
-    using CsLua;
-    using CsLua.Collection;
     using GH.Menu.Menus;
     using GH.Menu.Objects;
     using GH.Menu.Theme;
@@ -18,9 +17,7 @@
     using Objects.Line;
     using Objects.Page;
     using Objects.Panel;
-    using Objects.StandardButtonWithTexture;
     using Objects.Text;
-    using Objects.Toolbar;
 
     public class MenuHandler : IMenuHandler
     {
@@ -31,7 +28,7 @@
             {lineSpacing = 5, objectSpacing = 5};
         }
 
-        private static readonly CsLuaDictionary<Type, Type> ProfileMapping = new CsLuaDictionary<Type, Type>
+        private static readonly Dictionary<Type, Type> ProfileMapping = new Dictionary<Type, Type>
         {
             {typeof(PageProfile), typeof(Page)},
             {typeof(LineProfile), typeof(Line)},
@@ -74,7 +71,7 @@
                 case MenuThemeType.BlankWizardTheme:
                     throw new NotImplementedException();
                 default:
-                    throw new CsException("Unknown theme: " + profile.theme);
+                    throw new Exception("Unknown theme: " + profile.theme);
             }
         }
 

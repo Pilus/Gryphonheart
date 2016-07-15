@@ -1,18 +1,10 @@
 ﻿namespace Tests.GHFTests.Integration
 {
-    using System;
-    using BlizzardApi.WidgetInterfaces;
-    using GH;
-    using GHF;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using WoWSimulator;
-    using Wrappers;
-    using CsLuaAttributes;
     using GHF.Model;
-    using GHF.Model.MSP;
     using Lua;
-    using Moq;
-    using CsLuaTestUtils;
+    using TestUtils;
 
     [TestClass]
     public class GHFIntegrationTest

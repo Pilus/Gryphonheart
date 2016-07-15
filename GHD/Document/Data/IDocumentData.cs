@@ -1,18 +1,18 @@
 ﻿
 namespace GHD.Document.Data
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
 
     public interface IDocumentData
     {
         string Title { get; set; }
 
-        CsLuaList<string> TextPieces { get; set; }
+        List<string> TextPieces { get; set; }
 
-        CsLuaList<IRangedFlagData> Flags { get; set; }
+        List<IRangedFlagData> Flags { get; set; }
 
-        CsLuaList<IElementData> Elements { get; set; }
+        List<IElementData> Elements { get; set; }
 
-        CsLuaList<IFlagData> DocumentWideFlags { get; set; }
+        List<IFlagData> DocumentWideFlags { get; set; }
     }
 }

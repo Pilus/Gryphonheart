@@ -4,12 +4,11 @@
     using System.Collections.Generic;
     using BlizzardApi.EventEnums;
     using BlizzardApi.Global;
+    using CsLuaFramework.Wrapping;
     using Lua;
     using Moq;
     using SavedData;
     using UISimulation;
-    using CsLua.Wrapping;
-    using CsLua;
 
     public class Session : ISession
     {
@@ -38,7 +37,7 @@
             Global.Api = this.ApiMock.Object;
             Global.FrameProvider = this.FrameProvider;
             Global.Frames = this.Frames;
-            CsLuaStatic.Wrapper = this.wrapper;
+            Global.Wrapper = this.wrapper;
         }
 
         public void RunStartup()

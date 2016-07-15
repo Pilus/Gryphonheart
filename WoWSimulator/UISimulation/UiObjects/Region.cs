@@ -1,10 +1,13 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using System.Linq;
-    using CsLuaTestUtils;
+    using CsLuaFramework.Wrapping;
+    using TestUtils;
+    using XMLHandler;
 
     public class Region : UIObject, IRegion
     {
@@ -114,32 +117,32 @@
 
         public object CreateAnimationGroup()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object CreateAnimationGroup(string name)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object CreateAnimationGroup(string name, string inheritsFrom)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object GetAnimationGroups()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetBottom()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double> GetCenter()
+        public IMultipleValues<double, double> GetCenter()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetHeight()
@@ -149,12 +152,12 @@
                 return this.height;
             }
             // todo: Calculate when anchors are in effect.
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetLeft()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int GetNumPoints()
@@ -162,30 +165,30 @@
             return this.points.Count;
         }
 
-        public CsLua.Wrapping.IMultipleValues<FramePoint, IRegion, FramePoint?, double?, double?> GetPoint(int pointNum)
+        public IMultipleValues<FramePoint, IRegion, FramePoint?, double?, double?> GetPoint(int pointNum)
         {
             var point = this.points[this.points.Keys.ToList()[pointNum]];
             return TestUtil.StructureMultipleValues(point._Point, point.RelativeFrame, point.RelativePoint, point.XOfs, point.YOfs);
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double, double, double> GetRect()
+        public IMultipleValues<double, double, double, double> GetRect()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetRight()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public CsLua.Wrapping.IMultipleValues<double, double> GetSize()
+        public IMultipleValues<double, double> GetSize()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetTop()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetWidth()
@@ -195,7 +198,7 @@
                 return this.width;
             }
             // todo: Calculate when anchors are in effect.
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public virtual void Hide()
@@ -205,7 +208,7 @@
 
         public bool IsDragging()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool IsProtected()
@@ -337,7 +340,7 @@
 
         public void StopAnimating()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

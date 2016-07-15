@@ -1,6 +1,8 @@
 ﻿namespace WoWSimulator.UISimulation.UiObjects
 {
+    using System;
     using BlizzardApi.WidgetInterfaces;
+    using XMLHandler;
 
     public class ScrollFrame : Frame, IScrollFrame
     {
@@ -23,47 +25,47 @@
 
         public double GetHorizontalScroll()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object GetHorizontalScrollRange()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IRegion GetScrollChild()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public double GetVerticalScroll()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public object GetVerticalScrollRange()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetHorizontalScroll(double offset)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetScrollChild(IRegion child)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetVerticalScroll(double offset)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void UpdateScrollChildRect()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

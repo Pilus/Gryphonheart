@@ -6,7 +6,6 @@
     using WoWSimulator;
     using System.Linq;
     using BlizzardApi.WidgetInterfaces;
-    using BlizzardApi.WidgetEnums;
 
     public class GHAddOnTestable
     {

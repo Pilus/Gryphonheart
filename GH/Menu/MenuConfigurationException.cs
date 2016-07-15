@@ -1,8 +1,8 @@
 ﻿namespace GH.Menu
 {
-    using CsLua;
+    using System;
 
-    public class MenuConfigurationException : CsException
+    public class MenuConfigurationException : Exception
     {
         public MenuConfigurationException(string msg) : base(msg)
         {

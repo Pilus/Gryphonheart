@@ -1,11 +1,11 @@
 ﻿namespace GHF.Model.AdditionalFields
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using MSP;
 
     public class SupportedFields
     {
-        public CsLuaList<IField> Fields = new CsLuaList<IField>()
+        public List<IField> Fields = new List<IField>()
         {
             new TextField("house", MSPFieldNames.HouseName, "House Name"),
             new TextField("nick", MSPFieldNames.NickName, "Nick Name"),

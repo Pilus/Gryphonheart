@@ -6,21 +6,20 @@
     using ApiMocks;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Wrapping;
-    using CsLuaAttributes;
-    using CsLuaTestUtils;
+    using CsLuaFramework;
     using Lua;
     using Moq;
     using SavedData;
+    using TestUtils;
     using UISimulation;
+    using UISimulation.XMLHandler;
+    using FrameType = BlizzardApi.WidgetEnums.FrameType;
 
     public class SessionBuilder
     {
         private readonly Mock<IApi> apiMock;
         private readonly List<AddOn> addOns;
-        private readonly List<Func<UiInitUtil, IFrame>> frameCreationMethod = new List<Func<UiInitUtil, IFrame>>();
         private readonly SimulatorFrameProvider frameProvider;
         private readonly UiInitUtil util;
         private readonly FrameActor actor;
@@ -49,9 +48,9 @@
             }
 
             var globalFrames = new GlobalFrames();
-            globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.Frame, "UIParent");
+            globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(FrameType.Frame, "UIParent");
 
-            globalFrames.GameTooltip = (IGameTooltip)this.frameProvider.CreateFrame(BlizzardApi.WidgetEnums.FrameType.GameTooltip, "UIParent");
+            globalFrames.GameTooltip = (IGameTooltip)this.frameProvider.CreateFrame(FrameType.GameTooltip, "UIParent");
 
             var savedVariables = new List<string>();
             this.addOns.ForEach(a =>

@@ -1,8 +1,7 @@
 ﻿namespace GH.Menu.Objects.EditField
 {
-    using BlizzardApi;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
+    using CsLuaFramework.Wrapping;
 
     public class EditFieldObject : BaseObject, IMenuObjectWithValue
     {
@@ -15,7 +14,7 @@
 
         public static string Type = "EditField";
 
-        public EditFieldObject() : base(Type, FrameType.Frame, Template)
+        public EditFieldObject(IWrapper wrapper) : base(Type, FrameType.Frame, Template, wrapper)
         {
             this.frame = (IEditFieldFrame)this.Frame;
         }

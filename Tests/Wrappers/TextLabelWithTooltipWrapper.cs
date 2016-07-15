@@ -4,6 +4,7 @@
     using GH.Menu.Objects;
     using WoWSimulator.UISimulation;
     using WoWSimulator.UISimulation.UiObjects;
+    using WoWSimulator.UISimulation.XMLHandler;
 
     public class TextLabelWithTooltipWrapper : Frame, ITextLabelWithTooltip
     {

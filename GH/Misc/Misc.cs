@@ -2,8 +2,6 @@
 namespace GH.Misc
 {
     using System;
-    using BlizzardApi;
-    using BlizzardApi.EventEnums;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Lua;
@@ -29,7 +27,7 @@ namespace GH.Misc
             var frame = Global.FrameProvider.CreateFrame(FrameType.Frame) as IFrame;
             frame.RegisterEvent(eventName.ToString());
 
-            var wrapperFunc = new Action<INativeUIObject, object, object>((self, o, arg1) =>
+            var wrapperFunc = new Action<IUIObject, object, object>((self, o, arg1) =>
             {
                 func((T)Enum.Parse(typeof(T), (string)o), arg1);
             });

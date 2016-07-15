@@ -1,37 +1,22 @@
 ﻿
 namespace GH.Menu.Objects
 {
-    using System;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using Button;
-    using CsLua;
-    using CsLua.Collection;
-    using Debug;
-    using DropDown.ButtonWithDropDown;
-    using DropDown.CustomDropDown;
-    using Dummy;
-    using EditBox;
-    using EditField;
+    using CsLuaFramework.Wrapping;
     using GH.Menu.Theme;
-    using Line;
-    using Lua;
-    using Menus;
-    using Panel;
-    using Text;
 
     public abstract class BaseObject : BaseElement, IMenuObject
     {
         private string id;
         private ObjectAlign alignment;
 
-        public BaseObject(string typeName) : base(typeName)
+        public BaseObject(string typeName, IWrapper wrapper) : base(typeName, wrapper)
         {
             
         }
 
-        public BaseObject(string typeName, FrameType frameType, string inherits) : base(typeName, frameType, inherits)
+        public BaseObject(string typeName, FrameType frameType, string inherits, IWrapper wrapper) : base(typeName, frameType, inherits, wrapper)
         {
 
         }

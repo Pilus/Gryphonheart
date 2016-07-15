@@ -1,11 +1,11 @@
 ﻿
 namespace GH.Menu.Objects.Page
 {
+    using System.Collections.Generic;
     using Containers;
-    using CsLua.Collection;
     using Line;
 
-    public class PageProfile : CsLuaList<LineProfile>, IContainerProfile<LineProfile>, IMenuRegionProfile
+    public class PageProfile : List<LineProfile>, IContainerProfile<LineProfile>, IMenuRegionProfile
     {
         public PageProfile()
         {

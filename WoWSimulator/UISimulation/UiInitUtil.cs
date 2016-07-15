@@ -5,9 +5,9 @@
     using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using CsLua.Collection;
     using UiObjects;
-    using FrameType = FrameType;
+    using XMLHandler;
+    using FrameType = XMLHandler.FrameType;
 
     public class UiInitUtil
     {
@@ -20,9 +20,9 @@
 
         public UiInitUtil()
         {
-            this.xmlTemplates = new CsLuaDictionary<string, LayoutFrameType>();
-            this.fontTemplates = new CsLuaDictionary<string, FontType>();
-            this.namedObjects = new CsLuaDictionary<string, IUIObject>();
+            this.xmlTemplates = new Dictionary<string, LayoutFrameType>();
+            this.fontTemplates = new Dictionary<string, FontType>();
+            this.namedObjects = new Dictionary<string, IUIObject>();
             this.wrappers = new Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>>();
             this.frames = new List<IFrame>();
         }

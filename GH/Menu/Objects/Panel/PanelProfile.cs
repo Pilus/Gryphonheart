@@ -2,7 +2,7 @@
 
 namespace GH.Menu.Objects.Panel
 {
-    using CsLua.Collection;
+    using System.Collections.Generic;
     using Line;
     using Page;
 
@@ -23,6 +23,6 @@ namespace GH.Menu.Objects.Panel
         public ObjectAlign align { get; set; }
 
         public bool canCollapse { get; set; }
-        public CsLuaList<LineProfile> subLines { get; set; }
+        public List<LineProfile> subLines { get; set; }
     }
 }

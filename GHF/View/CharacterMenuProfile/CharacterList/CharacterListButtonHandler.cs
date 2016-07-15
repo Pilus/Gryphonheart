@@ -7,14 +7,14 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
     using GH.Misc;
     using GHF.Model;
     using System;
-    using CsLua.Collection;
+    using System.Collections.Generic;
 
     public class CharacterListButtonHandler
     {
         public const double Height = 60;
         public const double Width = 120;
 
-        private static CsLuaDictionary<string, string> classIcons = new CsLuaDictionary<string, string>()
+        private static Dictionary<string, string> classIcons = new Dictionary<string, string>()
         {
             { "DEATHKNIGHT", "Interface\\Icons\\Spell_Deathknight_ClassIcon"},
             { "DRUID", "Interface\\Icons\\INV_Misc_MonsterClaw_04"},
@@ -57,7 +57,7 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
             this.onClickAction = action;
         }
 
-        private void OnClick(INativeUIObject obj, object arg1, object arg2)
+        private void OnClick(IUIObject obj, object arg1, object arg2)
         {
             if (this.onClickAction != null)
             {

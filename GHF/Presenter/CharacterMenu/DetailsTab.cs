@@ -2,12 +2,10 @@
 
 namespace GHF.Presenter.CharacterMenu
 {
-    using CsLua;
-    using CsLua.Collection;
-    using GH.Menu;
+    using System;
+    using System.Collections.Generic;
     using GH.Menu.Menus;
     using GH.Menu.Objects.Page;
-    using GH.Menu.Objects.Panel;
     using Model;
     using View.CharacterMenuProfile;
 
@@ -15,7 +13,7 @@ namespace GHF.Presenter.CharacterMenu
     {
         private IDetails currentDetails;
         private IMenu loadedMenu;
-        private CsLuaList<string> additionalFields;
+        private List<string> additionalFields;
 
         public PageProfile GetGeneratedProfile()
         {
@@ -26,7 +24,7 @@ namespace GHF.Presenter.CharacterMenu
         {
             this.loadedMenu = menu;
             this.currentDetails = profile.Details;
-            this.additionalFields = new CsLuaList<string>();
+            this.additionalFields = new List<string>();
             this.loadedMenu.SetValue(DetailsTabLabels.Background, profile.Details.Background);
 
             //this.AddAndUpdateFieldIfNeeded(DetailsTabLabels.Goals, this.currentDetails.Goals);
@@ -51,7 +49,7 @@ namespace GHF.Presenter.CharacterMenu
         {
             if (this.loadedMenu == null)
             {
-                throw new CsException("This action cannot be performed before the menu is loaded.");
+                throw new Exception("This action cannot be performed before the menu is loaded.");
             }
         }
     }

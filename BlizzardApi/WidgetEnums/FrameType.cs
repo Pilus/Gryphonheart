@@ -9,5 +9,10 @@ namespace BlizzardApi.WidgetEnums
         ScrollFrame,
         CheckButton,
         GameTooltip,
+        FontString,
+        FontInstance,
+        Slider,
+        StatusBar,
+        Texture
     }
 }

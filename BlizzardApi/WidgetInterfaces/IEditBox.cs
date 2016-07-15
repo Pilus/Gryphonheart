@@ -1,8 +1,8 @@
 ﻿namespace BlizzardApi.WidgetInterfaces
 {
-    using BlizzardApi.WidgetEnums;
-    using CsLua.Wrapping;
-    using CsLuaAttributes;
+    using CsLuaFramework.Attributes;
+    using CsLuaFramework.Wrapping;
+    using WidgetEnums;
 
     [ProvideSelf]
     public interface IEditBox : IFrame, IFontInstance, IScript<EditBoxHandler, IEditBox>

@@ -2,7 +2,6 @@
 namespace GH.Model.Defaults
 {
     using BlizzardApi.Global;
-    using GH.ObjectHandling;
     using GH.Presenter;
     using ObjectHandling.Storage;
 

@@ -2,13 +2,11 @@
 namespace GHD.Document
 {
     using System;
-    using BlizzardApi;
+    using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
     using Containers;
-    using CsLua;
-    using CsLua.Collection;
     using Data;
     using GHD.Document.Data.Default;
     using GHD.Document.Elements;
@@ -70,7 +68,7 @@ namespace GHD.Document
             this.pageCollection.SetCursor(false, this.cursor);
         }
 
-        private static readonly CsLuaDictionary<EditInputType, NavigationType> NavigationTypeMap = new CsLuaDictionary<EditInputType, NavigationType>()
+        private static readonly Dictionary<EditInputType, NavigationType> NavigationTypeMap = new Dictionary<EditInputType, NavigationType>()
         {
             {EditInputType.Up, NavigationType.Up},
             {EditInputType.Down, NavigationType.Down},
@@ -103,7 +101,7 @@ namespace GHD.Document
             }
 
 
-            throw new CsException("Unhandled input type: " + type);
+            throw new Exception("Unhandled input type: " + type);
         }
 
     }

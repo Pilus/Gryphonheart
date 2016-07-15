@@ -1,8 +1,8 @@
 ﻿
 namespace BlizzardApi.Global
 {
+    using CsLuaFramework.Wrapping;
     using MiscEnums;
-    using CsLua.Wrapping;
 
     public partial interface IApi
     {

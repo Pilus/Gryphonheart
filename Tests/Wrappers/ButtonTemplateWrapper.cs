@@ -4,6 +4,7 @@
     using GH.Menu.Objects.Button;
     using WoWSimulator.UISimulation;
     using WoWSimulator.UISimulation.UiObjects;
+    using WoWSimulator.UISimulation.XMLHandler;
 
     public class ButtonTemplateWrapper : Button, IButtonTemplate
     {
