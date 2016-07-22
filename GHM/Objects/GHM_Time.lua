@@ -83,8 +83,8 @@ function GHM_Time(profile, parent, settings)
 		if not(self.main == nil) then
 			self.main.SetLabel(self.label,secs);
 		end
-		if self.OnValueChanged then
-			self.OnValueChanged(secs)
+		if profile.OnValueChanged then
+			profile.OnValueChanged(secs)
 		end
 
 		local labelText
