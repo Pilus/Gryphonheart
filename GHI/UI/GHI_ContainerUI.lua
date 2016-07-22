@@ -629,6 +629,7 @@ function GHI_ContainerFrame_GenerateFrame(frame, size, itemname, icon, specialTe
 		end
 
 		local cooldownFrame = _G[itemButton:GetName() .. "Cooldown"];
+		cooldownFrame:SetCooldown(GetTime() - (1), 1)
 		CooldownFrame_SetTimer(cooldownFrame, GetTime() - (1), 1, 1); -- fixes cooldown frames not initializing correctly
 
 		itemButton:Show();
@@ -698,8 +699,8 @@ function GHI_ContainerFrame_UpdateCooldown(itemGuid, button)
 		cooldownFrame:Hide();
 		return;
 	end
-
-	CooldownFrame_SetTimer(cooldownFrame, GetTime() - (elapsed), total, 1);
+	cooldownFrame:SetCooldown(GetTime() - (elapsed), total)
+	--CooldownFrame_SetTimer(cooldownFrame, GetTime() - (elapsed), total, 1);
 end
 
 function GHI_ContainerFrameItemButton_OnLoad(self)
