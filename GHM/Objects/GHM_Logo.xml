@@ -68,7 +68,7 @@
 							 <AbsDimension x="128" y="20"/>
 						</Size>
 						<Layers>
-						</Layers>		
+						</Layers>
 						
 						<HitRectInsets>
 							<AbsInset left="10" right="0" top="0" bottom="0"/>

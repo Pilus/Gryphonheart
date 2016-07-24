@@ -695,9 +695,9 @@ function GHI_Loc()
 			frFR = "Êtes-vous sûr de vouloir supprimer cette page?",
 		},
 		ENTER_PAGE_NUMBER = {
-			enUS = "Enter pagenumber to link to",
-			deDE = "Trage die zu verlinkende Seitennummer ein.",
-			frFR = "Indiquer le numéro de la page à lier à",
+			enUS = "Pagenumber:",
+			deDE = "Seitennummer:",
+			frFR = "Numéro de la page:",
 		},
 
 		ENTER_LINK_TEXT ={
@@ -1020,9 +1020,9 @@ function GHI_Loc()
 			enUS = "Made by",
 		},
 		ITEM_CD = {
-			enUS = "Item cooldown:",
+			enUS = "Cooldown:",
 			deDE = "Abklingzeit:",
-			frFR = "Temps de recharge de l'objet:",
+			frFR = "Temps de recharge:",
 		},
 		ITEM_CD_TT = {
 			enUS = "The cooldown before the item can be used again.",
@@ -1208,9 +1208,9 @@ function GHI_Loc()
 			frFR = "Détails sur le Buff:",
 		},
 		BUFF_DURATION = {
-			enUS = "Buff Duration:",
+			enUS = "Duration:",
 			deDE = "Buffwirkungsdauer:",
-			frFR = "Durée du Buff:",
+			frFR = "Durée:",
 		},
 		BUFF_UNTIL_CANCELED = {
 			enUS = "Last Until Canceled",

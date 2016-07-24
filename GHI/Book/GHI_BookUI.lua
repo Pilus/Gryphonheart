@@ -411,11 +411,12 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 						RightPart:SetVertexColor(textColor[1], textColor[2], textColor[3]);
 
 						frame["logo"..i]:Show();
-						textDisplay:SetText("")
+						textDisplay:SetText(text)
 					end
 				end,0.1, true)
 			end
 		end
+
 		return finalText
 	end
 

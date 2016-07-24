@@ -383,7 +383,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 					label = "align",
 					align = "c",
 					width = 128,
-					values = {"L","C","R"},					
+					values = {"L","C","R"},
 				},
 			},
 			{
@@ -396,7 +396,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 					OnClick = function(self)
 						local align = logoMenuFrame.GetLabel("align")
 						local num = logoMenuFrame.GetLabel("logo")
-						if num <= 9 then num = "0"..num end		
+						if num <= 9 then num = "0"..num end
 						fieldFrame:Insert("<Icon," .. num .. "," .. align .. ">");
 						logoMenuFrame:Hide();
 					end,
@@ -417,7 +417,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 		name = "GHI_InsertLogoFrame"..count,
 		theme = "BlankTheme",
 		width = 200,
-		height = 220,
+		height = 250,
 		lineSpacing = 15,
 		useWindow = true,
 		OnShow = function()

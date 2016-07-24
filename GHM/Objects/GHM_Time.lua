@@ -76,14 +76,15 @@ function GHM_Time(profile, parent, settings)
 		_G[self:GetName().."ValueLabel"]:SetJustifyH("Right");
 	end
 	);
-
+    local setUp = false;
+    
 	local SliderValueChanged = function(self,value)
 		local val = math.floor(self:GetValue()+0.5)
 		local secs = SliderValues[val];
 		if not(self.main == nil) then
 			self.main.SetLabel(self.label,secs);
 		end
-		if profile.OnValueChanged then
+		if profile.OnValueChanged and setUp then
 			profile.OnValueChanged(secs)
 		end
 
@@ -104,6 +105,7 @@ function GHM_Time(profile, parent, settings)
 	local OnEditBoxTextChanged = function(self)
 		local text = self:GetText();
 		local text2 = gsub(text, "||", "|");
+        
 		if text2 ~= text then
 			self:SetText(text2);
 			return
@@ -112,8 +114,7 @@ function GHM_Time(profile, parent, settings)
 			if text ~= self.oldText and text ~= "-" and not(string.startsWith(text,"\.") or string.endsWith(text,"\.")) then
 				local numberText = tonumber(text);
 				if numberText ~= text then
-					self:SetText(numberText or "");
-					return
+					self:SetText(numberText or ""); 
 				end
 			end
 		end
@@ -212,6 +213,7 @@ function GHM_Time(profile, parent, settings)
 
 	frame.Clear();
 	frame:Show();
+    setUp = true;
 	--GHM_TempBG(frame);
 
 	return frame;

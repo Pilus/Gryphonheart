@@ -59,9 +59,9 @@ function GHI_BookMenu(_OnOkCallback, _editAction)
 			
 			menuFrame.ForceLabel("bookTitle", info.title);
 			if info.extraMat then
-				menuFrame.ForceLabel("mat", info.extraMat)
+				menuFrame.ForceLabel("material", info.extraMat)
 			else
-				menuFrame.ForceLabel("mat", info.material)
+				menuFrame.ForceLabel("material", info.material)
 			end
 			menuFrame.ForceLabel("font", font or info.font)
 			menuFrame.ForceLabel("nSize", info.n)
@@ -87,7 +87,7 @@ function GHI_BookMenu(_OnOkCallback, _editAction)
 			class.editAction = nil;
 			menuFrame.ForceLabel("bookTitle", "")
 			menuFrame.ForceLabel("text", {""})
-			menuFrame.ForceLabel("mat", "Parchment")
+			menuFrame.ForceLabel("material", "Parchment")
 			menuFrame.ForceLabel("font", "Frizqt")
 			menuFrame.ForceLabel("nSize", "14")
 			menuFrame.ForceLabel("h1Size", "22")
@@ -103,7 +103,7 @@ function GHI_BookMenu(_OnOkCallback, _editAction)
 
 		local title = menuFrame.GetLabel("bookTitle")
 		local text = menuFrame.GetLabel("text")
-		local mat = menuFrame.GetLabel("mat")
+		local mat = menuFrame.GetLabel("material")
 		local font = menuFrame.GetLabel("font")
 		local n = menuFrame.GetLabel("nSize")
 		local h1 = menuFrame.GetLabel("h1Size")
@@ -257,7 +257,7 @@ function GHI_BookMenu(_OnOkCallback, _editAction)
 					type = "DropDown",
 					texture = "Tooltip",
 					width = 150,
-					label = "mat",
+					label = "material",
 					align = "l",
 					text = loc.MATERIAL,
 					data = {

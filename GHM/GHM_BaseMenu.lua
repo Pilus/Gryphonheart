@@ -62,7 +62,7 @@ function GHM_BaseMenu(owner, profile)
 				print("object for", label, "does not have a GetValue function");
 			end
 		else
-			print("Could not get label for", label)
+			print("Could not get label for " .. tostring(label))
 		end
 	end
 

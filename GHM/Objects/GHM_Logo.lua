@@ -43,8 +43,9 @@ function GHM_Logo(profile, parent, settings)
 	end
 	
 	slider:SetScript("OnValueChanged", function(self,value)
-		ShowLogo(value)	
-		editBox:SetNumber(value)			
+        value = math.floor(value);
+		ShowLogo(value)
+		editBox:SetNumber(value)
 		if self.OnValueChanged then
 			self.OnValueChanged(self.secs)
 		end
@@ -56,10 +57,8 @@ function GHM_Logo(profile, parent, settings)
 	editBox:SetScript("OnTextChanged",function(self, user)
 		if user == true then
 			slider:SetValue(self:GetNumber())
-		else
-			
 		end
-				
+
 		self.oldText = text;
 		if type(profile.OnTextChanged) == "function" then
 			profile.OnTextChanged(self, user);
@@ -124,7 +123,7 @@ function GHM_Logo(profile, parent, settings)
 		if (varAttFrame and not (varAttFrame:IsStaticTabShown())) then
 			return varAttFrame:GetValue();
 		else
-				return tonumber(slider:GetValue());
+            return math.floor(tonumber(slider:GetValue()));
 		end
 	end
 

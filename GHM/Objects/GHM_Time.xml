@@ -3,7 +3,7 @@
 
 	<Frame name="GHM_Time_Template" virtual="true">
 		<Size>
-			<AbsDimension x="140" y="60"/>
+			<AbsDimension x="100" y="60"/>
 		</Size>
 		<Frames>
 			<Frame name="$parentText" inherits="GHM_TextLabel_Template">
