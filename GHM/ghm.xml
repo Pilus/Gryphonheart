@@ -955,7 +955,7 @@
 				if parent and not parent.Type then parent = parent:GetParent(); end
 				if parent and parent.ParentTreeView and parent.ParentTreeView.Debug or parent.Debug then
 				local t1 = self:CreateTexture();
-				t1:SetTexture(random(100)/100,random(100)/100,random(100)/100,0.5);
+				t1:SetColorTexture(random(100)/100,random(100)/100,random(100)/100,0.5);
 				t1:SetAllPoints(self);
 				end
 
@@ -1141,7 +1141,7 @@
 		</Frames>
 		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="false">
 			<BackgroundInsets>
-				<AbsInset left="20" right="20" top="20" bottom="20" />
+				<AbsInset left="2" right="2" top="5.5" bottom="4"/>
 			</BackgroundInsets>
 			<TileSize>
 				<AbsValue val="8" />
@@ -1228,7 +1228,7 @@
 		</Frames>
 		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="false">
 			<BackgroundInsets>
-				<AbsInset left="20" right="20" top="20" bottom="20" />
+				<AbsInset left="2" right="2" top="5.5" bottom="4"/>
 			</BackgroundInsets>
 			<TileSize>
 				<AbsValue val="8" />
@@ -1288,17 +1288,18 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="false">
-			<BackgroundInsets>
-				<AbsInset left="20" right="20" top="20" bottom="20" />
-			</BackgroundInsets>
-			<TileSize>
-				<AbsValue val="8" />
-			</TileSize>
-			<EdgeSize>
-				<AbsValue val="8" />
-			</EdgeSize>
-		</Backdrop>
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border"
+                  tile="false">
+            <BackgroundInsets>
+                <AbsInset left="2" right="2" top="5.5" bottom="4"/>
+            </BackgroundInsets>
+            <TileSize>
+                <AbsValue val="8"/>
+            </TileSize>
+            <EdgeSize>
+                <AbsValue val="8"/>
+            </EdgeSize>
+        </Backdrop>
 		<HitRectInsets>
 			<AbsInset left="10" right="0" top="0" bottom="0" />
 		</HitRectInsets>
@@ -1375,7 +1376,7 @@
 		</Layers>
 		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="false">
 			<BackgroundInsets>
-				<AbsInset left="20" right="20" top="20" bottom="20" />
+				<AbsInset left="2" right="2" top="5.5" bottom="4"/>
 			</BackgroundInsets>
 			<TileSize>
 				<AbsValue val="8" />

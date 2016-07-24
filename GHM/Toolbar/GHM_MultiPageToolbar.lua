@@ -59,7 +59,7 @@ function GHM_MultiPageToolbar(profile, parent, settings)
 		f:SetHeight(buttonHeight);
 
 		f.SetBGTextureColor = function(r, g, b, a)
-			_G[f:GetName().."Bg"]:SetTexture(r, g, b, a);
+			_G[f:GetName().."Bg"]:SetColorTexture(r, g, b, a);
 		end
 		f.SetBGTextureColor(unpack(backgroundColor2));
 
@@ -97,7 +97,7 @@ function GHM_MultiPageToolbar(profile, parent, settings)
 	frame:SetWidth(width);
 
 	local bg = frame:CreateTexture()
-	bg:SetTexture(unpack(backgroundColor));
+	bg:SetColorTexture(unpack(backgroundColor));
 	bg:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, -buttonHeight - margin);
 	bg:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, margin);
 

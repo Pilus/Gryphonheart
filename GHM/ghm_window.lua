@@ -513,28 +513,26 @@ function GHM_Window_OnLoad(self)
 
 		self.TitleBar.bg = self.TitleBar:CreateTexture();
 		self.TitleBar.bg:SetAllPoints(self.TitleBar);
-		self.TitleBar.bg:SetTexture(.8, .8, .8, .5);
+		self.TitleBar.bg:SetColorTexture(.8, .8, .8, .5);
 
 		if devMode then
 			self.bg = self:CreateTexture();
 			self.bg:SetAllPoints(self);
-			self.bg:SetTexture(.5, .5, .5, .5);
-
-			
+			self.bg:SetColorTexture(.5, .5, .5, .5);
 
 			self.MenuBar.bg = self.MenuBar:CreateTexture();
 			self.MenuBar.bg:SetAllPoints(self.MenuBar);
-			self.MenuBar.bg:SetTexture(.8, .8, .1, .5);
+			self.MenuBar.bg:SetColorTexture(.8, .8, .1, .5);
 
 
 
 			self.StatusBar.bg = self.StatusBar:CreateTexture();
 			self.StatusBar.bg:SetAllPoints(self.StatusBar);
-			self.StatusBar.bg:SetTexture(.3, .3, .3, .5);
+			self.StatusBar.bg:SetColorTexture(.3, .3, .3, .5);
 
 			self.ContentFrame.bg = self.ContentFrame:CreateTexture();
 			self.ContentFrame.bg:SetAllPoints(self.ContentFrame);
-			self.ContentFrame.bg:SetTexture(.4, .3, .8, .5);
+			self.ContentFrame.bg:SetColorTexture(.4, .3, .8, .5);
 		end
 	end
 
@@ -550,7 +548,7 @@ function GHM_Window_OnLoad(self)
 			edgeSize = 16,
 			insets = { left = 4, right = 4, top = 4, bottom = 4 }
 		});
-		self.TitleBar.bg:SetTexture(GHM_GetTitleBarColor());
+		self.TitleBar.bg:SetColorTexture(GHM_GetTitleBarColor());
 		self.TitleBar.Text:SetTextColor(GHM_GetTitleBarTextColor())
 		self.BgFrame2:SetBackdropColor(GHM_GetBackgroundColor())
 
@@ -872,25 +870,25 @@ function GHM_Window_Test_OnLoad(self)
 		if devMode then
 			self.bg = self:CreateTexture();
 			self.bg:SetAllPoints(self);
-			self.bg:SetTexture(.5, .5, .5, .5);
+			self.bg:SetColorTexture(.5, .5, .5, .5);
 
 			self.TitleBar.bg = self.TitleBar:CreateTexture();
 			self.TitleBar.bg:SetAllPoints(self.TitleBar);
-			self.TitleBar.bg:SetTexture(.8, .8, .8, .5);
+			self.TitleBar.bg:SetColorTexture(.8, .8, .8, .5);
 
 			self.MenuBar.bg = self.MenuBar:CreateTexture();
 			self.MenuBar.bg:SetAllPoints(self.MenuBar);
-			self.MenuBar.bg:SetTexture(.8, .8, .1, .5);
+			self.MenuBar.bg:SetColorTexture(.8, .8, .1, .5);
 
 
 
 			self.StatusBar.bg = self.StatusBar:CreateTexture();
 			self.StatusBar.bg:SetAllPoints(self.StatusBar);
-			self.StatusBar.bg:SetTexture(.3, .3, .3, .5);
+			self.StatusBar.bg:SetColorTexture(.3, .3, .3, .5);
 
 			self.ContentFrame.bg = self.ContentFrame:CreateTexture();
 			self.ContentFrame.bg:SetAllPoints(self.ContentFrame);
-			self.ContentFrame.bg:SetTexture(.4, .3, .8, .5);
+			self.ContentFrame.bg:SetColorTexture(.4, .3, .8, .5);
 		end
 	end
 

@@ -9,7 +9,6 @@
 
     public class ActionButtonProxy : IActionButtonProxy
     {
-        private IWrapper wrapper;
         private ICheckButton button;
         private Action<string, IGameTooltip> updateFunc;
         private ITexture iconTexture;
@@ -23,11 +22,9 @@
 
         public ActionButtonProxy(IFrame parent, IWrapper wrapper)
         {
-            this.wrapper = this.wrapper;
-
             if (actionButtonProxyMethods == null)
             {
-                actionButtonProxyMethods = this.wrapper.Wrap<IActionButtonProxyMethods>("_G");
+                actionButtonProxyMethods = wrapper.Wrap<IActionButtonProxyMethods>("_G");
             }
 
             this.button = Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "ActionButton"), parent, "ActionButtonTemplate") as ICheckButton;

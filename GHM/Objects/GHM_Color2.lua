@@ -52,7 +52,7 @@ function GHM_Color2(profile, parent, settings)
 	end)
 	
 	colorPick:SetScript("OnColorSelect", function(self,r,g,b)
-		colorSwatch:SetTexture(r, g, b);	
+		colorSwatch:SetColorTexture(r, g, b);	
 		boxR:SetText(math.floor(r * 255))
 		boxG:SetText(math.floor(g * 255))
 		boxB:SetText(math.floor(b * 255))

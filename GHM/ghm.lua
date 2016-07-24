@@ -837,7 +837,7 @@ function OldGHM_NewFrame(self, profile)
 			});
 			window.TitleBar.bg = window.TitleBar:CreateTexture();
 			window.TitleBar.bg:SetAllPoints(window.TitleBar);
-			window.TitleBar.bg:SetTexture(GHM_GetTitleBarColor());
+			window.TitleBar.bg:SetColorTexture(GHM_GetTitleBarColor());
 			window.TopBgFrame:SetFrameLevel(window.BgFrame:GetFrameLevel() + 1);
 
 			window:SetFrameStrata("MEDIUM");

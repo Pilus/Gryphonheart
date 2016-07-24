@@ -282,7 +282,7 @@ function GHI_ActionAPI()
 			if not (blend) then
 				blend = 5
 			end
-			GHFlashFrame.bg:SetTexture(color.r or color[1], color.g or color[2], color.b or color[3])
+			GHFlashFrame.bg:SetColorTexture(color.r or color[1], color.g or color[2], color.b or color[3])
 			GHFlashFrame.bg:SetBlendMode(blendTypes[blend])
 			GHFlashFrame.bg:SetAlpha(alpha or 1)
 		end
@@ -530,7 +530,7 @@ function GHI_ActionAPI()
 	effectFrame.GetPoint = nil;
 	local effectTexture = effectFrame:CreateTexture();
 	effectTexture:SetAllPoints(effectFrame);
-	effectTexture:SetTexture(1,0,0);
+	effectTexture:SetColorTexture(1,0,0);
 	effectFrame:Hide();
 	api.GHI_EffectFrameEffect3 = effectFrame;
 	api.GHI_EffectFrameEffect3Texture = effectTexture;

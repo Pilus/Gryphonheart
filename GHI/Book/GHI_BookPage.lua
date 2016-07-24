@@ -119,7 +119,7 @@ function GHI_BookPage(materials)
 						class.texture:SetTexCoord(unpack(texCoord));
 					end
 				elseif type(pathOrColor) == "table" and type(pathOrColor.r) == "number" and type(pathOrColor.g) == "number" and type(pathOrColor.b) == "number" then
-					class.texture:SetTexture(pathOrColor.r, pathOrColor.g, pathOrColor.b);
+					class.texture:SetColorTexture(pathOrColor.r, pathOrColor.g, pathOrColor.b);
 				end
 			end
 

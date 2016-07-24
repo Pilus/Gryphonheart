@@ -523,7 +523,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 			if type(bg) == "string" then
 				bgTex:SetTexture("Interface\\Addons\\GHI\\texture\\Covers\\GHI_Cover_"..bg)
 			else
-				bgTex:SetTexture(1,1,1,1)
+				bgTex:SetColorTexture(1,1,1,1)
 			end
 			
 			if type(bgColor) == "string" then

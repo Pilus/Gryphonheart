@@ -3,7 +3,7 @@
 
 	<Frame name="GHM_Time_Template" virtual="true">
 		<Size>
-			<AbsDimension x="100" y="60"/>
+			<AbsDimension x="140" y="60"/>
 		</Size>
 		<Frames>
 			<Frame name="$parentText" inherits="GHM_TextLabel_Template">
@@ -27,11 +27,11 @@
 				<Frames>
 					<Slider name="$parentSlider" minValue="1" maxValue="10" defaultValue="0" valueStep="1" orientation="Horizontal" virtual="true">
 						<Anchors>
-							<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>   
 							<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
 						</Anchors>
 						<Size>
-							 <AbsDimension x="100" y="20"/>
+							 <AbsDimension x="140" y="20"/>
 						</Size>
 						<Layers>
 							<Layer>
@@ -39,7 +39,7 @@
 									<Anchors>
 										<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT">
 											<Offset>
-												<AbsDimension x="-5" y="0"></AbsDimension>
+												<AbsDimension x="-5" y="3"></AbsDimension>
 											</Offset>
 										</Anchor>
 									</Anchors>
@@ -59,7 +59,7 @@
 						<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border"
 								  tile="false">
 							<BackgroundInsets>
-								<AbsInset left="20" right="20" top="20" bottom="20"/>
+								<AbsInset left="2" right="2" top="5.5" bottom="4"/>
 							</BackgroundInsets>
 							<TileSize>
 								<AbsValue val="8"/>

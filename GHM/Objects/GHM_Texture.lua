@@ -30,10 +30,10 @@ function GHM_Texture(profile, parent, settings)
 	end
     
 	if profile.color then
-		frame.texture:SetTexture(1,1,1,1)
+		frame.texture:SetColorTexture(1,1,1,1)
 		frame.texture:SetVertexColor(profile.color[1] or profile.r, profile.color[2] or profile.g, profile.color[3] or profile.b)
 	else
-		frame.texture:SetTexture(1,1,1,1)
+		frame.texture:SetColorTexture(1,1,1,1)
 		frame.texture:SetVertexColor(1,1,1)
 	end
 	
@@ -56,7 +56,7 @@ function GHM_Texture(profile, parent, settings)
 		if type(path) == "string" then
 			frame.texture:SetTexture(path)
 		elseif type(path) == "table" then
-			frame.texture:SetTexture(path[1] or path.r, path[2] or path.g, path[3] or path.b, path[4] or path.a or 1)
+			frame.texture:SetColorTexture(path[1] or path.r, path[2] or path.g, path[3] or path.b, path[4] or path.a or 1)
 		end
 		
 		if width then
@@ -104,7 +104,7 @@ function GHM_Texture(profile, parent, settings)
     frame.Clear = function(self)
        frame:SetHeight(64)
 	   frame:SetWidth(64)
-	   frame.texture:SetTexture(1, 1, 1, 1)
+	   frame.texture:SetColorTexture(1, 1, 1, 1)
 	   frame.texture:SetSize(frame:GetWidth(), frame:GetHeight())
 	   frame.texture:SetAlpha(1)
 	   frame.texture:SetBlendMode("BLEND")

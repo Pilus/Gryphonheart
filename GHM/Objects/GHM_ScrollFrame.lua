@@ -46,7 +46,7 @@ function GHM_ScrollFrame_OnLoad(self)
 	bg1:SetPoint("TOPLEFT", self, "TOPRIGHT", -2, 0);
 	bg1:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", scrollbar:GetWidth()-2, -scrollbar:GetWidth()-2);
 	local t = bg1:CreateTexture(nil,"BACKGROUND");
-	t:SetTexture(0, 0, 0, 1);
+	t:SetColorTexture(0, 0, 0, 1);
 	t:SetAllPoints(bg1);
 
 	local bg2 = CreateFrame("Frame", nil, self);
@@ -54,7 +54,7 @@ function GHM_ScrollFrame_OnLoad(self)
 	bg2:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, 0);
 	bg2:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", scrollbar:GetWidth()-2, -scrollbar:GetWidth()-2);
 	local t = bg2:CreateTexture(nil,"BACKGROUND");
-	t:SetTexture(0, 0, 0, 1);
+	t:SetColorTexture(0, 0, 0, 1);
 	t:SetAllPoints(bg2);
 
 	bg1:Hide();

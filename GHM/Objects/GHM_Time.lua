@@ -89,7 +89,7 @@ function GHM_Time(profile, parent, settings)
 
 		local labelText
 		if secs == 0 then
-			labelText = "0";
+			labelText = "0 sec";
 		else
 			labelText = SecondsToTime(secs)
 		end

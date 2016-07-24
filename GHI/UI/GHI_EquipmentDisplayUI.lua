@@ -244,19 +244,19 @@ function GH_Display:Create(varName, parent)
 		obj.display.texture1:SetPoint("LEFT", obj.display, "LEFT", 0, 0);
 		obj.display.texture1:SetPoint("RIGHT", obj.display, "RIGHT", 0, 0);
 		obj.display.texture1:SetHeight(1);
-		obj.display.texture1:SetTexture(1.0, 0.0, 0.0, 0.5);
+		obj.display.texture1:SetColorTexture(1.0, 0.0, 0.0, 0.5);
 
 		obj.display.texture2 = obj.display:CreateTexture()
 		obj.display.texture2:SetPoint("LEFT", obj.display, "LEFT", 0, 60);
 		obj.display.texture2:SetPoint("RIGHT", obj.display, "RIGHT", 0, 60);
 		obj.display.texture2:SetHeight(1);
-		obj.display.texture2:SetTexture(0.0, 1.0, 0.0, 0.5);
+		obj.display.texture2:SetColorTexture(0.0, 1.0, 0.0, 0.5);
 
 		obj.display.texture3 = obj.display:CreateTexture()
 		obj.display.texture3:SetPoint("LEFT", obj.display, "LEFT", 0, -80);
 		obj.display.texture3:SetPoint("RIGHT", obj.display, "RIGHT", 0, -80);
 		obj.display.texture3:SetHeight(1);
-		obj.display.texture3:SetTexture(0.0, 0.0, 1.0, 0.5); --]]
+		obj.display.texture3:SetColorTexture(0.0, 0.0, 1.0, 0.5); --]]
 	end
 
 	_G[varName] = obj;

@@ -285,7 +285,7 @@ GHRuler = function()
 
 	for i=0,(w/10)-1 do
 		local t = f:CreateTexture();
-		t:SetTexture(mod(i,2),1 - mod(i,2),0)
+		t:SetColorTexture(mod(i,2),1 - mod(i,2),0)
 		t:SetHeight(5);
 		t:SetWidth(10);
 		t:SetPoint("TOPLEFT", f, "TOPLEFT", i * 10, 0)
@@ -293,7 +293,7 @@ GHRuler = function()
 
 	for i=0,(w/50)-1 do
 		local t = f:CreateTexture();
-		t:SetTexture(mod(i,2),1 - mod(i,2),1)
+		t:SetColorTexture(mod(i,2),1 - mod(i,2),1)
 		t:SetHeight(5);
 		t:SetWidth(50);
 		t:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", i * 50, 0)

@@ -109,7 +109,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 		if not (elapsed) then
 			cooldownFrame:Hide();
 		else
-			CooldownFrame_SetTimer(cooldownFrame, GetTime() - (elapsed), total, 1);
+			CooldownFrame_Set(cooldownFrame, GetTime() - (elapsed), total, 1);
 		end
 
 		button:SetChecked(false);
@@ -205,7 +205,7 @@ function GHI_ActionBarUI(id,clickFunc,getInfoFunc,tooltipFunc,updateEvent)
 				if not (elapsed) then
 					cooldownFrame:Hide();
 				else
-					CooldownFrame_SetTimer(cooldownFrame, GetTime() - (elapsed), total, 1);
+					CooldownFrame_Set(cooldownFrame, GetTime() - (elapsed), total, 1);
 				end
 			end
 		end

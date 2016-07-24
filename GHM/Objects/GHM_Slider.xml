@@ -46,7 +46,7 @@
                 <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border"
                           tile="false">
                     <BackgroundInsets>
-                        <AbsInset left="20" right="20" top="20" bottom="20"/>
+                        <AbsInset left="2" right="2" top="5.5" bottom="4"/>
                     </BackgroundInsets>
                     <TileSize>
                         <AbsValue val="8"/>

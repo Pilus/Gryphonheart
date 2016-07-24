@@ -568,7 +568,7 @@ function GHI_AuraButton_Update(buttonName, index, filter, unit)
 			frameCooldown = _G[buffName .. "Cooldown"];
 			if (duration > 0) then
 				frameCooldown:Show();
-				CooldownFrame_SetTimer(frameCooldown, expirationTime - duration, duration, 1);
+				CooldownFrame_Set(frameCooldown, expirationTime - duration, duration, 1);
 			else
 				frameCooldown:Hide();
 			end

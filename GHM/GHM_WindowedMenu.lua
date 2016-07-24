@@ -73,9 +73,9 @@ function GHM_WindowedMenu(owner, profile)
 		edgeSize = 16,
 		insets = { left = 4, right = 4, top = 4, bottom = 0 }
 	});
-	window.TitleBar.bg = window.TitleBar:CreateTexture();
-	window.TitleBar.bg:SetAllPoints(window.TitleBar);
-	window.TitleBar.bg:SetTexture(GHM_GetTitleBarColor());
+	--window.TitleBar.bg = window.TitleBar:CreateTexture();
+	--window.TitleBar.bg:SetAllPoints(window.TitleBar);
+	--window.TitleBar.bg:SetColorTexture(GHM_GetTitleBarColor());
 	window.TopBgFrame:SetFrameLevel(window.BgFrame:GetFrameLevel() + 1);
 
 	window:SetFrameStrata("MEDIUM");

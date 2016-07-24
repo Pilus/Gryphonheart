@@ -105,7 +105,7 @@ local GetActionScript = function(info,oldVersion)
 
 					local fadeIn, fadeOut, duration, color = %s,%s,%s,{r=%s,g=%s,b=%s};
 
-				    GHFlashFrame.bg:SetTexture(color.r, color.g, color.b)
+				    GHFlashFrame.bg:SetColorTexture(color.r, color.g, color.b)
 					if UIFrameIsFading and UIFrameIsFading(GHFlashFrame) then return end --previous flash check
 					UIFrameFlash(GHFlashFrame, fadeIn, fadeOut, duration, false, 0, duration - (fadeIn+fadeOut))
 				]],fade_in, fade_out, duration or "nil",color.r,color.g,color.b)
