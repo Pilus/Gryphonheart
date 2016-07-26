@@ -119,7 +119,7 @@ function GHI_AnimationAPI()
 		frame.Tex1:SetTexture(tex)
 		frame.Tex1:SetVertexColor(startingColor.r or startingColor[1],startingColor.g or startingColor[2],startingColor.b or startingColor[3])
 		frame.Tex1:SetAlpha(1)
-		local frameRate = GetMaxAnimFramerate()
+		local frameRate = 30
 		local frameTotal = effectDuration * frameRate
 		frame.changeR = ((endingColor.r or endingColor[1]) - (startingColor.r or startingColor[1])) / frameTotal
 		frame.changeG = ((endingColor.g or endingColor[2]) - (startingColor.g or startingColor[2])) / frameTotal
@@ -144,7 +144,7 @@ function GHI_AnimationAPI()
 		elseif animType == "scale" then
 		  animGroup:SetScale(data.scalex or 0,data.scaley or 0)
 		elseif animType == "alpha" then
-		  animGroup:SetChange(data.alpha or 0)
+		  animGroup:SetFromAlpha(1 - data.alpha or 0)
 		elseif animType == "rot" then
 		  animGroup:SetOrigin(data.origin or "CENTER",data.offsetx or 0,data.yoffset or 0)
 		  animGroup:SetDegrees(data.degrees or 0)

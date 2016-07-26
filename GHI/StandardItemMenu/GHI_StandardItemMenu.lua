@@ -546,7 +546,9 @@ function GHI_StandardItemMenu()
 					align = "r",
 					label = "cooldown",
 					OnValueChanged = function(cd)
-						item.SetCooldown(cd);
+						if item ~= nil then 
+							item.SetCooldown(cd);
+						end
 					end,
 				},
 			},
