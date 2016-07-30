@@ -84,7 +84,7 @@ function GHI_LinksUIHandler()
 		GHCheck("GHI_LinksUI.GenerateLink", { "String", "String", "String", "Table", "nilTable" }, { prefix, text, ID, color,tooltipLines })
 		local index = #(tooltipLinesSend) + 1;
 		tooltipLinesSend[index] = tooltipLines;
-		return string.format("|cFF%s%s%s|Hgh_%s:%s:%s:0:0:0:0:0:0|h[%s]|h|r", string.format("%.2x", color.r * 255), string.format("%.2x", color.g * 255), string.format("%.2x", color.b * 255), prefix, ID, index, text);
+		return string.format("|cFF%s%s%s|HGMChat_gh_%s:%s:%s:0:0:0:0:0:0|h[%s]|h|r", string.format("%.2x", color.r * 255), string.format("%.2x", color.g * 255), string.format("%.2x", color.b * 255), prefix, ID, index, text);
 	end
 
 	class.TriggerRecieveLink = function(sender, name, prefix, ID, color)
@@ -100,7 +100,7 @@ function GHI_LinksUIHandler()
 	end
 
 	GetCleanTextAndLinksFromText = function(text, chatType)
-		local clean = string.gsub(text, "|cFF(%x%x)(%x%x)(%x%x)|Hgh_(.-):(.-):(.-):0:0:0:0:0:0|h%[(.-)%]|h|r", function(r, g, b, prefix, ID, tooltipLinesIndex, name)
+		local clean = string.gsub(text, "|cFF(%x%x)(%x%x)(%x%x)|HGMChat_gh_(.-):(.-):(.-):0:0:0:0:0:0|h%[(.-)%]|h|r", function(r, g, b, prefix, ID, tooltipLinesIndex, name)
 			tooltipLinesIndex = tonumber(tooltipLinesIndex);
 			table.insert(sendLinks, 1, {
 				prefix = prefix,
@@ -294,7 +294,7 @@ function GHI_LinksUIHandler()
 	timer = GHI_Timer(ParseEventsTimedOut, 1, false, "ParseEventsTimedOut");
 
 	SetItemRef = function(link, text, button,...)
-		local prefix, ID,lineIndex = string.match(link, "gh_(.-):(.-):(.-):");
+		local prefix, ID,lineIndex = string.match(link, "GMChat_gh_(.-):(.-):(.-):");
 		if prefix and ID then
 			if IsShiftKeyDown() == 1 then
 				ChatEdit_InsertLink(text)
@@ -308,8 +308,6 @@ function GHI_LinksUIHandler()
 					linkClickFuncs[prefix](ID,lines);
 				end
 			end
-		else
-			orig.SetItemRef(link, text, button,...);
 		end
 	end
 
@@ -357,8 +355,7 @@ function GHI_LinksUIHandler()
 
 	orig.SendChatMessage = _G.SendChatMessage;
 	_G.SendChatMessage = SendChatMessage;
-	orig.SetItemRef = _G.SetItemRef;
-	_G.SetItemRef = SetItemRef;
+    hooksecurefunc("SetItemRef", SetItemRef)
 
 	CheckForNewEventFrames();
 	for _, event in pairs(supportedEvents) do

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
+    using Moq;
     using XMLHandler;
 
     public class UIObject : IUIObject

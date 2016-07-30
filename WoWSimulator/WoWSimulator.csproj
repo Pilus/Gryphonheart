@@ -88,7 +88,7 @@
       <Name>BlizzardApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestUtils\TestUtils.csproj">
-      <Project>{52B30640-CBF4-43DB-93B1-7B1D66C48924}</Project>
+      <Project>{52b30640-cbf4-43db-93b1-7b1d66c48924}</Project>
       <Name>TestUtils</Name>
     </ProjectReference>
   </ItemGroup>

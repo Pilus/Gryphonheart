@@ -4,6 +4,7 @@ namespace WoWSimulator.UISimulation
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Lua;
     using XMLHandler;

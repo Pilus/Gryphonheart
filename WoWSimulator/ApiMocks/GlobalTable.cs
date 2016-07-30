@@ -1,5 +1,6 @@
 ﻿namespace WoWSimulator.ApiMocks
 {
+    using System;
     using System.Collections.Generic;
     using BlizzardApi.Global;
     using Moq;
