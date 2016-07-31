@@ -355,7 +355,11 @@ function GHI_LinksUIHandler()
 
 	orig.SendChatMessage = _G.SendChatMessage;
 	_G.SendChatMessage = SendChatMessage;
-    hooksecurefunc("SetItemRef", SetItemRef)
+	hooksecurefunc("SetItemRef", SetItemRef)
+    
+	if _G.GMChatStatusFrame_OnClick == nil then -- Add the GMChat function, that is being called by ItemRef.lua when given a GMChat link, if missing.
+		_G.GMChatStatusFrame_OnClick = function() end;
+	end
 
 	CheckForNewEventFrames();
 	for _, event in pairs(supportedEvents) do
