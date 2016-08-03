@@ -6,7 +6,7 @@
 
     public class TooltipHandler
     {
-        private static readonly double[] TooltipColor = { 1.0, 0.8196079, 0.0 };
+        private static readonly double[] TooltipColor = new [] { 1.0, 0.8196079, 0.0 };
 
         private readonly IFrame frame;
         private string tooltipText;

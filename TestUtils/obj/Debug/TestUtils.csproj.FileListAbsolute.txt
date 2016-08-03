@@ -5,6 +5,5 @@ D:\World of Warcraft\Interface\Gryphonheart\TestUtils\bin\Debug\Lua.dll
 D:\World of Warcraft\Interface\Gryphonheart\TestUtils\bin\Debug\Moq.dll
 D:\World of Warcraft\Interface\Gryphonheart\TestUtils\bin\Debug\CsLuaFramework.pdb
 D:\World of Warcraft\Interface\Gryphonheart\TestUtils\bin\Debug\Lua.pdb
-D:\World of Warcraft\Interface\Gryphonheart\TestUtils\obj\Debug\TestUtils.csprojResolveAssemblyReference.cache
 D:\World of Warcraft\Interface\Gryphonheart\TestUtils\obj\Debug\TestUtils.dll
 D:\World of Warcraft\Interface\Gryphonheart\TestUtils\obj\Debug\TestUtils.pdb

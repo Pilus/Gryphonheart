@@ -7,7 +7,7 @@
     using GH.UIModules;
     using Lua;
 
-    [CsLuaAddOn("MenuTest", "Menu test", 60200, Author = "The Gryphonheart Team", Notes = "Test addon for testing GH menu. Not intended for release.")]
+    [CsLuaAddOn("MenuTest", "Menu test", 70000, Author = "The Gryphonheart Team", Notes = "Test addon for testing GH menu. Not intended for release.")]
     public class MenuTestAddOn : ICsLuaAddOn
     {
         public void Execute()
