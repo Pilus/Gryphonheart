@@ -364,9 +364,10 @@ function GHI_MiscAPI()
 			LoadAddOn("Blizzard_PetJournal")
 		end
 		
-		for i=1,C_MountJournal.GetNumMounts() do
+		local mountIds = C_MountJournal.GetMountIDs();
+		for _,id in ipairs(mountIds) do
 		--local _, mountName, mountSpellId, icon, _, mountType = GetCompanionInfo("mount",i)
-			local mountName, mountSpellID, icon,_, _,_,_,_,_,hideOnChar , isCollected = C_MountJournal.GetMountInfo(i)
+			local mountName, mountSpellID, icon,_, _,_,_,_,_,hideOnChar , isCollected = C_MountJournal.GetMountInfoByID(id)
 			local firstLetter = strsub(mountName,1,1)
 			local info = {}
 			if isCollected == true and hideOnChar == false then

@@ -110,7 +110,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	guid = "mount_01",
 	authorName = "The Gryphonheart Team",
 	authorGuid = "00x1",
-	version = 2,
+	version = 3,
 	category = category,
 	description = "This action summons a mount based on a provided input.",
 	icon = "Interface\\Icons\\ability_mount_ridinghorse",
@@ -118,8 +118,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 	setupOnlyOnce = false,
 	script =
 	[[
-		local numPets = C_MountJournal.GetNumMounts()
-
 		local targetCompanion
 		local mountInput = dyn.GetInput("mountCustom") or nil
 
@@ -130,16 +128,16 @@ table.insert(GHI_ProvidedDynamicActions, {
 		end
 
 		local cName,active;
-		for i=1,numPets do
-			local cName, spellID, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfo(i)
+		local mountIds = C_MountJournal.GetMountIDs();
+		for _,id in ipairs(mountIds) do
+			local cName, spellID, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfoByID(id)
 
 			if strlower(cName) == strlower(targetCompanion) then
 				if active then
 					dyn.TriggerOutPort("issummon");
 				else
-					--dyn.SetOutput("currentPet",cName);
+					C_MountJournal.SummonByID(id)
 					dyn.TriggerOutPort("summon");
-					 C_MountJournal.Summon(i)
 				end
 			end
 		end
@@ -186,7 +184,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	guid = "mount_02",
 	authorName = "The Gryphonheart Team",
 	authorGuid = "00x1",
-	version = 2,
+	version = 3,
 	category = category,
 	description = "This action dismisses a summoned Mount.",
 	icon = "Interface\\Icons\\ability_mount_ridinghorse",
@@ -195,9 +193,10 @@ table.insert(GHI_ProvidedDynamicActions, {
 	script =
 	[[
 		local numPets = C_MountJournal.GetNumMounts()
-		 local cName,active;
-		for i=1,numPets do
-		   local cName, spellID, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfo(i)
+		local cName,active;
+        local mountIds = C_MountJournal.GetMountIDs();
+		for _,id in ipairs(mountIds) do
+		   local cName, spellID, icon, active, isUsable, sourceType, isFavorite, isFactionSpecific, faction, hideOnChar, isCollected = C_MountJournal.GetMountInfoByID(id)
 			if active then
 				if not(IsFlying()) then
 					DismissCompanion("MOUNT")
