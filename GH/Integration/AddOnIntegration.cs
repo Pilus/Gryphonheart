@@ -33,6 +33,7 @@ namespace GH.Integration
 
         public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
         {
+            // TODO: Remove and change this for two reasons: The singleton modules are loaded on demand, so they are not available when doing set defaults. Also the integration should not have a dependency on IObjectStoreWithDefaults.
             this.settings = settings;
             this.singletonModules.ForEach(module => module.SetDefaults(this.settings));
         }
