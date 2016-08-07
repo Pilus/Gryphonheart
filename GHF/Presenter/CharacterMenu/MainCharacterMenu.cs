@@ -84,7 +84,7 @@ namespace GHF.Presenter.CharacterMenu
                 characterMenuTab.Save();
             }
 
-            this.model.AccountProfiles.Set(this.currentProfile.Id, this.currentProfile);
+            this.model.AccountProfiles.Set(this.currentProfile);
             this.listFrame.Update(this.currentProfile);
         }
     }

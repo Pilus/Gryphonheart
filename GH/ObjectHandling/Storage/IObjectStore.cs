@@ -10,7 +10,7 @@
 
         List<T1> GetAll();
 
-        void Set(T2 id, T1 obj);
+        void Set(T1 obj);
 
         void Remove(T2 id);
 

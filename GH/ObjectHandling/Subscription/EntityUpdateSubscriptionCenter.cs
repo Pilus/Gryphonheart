@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class SubscriptionCenter<T1, T2>  : ISubscriptionCenter<T1, T2> where T1 : IIdObject<T2>
+    public class EntityUpdateSubscriptionCenter<T1, T2>  : IEntityUpdateSubscriptionCenter<T1, T2> where T1 : IIdObject<T2>
     {
         private readonly Dictionary<Func<T1, bool>, Action<T1>> subscribers = new Dictionary<Func<T1, bool>, Action<T1>>();
 

@@ -25,7 +25,7 @@
 
         public ModelProvider(ISerializer serializer, IWrapper wrapper)
         {
-            var subscriptionCenter = new SubscriptionCenter<Profile, string>();
+            var subscriptionCenter = new EntityUpdateSubscriptionCenter<Profile, string>();
             this.AccountProfiles = new ObjectStore<Profile, string>(serializer, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
@@ -62,7 +62,7 @@
 
             var profile = new Profile(playerName, className, gameRace, sex, guid);
 
-            this.AccountProfiles.Set(playerName, profile);
+            this.AccountProfiles.Set(profile);
         }
 
         private void OnVariablesLoaded(SystemEvent eventName, object _)

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface ISubscriptionCenter<T1, T2> where T1 : IIdObject<T2>
+    public interface IEntityUpdateSubscriptionCenter<T1, T2> where T1 : IIdObject<T2>
     {
         void TriggerSubscriptionUpdate(T1 obj);
         void SubscribeForUpdates(Action<T1> action);

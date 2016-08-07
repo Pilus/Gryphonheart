@@ -66,7 +66,7 @@
         private void MoveButtonCluster(double x, double y)
         {
             var positionSetting = new Setting(SettingIds.ButtonPosition, new[] { x, y });
-            this.model.Settings.Set(SettingIds.ButtonPosition, positionSetting);
+            this.model.Settings.Set(positionSetting);
         }
 
         private void ButtonUpdate()

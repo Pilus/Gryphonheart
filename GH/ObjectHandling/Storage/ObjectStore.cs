@@ -13,16 +13,16 @@
         private readonly ISerializer serializer;
         private readonly List<T1> objects;
         private readonly ISavedDataHandler savedDataHandler;
-        private readonly ISubscriptionCenter<T1, T2> subscriptionCenter;
+        private readonly IEntityUpdateSubscriptionCenter<T1, T2> entityUpdateSubscriptionCenter;
 
         private bool savedDataLoaded;
 
-        public ObjectStore(ISerializer serializer, ISavedDataHandler savedDataHandler, ISubscriptionCenter<T1, T2> subscriptionCenter)
+        public ObjectStore(ISerializer serializer, ISavedDataHandler savedDataHandler, IEntityUpdateSubscriptionCenter<T1, T2> entityUpdateSubscriptionCenter)
         {
             this.serializer = serializer;
             this.objects = new List<T1>();
             this.savedDataHandler = savedDataHandler;
-            this.subscriptionCenter = subscriptionCenter;
+            this.entityUpdateSubscriptionCenter = entityUpdateSubscriptionCenter;
         }
 
         public ObjectStore(ISerializer serializer, ISavedDataHandler savedDataHandler) : this(serializer, savedDataHandler, null)
@@ -47,27 +47,23 @@
             return this.objects;
         }
 
-        public void Set(T2 id, T1 obj)
+        public void Set(T1 obj)
         {
             this.ThrowIfSavedDataIsNotLoaded();
+            var id = obj.Id;
             var existing = this.Get(id);
             if (existing != null)
             {
                 this.objects.Remove(existing);
-            }
-
-            if (obj == null)
-            {
-                return;
             }
             this.objects.Add(obj);
 
             var info = this.serializer.Serialize(obj);
             this.savedDataHandler.SetVar(id, info);
 
-            if (this.subscriptionCenter != null)
+            if (this.entityUpdateSubscriptionCenter != null)
             {
-                this.subscriptionCenter.TriggerSubscriptionUpdate(obj);
+                this.entityUpdateSubscriptionCenter.TriggerSubscriptionUpdate(obj);
             }
         }
 
@@ -101,7 +97,7 @@
         {
             if (!this.savedDataLoaded)
             {
-                throw new Exception("It is not possible to interact with objects before the saved data is loaded.");
+                throw new DataNotLoadedException();
             }
         }
     }

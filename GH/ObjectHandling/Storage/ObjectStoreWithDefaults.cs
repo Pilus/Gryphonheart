@@ -56,9 +56,10 @@
             return this.objects.Select(o => o.Id).Union(this.defaultObjects.Select(o => o.Id)).Distinct().ToList();
         }
 
-        public void Set(T2 id, T1 obj)
+        public void Set(T1 obj)
         {
             this.ThrowIfSavedDataIsNotLoaded();
+            var id = obj.Id;
             var existing = this.objects.FirstOrDefault(o => o.Id.Equals(id));
             if (existing != null)
             {

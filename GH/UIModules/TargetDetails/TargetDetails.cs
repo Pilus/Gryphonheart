@@ -62,7 +62,7 @@
             this.button.PositionChangeCallback = (newX, newY) =>
             {
                 var positionSetting = new Setting(SettingIds.ButtonPosition, new[] { newX, newY });
-                settings.Set(PositionSettingIds, positionSetting);
+                settings.Set(positionSetting);
             };
         }
 
