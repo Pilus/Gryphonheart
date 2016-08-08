@@ -1,4 +1,9 @@
-﻿namespace GH.ObjectHandling.Storage
+﻿//-----------------------–-----------------------–--------------
+// <copyright file="DataNotLoadedException.cs">
+//  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
+// </copyright>
+//-----------------------–-----------------------–--------------
+namespace GH.ObjectHandling.Storage
 {
     /// <summary>
     /// Exception for attempt to access data from a dataset that have not yet been loaded.

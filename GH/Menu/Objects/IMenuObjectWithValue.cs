@@ -4,6 +4,5 @@
     {
         object GetValue();
         void SetValue(object value);
-        void Clear();
     }
 }

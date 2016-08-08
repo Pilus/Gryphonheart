@@ -152,6 +152,9 @@
     <Compile Include="Model\QuickButtons\QuickButton.cs" />
     <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\SettingIds.cs" />
+    <Compile Include="ObjectHandling\Storage\DefaultObjectAlreadySetException.cs" />
+    <Compile Include="ObjectHandling\Storage\DefaultObjectCanNotBeSetAfterLoadException.cs" />
+    <Compile Include="ObjectHandling\Storage\NoDefaultValueFoundException.cs" />
     <Compile Include="ObjectHandling\Storage\ObjectStore.cs" />
     <Compile Include="ObjectHandling\Storage\DataNotLoadedException.cs" />
     <Compile Include="ObjectHandling\Storage\ObjectStoreWithDefaults.cs" />

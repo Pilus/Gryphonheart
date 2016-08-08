@@ -24,7 +24,7 @@
             IFrame menu = this.session.GetGlobal<IFrame>("Menu" + c);
             while (menu != null)
             {
-                if (name == menu["Name"])
+                if (name == (string)menu["Name"])
                 {
                     this.currentMenu = menu;
                     return;

@@ -1,6 +1,10 @@
-﻿namespace GH.ObjectHandling.Storage
+﻿//-----------------------–-----------------------–--------------
+// <copyright file="ObjectStore.cs">
+//  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
+// </copyright>
+//-----------------------–-----------------------–--------------
+namespace GH.ObjectHandling.Storage
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using CsLuaFramework;
@@ -13,13 +17,31 @@
     /// </summary>
     /// <typeparam name="T1">The <see cref="IIdObject{T2}"/> object type to store.</typeparam>
     /// <typeparam name="T2">The type of the id.</typeparam>
-    public class ObjectStore<T1, T2> : IObjectStore<T1, T2>  where T1 : class, IIdObject<T2>
+    public class ObjectStore<T1, T2> : IObjectStore<T1, T2> where T1 : class, IIdObject<T2>
     {
+        /// <summary>
+        /// The serializer.
+        /// </summary>
         private readonly ISerializer serializer;
+
+        /// <summary>
+        /// The list of objects in the store.
+        /// </summary>
         private readonly List<T1> objects;
+
+        /// <summary>
+        /// Handler for the saved data.
+        /// </summary>
         private readonly ISavedDataHandler savedDataHandler;
+
+        /// <summary>
+        /// Subscription center to send entity update notifications to.
+        /// </summary>
         private readonly IEntityUpdateSubscriptionCenter<T1, T2> entityUpdateSubscriptionCenter;
 
+        /// <summary>
+        /// A flag indicating whether the saved data have been loaded yet.
+        /// </summary>
         private bool savedDataLoaded;
 
         /// <summary>
@@ -53,7 +75,7 @@
         public T1 Get(T2 id)
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.FirstOrDefault(o => o.Id.Equals((id)));
+            return this.objects.FirstOrDefault(o => o.Id.Equals(id));
         }
 
         /// <summary>
@@ -76,7 +98,6 @@
             return this.objects;
         }
 
-
         /// <summary>
         /// Add a given <see cref="IIdObject{T2}"/> to the store.
         /// </summary>
@@ -90,6 +111,7 @@
             {
                 this.objects.Remove(existing);
             }
+
             this.objects.Add(obj);
 
             var info = this.serializer.Serialize(obj);
@@ -113,6 +135,7 @@
             {
                 this.objects.Remove(existing);
             }
+
             this.savedDataHandler.SetVar(id, null);
         }
 
@@ -126,6 +149,7 @@
             {
                 Table.Foreach(data, (key, value) => { this.LoadObject(value as NativeLuaTable); });
             }
+
             this.savedDataLoaded = true;
         }
 

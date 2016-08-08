@@ -25,10 +25,11 @@
             DefaultQuickButtons.RegisterDefaultButtons(this.Integration);
 
             var serializer = new Serializer();
+            var buttonSavedDataHandler = new SavedDataHandler("GH_Buttons");
+            var settingsSavedDataHandler = new SavedDataHandler("GH_Settings");
 
-            this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>(serializer, "GH_Buttons");
-            
-            this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>(serializer, "GH_Settings");
+            this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>(serializer, buttonSavedDataHandler);
+            this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>(serializer, settingsSavedDataHandler);
             this.Integration.SetDefaults(this.Settings);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
