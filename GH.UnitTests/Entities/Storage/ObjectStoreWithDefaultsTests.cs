@@ -1,14 +1,13 @@
-﻿namespace GH.UnitTests.ObjectHandling.Storage
+﻿namespace GH.UnitTests.Entities.Storage
 {
     using System;
-    using System.Linq.Expressions;
 
     using CsLuaFramework;
 
-    using GH.Misc;
-    using GH.ObjectHandling;
-    using GH.ObjectHandling.Storage;
-    using GH.ObjectHandling.Subscription;
+    using GH.Utils;
+    using GH.Utils.Entities;
+    using GH.Utils.Entities.Storage;
+    using GH.Utils.Entities.Subscription;
 
     using Lua;
 

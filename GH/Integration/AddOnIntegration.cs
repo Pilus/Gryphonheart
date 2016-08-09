@@ -6,7 +6,8 @@ namespace GH.Integration
     using System.Collections.Generic;
     using System.Linq;
     using GH.Model;
-    using ObjectHandling.Storage;
+    using GH.Utils.Entities.Storage;
+
     using UIModules;
 
     public class AddOnIntegration : IAddOnIntegration

@@ -3,10 +3,9 @@
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
-namespace GH.ObjectHandling.Storage
+namespace GH.Utils.Entities.Storage
 {
     using System.Collections.Generic;
-    using Misc;
 
     /// <summary>
     /// Handling storage of objects, including serialization and update subscription center triggering.

@@ -1,7 +1,8 @@
 ﻿namespace GHF.Model
 {
     using GH.Integration;
-    using GH.ObjectHandling.Storage;
+    using GH.Utils.Entities.Storage;
+
     using GHF.Model.MSP;
 
     public interface IModelProvider

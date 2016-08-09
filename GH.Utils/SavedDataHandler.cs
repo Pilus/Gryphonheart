@@ -1,4 +1,4 @@
-﻿namespace GH.Misc
+﻿namespace GH.Utils
 {
     using BlizzardApi.Global;
     using Lua;

@@ -3,7 +3,7 @@
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
-namespace GH.ObjectHandling.Storage
+namespace GH.Utils.Entities.Storage
 {
     /// <summary>
     /// Exception for attempt to access data from a dataset that have not yet been loaded.

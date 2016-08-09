@@ -3,7 +3,8 @@
 namespace GH.Model
 {
     using System;
-    using GH.ObjectHandling;
+    using GH.Utils.Entities;
+
     using Integration;
 
     public interface IQuickButton : IIdObject<string>

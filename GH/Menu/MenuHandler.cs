@@ -7,7 +7,8 @@
     using GH.Menu.Objects;
     using GH.Menu.Theme;
     using GH.Model;
-    using GH.ObjectHandling.Storage;
+    using GH.Utils.Entities.Storage;
+
     using Objects.Button;
     using Objects.DropDown.ButtonWithDropDown;
     using Objects.DropDown.CustomDropDown;

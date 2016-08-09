@@ -3,17 +3,17 @@
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
-namespace GH.ObjectHandling.Storage
+namespace GH.Utils.Entities.Storage
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using CsLuaFramework;
 
-    using GH.ObjectHandling.Subscription;
+    using GH.Utils.Entities.Subscription;
 
     using Lua;
-    using Misc;
 
     /// <summary>
     /// Handling storage of objects, including serialization. 

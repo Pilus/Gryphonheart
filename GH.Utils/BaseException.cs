@@ -1,4 +1,4 @@
-﻿namespace GH
+﻿namespace GH.Utils
 {
     using System;
 

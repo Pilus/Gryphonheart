@@ -8,8 +8,10 @@
     using CsLuaFramework.Wrapping;
     using GH.Integration;
     using GH.Misc;
-    using GH.ObjectHandling.Storage;
-    using GH.ObjectHandling.Subscription;
+    using GH.Utils;
+    using GH.Utils.Entities.Storage;
+    using GH.Utils.Entities.Subscription;
+
     using Lua;
     using MSP;
     using Presenter;

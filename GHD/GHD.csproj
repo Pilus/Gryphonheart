@@ -119,6 +119,10 @@
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GH.Utils\GH.Utils.csproj">
+      <Project>{be5c7ec8-8d68-4895-a5ed-6edf56a9b079}</Project>
+      <Name>GH.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
       <Name>GH</Name>

@@ -9,11 +9,12 @@
     using Menu.Objects.Page;
     using Misc;
     using Model;
-    using ObjectHandling.Storage;
     using Presenter;
     using Texture;
     using BlizzardApi.EventEnums;
     using BlizzardApi.MiscEnums;
+
+    using GH.Utils.Entities.Storage;
 
     public class TargetDetails : ISingletonModule
     {

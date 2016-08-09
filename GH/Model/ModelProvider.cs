@@ -8,7 +8,8 @@
     using CsLuaFramework;
     using CsLuaFramework.Wrapping;
     using GH.Integration;
-    using ObjectHandling.Storage;
+    using GH.Utils;
+    using GH.Utils.Entities.Storage;
 
     public class ModelProvider : IModelProvider
     {

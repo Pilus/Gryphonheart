@@ -1,7 +1,7 @@
 ﻿
 namespace GH.Model
 {
-    using GH.ObjectHandling;
+    using GH.Utils.Entities;
 
     public interface ISetting : IIdObject<SettingIds>
     {

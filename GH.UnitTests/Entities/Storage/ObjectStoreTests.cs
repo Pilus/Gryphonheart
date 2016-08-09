@@ -1,12 +1,14 @@
-﻿namespace GH.UnitTests.ObjectHandling.Storage
+﻿namespace GH.UnitTests.Entities.Storage
 {
     using CsLuaFramework;
-    using GH.ObjectHandling;
-    using GH.ObjectHandling.Storage;
-    using GH.ObjectHandling.Subscription;
+
+    using GH.Utils;
+    using GH.Utils.Entities;
+    using GH.Utils.Entities.Storage;
+    using GH.Utils.Entities.Subscription;
+
     using Lua;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Misc;
     using Moq;
 
     [TestClass]

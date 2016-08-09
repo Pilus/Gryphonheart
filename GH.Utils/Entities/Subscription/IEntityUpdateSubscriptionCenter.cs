@@ -1,4 +1,4 @@
-﻿namespace GH.ObjectHandling.Subscription
+﻿namespace GH.Utils.Entities.Subscription
 {
     using System;
 

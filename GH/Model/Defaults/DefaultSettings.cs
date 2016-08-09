@@ -3,7 +3,7 @@ namespace GH.Model.Defaults
 {
     using BlizzardApi.Global;
     using GH.Presenter;
-    using ObjectHandling.Storage;
+    using GH.Utils.Entities.Storage;
 
     public static class DefaultSettings
     {

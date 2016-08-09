@@ -3,7 +3,7 @@
 namespace GH.Model
 {
     using GH.Integration;
-    using ObjectHandling.Storage;
+    using GH.Utils.Entities.Storage;
 
     public interface IModelProvider
     {

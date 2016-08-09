@@ -1,6 +1,6 @@
 ﻿namespace GHF.Model.MSP
 {
-    using GH;
+    using GH.Utils;
 
     public class MspProxyException : BaseException
     {

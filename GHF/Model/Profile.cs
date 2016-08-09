@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using GH.ObjectHandling;
+    using GH.Utils.Entities;
 
     [Serializable]
     public class Profile : IIdObject<string>

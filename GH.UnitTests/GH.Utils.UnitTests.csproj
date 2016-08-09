@@ -60,14 +60,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ObjectHandling\Storage\ObjectStoreTests.cs" />
-    <Compile Include="ObjectHandling\Storage\ObjectStoreWithDefaultsTests.cs" />
+    <Compile Include="Entities\Storage\ObjectStoreTests.cs" />
+    <Compile Include="Entities\Storage\ObjectStoreWithDefaultsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GH\GH.csproj">
-      <Project>{5933B9F8-E802-41A9-AE65-FAF31DD3D5DD}</Project>
-      <Name>GH</Name>
+    <ProjectReference Include="..\GH.Utils\GH.Utils.csproj">
+      <Project>{be5c7ec8-8d68-4895-a5ed-6edf56a9b079}</Project>
+      <Name>GH.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

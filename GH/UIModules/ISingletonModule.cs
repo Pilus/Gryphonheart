@@ -1,7 +1,8 @@
 ﻿namespace GH.UIModules
 {
+    using GH.Utils.Entities.Storage;
+
     using Model;
-    using ObjectHandling.Storage;
 
     public interface ISingletonModule
     {
