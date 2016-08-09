@@ -44,7 +44,7 @@
         [TestMethod]
         public void TestObjectStoreWithDefaultsCstor()
         {
-            new ObjectStore<IIdObject<string>, string>(this.serializerMock.Object, this.savedDataHandlerMock.Object);
+            new ObjectStoreWithDefaults<IIdObject<string>, string>(this.serializerMock.Object, this.savedDataHandlerMock.Object);
         }
 
         [TestMethod]
@@ -166,11 +166,19 @@
             o1Serialised["Value1"] = 43;
             o1Serialised["Value2"] = 10;
             o1Serialised["Value3"] = o1SubValue;
+            var o1SubTable2 = new NativeLuaTable();
+            o1SubTable2["Value"] = 1;
+            o1Serialised["Value4"] = o1SubTable2;
+
             var o1DefaultSerialized = new NativeLuaTable();
             var o1DefaultSubValue = new NativeLuaTable();
             o1DefaultSubValue["InBoth"] = 5;
             o1DefaultSubValue["InDef"] = true;
             o1DefaultSerialized["Value1"] = 35;
+            o1DefaultSerialized["Value3"] = o1DefaultSubValue;
+            var o1DefaultSubTable2 = new NativeLuaTable();
+            o1DefaultSubTable2["Value"] = 1;
+            o1DefaultSerialized["Value4"] = o1DefaultSubTable2;
 
             this.savedDataHandlerMock.Setup(sdh => sdh.GetAll()).Returns(new NativeLuaTable());
             this.serializerMock.Setup(s => s.Serialize(o1)).Returns(o1Serialised);
@@ -188,7 +196,6 @@
             // Assert
             this.serializerMock.Verify(s => s.Serialize(o1Default), Times.Once);
             this.serializerMock.Verify(s => s.Serialize(o1), Times.Once);
-            var f = new Func<NativeLuaTable, bool>((t) => { return true; });
             this.savedDataHandlerMock.Verify(s => s.SetVar(id1, It.IsAny<NativeLuaTable>()), Times.Once);
             Assert.IsNotNull(savedId1Table);
             Assert.AreEqual(43, savedId1Table["Value1"]);
@@ -200,6 +207,65 @@
             Assert.AreEqual(3, value3["InBoth"]);
             
             this.entityUpdateSubCenterMock.Verify(center => center.TriggerSubscriptionUpdate(o1), Times.Once);
+        }
+
+        [TestMethod]
+        public void TestObjectStoreWithDefaultsLoadsAndMergesWithDefault()
+        {
+            // Set up
+            var id1 = "obj1";
+            var o1 = MakeObject(id1);
+            var o1Default = MakeObject(id1);
+            var o1Serialised = new NativeLuaTable();
+            var o1SubValue = new NativeLuaTable();
+            o1SubValue["InObj"] = true;
+            o1SubValue["InBoth"] = 3;
+            o1Serialised["Value1"] = 43;
+            o1Serialised["Value2"] = 10;
+            o1Serialised["Value3"] = o1SubValue;
+            var o1SubTable2 = new NativeLuaTable();
+            o1SubTable2["Value"] = 1;
+            o1Serialised["Value4"] = o1SubTable2;
+
+            var o1DefaultSerialized = new NativeLuaTable();
+            var o1DefaultSubValue = new NativeLuaTable();
+            o1DefaultSubValue["InBoth"] = 5;
+            o1DefaultSubValue["InDef"] = true;
+            o1DefaultSerialized["Value1"] = 35;
+            o1DefaultSerialized["Value3"] = o1DefaultSubValue;
+            var o1DefaultSubTable2 = new NativeLuaTable();
+            o1DefaultSubTable2["Value"] = 1;
+            o1DefaultSerialized["Value4"] = o1DefaultSubTable2;
+
+            var allData = new NativeLuaTable();
+            allData[id1] = o1Serialised;
+
+            this.savedDataHandlerMock.Setup(sdh => sdh.GetAll()).Returns(allData);
+            this.serializerMock.Setup(s => s.Serialize(o1Default)).Returns(o1DefaultSerialized);
+            NativeLuaTable deserializedId1Table = null;
+            this.serializerMock
+                .Setup(s => s.Deserialize<IIdObject<string>>(It.IsAny<NativeLuaTable>()))
+                .Callback<NativeLuaTable>((t) => deserializedId1Table = t)
+                .Returns(o1);
+
+            // Execute
+            this.storeUnderTest.SetDefault(o1Default);
+            this.storeUnderTest.LoadFromSaved();
+
+            // Assert
+            this.serializerMock.Verify(s => s.Serialize(o1Default), Times.Once);
+            this.serializerMock.Verify(s => s.Serialize(o1), Times.Never);
+            this.savedDataHandlerMock.Verify(s => s.SetVar(id1, It.IsAny<NativeLuaTable>()), Times.Never);
+            Assert.IsNotNull(deserializedId1Table);
+            Assert.AreEqual(43, deserializedId1Table["Value1"]);
+            Assert.AreEqual(10, deserializedId1Table["Value2"]);
+            Assert.IsTrue(deserializedId1Table["Value3"] is NativeLuaTable);
+            var value3 = deserializedId1Table["Value3"] as NativeLuaTable;
+            Assert.AreEqual(true, value3["InObj"]);
+            Assert.AreEqual(true, value3["InDef"]);
+            Assert.AreEqual(3, value3["InBoth"]);
+
+            this.entityUpdateSubCenterMock.Verify(center => center.TriggerSubscriptionUpdate(o1), Times.Never);
         }
 
         [TestMethod]
@@ -219,7 +285,6 @@
             // Execute
             this.storeUnderTest.SetDefault(o1Default);
             this.storeUnderTest.SetDefault(o1Default2);
-            this.storeUnderTest.LoadFromSaved();
         }
 
         [TestMethod]

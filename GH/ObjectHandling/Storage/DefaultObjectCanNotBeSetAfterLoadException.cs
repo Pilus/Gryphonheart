@@ -1,5 +1,5 @@
 ﻿//-----------------------–-----------------------–--------------
-// <copyright file="DefaultObjectAlreadySetException.cs">
+// <copyright file="DefaultObjectCanNotBeSetAfterLoadException.cs">
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
