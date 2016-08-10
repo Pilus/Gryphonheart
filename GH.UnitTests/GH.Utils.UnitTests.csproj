@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Entities\Storage\ObjectStoreTests.cs" />
     <Compile Include="Entities\Storage\ObjectStoreWithDefaultsTests.cs" />
+    <Compile Include="Entities\Subscription\EntityUpdateSubscriptionCenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +71,7 @@
       <Name>GH.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
