@@ -64,8 +64,13 @@
     <Compile Include="Entities\Storage\ObjectStoreWithDefaultsTests.cs" />
     <Compile Include="Entities\Subscription\EntityUpdateSubscriptionCenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavedDataHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
+      <Project>{4FA81A8F-BE0D-4DAD-9E55-0AD7146FC259}</Project>
+      <Name>BlizzardApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GH.Utils\GH.Utils.csproj">
       <Project>{be5c7ec8-8d68-4895-a5ed-6edf56a9b079}</Project>
       <Name>GH.Utils</Name>

@@ -1,4 +1,9 @@
-﻿using System.Reflection;
+﻿//-----------------------–-----------------------–--------------
+// <copyright file="AssamblyInfo.cs">
+//  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
+// </copyright>
+//-----------------------–-----------------------–--------------
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
