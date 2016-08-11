@@ -6,8 +6,8 @@
     <ProjectGuid>{440E7FED-F4D8-44D4-BC7B-1A53EE11D58E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GH.UnitTests</RootNamespace>
-    <AssemblyName>GH.UnitTests</AssemblyName>
+    <RootNamespace>GH.Utils.UnitTests</RootNamespace>
+    <AssemblyName>GH.Utils.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AddOnIntegration\AddOnRegistryTests.cs" />
     <Compile Include="Entities\Storage\ObjectStoreTests.cs" />
     <Compile Include="Entities\Storage\ObjectStoreWithDefaultsTests.cs" />
     <Compile Include="Entities\Subscription\EntityUpdateSubscriptionCenterTests.cs" />

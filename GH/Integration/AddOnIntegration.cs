@@ -6,6 +6,7 @@ namespace GH.Integration
     using System.Collections.Generic;
     using System.Linq;
     using GH.Model;
+    using GH.Utils.AddOnIntegration;
     using GH.Utils.Entities.Storage;
 
     using UIModules;

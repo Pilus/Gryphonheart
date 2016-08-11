@@ -3,6 +3,7 @@
 namespace GH.Integration
 {
     using System.Collections.Generic;
+    using GH.Utils.AddOnIntegration;
     using UIModules;
 
     public interface IAddOnIntegration

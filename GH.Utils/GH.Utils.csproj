@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOnIntegration\AddOnReference.cs" />
+    <Compile Include="AddOnIntegration\AddOnRegistry.cs" />
+    <Compile Include="AddOnIntegration\AddOnAlreadyRegisteredException.cs" />
+    <Compile Include="AddOnIntegration\IAddOnRegistry.cs" />
     <Compile Include="BaseException.cs" />
     <Compile Include="Entities\IIdObject.cs" />
     <Compile Include="Entities\Storage\DataNotLoadedException.cs" />

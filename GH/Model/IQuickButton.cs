@@ -3,6 +3,7 @@
 namespace GH.Model
 {
     using System;
+    using GH.Utils.AddOnIntegration;
     using GH.Utils.Entities;
 
     using Integration;

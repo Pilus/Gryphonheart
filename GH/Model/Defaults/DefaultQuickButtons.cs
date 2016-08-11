@@ -4,6 +4,7 @@ namespace GH.Model.Defaults
     using System.Collections.Generic;
     using BlizzardApi.Global;
     using GH.Integration;
+    using GH.Utils.AddOnIntegration;
 
     public static class DefaultQuickButtons
     {

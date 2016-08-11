@@ -4,6 +4,7 @@ namespace GHD.Presenter
     using Document;
     using GH.Integration;
     using GH.Model.QuickButtons;
+    using GH.Utils.AddOnIntegration;
     using Model;
 
     public class Presenter

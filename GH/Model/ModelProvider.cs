@@ -9,6 +9,7 @@
     using CsLuaFramework.Wrapping;
     using GH.Integration;
     using GH.Utils;
+    using GH.Utils.AddOnIntegration;
     using GH.Utils.Entities.Storage;
 
     public class ModelProvider : IModelProvider

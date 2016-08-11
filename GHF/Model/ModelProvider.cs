@@ -9,6 +9,7 @@
     using GH.Integration;
     using GH.Misc;
     using GH.Utils;
+    using GH.Utils.AddOnIntegration;
     using GH.Utils.Entities.Storage;
     using GH.Utils.Entities.Subscription;
 

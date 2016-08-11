@@ -1,7 +1,13 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
+      <Value>addOn</Value>
+      <Value>AddOn</Value>
+      <Value>addOns</Value>
+      <Value>AddOns</Value>
+      <Value>Gryphonheart</Value>
       <Value>lua</Value>
+      <Value>Ons</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>

@@ -1,6 +1,7 @@
 ﻿namespace GH.Model.QuickButtons
 {
     using System;
+    using GH.Utils.AddOnIntegration;
     using Integration;
 
     [Serializable]

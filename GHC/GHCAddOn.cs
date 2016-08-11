@@ -9,6 +9,7 @@ namespace GHC
     using GH.Integration;
     using GH.Misc;
     using GH.Model;
+    using GH.Utils.AddOnIntegration;
     using Lua;
     using Modules.AbilityActionBar;
 

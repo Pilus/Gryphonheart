@@ -5,6 +5,7 @@
     using CsLuaFramework.Attributes;
     using CsLuaFramework.Wrapping;
     using GH.Integration;
+    using GH.Utils.AddOnIntegration;
     using Lua;
     using Model;
 

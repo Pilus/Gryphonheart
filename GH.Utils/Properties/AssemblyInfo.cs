@@ -1,5 +1,5 @@
 ﻿//-----------------------–-----------------------–--------------
-// <copyright file="AssamblyInfo.cs">
+// <copyright file="AssemblyInfo.cs">
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------

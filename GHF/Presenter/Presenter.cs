@@ -6,6 +6,7 @@ namespace GHF.Presenter
     using GH.Integration;
     using GH.Model.QuickButtons;
     using GH.UIModules.TargetDetails;
+    using GH.Utils.AddOnIntegration;
     using Model;
     using Model.AdditionalFields;
     using TargetMenu;
