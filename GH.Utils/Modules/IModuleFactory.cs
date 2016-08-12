@@ -37,7 +37,7 @@ namespace GH.Utils.Modules
         /// <summary>
         /// Registers a callback that is triggered when a module is being created.
         /// </summary>
-        /// <param name="callback">The callback triggered with the module and a flag indicating whether it is the first module of its type.</param>
-        void RegisterForModuleLoadEvents(Action<IModule, bool> callback);
+        /// <param name="callback">The callback triggered.</param>
+        void RegisterForModuleLoadEvents(Action<IModule> callback);
     }
 }

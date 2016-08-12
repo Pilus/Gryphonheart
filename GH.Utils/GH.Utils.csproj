@@ -67,6 +67,7 @@
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IModuleFactory.cs" />
     <Compile Include="Modules\ModuleFactory.cs" />
+    <Compile Include="Modules\ModuleTypeInfo.cs" />
     <Compile Include="Modules\NonSingletonModule.cs" />
     <Compile Include="Modules\SingletonModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

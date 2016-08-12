@@ -1,18 +1,20 @@
-﻿namespace GH.Utils.UnitTests.Modules
+﻿
+namespace GH.Utils.UnitTests.Modules
 {
+    using System;
     using GH.Utils.Entities;
     using GH.Utils.Modules;
     using Moq;
 
-    public class NonSingletonTestModule : NonSingletonModule
+    public class SingletonTestModule2 : SingletonModule
     {
-        public string SettingId = "NonSingletonId";
+        public const string SettingId = "Singleton2Id";
         public Mock<IIdObject<string>> DefaultSettings;
 
-        public NonSingletonTestModule()
+        public SingletonTestModule2()
         {
             this.DefaultSettings = new Mock<IIdObject<string>>();
-            this.DefaultSettings.Setup(s => s.Id).Returns(this.SettingId);
+            this.DefaultSettings.Setup(s => s.Id).Returns(SettingId);
         }
 
         /// <summary>
