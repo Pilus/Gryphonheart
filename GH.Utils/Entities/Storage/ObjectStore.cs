@@ -9,9 +9,7 @@ namespace GH.Utils.Entities.Storage
     using System.Linq;
 
     using CsLuaFramework;
-
-    using GH.Utils.Entities.Subscription;
-
+    using GH.Utils.Entities.Subscriptions;
     using Lua;
 
     /// <summary>

@@ -1,10 +1,8 @@
-﻿namespace GH.UnitTests.Entities.Subscription
+﻿namespace GH.Utils.UnitTests.Entities.Subscriptions
 {
     using GH.Utils.Entities;
-
+    using GH.Utils.Entities.Subscriptions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using GH.Utils.Entities.Subscription;
-
     using Moq;
 
     [TestClass]

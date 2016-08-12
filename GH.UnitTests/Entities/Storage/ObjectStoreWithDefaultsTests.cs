@@ -1,18 +1,13 @@
-﻿namespace GH.UnitTests.Entities.Storage
+﻿namespace GH.Utils.UnitTests.Entities.Storage
 {
     using System;
-
     using CsLuaFramework;
-
     using GH.Utils;
     using GH.Utils.Entities;
     using GH.Utils.Entities.Storage;
-    using GH.Utils.Entities.Subscription;
-
+    using GH.Utils.Entities.Subscriptions;
     using Lua;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using Moq;
 
     [TestClass]

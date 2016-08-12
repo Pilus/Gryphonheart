@@ -61,9 +61,14 @@
     <Compile Include="Entities\Storage\NoDefaultValueFoundException.cs" />
     <Compile Include="Entities\Storage\ObjectStore.cs" />
     <Compile Include="Entities\Storage\ObjectStoreWithDefaults.cs" />
-    <Compile Include="Entities\Subscription\EntityUpdateSubscriptionCenter.cs" />
-    <Compile Include="Entities\Subscription\IEntityUpdateSubscriptionCenter.cs" />
+    <Compile Include="Entities\Subscriptions\EntityUpdateSubscriptionCenter.cs" />
+    <Compile Include="Entities\Subscriptions\IEntityUpdateSubscriptionCenter.cs" />
     <Compile Include="ISavedDataHandler.cs" />
+    <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\IModuleFactory.cs" />
+    <Compile Include="Modules\ModuleFactory.cs" />
+    <Compile Include="Modules\NonSingletonModule.cs" />
+    <Compile Include="Modules\SingletonModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavedDataHandler.cs" />
   </ItemGroup>

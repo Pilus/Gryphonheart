@@ -3,7 +3,8 @@
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
-namespace GH.Utils.Entities.Subscription
+
+namespace GH.Utils.Entities.Subscriptions
 {
     using System;
     using System.Collections.Generic;
