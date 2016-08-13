@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHG", "GHG\GHG.csproj", "{3D230DD5-49B6-44CD-9793-000C3B1315B2}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Utils.UnitTests", "GH.Utils.UnitTests\GH.Utils.UnitTests.csproj", "{440E7FED-F4D8-44D4-BC7B-1A53EE11D58E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Utils", "GH.Utils\GH.Utils.csproj", "{BE5C7EC8-8D68-4895-A5ED-6EDF56A9B079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Menu", "GH.Menu\GH.Menu.csproj", "{1475A556-282A-4D82-8694-2DD5AEBF3BF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{BE5C7EC8-8D68-4895-A5ED-6EDF56A9B079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE5C7EC8-8D68-4895-A5ED-6EDF56A9B079}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE5C7EC8-8D68-4895-A5ED-6EDF56A9B079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1475A556-282A-4D82-8694-2DD5AEBF3BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1475A556-282A-4D82-8694-2DD5AEBF3BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1475A556-282A-4D82-8694-2DD5AEBF3BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1475A556-282A-4D82-8694-2DD5AEBF3BF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

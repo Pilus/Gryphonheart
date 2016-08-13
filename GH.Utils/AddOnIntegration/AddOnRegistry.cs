@@ -7,10 +7,12 @@ namespace GH.Utils.AddOnIntegration
 {
     using System.Collections.Generic;
 
+    using GH.Utils.Modules;
+
     /// <summary>
     /// Central point of registry for loaded addOns.
     /// </summary>
-    public class AddOnRegistry : IAddOnRegistry
+    public class AddOnRegistry : SingletonModule, IAddOnRegistry
     {
         /// <summary>
         /// List of loaded addOns.

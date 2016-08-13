@@ -60,84 +60,6 @@
     <Compile Include="Integration\IAddOnIntegration.cs" />
     <Compile Include="Integration\AddOnIntegration.cs" />
     <Compile Include="Integration\IntegrationException.cs" />
-    <Compile Include="Menu\BaseElement.cs" />
-    <Compile Include="Menu\Containers\BaseContainer.cs" />
-    <Compile Include="Menu\Containers\IContainerProfile.cs" />
-    <Compile Include="Menu\IElement.cs" />
-    <Compile Include="Menu\IElementProfile.cs" />
-    <Compile Include="Menu\IGHM_ScrollFrameTemplate.cs" />
-    <Compile Include="Menu\IMenuHandler.cs" />
-    <Compile Include="Menu\IMenuRegionProfile.cs" />
-    <Compile Include="Menu\IRecyclePool.cs" />
-    <Compile Include="Menu\Containers\Menus\NoValueHandlingException.cs" />
-    <Compile Include="Menu\Containers\Menus\Window\MinimizeableTitleBar.cs" />
-    <Compile Include="Menu\MenuException.cs" />
-    <Compile Include="Menu\MenuHandler.cs" />
-    <Compile Include="Menu\Objects\Button\ButtonObject.cs" />
-    <Compile Include="Menu\Objects\Button\IButtonTemplate.cs" />
-    <Compile Include="Menu\Objects\DropDown\ButtonWithDropDown\ButtonWithDropDownObject.cs" />
-    <Compile Include="Menu\Containers\IContainer.cs" />
-    <Compile Include="Menu\Objects\IMenuObjectWithValue.cs" />
-    <Compile Include="Menu\Objects\TabableEditBox.cs" />
-    <Compile Include="Menu\Objects\TabOrder.cs" />
-    <Compile Include="Menu\Objects\TooltipHandler.cs" />
-    <Compile Include="Menu\MenuConfigurationException.cs" />
-    <Compile Include="Menu\Containers\Menus\Window\ContentContainer.cs" />
-    <Compile Include="Menu\Containers\Menus\Window\TitleBar.cs" />
-    <Compile Include="Menu\RecyclePool.cs" />
-    <Compile Include="Menu\Theme\IMenuTheme.cs" />
-    <Compile Include="Menu\Containers\Menus\Window\MenuWindow.cs" />
-    <Compile Include="Menu\Objects\BaseObjectWithInnerObject.cs" />
-    <Compile Include="Menu\Objects\BaseObjectWithTextLabel.cs" />
-    <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.cs" />
-    <Compile Include="Menu\Objects\DropDown\CustomDropDown\ICustomDropDownFrame.cs" />
-    <Compile Include="Menu\Objects\Dummy\DummyObject.cs" />
-    <Compile Include="Menu\Objects\EditBox\EditBoxObject.cs" />
-    <Compile Include="Menu\Objects\EditBox\IEditBoxWithFilters.cs" />
-    <Compile Include="Menu\Objects\EditField\EditFieldObject.cs" />
-    <Compile Include="Menu\Objects\EditField\IEditFieldFrame.cs" />
-    <Compile Include="Menu\Objects\IObjectProfileWithText.cs" />
-    <Compile Include="Menu\Objects\ITabableObject.cs" />
-    <Compile Include="Menu\Objects\ITextLabelWithTooltip.cs" />
-    <Compile Include="Menu\Objects\LayoutSettings.cs" />
-    <Compile Include="Menu\Containers\Line\ILine.cs" />
-    <Compile Include="Menu\Containers\Menus\BaseMenu.cs" />
-    <Compile Include="Menu\Containers\Menus\IGHM_Window.cs" />
-    <Compile Include="Menu\Containers\Menus\IMenu.cs" />
-    <Compile Include="Menu\Containers\Menus\Inserts.cs" />
-    <Compile Include="Menu\Containers\Menus\TabMenu.cs" />
-    <Compile Include="Menu\Containers\Menus\WindowedMenu.cs" />
-    <Compile Include="Menu\Containers\Line\Line.cs" />
-    <Compile Include="Menu\Containers\Page\IPage.cs" />
-    <Compile Include="Menu\IMenuRegion.cs" />
-    <Compile Include="Menu\Objects\DropDown\ButtonWithDropDown\ButtonWithDropDownProfile.cs" />
-    <Compile Include="Menu\Objects\Dummy\DummyProfile.cs" />
-    <Compile Include="Menu\Objects\IObjectProfile.cs" />
-    <Compile Include="Menu\Containers\Line\LineProfile.cs" />
-    <Compile Include="Menu\Objects\BaseObject.cs" />
-    <Compile Include="Menu\Objects\IMenuObject.cs" />
-    <Compile Include="Menu\Containers\Page\Page.cs" />
-    <Compile Include="Menu\Objects\Panel\PanelObject.cs" />
-    <Compile Include="Menu\Containers\Menus\MenuProfile.cs" />
-    <Compile Include="Menu\Containers\Menus\MenuThemeType.cs" />
-    <Compile Include="Menu\Objects\Text\ITextObjectFrame.cs" />
-    <Compile Include="Menu\Objects\Text\TextObject.cs" />
-    <Compile Include="Menu\Objects\Toolbar\MultiPageToolbarProfile.cs" />
-    <Compile Include="Menu\Objects\ObjectAlign.cs" />
-    <Compile Include="Menu\Objects\Button\ButtonProfile.cs" />
-    <Compile Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownProfile.cs" />
-    <Compile Include="Menu\Objects\DropDown\DropDownData.cs" />
-    <Compile Include="Menu\Objects\EditBox\EditBoxProfile.cs" />
-    <Compile Include="Menu\Objects\EditField\EditFieldProfile.cs" />
-    <Compile Include="Menu\Objects\Panel\PanelProfile.cs" />
-    <Compile Include="Menu\Objects\StandardButtonWithTexture\StandardButtonWithTextureProfile.cs" />
-    <Compile Include="Menu\Objects\Text\TextProfile.cs" />
-    <Compile Include="Menu\Objects\Toolbar\ToolbarCatagoryProfile.cs" />
-    <Compile Include="Menu\Objects\Toolbar\ToolbarLineProfile.cs" />
-    <Compile Include="Menu\Objects\Toolbar\ToolbarPageProfile.cs" />
-    <Compile Include="Menu\Containers\Page\PageProfile.cs" />
-    <Compile Include="Menu\Objects\TextColor.cs" />
-    <Compile Include="Menu\Theme\MenuTheme.cs" />
     <Compile Include="Misc\Misc.cs" />
     <Compile Include="Model\Defaults\DefaultQuickButtons.cs" />
     <Compile Include="Model\Defaults\DefaultSettings.cs" />
@@ -173,11 +95,9 @@
     <Compile Include="UIModules\TargetDetails\TargetDetailPageInfo.cs" />
     <Compile Include="UIModules\TargetDetails\TargetDetails.cs" />
     <Compile Include="View\ButtonOptionsMenuProfileGenerator.cs" />
-    <Compile Include="Menu\Containers\Menus\IMenuProfileGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Menu\Objects\Button\DialogBox-Button-Up-White.tga" />
     <None Include="Texture\GhRoundIcon.blp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,24 +111,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Menu\Objects\Button\ButtonFrame.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Menu\Objects\DropDown\CustomDropDown\CustomDropDownObject.xml" />
-    <Content Include="Menu\Objects\EditBox\EditBoxFrame.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Menu\Objects\EditField\EditFieldFrame.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Menu\Objects\TextLabelWithTooltip.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Menu\Objects\Text\TextObject.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Folder Include="Menu\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
