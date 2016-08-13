@@ -1,5 +1,6 @@
 ﻿namespace GH.Menu.Containers.Line
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using BlizzardApi.WidgetEnums;
@@ -7,9 +8,10 @@
     using CsLuaFramework.Wrapping;
     using Lua;
     using GH.Menu.Containers;
+    using GH.Menu.Containers.AlignedBlock;
     using GH.Menu.Objects;
 
-    public class Line : BaseContainer<IMenuObject, IObjectProfile>, ILine
+    public class Line : BaseContainer<IAlignedBlock, IObjectProfile>, ILine
     {
         private double objectSpacing;
 
@@ -31,6 +33,9 @@
             this.Frame.SetParent(parent);
             this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
+            throw new NotImplementedException();
+
+            /*
             var leftObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.l).ToList();
             var centerObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.c).ToList();
             var rightObjects = this.Content.Where(obj => obj.GetAlignment() == ObjectAlign.r).ToList();
@@ -65,7 +70,7 @@
             else
             {
                 this.SetUpLineWithoutCenterObject(width, leftWidth, rightWidth, height, leftObjects, rightObjects);
-            }
+            } */
         }
 
         private void SetUpLineWithOnlyNonFlexibleCenterObjects(double width, double centerWidth, double height, List<IMenuObject> centerObjects )
@@ -195,6 +200,8 @@
 
         public double? GetPreferredWidth()
         {
+            throw new NotImplementedException();
+            /*
             double? width = null;
 
             var objectsWithFlexibleWidth = this.Content.Where(obj => obj.GetPreferredWidth() == null);
@@ -224,11 +231,13 @@
                 width = leftWidth + centerWidth + rightWidth;
             }
 
-            return width;
+            return width; */
         }
 
         public double GetHeightAboveMedian()
         {
+            throw new NotImplementedException();
+            /*
             double height = 0;
             this.Content.ForEach(obj =>
             {
@@ -239,11 +248,13 @@
                     height = LuaMath.max(height, ((double)preferredHeight/2) - preferredOffset);
                 }
             });
-            return height;
+            return height; */
         }
 
         public double GetHeightBelowMedian()
         {
+            throw new NotImplementedException();
+            /*
             double height = 0;
             this.Content.ForEach(obj =>
             {
@@ -254,7 +265,7 @@
                     height = LuaMath.max(height, ((double) preferredHeight/2) + preferredOffset);
                 }
             });
-            return height;
+            return height;*/
         }
 
         public double? GetPreferredHeight()

@@ -2,9 +2,9 @@
 
 namespace GH.Menu.Containers.Line
 {
-    using GH.Menu.Objects;
+    using GH.Menu.Containers.AlignedBlock;
 
-    public interface ILine : IMenuRegion, IContainer<IMenuObject>
+    public interface ILine : IMenuRegion, IContainer<IAlignedBlock>
     {
 
     }

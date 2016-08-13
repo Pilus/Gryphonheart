@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="BaseElement.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="Containers\AlignedBlock\AlignedBlock.cs" />
+    <Compile Include="Containers\AlignedBlock\IAlignedBlock.cs" />
     <Compile Include="Containers\BaseContainer.cs" />
     <Compile Include="Containers\IContainer.cs" />
     <Compile Include="Containers\IContainerProfile.cs" />

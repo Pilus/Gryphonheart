@@ -8,6 +8,7 @@
 
     public abstract class BaseContainer<T, TProfile> : BaseElement, IContainer<T> where T : IMenuRegion
     {
+        protected LayoutSettings Layout;
         protected List<T> Content;
 
         public BaseContainer(string typeName, IWrapper wrapper) : base(typeName, wrapper)
@@ -74,6 +75,7 @@
         {
             base.Prepare(profile, handler);
             this.Content = new List<T>();
+            this.Layout = handler.Layout;
 
             var containerProfile = (IContainerProfile<TProfile>)profile;
             containerProfile.ToList().ForEach(p =>
