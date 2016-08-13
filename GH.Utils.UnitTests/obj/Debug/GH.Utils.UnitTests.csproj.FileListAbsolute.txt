@@ -26,19 +26,3 @@ C:\Users\chwarnec\Documents\Github\Gryphonheart\GH.Utils.UnitTests\bin\Debug\Mic
 C:\Users\chwarnec\Documents\Github\Gryphonheart\GH.Utils.UnitTests\obj\Debug\GH.Utils.UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\chwarnec\Documents\Github\Gryphonheart\GH.Utils.UnitTests\obj\Debug\GH.Utils.UnitTests.dll
 C:\Users\chwarnec\Documents\Github\Gryphonheart\GH.Utils.UnitTests\obj\Debug\GH.Utils.UnitTests.pdb
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\GH.Utils.UnitTests.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\GH.Utils.UnitTests.pdb
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\BlizzardApi.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\CsLuaFramework.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\GH.Utils.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\Lua.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\Moq.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\BlizzardApi.pdb
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\GH.Utils.pdb
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\CsLuaFramework.pdb
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\Lua.pdb
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\obj\Debug\GH.Utils.UnitTests.csprojResolveAssemblyReference.cache
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\obj\Debug\GH.Utils.UnitTests.dll
-D:\World of Warcraft\Interface\Gryphonheart\GH.Utils.UnitTests\obj\Debug\GH.Utils.UnitTests.pdb
