@@ -4,6 +4,8 @@ namespace GH.Utils.UnitTests.Modules
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
+
     using GH.Utils.Entities;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using GH.Utils.Modules;
@@ -12,12 +14,24 @@ namespace GH.Utils.UnitTests.Modules
     [TestClass]
     public class ModuleFactoryTests
     {
-        private ModuleFactory factoryUnderTest;
+        private IModuleFactory factoryUnderTest;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.factoryUnderTest = new ModuleFactory();
+            // Reset the static singleton inside the module factory:
+            Type type = typeof(ModuleFactory);
+            FieldInfo info = type.GetField("moduleFactory", BindingFlags.NonPublic | BindingFlags.Static);
+            info.SetValue(null, null);
+
+            this.factoryUnderTest = ModuleFactory.ModuleFactorySingleton;
+        }
+
+        [TestMethod]
+        public void TestModuleFactorySingletonProducesTheSameInstace()
+        {
+            var secondInvocation = ModuleFactory.ModuleFactorySingleton;
+            Assert.AreEqual(this.factoryUnderTest, secondInvocation);
         }
 
         [TestMethod]
@@ -39,49 +53,6 @@ namespace GH.Utils.UnitTests.Modules
 
             Assert.AreEqual(firstModule, secondModule);
         }
-
-        [TestMethod]
-        public void TestModuleFactoryLoadSettings()
-        {
-            // Set up
-            var firstModule = this.factoryUnderTest.GetModule<NonSingletonTestModule>();
-            var secondModule = this.factoryUnderTest.GetModule<NonSingletonTestModule>();
-            var singletonModule = this.factoryUnderTest.GetModule<SingletonTestModule>();
-
-            var nonSingletonSetting = GenerateSetting(NonSingletonTestModule.SettingId);
-            var singletonSetting = GenerateSetting(SingletonTestModule.SettingId);
-            var singleton2Setting = GenerateSetting(SingletonTestModule2.SettingId);
-
-            // Act
-            this.factoryUnderTest.LoadSettings(new[] {nonSingletonSetting, singletonSetting, singleton2Setting });
-            var moduleLoadedAfterSettings = this.factoryUnderTest.GetModule<NonSingletonTestModule>();
-            var singletonModule2 = this.factoryUnderTest.GetModule<SingletonTestModule2>();
-
-            // Assert
-            Assert.AreEqual(singletonSetting, singletonModule.AppliedSettings);
-            Assert.AreEqual(nonSingletonSetting, firstModule.AppliedSettings);
-            Assert.AreEqual(nonSingletonSetting, secondModule.AppliedSettings);
-            Assert.AreEqual(nonSingletonSetting, moduleLoadedAfterSettings.AppliedSettings);
-            Assert.AreEqual(singleton2Setting, singletonModule2.AppliedSettings);
-        }
-
-        [TestMethod]
-        public void TestModuleFactoryGetDefaultSettingsOfLoadedModules()
-        {
-            // Set up
-            var firstModule = this.factoryUnderTest.GetModule<NonSingletonTestModule>();
-            var secondModule = this.factoryUnderTest.GetModule<NonSingletonTestModule>();
-            var singletonModule = this.factoryUnderTest.GetModule<SingletonTestModule>();
-
-            // Act
-            var defaultSettings = this.factoryUnderTest.GetDefaultSettingsOfLoadedModules().ToArray();
-
-            // Assert
-            Assert.AreEqual(2, defaultSettings.Length);
-            Assert.IsTrue(defaultSettings.Contains(firstModule.DefaultSettings.Object));
-            Assert.IsTrue(defaultSettings.Contains(singletonModule.DefaultSettings.Object));
-        }
-
         [TestMethod]
         public void TestModuleFactoryRegisterForModuleLoadEvents()
         {
@@ -104,13 +75,6 @@ namespace GH.Utils.UnitTests.Modules
             Assert.IsTrue(invocations.Contains(secondModule));
             Assert.IsTrue(invocations.Contains(singletonModule));
             Assert.AreEqual(3, invocations.Count);
-        }
-
-        private static IIdObject<string> GenerateSetting(string id)
-        {
-            var settingsMock = new Mock<IIdObject<string>>();
-            settingsMock.Setup(s => s.Id).Returns(id);
-            return settingsMock.Object;
         }
     }
 }

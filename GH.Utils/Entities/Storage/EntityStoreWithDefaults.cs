@@ -1,5 +1,5 @@
 ﻿//-----------------------–-----------------------–--------------
-// <copyright file="ObjectStoreWithDefaults.cs">
+// <copyright file="EntityStoreWithDefaults.cs">
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
@@ -14,29 +14,29 @@ namespace GH.Utils.Entities.Storage
     using Lua;
 
     /// <summary>
-    /// Handling storage of objects, including serialization. 
+    /// Handling storage of entities, including serialization. 
     /// Also allows for setting of default values, which are calculated on the deserialized data.
-    /// When saving it only saves the information that is not present in the default object.
+    /// When saving it only saves the information that is not present in the default entity.
     /// When loading it supplements the loaded information with the default.
     /// </summary>
-    /// <typeparam name="T1">The <see cref="IIdObject{T2}"/> object type to store.</typeparam>
+    /// <typeparam name="T1">The <see cref="IIdEntityEntity{T}"/> entity type to store.</typeparam>
     /// <typeparam name="T2">The type of the id.</typeparam>
-    public class ObjectStoreWithDefaults<T1, T2> : IObjectStoreWithDefaults<T1, T2> where T1 : class, IIdObject<T2>
+    public class EntityStoreWithDefaults<T1, T2> : IEntityStoreWithDefaults<T1, T2> where T1 : class, IIdEntity<T2>
     {
         /// <summary>
-        /// The list of default objects.
+        /// The list of default entities.
         /// </summary>
-        private readonly List<T1> defaultObjects;
+        private readonly List<T1> defaultEntities;
 
         /// <summary>
-        /// The object serializer.
+        /// The entity serializer.
         /// </summary>
         private readonly ISerializer serializer;
 
         /// <summary>
-        /// List of objects in the store.
+        /// List of entities in the store.
         /// </summary>
-        private readonly List<T1> objects;
+        private readonly List<T1> entities;
 
         /// <summary>
         /// Saved data handler.
@@ -54,51 +54,51 @@ namespace GH.Utils.Entities.Storage
         private bool savedDataLoaded;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectStoreWithDefaults{T1,T2}"/> class.
+        /// Initializes a new instance of the <see cref="EntityStoreWithDefaults{T1,T2}"/> class.
         /// </summary>
         /// <param name="serializer">The serializer for handling serialization to <see cref="NativeLuaTable"/>.</param>
         /// <param name="savedDataHandler">Handler for the saving the data to global lua table.</param>
         /// <param name="entityUpdateSubscriptionCenter">Subscription center for updates to the data entity.</param>
-        public ObjectStoreWithDefaults(ISerializer serializer, ISavedDataHandler savedDataHandler, IEntityUpdateSubscriptionCenter<T1, T2> entityUpdateSubscriptionCenter)
+        public EntityStoreWithDefaults(ISerializer serializer, ISavedDataHandler savedDataHandler, IEntityUpdateSubscriptionCenter<T1, T2> entityUpdateSubscriptionCenter)
         {
             this.savedDataHandler = savedDataHandler;
-            this.defaultObjects = new List<T1>();
-            this.objects = new List<T1>();
+            this.defaultEntities = new List<T1>();
+            this.entities = new List<T1>();
             this.serializer = serializer;
             this.entityUpdateSubscriptionCenter = entityUpdateSubscriptionCenter;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectStoreWithDefaults{T1,T2}"/> class.
+        /// Initializes a new instance of the <see cref="EntityStoreWithDefaults{T1,T2}"/> class.
         /// </summary>
         /// <param name="serializer">The serializer for handling serialization to <see cref="NativeLuaTable"/>.</param>
         /// <param name="savedDataHandler">Handler for the saving the data to global lua table.</param>
-        public ObjectStoreWithDefaults(ISerializer serializer, ISavedDataHandler savedDataHandler) : this(serializer, savedDataHandler, null)
+        public EntityStoreWithDefaults(ISerializer serializer, ISavedDataHandler savedDataHandler) : this(serializer, savedDataHandler, null)
         {
         }
 
         /// <summary>
-        /// Set the default value for an object id.
+        /// Set the default value for an entity id.
         /// </summary>
-        /// <param name="obj">The object to set.</param>
-        public void SetDefault(T1 obj)
+        /// <param name="entity">The entity to set.</param>
+        public void SetDefault(T1 entity)
         {
-            if (obj == null)
+            if (entity == null)
             {
-                throw new ArgumentNullException(nameof(obj));
+                throw new ArgumentNullException(nameof(entity));
             }
 
             if (this.savedDataLoaded)
             {
-                throw new DefaultObjectCanNotBeSetAfterLoadException(obj.Id);
+                throw new DefaultEntityCanNotBeSetAfterLoadException(entity.Id);
             }
 
-            if (this.defaultObjects.Any(o => o.Id.Equals(obj.Id)))
+            if (this.defaultEntities.Any(o => o.Id.Equals(entity.Id)))
             {
-                throw new DefaultObjectAlreadySetException(obj.Id);
+                throw new DefaultEntityAlreadySetException(entity.Id);
             }
 
-            this.defaultObjects.Add(obj);
+            this.defaultEntities.Add(entity);
         }
 
         /// <summary>
@@ -109,16 +109,16 @@ namespace GH.Utils.Entities.Storage
         public T1 Get(T2 id)
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            var obj = this.objects.FirstOrDefault(o => o.Id.Equals(id));
-            if (obj != null)
+            var entity = this.entities.FirstOrDefault(o => o.Id.Equals(id));
+            if (entity != null)
             {
-                return obj;
+                return entity;
             }
 
-            var defaultObj = this.defaultObjects.FirstOrDefault(o => o.Id.Equals(id));
-            if (defaultObj != null)
+            var defaultEntity = this.defaultEntities.FirstOrDefault(o => o.Id.Equals(id));
+            if (defaultEntity != null)
             {
-                return defaultObj;
+                return defaultEntity;
             }
 
             throw new NoDefaultValueFoundException(id);
@@ -131,7 +131,7 @@ namespace GH.Utils.Entities.Storage
         public List<T2> GetIds()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.Select(o => o.Id).Union(this.defaultObjects.Select(o => o.Id)).Distinct().ToList();
+            return this.entities.Select(o => o.Id).Union(this.defaultEntities.Select(o => o.Id)).Distinct().ToList();
         }
 
         /// <summary>
@@ -141,52 +141,52 @@ namespace GH.Utils.Entities.Storage
         public List<T1> GetAll()
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            return this.objects.Union(this.defaultObjects).ToList();
+            return this.entities.Union(this.defaultEntities).ToList();
         }
 
         /// <summary>
-        /// Add a given <see cref="IIdObject{T2}"/> to the store.
+        /// Add a given <see cref="IIdEntityEntity{T}"/> to the store.
         /// </summary>
-        /// <param name="obj">The object to add.</param>
-        public void Set(T1 obj)
+        /// <param name="entity">The entity to add.</param>
+        public void Set(T1 entity)
         {
-            if (obj == null)
+            if (entity == null)
             {
-                throw new ArgumentNullException(nameof(obj));
+                throw new ArgumentNullException(nameof(entity));
             }
 
             this.ThrowIfSavedDataIsNotLoaded();
-            var id = obj.Id;
-            var existing = this.objects.FirstOrDefault(o => o.Id.Equals(id));
+            var id = entity.Id;
+            var existing = this.entities.FirstOrDefault(o => o.Id.Equals(id));
             if (existing != null)
             {
-                this.objects.Remove(existing);
+                this.entities.Remove(existing);
             }
 
-            this.objects.Add(obj);
-            var info = this.serializer.Serialize(obj);
+            this.entities.Add(entity);
+            var info = this.serializer.Serialize(entity);
 
-            var defaultObj = this.defaultObjects.FirstOrDefault(o => o.Id.Equals(id));
-            if (defaultObj != null)
+            var defaultEntity = this.defaultEntities.FirstOrDefault(o => o.Id.Equals(id));
+            if (defaultEntity != null)
             {
-                info = DifferenceUA(info, this.serializer.Serialize(defaultObj));
+                info = DifferenceUA(info, this.serializer.Serialize(defaultEntity));
             }
 
-            this.savedDataHandler.SetVar(obj.Id as string, info);
-            this.entityUpdateSubscriptionCenter.TriggerSubscriptionUpdate(obj);
+            this.savedDataHandler.SetVar(entity.Id as string, info);
+            this.entityUpdateSubscriptionCenter.TriggerSubscriptionUpdate(entity);
         }
 
         /// <summary>
-        /// Removes an object with a given id from the store.
+        /// Removes an entity with a given id from the store.
         /// </summary>
         /// <param name="id">Id to remove.</param>
         public void Remove(T2 id)
         {
             this.ThrowIfSavedDataIsNotLoaded();
-            T1 existing = this.objects.FirstOrDefault(o => o.Id.Equals(id));
+            T1 existing = this.entities.FirstOrDefault(o => o.Id.Equals(id));
             if (existing != null)
             {
-                this.objects.Remove(existing);
+                this.entities.Remove(existing);
             }
         }
 
@@ -198,7 +198,7 @@ namespace GH.Utils.Entities.Storage
             var data = this.savedDataHandler.GetAll();
             if (data != null)
             {
-                Table.Foreach(data, (key, value) => this.LoadObject(key, (NativeLuaTable)value));
+                Table.Foreach(data, (key, value) => this.LoadEntity(key, (NativeLuaTable)value));
             }
 
             this.savedDataLoaded = true;
@@ -286,19 +286,19 @@ namespace GH.Utils.Entities.Storage
         }
 
         /// <summary>
-        /// Loads an object with a provided id and a provided set of default serialized info.
+        /// Loads an entity with a provided id and a provided set of default serialized info.
         /// </summary>
-        /// <param name="id">The id of the object to load.</param>
+        /// <param name="id">The id of the entity to load.</param>
         /// <param name="defaultInfo">The serialized default info to compare with.</param>
-        private void LoadObject(object id, NativeLuaTable defaultInfo)
+        private void LoadEntity(object id, NativeLuaTable defaultInfo)
         {
-            T1 defaultObj = this.defaultObjects.FirstOrDefault(o => o.Id.Equals(id));
-            if (defaultObj != null)
+            T1 defaultEntity = this.defaultEntities.FirstOrDefault(o => o.Id.Equals(id));
+            if (defaultEntity != null)
             {
-                defaultInfo = MergeUA(defaultInfo, this.serializer.Serialize(defaultObj));
+                defaultInfo = MergeUA(defaultInfo, this.serializer.Serialize(defaultEntity));
             }
 
-            this.objects.Add(this.serializer.Deserialize<T1>(defaultInfo));
+            this.entities.Add(this.serializer.Deserialize<T1>(defaultInfo));
         }
     }
 }

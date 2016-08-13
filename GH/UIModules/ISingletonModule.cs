@@ -6,8 +6,8 @@
 
     public interface ISingletonModule
     {
-        void LoadSettings(IObjectStoreWithDefaults<ISetting, SettingIds> settings);
+        void LoadSettings(IEntityStoreWithDefaults<ISetting, SettingIds> settings);
 
-        void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings);
+        void SetDefaults(IEntityStoreWithDefaults<ISetting, SettingIds> settings);
     }
 }

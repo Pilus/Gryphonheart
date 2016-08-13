@@ -8,7 +8,7 @@ namespace GH.Model
 
     using Integration;
 
-    public interface IQuickButton : IIdObject<string>
+    public interface IQuickButton : IIdEntity<string>
     {
         bool IsDefault { get; set; }
 

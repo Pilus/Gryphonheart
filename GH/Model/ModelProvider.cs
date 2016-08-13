@@ -30,8 +30,8 @@
             var buttonSavedDataHandler = new SavedDataHandler("GH_Buttons");
             var settingsSavedDataHandler = new SavedDataHandler("GH_Settings");
 
-            this.ButtonStore = new ObjectStoreWithDefaults<IQuickButton, string>(serializer, buttonSavedDataHandler);
-            this.Settings = new ObjectStoreWithDefaults<ISetting, SettingIds>(serializer, settingsSavedDataHandler);
+            this.ButtonStore = new EntityStoreWithDefaults<IQuickButton, string>(serializer, buttonSavedDataHandler);
+            this.Settings = new EntityStoreWithDefaults<ISetting, SettingIds>(serializer, settingsSavedDataHandler);
             this.Integration.SetDefaults(this.Settings);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
@@ -53,12 +53,12 @@
             return this.Integration.IsAddOnLoaded(addonReference);
         }
 
-        public IObjectStoreWithDefaults<IQuickButton, string> ButtonStore { 
+        public IEntityStoreWithDefaults<IQuickButton, string> ButtonStore { 
             get; 
             private set; 
         }
 
-        public IObjectStoreWithDefaults<ISetting, SettingIds> Settings
+        public IEntityStoreWithDefaults<ISetting, SettingIds> Settings
         {
             get;
             private set; 

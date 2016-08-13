@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuTest", "MenuTest\MenuTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{52B30640-CBF4-43DB-93B1-7B1D66C48924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Utils.UnitTests", "GH.UnitTests\GH.Utils.UnitTests.csproj", "{440E7FED-F4D8-44D4-BC7B-1A53EE11D58E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Utils.UnitTests", "GH.Utils.UnitTests\GH.Utils.UnitTests.csproj", "{440E7FED-F4D8-44D4-BC7B-1A53EE11D58E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Utils", "GH.Utils\GH.Utils.csproj", "{BE5C7EC8-8D68-4895-A5ED-6EDF56A9B079}"
 EndProject

@@ -5,7 +5,7 @@
     using GH.Utils.Entities;
 
     [Serializable]
-    public class Profile : IIdObject<string>
+    public class Profile : IIdEntity<string>
     {
         public Profile()
         {

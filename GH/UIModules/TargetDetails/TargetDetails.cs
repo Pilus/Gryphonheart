@@ -55,7 +55,7 @@
             }
         }
 
-        public void LoadSettings(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
+        public void LoadSettings(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
         {
             var position = settings.Get(PositionSettingIds).Value as double[];
             this.button.SetPosition(position[0], position[1]);
@@ -67,7 +67,7 @@
             };
         }
 
-        public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
+        public void SetDefaults(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
         {
             var targetFrame = Global.Api.GetGlobal("TargetFrame"); // TODO: Use wrapper
             // TODO: Calculate the default position based on the target frame.

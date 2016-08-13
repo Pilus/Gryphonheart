@@ -7,7 +7,7 @@ namespace GH.Model.Defaults
 
     public static class DefaultSettings
     {
-        public static void AddToModel(IObjectStoreWithDefaults<ISetting, SettingIds> settingsStore)
+        public static void AddToModel(IEntityStoreWithDefaults<ISetting, SettingIds> settingsStore)
         {
             settingsStore.SetDefault(new Setting(SettingIds.ButtonPosition, new double[] { Global.Frames.UIParent.GetWidth() / 2, Global.Frames.UIParent.GetHeight() / 2 }));
 

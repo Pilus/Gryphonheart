@@ -15,7 +15,7 @@ namespace GH.Utils.Entities.Storage
         /// <summary>
         /// Initializes a new instance of the <see cref="NoDefaultValueFoundException"/> class.
         /// </summary>
-        /// <param name="id">Id for the object attempted found.</param>
+        /// <param name="id">Id for the entity attempted found.</param>
         public NoDefaultValueFoundException(object id) : base("No default value found for id: {0}", Strings.tostring(id))
         {
         }

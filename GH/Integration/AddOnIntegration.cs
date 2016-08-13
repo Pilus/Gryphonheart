@@ -23,7 +23,7 @@ namespace GH.Integration
 
         private readonly List<ISingletonModule> singletonModules = new List<ISingletonModule>();
 
-        private IObjectStoreWithDefaults<ISetting, SettingIds> settings;
+        private IEntityStoreWithDefaults<ISetting, SettingIds> settings;
 
         private bool settingsLoaded;
 
@@ -33,9 +33,9 @@ namespace GH.Integration
             this.singletonModules.ForEach(module => module.LoadSettings(this.settings));
         }
 
-        public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
+        public void SetDefaults(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
         {
-            // TODO: Remove and change this for two reasons: The singleton modules are loaded on demand, so they are not available when doing set defaults. Also the integration should not have a dependency on IObjectStoreWithDefaults.
+            // TODO: Remove and change this for two reasons: The singleton modules are loaded on demand, so they are not available when doing set defaults. Also the integration should not have a dependency on IEntityStoreWithDefaults.
             this.settings = settings;
             this.singletonModules.ForEach(module => module.SetDefaults(this.settings));
         }

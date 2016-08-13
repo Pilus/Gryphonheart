@@ -7,7 +7,7 @@
 
     public interface IModelProvider
     {
-        IObjectStore<Profile, string> AccountProfiles { get; } 
+        IEntityStore<Profile, string> AccountProfiles { get; } 
         IAddOnIntegration Integration { get; }
         MSPProxy Msp { get; }
         PublicProfile GetPublicProfile(string characterName);

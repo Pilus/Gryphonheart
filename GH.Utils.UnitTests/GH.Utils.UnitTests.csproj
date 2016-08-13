@@ -61,8 +61,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AddOnIntegration\AddOnRegistryTests.cs" />
-    <Compile Include="Entities\Storage\ObjectStoreTests.cs" />
-    <Compile Include="Entities\Storage\ObjectStoreWithDefaultsTests.cs" />
+    <Compile Include="Entities\Storage\EntityStoreTests.cs" />
+    <Compile Include="Entities\Storage\EntityStoreWithDefaultsTests.cs" />
     <Compile Include="Entities\Subscriptions\EntityUpdateSubscriptionCenterTests.cs" />
     <Compile Include="Modules\ModuleFactoryTests.cs" />
     <Compile Include="Modules\NonSingletonTestModule.cs" />

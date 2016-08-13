@@ -23,12 +23,12 @@
         public MSPProxy Msp { get; private set; }
 
         public IAddOnIntegration Integration { get; private set; }
-        public IObjectStore<Profile, string> AccountProfiles { get; private set; }
+        public IEntityStore<Profile, string> AccountProfiles { get; private set; }
 
         public ModelProvider(ISerializer serializer, IWrapper wrapper)
         {
             var subscriptionCenter = new EntityUpdateSubscriptionCenter<Profile, string>();
-            this.AccountProfiles = new ObjectStore<Profile, string>(serializer, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
+            this.AccountProfiles = new EntityStore<Profile, string>(serializer, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
 
             Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
             this.Integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);

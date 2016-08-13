@@ -110,7 +110,7 @@
             return region;
         }
 
-        public void LoadSettings(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
+        public void LoadSettings(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
         {
             this.Theme = new MenuTheme()
             {
@@ -122,7 +122,7 @@
             };
         }
 
-        public void SetDefaults(IObjectStoreWithDefaults<ISetting, SettingIds> settings)
+        public void SetDefaults(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
         {
             settings.SetDefault(new Setting(SettingIds.MenuTitleBarTextColor, new Color(1.0, 1.0, 1.0)));
             settings.SetDefault(new Setting(SettingIds.MenuTitleBarBackgroundColor, new Color(0.5, 0.1, 0.1)));

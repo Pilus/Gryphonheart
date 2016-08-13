@@ -12,9 +12,9 @@ namespace GH.Utils.Entities.Subscriptions
     /// <summary>
     /// Handles update notifications for entities.
     /// </summary>
-    /// <typeparam name="T1">The <see cref="IIdObject{T2}"/> object type to store.</typeparam>
+    /// <typeparam name="T1">The <see cref="IIdEntityEntity{T}"/> entity type to store.</typeparam>
     /// <typeparam name="T2">The type of the id.</typeparam>
-    public class EntityUpdateSubscriptionCenter<T1, T2> : IEntityUpdateSubscriptionCenter<T1, T2> where T1 : IIdObject<T2>
+    public class EntityUpdateSubscriptionCenter<T1, T2> : IEntityUpdateSubscriptionCenter<T1, T2> where T1 : IIdEntity<T2>
     {
         /// <summary>
         /// List of subscribers for with actions and condition methods.

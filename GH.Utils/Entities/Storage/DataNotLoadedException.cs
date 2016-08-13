@@ -13,7 +13,7 @@ namespace GH.Utils.Entities.Storage
         /// <summary>
         /// Initializes a new instance of the <see cref="DataNotLoadedException"/> class.
         /// </summary>
-        public DataNotLoadedException() : base("It is not possible to interact with objects before the saved data is loaded.")
+        public DataNotLoadedException() : base("It is not possible to interact with entities before the saved data is loaded.")
         {
         }
     }

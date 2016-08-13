@@ -8,17 +8,17 @@
     [TestClass]
     public class EntityUpdateSubscriptionCenterTests
     {
-        private EntityUpdateSubscriptionCenter<IIdObject<string>, string> subscriptionCenterUnderTest;
+        private EntityUpdateSubscriptionCenter<IIdEntity<string>, string> subscriptionCenterUnderTest;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.subscriptionCenterUnderTest = new EntityUpdateSubscriptionCenter<IIdObject<string>, string>();
+            this.subscriptionCenterUnderTest = new EntityUpdateSubscriptionCenter<IIdEntity<string>, string>();
         }
 
-        private static IIdObject<string> MakeObject(string id)
+        private static IIdEntity<string> MakeObject(string id)
         {
-            var mock = new Mock<IIdObject<string>>();
+            var mock = new Mock<IIdEntity<string>>();
             mock.Setup(o => o.Id).Returns(id);
             return mock.Object;
         }

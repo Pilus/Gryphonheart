@@ -8,8 +8,8 @@ namespace GH.Model
 
     public interface IModelProvider
     {
-        IObjectStoreWithDefaults<IQuickButton, string> ButtonStore { get; }
-        IObjectStoreWithDefaults<ISetting, SettingIds> Settings { get; }
+        IEntityStoreWithDefaults<IQuickButton, string> ButtonStore { get; }
+        IEntityStoreWithDefaults<ISetting, SettingIds> Settings { get; }
         bool IsAddOnLoaded(AddOnReference addonReference);
         AddOnIntegration Integration { get; }
     }

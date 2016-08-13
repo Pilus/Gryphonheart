@@ -1,5 +1,5 @@
 ﻿//-----------------------–-----------------------–--------------
-// <copyright file="IObjectStore.cs">
+// <copyright file="IEntityStore.cs">
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
@@ -8,11 +8,11 @@ namespace GH.Utils.Entities.Storage
     using System.Collections.Generic;
 
     /// <summary>
-    /// Handling storage of objects, including serialization and update subscription center triggering.
+    /// Handling storage of entities, including serialization and update subscription center triggering.
     /// </summary>
-    /// <typeparam name="T1">The <see cref="IIdObject{T2}"/> object type to store.</typeparam>
+    /// <typeparam name="T1">The <see cref="IIdEntityEntity{T}"/> entity type to store.</typeparam>
     /// <typeparam name="T2">The type of the id.</typeparam>
-    public interface IObjectStore<T1, T2> where T1 : IIdObject<T2>
+    public interface IEntityStore<T1, T2> where T1 : IIdEntity<T2>
     {
         /// <summary>
         /// Gets the entity with a given id, if available. Otherwise returns null.
@@ -34,13 +34,13 @@ namespace GH.Utils.Entities.Storage
         List<T1> GetAll();
 
         /// <summary>
-        /// Add a given <see cref="IIdObject{T2}"/> to the store.
+        /// Add a given <see cref="IIdEntityEntity{T}"/> to the store.
         /// </summary>
-        /// <param name="obj">The object to add.</param>
-        void Set(T1 obj);
+        /// <param name="entity">The entity to add.</param>
+        void Set(T1 entity);
 
         /// <summary>
-        /// Removes an object with a given id from the store.
+        /// Removes an entity with a given id from the store.
         /// </summary>
         /// <param name="id">Id to remove.</param>
         void Remove(T2 id);
