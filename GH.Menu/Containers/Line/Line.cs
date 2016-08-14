@@ -194,7 +194,7 @@
         private static double GetYPosition(IMenuObject obj, double heightAboveMedian)
         {
             var preferredHeight = obj.GetPreferredHeight();
-            var preferredCenterOffset = obj.GetPreferredCenterY();
+            var preferredCenterOffset = obj.GetPreferredOffsetY();
             return preferredHeight == null ? 0 : heightAboveMedian + preferredCenterOffset - ((double)preferredHeight/2);
         }
 
@@ -242,7 +242,7 @@
             this.Content.ForEach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
-                var preferredOffset = obj.GetPreferredCenterY();
+                var preferredOffset = obj.GetPreferredOffsetY();
                 if (preferredHeight != null)
                 {
                     height = LuaMath.max(height, ((double)preferredHeight/2) - preferredOffset);
@@ -259,7 +259,7 @@
             this.Content.ForEach(obj =>
             {
                 var preferredHeight = obj.GetPreferredHeight();
-                var preferredOffset = obj.GetPreferredCenterY();
+                var preferredOffset = obj.GetPreferredOffsetY();
                 if (preferredHeight != null)
                 {
                     height = LuaMath.max(height, ((double) preferredHeight/2) + preferredOffset);

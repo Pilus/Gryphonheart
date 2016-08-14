@@ -6,7 +6,7 @@ namespace GH.Menu.Objects
     {
         ObjectAlign GetAlignment();
         string GetId();
-        double GetPreferredCenterX();
-        double GetPreferredCenterY();
+        double GetPreferredOffsetX();
+        double GetPreferredOffsetY();
     }
 }

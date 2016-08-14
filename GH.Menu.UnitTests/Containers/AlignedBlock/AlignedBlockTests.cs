@@ -94,6 +94,8 @@
             // Setup
             var element1Mock = GenerateElement(20, 15);
             var element2Mock = GenerateElement(25, 10);
+            element2Mock.Setup(e => e.GetPreferredOffsetX()).Returns(2);
+            element2Mock.Setup(e => e.GetPreferredOffsetY()).Returns(3);
             var element3Mock = GenerateElement(10, 20);
 
             this.SetUpWithElements(5, element1Mock.Object, element2Mock.Object, element3Mock.Object);
@@ -105,8 +107,50 @@
             // Assert
             this.blockFrameMock.Verify(f => f.SetPoint(FramePoint.TOPLEFT, parentMock.Object, FramePoint.TOPLEFT, 10, -15));
             element1Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 0, 0, 20, 15));
-            element2Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 25, 0, 25, 10));
+            element2Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 25 + 2, 0 + 3, 25, 10));
             element3Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 55, 0, 10, 20));
+        }
+
+        [TestMethod]
+        public void SetPositionTestWithDynamicHeight()
+        {
+            // Setup
+            var element1Mock = GenerateElement(20, 15);
+            var element2Mock = GenerateElement(25, null);
+            var element3Mock = GenerateElement(10, 20);
+
+            this.SetUpWithElements(5, element1Mock.Object, element2Mock.Object, element3Mock.Object);
+            var parentMock = new Mock<IFrame>();
+
+            // Act
+            this.alignedBlockUnderTest.SetPosition(parentMock.Object, 10, 15, 65, 30);
+
+            // Assert
+            this.blockFrameMock.Verify(f => f.SetPoint(FramePoint.TOPLEFT, parentMock.Object, FramePoint.TOPLEFT, 10, -15));
+            element1Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 0, 0, 20, 15));
+            element2Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 25, 0, 25, 30));
+            element3Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 55, 0, 10, 20));
+        }
+
+        [TestMethod]
+        public void SetPositionTestWithDynamicWidth()
+        {
+            // Setup
+            var element1Mock = GenerateElement(null, 15);
+            var element2Mock = GenerateElement(20, 10);
+            var element3Mock = GenerateElement(null, 20);
+
+            this.SetUpWithElements(5, element1Mock.Object, element2Mock.Object, element3Mock.Object);
+            var parentMock = new Mock<IFrame>();
+
+            // Act
+            this.alignedBlockUnderTest.SetPosition(parentMock.Object, 10, 15, 60, 30);
+
+            // Assert
+            this.blockFrameMock.Verify(f => f.SetPoint(FramePoint.TOPLEFT, parentMock.Object, FramePoint.TOPLEFT, 10, -15));
+            element1Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 0, 0, 15, 15));
+            element2Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 20, 0, 20, 10));
+            element3Mock.Verify(e => e.SetPosition(this.blockFrameMock.Object, 45, 0, 15, 20));
         }
 
         private void SetUpWithElements(double objectSpacing, params IMenuObject[] elements)

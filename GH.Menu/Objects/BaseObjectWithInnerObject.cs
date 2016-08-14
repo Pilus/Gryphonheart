@@ -52,14 +52,14 @@ namespace GH.Menu.Objects
             return this.Inner.GetId();
         }
 
-        public virtual double GetPreferredCenterX()
+        public virtual double GetPreferredOffsetX()
         {
-            return this.Inner.GetPreferredCenterX();
+            return this.Inner.GetPreferredOffsetX();
         }
 
-        public virtual double GetPreferredCenterY()
+        public virtual double GetPreferredOffsetY()
         {
-            return this.Inner.GetPreferredCenterY();
+            return this.Inner.GetPreferredOffsetY();
         }
 
         public override void Clear()

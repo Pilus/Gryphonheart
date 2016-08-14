@@ -34,15 +34,14 @@ namespace GH.Menu.Containers.AlignedBlock
             var numFlexibleWidth = preferredWidths.Count(w => w == null);
             var flexWidthSizePrElement = numFlexibleWidth == 0
                 ? 0
-                : (width - preferredWidths.OfType<double>().Sum() + objectSpacing * (preferredWidths.Length - 1)) / numFlexibleWidth;
+                : (width - preferredWidths.OfType<double>().Sum() - objectSpacing * (preferredWidths.Length - 1)) / numFlexibleWidth;
 
             double widthUsed = 0;
             for (int index = 0; index < this.Content.Count; index++)
             {
                 var menuObject = this.Content[index];
                 var preferredWidth = preferredWidths[index] ?? flexWidthSizePrElement;
-                // TODO: Take preferred Center into account.
-                menuObject.SetPosition(this.Frame, widthUsed, 0, preferredWidth, menuObject.GetPreferredHeight() ?? height);
+                menuObject.SetPosition(this.Frame, widthUsed + menuObject.GetPreferredOffsetX(), 0 + menuObject.GetPreferredOffsetY(), preferredWidth, menuObject.GetPreferredHeight() ?? height);
                 widthUsed += preferredWidth + objectSpacing;
             }
         }

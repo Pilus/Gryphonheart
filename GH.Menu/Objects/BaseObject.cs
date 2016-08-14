@@ -91,12 +91,12 @@ namespace GH.Menu.Objects
             return this.Frame.GetHeight();
         }
 
-        public virtual double GetPreferredCenterX()
+        public virtual double GetPreferredOffsetX()
         {
             return 0;
         }
 
-        public virtual double GetPreferredCenterY()
+        public virtual double GetPreferredOffsetY()
         {
             return 0;
         }

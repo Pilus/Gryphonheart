@@ -55,9 +55,9 @@ namespace GH.Menu.Objects
             return null;
         }
 
-        public override double GetPreferredCenterY()
+        public override double GetPreferredOffsetY()
         {
-            return this.Inner.GetPreferredCenterY() + this.textLabel.GetHeight() + GabUnderText;
+            return this.Inner.GetPreferredOffsetY() + this.textLabel.GetHeight() + GabUnderText;
         }
 
         public override void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)

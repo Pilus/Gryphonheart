@@ -75,7 +75,7 @@
             this.frame.SetText((string)value ?? "");
         }
 
-        public override double GetPreferredCenterY()
+        public override double GetPreferredOffsetY()
         {
             return -4;
         }
