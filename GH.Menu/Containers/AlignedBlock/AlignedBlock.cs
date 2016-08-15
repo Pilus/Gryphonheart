@@ -12,15 +12,29 @@ namespace GH.Menu.Containers.AlignedBlock
 
     using CsLuaFramework.Wrapping;
 
-    using GH.Menu.Containers.Line;
     using GH.Menu.Objects;
 
+    /// <summary>
+    /// Container handling menu objects with same alignment.
+    /// </summary>
     public class AlignedBlock : BaseContainer<IMenuObject, IObjectProfile>, IAlignedBlock
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlignedBlock"/> class.
+        /// </summary>
+        /// <param name="wrapper">Wrapper to use in object creation.</param>
         public AlignedBlock(IWrapper wrapper) : base("AlignedBlock", wrapper)
         {
         }
 
+        /// <summary>
+        /// Set the position and dimensions of the object relative to its given parent, anchoring top left to top left.
+        /// </summary>
+        /// <param name="parent">The parent of the object.</param>
+        /// <param name="xOff">X offset.</param>
+        /// <param name="yOff">Y offset, where positive is downwards.</param>
+        /// <param name="width">The width of the object.</param>
+        /// <param name="height">The height of the object.</param>
         public void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
         {
             this.Frame.SetWidth(width);
@@ -34,10 +48,10 @@ namespace GH.Menu.Containers.AlignedBlock
             var numFlexibleWidth = preferredWidths.Count(w => w == null);
             var flexWidthSizePrElement = numFlexibleWidth == 0
                 ? 0
-                : (width - preferredWidths.OfType<double>().Sum() - objectSpacing * (preferredWidths.Length - 1)) / numFlexibleWidth;
+                : (width - (preferredWidths.OfType<double>().Sum() + ((objectSpacing * (preferredWidths.Length - 1)) / numFlexibleWidth)));
 
             double widthUsed = 0;
-            for (int index = 0; index < this.Content.Count; index++)
+            for (var index = 0; index < this.Content.Count; index++)
             {
                 var menuObject = this.Content[index];
                 var preferredWidth = preferredWidths[index] ?? flexWidthSizePrElement;
@@ -46,6 +60,10 @@ namespace GH.Menu.Containers.AlignedBlock
             }
         }
 
+        /// <summary>
+        /// Gets the preferred width of the object.
+        /// </summary>
+        /// <returns>The preferred width. Null if it is flexible.</returns>
         public double? GetPreferredWidth()
         {
             var objectSpacing = this.Layout.objectSpacing;
@@ -56,9 +74,13 @@ namespace GH.Menu.Containers.AlignedBlock
                 return null;
             }
 
-            return preferredWidths.Sum() + objectSpacing * (preferredWidths.Length - 1);
+            return preferredWidths.Sum() + (objectSpacing * (preferredWidths.Length - 1));
         }
 
+        /// <summary>
+        /// Gets the preferred height of the object.
+        /// </summary>
+        /// <returns>The preferred height. Null if it is flexible.</returns>
         public double? GetPreferredHeight()
         {
             var preferredHeight = this.Content.Select(o => o.GetPreferredHeight()).ToArray();
