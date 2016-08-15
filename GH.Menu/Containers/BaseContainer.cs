@@ -77,7 +77,12 @@
             this.Content = new List<T>();
             this.Layout = handler.Layout;
 
-            var containerProfile = (IContainerProfile<TProfile>)profile;
+            var containerProfile = profile as IContainerProfile<TProfile>;
+            if (containerProfile == null)
+            {
+                return;
+            }
+
             containerProfile.ToList().ForEach(p =>
             {
                 var regionProfile = (IMenuRegionProfile)p;

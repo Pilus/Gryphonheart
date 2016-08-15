@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Containers.Line;
-
+    using GH.Menu.Containers.AlignedBlock;
     using GH.Menu.Containers.Menus;
     using GH.Menu.Containers.Page;
     using GH.Menu.Objects;
@@ -113,7 +113,12 @@
                 type = typeof(BaseObjectWithTextLabel);
             }
 
-            var region = (IMenuRegion)this.RecyclePool.Retrieve(type);
+            return this.CreateRegion(profile, skipWrappingObject, type);
+        }
+
+        public IMenuRegion CreateRegion(IMenuRegionProfile profile, bool skipWrappingObject, Type specificType)
+        {
+            var region = (IMenuRegion)this.RecyclePool.Retrieve(specificType);
             region.Prepare(profile, this);
             return region;
         }

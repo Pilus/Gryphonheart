@@ -48,7 +48,7 @@ namespace GH.Menu.Containers.AlignedBlock
             var numFlexibleWidth = preferredWidths.Count(w => w == null);
             var flexWidthSizePrElement = numFlexibleWidth == 0
                 ? 0
-                : (width - (preferredWidths.OfType<double>().Sum() + ((objectSpacing * (preferredWidths.Length - 1)) / numFlexibleWidth)));
+                : (width - (preferredWidths.OfType<double>().Sum() + (objectSpacing * (preferredWidths.Length - 1)))) / numFlexibleWidth;
 
             double widthUsed = 0;
             for (var index = 0; index < this.Content.Count; index++)
