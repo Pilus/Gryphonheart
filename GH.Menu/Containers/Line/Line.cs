@@ -18,6 +18,8 @@
         private IAlignedBlock centerBlock;
         private IAlignedBlock rightBlock;
 
+        private LayoutSettings layout;
+
         public Line(IWrapper wrapper) : base("Line", wrapper)
         {
 
@@ -27,7 +29,7 @@
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(null, handler);
-            
+            this.layout = handler.Layout;
             var lineProfile = (LineProfile)profile;
             this.leftBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.l, handler);
             this.centerBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.c, handler);
@@ -56,12 +58,22 @@
 
         public double? GetPreferredWidth()
         {
-            throw new NotImplementedException();
+            var widths = this.Content.Select(block => block.GetPreferredWidth()).ToArray();
+            if (widths.Any(w => w == null))
+            {
+                return null;
+            }
+            return widths.Sum() + ((widths.Length - 1) * this.layout.objectSpacing);
         }
 
         public double? GetPreferredHeight()
         {
-            throw new NotImplementedException();
+            var heights = this.Content.Select(block => block.GetPreferredHeight()).ToArray();
+            if (heights.Any(w => w == null))
+            {
+                return null;
+            }
+            return heights.Max();
         }
     }
 }

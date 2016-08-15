@@ -36,11 +36,8 @@
         public void LinePrepareTest()
         {
             // Setup
-            var menuHandlerMock = new Mock<IMenuHandler>();
             var profiles = new List<LineProfile>();
-            menuHandlerMock.Setup(mh => mh.CreateRegion(It.IsAny<LineProfile>(), false, typeof(AlignedBlock)))
-                .Callback((IMenuRegionProfile p, bool _, Type t) => profiles.Add((LineProfile)p))
-                .Returns(new Mock<IAlignedBlock>().Object);
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles);
             var c1 = GenerateObjectProfile(ObjectAlign.c);
             var c2 = GenerateObjectProfile(ObjectAlign.c);
             var c3 = GenerateObjectProfile(ObjectAlign.c);
@@ -74,32 +71,165 @@
             Assert.AreEqual(r2, rightProfile[1]);
         }
 
+        [TestMethod]
+        public void LineGetPreferredWidthTestWithNoNull()
+        {
+            // Setup
+            var profiles = new List<LineProfile>();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>()
+                                        {
+                                            { ObjectAlign.l, 20 },
+                                            { ObjectAlign.c, 30 },
+                                            { ObjectAlign.r, 40 },
+                                        };
+            
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
+                {
+                    mock.Setup(e => e.GetPreferredWidth()).Returns(dimensionsMapping[lineProfile.Single().align]);
+                }));
+
+            var profile = new LineProfile()
+            {
+                GenerateObjectProfile(ObjectAlign.l),
+                GenerateObjectProfile(ObjectAlign.c),
+                GenerateObjectProfile(ObjectAlign.r),
+            };
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            // Act
+            var width = this.lineUnderTest.GetPreferredWidth();
+
+            // Assert
+            Assert.AreEqual(100, width);
+        }
+
+        [TestMethod]
+        public void LineGetPreferredWidthTestWithNull()
+        {
+            // Setup
+            var profiles = new List<LineProfile>();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>()
+                                        {
+                                            { ObjectAlign.l, 20 },
+                                            { ObjectAlign.c, null },
+                                            { ObjectAlign.r, 40 },
+                                        };
+
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
+            {
+                mock.Setup(e => e.GetPreferredWidth()).Returns(dimensionsMapping[lineProfile.Single().align]);
+            }));
+
+            var profile = new LineProfile()
+            {
+                GenerateObjectProfile(ObjectAlign.l),
+                GenerateObjectProfile(ObjectAlign.c),
+                GenerateObjectProfile(ObjectAlign.r),
+            };
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            // Act
+            var width = this.lineUnderTest.GetPreferredWidth();
+
+            // Assert
+            Assert.AreEqual(null, width);
+        }
+
+        [TestMethod]
+        public void LineGetPreferredHeightTestWithNoNull()
+        {
+            // Setup
+            var profiles = new List<LineProfile>();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>()
+                                        {
+                                            { ObjectAlign.l, 20 },
+                                            { ObjectAlign.c, 40 },
+                                            { ObjectAlign.r, 30 },
+                                        };
+
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
+            {
+                mock.Setup(e => e.GetPreferredHeight()).Returns(dimensionsMapping[lineProfile.Single().align]);
+            }));
+
+            var profile = new LineProfile()
+            {
+                GenerateObjectProfile(ObjectAlign.l),
+                GenerateObjectProfile(ObjectAlign.c),
+                GenerateObjectProfile(ObjectAlign.r),
+            };
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            // Act
+            var height = this.lineUnderTest.GetPreferredHeight();
+
+            // Assert
+            Assert.AreEqual(40, height);
+        }
+
+        [TestMethod]
+        public void LineGetPreferredHeightTestWithNull()
+        {
+            // Setup
+            var profiles = new List<LineProfile>();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>()
+                                        {
+                                            { ObjectAlign.l, 20 },
+                                            { ObjectAlign.c, null },
+                                            { ObjectAlign.r, 40 },
+                                        };
+
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
+            {
+                mock.Setup(e => e.GetPreferredHeight()).Returns(dimensionsMapping[lineProfile.Single().align]);
+            }));
+
+            var profile = new LineProfile()
+            {
+                GenerateObjectProfile(ObjectAlign.l),
+                GenerateObjectProfile(ObjectAlign.c),
+                GenerateObjectProfile(ObjectAlign.r),
+            };
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            // Act
+            var height = this.lineUnderTest.GetPreferredHeight();
+
+            // Assert
+            Assert.AreEqual(null, height);
+        }
+
+
+        [TestMethod]
+        public void LineSetPositionTest()
+        {
+            Assert.Fail();
+        }
+
+        private static Mock<IMenuHandler> SetUpMenuHandlerMock(List<LineProfile> profilesList = null, Action<LineProfile, Mock<IAlignedBlock>> blockAction = null)
+        {
+            var menuHandlerMock = new Mock<IMenuHandler>();
+            menuHandlerMock.Setup(mh => mh.CreateRegion(It.IsAny<LineProfile>(), false, typeof(AlignedBlock)))
+                .Returns(
+                    (IMenuRegionProfile p, bool _, Type t) =>
+                        {
+                            profilesList.Add((LineProfile)p);
+                            var block = new Mock<IAlignedBlock>();
+                            blockAction?.Invoke((LineProfile)p, block);
+                            return block.Object;
+                        });
+            var layout = new LayoutSettings();
+            layout.objectSpacing = 5;
+            menuHandlerMock.Setup(mh => mh.Layout).Returns(layout);
+
+            return menuHandlerMock;
+        }
+
         private static IObjectProfile GenerateObjectProfile(ObjectAlign align)
         {
             var objectProfileMock = new Mock<IObjectProfile>();
             objectProfileMock.Setup(p => p.align).Returns(align);
             return objectProfileMock.Object;
-        }
-
-        private void SetUpWithElements(double objectSpacing, params IMenuObject[] elements)
-        {
-            var profile = new LineProfile();
-            profile.AddRange(elements.Select(e => new Mock<IObjectProfile>().Object));
-
-            var menuHandlerMock = new Mock<IMenuHandler>();
-            var layoutSettings = new LayoutSettings() { lineSpacing = 5, objectSpacing = objectSpacing };
-            menuHandlerMock.Setup(mh => mh.Layout).Returns(layoutSettings);
-            menuHandlerMock.Setup(mh => mh.CreateRegion(It.IsAny<IObjectProfile>()))
-                .Returns(new Func<IObjectProfile, IMenuRegion>(p => elements[profile.IndexOf(p)]));
-
-            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
-        }
-
-        private static Mock<IMenuObject> GenerateElement(ObjectAlign align)
-        {
-            var elementMock = new Mock<IMenuObject>();
-            elementMock.Setup(e => e.GetAlignment()).Returns(align);
-            return elementMock;
         }
     }
 }
