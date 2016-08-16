@@ -199,11 +199,120 @@
             Assert.AreEqual(null, height);
         }
 
-
         [TestMethod]
-        public void LineSetPositionTest()
+        public void LineSetPositionTestWithFlexibleHeight()
         {
             Assert.Fail();
+        }
+
+        /// <summary>
+        /// Tests all 29 combinations of flexible, static or skipped blocks for each of the three.
+        /// </summary>
+        [TestMethod]
+        public void LineSetPositionTestWithAllWidthCombinations()
+        {
+            this.PerformSetPositionTestWithWidth(Tdq(  10,   20,   30), Td( 0, 40, 70), Td(10, 20, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(   0,   20,   30), Td( 0, 40, 70), Td( 0, 20, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(null,   20,   30), Td( 0, 40, 70), Td(35, 20, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(  10,    0,   30), Td( 0,  0, 70), Td(10,  0, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(   0,    0,   30), Td( 0,  0, 70), Td( 0,  0, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(null,    0,   30), Td( 0,  0, 70), Td(65,  0, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(  10, null,   30), Td( 0, 35, 70), Td(10, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(  20, null,   10), Td( 0, 25, 90), Td(20, 50, 10)); // Extra for special case
+            this.PerformSetPositionTestWithWidth(Tdq(   0, null,   30), Td( 0, 35, 70), Td( 0, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(null, null,   20), Td( 0, 35, 80), Td(30, 30, 20));
+            this.PerformSetPositionTestWithWidth(Tdq(null, null,   40), Td( 0, 45, 60), Td(10, 10, 40)); // Extra
+            this.PerformSetPositionTestWithWidth(Tdq(  10,   20,    0), Td( 0, 40,  0), Td(10, 20,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(   0,   20,    0), Td( 0, 40,  0), Td( 0, 20,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(null,   20,    0), Td( 0, 40,  0), Td(35, 20,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(  10,    0,    0), Td( 0,  0,  0), Td(10,  0,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(   0,    0,    0), Td( 0,  0,  0), Td( 0,  0,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(null,    0,    0), Td( 0,  0,  0), Td(100, 0,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(  10, null,    0), Td( 0, 15,  0), Td(10, 85,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(   0, null,    0), Td( 0,  0,  0), Td( 0,100,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(null, null,    0), Td( 0, 35,  0), Td(30, 30,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(  10,   20, null), Td( 0, 40, 65), Td(10, 20, 35));
+            this.PerformSetPositionTestWithWidth(Tdq(   0,   20, null), Td( 0, 40, 65), Td( 0, 20, 35));
+            this.PerformSetPositionTestWithWidth(Tdq(null,   20, null), Td( 0, 40, 65), Td(35, 20, 35));
+            this.PerformSetPositionTestWithWidth(Tdq(  10,    0, null), Td( 0,  0, 15), Td(10,  0, 85));
+            this.PerformSetPositionTestWithWidth(Tdq(   0,    0, null), Td( 0,  0,  0), Td( 0,  0,100));
+            this.PerformSetPositionTestWithWidth(Tdq(null,    0, null), Td( 0, 0,52.5), Td(47.5,0,47.5));
+            this.PerformSetPositionTestWithWidth(Tdq(  10, null, null), Td( 0, 35, 65), Td(10, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(   0, null, null), Td( 0, 35, 65), Td( 0, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(null, null, null), Td( 0, 35, 65), Td(30, 30, 30));
+        }
+
+        private void PerformSetPositionTestWithWidth(Tuple<double?, double?, double?> widths, Tuple<double, double, double> expectedXOff, Tuple<double, double, double> expectedWidths)
+        {
+            // Setup
+            var profiles = new List<LineProfile>();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>();
+            dimensionsMapping.Add(ObjectAlign.l, widths.Item1);
+            dimensionsMapping.Add(ObjectAlign.c, widths.Item2);
+            dimensionsMapping.Add(ObjectAlign.r, widths.Item3);
+
+            var blockMocks = new Dictionary<ObjectAlign, Mock<IAlignedBlock>>();
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
+            {
+                var align = lineProfile.Single().align;
+                blockMocks.Add(align, mock);
+                mock.Setup(e => e.GetPreferredWidth()).Returns(dimensionsMapping[align]);
+                mock.Setup(e => e.GetPreferredHeight()).Returns(15);
+            }));
+
+            var profile = new LineProfile();
+            GenerateAndAddObjectProfile(profile, ObjectAlign.l, widths.Item1 == 0);
+            GenerateAndAddObjectProfile(profile, ObjectAlign.c, widths.Item2 == 0);
+            GenerateAndAddObjectProfile(profile, ObjectAlign.r, widths.Item3 == 0);
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            var parentMock = new Mock<IFrame>();
+
+            // Act
+            this.lineUnderTest.SetPosition(parentMock.Object, 0, 0, 100, 15);
+
+            // Assert
+            foreach (var blockMockPair in blockMocks)
+            {
+                blockMockPair.Value.Verify(b => b.SetPosition(It.IsAny<IFrame>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>()), Times.Once());
+                blockMockPair.Value.Verify(b => b.SetPosition(
+                    this.lineFrameMock.Object,
+                    SelectFromTuple(expectedXOff, blockMockPair.Key),
+                    0,
+                    SelectFromTuple(expectedWidths, blockMockPair.Key),
+                    15), Times.Once());
+            }
+        }
+
+        private static Tuple<double, double, double> Td(double v1, double v2, double v3)
+        {
+            return new Tuple<double, double, double>(v1, v2, v3);
+        }
+
+        private static Tuple<double?, double?, double?> Tdq(double? v1, double? v2, double? v3)
+        {
+            return new Tuple<double?, double?, double?>(v1, v2, v3);
+        }
+
+        private static double SelectFromTuple(Tuple<double, double, double> tuple, ObjectAlign align)
+        {
+            switch (align)
+            {
+                case ObjectAlign.l:
+                    return tuple.Item1;
+                case ObjectAlign.c:
+                    return tuple.Item2;
+                default:
+                    return tuple.Item3;
+            }
+        }
+
+        private static void GenerateAndAddObjectProfile(LineProfile parentProfile, ObjectAlign align, bool skip)
+        {
+            if (!skip)
+            {
+                parentProfile.Add(GenerateObjectProfile(align));
+            }
         }
 
         private static Mock<IMenuHandler> SetUpMenuHandlerMock(List<LineProfile> profilesList = null, Action<LineProfile, Mock<IAlignedBlock>> blockAction = null)
