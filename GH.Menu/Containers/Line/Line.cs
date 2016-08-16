@@ -18,8 +18,6 @@
         private IAlignedBlock centerBlock;
         private IAlignedBlock rightBlock;
 
-        private LayoutSettings layout;
-
         public Line(IWrapper wrapper) : base("Line", wrapper)
         {
 
@@ -29,7 +27,6 @@
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(null, handler);
-            this.layout = handler.Layout;
             var lineProfile = (LineProfile)profile;
             this.leftBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.l, handler);
             this.centerBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.c, handler);
@@ -53,7 +50,70 @@
 
         public void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
         {
+            this.Frame.SetWidth(width);
+            this.Frame.SetHeight(height);
+            this.Frame.SetParent(parent);
+            this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
+
+            var leftPreferredWidth = this.centerBlock?.GetPreferredWidth();
+            var centerPreferredWidth = this.centerBlock?.GetPreferredWidth();
+            var rightPreferredWidth = this.centerBlock?.GetPreferredWidth();
+
+            
+
+
             throw new NotImplementedException();
+        }
+
+        private double GetWidthAllocatedToLeftBlock(double width, double? leftPreferredWidth, double? centerPreferredWidth, double? rightPreferredWidth)
+        {
+            if (this.leftBlock == null)
+            {
+                return 0;
+            }
+
+            if (leftPreferredWidth != null)
+            {
+                return leftPreferredWidth.Value;
+            }
+
+            // The left block is flexible.
+
+            if (this.centerBlock == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            // There is a center block
+
+            if (centerPreferredWidth != null)
+            {
+                // The center block is fixed.
+                return (width - centerPreferredWidth.Value) - this.Layout.objectSpacing;
+            }
+            
+            // The center block is flexible
+
+            if (this.rightBlock == null)
+            {
+                // There is no right block.
+                // The flexible left block must share the left side with half of the center block.
+                return ((width/2) - this.Layout.objectSpacing)/1.5;
+            }
+
+            // There is a right block.
+
+            if (rightPreferredWidth != null)
+            {
+
+                // The right block is not flexible.
+                // The left block would be able to grow to the size allowed by the right block
+                // Due to that the left flexible block will be the same size as the right block.
+                return rightPreferredWidth.Value;
+            }
+
+            // The right block is flexible
+            return (width - (this.Layout.objectSpacing*2))
         }
 
         public double? GetPreferredWidth()
@@ -63,7 +123,7 @@
             {
                 return null;
             }
-            return widths.Sum() + ((widths.Length - 1) * this.layout.objectSpacing);
+            return widths.Sum() + ((widths.Length - 1) * this.Layout.objectSpacing);
         }
 
         public double? GetPreferredHeight()
