@@ -245,6 +245,7 @@
         private void PerformSetPositionTestWithWidth(Tuple<double?, double?, double?> widths, Tuple<double, double, double> expectedXOff, Tuple<double, double, double> expectedWidths)
         {
             // Setup
+            this.lineUnderTest = new Line(new Mock<IWrapper>().Object);
             var profiles = new List<LineProfile>();
             var dimensionsMapping = new Dictionary<ObjectAlign, double?>();
             dimensionsMapping.Add(ObjectAlign.l, widths.Item1);
@@ -254,9 +255,14 @@
             var blockMocks = new Dictionary<ObjectAlign, Mock<IAlignedBlock>>();
             var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
             {
-                var align = lineProfile.Single().align;
-                blockMocks.Add(align, mock);
-                mock.Setup(e => e.GetPreferredWidth()).Returns(dimensionsMapping[align]);
+                var align = lineProfile.SingleOrDefault()?.align;
+                if (align == null)
+                {
+                    return;
+                }
+
+                blockMocks.Add((ObjectAlign)align, mock);
+                mock.Setup(e => e.GetPreferredWidth()).Returns(dimensionsMapping[(ObjectAlign)align]);
                 mock.Setup(e => e.GetPreferredHeight()).Returns(15);
             }));
 
@@ -274,13 +280,29 @@
             // Assert
             foreach (var blockMockPair in blockMocks)
             {
-                blockMockPair.Value.Verify(b => b.SetPosition(It.IsAny<IFrame>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>(), It.IsAny<double>()), Times.Once());
-                blockMockPair.Value.Verify(b => b.SetPosition(
-                    this.lineFrameMock.Object,
-                    SelectFromTuple(expectedXOff, blockMockPair.Key),
-                    0,
-                    SelectFromTuple(expectedWidths, blockMockPair.Key),
-                    15), Times.Once());
+                blockMockPair.Value.Verify(
+                    b =>
+                    b.SetPosition(
+                        It.IsAny<IFrame>(),
+                        It.IsAny<double>(),
+                        It.IsAny<double>(),
+                        It.IsAny<double>(),
+                        It.IsAny<double>()),
+                    Times.Once(),
+                    $"No invocations for align '{blockMockPair.Key}'. Widths: {widths.Item1}, {widths.Item2}, {widths.Item3}.");
+                var xOff = SelectFromTuple(expectedXOff, blockMockPair.Key);
+                var width = SelectFromTuple(expectedWidths, blockMockPair.Key);
+                blockMockPair.Value.Verify(
+                    b =>
+                    b.SetPosition(
+                        this.lineFrameMock.Object,
+                        xOff,
+                        0,
+                        width,
+                        15),
+                    Times.Once(),
+                    $"Incorrect values for align '{blockMockPair.Key}'. Widths: {widths.Item1}, {widths.Item2}, {widths.Item3}."
+                    + $"\nExpected (Object, {xOff}, 0, {width}, 15)");
             }
         }
 

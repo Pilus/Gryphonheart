@@ -5,6 +5,7 @@
     using System.Linq;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+
     using CsLuaFramework.Wrapping;
     using Lua;
     using GH.Menu.Containers;
@@ -38,6 +39,10 @@
             IMenuHandler handler)
         {
             var blockProfile = GenerateAlignedProfile(profile, align);
+            if (blockProfile.Count == 0)
+            {
+                return null;
+            }
             return (IAlignedBlock)handler.CreateRegion(blockProfile, false, typeof(AlignedBlock));
         }
 
@@ -55,14 +60,18 @@
             this.Frame.SetParent(parent);
             this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
-            var leftPreferredWidth = this.centerBlock?.GetPreferredWidth();
+            var leftPreferredWidth = this.leftBlock?.GetPreferredWidth();
             var centerPreferredWidth = this.centerBlock?.GetPreferredWidth();
-            var rightPreferredWidth = this.centerBlock?.GetPreferredWidth();
+            var rightPreferredWidth = this.rightBlock?.GetPreferredWidth();
 
-            
+            var leftAllocatedWidth = this.GetWidthAllocatedToLeftBlock(width, leftPreferredWidth, centerPreferredWidth, rightPreferredWidth);
+            this.leftBlock?.SetPosition(this.Frame, 0, 0, leftAllocatedWidth, this.leftBlock?.GetPreferredHeight() ?? height);
 
+            var centerAllocatedWidth = this.GetWidthAllocatedToCenterBlock(width, leftPreferredWidth, centerPreferredWidth, rightPreferredWidth);
+            this.centerBlock?.SetPosition(this.Frame, (width - centerAllocatedWidth) /2, 0, centerAllocatedWidth, this.centerBlock?.GetPreferredHeight() ?? height);
 
-            throw new NotImplementedException();
+            var rightAllocatedWidth = this.GetWidthAllocatedToRightBlock(width, leftPreferredWidth, centerPreferredWidth, rightPreferredWidth);
+            this.rightBlock?.SetPosition(this.Frame, width - rightAllocatedWidth, 0, rightAllocatedWidth, this.rightBlock?.GetPreferredHeight() ?? height);
         }
 
         private double GetWidthAllocatedToLeftBlock(double width, double? leftPreferredWidth, double? centerPreferredWidth, double? rightPreferredWidth)
@@ -71,6 +80,8 @@
             {
                 return 0;
             }
+
+            // There is a left block.
 
             if (leftPreferredWidth != null)
             {
@@ -81,7 +92,24 @@
 
             if (this.centerBlock == null)
             {
-                throw new NotImplementedException();
+                // There is no center block
+                if (this.rightBlock == null)
+                {
+                    // There is no right block.
+                    return width;
+                }
+
+                // There is a right block.
+
+                if (rightPreferredWidth != null)
+                {
+
+                    // The right block is not flexible.
+                    return width - (rightPreferredWidth.Value + this.Layout.objectSpacing);
+                }
+
+                // The right block is flexible
+                return (width - this.Layout.objectSpacing) / 2;
             }
 
             // There is a center block
@@ -89,7 +117,7 @@
             if (centerPreferredWidth != null)
             {
                 // The center block is fixed.
-                return (width - centerPreferredWidth.Value) - this.Layout.objectSpacing;
+                return ((width - centerPreferredWidth.Value)/2) - this.Layout.objectSpacing;
             }
             
             // The center block is flexible
@@ -107,13 +135,157 @@
             {
 
                 // The right block is not flexible.
-                // The left block would be able to grow to the size allowed by the right block
-                // Due to that the left flexible block will be the same size as the right block.
-                return rightPreferredWidth.Value;
+                return LuaMath.max(rightPreferredWidth.Value, (((width/2) - this.Layout.objectSpacing)/3)*2);
             }
 
             // The right block is flexible
-            return (width - (this.Layout.objectSpacing*2))
+            return (width - (this.Layout.objectSpacing * 2)) / 3;
+        }
+
+        private double GetWidthAllocatedToCenterBlock(double width, double? leftPreferredWidth, double? centerPreferredWidth, double? rightPreferredWidth)
+        {
+            if (this.centerBlock == null)
+            {
+                return 0;
+            }
+
+            // There is a center block.
+
+            if (centerPreferredWidth != null)
+            {
+                return centerPreferredWidth.Value;
+            }
+
+            // The center block is flexible.
+
+            if (this.leftBlock == null)
+            {
+                // There is no left block
+                if (this.rightBlock == null)
+                {
+                    // There is no right block.
+                    return width;
+                }
+
+                // There is a right block.
+
+                if (rightPreferredWidth != null)
+                {
+
+                    // The right block is not flexible.
+                    return ((width/2) - (rightPreferredWidth.Value + this.Layout.objectSpacing)) * 2;
+                }
+
+                // The right block is flexible
+                return (((width / 2) - this.Layout.objectSpacing) / 3) * 2;
+            }
+
+            // There is a left block
+
+            if (leftPreferredWidth != null)
+            {
+                // The left block is fixed.
+
+                if (this.rightBlock != null && rightPreferredWidth != null)
+                {
+                    return (((width / 2) - LuaMath.max(leftPreferredWidth.Value, rightPreferredWidth.Value)) - this.Layout.objectSpacing) * 2;
+                }
+
+                return (((width/2) - leftPreferredWidth.Value) - this.Layout.objectSpacing) * 2;
+            }
+
+            // The left block is flexible
+
+            if (this.rightBlock == null)
+            {
+                // There is no right block.
+                // The flexible center block must share the center side with half of the left block.
+                return (((width / 2) - this.Layout.objectSpacing) / 3) * 2; 
+            }
+
+            // There is a right block.
+
+            if (rightPreferredWidth != null)
+            {
+
+                // The right block is not flexible.
+                // The center block would be able to grow to the size allowed by the right block
+                // Due to that the center flexible block will be the same size as the right block.
+                return (((width / 2) - this.Layout.objectSpacing) / 3) * 2;
+            }
+
+            // The right block is flexible
+            return (width - (this.Layout.objectSpacing * 2)) / 3;
+        }
+
+        private double GetWidthAllocatedToRightBlock(double width, double? leftPreferredWidth, double? centerPreferredWidth, double? rightPreferredWidth)
+        {
+            if (this.rightBlock == null)
+            {
+                return 0;
+            }
+
+            // There is a right block.
+
+            if (rightPreferredWidth != null)
+            {
+                return rightPreferredWidth.Value;
+            }
+
+            // The right block is flexible.
+
+            if (this.centerBlock == null)
+            {
+                // There is no center block
+                if (this.leftBlock == null)
+                {
+                    // There is no left block.
+                    return width;
+                }
+
+                // There is a left block.
+
+                if (leftPreferredWidth != null)
+                {
+
+                    // The left block is not flexible.
+                    return width - (leftPreferredWidth.Value + this.Layout.objectSpacing);
+                }
+
+                // The left block is flexible
+                return (width - this.Layout.objectSpacing) / 2;
+            }
+
+            // There is a center block
+
+            if (centerPreferredWidth != null)
+            {
+                // The center block is fixed.
+                return ((width - centerPreferredWidth.Value)/2) - this.Layout.objectSpacing;
+            }
+
+            // The center block is flexible
+
+            if (this.leftBlock == null)
+            {
+                // There is no left block.
+                // The flexible right block must share the right side with half of the center block.
+                return ((width / 2) - this.Layout.objectSpacing) / 1.5;
+            }
+
+            // There is a left block.
+
+            if (leftPreferredWidth != null)
+            {
+
+                // The left block is not flexible.
+                // The right block would be able to grow to the size allowed by the left block
+                // Due to that the right flexible block will be the same size as the left block.
+                return leftPreferredWidth.Value;
+            }
+
+            // The left block is flexible
+            return (width - (this.Layout.objectSpacing * 2)) / 3;
         }
 
         public double? GetPreferredWidth()
