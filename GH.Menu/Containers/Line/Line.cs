@@ -182,16 +182,27 @@
 
             // There is a left block
 
+            var halfWidthMinusOneObjectSpacing = (width / 2) - this.Layout.objectSpacing;
+
             if (leftPreferredWidth != null)
             {
                 // The left block is fixed.
 
                 if (this.rightBlock != null && rightPreferredWidth != null)
                 {
+                    // There is a fixed right block.
                     return (((width / 2) - LuaMath.max(leftPreferredWidth.Value, rightPreferredWidth.Value)) - this.Layout.objectSpacing) * 2;
                 }
 
-                return (((width/2) - leftPreferredWidth.Value) - this.Layout.objectSpacing) * 2;
+                if (this.rightBlock != null)
+                {
+                    // There is a flexible right block.
+                    return LuaMath.min((halfWidthMinusOneObjectSpacing / 3) * 2, (halfWidthMinusOneObjectSpacing - leftPreferredWidth.Value) * 2);
+                }
+
+                // There is no right block.
+
+                return (halfWidthMinusOneObjectSpacing - leftPreferredWidth.Value) * 2;
             }
 
             // The left block is flexible
@@ -200,7 +211,7 @@
             {
                 // There is no right block.
                 // The flexible center block must share the center side with half of the left block.
-                return (((width / 2) - this.Layout.objectSpacing) / 3) * 2; 
+                return (halfWidthMinusOneObjectSpacing / 3) * 2; 
             }
 
             // There is a right block.
@@ -209,9 +220,7 @@
             {
 
                 // The right block is not flexible.
-                // The center block would be able to grow to the size allowed by the right block
-                // Due to that the center flexible block will be the same size as the right block.
-                return (((width / 2) - this.Layout.objectSpacing) / 3) * 2;
+                return LuaMath.min((halfWidthMinusOneObjectSpacing / 3) * 2, (halfWidthMinusOneObjectSpacing - rightPreferredWidth.Value) * 2);
             }
 
             // The right block is flexible
@@ -279,9 +288,7 @@
             {
 
                 // The left block is not flexible.
-                // The right block would be able to grow to the size allowed by the left block
-                // Due to that the right flexible block will be the same size as the left block.
-                return leftPreferredWidth.Value;
+                return LuaMath.max(leftPreferredWidth.Value, (((width / 2) - this.Layout.objectSpacing) / 3) * 2);
             }
 
             // The left block is flexible

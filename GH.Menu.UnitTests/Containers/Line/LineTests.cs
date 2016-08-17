@@ -218,7 +218,7 @@
             this.PerformSetPositionTestWithWidth(Tdq(   0,    0,   30), Td( 0,  0, 70), Td( 0,  0, 30));
             this.PerformSetPositionTestWithWidth(Tdq(null,    0,   30), Td( 0,  0, 70), Td(65,  0, 30));
             this.PerformSetPositionTestWithWidth(Tdq(  10, null,   30), Td( 0, 35, 70), Td(10, 30, 30));
-            this.PerformSetPositionTestWithWidth(Tdq(  20, null,   10), Td( 0, 25, 90), Td(20, 50, 10)); // Extra for special case
+            this.PerformSetPositionTestWithWidth(Tdq(  20, null,   10), Td( 0, 25, 90), Td(20, 50, 10)); // Extra
             this.PerformSetPositionTestWithWidth(Tdq(   0, null,   30), Td( 0, 35, 70), Td( 0, 30, 30));
             this.PerformSetPositionTestWithWidth(Tdq(null, null,   20), Td( 0, 35, 80), Td(30, 30, 20));
             this.PerformSetPositionTestWithWidth(Tdq(null, null,   40), Td( 0, 45, 60), Td(40, 10, 40)); // Extra
@@ -228,7 +228,7 @@
             this.PerformSetPositionTestWithWidth(Tdq(  10,    0,    0), Td( 0,  0,  0), Td(10,  0,  0));
             this.PerformSetPositionTestWithWidth(Tdq(   0,    0,    0), Td( 0,  0,  0), Td( 0,  0,  0));
             this.PerformSetPositionTestWithWidth(Tdq(null,    0,    0), Td( 0,  0,  0), Td(100, 0,  0));
-            this.PerformSetPositionTestWithWidth(Tdq(  10, null,    0), Td( 0, 15,  0), Td(10, 85,  0));
+            this.PerformSetPositionTestWithWidth(Tdq(  10, null,    0), Td( 0, 15,  0), Td(10, 70,  0));
             this.PerformSetPositionTestWithWidth(Tdq(   0, null,    0), Td( 0,  0,  0), Td( 0,100,  0));
             this.PerformSetPositionTestWithWidth(Tdq(null, null,    0), Td( 0, 35,  0), Td(30, 30,  0));
             this.PerformSetPositionTestWithWidth(Tdq(  10,   20, null), Td( 0, 40, 65), Td(10, 20, 35));
@@ -237,9 +237,10 @@
             this.PerformSetPositionTestWithWidth(Tdq(  10,    0, null), Td( 0,  0, 15), Td(10,  0, 85));
             this.PerformSetPositionTestWithWidth(Tdq(   0,    0, null), Td( 0,  0,  0), Td( 0,  0,100));
             this.PerformSetPositionTestWithWidth(Tdq(null,    0, null), Td( 0, 0,52.5), Td(47.5,0,47.5));
-            this.PerformSetPositionTestWithWidth(Tdq(  10, null, null), Td( 0, 35, 65), Td(10, 30, 30));
-            this.PerformSetPositionTestWithWidth(Tdq(   0, null, null), Td( 0, 35, 65), Td( 0, 30, 30));
-            this.PerformSetPositionTestWithWidth(Tdq(null, null, null), Td( 0, 35, 65), Td(30, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(  10, null, null), Td( 0, 35, 70), Td(10, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(  40, null, null), Td( 0, 45, 60), Td(40, 10, 40)); // Extra
+            this.PerformSetPositionTestWithWidth(Tdq(   0, null, null), Td( 0, 35, 70), Td( 0, 30, 30));
+            this.PerformSetPositionTestWithWidth(Tdq(null, null, null), Td( 0, 35, 70), Td(30, 30, 30));
         }
 
         private void PerformSetPositionTestWithWidth(Tuple<double?, double?, double?> widths, Tuple<double, double, double> expectedXOff, Tuple<double, double, double> expectedWidths)
