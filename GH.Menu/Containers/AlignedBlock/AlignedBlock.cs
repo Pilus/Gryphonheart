@@ -74,7 +74,7 @@ namespace GH.Menu.Containers.AlignedBlock
                 return null;
             }
 
-            return preferredWidths.Sum() + (objectSpacing * (preferredWidths.Length - 1));
+            return preferredWidths.OfType<double>().Sum() + (objectSpacing * (preferredWidths.Length - 1));
         }
 
         /// <summary>

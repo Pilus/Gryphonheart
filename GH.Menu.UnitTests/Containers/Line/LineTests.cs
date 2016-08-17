@@ -202,7 +202,45 @@
         [TestMethod]
         public void LineSetPositionTestWithFlexibleHeight()
         {
-            Assert.Fail();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>();
+            dimensionsMapping.Add(ObjectAlign.l, null);
+            dimensionsMapping.Add(ObjectAlign.c, null);
+            dimensionsMapping.Add(ObjectAlign.r, null);
+
+            var blockMocks = new Dictionary<ObjectAlign, Mock<IAlignedBlock>>();
+            var menuHandlerMock = SetUpMenuHandlerMock(null, ((lineProfile, mock) =>
+            {
+                var align = lineProfile.SingleOrDefault()?.align;
+                if (align == null)
+                {
+                    return;
+                }
+
+                blockMocks.Add((ObjectAlign)align, mock);
+                mock.Setup(e => e.GetPreferredHeight()).Returns(dimensionsMapping[(ObjectAlign)align]);
+                mock.Setup(e => e.GetPreferredWidth()).Returns(10);
+            }));
+
+            var profile = new LineProfile();
+            GenerateAndAddObjectProfile(profile, ObjectAlign.l);
+            GenerateAndAddObjectProfile(profile, ObjectAlign.c);
+            GenerateAndAddObjectProfile(profile, ObjectAlign.r);
+
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            var parentMock = new Mock<IFrame>();
+
+            // Act
+            this.lineUnderTest.SetPosition(parentMock.Object, 2, 3, 100, 30);
+
+            // Assert
+            this.lineFrameMock.Verify(f => f.SetParent(parentMock.Object));
+            this.lineFrameMock.Verify(f => f.SetWidth(100));
+            this.lineFrameMock.Verify(f => f.SetHeight(30));
+            this.lineFrameMock.Verify(f => f.SetPoint(FramePoint.TOPLEFT, parentMock.Object, FramePoint.TOPLEFT, 2, -3));
+            blockMocks[ObjectAlign.l].Verify(b => b.SetPosition(this.lineFrameMock.Object,  0, 0, 10, 30));
+            blockMocks[ObjectAlign.c].Verify(b => b.SetPosition(this.lineFrameMock.Object, 45, 0, 10, 30));
+            blockMocks[ObjectAlign.r].Verify(b => b.SetPosition(this.lineFrameMock.Object, 90, 0, 10, 30));
         }
 
         /// <summary>
@@ -330,7 +368,7 @@
             }
         }
 
-        private static void GenerateAndAddObjectProfile(LineProfile parentProfile, ObjectAlign align, bool skip)
+        private static void GenerateAndAddObjectProfile(LineProfile parentProfile, ObjectAlign align, bool skip = false)
         {
             if (!skip)
             {
@@ -345,7 +383,7 @@
                 .Returns(
                     (IMenuRegionProfile p, bool _, Type t) =>
                         {
-                            profilesList.Add((LineProfile)p);
+                            profilesList?.Add((LineProfile)p);
                             var block = new Mock<IAlignedBlock>();
                             blockAction?.Invoke((LineProfile)p, block);
                             return block.Object;
