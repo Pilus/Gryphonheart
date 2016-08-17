@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Containers\AlignedBlock\AlignedBlockTests.cs" />
     <Compile Include="Containers\Line\LineTests.cs" />
+    <Compile Include="Containers\Page\PageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
