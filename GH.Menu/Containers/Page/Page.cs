@@ -1,4 +1,9 @@
-﻿namespace GH.Menu.Containers.Page
+﻿//-----------------------–-----------------------–--------------
+// <copyright file="Page.cs">
+//  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
+// </copyright>
+//-----------------------–-----------------------–--------------
+namespace GH.Menu.Containers.Page
 {
     using System.Linq;
 
@@ -11,59 +16,92 @@
 
     using Lua;
 
+    /// <summary>
+    /// Container for lines.
+    /// </summary>
     public class Page : BaseContainer<ILine, LineProfile>, IPage
     {
-        private double lineSpacing;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Page"/> class.
+        /// </summary>
+        /// <param name="wrapper">Wrapper to use in object creation.</param>
         public Page(IWrapper wrapper) : base("Page", wrapper)
         {
-            
         }
 
+        /// <summary>
+        /// Gets the name of the page.
+        /// </summary>
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// Prepares the page with a given profile.
+        /// </summary>
+        /// <param name="profile">The profile to prepare with.</param>
+        /// <param name="handler">The menu handler.</param>
         public override void Prepare(IElementProfile profile, IMenuHandler handler)
         {
             base.Prepare(profile, handler);
             var pageProfile = (PageProfile)profile;
             this.Name = pageProfile.name;
-            this.lineSpacing = handler.Layout.lineSpacing;
         }
 
+        /// <summary>
+        /// Shows the page.
+        /// </summary>
         public void Show()
         {
             this.Frame.Show();
         }
 
-
+        /// <summary>
+        /// Hides the page.
+        /// </summary>
         public void Hide()
         {
             this.Frame.Hide();
         }
 
-        
+        /// <summary>
+        /// Gets the preferred width of the page.
+        /// </summary>
+        /// <returns>The preferred width. Null if it is flexible.</returns>
         public double? GetPreferredWidth()
         {
             var gotLineWithNoLimit = this.Content.Any(line => line.GetPreferredWidth() == null);
             
             if (!gotLineWithNoLimit && this.Content.Any())
             {
-                return this.Content.Max(line => line.GetPreferredWidth() ?? 0);
+                return this.Content.Max(line => line.GetPreferredWidth());
             }
 
             return null;
         }
 
+        /// <summary>
+        /// Gets the preferred height of the page.
+        /// </summary>
+        /// <returns>The preferred height. Null if it is flexible.</returns>
         public double? GetPreferredHeight()
         {
-            var gotLineWithNoLimit = this.Content.Any(line => line.GetPreferredHeight() == null);
+            var heights = this.Content.Select(line => line.GetPreferredHeight()).ToArray();
 
-            if (!gotLineWithNoLimit)
+            if (!heights.Any(h => h == null))
             {
-                return this.Content.Sum(line => line.GetPreferredHeight() ?? 0) + (this.lineSpacing * LuaMath.max(this.Content.Count - 1, 0));
+                return heights.Sum() + (this.Layout.lineSpacing * LuaMath.max(this.Content.Count - 1, 0));
             }
 
             return null;
         }
 
+        /// <summary>
+        /// Set the position and dimensions of the page relative to its given parent, anchoring top left to top left.
+        /// </summary>
+        /// <param name="parent">The parent of the page.</param>
+        /// <param name="xOff">X offset.</param>
+        /// <param name="yOff">Y offset, where positive is downwards.</param>
+        /// <param name="width">The width of the object.</param>
+        /// <param name="height">The height of the object.</param>
         public void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)
         {
             height = this.GetPreferredHeight() ?? height;
@@ -71,33 +109,24 @@
             this.Frame.SetParent(parent);
             this.Frame.SetWidth(width);
             this.Frame.SetHeight(height);
-            this.Frame.SetPoint(FramePoint.TOPLEFT, xOff, -yOff);
+            this.Frame.SetPoint(FramePoint.TOPLEFT, parent, FramePoint.TOPLEFT, xOff, -yOff);
 
-            var linesWithNoHeightLimit = this.Content.Where(line => line.GetPreferredHeight() == null).ToList();
-            var linesWithHeightLimit = this.Content.Where(line => line.GetPreferredHeight() != null).ToList();
+            var heights = this.Content.Select(line => line.GetPreferredHeight()).ToArray();
+            var numFlexible = heights.Count(h => h == null);
+            
+            var heightPrFlexObject = 
+                numFlexible > 0 ? 
+                (height - ((this.Layout.lineSpacing * (this.Content.Count - 1)) + heights.OfType<double>().Sum())) / numFlexible :
+                0;
 
-            double heightUsed = 0;
-            linesWithHeightLimit.ForEach(line =>
+            var heightUsed = 0.0;
+            for (var index = 0; index < this.Content.Count; index++)
             {
-                heightUsed += line.GetPreferredHeight() ?? 0 + this.lineSpacing;
-            });
-
-            double heightPrFlexObject = 0;
-            if (linesWithNoHeightLimit.Any())
-            {
-                var heightAvailable = height - heightUsed - (this.lineSpacing * (linesWithNoHeightLimit.Count - 1));
-                heightPrFlexObject = heightAvailable / linesWithNoHeightLimit.Count;
-            }
-
-            heightUsed = 0;
-            this.Content.ForEach(line =>
-            {
-                var lineHeight = line.GetPreferredHeight() ?? heightPrFlexObject;
+                var line = this.Content[index];
+                var lineHeight = heights[index] ?? heightPrFlexObject;
                 line.SetPosition(this.Frame, 0, heightUsed, width, lineHeight);
-                heightUsed += lineHeight + this.lineSpacing;
-            });
+                heightUsed += lineHeight + this.Layout.lineSpacing;
+            }
         }
-
-        public string Name { get; private set; }
     }
 }

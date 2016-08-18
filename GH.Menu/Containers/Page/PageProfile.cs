@@ -1,4 +1,8 @@
-﻿
+﻿//-----------------------–-----------------------–--------------
+// <copyright file="PageProfile.cs">
+//  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
+// </copyright>
+//-----------------------–-----------------------–--------------
 namespace GH.Menu.Containers.Page
 {
     using System.Collections.Generic;

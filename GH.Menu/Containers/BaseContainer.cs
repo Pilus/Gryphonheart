@@ -88,6 +88,7 @@
                 var regionProfile = (IMenuRegionProfile)p;
                 var region = (T)handler.CreateRegion(regionProfile);
                 this.Content.Add(region);
+                region.Prepare(regionProfile, handler);
             });
             
         }
