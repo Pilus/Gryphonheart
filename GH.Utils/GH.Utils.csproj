@@ -52,6 +52,7 @@
     <Compile Include="AddOnIntegration\AddOnAlreadyRegisteredException.cs" />
     <Compile Include="AddOnIntegration\IAddOnRegistry.cs" />
     <Compile Include="BaseException.cs" />
+    <Compile Include="Debug\DebugTools.cs" />
     <Compile Include="Entities\IIdEntity.cs" />
     <Compile Include="Entities\Storage\DataNotLoadedException.cs" />
     <Compile Include="Entities\Storage\DefaultEntityAlreadySetException.cs" />

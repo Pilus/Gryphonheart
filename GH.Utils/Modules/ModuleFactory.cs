@@ -72,5 +72,14 @@ namespace GH.Utils.Modules
         {
             this.callbackActions.Add(callback);
         }
+
+        /// <summary>
+        /// Gets an array of all modules that have already been loaded.
+        /// </summary>
+        /// <returns>The loaded modules.</returns>
+        public IModule[] GetAllLoadedModules()
+        {
+            return this.loadedModules.ToArray();
+        }
     }
 }

@@ -27,5 +27,11 @@ namespace GH.Utils.Modules
         /// </summary>
         /// <param name="callback">The callback triggered.</param>
         void RegisterForModuleLoadEvents(Action<IModule> callback);
+
+        /// <summary>
+        /// Gets an array of all modules that have already been loaded.
+        /// </summary>
+        /// <returns>The loaded modules.</returns>
+        IModule[] GetAllLoadedModules();
     }
 }
