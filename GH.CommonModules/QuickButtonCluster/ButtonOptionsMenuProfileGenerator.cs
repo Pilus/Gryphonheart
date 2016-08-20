@@ -4,13 +4,14 @@
     using System.Collections.Generic;
     using BlizzardApi.WidgetInterfaces;
     using CsLuaFramework.Wrapping;
-    using Menu.Menus;
-    using Menu.Objects;
-    using Menu.Objects.DropDown;
-    using Menu.Objects.DropDown.CustomDropDown;
-    using Menu.Objects.Line;
-    using Menu.Objects.Page;
-    using Menu.Objects.Text;
+
+    using GH.Menu.Containers.Line;
+    using GH.Menu.Containers.Menus;
+    using GH.Menu.Containers.Page;
+    using GH.Menu.Objects;
+    using GH.Menu.Objects.DropDown;
+    using GH.Menu.Objects.DropDown.CustomDropDown;
+    using GH.Menu.Objects.Text;
 
     public class ButtonOptionsMenuProfileGenerator : IMenuProfileGenerator
     {

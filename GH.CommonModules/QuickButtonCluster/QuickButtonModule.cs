@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="QuickButtonModule.cs" company="Microsoft">
-//   Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace GH.CommonModules.QuickButtonCluster
+﻿namespace GH.CommonModules.QuickButtonCluster
 {
     using System;
     using BlizzardApi.Global;
@@ -40,7 +34,7 @@ namespace GH.CommonModules.QuickButtonCluster
 
         public void ApplySetting(ISetting setting, Action<ISetting> changeSetting)
         {
-            this.buttonCluster.ApplySettings((QuickButtonSettings) setting);
+            this.buttonCluster.ApplySettings((QuickButtonSettings) setting, changeSetting);
         }
 
         public ISetting GetDefaultSetting()

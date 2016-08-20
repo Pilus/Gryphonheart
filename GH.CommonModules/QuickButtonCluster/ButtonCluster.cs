@@ -7,7 +7,6 @@
     using BlizzardApi.WidgetInterfaces;
     using CsLuaFramework.Wrapping;
     using GH.CommonModules.QuickButtonCluster.ClusterButtonAnimation;
-    using GH.Settings;
     using GH.Utils.AddOnIntegration;
     using Lua;
 
@@ -41,9 +40,10 @@
             this.SetUpMainButton();
         }
 
-        public void ApplySettings(QuickButtonSettings settings)
+        public void ApplySettings(QuickButtonSettings settings, Action<QuickButtonSettings> saveSettings)
         {
             this.settings = settings;
+            this.saveSettings = saveSettings;
             this.mainButton.SetPosition(settings.XLocation, settings.YLocation);
             this.showAnimation = this.animationFactory.Create(settings.ShowAnimationType, 40);
             this.hideAnimation = this.animationFactory.Create(settings.HideAnimationType, 40);

@@ -1,5 +1,5 @@
 ﻿namespace GH.CommonModules.TargetDetails
-{
+{ /*
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,8 +12,8 @@
     using GH.Settings;
     using GH.Utils.Entities.Storage;
     using GH.Utils.Modules;
-
-    public class TargetDetails : SingletonModule
+    
+    public class TargetDetails : SingletonModule, IModuleWithSettings
     {
         private const int ButtonSize = 32;
         private const SettingIds PositionSettingIds = SettingIds.TargetDetailsButtonPosition;
@@ -95,11 +95,11 @@
 
         private static MenuProfile GenerateMenuProfile()
         {
-            return new MenuProfile(Misc.GetUniqueGlobalName("TargetDetailsMenu"), 400, () => { })
+            return new MenuProfile("GH_TargetDetailsMenu", 400, () => { })
             {
                 theme = MenuThemeType.TabTheme,
             };
         }
         
-    }
+    } */
 }
