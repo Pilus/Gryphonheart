@@ -65,6 +65,7 @@
     <Compile Include="SlashCommand.cs" />
     <Compile Include="TargetDetails\TargetDetailPageInfo.cs" />
     <Compile Include="TargetDetails\TargetDetails.cs" />
+    <Compile Include="TargetDetails\TargetDetailsButtonPosition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">

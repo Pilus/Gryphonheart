@@ -1,8 +1,10 @@
 ﻿namespace GH.CommonModules.TargetDetails
-{ /*
+{ 
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Remoting.Messaging;
+
     using BlizzardApi.EventEnums;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
@@ -27,10 +29,11 @@
         {
             this.pages = new List<TargetDetailPageInfo>();
             this.button = new RoundButton(ButtonSize);
-            this.button.SetIcon(TextureResources.GhRoundTarget);
+            this.button.SetIcon(@"GH\Texture\GhRoundIcon");
             this.button.ClickCallback = this.OnClick;
             this.button.Button.Hide();
-            Misc.RegisterEvent(UnitInfoEvent.PLAYER_TARGET_CHANGED, this.OnTargetChange);
+            var eventListener = new GameEventListener();
+            eventListener.RegisterEvent(UnitInfoEvent.PLAYER_TARGET_CHANGED, this.OnTargetChange);
         }
 
         private void OnTargetChange(UnitInfoEvent eventName, object arg)
@@ -52,23 +55,25 @@
             }
         }
 
-        public void LoadSettings(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
-        {
-            var position = settings.Get(PositionSettingIds).Value as double[];
-            this.button.SetPosition(position[0], position[1]);
+        public SettingIds SettingId => TargetDetailsButtonPosition.SettingId;
 
+        public void ApplySetting(ISetting setting, Action<ISetting> changeSetting)
+        {
+            var buttonPosition = (TargetDetailsButtonPosition)setting;
+            this.button.SetPosition(buttonPosition.XPosition, buttonPosition.YPosition);
             this.button.PositionChangeCallback = (newX, newY) =>
             {
-                var positionSetting = new Setting(SettingIds.ButtonPosition, new[] { newX, newY });
-                settings.Set(positionSetting);
+                buttonPosition.XPosition = newX;
+                buttonPosition.YPosition = newY;
+                changeSetting(buttonPosition);
             };
         }
 
-        public void SetDefaults(IEntityStoreWithDefaults<ISetting, SettingIds> settings)
+        public ISetting GetDefaultSetting()
         {
-            var targetFrame = Global.Api.GetGlobal("TargetFrame"); // TODO: Use wrapper
+            var targetFrame = Global.Api.GetGlobal("TargetFrame");
             // TODO: Calculate the default position based on the target frame.
-            settings.SetDefault(new Setting(PositionSettingIds, new double[] { 200, 100 }));
+            return new TargetDetailsButtonPosition() { XPosition = 200, YPosition = -100, };
         }
 
         public void AddPages(List<PageProfile> pageProfiles, Func<bool> enabled)
@@ -100,6 +105,17 @@
                 theme = MenuThemeType.TabTheme,
             };
         }
+
         
-    } */
+
+        public PageProfile ProvideSettingsMenuPageProfile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISetting GetSettingFromSettingMenuPage(IPage page)
+        {
+            throw new NotImplementedException();
+        }
+    } 
 }
