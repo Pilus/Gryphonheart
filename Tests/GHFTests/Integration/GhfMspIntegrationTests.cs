@@ -18,6 +18,8 @@
         [TestMethod]
         public void VerifyMspPublishing()
         {
+            var mspMock = new Mock<ILibMSPWrapper>();
+
             var session = new SessionBuilder()
                 .WithPlayerName("Tester")
                 .WithPlayerClass("Warrior")
@@ -25,13 +27,12 @@
                 .WithPlayerRace("Human")
                 .WithPlayerSex(2)
                 .WithGH()
-                .WithGHF()
+                .WithGHF(mspMock)
                 .Build();
 
-            var mspMock = new Mock<ILibMSPWrapper>();
+            
             var fieldsMock = new MspFieldsMock();
             mspMock.Setup(m => m.GetEmptyFieldsObj()).Returns(fieldsMock);
-            session.SetGlobal("libMSPWrapper", mspMock.Object);
 
             session.RunStartup();
 
@@ -91,6 +92,8 @@
         [TestMethod]
         public void VerifyMspTargetingDisplay()
         {
+            var mspMock = new Mock<ILibMSPWrapper>();
+
             var targetMock = new TargetingMock();
             var session = new SessionBuilder()
                 .WithPlayerName("Tester")
@@ -99,13 +102,13 @@
                 .WithPlayerRace("Human")
                 .WithPlayerSex(2)
                 .WithGH()
-                .WithGHF()
+                .WithGHF(mspMock)
                 .WithApiMock(targetMock)
                 .Build();
 
             var otherMspUser = "Othermsp";
 
-            var mspMock = new Mock<ILibMSPWrapper>();
+            
             var fieldsMock = new MspFieldsMock();
             MspFieldsMock otherMspFields = null;
             Action<string> updateAction = null;
@@ -115,8 +118,6 @@
             mspMock.Setup(m => m.AddReceivedAction(It.IsAny<Action<string>>()))
                 .Callback<Action<string>>((a) => { updateAction = a; });
             mspMock.Setup(m => m.Request(otherMspUser, It.IsAny<NativeLuaTable>()));
-
-            session.SetGlobal("libMSPWrapper", mspMock.Object);
 
             session.RunStartup();
 

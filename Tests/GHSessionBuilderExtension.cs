@@ -5,6 +5,8 @@
     using GHF;
     using System;
 
+    using CsLuaFramework.Wrapping;
+
     using GH.Utils.Modules;
 
     using GHF.Model.MSP;
@@ -63,16 +65,20 @@
 
         public static SessionBuilder WithGHF(this SessionBuilder sessionBuilder)
         {
+            var msp = new Mock<ILibMSPWrapper>();
+            msp.Setup(m => m.GetEmptyFieldsObj()).Returns(new MspFieldsMock());
+            return sessionBuilder.WithGHF(msp);
+        }
+
+        public static SessionBuilder WithGHF(this SessionBuilder sessionBuilder, Mock<ILibMSPWrapper> msp)
+        {
+            var wrapper = new Mock<IWrapper>();
+            wrapper.Setup(w => w.Wrap<ILibMSPWrapper>("libMSPWrapper")).Returns(msp.Object);
+
             return sessionBuilder
                 .WithXmlFile(@"View\CharacterMenuProfile\CharacterList\CharacterListButton.xml")
                 .WithFrameWrapper("GHF_CharacterListButtonTemplate", CharacterListButtonWrapper.Init)
-                .WithAddOn(new GHFAddOn())
-                .WithPostBuildAction(s =>
-                {
-                    var msp = new Mock<ILibMSPWrapper>();
-                    msp.Setup(m => m.GetEmptyFieldsObj()).Returns(new MspFieldsMock());
-                    s.SetGlobal("libMSPWrapper", msp.Object);
-                });
+                .WithAddOn(new GHFAddOn(wrapper.Object));
         }
     }
 }
