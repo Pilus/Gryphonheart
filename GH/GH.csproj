@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="GHAddOn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Texture\TextureResources.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

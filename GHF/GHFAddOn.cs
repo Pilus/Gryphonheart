@@ -4,6 +4,12 @@
     using CsLuaFramework;
     using CsLuaFramework.Attributes;
     using CsLuaFramework.Wrapping;
+
+    using GH.CommonModules.QuickButtonCluster;
+    using GH.Utils;
+    using GH.Utils.AddOnIntegration;
+    using GH.Utils.Modules;
+
     using Lua;
     using Model;
 
@@ -19,7 +25,10 @@
             }
             Global.Api.SetGlobal("msp_RPAddOn", "GHF");
 
-            var model = new ModelProvider(new Serializer(), new Wrapper());
+            var addonRegistry = ModuleFactory.GetM<AddOnRegistry>();
+            var eventListener = ModuleFactory.GetM<GameEventListener>();
+            var buttonModule = ModuleFactory.GetM<QuickButtonModule>();
+            var model = new ModelProvider(new Serializer(), new Wrapper(), eventListener, addonRegistry, buttonModule);
         }
     }
 }

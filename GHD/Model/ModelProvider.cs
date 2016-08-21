@@ -1,18 +1,20 @@
 ﻿
 namespace GHD.Model
 {
-    using BlizzardApi.Global;
-    using GH.Integration;
+    using GH.CommonModules.QuickButtonCluster;
     using GH.Utils.AddOnIntegration;
+    using GH.Utils.Modules;
+
     using Presenter;
 
     public class ModelProvider : IModelProvider
     {
         public ModelProvider()
         {
-            var integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
-            new Presenter(this, integration);
-            integration.RegisterAddOn(AddOnReference.GHD);
+            var addonRegistry = ModuleFactory.GetM<AddOnRegistry>();
+            var quickButtonModule = ModuleFactory.GetM<QuickButtonModule>();
+            new Presenter(this, quickButtonModule);
+            addonRegistry.RegisterAddOn(AddOnReference.GHD);
         }
     }
 }

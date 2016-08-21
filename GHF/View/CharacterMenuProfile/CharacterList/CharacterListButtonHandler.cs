@@ -4,7 +4,6 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using GH.Misc;
     using GHF.Model;
     using System;
     using System.Collections.Generic;
@@ -30,6 +29,8 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
         };
         private const string Template = "GHF_CharacterListButtonTemplate";
 
+        private static int ButtonCount;
+
         public ICharacterListButton Button;
 
         private Action onClickAction;
@@ -38,7 +39,8 @@ namespace GHF.View.CharacterMenuProfile.CharacterList
 
         public CharacterListButtonHandler(IFrame parent, ProfileFormatter formatter)
         {
-            this.Button = (ICharacterListButton)Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "Button"), parent, Template);
+            this.Button = (ICharacterListButton)Global.FrameProvider.CreateFrame(FrameType.CheckButton, parent.GetName() + "Button" + ButtonCount, parent, Template);
+            ButtonCount++;
             this.Button.SetScript(ButtonHandler.OnClick, this.OnClick);
             this.Button.SetWidth(Width);
             this.Button.SetHeight(Height);

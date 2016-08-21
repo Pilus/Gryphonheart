@@ -6,11 +6,11 @@ namespace GHF.Presenter.CharacterMenu
     using System.Collections.Generic;
     using System.Linq;
     using GH.Menu;
+    using GH.Menu.Containers.AlignedBlock;
     using GH.Menu.Containers.Line;
-    using GH.Menu.Menus;
+    using GH.Menu.Containers.Menus;
+    using GH.Menu.Containers.Page;
     using GH.Menu.Objects;
-    using GH.Menu.Objects.Line;
-    using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
     using GHF.View;
     using Model;
@@ -92,13 +92,15 @@ namespace GHF.Presenter.CharacterMenu
                     var profile = fieldMeta.GenerateProfile(ObjectAlign.l);
                     var newLine = (ILine)this.menuHandler.CreateRegion(new LineProfile());
                     panel.AddElement(newLine);
-                    newLine.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
+                    var newBlock = (IAlignedBlock)this.menuHandler.CreateRegion(new LineProfile(), false, typeof(AlignedBlock));
+                    newBlock.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
+                    newLine.AddElement(newBlock);
                 }
                 else
                 {
                     var line = panel.GetElement(numberOfLines-1);
                     var profile = fieldMeta.GenerateProfile(ObjectAlign.r);
-                    line.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
+                    line.GetElement(3).AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
                 }
 
                 this.loadedMenu.UpdatePosition();

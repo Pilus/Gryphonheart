@@ -4,6 +4,8 @@ namespace GHD.Document.Flags
     using System;
     using System.Collections.Generic;
     using GH;
+    using GH.Menu;
+
     using GHD.Document.Data;
 
     public static class FlagsManager

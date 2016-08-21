@@ -3,10 +3,12 @@
 namespace GHF.Presenter
 {
     using CharacterMenu;
-    using GH.Integration;
-    using GH.Model.QuickButtons;
-    using GH.UIModules.TargetDetails;
+
+    using GH.CommonModules.QuickButtonCluster;
+    using GH.CommonModules.TargetDetails;
     using GH.Utils.AddOnIntegration;
+    using GH.Utils.Modules;
+
     using Model;
     using Model.AdditionalFields;
     using TargetMenu;
@@ -17,11 +19,11 @@ namespace GHF.Presenter
         private MainCharacterMenu characterMenu;
         private readonly SupportedFields supportedFields;
 
-        public Presenter(IModelProvider model, SupportedFields supportedFields)
+        public Presenter(IModelProvider model, SupportedFields supportedFields, QuickButtonModule buttonModule)
         {
             this.model = model;
             this.supportedFields = supportedFields;
-            this.model.Integration.RegisterDefaultButton(new QuickButton(
+            buttonModule.RegisterDefaultButton(new QuickButton(
                 "ghfProfile",
                 5,
                 true,
@@ -30,7 +32,7 @@ namespace GHF.Presenter
                 ShowCharacterMenu,
                 AddOnReference.GHF));
 
-            var targetDetailsUi = this.model.Integration.GetModule<TargetDetails>();
+            var targetDetailsUi = ModuleFactory.GetM<TargetDetails>();
             new TargetProfileMenu(this.model, targetDetailsUi);
         }
 

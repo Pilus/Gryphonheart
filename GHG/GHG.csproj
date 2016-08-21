@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GHG</RootNamespace>
     <AssemblyName>GHG</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -83,6 +83,10 @@
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH.Menu\GH.Menu.csproj">
+      <Project>{1475A556-282A-4D82-8694-2DD5AEBF3BF5}</Project>
+      <Name>GH.Menu</Name>
     </ProjectReference>
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>

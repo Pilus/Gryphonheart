@@ -12,12 +12,14 @@
 
     public class Session : ISession
     {
-        private Dictionary<string, Action> addOns;
+        private readonly Dictionary<string, Action> addOns;
         private float fps;
-        private SavedDataHandler savedDataHandler;
-        private IWrapper wrapper;
+        private readonly SavedDataHandler savedDataHandler;
+        private readonly IWrapper wrapper;
 
-        public Session(Mock<IApi> apiMock, IFrames globalFrames, UiInitUtil util, FrameActor actor, ISimulatorFrameProvider frameProvider, Dictionary<string, Action> addOns, float fps, SavedDataHandler savedDataHandler, IWrapper wrapper)
+        private readonly Action<ISession> setActiveSessionAction;
+
+        public Session(Mock<IApi> apiMock, IFrames globalFrames, UiInitUtil util, FrameActor actor, ISimulatorFrameProvider frameProvider, Dictionary<string, Action> addOns, float fps, SavedDataHandler savedDataHandler, IWrapper wrapper, Action<ISession> setActiveSessionAction)
         {
             this.ApiMock = apiMock;
             this.Frames = globalFrames;
@@ -28,6 +30,7 @@
             this.Util = util;
             this.Actor = actor;
             this.wrapper = wrapper;
+            this.setActiveSessionAction = setActiveSessionAction;
         }
 
         public UiInitUtil Util { get; private set; }
@@ -38,6 +41,7 @@
             Global.FrameProvider = this.FrameProvider;
             Global.Frames = this.Frames;
             Global.Wrapper = this.wrapper;
+            this.setActiveSessionAction?.Invoke(this);
         }
 
         public void RunStartup()

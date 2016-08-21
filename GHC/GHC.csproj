@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GHC</RootNamespace>
     <AssemblyName>GHC</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -55,6 +55,18 @@
     <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH.CommonModules\GH.CommonModules.csproj">
+      <Project>{c348780d-78e6-463d-8690-016abdae6858}</Project>
+      <Name>GH.CommonModules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH.Menu\GH.Menu.csproj">
+      <Project>{1475A556-282A-4D82-8694-2DD5AEBF3BF5}</Project>
+      <Name>GH.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH.Settings\GH.Settings.csproj">
+      <Project>{221634cb-5733-46ea-908e-1032a6421ba0}</Project>
+      <Name>GH.Settings</Name>
     </ProjectReference>
     <ProjectReference Include="..\GH.Utils\GH.Utils.csproj">
       <Project>{be5c7ec8-8d68-4895-a5ed-6edf56a9b079}</Project>

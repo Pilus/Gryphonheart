@@ -1,11 +1,12 @@
 ﻿namespace Tests
 {
     using BlizzardApi.Global;
-    using GH.Presenter;
     using System;
     using WoWSimulator;
     using System.Linq;
     using BlizzardApi.WidgetInterfaces;
+
+    using GH.CommonModules.QuickButtonCluster;
 
     public class GHAddOnTestable
     {

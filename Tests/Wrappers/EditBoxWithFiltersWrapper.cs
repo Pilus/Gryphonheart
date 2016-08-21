@@ -1,7 +1,9 @@
 ﻿namespace Tests.Wrappers
 {
     using BlizzardApi.WidgetInterfaces;
+
     using GH.Menu.Objects.EditBox;
+
     using WoWSimulator.UISimulation;
     using WoWSimulator.UISimulation.UiObjects;
     using WoWSimulator.UISimulation.XMLHandler;

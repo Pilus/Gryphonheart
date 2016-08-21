@@ -6,8 +6,8 @@
     using BlizzardApi.MiscEnums;
     using CsLuaFramework;
     using CsLuaFramework.Wrapping;
-    using GH.Integration;
-    using GH.Misc;
+
+    using GH.CommonModules.QuickButtonCluster;
     using GH.Utils;
     using GH.Utils.AddOnIntegration;
     using GH.Utils.Entities.Storage;
@@ -22,17 +22,15 @@
 
         public MSPProxy Msp { get; private set; }
 
-        public IAddOnIntegration Integration { get; private set; }
         public IEntityStore<Profile, string> AccountProfiles { get; private set; }
 
-        public ModelProvider(ISerializer serializer, IWrapper wrapper)
+        public ModelProvider(ISerializer serializer, IWrapper wrapper, GameEventListener eventListener, IAddOnRegistry addOnRegistry, QuickButtonModule buttonModule)
         {
             var subscriptionCenter = new EntityUpdateSubscriptionCenter<Profile, string>();
             this.AccountProfiles = new EntityStore<Profile, string>(serializer, new SavedDataHandler(SavedAccountProfiles, Global.Api.GetRealmName()), subscriptionCenter);
 
-            Misc.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
-            this.Integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
-            this.Integration.RegisterAddOn(AddOnReference.GHF);
+            eventListener.RegisterEvent(SystemEvent.VARIABLES_LOADED, this.OnVariablesLoaded);
+            addOnRegistry.RegisterAddOn(AddOnReference.GHF);
 
             var playerName = Global.Api.UnitName(UnitId.player);
             var version = Global.Api.GetAddOnMetadata(Strings.tostring(AddOnReference.GH), "Version");
@@ -42,9 +40,9 @@
             subscriptionCenter.SubscribeForUpdates(this.Msp.Set, profile => profile.Id.Equals(playerName));
 
             var requestStrategy = new MspRequestStrategy();
-            var activityScanner = new PlayerActivityScanner((name, activity) => { this.Msp.Request(name, requestStrategy.GetFieldsToRequest(activity)); });
+            var activityScanner = new PlayerActivityScanner((name, activity) => { this.Msp.Request(name, requestStrategy.GetFieldsToRequest(activity)); }, eventListener);
 
-            new Presenter(this, supportedFields);
+            new Presenter(this, supportedFields, buttonModule);
         }
 
         private void SetPlayerProfileIfMissing()

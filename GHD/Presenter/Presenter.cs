@@ -2,8 +2,8 @@
 namespace GHD.Presenter
 {
     using Document;
-    using GH.Integration;
-    using GH.Model.QuickButtons;
+
+    using GH.CommonModules.QuickButtonCluster;
     using GH.Utils.AddOnIntegration;
     using Model;
 
@@ -12,10 +12,10 @@ namespace GHD.Presenter
         private readonly IModelProvider model;
         private DocumentMenu documentMenu;
 
-        public Presenter(IModelProvider model, IAddOnIntegration integration)
+        public Presenter(IModelProvider model, QuickButtonModule quickButtonModule)
         {
             this.model = model;
-            integration.RegisterDefaultButton(new QuickButton(
+            quickButtonModule.RegisterDefaultButton(new QuickButton(
                 "ghdDocument",
                 6,
                 true,
@@ -23,8 +23,6 @@ namespace GHD.Presenter
                 "Interface\\Icons\\INV_Misc_Book_08",
                 ShowDocumentMenu,
                 AddOnReference.GHD));
-
-            integration.RegisterAddOn(AddOnReference.GHD);
         }
 
         private void ShowDocumentMenu()

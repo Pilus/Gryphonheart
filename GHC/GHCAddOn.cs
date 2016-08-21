@@ -6,24 +6,25 @@ namespace GHC
     using CsLuaFramework;
     using CsLuaFramework.Attributes;
     using CsLuaFramework.Wrapping;
-    using GH.Integration;
-    using GH.Misc;
-    using GH.Model;
+
+    using GH.CommonModules.QuickButtonCluster;
+    using GH.Utils;
     using GH.Utils.AddOnIntegration;
+    using GH.Utils.Modules;
+
     using Lua;
     using Modules.AbilityActionBar;
 
     [CsLuaAddOn("GHC", "Gryphonheart Crime", 70000, Author = "The Gryphonheart Team", Dependencies = new []{"GH"})]
     public class GHCAddOn : ICsLuaAddOn
     {
-        private IAddOnIntegration integration;
-
         public void Execute()
         {
-            Misc.RegisterEvent(SystemEvent.ADDON_LOADED, this.OnAddOnLoaded);
-            this.integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
+            var eventListener = ModuleFactory.GetM<GameEventListener>();
+            eventListener.RegisterEvent(SystemEvent.ADDON_LOADED, this.OnAddOnLoaded);
 
-            this.integration.RegisterDefaultButton(new QuickButton(
+            var quickButtonCluster = ModuleFactory.GetM<QuickButtonModule>();
+            quickButtonCluster.RegisterDefaultButton(new QuickButton(
                 "ghcMain",
                 6,
                 true,
@@ -37,7 +38,8 @@ namespace GHC
         {
             if (addonName.Equals("GHC"))
             {
-                this.integration.RegisterAddOn(AddOnReference.GHC);
+                var addonRegistry = ModuleFactory.GetM<AddOnRegistry>();
+                addonRegistry.RegisterAddOn(AddOnReference.GHC);
             }
         }
 

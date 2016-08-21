@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{31D583CF-E9F7-4374-8C96-BDD12ED913E5}</ProjectGuid>
+    <ProjectGuid>{12C2A35E-E589-4347-831A-B18A269DCB67}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GH.Menu.UnitTests</RootNamespace>
-    <AssemblyName>GH.Menu.UnitTests</AssemblyName>
+    <RootNamespace>GH.IntegrationTests</RootNamespace>
+    <AssemblyName>GH.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsLuaFramework">
-      <HintPath>..\CsLuaConverter\CsLuaFramework.dll</HintPath>
+    <Reference Include="Lua">
+      <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\Tests\Moq.dll</HintPath>
@@ -52,16 +51,12 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Containers\AlignedBlock\AlignedBlockTests.cs" />
-    <Compile Include="Containers\Line\LineTests.cs" />
-    <Compile Include="Containers\Page\PageTests.cs" />
+    <Compile Include="QuickButtonUsageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +68,17 @@
       <Project>{1475A556-282A-4D82-8694-2DD5AEBF3BF5}</Project>
       <Name>GH.Menu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GH.Utils\GH.Utils.csproj">
-      <Project>{be5c7ec8-8d68-4895-a5ed-6edf56a9b079}</Project>
-      <Name>GH.Utils</Name>
+    <ProjectReference Include="..\GH\GH.csproj">
+      <Project>{5933B9F8-E802-41A9-AE65-FAF31DD3D5DD}</Project>
+      <Name>GH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tests\Tests.csproj">
+      <Project>{9e9ddc27-bd76-45cc-9f20-25ec7568c86d}</Project>
+      <Name>Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WoWSimulator\WoWSimulator.csproj">
+      <Project>{90089C84-D04E-4953-BE7D-3B2A9BE1C819}</Project>
+      <Name>WoWSimulator</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

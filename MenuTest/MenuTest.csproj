@@ -57,6 +57,18 @@
       <Project>{4fa81a8f-be0d-4dad-9e55-0ad7146fc259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GH.CommonModules\GH.CommonModules.csproj">
+      <Project>{C348780D-78E6-463D-8690-016ABDAE6858}</Project>
+      <Name>GH.CommonModules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH.Menu\GH.Menu.csproj">
+      <Project>{1475A556-282A-4D82-8694-2DD5AEBF3BF5}</Project>
+      <Name>GH.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GH.Utils\GH.Utils.csproj">
+      <Project>{BE5C7EC8-8D68-4895-A5ED-6EDF56A9B079}</Project>
+      <Name>GH.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GH\GH.csproj">
       <Project>{5933b9f8-e802-41a9-ae65-faf31dd3d5dd}</Project>
       <Name>GH</Name>

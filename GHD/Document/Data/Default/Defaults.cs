@@ -3,7 +3,7 @@
 namespace GHD.Document.Data.Default
 {
     using System.Collections.Generic;
-    using GH;
+    using GH.Menu;
 
     public static class Defaults
     {

@@ -1,9 +1,8 @@
 ﻿namespace GH
 {
-    using BlizzardApi.Global;
     using CsLuaFramework;
     using CsLuaFramework.Attributes;
-    using CsLuaFramework.Wrapping;
+
     using GH.CommonModules.QuickButtonCluster;
     using GH.Utils.AddOnIntegration;
     using GH.Utils.Modules;

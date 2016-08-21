@@ -33,14 +33,34 @@ namespace GH.Utils.Modules
         /// <summary>
         /// Initializes a new instance of the <see cref="ModuleFactory"/> class.
         /// </summary>
-        protected ModuleFactory()
+        public ModuleFactory()
         {
         }
 
         /// <summary>
         /// Gets the singleton instance of the module factory.
         /// </summary>
-        public static IModuleFactory ModuleFactorySingleton => moduleFactory ?? (moduleFactory = new ModuleFactory());
+        public static IModuleFactory ModuleFactorySingleton
+        {
+            get
+            {
+                return moduleFactory ?? (moduleFactory = new ModuleFactory());
+            }
+            set
+            {
+                moduleFactory = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets a module from the static module factory.
+        /// </summary>
+        /// <typeparam name="T">The type of the module.</typeparam>
+        /// <returns>The module.</returns>
+        public static T GetM<T>() where T : IModule, new()
+        {
+            return ModuleFactorySingleton.GetModule<T>();
+        }
 
         /// <summary>
         /// Get a module of the desired type.

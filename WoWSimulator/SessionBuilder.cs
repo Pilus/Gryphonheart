@@ -26,6 +26,7 @@
         private readonly List<Action<ISession>> postBuildActions = new List<Action<ISession>>();
         private float fps = 30;
         private NativeLuaTable savedVariables;
+        private Action<ISession> setActiveSessionAction;
 
         public SessionBuilder()
         {
@@ -64,7 +65,7 @@
 
             var wrapper = new MockObjectWrapper(this.apiMock.Object);
             this.MockAddOnApi(this.apiMock);
-            var session = new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler, wrapper);
+            var session = new Session(this.apiMock, globalFrames, this.util, this.actor, this.frameProvider, addOnLoadActions, this.fps, savedDataHandler, wrapper, this.setActiveSessionAction);
 
             this.postBuildActions.ForEach(action => action(session));
 
@@ -163,6 +164,12 @@
         public SessionBuilder WithPlayerSex(int sex)
         {
             this.apiMock.Setup(api => api.UnitSex(UnitId.player)).Returns(sex);
+            return this;
+        }
+
+        public SessionBuilder WithSetActiveSessionAction(Action<ISession> setActiveSessionAction)
+        {
+            this.setActiveSessionAction = setActiveSessionAction;
             return this;
         }
     }

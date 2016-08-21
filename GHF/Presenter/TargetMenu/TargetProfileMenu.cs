@@ -3,8 +3,10 @@
     using System.Collections.Generic;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using GH.Menu.Objects.Page;
-    using GH.UIModules.TargetDetails;
+
+    using GH.CommonModules.TargetDetails;
+    using GH.Menu.Containers.Page;
+
     using GHF.View.TargetMenuProfile;
     using Model;
 

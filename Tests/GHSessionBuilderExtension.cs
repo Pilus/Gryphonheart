@@ -4,6 +4,9 @@
     using GH;
     using GHF;
     using System;
+
+    using GH.Utils.Modules;
+
     using GHF.Model.MSP;
     using Moq;
     using Tests.GHFTests.Integration;
@@ -14,11 +17,13 @@
     {
         public static SessionBuilder WithGH(this SessionBuilder sessionBuilder)
         {
-            return sessionBuilder.WithXmlFile(@"Menu\Objects\Button\ButtonFrame.xml")
-                .WithXmlFile(@"Menu\Objects\Editbox\EditBoxFrame.xml")
-                .WithXmlFile(@"Menu\Objects\TextLabelWithTooltip.xml")
-                .WithXmlFile(@"Menu\Objects\EditField\EditFieldFrame.xml")
-                .WithXmlFile(@"Menu\Objects\Text\TextObject.xml")
+            var moduleFactory = new ModuleFactory();
+
+            return sessionBuilder.WithXmlFile(@"Objects\Button\ButtonFrame.xml")
+                .WithXmlFile(@"Objects\Editbox\EditBoxFrame.xml")
+                .WithXmlFile(@"Objects\TextLabelWithTooltip.xml")
+                .WithXmlFile(@"Objects\EditField\EditFieldFrame.xml")
+                .WithXmlFile(@"Objects\Text\TextObject.xml")
                 .WithXmlFile(@"Xml\UIPanelScrollFrame.xml")
                 .WithFrameWrapper("GH_EditBoxWithFilters_Template", EditBoxWithFiltersWrapper.Init)
                 .WithFrameWrapper("GH_TextLabel_Template", TextLabelWithTooltipWrapper.Init)
@@ -44,6 +49,10 @@
                     Action<IUIObject, int> PanelTemplates_SetNumTabs = GHSessionBuilderExtension.PanelTemplates_SetNumTabs;
                     session.SetGlobal("PanelTemplates_SetNumTabs", PanelTemplates_SetNumTabs);
                     session.SetGlobal("PanelTemplates_SetTab", PanelTemplates_SetNumTabs);
+                })
+                .WithSetActiveSessionAction(session =>
+                {
+                    ModuleFactory.ModuleFactorySingleton = moduleFactory;
                 });
         }
 

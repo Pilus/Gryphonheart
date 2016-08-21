@@ -3,12 +3,13 @@ namespace GHF.View.CharacterMenuProfile
 {
     using System;
     using System.Collections.Generic;
+
+    using GH.Menu.Containers.Line;
+    using GH.Menu.Containers.Page;
     using GH.Menu.Objects;
     using GH.Menu.Objects.DropDown;
     using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.EditField;
-    using GH.Menu.Objects.Line;
-    using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
     using GH.Menu.Objects.Text;
     using GHF.View.CharacterMenuProfile.CharacterList;

@@ -5,14 +5,15 @@ namespace GHF.View
     using System;
     using System.Collections.Generic;
     using CharacterMenuProfile;
+
+    using GH.Menu.Containers.Line;
+    using GH.Menu.Containers.Page;
     using GH.Menu.Objects;
     using GH.Menu.Objects.DropDown;
     using GH.Menu.Objects.DropDown.ButtonWithDropDown;
     using GH.Menu.Objects.Dummy;
     using GH.Menu.Objects.EditBox;
     using GH.Menu.Objects.EditField;
-    using GH.Menu.Objects.Line;
-    using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Panel;
     using GHF.View.CharacterMenuProfile.CharacterList;
     using Model.AdditionalFields;

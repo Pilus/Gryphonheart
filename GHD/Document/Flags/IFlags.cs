@@ -3,6 +3,7 @@
 namespace GHD.Document.Flags
 {
     using GH;
+    using GH.Menu;
 
     public interface IFlags
     {

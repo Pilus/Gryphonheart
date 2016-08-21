@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameEventListener.cs" />
     <Compile Include="IModuleWithSettings.cs" />
     <Compile Include="ISetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

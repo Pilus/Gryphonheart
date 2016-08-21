@@ -8,7 +8,9 @@ namespace GHF.Presenter.CharacterMenu
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
     using GH.Menu;
-    using GH.Menu.Menus;
+    using GH.Menu.Containers.Menus;
+    using GH.Utils.Modules;
+
     using GHF.View.CharacterMenuProfile.CharacterList;
     using Model;
     using Model.AdditionalFields;
@@ -27,7 +29,7 @@ namespace GHF.Presenter.CharacterMenu
 
         public MainCharacterMenu(IModelProvider model, SupportedFields fields)
         {
-            var menuHandler = model.Integration.GetModule<MenuHandler>();
+            var menuHandler = ModuleFactory.GetM<MenuHandler>();
 
             this.model = model;
             this.tabs = new List<ICharacterMenuTab>()

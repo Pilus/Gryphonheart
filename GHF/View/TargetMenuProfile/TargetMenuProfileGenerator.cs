@@ -1,6 +1,6 @@
 ﻿namespace GHF.View.TargetMenuProfile
 {
-    using GH.Menu.Objects.Page;
+    using GH.Menu.Containers.Page;
 
     public static class TargetMenuProfileGenerator
     {

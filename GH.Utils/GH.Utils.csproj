@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GH.Utils</RootNamespace>
     <AssemblyName>GH.Utils</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -64,6 +64,7 @@
     <Compile Include="Entities\Storage\EntityStoreWithDefaults.cs" />
     <Compile Include="Entities\Subscriptions\EntityUpdateSubscriptionCenter.cs" />
     <Compile Include="Entities\Subscriptions\IEntityUpdateSubscriptionCenter.cs" />
+    <Compile Include="GameEventListener.cs" />
     <Compile Include="ISavedDataHandler.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IModuleFactory.cs" />

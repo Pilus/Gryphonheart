@@ -1,11 +1,11 @@
 ﻿namespace MenuTest
 {
     using GH.Menu;
-    using GH.Menu.Menus;
+    using GH.Menu.Containers.Line;
+    using GH.Menu.Containers.Menus;
+    using GH.Menu.Containers.Page;
     using GH.Menu.Objects;
     using GH.Menu.Objects.EditBox;
-    using GH.Menu.Objects.Line;
-    using GH.Menu.Objects.Page;
     using Lua;
 
     public class EditBoxesTest

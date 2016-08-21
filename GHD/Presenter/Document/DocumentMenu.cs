@@ -6,7 +6,7 @@ namespace GHD.Presenter.Document
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using GH.Menu;
-    using GH.Menu.Menus;
+    using GH.Menu.Containers.Menus;
     using GHD.Document;
     using GHD.Document.Elements;
     using GHD.Document.KeyboardInput;

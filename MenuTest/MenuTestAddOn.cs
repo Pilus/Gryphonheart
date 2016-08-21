@@ -2,9 +2,12 @@
 {
     using BlizzardApi.Global;
     using CsLuaAttributes;
-    using GH.Integration;
+
+    using GH.CommonModules;
     using GH.Menu;
     using GH.UIModules;
+    using GH.Utils.Modules;
+
     using Lua;
 
     [CsLuaAddOn("MenuTest", "Menu test", 70000, Author = "The Gryphonheart Team", Notes = "Test addon for testing GH menu. Not intended for release.")]
@@ -12,13 +15,13 @@
     {
         public void Execute()
         {
-            SlashCommand.Register("menu", SlashCmd);
+            var slashCommandHandler = ModuleFactory.GetM<SlashCommand>();
+            slashCommandHandler.Register("menu", SlashCmd);
         }
 
         private static void SlashCmd(string fullCmd, NativeLuaTable _)
         {
-            var integration = (IAddOnIntegration)Global.Api.GetGlobal(AddOnIntegration.GlobalReference);
-            var menuHandler = integration.GetModule<MenuHandler>();
+            var menuHandler = ModuleFactory.GetM<MenuHandler>();
             new MainTest(menuHandler);
         }
     }

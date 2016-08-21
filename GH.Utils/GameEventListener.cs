@@ -1,11 +1,13 @@
 ﻿
-namespace GH.Settings
+namespace GH.Utils
 {
     using System;
     using System.Collections.Generic;
+
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+
     using GH.Utils.Modules;
 
     public class GameEventListener : SingletonModule

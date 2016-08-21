@@ -3,7 +3,6 @@
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using GH.Misc;
     using System;
     using CsLuaFramework.Wrapping;
 
@@ -19,6 +18,8 @@
 
         private static IActionButtonProxyMethods actionButtonProxyMethods;
 
+        private static int buttonIndex;
+
         public string Id { get; set; }
 
         public ActionButtonProxy(IFrame parent, IWrapper wrapper)
@@ -29,8 +30,9 @@
             }
 
             this.wrapper = wrapper;
-            this.button = Global.FrameProvider.CreateFrame(FrameType.CheckButton, Misc.GetUniqueGlobalName(parent.GetName() + "ActionButton"), parent, "ActionButtonTemplate") as ICheckButton;
+            this.button = Global.FrameProvider.CreateFrame(FrameType.CheckButton, parent.GetName() + "ActionButton" + buttonIndex, parent, "ActionButtonTemplate") as ICheckButton;
             this.button.RegisterForClicks(ClickType.LeftButtonUp, ClickType.RightButtonUp);
+            buttonIndex++;
             this.SetupHandlersForTooltips();
             this.IdentifyFrameElements();
         }

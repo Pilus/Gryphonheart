@@ -3,11 +3,12 @@
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using GH.Misc;
-    using GH.Presenter;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using GH.Menu;
+
     using Lua;
 
     public class ActionBar : DragableButton, IActionBar
@@ -20,7 +21,7 @@
         private readonly List<IActionButtonProxy> actionButtons;
         private readonly List<IActionButtonProxy> unusedActionButtons;
 
-        public ActionBar(Func<IFrame, IActionButtonProxy> buttonFactory) : base(ButtonSize + ContainerEdge * 2, Misc.GetUniqueGlobalName(NamePrefix))
+        public ActionBar(Func<IFrame, IActionButtonProxy> buttonFactory) : base(ButtonSize + ContainerEdge * 2, "GH_ActionBar")
         {
             this.buttonFactory = buttonFactory;
             this.SetUpContainer();

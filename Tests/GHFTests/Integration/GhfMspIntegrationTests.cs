@@ -6,8 +6,10 @@
     using Moq;
     using WoWSimulator;
     using Tests.Util;
-    using GH.Texture;
     using System;
+
+    using GH.Texture;
+
     using Lua;
 
     [TestClass]

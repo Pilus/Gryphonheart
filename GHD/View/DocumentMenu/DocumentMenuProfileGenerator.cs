@@ -2,10 +2,10 @@
 
 namespace GHD.View.DocumentMenu
 {
-    using GH.Menu.Menus;
+    using GH.Menu.Containers.Line;
+    using GH.Menu.Containers.Menus;
+    using GH.Menu.Containers.Page;
     using GH.Menu.Objects.Dummy;
-    using GH.Menu.Objects.Line;
-    using GH.Menu.Objects.Page;
     using GH.Menu.Objects.Toolbar;
     using ToolbarCatagories;
 

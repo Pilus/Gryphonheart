@@ -2,8 +2,9 @@
 
 namespace GHF.Presenter.CharacterMenu
 {
-    using GH.Menu.Menus;
-    using GH.Menu.Objects.Page;
+    using GH.Menu.Containers.Menus;
+    using GH.Menu.Containers.Page;
+
     using Model;
 
     public interface ICharacterMenuTab

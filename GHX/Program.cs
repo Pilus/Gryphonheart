@@ -1,14 +1,17 @@
 ﻿
 namespace GHX
 {
-    using GH.UIModules;
+    using GH.CommonModules;
+    using GH.Utils.Modules;
+
     using Lua;
 
     class Program
     {
         static void Main(string[] args)
         {
-            SlashCommand.Register("GHX", SlashCmd);
+            var SlashCommandModule = ModuleFactory.GetM<SlashCommand>();
+            SlashCommandModule.Register("GHX", SlashCmd);
         }
 
         private static void SlashCmd(string fullCmd, NativeLuaTable _)

@@ -5,10 +5,9 @@
     using System.Linq;
     using BlizzardApi.Global;
     using BlizzardApi.MiscEnums;
-    using GH;
-    using GH.Misc;
 
-    [System.Serializable]
+    using GH.Menu;
+
     public class Group
     {
         private readonly Guid guid;
@@ -61,7 +60,7 @@
 
         public void UpdateVersion()
         {
-            this.version = Misc.GetTimeBasedVersion();
+            this.version = Global.Api.GetTime();
         }
 
         public GroupMember GetMember(Guid guid)

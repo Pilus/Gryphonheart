@@ -5,8 +5,9 @@ namespace GHF.View.CharacterMenu
 {
     using System;
     using System.Collections.Generic;
-    using GH.Menu.Menus;
-    using GH.Menu.Objects.Page;
+
+    using GH.Menu.Containers.Menus;
+    using GH.Menu.Containers.Page;
 
     public class CharacterMenuProfileGenerator : IMenuProfileGenerator
     {
