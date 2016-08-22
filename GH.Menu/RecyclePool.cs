@@ -4,13 +4,23 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using CsLuaFramework.Wrapping;
+
     public class RecyclePool : IRecyclePool
     {
-        private List<IElement> list = new List<IElement>();
+        private readonly List<IElement> list;
+
+        private readonly IWrapper wrapper;
+
+        public RecyclePool(IWrapper wrapper)
+        {
+            this.wrapper = wrapper;
+            this.list = new List<IElement>();
+        }
 
         public IElement Retrieve(Type type)
         {
-            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)Activator.CreateInstance(type);
+            return this.list.FirstOrDefault(e => e.GetType() == type) ?? (IElement)Activator.CreateInstance(type, this.wrapper);
         }
 
         public void Store(IElement element)

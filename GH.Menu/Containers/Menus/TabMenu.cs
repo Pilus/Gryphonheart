@@ -72,7 +72,7 @@ namespace GH.Menu.Containers.Menus
         private void CreateTabButtons()
         {
             this.tabButtons = new Dictionary<int, IButton>();
-            var setTabFunc = (Action<NativeLuaTable, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
+            var setTabFunc = (Action<IFrame, int>)Global.Api.GetGlobal("PanelTemplates_SetTab");
 
             for (var i = 0; i < this.Content.Count; i++)
             {
@@ -83,7 +83,7 @@ namespace GH.Menu.Containers.Menus
 
                 button.SetScript(ButtonHandler.OnClick, (self) =>
                 {
-                    setTabFunc(this.NativeFrame, button.GetID());
+                    setTabFunc(this.Frame, button.GetID());
                     if (this.currentPage != null)
                     {
                         this.currentPage.Hide();
@@ -93,7 +93,7 @@ namespace GH.Menu.Containers.Menus
                     page.Show();
                 });
             }
-            ((Action<NativeLuaTable, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.NativeFrame, this.Content.Count);
+            ((Action<IFrame, int>)Global.Api.GetGlobal("PanelTemplates_SetNumTabs"))(this.Frame, this.Content.Count);
         }
 
         private static void InvokeClick(IButton button)

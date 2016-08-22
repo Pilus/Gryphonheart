@@ -8,7 +8,20 @@
 
     public abstract class BaseContainer<T, TProfile> : BaseElement, IContainer<T> where T : IMenuRegion
     {
-        protected LayoutSettings Layout;
+        private LayoutSettings layout;
+
+        protected LayoutSettings Layout
+        {
+            get
+            {
+                if (!this.IsPrepared)
+                {
+                    throw new MenuException("Cannot get layout when container object is not prepared.");
+                }
+                return this.layout;
+            }
+            
+        }
         protected List<T> Content;
 
         public BaseContainer(string typeName, IWrapper wrapper) : base(typeName, wrapper)
@@ -75,7 +88,7 @@
         {
             base.Prepare(profile, handler);
             this.Content = new List<T>();
-            this.Layout = handler.Layout;
+            this.layout = handler.Layout;
 
             var containerProfile = profile as IContainerProfile<TProfile>;
             if (containerProfile == null)

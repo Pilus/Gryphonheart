@@ -17,8 +17,6 @@
 
         public IFrame Frame { get; }
 
-        public NativeLuaTable NativeFrame { get; }
-
         public BaseElement(string typeName, IWrapper wrapper) : this(typeName, FrameType.Frame, null, wrapper)
         {
         }
@@ -27,7 +25,6 @@
         {
             this.wrapper = wrapper;
             this.Frame = (IFrame)Global.FrameProvider.CreateFrame(frameType, UniqueName(typeName), null, inherits);
-            this.NativeFrame = this.wrapper.Unwrap(this.Frame);
         }
 
 
@@ -51,6 +48,8 @@
             this.Frame.Hide();
             this.handler.RecyclePool.Store(this);
         }
+
+        public bool IsPrepared => this.prepared;
 
         public abstract void Clear();
 

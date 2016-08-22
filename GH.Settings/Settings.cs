@@ -37,7 +37,7 @@
 
             foreach (var loadedModule in loadedModules)
             {
-                this.SetDefaultSettingsFromModule(loadedModule);
+                this.LoadSettingsForModule(loadedModule);
             }
 
             ModuleFactory.ModuleFactorySingleton.RegisterForModuleLoadEvents(

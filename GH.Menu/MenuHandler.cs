@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
     using Containers.Line;
+
+    using CsLuaFramework.Wrapping;
+
     using GH.Menu.Containers.AlignedBlock;
     using GH.Menu.Containers.Menus;
     using GH.Menu.Containers.Page;
@@ -24,7 +27,7 @@
     {
         public MenuHandler()
         {
-            this.RecyclePool = new RecyclePool();
+            this.RecyclePool = new RecyclePool(new Wrapper());
             this.Layout = new LayoutSettings()
             {lineSpacing = 5, objectSpacing = 5};
             this.Theme = new MenuTheme()
@@ -118,9 +121,7 @@
 
         public IMenuRegion CreateRegion(IMenuRegionProfile profile, bool skipWrappingObject, Type specificType)
         {
-            var region = (IMenuRegion)this.RecyclePool.Retrieve(specificType);
-            region.Prepare(profile, this);
-            return region;
+            return (IMenuRegion)this.RecyclePool.Retrieve(specificType);
         }
     }
 }

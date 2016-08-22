@@ -46,6 +46,7 @@ namespace GH.Menu.Objects.Panel
             var innerPageProfile = new PageProfile();
             panelProfile.ForEach(innerPageProfile.Add);
             this.innerPage = (IPage)handler.CreateRegion(innerPageProfile);
+            this.innerPage.Prepare(innerPageProfile, handler);
             this.name = panelProfile.name;
         }
 

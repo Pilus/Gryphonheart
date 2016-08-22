@@ -136,6 +136,34 @@
         }
 
         [TestMethod]
+        public void LineGetPreferredWidthTestWithOneObject()
+        {
+            // Setup
+            var profiles = new List<LineProfile>();
+            var dimensionsMapping = new Dictionary<ObjectAlign, double?>()
+                                        {
+                                            { ObjectAlign.r, 40 },
+                                        };
+
+            var menuHandlerMock = SetUpMenuHandlerMock(profiles, ((lineProfile, mock) =>
+            {
+                mock.Setup(e => e.GetPreferredWidth()).Returns(dimensionsMapping[lineProfile.Single().align]);
+            }));
+
+            var profile = new LineProfile()
+            {
+                GenerateObjectProfile(ObjectAlign.r),
+            };
+            this.lineUnderTest.Prepare(profile, menuHandlerMock.Object);
+
+            // Act
+            var width = this.lineUnderTest.GetPreferredWidth();
+
+            // Assert
+            Assert.AreEqual(40, width);
+        }
+
+        [TestMethod]
         public void LineGetPreferredHeightTestWithNoNull()
         {
             // Setup

@@ -13,6 +13,8 @@
     {
         public void Execute()
         {
+            var settings = ModuleFactory.GetM<Settings.Settings>();
+
             var registry = ModuleFactory.ModuleFactorySingleton.GetModule<AddOnRegistry>();
             registry.RegisterAddOn(AddOnReference.GH);
 

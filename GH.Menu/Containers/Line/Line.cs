@@ -56,7 +56,8 @@ namespace GH.Menu.Containers.Line
             this.leftBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.l, handler);
             this.centerBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.c, handler);
             this.rightBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.r, handler);
-            this.Content = new List<IAlignedBlock>() { this.leftBlock, this.centerBlock, this.rightBlock };
+            this.Content = new List<IAlignedBlock>();
+            this.Content.AddRange(new[] { this.leftBlock, this.centerBlock, this.rightBlock }.Where(b => b != null));
         }
 
         /// <summary>
@@ -133,7 +134,9 @@ namespace GH.Menu.Containers.Line
                 return null;
             }
 
-            return (IAlignedBlock)handler.CreateRegion(blockProfile, false, typeof(AlignedBlock));
+            var block = (IAlignedBlock)handler.CreateRegion(blockProfile, false, typeof(AlignedBlock));
+            block.Prepare(blockProfile, handler);
+            return block;
         }
 
         /// <summary>
