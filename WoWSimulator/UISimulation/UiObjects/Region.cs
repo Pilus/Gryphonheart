@@ -167,7 +167,7 @@
 
         public IMultipleValues<FramePoint, IRegion, FramePoint?, double?, double?> GetPoint(int pointNum)
         {
-            var point = this.points[this.points.Keys.ToList()[pointNum]];
+            var point = this.points[this.points.Keys.ToList()[pointNum - 1]];
             return TestUtil.StructureMultipleValues(point._Point, point.RelativeFrame, point.RelativePoint, point.XOfs, point.YOfs);
         }
 

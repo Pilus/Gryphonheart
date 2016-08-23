@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsLuaFramework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CsLuaConverter\CsLuaFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Lua">
       <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
     </Reference>
@@ -56,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CursorApiMock.cs" />
     <Compile Include="QuickButtonUsageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +80,10 @@
     <ProjectReference Include="..\Tests\Tests.csproj">
       <Project>{9e9ddc27-bd76-45cc-9f20-25ec7568c86d}</Project>
       <Name>Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestUtils\TestUtils.csproj">
+      <Project>{52B30640-CBF4-43DB-93B1-7B1D66C48924}</Project>
+      <Name>TestUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\WoWSimulator\WoWSimulator.csproj">
       <Project>{90089C84-D04E-4953-BE7D-3B2A9BE1C819}</Project>

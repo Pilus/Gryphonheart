@@ -95,7 +95,6 @@ namespace GH.Menu.Containers.Line
         {
             var lineProfile = new LineProfile() { profile };
 
-            IAlignedBlock block;
             switch (profile.align)
             {
                 case ObjectAlign.l:

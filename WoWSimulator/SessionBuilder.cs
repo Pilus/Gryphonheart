@@ -27,6 +27,8 @@
         private float fps = 30;
         private NativeLuaTable savedVariables;
         private Action<ISession> setActiveSessionAction;
+        private double uiParentWidth = 1024;
+        private double uiParentHeight = 800;
 
         public SessionBuilder()
         {
@@ -50,6 +52,8 @@
 
             var globalFrames = new GlobalFrames();
             globalFrames.UIParent = (IFrame)this.frameProvider.CreateFrame(FrameType.Frame, "UIParent");
+            globalFrames.UIParent.SetWidth(this.uiParentWidth);
+            globalFrames.UIParent.SetHeight(this.uiParentHeight);
 
             globalFrames.GameTooltip = (IGameTooltip)this.frameProvider.CreateFrame(FrameType.GameTooltip, "UIParent");
 
@@ -164,6 +168,13 @@
         public SessionBuilder WithPlayerSex(int sex)
         {
             this.apiMock.Setup(api => api.UnitSex(UnitId.player)).Returns(sex);
+            return this;
+        }
+
+        public SessionBuilder WithScreenDimensions(double width, double height)
+        {
+            this.uiParentWidth = width;
+            this.uiParentHeight = height;
             return this;
         }
 

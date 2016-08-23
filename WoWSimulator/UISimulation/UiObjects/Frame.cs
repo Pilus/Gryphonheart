@@ -237,7 +237,7 @@
 
         public double GetEffectiveScale()
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public int GetFrameLevel()

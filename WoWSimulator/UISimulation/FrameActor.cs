@@ -107,6 +107,18 @@
             }
         }
 
+        public void StartDrag(IButton frame)
+        {
+            var script = frame.GetScript(FrameHandler.OnDragStart);
+            script?.Invoke(null, null, null, null, null);
+        }
+
+        public void StopDrag(IButton frame)
+        {
+            var script = frame.GetScript(FrameHandler.OnDragStop);
+            script?.Invoke(null, null, null, null, null);
+        }
+
         public void VerifyVisible(string text, bool exact)
         {
             var analyzedText = string.Empty;

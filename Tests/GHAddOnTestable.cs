@@ -26,6 +26,22 @@
             this.session.RunUpdateForDuration(TimeSpan.FromSeconds(1));
         }
 
+        public void StartDragMainButton()
+        {
+            this.session.Actor.StartDrag((IButton)this.mainButton);
+        }
+
+        public void StopDragMainButton()
+        {
+            this.session.Actor.StopDrag((IButton)this.mainButton);
+        }
+
+        public Tuple<double, double> GetMainButtonLocation()
+        {
+            var point = this.mainButton.GetPoint(1);
+            return new Tuple<double, double>(point.Value4 ?? 0, point.Value5 ?? 0);
+        }
+
         public void ClickSubButton(string texturePath)
         {
             var button = this.GetUIParentChildWithTexture(texturePath) as IButton;
