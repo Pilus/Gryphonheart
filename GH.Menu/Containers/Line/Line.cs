@@ -16,6 +16,8 @@ namespace GH.Menu.Containers.Line
     using GH.Menu.Objects;
     using Lua;
 
+    using Microsoft.Win32.SafeHandles;
+
     /// <summary>
     /// Container for aligned blocks on a line.
     /// </summary>
@@ -87,6 +89,25 @@ namespace GH.Menu.Containers.Line
 
             var rightAllocatedWidth = this.GetWidthAllocatedToRightBlock(width, leftPreferredWidth, centerPreferredWidth, rightPreferredWidth);
             this.rightBlock?.SetPosition(this.Frame, width - rightAllocatedWidth, 0, rightAllocatedWidth, this.rightBlock.GetPreferredHeight() ?? height);
+        }
+
+        public override void AddElement(IAlignedBlock element)
+        {
+            switch (element.Alignment)
+            {
+                case ObjectAlign.l:
+                    this.leftBlock = element;
+                    break;
+                case ObjectAlign.c:
+                    this.centerBlock = element;
+                    break;
+                default:
+                    this.rightBlock = element;
+                    break;
+            }
+
+            this.Content = new List<IAlignedBlock>();
+            this.Content.AddRange(new[] { this.leftBlock, this.centerBlock, this.rightBlock }.Where(b => b != null));
         }
 
         /// <summary>

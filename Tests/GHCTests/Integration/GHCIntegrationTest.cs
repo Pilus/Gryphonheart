@@ -10,6 +10,7 @@ namespace Tests.GHCTests.Integration
     [TestClass]
     public class GHCIntegrationTest
     {
+        [Ignore]
         [TestMethod]
         public void NewUser()
         {

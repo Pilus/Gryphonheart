@@ -12,5 +12,6 @@ namespace GH.Menu.Containers.AlignedBlock
     /// </summary>
     public interface IAlignedBlock : IMenuRegion, IContainer<IMenuObject>
     {
+        ObjectAlign Alignment { get; set; }
     }
 }

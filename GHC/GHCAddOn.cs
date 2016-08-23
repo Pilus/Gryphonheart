@@ -18,6 +18,18 @@ namespace GHC
     [CsLuaAddOn("GHC", "Gryphonheart Crime", 70000, Author = "The Gryphonheart Team", Dependencies = new []{"GH"})]
     public class GHCAddOn : ICsLuaAddOn
     {
+        private readonly IWrapper wrapper;
+
+        public GHCAddOn(IWrapper wrapper)
+        {
+            this.wrapper = wrapper;
+        }
+
+        public GHCAddOn()
+        {
+            this.wrapper = new Wrapper();
+        }
+
         public void Execute()
         {
             var eventListener = ModuleFactory.GetM<GameEventListener>();
@@ -47,7 +59,7 @@ namespace GHC
         {
             var duration = 5;
             double? castTime = null;
-            var bar = new ActionBar((frame) => new ActionButtonProxy(frame, new Wrapper()));
+            var bar = new ActionBar((frame) => new ActionButtonProxy(frame, this.wrapper));
             bar.AddButton("test", "Interface/ICONS/INV_Misc_Bag_11", s =>
             {
                 castTime = Global.Api.GetTime();

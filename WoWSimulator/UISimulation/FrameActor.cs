@@ -77,9 +77,9 @@
                     {
                         this.currentMenu = (t["menuList"] as NativeLuaTable);
                     }
-                    else if (t["func"] is Function)
+                    else if (t["func"] is Action)
                     {
-                        (t["func"] as Function)();
+                        (t["func"] as Action)();
                     }
                     found = true;
                 });

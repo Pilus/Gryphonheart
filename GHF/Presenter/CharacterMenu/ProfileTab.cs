@@ -90,17 +90,27 @@ namespace GHF.Presenter.CharacterMenu
                 if (numberOfLines == 0 || panel.GetElement(numberOfLines-1).GetNumElements() == 2)
                 {
                     var profile = fieldMeta.GenerateProfile(ObjectAlign.l);
-                    var newLine = (ILine)this.menuHandler.CreateRegion(new LineProfile());
-                    panel.AddElement(newLine);
+
+                    var newObject = (IMenuObject)this.menuHandler.CreateRegion(profile);
+                    newObject.Prepare(profile, this.menuHandler);
+
                     var newBlock = (IAlignedBlock)this.menuHandler.CreateRegion(new LineProfile(), false, typeof(AlignedBlock));
-                    newBlock.AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
+                    newBlock.Prepare(null, this.menuHandler);
+                    newBlock.Alignment = ObjectAlign.l;
+
+                    var newLine = (ILine)this.menuHandler.CreateRegion(new LineProfile());
+                    
+                    newBlock.AddElement(newObject);
                     newLine.AddElement(newBlock);
+                    panel.AddElement(newLine);
                 }
                 else
                 {
                     var line = panel.GetElement(numberOfLines-1);
                     var profile = fieldMeta.GenerateProfile(ObjectAlign.r);
-                    line.GetElement(3).AddElement((IMenuObject)this.menuHandler.CreateRegion(profile));
+                    var newRegion = (IMenuObject)this.menuHandler.CreateRegion(profile);
+                    newRegion.Prepare(profile, this.menuHandler);
+                    line.GetElement(0).AddElement(newRegion);
                 }
 
                 this.loadedMenu.UpdatePosition();

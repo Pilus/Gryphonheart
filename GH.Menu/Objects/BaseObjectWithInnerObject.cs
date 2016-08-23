@@ -21,6 +21,7 @@ namespace GH.Menu.Objects
         {
             base.Prepare(profile, handler);
             this.Inner = (IMenuObject)handler.CreateRegion((IObjectProfile)profile, true);
+            this.Inner.Prepare(profile, handler);
         }
 
         public virtual void SetPosition(IFrame parent, double xOff, double yOff, double width, double height)

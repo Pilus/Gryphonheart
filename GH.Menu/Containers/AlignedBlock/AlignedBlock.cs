@@ -19,6 +19,8 @@ namespace GH.Menu.Containers.AlignedBlock
     /// </summary>
     public class AlignedBlock : BaseContainer<IMenuObject, IObjectProfile>, IAlignedBlock
     {
+        public ObjectAlign Alignment { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AlignedBlock"/> class.
         /// </summary>

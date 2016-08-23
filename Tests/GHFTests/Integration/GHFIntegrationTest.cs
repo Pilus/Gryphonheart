@@ -179,7 +179,7 @@
             var savedVars = session.GetSavedVariables();
 
             var savedProfiles = (NativeLuaTable)savedVars[ModelProvider.SavedAccountProfiles];
-            var additionalFields = TestUtil.GetTableValue<NativeLuaTable>(savedProfiles, "Tester", "AdditionalFields");
+            var additionalFields = TestUtil.GetTableValue<Profile>(savedProfiles, "Tester", "obj").AdditionalFields;
             Assert.AreEqual("Cleric", additionalFields["title"]);
             Assert.AreEqual("52", additionalFields["age"]);
         }
