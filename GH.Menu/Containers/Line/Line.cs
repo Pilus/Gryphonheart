@@ -91,18 +91,45 @@ namespace GH.Menu.Containers.Line
             this.rightBlock?.SetPosition(this.Frame, width - rightAllocatedWidth, 0, rightAllocatedWidth, this.rightBlock.GetPreferredHeight() ?? height);
         }
 
-        public override void AddElement(IAlignedBlock element)
+        public void AddObjectByProfile(IObjectProfile profile, IMenuHandler handler)
         {
-            switch (element.Alignment)
+            var lineProfile = new LineProfile() { profile };
+
+            IAlignedBlock block;
+            switch (profile.align)
             {
                 case ObjectAlign.l:
-                    this.leftBlock = element;
+                    if (this.leftBlock == null)
+                    {
+                        this.leftBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.l, handler);
+                    }
+                    else
+                    {
+                        this.leftBlock.AddElement((IMenuObject)handler.CreateRegion(profile));
+                    }
+
                     break;
                 case ObjectAlign.c:
-                    this.centerBlock = element;
+                    if (this.centerBlock == null)
+                    {
+                        this.centerBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.c, handler);
+                    }
+                    else
+                    {
+                        this.centerBlock.AddElement((IMenuObject)handler.CreateRegion(profile));
+                    }
+
                     break;
                 default:
-                    this.rightBlock = element;
+                    if (this.rightBlock == null)
+                    {
+                        this.rightBlock = GenerateAndPrepareBlock(lineProfile, ObjectAlign.r, handler);
+                    }
+                    else
+                    {
+                        this.rightBlock.AddElement((IMenuObject)handler.CreateRegion(profile));
+                    }
+
                     break;
             }
 
