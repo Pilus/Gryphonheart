@@ -23,7 +23,7 @@
         public void Mock(Mock<IApi> apiMock)
         {
             apiMock.Setup(a => a.GetCursorPosition())
-                .Returns(TestUtil.StructureMultipleValues(this.xPosition, this.yPosition));
+                .Returns(() => TestUtil.StructureMultipleValues(this.xPosition, this.yPosition));
         }
     }
 }

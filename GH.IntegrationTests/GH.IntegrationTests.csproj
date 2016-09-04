@@ -61,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CursorApiMock.cs" />
+    <Compile Include="KeyboardKeyApiMock.cs" />
     <Compile Include="QuickButtonUsageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

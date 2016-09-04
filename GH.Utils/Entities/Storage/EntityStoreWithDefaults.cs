@@ -172,8 +172,8 @@ namespace GH.Utils.Entities.Storage
                 info = DifferenceUA(info, this.serializer.Serialize(defaultEntity));
             }
 
-            this.savedDataHandler.SetVar(entity.Id as string, info);
-            this.entityUpdateSubscriptionCenter.TriggerSubscriptionUpdate(entity);
+            this.savedDataHandler.SetVar(entity.Id, info);
+            this.entityUpdateSubscriptionCenter?.TriggerSubscriptionUpdate(entity);
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace GH.Utils.Entities.Storage
                         res[key] = value;
                         changed = true;
                     }
-                    else if (Core.type(value) == "table" && Core.type(a[key]) == "table")
+                    else if (value is NativeLuaTable && a[key] is NativeLuaTable)
                     {
                         var r = DifferenceUA(value as NativeLuaTable, a[key] as NativeLuaTable);
                         if (r == null)
