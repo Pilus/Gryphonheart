@@ -1,6 +1,7 @@
-﻿namespace GH.UIModules.EasyMenu
+﻿namespace GH.Menu.EasyMenu
 {
     using System;
+
     using Lua;
 
     public class EasyDropDownMenuItem : IEasyDropDownMenuContent

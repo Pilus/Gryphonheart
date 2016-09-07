@@ -1,4 +1,6 @@
-﻿namespace GH.Settings
+﻿[assembly: CsLuaFramework.Attributes.CsLuaLibrary]
+
+namespace GH.Settings
 {
     using BlizzardApi.EventEnums;
     using CsLuaFramework;

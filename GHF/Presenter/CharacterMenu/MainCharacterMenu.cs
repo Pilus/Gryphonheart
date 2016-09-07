@@ -14,7 +14,7 @@ namespace GHF.Presenter.CharacterMenu
     using GHF.View.CharacterMenuProfile.CharacterList;
     using Model;
     using Model.AdditionalFields;
-    using View.CharacterMenu;
+
     using View.CharacterMenuProfile;
 
     public class MainCharacterMenu

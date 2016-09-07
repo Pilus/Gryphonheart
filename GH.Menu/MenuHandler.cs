@@ -1,4 +1,6 @@
-﻿namespace GH.Menu
+﻿[assembly: CsLuaFramework.Attributes.CsLuaLibrary]
+
+namespace GH.Menu
 {
     using System;
     using System.Collections.Generic;

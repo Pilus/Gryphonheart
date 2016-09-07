@@ -1,14 +1,18 @@
 ﻿
-namespace Tests.GHCTests
+namespace Tests.GHCTests.Modules
 {
+    using System;
+    using System.Collections.Generic;
+
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+
     using GHC.Modules.AbilityActionBar;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Moq;
-    using System;
-    using System.Collections.Generic;
 
     [TestClass]
     public class ActionBarTests

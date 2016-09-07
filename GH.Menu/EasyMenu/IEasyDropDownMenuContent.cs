@@ -1,4 +1,4 @@
-﻿namespace GH.UIModules.EasyMenu
+﻿namespace GH.Menu.EasyMenu
 {
     using Lua;
 

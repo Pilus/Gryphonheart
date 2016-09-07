@@ -1,11 +1,12 @@
-﻿namespace GH.Debug
+﻿namespace GH.Utils.Debug
 {
     using System;
-    using System.Collections.Generic;
+
+    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
+
     using Lua;
-    using BlizzardApi.Global;
 
     public static class DebugTools
     {

@@ -1,10 +1,9 @@
 ﻿
 
-namespace GHF.View
+namespace GHF.View.CharacterMenuProfile
 {
     using System;
     using System.Collections.Generic;
-    using CharacterMenuProfile;
 
     using GH.Menu.Containers.Line;
     using GH.Menu.Containers.Page;
@@ -15,8 +14,9 @@ namespace GHF.View
     using GH.Menu.Objects.EditBox;
     using GH.Menu.Objects.EditField;
     using GH.Menu.Objects.Panel;
+
+    using GHF.Model.AdditionalFields;
     using GHF.View.CharacterMenuProfile.CharacterList;
-    using Model.AdditionalFields;
 
     public class ProfileTabProfileGenerator
     {

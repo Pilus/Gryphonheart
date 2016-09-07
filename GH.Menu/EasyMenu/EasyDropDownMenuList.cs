@@ -1,6 +1,7 @@
-﻿namespace GH.UIModules.EasyMenu
+﻿namespace GH.Menu.EasyMenu
 {
     using System.Collections.Generic;
+
     using Lua;
 
     public class EasyDropDownMenuList : List<EasyDropDownMenuItem>, IEasyDropDownMenuContent

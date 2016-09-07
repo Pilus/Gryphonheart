@@ -4,7 +4,6 @@
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
-    using GH.UIModules.EasyMenu;
     using GH.Utils.Modules;
 
     public class EasyMenuHandler : SingletonModule

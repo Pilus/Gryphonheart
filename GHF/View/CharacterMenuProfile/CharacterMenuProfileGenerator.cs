@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace GHF.View.CharacterMenu
+namespace GHF.View.CharacterMenuProfile
 {
     using System;
     using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace GHF.View.CharacterMenu
             {
                 height = 360,
                 theme = MenuThemeType.TabTheme,
-                onHide = onHide,
+                onHide = this.onHide,
                 title = "Gryphonheart Flags - My profile",
                 icon = "Interface\\Icons\\Spell_Misc_EmotionHappy",
             };

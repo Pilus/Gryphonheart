@@ -1,15 +1,19 @@
 ﻿
 
-namespace Tests.IntegrationTest.GHDTests
+namespace Tests.GHDTests
 {
     using BlizzardApi.WidgetInterfaces;
+
     using CsLuaFramework.Wrapping;
+
     using GHD.Document.Buffer;
     using GHD.Document.Containers;
     using GHD.Document.Data;
     using GHD.Document.Elements;
     using GHD.Document.Flags;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using Moq;
 
     //[TestClass]

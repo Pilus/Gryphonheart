@@ -1,8 +1,10 @@
-﻿namespace GH.View
+﻿namespace GH.CommonModules.QuickButtonCluster
 {
     using System;
     using System.Collections.Generic;
+
     using BlizzardApi.WidgetInterfaces;
+
     using CsLuaFramework.Wrapping;
 
     using GH.Menu.Containers.Line;
@@ -26,7 +28,7 @@
 
         public MenuProfile GenerateMenuProfile()
         {
-            var optionsFrame = wrapper.Wrap<IFrame>("InterfaceOptionsFramePanelContainer");
+            var optionsFrame = this.wrapper.Wrap<IFrame>("InterfaceOptionsFramePanelContainer");
             var optionsMenuWidth = optionsFrame.GetWidth() - 20;
             var optionsMenuHeight = optionsFrame.GetHeight() - 20;
 

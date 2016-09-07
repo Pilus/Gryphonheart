@@ -1,4 +1,5 @@
-﻿
+﻿[assembly:CsLuaFramework.Attributes.CsLuaLibrary]
+
 namespace GH.CommonModules
 {
     using System;

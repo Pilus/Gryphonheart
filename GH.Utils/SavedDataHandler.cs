@@ -3,6 +3,8 @@
 //  Copyright (c) 2016 Gryphonheart Team. All rights reserved.
 // </copyright>
 //-----------------------–-----------------------–--------------
+[assembly: CsLuaFramework.Attributes.CsLuaLibrary]
+
 namespace GH.Utils
 {
     using BlizzardApi.Global;

@@ -7,8 +7,6 @@
 
     using GH.Menu.EasyMenu;
 
-    using UIModules.EasyMenu;
-
     public class ButtonWithDropDownObject : ButtonObject
     {
         public new static string Type = "ButtonWithDropDown";
