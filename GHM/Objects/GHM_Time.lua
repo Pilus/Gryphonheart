@@ -124,12 +124,11 @@ function GHM_Time(profile, parent, settings)
 			profile.OnTextChanged(self);
 		end
 		local editData = tonumber(self:GetText())
+		slider:SetValue(1);
 		for i,v in pairs(SliderValues) do
 			if editData == v then
 				slider:SetValue(i);
 				break
-			else
-				slider:SetValue(#(SliderValues))
 			end
 		end
 	end
