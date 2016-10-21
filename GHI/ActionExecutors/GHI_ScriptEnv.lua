@@ -838,6 +838,10 @@ function GHI_ScriptEnviroment(ownerGuid)
 		
 		-- Usage: ShowTalkingHead(65834, 1, nil, 5, "Dadgar", "Hello, my child", true);
 		ShowTalkingHead = function(displayInfo, cameraID, vo, duration, name, text, isNewTalkingHead)
+			if not(IsAddOnLoaded("Blizzard_TalkingHeadUI")) then
+				LoadAddOn("Blizzard_TalkingHeadUI");
+			end
+			
 			local frame = TalkingHeadFrame;
 			local model = frame.MainFrame.Model;
 			
