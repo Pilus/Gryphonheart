@@ -200,7 +200,7 @@ function GHI_ActionAPI()
 		local api = GHI_MiscAPI().GetAPI()
 		local colorList = api.GHI_GetColors()
 		local blendTypes = {"ADD","BLEND","MOD","ALPHAKEY","DISABLE"}
-
+		if alpha == 1 then alpha = 0.99 end
 		if type(color) == "string" then
 		color = colorList[color]
 		end
@@ -227,11 +227,13 @@ function GHI_ActionAPI()
 			flashAnims.fadingIn = flashAnims:CreateAnimation("Alpha")
 			flashAnims.fadingIn:SetOrder(1)
 			flashAnims.fadingIn:SetSmoothing("NONE")
-			flashAnims.fadingIn:SetFromAlpha(0)
+			flashAnims.fadingIn:SetToAlpha(1)
+			
 			flashAnims.fadingOut = flashAnims:CreateAnimation("Alpha")
 			flashAnims.fadingOut:SetOrder(2)
 			flashAnims.fadingOut:SetSmoothing("NONE")
-			flashAnims.fadingOut:SetFromAlpha(0)
+			flashAnims.fadingOut:SetFromAlpha(1)
+			
 			flashAnims:SetScript("OnFinished",function(self,requested)
 				GHFlashFrame:Hide()
 				GHFlashFrame.bg:SetBlendMode("DISABLE")
@@ -268,6 +270,8 @@ function GHI_ActionAPI()
 			GHFlashFrame.bg:SetTexture(texture)
 			GHFlashFrame.bg:SetBlendMode(blend or "ADD")
 			GHFlashFrame.bg:SetAlpha(alpha or 1)
+			flashAnims.fadingIn:SetToAlpha(alpha or 1)
+			flashAnims.fadingOut:SetFromAlpha(alpha or 1)
 
 			if color then
 				GHFlashFrame.bg:SetVertexColor(
@@ -289,9 +293,13 @@ function GHI_ActionAPI()
 
 		if isAni == true then -- if sone is already animating, stop it and do the new one
 			GHFlashFrame:StopAnimating()
-			GHFlashFrame.bg:SetAlpha(alpha or 1)
+			GHFlashFrame.bg:SetAlpha(0)
+			flashAnims.fadingIn:SetToAlpha(alpha or 1)
+			flashAnims.fadingOut:SetFromAlpha(alpha or 1)
 			flashAnims:Play()
 		else -- otherwise animate
+			flashAnims.fadingIn:SetToAlpha(alpha or 1)
+			flashAnims.fadingOut:SetFromAlpha(alpha or 1)
 			flashAnims:Play()
 		end
 	end
