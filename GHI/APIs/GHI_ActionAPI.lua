@@ -530,6 +530,83 @@ function GHI_ActionAPI()
 		end
 		GHI_MenuList("GHI_BookEditor").Edit(action, item);
 	end
+	
+	api.GHI_ShowTalkingHead = function(displayInfo, cameraID, vo, duration, name, text, isNewTalkingHead)
+			-- Usage: ShowTalkingHead(65834, 1, nil, 5, "Dadgar", "Hello, my child", true);
+			if not(IsAddOnLoaded("Blizzard_TalkingHeadUI")) then
+				LoadAddOn("Blizzard_TalkingHeadUI");
+			end
+			
+			local frame = TalkingHeadFrame;
+			local model = frame.MainFrame.Model;
+			
+			if (frame.finishTimer) then
+				frame.finishTimer:Cancel();
+				frame.finishTimer = nil;
+			end
+
+			if (frame.voHandle) then
+				StopSound(frame.voHandle);
+				frame.voHandle = nil;
+			end
+			
+			local currentDisplayInfo = model:GetDisplayInfo();
+
+			local textFormatted = string.format(text);
+			if (displayInfo and displayInfo ~= 0) then
+				frame:Show();
+				if (currentDisplayInfo ~= displayInfo) then
+					model.uiCameraID = cameraID;
+					model:SetDisplayInfo(displayInfo);
+				else
+					if (model.uiCameraID ~= cameraID) then
+						model.uiCameraID = cameraID;
+						Model_ApplyUICamera(model, model.uiCameraID);
+					end
+
+					TalkingHeadFrame_SetupAnimations(model);
+				end
+				
+				if (isNewTalkingHead) then
+					TalkingHeadFrame_Reset(frame, textFormatted, name);
+					TalkingHeadFrame_FadeinFrames();
+				else
+					if (name ~= frame.NameFrame.Name:GetText()) then
+						-- Fade out the old name and fade in the new name
+						frame.NameFrame.Fadeout:Play();
+						C_Timer.After(0.25, function()
+							frame.NameFrame.Name:SetText(name);
+						end);
+						C_Timer.After(0.5, function()
+							frame.NameFrame.Fadein:Play();
+						end);
+						
+						frame.MainFrame.TalkingHeadsInAnim:Play();
+					end
+
+					if ( textFormatted ~= frame.TextFrame.Text:GetText() ) then
+						-- Fade out the old text and fade in the new text
+						frame.TextFrame.Fadeout:Play();
+						C_Timer.After(0.25, function()
+							frame.TextFrame.Text:SetText(textFormatted);
+						end);
+						C_Timer.After(0.5, function()
+							frame.TextFrame.Fadein:Play();
+						end);
+					end
+				end
+				
+				frame.voHandle = nil;
+				if vo then
+					local success, voHandle = PlaySoundKitID(vo, "Talking Head", true, true);
+					if (success) then
+						frame.voHandle = voHandle;
+					end
+				end
+
+				C_Timer.After(duration, TalkingHeadFrame_Close);
+			end
+		end,
 
 
 	local effectFrame = CreateFrame("Frame");
