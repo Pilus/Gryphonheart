@@ -274,3 +274,76 @@ table.insert(GHI_ProvidedDynamicActions, {
 	outputs = {
 	},
 });
+
+table.insert(GHI_ProvidedDynamicActions, {
+	name = "Talking Head",
+	guid = "talkingHead_1",
+	authorName = "The Gryphonheart Team, Kruithne",
+	authorGuid = "00x1",
+	version = 1,
+	category = category,
+	description = "Creates a Talking Head window.",
+	icon = "Interface\\Icons\\INV_Misc_Head_Gnome_01",
+	gotOnSetupPort = true,
+	setupOnlyOnce = false,
+	allowedInUpdateSequence = false,
+	script = [[
+		local displayInfo = dyn.GetInput("displayInfo")
+		local cameraID = dyn.GetInput("cameraID")
+		local duration= dyn.GetInput("duration")
+		local name = dyn.GetInput("talkerName")
+		local text = dyn.GetInput("speechText")
+		local isNewTalkingHead = dyn.GetInput("newTalkingHead")
+		
+		GHI_ShowTalkingHead(displayInfo, cameraID, nil, duration, name, text, isNewTalkingHead)
+	]],
+	ports = {
+	},
+	inputs = {
+	--displayInfo, cameraID, vo, duration, name, text, isNewTalkingHead
+		displayInfo = {
+			name = "Model",
+			description = "id number of 3D model to be used.",
+			type = "number",
+			defaultValue = 10001,
+			order = 1,
+		},
+		cameraID = {
+			name = "Camera ID",
+			description = "The Camera ID to be used for the model.",
+			type = "number",
+			defaultValue = 1,
+			order = 2,
+		},
+		duration = {
+			name = "Duration",
+			description = "Amount of time the Talking Head box remains open.",
+			type = "time",
+			defaultValue = 1,
+			order = 3,
+		},
+		talkerName = {
+			name = "Speeaker's Name",
+			description = "Name fo the talking head actor.",
+			type = "string",
+			defaultValue = "",
+			order = 4,
+		},
+		speechText = {
+			name = "Speach Text",
+			description = "Text for the head to say.",
+			type = "string",
+			defaultValue = "",
+			order = 5,
+		},
+		newTalkingHead = {
+			name = "New Talking Head",
+			description = "Indicate if this is a new actor for the Talking Head",
+			type = "boolean",
+			defaultValue = true,
+			order = 6,
+		},
+	},
+	outputs = {
+	},
+});
