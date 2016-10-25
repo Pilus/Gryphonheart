@@ -17,10 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHX", "GHX\GHX.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9E9DDC27-BD76-45CC-9F20-25EC7568C86D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHI", "GHI\GHI.csproj", "{AF929778-D501-43D1-892D-3D92278D2C3F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHM", "GHM\GHM.csproj", "{A27954BB-8AD4-44E0-95AF-2BAD787156F8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C556D712-26DC-4B26-AE65-2BED47104EC1}"
 	ProjectSection(SolutionItems) = preProject
 		CsLuaConverter\CsToLua.exe = CsLuaConverter\CsToLua.exe
