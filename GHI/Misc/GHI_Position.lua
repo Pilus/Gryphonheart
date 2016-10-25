@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --									
 --					GHI Position
 --					GHI_Position.lua
@@ -7,7 +7,7 @@
 --	
 -- 			(c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================
+--
 
 
 function GHI_Position(useVersion1Coor)

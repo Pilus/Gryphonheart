@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_NumberFormat
 --  			GHI_NumberFormat.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local category = "Number Format";
 
 local to_19 = { "zero",  "one",   "two",  "three", "four",   "five",   "six",

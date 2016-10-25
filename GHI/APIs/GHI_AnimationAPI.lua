@@ -1,5 +1,5 @@
-
---===================================================
+﻿
+--
 --					GHI Animation API
 --					ghi_animationAPI.lua
 --
@@ -7,7 +7,7 @@
 --	
 -- 				(c)2013 The Gryphonheart Team
 --					  All rights reserved
---===================================================
+--
 
 
 local class;

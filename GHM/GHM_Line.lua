@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Line
 --  			GHM_Line.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 function GHM_Line(profile, parent, settings)

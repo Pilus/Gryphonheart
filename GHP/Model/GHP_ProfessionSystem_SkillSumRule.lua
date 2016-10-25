@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ProfessionSystem_SkillSumRule
 --  			GHP_ProfessionSystem_SkillSumRule.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_ProfessionSystem_SkillSumRule(info)
 	local class = GHP_ProfessionSystem(info);

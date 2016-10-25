@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ActionsPositionInfo
 --  			GHI_ActionsPositionInfo.lua
@@ -7,7 +7,7 @@
 --				action in an action set.
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local ACTION_WIDTH = 3;
 local ACTION_HEIGHT = 3; -- excluding ports
 

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_Visual Effects
 --			GHI_VisualEffects.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local category = "Visual Effects";
 
 table.insert(GHI_ProvidedDynamicActions, {

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ScriptEnvList
 --  			GHI_ScriptEnvList.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_ScriptEnvList()

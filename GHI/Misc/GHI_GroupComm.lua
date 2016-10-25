@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --									
 --			GHI Group Communication
 --				GHI_GroupComm.lua
@@ -8,7 +8,7 @@
 --
 -- 			(c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================
+--
 
 local libComm = LibStub("AceComm-3.0");
 local libSerial = LibStub("AceSerializer-3.0");

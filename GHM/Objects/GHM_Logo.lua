@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Logo
 --  			GHM_Logo.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local DEFAULT_WIDTH = 128;
 local DEFAULT_HEIGHT = 128;
 local count = 1;

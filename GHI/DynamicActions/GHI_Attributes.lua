@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_Attributes
 --			GHI_Attributes.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local category = "Attributes";
 table.insert(GHI_ProvidedDynamicActions, {

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_ToolbarCategory
 --  			GHM_ToolbarCategory.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 function GHM_ToolbarCategory(profile, parent, settings)

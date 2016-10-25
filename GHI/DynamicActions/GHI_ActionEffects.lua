@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_Action and Effects
 --			GHI_ActionEffects.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local category = "Actions and Effects";
 
 table.insert(GHI_ProvidedDynamicActions, {

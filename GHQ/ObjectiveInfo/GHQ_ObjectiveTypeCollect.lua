@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_ObjectiveTypeCollect
 --  			GHQ_ObjectiveTypeCollect.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 local class;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_VerticalChannel
 --  			GHI_VerticalChannel.lua
@@ -8,7 +8,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_VerticalChannel(tier,connectionLayout)
 	local class = GHClass("GHI_VerticalChannel");

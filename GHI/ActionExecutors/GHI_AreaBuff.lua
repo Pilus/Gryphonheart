@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --									
 --								GHI Area Buff
 --								GHI_AreaBuff.lua
@@ -7,7 +7,7 @@
 --	
 -- 						(c)2013 The Gryphonheart Team
 --								All rights reserved
---===================================================
+--
 
 local class;
 function GHI_AreaBuff()

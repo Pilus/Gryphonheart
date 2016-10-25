@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_LogEvent
 --  			GHG_LogEvent.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_LogEvent(info)
 	local class = GHClass("GHG_LogEvent");

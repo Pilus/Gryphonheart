@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_Location
 --			GHI_Location.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local category = "Location";
 
 

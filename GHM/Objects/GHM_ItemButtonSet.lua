@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHM_RadioButtonSet
 --  		GHM_RadioButtonSet.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 --[[
 profile.data = {

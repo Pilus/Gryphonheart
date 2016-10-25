@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupInfoFrame
 --  			GHG_GroupInfoFrame.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local api;
 GHI_Event("VARIABLES_LOADED",function()
 	api = GHG_GroupAPI(GHUnitGUID("player"))

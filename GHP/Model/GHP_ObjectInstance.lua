@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ObjectInstance
 --  			GHP_ObjectInstance.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local ZERO_POS = {
 	x = 0,
 	y = 0,

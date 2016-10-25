@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_Requirement
 --  			GHP_Requirement.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_Requirement(info,parent)
 	local class = GHClass("GHP_Requirement");

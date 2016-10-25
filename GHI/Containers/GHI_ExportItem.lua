@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ExportItem
 --  			GHI_ExportItem.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_ExportItem()

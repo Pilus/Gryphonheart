@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_ChatEvents
 --  			GHG_ChatEvents.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHG_ChatEvents()

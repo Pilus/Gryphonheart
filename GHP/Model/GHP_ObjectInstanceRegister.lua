@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ObjectInstanceRegister
 --  			GHP_ObjectInstanceRegister.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local VISIBLE_RANGE = 15;
 

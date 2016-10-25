@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Text
 --  			GHM_Text.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local DEFAULT_WIDTH = 300;
 local DEFUALT_HEIGHT = 20;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Texture
 --  			GHM_Texture.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local count = 1;
 function GHM_Texture(profile, parent, settings)
 

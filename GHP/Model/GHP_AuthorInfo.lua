@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_AuthorInfo
 --  			GHP_AuthorInfo.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_AuthorInfo(info,className)
 	local class = GHClass(className or "GHP_AuthorInfo");

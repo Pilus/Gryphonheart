@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ObjectSpawner
 --  			GHP_ObjectSpawner.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_ObjectSpawner(info,offlineTime)
 	local class = GHClass("GHP_ObjectSpawner");

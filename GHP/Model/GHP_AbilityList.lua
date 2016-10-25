@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_AbilityList
 --  			GHP_AbilityList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local ABILITY_DATA_SAVE_TABLE = "GHP_AbilityData";
 

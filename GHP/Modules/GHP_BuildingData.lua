@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_BuildingData
 --  			GHP_BuildingData.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 GHP_BUILDING_DATA = {
 	["HUMAN_INN"] = {

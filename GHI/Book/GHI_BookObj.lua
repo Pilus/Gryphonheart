@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BookObj
 --				GHI_BookObj.lua
@@ -14,7 +14,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local class
 function GHI_BookObjGenerator()
 	if class then

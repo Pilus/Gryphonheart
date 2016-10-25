@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_EquippedItemsAPI
 --  			GHP_EquippedItemsAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local MAIN_HAND_INDEX = 1;
 local SLOTS = {
 	{

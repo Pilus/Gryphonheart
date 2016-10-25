@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_LogEventType
 --  			GHG_LogEventType.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 GHG_LogEventType = {
 	CREATE = "GROUP_CREATED",

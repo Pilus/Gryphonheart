@@ -1,4 +1,4 @@
-   --===================================================
+﻿   --
 --								GHI Sound List
 --									GHM_SoundList.lua
 --
@@ -7,7 +7,7 @@
 --
 -- 						(c)2013 The Gryphonheart Team
 --								All rights reserved
---===================================================
+--
 
 local loaded = false;
 function GHM_InitSoundList() 

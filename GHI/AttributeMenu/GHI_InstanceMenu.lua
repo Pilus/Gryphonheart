@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_InstanceMenu
 --				GHI_InstanceMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local menuIndex = 1;
 
 function GHI_InstanceMenu()

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ExtraButtonUI
 --				GHI_ExtraButtonUI.lua
@@ -8,7 +8,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================
+--
 
 local class;
 

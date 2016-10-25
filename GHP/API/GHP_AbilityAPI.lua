@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_AbilityAPI
 --  			GHP_AbilityAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local ABILITY_ORDER = {
 	["nil"] = 1,
 	interactionWithObjectOrItem = 2,

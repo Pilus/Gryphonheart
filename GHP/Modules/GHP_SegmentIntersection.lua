@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_SegmentIntersection
 --  			GHP_SegmentIntersection.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local IsCoordinate = function(C)
 	return type(C) == "table" and type(C.x) == "number" and type(C.y) == "number";
 end

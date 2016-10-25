@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_Group
 --  			GHG_Group.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_Group(info)
 	local class = GHClass("GHG_Group");

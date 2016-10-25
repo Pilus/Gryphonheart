@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ObjectAPI
 --  			GHP_ObjectAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local INTERACTION_RANGE = 1;
 function GHP_ObjectAPI(userGuid)
 	local class = GHClass("GHP_ObjectAPI");

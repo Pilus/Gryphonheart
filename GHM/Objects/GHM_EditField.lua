@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_TextField
 --  			GHM_EditField.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local count = 1;
 function GHM_EditField(profile, parent, settings)
 	local frame = CreateFrame("Frame", "GHM_EditField" .. count, parent, "GHM_EditField_Template");

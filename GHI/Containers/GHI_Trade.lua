@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --						GHI Trade
 --						GHI_Trade.lua
@@ -9,7 +9,7 @@
 -- 				(c)2013 The Gryphonheart Team
 --					All rights reserved
 --
---===================================================
+--
 
 local class
 function GHI_Trade()

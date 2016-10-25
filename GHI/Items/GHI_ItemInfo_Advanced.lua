@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ItemInfo_Advanced
 --				GHI_ItemInfo_Advanced.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local COMPLEXITY = "advanced";
 
 function GHI_ItemInfo_Advanced(info)

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_StringFormat
 --  			GHI_StringFormat.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local category = "String Formatting";
 

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_QuestChain
 --  			GHQ_QuestChain.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHQ_QuestChain()

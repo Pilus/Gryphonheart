@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --									
 --						GHI Timer
 --					GHI_Timer.lua
@@ -7,7 +7,7 @@
 --	
 -- 			(c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================
+--
 
 local DETECT_HIGH_MEMORY_USAGE = false;
 

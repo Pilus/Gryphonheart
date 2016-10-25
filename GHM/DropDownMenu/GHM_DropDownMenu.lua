@@ -1,4 +1,4 @@
----------------------------------------------------
+﻿---------------------------------------------------
 --
 --	Copy of UIDropDwonMenu.lua, and associated XML
 --	Modified by Gryphonheart Team for use in GH Addons
@@ -161,7 +161,7 @@ GHM_DropDownMenu = function()
 
 	--[[
 	List of button attributes
-	======================================================
+	
 	info.text = [STRING]  --  The text of the button
 	info.value = [ANYTHING]  --  The value that UIDROPDOWNMENU_MENU_VALUE is set to when the button is clicked
 	info.func = [function()]  --  The function that is called when you click the button

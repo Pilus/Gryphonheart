@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_MultiPageToolbar
 --  			GHM_MultiPageToolbar.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 function GHM_MultiPageToolbar(profile, parent, settings)

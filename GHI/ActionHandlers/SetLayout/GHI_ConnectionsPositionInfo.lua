@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ConnectionsPositionInfo
 --				GHI_ConnectionsPositionInfo.lua
@@ -8,7 +8,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ConnectionsPositionInfo(portConnections,connectionLayout,actionsPosition,verticalChannels,horizontalChannels)
 	local class = GHClass("GHI_ConnectionsPositionInfo");

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --					Standard Item Menu
 --				GHI_StandardItemMenu.lua.lua
 --
@@ -8,7 +8,7 @@
 --
 -- 			(c)2013 The Gryphonheart Team
 --					All rights reserved
---===================================================
+--
 
 local UnitName = UnitName;
 local GHUnitGUID = GHUnitGUID;

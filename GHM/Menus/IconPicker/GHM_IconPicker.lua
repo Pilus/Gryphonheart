@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --					GHM_IconPicker
 --				GHM_IconPicker.lua
 --
@@ -6,7 +6,7 @@
 --
 -- 			(c)2013 The Gryphonheart Team
 --				  All rights reserved
---===================================================
+--
 local menuIndex = 1
 function GHM_IconPicker()
 	local class = GHClass("GHM_IconPicker");

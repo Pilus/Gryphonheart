@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_WhitelistMenu
 --				GHI_WhitelistMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_WhitelistMenu(parentName)

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_TooltipMenu
 --  			GHI_TooltipMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
  local loc = GHI_Loc();
 local ALIGNS_LOC = { loc.LEFT, loc.RIGHT };
 local ALIGNS = { "left", "right" };

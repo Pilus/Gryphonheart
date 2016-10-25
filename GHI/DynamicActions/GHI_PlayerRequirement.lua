@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_PlayerRequirements
 --  			GHI_PlayerRequirement.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local category = "Player Requirements";
 
 table.insert(GHI_ProvidedDynamicActions, {

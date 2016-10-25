@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GH_DebugMenu
 --  			GH_DebugMenu.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local menuIndex = 0;
 function GH_DebugMenu()

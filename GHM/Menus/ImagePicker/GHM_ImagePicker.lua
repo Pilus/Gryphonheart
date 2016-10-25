@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --					GHM_ImagePicker
 --				  GHM_ImagePicker.lua
 --
@@ -6,7 +6,7 @@
 --
 -- 			(c)2013 The Gryphonheart Team
 --				  All rights reserved
---===================================================
+--
 
 local menuIndex = 1;
 

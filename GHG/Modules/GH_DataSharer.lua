@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GH_DataSharer
 --  			GH_DataSharer.lua
@@ -23,7 +23,7 @@
 --
 -- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local libversion = 1500; -- Version determined by subversion revision
 local QUEUE_TRESHOLD = 4096;
@@ -566,7 +566,7 @@ function GH_DataSharer(addonShort,setGuid,getFunc,setFunc,getAllGuidFunc,dynamic
 	end
 
 
-	-- ======  Lock =======
+	--   Lock 
 	local activeLocks = {};
 	local lockFuncs = {};
 	class.RequestLock = function(guid,func)

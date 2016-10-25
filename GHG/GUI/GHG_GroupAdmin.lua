@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupAdmin
 --  			GHG_GroupAdmin.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 --local AdminFrame = CreateFrame("Frame","$parentAdmin",GHG_GroupFrameContent);
 --AdminFrame:SetID(3);

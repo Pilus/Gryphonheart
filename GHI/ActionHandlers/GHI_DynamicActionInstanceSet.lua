@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_DynamicActionInstanceSet
 --  			GHI_DynamicActionInstanceSet.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_DynamicActionInstanceSet(item, firstPortID, firstPortInfo)
 	local class = GHClass("GHI_DynamicActionInstanceSet");

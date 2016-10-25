@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_MenuList
 --  			GHI_MenuList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local classes = {};
 function GHI_MenuList(menuName)
 	if classes[menuName] then

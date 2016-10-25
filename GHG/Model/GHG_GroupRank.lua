@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupRank
 --  			GHG_GroupRank.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_GroupRank(info,isFirst)
 	local class = GHClass("GHG_GroupRank");

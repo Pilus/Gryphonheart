@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_CustomSlider
 --  			GHM_CustomSlider.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local num = 0;
 function GHM_CustomSlider(profile, parent, settings)

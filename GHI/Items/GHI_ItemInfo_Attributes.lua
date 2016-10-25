@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ItemInfo_Attributes
 --  			GHI_ItemInfo_Attributes.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ItemInfo_Attributes(info)
 	local class = GHClass("GHI_ItemInfo_Attributes");

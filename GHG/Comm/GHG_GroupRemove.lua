@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupRemove
 --  			GHG_GroupRemove.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHG_GroupRemove()

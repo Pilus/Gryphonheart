@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_AbilityInstance
 --  			GHP_AbilityInstance.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_AbilityInstance(info)
 	local class = GHClass("GHP_AbilityInstance",true);

@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --
 --				GHI_ActionBarUI
 --				GHI_ActionBarUI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local supportedUnits = { "player", "target" };
 
@@ -241,9 +241,9 @@ function GHI_BuffUIDisplay:StickDisplayToBlizzFrame(unit, stick)
 
 end
 
--- ================================================================
+-- 
 -- Buff functions. Copied from Blizzard code and modified
--- ================================================================
+-- 
 
 function GHI_BuffUIResetAllPositions(self)
 	local x, y = UIParent:GetWidth() / 2, UIParent:GetHeight() / 2;

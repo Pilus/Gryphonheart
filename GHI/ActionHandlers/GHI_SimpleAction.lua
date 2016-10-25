@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_SimpleAction
 --				GHI_SimpleAction.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local ScriptFormat = function(script,...)
 	local args = {...};
 	for i,v in pairs(args) do

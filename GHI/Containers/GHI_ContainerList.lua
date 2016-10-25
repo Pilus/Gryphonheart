@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ContainerList
 --				GHI_ContainerList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local CONTAINER_DATA_SAVE_TABLE = "GHI_ContainerData";
 local MAIN_BAG_SIZE = 24;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_AdvancedQuestMenu
 --				GHQ_AdvancedQuestMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 ---Mockup to be refined
 local class;
 function GHQ_AdvancedQuestMenu(info)

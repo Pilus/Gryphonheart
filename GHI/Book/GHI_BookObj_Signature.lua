@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BookObj_Signature
 --				GHI_BookObj_Signature.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_BookObj_Signature_GetSize(data)
 	return 60, 20;

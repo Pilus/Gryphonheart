@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Time
 --  			GHM_Time.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local DEFAULT_WIDTH = 128;
 local DEFAULT_HEIGHT = 40;
 local count = 1;

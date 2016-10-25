@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_BaseMenu
 --  			GHM_BaseMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHM_BaseMenu(owner, profile)
 	assert(profile.width, "No width given")

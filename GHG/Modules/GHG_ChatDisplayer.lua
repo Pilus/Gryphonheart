@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_ChatDisplayer
 --  			GHG_ChatDisplayer.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local DEFAULT = {
 	GHG_GROUP_ADMIN = {r=1.0,g=1,0,b=0.0,chat1 = true, },

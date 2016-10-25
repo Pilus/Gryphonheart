@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_AdminAPI
 --  			GHG_AdminAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_AdminAPI(userGuid)
 	assert(type(userGuid)=="string","A guid must be given to the API")

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_Logic
 --			GHI_Logic.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local category = "Logic";
 

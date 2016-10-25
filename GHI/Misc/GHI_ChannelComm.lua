@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --
 --				GHI Channel Communication
 --					GHI_ChannelComm.lua
@@ -7,7 +7,7 @@
 --	
 -- 			(c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================	
+--	
 
 local libSerial = LibStub("AceSerializer-3.0");
 local libCompress = LibStub("LibCompress")

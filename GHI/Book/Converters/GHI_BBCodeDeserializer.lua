@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BBCodeDeserializer
 --  			GHI_BBCodeDeserializer.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_BBCodeDeserializer()

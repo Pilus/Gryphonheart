@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_FloorLevelDetermination
 --  			GHP_FloorLevelDetermination.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local class;
 function GHP_FloorLevelDetermination()
 	if class then

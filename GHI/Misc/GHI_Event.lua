@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_Event
 --  			GHI_Event.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local PRINT_HIGH_MEMORY_MSG = false;
 
 local class;

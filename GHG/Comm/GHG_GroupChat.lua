@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupChat
 --  			GHG_GroupChat.lua
@@ -7,7 +7,7 @@
 --
 -- 	 chatinfo (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_GroupChat(groupGuid,keys)
 	local class = GHClass("GHG_GroupChat");

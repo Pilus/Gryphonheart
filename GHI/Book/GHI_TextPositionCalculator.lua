@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_TextPositionCalculator
 --  			GHI_TextPositionCalculator.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local i = 1;
 function GHI_TextPositionCalculator(width, font, n, h1Font, h1, h2Font, h2)
 	GHCheck("GHI_TextPositionCalculator",{"number","string","numberstring","string","numberstring","string","numberstring"},{width, font, n, h1Font, h1, h2Font, h2});

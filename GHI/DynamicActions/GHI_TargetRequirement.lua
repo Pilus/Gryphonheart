@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_TargetRequirement
 --  			GHI_TargetRequirement.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local category = "Target Requirement";
 
 table.insert(GHI_ProvidedDynamicActions, {

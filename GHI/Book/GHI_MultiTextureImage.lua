@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_MultiTextureImage
 --  			GHI_MultiTextureImage.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_MultiTextureImage()
 	local class = GHClass("GHI_MultiTextureImage");

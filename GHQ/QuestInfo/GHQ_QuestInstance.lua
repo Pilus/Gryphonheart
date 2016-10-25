@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_QuestInstance
 --  			GHQ_QuestInstance.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHQ_QuestInstance()

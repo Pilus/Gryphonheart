@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_NewFrame
 --  			GHM_NewFrame.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHM_NewFrame(owner, profile)
 	local theme = profile.theme or "StdTheme";

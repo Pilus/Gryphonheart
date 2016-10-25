@@ -1,0 +1,6 @@
+C:\Users\chwarnec\Documents\Github\Gryphonheart\LuaFileCloner\LuaFileCloner\bin\Debug\LuaFileCloner.exe.config
+C:\Users\chwarnec\Documents\Github\Gryphonheart\LuaFileCloner\LuaFileCloner\bin\Debug\LuaFileCloner.exe
+C:\Users\chwarnec\Documents\Github\Gryphonheart\LuaFileCloner\LuaFileCloner\bin\Debug\LuaFileCloner.pdb
+C:\Users\chwarnec\Documents\Github\Gryphonheart\LuaFileCloner\LuaFileCloner\obj\Debug\LuaFileCloner.csprojResolveAssemblyReference.cache
+C:\Users\chwarnec\Documents\Github\Gryphonheart\LuaFileCloner\LuaFileCloner\obj\Debug\LuaFileCloner.exe
+C:\Users\chwarnec\Documents\Github\Gryphonheart\LuaFileCloner\LuaFileCloner\obj\Debug\LuaFileCloner.pdb

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ItemInfo_Cooldown
 --  			GHI_ItemInfo_Cooldown.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ItemInfo_Cooldown(info)
 	local class = GHClass("GHI_ItemInfo_Cooldown");

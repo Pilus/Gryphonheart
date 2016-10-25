@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ActivePlayers
 --  			GHP_ActivePlayers.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHP_ActivePlayers()

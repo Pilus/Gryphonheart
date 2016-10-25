@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BBCodeConverter
 --  			GHI_BBCodeConverter.lua
@@ -10,7 +10,7 @@
 --
 -- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_BBCodeConverter()

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_MarySueActions
 --  		    GHI_MarySueActions.lua
@@ -8,7 +8,7 @@
 --
 -- 	       (c)2013 The Gryphonheart Team
 --		    	All rights reserved
---==================================================
+--
 
 
 local category = "Mary Sue Info";

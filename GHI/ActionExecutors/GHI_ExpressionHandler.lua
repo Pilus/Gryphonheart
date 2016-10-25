@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --								GHI Expression Handler
 --									ghi_expressionHandler.lua
 --
@@ -6,7 +6,7 @@
 --	
 -- 						(c)2013 The Gryphonheart Team
 --								All rights reserved
---===================================================	
+--	
 
 local ALLOWED_POSTS_PR_MIN = 20;
 

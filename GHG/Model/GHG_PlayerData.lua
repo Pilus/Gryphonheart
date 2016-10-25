@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_PlayerData
 --  			GHG_PlayerData.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_PlayerData(info)
 	local class = GHClass("GHG_PlayerData");

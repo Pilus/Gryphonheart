@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --									
 --			GHI Item Data Transfer
 --			GHI_ItemDataTransfer.lua
@@ -7,7 +7,7 @@
 --				betweet clients
 -- 						(c)2013 The Gryphonheart Team
 --								All rights reserved
---===================================================
+--
 
 local class;
 function GHI_ItemDataTransfer()

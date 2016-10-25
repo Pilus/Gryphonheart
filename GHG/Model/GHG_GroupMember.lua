@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupMember
 --  			GHG_GroupMember.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHG_GroupMember(info)
 	local class = GHClass("GHG_GroupMember");

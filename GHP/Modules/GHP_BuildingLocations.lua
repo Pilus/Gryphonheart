@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_BuildingLocations
 --  			GHP_BuildingLocations.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 GHP_BUILDING_LOCATIONS = {
 	["Wetlands"] = {

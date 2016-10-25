@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GH_Comm
 --  			GH_Comm.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local libversion = 1498; -- Version determined by subversion revision
 

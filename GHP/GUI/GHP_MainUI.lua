@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_MainUI
 --  			GHP_MainUI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHP_MainUI()

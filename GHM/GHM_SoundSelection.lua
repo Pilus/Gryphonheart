@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_SoundSelection
 --  			GHM_SoundSelection.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 function GHM_SoundSelection(profile, parent, settings)

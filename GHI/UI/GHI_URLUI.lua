@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_URLUI
 --  			GHI_URLUI.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local menuIndex = 1;
 function GHI_URLUI()
 	local frame = CreateFrame("Frame","GHI_URLUI_"..menuIndex,UIParent);

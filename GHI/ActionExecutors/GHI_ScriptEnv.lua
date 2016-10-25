@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --								GHI Script Enviroment
 --									GHI_ScriptEnv.lua
 --
@@ -6,7 +6,7 @@
 --	
 -- 						(c)2013 The Gryphonheart Team
 --								All rights reserved
---===================================================	
+--	
 
 function GHI_ScriptEnviroment(ownerGuid)
 	local class = GHClass("GHI_ScriptEnviroment"); -- a class object
@@ -112,7 +112,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GetCVar = GetCVar,
 
 
-		-- ===========  WoW API ===============
+		--   WoW API 
 		-- Achievement
 		AddTrackedAchievement = AddTrackedAchievement,
 		CanShowAchievementUI = CanShowAchievementUI,
@@ -693,7 +693,7 @@ function GHI_ScriptEnviroment(ownerGuid)
 		C_MountJournal = C_MountJournal,
 		C_Timer = C_Timer,
 
-		-- ===========  GHI API ===============
+		--   GHI API 
 		-- General
 		GHI_Message = GHI_Message,
 		GHI_ReloadUI = GHI_ReloadUI,

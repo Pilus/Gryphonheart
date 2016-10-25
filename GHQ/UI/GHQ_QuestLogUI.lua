@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_QuestLogUI
 --  			GHQ_QuestLogUI.lua
@@ -7,7 +7,7 @@
 --
 -- 		  (c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================
+--
 
 local questList, questListFrame, listFrame
 local questDisplay, questDisplayFrame

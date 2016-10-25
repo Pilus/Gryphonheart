@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_ObjectiveList
 --  			GHQ_ObjectiveList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 local class;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_IconPickerList
 --  			GHM_IconPickerList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHM_IconPickerList()

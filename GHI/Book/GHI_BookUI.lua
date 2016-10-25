@@ -1,5 +1,5 @@
-
---===================================================
+﻿
+--
 --					GHI Book UI
 --					GHI_BookUI.lua
 --					GHI_BookUI.xml
@@ -8,7 +8,7 @@
 --		
 -- 			(c)2013 The Gryphonheart Team
 --				 All rights reserved
---===================================================
+--
 
 if not(GHI_FontList) then
 	GHI_FontList = {

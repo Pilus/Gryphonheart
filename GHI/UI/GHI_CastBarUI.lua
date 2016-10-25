@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_CastBarUI
 --				GHI_CastBarUI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local currentCasting = {};
 local orig_UnitCastingInfo = UnitCastingInfo;
 UnitCastingInfo = function(unit)

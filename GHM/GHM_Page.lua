@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Page
 --  			GHM_Page.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local urlMenuList;
 function GHM_Page(profile, parent, settings)

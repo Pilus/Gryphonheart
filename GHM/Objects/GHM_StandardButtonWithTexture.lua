@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_StandardButtonWithTexture
 --				GHM_StandardButtonWithTexture.lua
@@ -8,7 +8,7 @@
 --
 -- 		(c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 function GHM_StandardButtonWithTexture(profile, parent, settings)

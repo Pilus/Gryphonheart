@@ -1,4 +1,4 @@
-	--===================================================
+﻿	--
 --
 --				GHI_ContainerUI
 --				GHI_ContainerUI.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			  All rights reserved
---===================================================
+--
 
 local mainBagFrame;
 local bags = {};

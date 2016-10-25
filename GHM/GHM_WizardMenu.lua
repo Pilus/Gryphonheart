@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_WizardMenu
 --  			GHM_WizardMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHM_WizardMenu(owner, profile)
 	local class = GHM_WindowedMenu(owner, profile)

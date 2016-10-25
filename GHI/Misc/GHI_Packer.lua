@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_Packer
 --				GHI_Packer.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local btype = function(s)
 	if s == true then
 		return "true";

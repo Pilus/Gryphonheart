@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ProfessionSystemList
 --  			GHP_ProfessionSystemList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local DATA_SAVE_TABLE = "GHP_ProfessionSystemData";
 

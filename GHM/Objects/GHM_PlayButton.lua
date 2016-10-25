@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_PlayButton
 --  			GHM_PlayButton.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local num = 0;
 function GHM_PlayButton(profile, parent, settings)
 	num = num + 1;

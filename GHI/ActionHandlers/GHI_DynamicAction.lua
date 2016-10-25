@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_DynamicAction
 --  			GHI_DynamicAction.lua
@@ -9,7 +9,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_DynamicAction(dataTable)
 	local class = GHClass("GHI_DynamicAction");

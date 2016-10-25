@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --									
 --						GHI SlashCmd
 --					GHI_SlashCmdUI.lua
@@ -7,7 +7,7 @@
 --	
 -- 				(c)2013 The Gryphonheart Team
 --					All rights reserved
---===================================================	
+--	
 
 function GHI_SlashCmd(mainSlashPrefix)
 	local class = GHClass("GHI_SlashCmd");

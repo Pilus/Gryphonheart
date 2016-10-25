@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --									
 --					GHI Unit Tooltip
 --					GHI_UnitTooltipUI.lua
@@ -7,7 +7,7 @@
 --	
 -- 			(c)2013 The Gryphonheart Team
 --					All rights reserved
---===================================================	
+--	
 
 local versionInfo
 function GHI_UnitTooltip()

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_MacroMenu
 --  			GHI_MacroMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local count = 1;
 
 function GHI_MacroMenu()

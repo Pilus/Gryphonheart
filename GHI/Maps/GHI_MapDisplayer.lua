@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_MapDisplayer
 --  			GHI_MapDisplayer.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local AZEROTH_WIDTH = 14545.7650;
 local AZEROTH_HEIGHT = 9697.1767;

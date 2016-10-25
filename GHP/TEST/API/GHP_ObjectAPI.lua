@@ -1,4 +1,4 @@
-describe("GHP_ObjectAPI",function()
+﻿describe("GHP_ObjectAPI",function()
 
 	require("StandardMock");
 	require("GHP_ObjectAPI");
@@ -130,7 +130,7 @@ describe("GHP_ObjectAPI",function()
 		objIns.SetPosition(newPos)
 		assert.are.same(newPos,objIns.GetPosition());
 
-		-- ======  NEGATIVE TEST - NO ACCESS TO WRITE =====
+		--   NEGATIVE TEST - NO ACCESS TO WRITE =====
 		local errorThrown = false;
 		error = function()
 			errorThrown = true;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_TabMenu
 --  			GHM_TabMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHM_TabMenu(owner, profile)
 	local class = GHM_WindowedMenu(owner, profile);

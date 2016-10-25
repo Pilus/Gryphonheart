@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_ScrollFrame
 --  			GHM_ScrollFrame.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 function GHM_ScrollFrame_OnLoad(self)

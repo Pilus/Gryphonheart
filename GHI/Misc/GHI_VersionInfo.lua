@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_VersionInfo
 --  			GHI_VersionInfo.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local function CompareNumbers(t1, t2)
 	local v1 = t1[1];

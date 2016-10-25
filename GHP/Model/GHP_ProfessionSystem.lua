@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ProfessionSystem
 --  			GHP_ProfessionSystem.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_ProfessionSystem(info)
 	local class = GHP_AuthorInfo(info,"GHP_ProfessionSystem");

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ProfessionSystemAPI
 --  			GHP_ProfessionSystemAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 function GHP_ProfessionSystemAPI(userGuid)

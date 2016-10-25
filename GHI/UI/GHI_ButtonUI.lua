@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --
 --				GHI Backpack Button
 --					ghi_buttonUI.lua
@@ -7,7 +7,7 @@
 --
 -- 			(c)2013 The Gryphonheart Team
 --				All rights reserved
---===================================================
+--
  local class;
 function GHI_ButtonUI()
 	if class then
@@ -214,7 +214,7 @@ function GHI_ButtonUI()
 		end
 	end
 
-	-- =============== Sub buttons =================
+	--  Sub buttons 
 	local subButtons = {};
 	local subButtonScroll;
 	local subButtonFrame;

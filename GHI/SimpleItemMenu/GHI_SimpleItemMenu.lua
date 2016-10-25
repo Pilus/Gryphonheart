@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_SimpleItemMenu
 --				GHI_SimpleItemMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local UnitName = UnitName;
 local GHUnitGUID = GHUnitGUID;

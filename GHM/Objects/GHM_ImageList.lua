@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_ImageList
 --  			GHM_ImageList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Color
 --  			GHM_Color.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local DEFAULT_WIDTH = 160;
 local DEFAULT_HEIGHT = 180;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupList
 --  			GHG_GroupList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local DATA_SAVE_TABLE = "GHG_GroupData";
 GHG_GroupKeys = GHG_GroupKeys or {};
 

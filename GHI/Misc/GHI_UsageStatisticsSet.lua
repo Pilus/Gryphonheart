@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_UsageStatisticsSet
 --  		GHI_UsageStatisticsSet.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_UsageStatisticsSet(info)
 	local class = GHClass("GHI_UsageStatisticsSet");

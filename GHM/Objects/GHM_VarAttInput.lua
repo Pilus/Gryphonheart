@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --		GHM Variables and attribute input
 --  			GHM_VarAttInput.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 

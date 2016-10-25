@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ObjectList
 --  			GHP_ObjectList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local OBJECT_DATA_SAVE_TABLE = "GHP_ObjectData";
 

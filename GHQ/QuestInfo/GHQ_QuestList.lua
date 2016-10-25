@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_QuestList
 --  			GHQ_QuestList.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 -- should probably look like GHI_ItemInfoList.lua
 

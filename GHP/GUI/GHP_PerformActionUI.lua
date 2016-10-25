@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_PerformActionUI
 --  			GHP_PerformActionUI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_PerformActionUI()
 	local class = GHClass("GHP_PerformActionUI");

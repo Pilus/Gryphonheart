@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_MultiPageEditField
 --  			GHM_MultiPageEditField.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 local codeFields = {};

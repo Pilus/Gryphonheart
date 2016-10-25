@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_DynamicActionArea
 --  			GHM_DynamicActionArea.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local loc;
 local frame  = CreateFrame("Frame");
 frame:RegisterEvent("VARIABLES_LOADED");

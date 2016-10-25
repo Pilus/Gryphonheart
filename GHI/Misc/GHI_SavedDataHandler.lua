@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_SavedDataHandler
 --			GHI_SavedData.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local UPGRADE_DETECTED = false;
 local ERROR_MSG = "GHI ERROR. PARTIAL DATA CORRUPTION!";
 local VARS_LOADED;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_List
 --  			GHM_List.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 function GHM_List(profile, parent, settings)

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ActionBarUI
 --				GHI_ActionBarUI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 
 local variablesLoaded;

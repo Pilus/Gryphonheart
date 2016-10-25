@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_MessageMenu
 --			GHI_MessageMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
  local loc = GHI_Loc()
 local menus = {};
 local miscAPI;

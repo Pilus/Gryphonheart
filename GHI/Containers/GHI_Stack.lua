@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_Stack
 --				GHI_Stack.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 GHI_ItemGuidsOfStacksLoaded = {};
 
 function GHI_Stack(parentContainer, info1, info2, tempItemInfo)

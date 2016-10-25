@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupAPI
 --  			GHG_GroupAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local apis = {}
 function GHG_GroupAPI(userGuid)
 	assert(type(userGuid)=="string","A guid must be given to the API")
@@ -246,7 +246,7 @@ function GHG_GroupAPI(userGuid)
 	end
 
 
-	-- ======== Invite player to group ===========
+	--  Invite player to group 
 	local invite = GHG_GroupInvite();
 	class.InvitePlayerToGroup = function(index,playerName)
 		GHCheck("InvitePlayerToGroup", { "number", "string" }, { index,playerName });
@@ -325,7 +325,7 @@ function GHG_GroupAPI(userGuid)
 		end
 	end
 
-	-- ========= chat info ========
+	--  chat info 
 	class.GetGroupChatInfo = function(index)
 		GHCheck("GetGroupChatInfo", { "number" }, { index });
 		local group = GetGroupByIndex(index);

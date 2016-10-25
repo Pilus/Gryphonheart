@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Inputs
 --  			GHM_Inputs.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local function GetInputTypes()
 local loc = GHI_Loc();
 return {

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_BaseObject
 --  			GHM_BaseObject.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHM_BaseObject(profile, parent, settings)
 	local objType = profile.type;

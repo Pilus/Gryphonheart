@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_HorizontalChannel
 --  			GHI_HorizontalChannel.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_HorizontalChannel(number,connectionLayout,verticalChannels)
 	local class = GHClass("GHI_HorizontalChannel");

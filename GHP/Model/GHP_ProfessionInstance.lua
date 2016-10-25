@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ProfessionInstance
 --  			GHP_ProfessionInstance.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_ProfessionInstance(info)
 	local class = GHClass("GHP_ProfessionInstance");

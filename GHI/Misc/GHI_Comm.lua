@@ -1,4 +1,4 @@
-﻿--===================================================
+﻿--
 --
 --					GHI Communication
 --						GHI_Comm.lua
@@ -7,7 +7,7 @@
 --	
 -- 				(c)2013 The Gryphonheart Team
 --					All rights reserved
---===================================================	
+--	
 
 local libComm = LibStub("AceComm-3.0");
 local libCommOld = LibStub("AceComm-3.0");

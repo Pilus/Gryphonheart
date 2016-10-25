@@ -1,4 +1,4 @@
-﻿ --===================================================
+﻿ --
 --
 --					GHI Item Info
 --					ghi_itemInfo.lua
@@ -7,7 +7,7 @@
 --
 -- 			(c)2013 The Gryphonheart Team
 --					All rights reserved
---===================================================
+--
 local itemFunctions;
 
 function GHI_ItemInfo(info)

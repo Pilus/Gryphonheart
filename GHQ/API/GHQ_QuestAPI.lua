@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHQ_QuestAPI
 --  			GHQ_QuestAPI.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHQ_QuestAPI()

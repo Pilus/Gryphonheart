@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHP_ObjectInstanceWithItem
 --  			GHP_ObjectInstanceWithItem.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHP_ObjectInstanceWithItem(info)
 	local class = GHClass("GHI_Stack");

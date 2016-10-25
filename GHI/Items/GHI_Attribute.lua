@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_Attribute
 --  			GHI_Attribute.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_Attribute(name, attType, additionalData, defaultValue, modifyAccess, mergeRule)
 	if type(name) == "table" then -- if created from a table

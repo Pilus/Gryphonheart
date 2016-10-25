@@ -1,4 +1,4 @@
---[[
+﻿--[[
 Equipment Display System
 
 The slot class handles items in slots on a player. 
@@ -931,9 +931,9 @@ function GH_DO:Deserialize(t)
 end
 
 
--- =========================================
+-- 
 --				GHI Display USE
--- =========================================
+-- 
 
 local PD; -- player display
 local Displays = {}; -- target display and other displays

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ActionsLocationInfo
 --  			GHI_ActionsLocationInfo.lua
@@ -8,7 +8,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ActionsLocationInfo(actionTree)
 	local class = GHClass("GHI_ActionsLocationInfo");

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ItemInfo_Standard
 --  			GHI_ItemInfo_Standard.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local COMPLEXITY = "standard";
 
 function GHI_ItemInfo_Standard(info)

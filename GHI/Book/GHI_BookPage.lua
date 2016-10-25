@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BookPage
 --  			GHI_BookPage.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_BookPage(materials)
 	local class = GHClass("GHI_BookPage");

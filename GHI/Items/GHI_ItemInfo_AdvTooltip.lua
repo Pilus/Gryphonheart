@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ItemInfo_AdvTooltip
 --  			GHI_ItemInfo_AdvTooltip.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ItemInfo_AdvTooltip(info,inheritObject)
 	local class = inheritObject or GHClass("GHI_ItemInfo_AdvTooltip");

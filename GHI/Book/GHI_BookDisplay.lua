@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BookDisplay
 --  			GHI_BookDisplay.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 function GHI_BookDisplay(materials)

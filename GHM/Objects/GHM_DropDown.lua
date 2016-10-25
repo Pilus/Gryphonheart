@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_CustomDD
 --  			GHM_CustomDD.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local count = 1;
 

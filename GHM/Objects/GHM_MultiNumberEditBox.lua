@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Editbox
 --  			GHM_EditBox.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2014 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local DEFAULT_WIDTH_PR_BOX = 25;
 local DEFAULT_WIDTH_PR_PR_DIGIT = 7;

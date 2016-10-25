@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHG_GroupFrame
 --  			GHG_GroupFrame.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local groupFrame = GHG_GroupFrame;
 local UpdateTabsAndDDs;

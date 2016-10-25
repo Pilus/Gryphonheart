@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHM_Toolbar
 --  			GHM_Toolbar.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local BORDER_SIZE = 1;
 local BUTTON_SIZE = 32;
 local count = 1;

@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_AdvancedItemMenu
 --  			GHI_AdvancedItemMenu.lua
@@ -7,7 +7,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local UnitName = UnitName;
 local GHUnitGUID = GHUnitGUID;
 local stackOrders = {"last","first","biggest","smallest"};

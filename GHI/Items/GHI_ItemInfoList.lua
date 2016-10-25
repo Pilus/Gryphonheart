@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_ItemInfoList
 --			GHI_ItemInfoList.lua
@@ -7,7 +7,7 @@
 --
 --		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local LOAD_IN_COROUTINE = true;
 
 local class;

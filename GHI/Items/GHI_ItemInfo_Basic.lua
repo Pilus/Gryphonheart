@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ItemInfo_Basic
 --  			GHI_ItemInfo_Basic.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 local loc = GHI_Loc();
 
 GHI_ITEM_TYPE_NAME = { loc.ITEMTYPE_CUSTOM_MADE, loc.ITEMTYPE_CONTRIBUTE, loc.ITEMTYPE_OLD, loc.ITEMTYPE_OFFICAL };

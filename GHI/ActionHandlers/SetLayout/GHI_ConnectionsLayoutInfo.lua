@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ConnectionsLayoutInfo
 --				GHI_ConnectionsLayoutInfo.lua
@@ -8,7 +8,7 @@
 --
 -- 		(c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ConnectionsLayoutInfo(actionLocations)
 	local class = GHClass("GHI_ConnectionsLayoutInfo");

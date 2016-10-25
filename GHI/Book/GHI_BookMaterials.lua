@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_BookMaterials
 --  			GHI_BookMaterials.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_BookMaterials()

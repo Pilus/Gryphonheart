@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ContainerInfo
 --				GHI_ContainerInfo.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 function GHI_ContainerInfo(info)
 

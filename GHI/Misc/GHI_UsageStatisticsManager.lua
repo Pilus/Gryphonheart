@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --			GHI_UsageStatisticsManager
 --			GHI_UsageStatisticsManager.lua
@@ -7,7 +7,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 local ownStatistics;

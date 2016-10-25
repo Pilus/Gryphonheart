@@ -1,4 +1,4 @@
---===================================================
+﻿--
 --
 --				GHI_ActionTreeStructure
 --				GHI_ActionTreeStructure.lua
@@ -8,7 +8,7 @@
 --
 -- 	  (c)2013 The Gryphonheart Team
 --			All rights reserved
---===================================================
+--
 
 local class;
 function GHI_ActionTreeStructure()
