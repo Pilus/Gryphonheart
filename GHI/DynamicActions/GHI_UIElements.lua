@@ -283,7 +283,7 @@ table.insert(GHI_ProvidedDynamicActions, {
 	version = 1,
 	category = category,
 	description = "Creates a Talking Head window.",
-	icon = "Interface\\Icons\\INV_Misc_Note_01",
+	icon = "Interface\\Icons\\INV_Misc_Head_Gnome_01",
 	gotOnSetupPort = true,
 	setupOnlyOnce = false,
 	allowedInUpdateSequence = false,
@@ -298,12 +298,6 @@ table.insert(GHI_ProvidedDynamicActions, {
 		GHI_ShowTalkingHead(displayInfo, cameraID, nil, duration, name, text, isNewTalkingHead)
 	]],
 	ports = {
-		clicked = {
-			name = "On Click",
-			direction = "out",
-			order = 1,
-			description = "Fired when the button is clicked.",
-		},
 	},
 	inputs = {
 	--displayInfo, cameraID, vo, duration, name, text, isNewTalkingHead
