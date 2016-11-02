@@ -607,6 +607,7 @@ function GHI_ActionAPI()
 			C_Timer.After(duration, TalkingHeadFrame_Close);
 		end
 	end
+	api.ShowTalkingHead = api.GHI_ShowTalkingHead;
 
 	local effectFrame = CreateFrame("Frame");
 	effectFrame:SetAllPoints(UIParent);

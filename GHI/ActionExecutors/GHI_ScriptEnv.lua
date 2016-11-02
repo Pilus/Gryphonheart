@@ -836,7 +836,6 @@ function GHI_ScriptEnviroment(ownerGuid)
 		GHI_ChannelComm = GHI_ChannelComm,
 		GHI_AreaBuff = GHI_AreaBuff,
 		GHI_AreaSound = GHI_AreaSound,
-		ShowTalkingHead = GHI_ShowTalkingHead,
 	
 		-- StaticPopupDialogs support
 		StaticPopupDialogs = {},
