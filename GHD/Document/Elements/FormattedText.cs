@@ -194,7 +194,7 @@ namespace GHD.Document.Elements
             this.cursorPos += addedTextSize;
             this.CursorChanged();
 
-            this.text += documentBuffer.Get(availableDimension, this.GetCurrentFlags());
+            this.text += documentBuffer.Take(availableDimension, this.GetCurrentFlags());
             this.TextChanged();
         }
 

@@ -30,7 +30,7 @@ namespace GHD.Document.Buffer
         /// <param name="maxLength"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        string Get(IDimensionConstraint constraint, IFlags flags);
+        string Take(IDimensionConstraint constraint, IFlags flags);
 
         /// <summary>
         /// Peeks the remaining text that fits the flag, until a limit by the maxLength.

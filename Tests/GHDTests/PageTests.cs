@@ -16,7 +16,7 @@ namespace Tests.GHDTests
 
     using Moq;
 
-    //[TestClass]
+    /*[TestClass]
     public class PageTests
     {
         [TestInitialize]
@@ -68,6 +68,6 @@ namespace Tests.GHDTests
 
             Assert.AreNotEqual(null, label);
             Assert.AreEqual(expectedString, label.GetText());
-        }
-    }
+        } 
+    } // */
 }

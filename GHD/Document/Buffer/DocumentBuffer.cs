@@ -10,17 +10,20 @@ namespace GHD.Document.Buffer
     using GHD.Document.Flags;
     using Lua;
 
+    /// <summary>
+    /// Document buffer is a queue for text and element, including functionality to append and get objects fitting a given dimension.
+    /// </summary>
     public class DocumentBuffer : IDocumentBuffer
     {
         private List<BufferElement> elements;
         private IElementFactory elementFactory;
 
-        public DocumentBuffer(IElementFactory elementFactory) : this(elementFactory, null)
-        {
-            
-        }
-
-        public DocumentBuffer(IElementFactory elementFactory, IDocumentData data)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DocumentBuffer"/> class.
+        /// </summary>
+        /// <param name="elementFactory"></param>
+        /// <param name="data"></param>
+        public DocumentBuffer(IElementFactory elementFactory, IDocumentData data = null)
         {
             // TODO: Init the document deleter
             this.Deleter = null;
@@ -68,10 +71,10 @@ namespace GHD.Document.Buffer
         }
 
         /// <summary>
-        /// Gets the remaining text that fits the flag, until a limit by the maxLength.
+        /// Takes the remaining text that fits the flag, until a limit by the maxLength, removing that text from the buffer.
         /// </summary>
         /// <returns></returns>
-        public string Get(IDimensionConstraint constraint, IFlags flags)
+        public string Take(IDimensionConstraint constraint, IFlags flags)
         {
             this.ThrowIfBufferIsEmpty();
 
@@ -83,7 +86,7 @@ namespace GHD.Document.Buffer
             var first = this.elements.First();
             if (first.Flags == null || (flags != null && !first.Flags.Equals(flags)))
             {
-                return "";
+                return String.Empty;
             }
 
             var text = TextScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
@@ -91,7 +94,7 @@ namespace GHD.Document.Buffer
             {
                 this.elements.RemoveAt(0);
             }
-            else if (text != "")
+            else if (text != String.Empty)
             {
                 this.elements[0] = new BufferElement()
                 {
@@ -103,33 +106,10 @@ namespace GHD.Document.Buffer
         }
 
         /// <summary>
-        /// Peeks the remaining text that fits the flag, until a limit by the maxLength.
+        /// Takes the next element if it fits within the given constraint, removing it from the buffer.
         /// </summary>
-        /// <param name="flags"></param>
-        /// <returns></returns>
-        public string Peek(IDimensionConstraint constraint, IFlags flags)
-        {
-            this.ThrowIfBufferIsEmpty();
-
-            if (constraint.MaxWidth == null)
-            {
-                throw new Exception("A max width must be provided in the constraint.");
-            }
-
-
-            var first = this.elements.First();
-            if (first.Flags == null || (flags != null && !first.Flags.Equals(flags)))
-            {
-                return "";
-            }
-
-            return TextScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
-        }
-
-        /// <summary>
-        /// Gets the next element if it fits within the maxLength.
-        /// </summary>
-        /// <returns></returns>
+        /// <param name="constraint">The constraint the resulting element should fit in.</param>
+        /// <returns>The resulting element.</returns>
         public IElement Get(IDimensionConstraint constraint)
         {
             this.ThrowIfBufferIsEmpty();
@@ -142,8 +122,8 @@ namespace GHD.Document.Buffer
             var first = this.elements.First();
             if (first.Flags != null)
             {
-                var text = this.Get(constraint, first.Flags);
-                if (text == "")
+                var text = this.Take(constraint, first.Flags);
+                if (text == String.Empty)
                 {
                     return null;
                 }
@@ -162,6 +142,11 @@ namespace GHD.Document.Buffer
             return first.Element;
         }
 
+        /// <summary>
+        /// Gets the next element if it fits within the given constraint without removing it from the buffer.
+        /// </summary>
+        /// <param name="constraint">The constraint the resulting element should fit in.</param>
+        /// <returns>The resulting element.</returns>
         public IElement Peek(IDimensionConstraint constraint)
         {
             this.ThrowIfBufferIsEmpty();
@@ -180,7 +165,7 @@ namespace GHD.Document.Buffer
             if (first.Flags != null)
             {
                 var text = this.Peek(constraint, first.Flags);
-                if (text == "")
+                if (text == String.Empty)
                 {
                     return null;
                 }
@@ -199,9 +184,34 @@ namespace GHD.Document.Buffer
         }
 
         /// <summary>
-        /// Returns weather the end of the buffer has been reached. 
+        /// Peeks the remaining text that fits the flag, until a limit by the maxLength.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="constraint">The constraints the text must fit.</param>
+        /// <param name="flags">The flags the text must fit.</param>
+        /// <returns>The peeked text.</returns>
+        public string Peek(IDimensionConstraint constraint, IFlags flags)
+        {
+            this.ThrowIfBufferIsEmpty();
+
+            if (constraint.MaxWidth == null)
+            {
+                throw new Exception("A max width must be provided in the constraint.");
+            }
+
+
+            var first = this.elements.First();
+            if (first.Flags == null || (flags != null && !first.Flags.Equals(flags)))
+            {
+                return String.Empty;
+            }
+
+            return TextScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
+        }
+
+        /// <summary>
+        /// Returns whether the end of the buffer has been reached. 
+        /// </summary>
+        /// <returns>A flag indicating if the buffer is empty.</returns>
         public bool EndOfBuffer()
         {
             return this.elements.Count == 0;
@@ -212,6 +222,9 @@ namespace GHD.Document.Buffer
         /// </summary>
         public IDocumentDeleter Deleter { get; private set; }
 
+        /// <summary>
+        /// Throw an exception if the buffer is empty.
+        /// </summary>
         private void ThrowIfBufferIsEmpty()
         {
             if (this.EndOfBuffer())
