@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHG", "GHG\GHG.csproj", "{3D230DD5-49B6-44CD-9793-000C3B1315B2}"
 EndProject
@@ -20,7 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C556D712-26DC-4B26-AE65-2BED47104EC1}"
 	ProjectSection(SolutionItems) = preProject
 		CsLuaConverter\CsToLua.exe = CsLuaConverter\CsToLua.exe
-		CsLuaConverter\CsToLua.pdb = CsLuaConverter\CsToLua.pdb
 		CsLuaConverter\Microsoft.CodeAnalysis.CSharp.dll = CsLuaConverter\Microsoft.CodeAnalysis.CSharp.dll
 		CsLuaConverter\Microsoft.CodeAnalysis.CSharp.Workspaces.dll = CsLuaConverter\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
 		CsLuaConverter\Microsoft.CodeAnalysis.dll = CsLuaConverter\Microsoft.CodeAnalysis.dll
@@ -52,6 +51,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Menu.UnitTests", "GH.Menu.UnitTests\GH.Menu.UnitTests.csproj", "{31D583CF-E9F7-4374-8C96-BDD12ED913E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GH.Settings", "GH.Settings\GH.Settings.csproj", "{221634CB-5733-46EA-908E-1032A6421BA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHD.UnitTests", "GHD.UnitTests\GHD.UnitTests.csproj", "{0E2DBB03-41D1-4C17-84F2-06439FFFBE60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,14 +90,6 @@ Global
 		{9E9DDC27-BD76-45CC-9F20-25EC7568C86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E9DDC27-BD76-45CC-9F20-25EC7568C86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E9DDC27-BD76-45CC-9F20-25EC7568C86D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF929778-D501-43D1-892D-3D92278D2C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF929778-D501-43D1-892D-3D92278D2C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF929778-D501-43D1-892D-3D92278D2C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF929778-D501-43D1-892D-3D92278D2C3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A27954BB-8AD4-44E0-95AF-2BAD787156F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A27954BB-8AD4-44E0-95AF-2BAD787156F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A27954BB-8AD4-44E0-95AF-2BAD787156F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A27954BB-8AD4-44E0-95AF-2BAD787156F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B177D62-5E1F-4839-AB79-C4E3B6CD78F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -145,6 +138,10 @@ Global
 		{221634CB-5733-46EA-908E-1032A6421BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{221634CB-5733-46EA-908E-1032A6421BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{221634CB-5733-46EA-908E-1032A6421BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E2DBB03-41D1-4C17-84F2-06439FFFBE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E2DBB03-41D1-4C17-84F2-06439FFFBE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E2DBB03-41D1-4C17-84F2-06439FFFBE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E2DBB03-41D1-4C17-84F2-06439FFFBE60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

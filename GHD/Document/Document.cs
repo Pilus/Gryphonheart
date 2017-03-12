@@ -21,19 +21,21 @@ namespace GHD.Document
         private readonly IButton frame;
         private readonly IKeyboardInputProvider keyboardInput;
         private readonly ICursor cursor;
-        private IContainer pageCollection;
+        private readonly IElementFactory elementFactory;
+        private IPageCollection pageCollection;
 
-        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor)
-            : this(keyboardInput, cursor, null)
+        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory)
+            : this(keyboardInput, cursor, elementFactory, null)
         {
         }
 
-        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IDocumentData data)
+        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, IDocumentData data)
         {
             documentCount++;
             this.keyboardInput = keyboardInput;
             this.keyboardInput.RegisterCallback(this.HandleKeyboardInput);
             this.cursor = cursor;
+            this.elementFactory = elementFactory;
 
             this.frame = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, "GHD_Document" + documentCount);
 
@@ -55,7 +57,7 @@ namespace GHD.Document
         private void New()
         {
             var flags = FlagsManager.LoadFlags(Defaults.DocumentWideFlags);
-            this.pageCollection = new Page(flags, Defaults.PageProperties); // TODO: Set back to page collection
+            this.pageCollection = this.elementFactory.CreatePageCollection(flags); // TODO: Set back to page collection
             this.pageCollection.Region.SetParent(this.frame);
             this.pageCollection.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, 20, -20);
             this.pageCollection.SetCursor(false, this.cursor);
@@ -64,7 +66,7 @@ namespace GHD.Document
         private void Load(IDocumentData data)
         {
             var flags = FlagsManager.LoadFlags(DefaultMerger.AddDefaults(data.DocumentWideFlags));
-            this.pageCollection = new PageCollection(flags);
+            this.pageCollection = this.elementFactory.CreatePageCollection(flags);
             this.pageCollection.SetCursor(false, this.cursor);
         }
 
@@ -94,7 +96,7 @@ namespace GHD.Document
 
             if (type == EditInputType.Input)
             {
-                var buffer = new DocumentBuffer();
+                var buffer = new DocumentBuffer(this.elementFactory);
                 buffer.Append(detail, this.pageCollection.GetCurrentFlags());
                 this.pageCollection.Insert(buffer, null);
                 return;

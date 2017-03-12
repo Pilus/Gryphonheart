@@ -10,14 +10,14 @@ namespace GHD.Document.Containers
     using Buffer;
     using BlizzardApi.Global;
 
-    public class Page : ContainerBase, IContainer
+    public class Page : ContainerBase, IContainer, IPage
     {
         private readonly IFrame frame;
         private readonly IPageProperties properties;
         private readonly IFlags flags;
 
-        public Page(IFlags flags, IPageProperties properties)
-            : base(new Line(flags))
+        public Page(IFlags flags, IPageProperties properties, IElementFactory elementFactory)
+            : base(new Line(flags, elementFactory))
         {
             this.flags = flags;
             this.properties = properties;
@@ -59,63 +59,6 @@ namespace GHD.Document.Containers
         protected override double GetDimension(IContainer child)
         {
             return child.GetHeight();
-        }
-
-        public void OldInsert(IDocumentBuffer documentBuffer, IDimensionConstraint dimensionConstraint)
-        {
-            // TODO: Delete this when done!
-            if (this.CurrentCursorChild == null)
-            {
-                throw new CursorException("The container does not have the cursor");
-            }
-
-            double heightUsed = 0;
-            var c = this.FirstChild;
-            while (c != this.CurrentCursorChild)
-            {
-                heightUsed += c.GetHeight();
-                c = c.Next;
-            }
-
-            var objectConstraint = GetConstraint(null, heightUsed);
-
-            while (this.CurrentCursorChild != null)
-            {
-                this.CurrentCursorChild.Insert(documentBuffer, objectConstraint);
-
-                if (documentBuffer.EndOfBuffer())
-                {
-                    return;
-                }
-
-                heightUsed += this.CurrentCursorChild.GetWidth();
-                objectConstraint = GetConstraint(null, heightUsed);
-
-                this.CurrentCursorChild.ClearCursor();
-                this.CurrentCursorChild = this.CurrentCursorChild.Next;
-                if (this.CurrentCursorChild != null)
-                {
-                    this.CurrentCursorChild.SetCursor(false, this.Cursor);
-                }
-            }
-
-            var newElement = documentBuffer.Peek(objectConstraint);
-
-            while (newElement != null)
-            {
-                var newLine = new Line(this.flags);
-                this.AppendChild(newLine);
-                newLine.Insert(documentBuffer, objectConstraint);
-                heightUsed += newLine.GetHeight();
-                objectConstraint = GetConstraint(null, heightUsed);
-
-                if (documentBuffer.EndOfBuffer())
-                {
-                    break;
-                }
-                newElement = documentBuffer.Peek(objectConstraint);
-            }
-
         }
 
         public override void Delete(IDocumentDeleter documentDeleter)

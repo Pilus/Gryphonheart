@@ -10,7 +10,7 @@ namespace GHD.Document.Containers
     using GHD.Document.Flags;
     using Lua;
 
-    public class Line : ContainerBase
+    public class Line : ContainerBase, ILine
     {
         private readonly IFrame frame;
 
@@ -19,7 +19,7 @@ namespace GHD.Document.Containers
             get { return this.frame; }
         }
 
-        public Line(IFlags flags) : base(new FormattedText(flags) {AllowZeroPosition = true,})
+        public Line(IFlags flags, IElementFactory elementFactory) : base(elementFactory.Create(flags, true))
         {
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
 

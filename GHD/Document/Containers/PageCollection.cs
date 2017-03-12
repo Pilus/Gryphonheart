@@ -5,10 +5,10 @@ namespace GHD.Document.Containers
     using Buffer;
     using GHD.Document.Flags;
 
-    public class PageCollection : ContainerBase, IContainer
+    public class PageCollection : ContainerBase, IPageCollection
     {
         
-        public PageCollection(IFlags flags) : base(new Page(flags, null))
+        public PageCollection(IFlags flags, IElementFactory elementFactory) : base(elementFactory.CreatePage(flags))
         {
         }
 

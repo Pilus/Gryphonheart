@@ -46,9 +46,13 @@
   <ItemGroup>
     <Compile Include="Document\Buffer\BufferElement.cs" />
     <Compile Include="Document\Buffer\DocumentBuffer.cs" />
+    <Compile Include="Document\Buffer\IElementFactory.cs" />
     <Compile Include="Document\Containers\ContainerBase.cs" />
     <Compile Include="Document\Containers\DimensionConstraint.cs" />
+    <Compile Include="Document\Containers\ILine.cs" />
     <Compile Include="Document\Containers\ILinkedElement.cs" />
+    <Compile Include="Document\Containers\IPage.cs" />
+    <Compile Include="Document\Containers\IPageCollection.cs" />
     <Compile Include="Document\Containers\Line.cs" />
     <Compile Include="Document\Containers\LinkedElement.cs" />
     <Compile Include="Document\Containers\NavigationType.cs" />
@@ -65,6 +69,9 @@
     <Compile Include="Document\Elements\CursorException.cs" />
     <Compile Include="Document\Elements\FormattedText.cs" />
     <Compile Include="Document\Elements\FormattedTextFrame.cs" />
+    <Compile Include="Document\Elements\IElementFrame.cs" />
+    <Compile Include="Document\Elements\IElementFrameFactory.cs" />
+    <Compile Include="Document\Elements\IFormattedText.cs" />
     <Compile Include="Document\Flags\Flags.cs" />
     <Compile Include="Document\Flags\FlagsManager.cs" />
     <Compile Include="Document\KeyboardInput\IKeyboardInputProvider.cs" />

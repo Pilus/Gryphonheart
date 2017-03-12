@@ -2,6 +2,8 @@
 
 namespace Tests.GHDTests
 {
+    using BlizzardApi.Global;
+    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
 
     using CsLuaFramework.Wrapping;
@@ -15,13 +17,36 @@ namespace Tests.GHDTests
 
     using Moq;
 
-    //[TestClass]
+    [TestClass]
     public class LineTests
     {
+        /*
         [TestInitialize]
         public void TestInitialize()
         {
             new MockGlobal();
+            var frameProviderMock = new Mock<IFrameProvider>();
+            frameProviderMock.Setup(p => p.CreateFrame(FrameType.Frame, It.IsAny<string>())).Returns(() =>
+            {
+                var frameMock = new Mock<IFrame>();
+                frameMock.Setup(f => f.CreateFontString(It.IsAny<string>(), It.IsAny<Layer>())).Returns(() =>
+                {
+                    var fontStringMock = new Mock<IFontString>();
+                    return fontStringMock.Object;
+                });
+                frameMock.Setup(f => f.CreateFontString()).Returns(() =>
+                {
+                    var fontStringMock = new Mock<IFontString>();
+                    return fontStringMock.Object;
+                });
+                return frameMock.Object;
+            });
+            Global.FrameProvider = frameProviderMock.Object;
+
+            var uiParent = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, "UIParent");
+            var framesMock = new Mock<IFrames>();
+            framesMock.SetupGet(f => f.UIParent).Returns(uiParent);
+            Global.Frames = framesMock.Object;
         }
 
         [TestMethod]
@@ -187,5 +212,6 @@ namespace Tests.GHDTests
             Assert.AreNotEqual(null, label);
             Assert.AreEqual(expectedString, label.GetText());
         }
+        //*/
     }
 }

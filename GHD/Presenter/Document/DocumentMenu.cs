@@ -38,7 +38,7 @@ namespace GHD.Presenter.Document
         public void Test()
         {
             this.menu.AnimatedShow();
-            this.document = new Document(this.inputProvider, this.cursor);
+            this.document = new Document(this.inputProvider, this.cursor, null);
             this.document.Region.SetParent(this.documentContainer);
             this.document.Region.SetAllPoints(this.documentContainer);
             this.inputProvider.Start();

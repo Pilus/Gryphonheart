@@ -7,7 +7,7 @@ namespace GHD.Document.Elements
     using BlizzardApi.WidgetInterfaces;
     using Flags;
 
-    public class FormattedTextFrame
+    public class FormattedTextFrame : IElementFrame
     {
         private static int frameCount;
 

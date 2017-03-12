@@ -8,20 +8,20 @@ namespace GHD.Document.Elements
     using GHD.Document.Flags;
     using Lua;
 
-    public class FormattedText : LinkedElement<IContainer>, IElement
+    public class FormattedText : LinkedElement<IContainer>, IElement, IFormattedText
     {
-        private readonly FormattedTextFrame frame;
+        private readonly IElementFrame frame;
         private readonly IFlags flags;
         private ICursor cursor;
         private int cursorPos;
 
         private string text;
 
-        public FormattedText(IFlags flags)
+        public FormattedText(IFlags flags, IElementFrameFactory frameFactory)
         {
             this.text = string.Empty;
             this.flags = flags;
-            this.frame = new FormattedTextFrame(flags);
+            this.frame = frameFactory.Create(flags);
         }
 
         public IRegion Region

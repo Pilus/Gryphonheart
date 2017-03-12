@@ -13,16 +13,19 @@ namespace GHD.Document.Buffer
     public class DocumentBuffer : IDocumentBuffer
     {
         private List<BufferElement> elements;
+        private IElementFactory elementFactory;
 
-        public DocumentBuffer()
+        public DocumentBuffer(IElementFactory elementFactory) : this(elementFactory, null)
+        {
+            
+        }
+
+        public DocumentBuffer(IElementFactory elementFactory, IDocumentData data)
         {
             // TODO: Init the document deleter
             this.Deleter = null;
             this.elements = new List<BufferElement>();
-        }
-
-        public DocumentBuffer(IDocumentData data)
-        {
+            this.elementFactory = elementFactory;
         }
 
         /// <summary>
@@ -145,7 +148,7 @@ namespace GHD.Document.Buffer
                     return null;
                 }
 
-                var formattedText = new FormattedText(first.Flags);
+                var formattedText = (IFormattedText)elementFactory.Create(first.Flags);
                 formattedText.SetText(text);
                 return formattedText;
             }
@@ -182,7 +185,7 @@ namespace GHD.Document.Buffer
                     return null;
                 }
 
-                var formattedText = new FormattedText(first.Flags);
+                var formattedText = (IFormattedText)elementFactory.Create(first.Flags);
                 formattedText.SetText(text);
                 return formattedText;
             }

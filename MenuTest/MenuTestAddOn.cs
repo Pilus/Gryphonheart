@@ -5,7 +5,6 @@
 
     using GH.CommonModules;
     using GH.Menu;
-    using GH.UIModules;
     using GH.Utils.Modules;
 
     using Lua;
