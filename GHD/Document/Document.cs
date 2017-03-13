@@ -22,20 +22,22 @@ namespace GHD.Document
         private readonly IKeyboardInputProvider keyboardInput;
         private readonly ICursor cursor;
         private readonly IElementFactory elementFactory;
+        private readonly ITextScoper textScoper;
         private IPageCollection pageCollection;
 
-        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory)
-            : this(keyboardInput, cursor, elementFactory, null)
+        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper)
+            : this(keyboardInput, cursor, elementFactory, textScoper, null)
         {
         }
 
-        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, IDocumentData data)
+        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper, IDocumentData data)
         {
             documentCount++;
             this.keyboardInput = keyboardInput;
             this.keyboardInput.RegisterCallback(this.HandleKeyboardInput);
             this.cursor = cursor;
             this.elementFactory = elementFactory;
+            this.textScoper = textScoper;
 
             this.frame = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, "GHD_Document" + documentCount);
 
@@ -96,7 +98,7 @@ namespace GHD.Document
 
             if (type == EditInputType.Input)
             {
-                var buffer = new DocumentBuffer(this.elementFactory);
+                var buffer = new DocumentBuffer(this.elementFactory, this.textScoper);
                 buffer.Append(detail, this.pageCollection.GetCurrentFlags());
                 this.pageCollection.Insert(buffer, null);
                 return;

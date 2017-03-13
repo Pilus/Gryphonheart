@@ -52,12 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentBufferTests.cs" />
+    <Compile Include="FormattedTextMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlizzardApi\BlizzardApi.csproj">
+      <Project>{4FA81A8F-BE0D-4DAD-9E55-0AD7146FC259}</Project>
+      <Name>BlizzardApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GHD\GHD.csproj">
       <Project>{8E16CBA7-81AC-4B92-BCDE-EE72E5687BAD}</Project>
       <Name>GHD</Name>

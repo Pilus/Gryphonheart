@@ -8,6 +8,7 @@ namespace GHD.Presenter.Document
     using GH.Menu;
     using GH.Menu.Containers.Menus;
     using GHD.Document;
+    using GHD.Document.Buffer;
     using GHD.Document.Elements;
     using GHD.Document.KeyboardInput;
     using View.DocumentMenu;
@@ -22,12 +23,16 @@ namespace GHD.Presenter.Document
         private Document document;
         private readonly IKeyboardInputProvider inputProvider;
         private readonly ICursor cursor;
+        private readonly ITextScoper textScoper;
+        private readonly IElementFactory elementFactory;
 
         public DocumentMenu()
         {
             var metaCatagory = new MetaCatagoryProfileGenerator(this.Undo, this.Redo, this.Revert, this.Save);
             var profileGenerator = new DocumentMenuProfileGenerator(metaCatagory);
 
+            //this.elementFactory = new ElementFactory() // TODO
+            this.textScoper = new TextScoper();
             this.inputProvider = new TextBoxInputInterpreter();
             this.cursor = new Cursor();
 
@@ -38,7 +43,7 @@ namespace GHD.Presenter.Document
         public void Test()
         {
             this.menu.AnimatedShow();
-            this.document = new Document(this.inputProvider, this.cursor, null);
+            this.document = new Document(this.inputProvider, this.cursor, this.elementFactory, this.textScoper);
             this.document.Region.SetParent(this.documentContainer);
             this.document.Region.SetAllPoints(this.documentContainer);
             this.inputProvider.Start();

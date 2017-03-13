@@ -171,7 +171,7 @@ namespace GHD.Document.Containers
                 }
             }
 
-            var newElement = documentBuffer.Get(objectConstraint);
+            var newElement = documentBuffer.Take(objectConstraint);
 
             while (newElement != null)
             {
@@ -183,7 +183,7 @@ namespace GHD.Document.Containers
                 {
                     break;
                 }
-                newElement = documentBuffer.Get(objectConstraint);
+                newElement = documentBuffer.Take(objectConstraint);
             }
 
             if (this.CurrentCursorChild != this.LastChild)

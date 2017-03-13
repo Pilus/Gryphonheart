@@ -17,18 +17,20 @@ namespace GHD.Document.Buffer
     {
         private List<BufferElement> elements;
         private IElementFactory elementFactory;
+        private ITextScoper textScoper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DocumentBuffer"/> class.
         /// </summary>
         /// <param name="elementFactory"></param>
         /// <param name="data"></param>
-        public DocumentBuffer(IElementFactory elementFactory, IDocumentData data = null)
+        public DocumentBuffer(IElementFactory elementFactory, ITextScoper textScoper, IDocumentData data = null)
         {
             // TODO: Init the document deleter
             this.Deleter = null;
             this.elements = new List<BufferElement>();
             this.elementFactory = elementFactory;
+            this.textScoper = textScoper;
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace GHD.Document.Buffer
                 return String.Empty;
             }
 
-            var text = TextScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
+            var text = this.textScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
             if (text == first.Text)
             {
                 this.elements.RemoveAt(0);
@@ -110,7 +112,7 @@ namespace GHD.Document.Buffer
         /// </summary>
         /// <param name="constraint">The constraint the resulting element should fit in.</param>
         /// <returns>The resulting element.</returns>
-        public IElement Get(IDimensionConstraint constraint)
+        public IElement Take(IDimensionConstraint constraint)
         {
             this.ThrowIfBufferIsEmpty();
 
@@ -205,7 +207,7 @@ namespace GHD.Document.Buffer
                 return String.Empty;
             }
 
-            return TextScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
+            return this.textScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
         }
 
         /// <summary>

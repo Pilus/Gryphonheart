@@ -5,25 +5,25 @@ namespace GHD.Document
     using BlizzardApi.WidgetInterfaces;
     using Lua;
 
-    public static class TextScoper
+    public class TextScoper : ITextScoper
     {
-        private readonly static IFontString FontString;
+        private readonly IFontString fontString;
 
-        static TextScoper()
+        public TextScoper()
         {
-            FontString = Global.Frames.UIParent.CreateFontString();
+            this.fontString = Global.Frames.UIParent.CreateFontString();
         }
 
-        public static double GetWidth(string fontPath, int fontSize, string text)
+        public double GetWidth(string fontPath, int fontSize, string text)
         {
-            FontString.SetFont(fontPath, fontSize);
-            FontString.SetText(text);
-            return FontString.GetStringWidth();
+            fontString.SetFont(fontPath, fontSize);
+            fontString.SetText(text);
+            return fontString.GetStringWidth();
         }
 
-        public static string GetFittingText(string fontPath, int fontSize, string text, double width)
+        public string GetFittingText(string fontPath, int fontSize, string text, double width)
         {
-            FontString.SetFont(fontPath, fontSize);
+            fontString.SetFont(fontPath, fontSize);
 
             var words = Strings.strsplittotable(" ", text);
             var numWords = Table.getn(words);
@@ -34,18 +34,18 @@ namespace GHD.Document
             {
                 if (i == 1)
                 {
-                    FontString.SetText((string)words[1]);
+                    fontString.SetText((string)words[1]);
                 }
                 else
                 {
-                    FontString.SetText(resultingText + " " + (string)words[1]);
+                    fontString.SetText(resultingText + " " + (string)words[1]);
                 }
 
-                if (FontString.GetStringWidth() > width)
+                if (fontString.GetStringWidth() > width)
                 {
                     return resultingText;
                 }
-                resultingText = FontString.GetText();
+                resultingText = fontString.GetText();
                 i++;
             }
             return resultingText;

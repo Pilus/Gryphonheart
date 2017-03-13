@@ -45,7 +45,7 @@ namespace GHD.Document.Buffer
         /// </summary>
         /// <param name="constraint"></param>
         /// <returns></returns>
-        IElement Get(IDimensionConstraint constraint);
+        IElement Take(IDimensionConstraint constraint);
 
         /// <summary>
         /// Peek at the next element if it fits within the given w

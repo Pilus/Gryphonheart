@@ -12,16 +12,18 @@ namespace GHD.Document.Elements
     {
         private readonly IElementFrame frame;
         private readonly IFlags flags;
+        private readonly ITextScoper textScoper;
         private ICursor cursor;
         private int cursorPos;
 
         private string text;
 
-        public FormattedText(IFlags flags, IElementFrameFactory frameFactory)
+        public FormattedText(IFlags flags, IElementFrameFactory frameFactory, ITextScoper textScoper)
         {
             this.text = string.Empty;
             this.flags = flags;
             this.frame = frameFactory.Create(flags);
+            this.textScoper = textScoper;
         }
 
         public IRegion Region
@@ -112,7 +114,7 @@ namespace GHD.Document.Elements
 
         public double GetWidth()
         {
-            return TextScoper.GetWidth(this.flags.Font, this.flags.FontSize, this.text);
+            return this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, this.text);
         }
 
         public double GetHeight()

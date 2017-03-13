@@ -74,6 +74,7 @@
     <Compile Include="Document\Elements\IFormattedText.cs" />
     <Compile Include="Document\Flags\Flags.cs" />
     <Compile Include="Document\Flags\FlagsManager.cs" />
+    <Compile Include="Document\ITextScoper.cs" />
     <Compile Include="Document\KeyboardInput\IKeyboardInputProvider.cs" />
     <Compile Include="Model\IModelProvider.cs" />
     <Compile Include="Model\ModelProvider.cs" />
