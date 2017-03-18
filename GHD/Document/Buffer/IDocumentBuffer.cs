@@ -22,7 +22,7 @@ namespace GHD.Document.Buffer
         /// </summary>
         /// <param name="text"></param>
         /// <param name="element"></param>
-        void Append(string text, IElement element);  
+        void Append(IElement element);  
 
         /// <summary>
         /// Gets the remaining text that fits the flag, until a limit by the maxLength.

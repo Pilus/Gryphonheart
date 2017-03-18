@@ -63,11 +63,10 @@ namespace GHD.Document.Buffer
         /// </summary>
         /// <param name="text"></param>
         /// <param name="element"></param>
-        public void Append(string text, IElement element)
+        public void Append(IElement element)
         {
             this.elements.Add(new BufferElement()
             {
-                Text = text,
                 Element = element,
             });
         }
@@ -88,7 +87,7 @@ namespace GHD.Document.Buffer
             var first = this.elements.First();
             if (first.Flags == null || (flags != null && !first.Flags.Equals(flags)))
             {
-                return String.Empty;
+                return null;
             }
 
             var text = this.textScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);
@@ -204,7 +203,7 @@ namespace GHD.Document.Buffer
             var first = this.elements.First();
             if (first.Flags == null || (flags != null && !first.Flags.Equals(flags)))
             {
-                return String.Empty;
+                return null;
             }
 
             return this.textScoper.GetFittingText(first.Flags.Font, first.Flags.FontSize, first.Text, (double)constraint.MaxWidth);

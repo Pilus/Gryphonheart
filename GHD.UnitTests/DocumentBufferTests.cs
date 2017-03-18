@@ -123,5 +123,43 @@ namespace GHD.UnitTests
             Assert.AreEqual(flags, additionalTakenObject.Flags);
             Assert.IsTrue(bufferEmpty2, "The buffer should be empty");
         }
+
+        [TestMethod]
+        public void AppendPeekAndGetTextWithTextAndElementLargerThanWidth()
+        {
+            // Arrange
+            var flags = new Flags()
+            {
+                FontSize = 12,
+                Font = "x"
+            };
+            var initialWidth = 30;
+            var constraint = new DimensionConstraint() { MaxHeight = 12, MaxWidth = initialWidth };
+
+            // The whole text can fit within the given width
+            var elementMock = new Mock<IElement>();
+            elementMock.Setup(e => e.GetHeight()).Returns(12);
+            elementMock.Setup(e => e.GetWidth()).Returns(25);
+
+            // Act
+            bufferUnderTest.Append(elementMock.Object);
+
+            var peekedText = bufferUnderTest.Peek(constraint, flags);
+            var takenText = bufferUnderTest.Take(constraint, flags);
+            var bufferEmpty1 = bufferUnderTest.EndOfBuffer();
+
+            var peekedObject = bufferUnderTest.Peek(constraint);
+            var takenObject = bufferUnderTest.Take(constraint);
+            var bufferEmpty2 = bufferUnderTest.EndOfBuffer();
+
+            // Assert
+            Assert.AreEqual(null, peekedText);
+            Assert.AreEqual(null, takenText);
+            Assert.IsFalse(bufferEmpty1, "The buffer should not be empty");
+
+            Assert.AreEqual(elementMock.Object, peekedObject);
+            Assert.AreEqual(elementMock.Object, takenObject);
+            Assert.IsTrue(bufferEmpty2, "The buffer should be empty");
+        }
     }
 }
