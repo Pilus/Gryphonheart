@@ -121,6 +121,5 @@ GHM/bin/Debug
 /GH.IntegrationTests/bin/Debug
 /GHD.UnitTests/bin/Debug
 /GHD.UnitTests/obj/Debug
-/.vs/GryphonheartAddOns/38008/0/GH.Menu/bin/Debug
-/.vs/GryphonheartAddOns/38008/0/GH.Settings/bin/Debug/Objects
-/.vs/GryphonheartAddOns/38008
+/.vs
+

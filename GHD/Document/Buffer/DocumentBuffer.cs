@@ -134,7 +134,7 @@ namespace GHD.Document.Buffer
                 return formattedText;
             }
 
-            if (first.Element == null || first.Element.GetWidth() > constraint.MaxWidth)
+            if (first.Element == null || first.Element.GetWidth() > constraint.MaxWidth || first.Element.GetHeight() > constraint.MaxHeight)
             {
                 return null;
             }
