@@ -184,7 +184,9 @@ namespace GHD.Document.Elements
                 MaxWidth = (double) dimensionConstraint.MaxWidth - this.GetWidth(),
                 MaxHeight = dimensionConstraint.MaxHeight,
             };
-            var addedTextSize = Strings.strlenutf8(documentBuffer.Peek(availableDimension, this.GetCurrentFlags()));
+
+            var addedText = documentBuffer.Take(availableDimension, this.GetCurrentFlags());
+            var addedTextSize = Strings.strlenutf8(addedText);
 
             if (this.cursorPos < this.GetLength())
             {
@@ -196,7 +198,7 @@ namespace GHD.Document.Elements
             this.cursorPos += addedTextSize;
             this.CursorChanged();
 
-            this.text += documentBuffer.Take(availableDimension, this.GetCurrentFlags());
+            this.text += addedText;
             this.TextChanged();
         }
 

@@ -123,3 +123,4 @@ GHM/bin/Debug
 /GHD.UnitTests/obj/Debug
 /.vs
 
+/GHD.IntegrationTests/obj/Debug

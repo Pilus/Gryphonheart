@@ -1,4 +1,4 @@
-﻿namespace GHD.UnitTests
+﻿namespace GHD.UnitTests.Mocks
 {
     using GHD.Document.Elements;
     using System;

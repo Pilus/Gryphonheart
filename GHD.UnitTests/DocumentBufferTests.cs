@@ -9,6 +9,7 @@ namespace GHD.UnitTests
     using GHD.Document.Containers;
     using GHD.Document.Elements;
     using GHD.Document;
+    using GHD.UnitTests.Mocks;
 
     [TestClass]
     public class DocumentBufferTests
