@@ -3,6 +3,8 @@ namespace GHD.Document.Containers
 {
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
+
+    using GHD.Document.Elements;
     using GHD.Document.Flags;
 
     public class PageCollection : ContainerBase, IPageCollection

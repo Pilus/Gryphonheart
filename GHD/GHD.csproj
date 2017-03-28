@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Document\Buffer\BufferElement.cs" />
     <Compile Include="Document\Buffer\DocumentBuffer.cs" />
-    <Compile Include="Document\Buffer\IElementFactory.cs" />
+    <Compile Include="Document\Elements\IElementFactory.cs" />
     <Compile Include="Document\Containers\ContainerBase.cs" />
     <Compile Include="Document\Containers\DimensionConstraint.cs" />
     <Compile Include="Document\Containers\ILine.cs" />
@@ -85,6 +85,8 @@
     <Compile Include="Document\KeyboardInput\IKeyboardInputProvider.cs" />
     <Compile Include="Model\IModelProvider.cs" />
     <Compile Include="Model\ModelProvider.cs" />
+    <Compile Include="Document\Elements\ElementFactory.cs" />
+    <Compile Include="Document\Elements\ElementFrameFactory.cs" />
     <Compile Include="Presenter\Presenter.cs" />
     <Compile Include="GHDAddOn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

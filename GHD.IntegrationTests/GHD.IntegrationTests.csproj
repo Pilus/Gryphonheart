@@ -68,6 +68,10 @@
       <Project>{4FA81A8F-BE0D-4DAD-9E55-0AD7146FC259}</Project>
       <Name>BlizzardApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GH.Menu\GH.Menu.csproj">
+      <Project>{1475A556-282A-4D82-8694-2DD5AEBF3BF5}</Project>
+      <Name>GH.Menu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GHD\GHD.csproj">
       <Project>{8e16cba7-81ac-4b92-bcde-ee72e5687bad}</Project>
       <Name>GHD</Name>
