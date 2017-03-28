@@ -4,6 +4,7 @@ namespace GHD.Model
     using GH.CommonModules.QuickButtonCluster;
     using GH.Utils.AddOnIntegration;
     using GH.Utils.Modules;
+    using GH.Menu;
 
     using Presenter;
 
@@ -13,7 +14,9 @@ namespace GHD.Model
         {
             var addonRegistry = ModuleFactory.GetM<AddOnRegistry>();
             var quickButtonModule = ModuleFactory.GetM<QuickButtonModule>();
-            new Presenter(this, quickButtonModule);
+            var menuHandler = ModuleFactory.GetM<MenuHandler>();
+
+            new Presenter(this, menuHandler, quickButtonModule);
             addonRegistry.RegisterAddOn(AddOnReference.GHD);
         }
     }

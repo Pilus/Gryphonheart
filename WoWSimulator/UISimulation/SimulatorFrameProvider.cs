@@ -59,6 +59,12 @@ namespace WoWSimulator.UISimulation
                 case FrameType.CheckButton:
                     xml = new CheckButtonType();
                     break;
+                case FrameType.ScrollFrame:
+                    xml = new ScrollFrameType();
+                    break;
+                case FrameType.Slider:
+                    xml = new SliderType();
+                    break;
                 default:
                     throw new UiSimuationException(string.Format("Unhandled frame type {0}.", frameType));
             }

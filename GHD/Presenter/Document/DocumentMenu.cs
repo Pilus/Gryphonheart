@@ -26,7 +26,7 @@ namespace GHD.Presenter.Document
         private readonly ITextScoper textScoper;
         private readonly IElementFactory elementFactory;
 
-        public DocumentMenu()
+        public DocumentMenu(IMenuHandler menuHandler)
         {
             var metaCatagory = new MetaCatagoryProfileGenerator(this.Undo, this.Redo, this.Revert, this.Save);
             var profileGenerator = new DocumentMenuProfileGenerator(metaCatagory);
@@ -36,7 +36,7 @@ namespace GHD.Presenter.Document
             this.inputProvider = new TextBoxInputInterpreter();
             this.cursor = new Cursor();
 
-            //this.menu = BaseMenu.CreateMenu(profileGenerator.GenerateMenuProfile());
+            this.menu = menuHandler.CreateMenu(profileGenerator.GenerateMenuProfile());
             this.SetupDocumentArea(this.menu.GetFrameById(DocumentMenuLabels.DocumentArea) as IFrame);
         }
 
