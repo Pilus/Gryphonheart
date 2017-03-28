@@ -22,7 +22,7 @@ namespace GHD.IntegrationTests
                 .WithGH()
                 .WithAddOn(new GHDAddOn())
                 .WithIgnoredXmlTemplate("GHM_ScrollFrameTemplate")
-                .WithFrameWrapper("GH_EditBoxWithFilters_Template", EditBoxWithFiltersWrapper.Init)
+                .WithFrameWrapper("GH_EditBoxWithFilters_Template", GHM_ScrollFrameTemplateWrapper.Init)
                 .Build();
 
             session.RunStartup();
