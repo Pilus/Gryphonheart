@@ -8,6 +8,8 @@
     public class FontString : Region, IFontString
     {
         private string text;
+        private string font;
+        private double fontHeight;
         private DrawLayer layer;
 
         public FontString(UiInitUtil util, string objectType, FontStringType type, IRegion parent)
@@ -23,6 +25,7 @@
         private void ApplyType(FontStringType type)
         {
             this.text = type.text;
+            this.font = type.font;
         }
 
         public bool CanNonSpaceWrap()
@@ -37,7 +40,7 @@
 
         public double GetStringWidth()
         {
-            throw new NotImplementedException();
+            return this.text.Length * this.fontHeight * 0.6; // Rough approximation, font independent.
         }
 
         public string GetText()
@@ -77,12 +80,13 @@
 
         public void SetFont(string path, double height)
         {
-            //throw new System.NotImplementedException();
+            this.SetFont(path, height, null);
         }
 
         public void SetFont(string path, double height, string flags)
         {
-            throw new NotImplementedException();
+            this.font = path;
+            this.fontHeight = height;
         }
 
         public void SetJustifyH(JustifyH justifyH)

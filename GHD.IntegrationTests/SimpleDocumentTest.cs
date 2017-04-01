@@ -8,6 +8,9 @@ namespace GHD.IntegrationTests
     using Tests;
     using BlizzardApi.WidgetInterfaces;
     using System.Linq;
+
+    using BlizzardApi.WidgetEnums;
+
     using WoWSimulator.UISimulation;
 
     [TestClass]
@@ -33,18 +36,30 @@ namespace GHD.IntegrationTests
             var initialFontStrings = session.Util.GetVisibleLayeredRegions().OfType<IFontString>().ToArray();
             ghTestable.ClickSubButton("Interface\\Icons\\INV_Misc_Book_08");
 
-            var fontStrings1 = GetFontStrings(session, initialFontStrings);
-            Assert.AreEqual(1, fontStrings1.Length, "Expected 1 initial font string");
-            Assert.AreEqual("", fontStrings1.Single().GetText());
+            var fontStrings = GetFontStrings(session, initialFontStrings);
+            Assert.AreEqual(1, fontStrings.Length, "Expected 1 initial font string");
+            Assert.AreEqual("", fontStrings.Single().GetText());
 
             var editBox = GlobalFrames.CurrentFocus;
             Assert.IsNotNull(editBox);
-            
-            editBox.Insert("A");
+            var input = new KeyboardInputSimulator();
 
-            var fontStrings2 = GetFontStrings(session, initialFontStrings);
-            Assert.AreEqual(1, fontStrings2.Length, "Expected 1 font string");
-            Assert.AreEqual("A", fontStrings2.Single().GetText());
+            input.TypeString("A");
+            fontStrings = GetFontStrings(session, initialFontStrings);
+            Assert.AreEqual(1, fontStrings.Length, "Expected 1 font string");
+            Assert.AreEqual("A", fontStrings.Single().GetText());
+
+            input.TypeString(" test");
+            fontStrings = GetFontStrings(session, initialFontStrings);
+            Assert.AreEqual(1, fontStrings.Length, "Expected 1 font string");
+            Assert.AreEqual("A test", fontStrings.Single().GetText());
+
+            input.MoveLeft(4);
+            input.TypeString("short ");
+
+            fontStrings = GetFontStrings(session, initialFontStrings);
+            Assert.AreEqual(1, fontStrings.Length, "Expected 1 font string");
+            Assert.AreEqual("A short test", fontStrings.Single().GetText());
         }
 
         private static IFontString[] GetFontStrings(ISession session, IFontString[] initialFontStrings)

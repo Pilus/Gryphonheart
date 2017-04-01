@@ -61,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GHM_ScrollFrameTemplateWrapper.cs" />
+    <Compile Include="KeyboardInputSimulator.cs" />
     <Compile Include="SimpleDocumentTest.cs" />
   </ItemGroup>
   <ItemGroup>

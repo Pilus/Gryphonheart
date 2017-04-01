@@ -188,11 +188,25 @@ namespace GHD.Document.Elements
             var addedText = documentBuffer.Take(availableDimension, this.GetCurrentFlags());
             var addedTextSize = Strings.strlenutf8(addedText);
 
-            if (this.cursorPos < this.GetLength())
+            if (this.cursorPos < this.GetLength()) // The cursor is not and the end. The inserted text is thus put in at the cursor position
             {
-                var textAfterCursor = Strings.strsubutf8(this.text, cursorPos);
-                this.text = Strings.strsubutf8(this.text, 0, cursorPos);
+                var textAfterCursor = Strings.strsubutf8(this.text, this.cursorPos);
+                this.text = Strings.strsubutf8(this.text, 0, this.cursorPos);
+
+                var bufferEmpty = documentBuffer.EndOfBuffer();
+
                 documentBuffer.Append(textAfterCursor, this.GetCurrentFlags());
+
+                if (bufferEmpty)
+                {
+                    availableDimension = new DimensionConstraint()
+                    {
+                        MaxWidth = (double)dimensionConstraint.MaxWidth - this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, this.text + addedText),
+                        MaxHeight = dimensionConstraint.MaxHeight,
+                    };
+
+                    addedText += documentBuffer.Take(availableDimension, this.GetCurrentFlags());
+                }
             }
 
             this.cursorPos += addedTextSize;

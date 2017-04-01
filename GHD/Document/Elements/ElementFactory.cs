@@ -22,7 +22,7 @@
 
         public IElement Create(IFlags flags, bool AllowZeroPosition = false)
         {
-            return new FormattedText(flags, this.elementFrameFactory, this.textScoper);
+            return new FormattedText(flags, this.elementFrameFactory, this.textScoper) { AllowZeroPosition = AllowZeroPosition };
         }
 
         public ILine CreateLine(IFlags flags)

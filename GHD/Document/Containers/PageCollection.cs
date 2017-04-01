@@ -38,7 +38,7 @@ namespace GHD.Document.Containers
 
         protected override IDimensionConstraint GetConstraint(IDimensionConstraint originalConstraint, double consumed)
         {
-            throw new System.NotImplementedException();
+            return originalConstraint;
         }
 
         protected override double GetDimension(IContainer child)

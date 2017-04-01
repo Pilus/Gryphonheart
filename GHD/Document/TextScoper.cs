@@ -38,7 +38,7 @@ namespace GHD.Document
                 }
                 else
                 {
-                    fontString.SetText(resultingText + " " + (string)words[1]);
+                    fontString.SetText(resultingText + " " + (string)words[i]);
                 }
 
                 if (fontString.GetStringWidth() > width)
