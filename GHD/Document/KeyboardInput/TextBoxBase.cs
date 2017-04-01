@@ -13,7 +13,7 @@ namespace GHD.Document.KeyboardInput
         public TextBoxBase()
         {
             this.editBox = Global.FrameProvider.CreateFrame(FrameType.EditBox) as IEditBox;
-            this.editBox.SetScript(FrameHandler.OnUpdate, this.OnUpdateHandler);            
+            this.editBox.SetScript(FrameHandler.OnUpdate, this.OnUpdateHandler);
             this.editBox.SetScript(EditBoxHandler.OnTextChanged, this.OnTextChangedHandler);
             this.editBox.SetScript(EditBoxHandler.OnArrowPressed, this.OnArrowPressedHandler);
             this.editBox.SetScript(EditBoxHandler.OnEnterPressed, this.OnEnterPressedHandler);

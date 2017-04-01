@@ -12,6 +12,8 @@
 
         private string text;
 
+        private int cursorPosition = 0;
+
         public EditBox(UiInitUtil util, string objectType, FrameType frameType, IRegion parent) : base(util, objectType, frameType, parent)
         {
             this.scriptHandler = new Script<EditBoxHandler, IEditBox>(this);
@@ -100,7 +102,10 @@
 
         public void ClearFocus()
         {
-            throw new NotImplementedException();
+            if (GlobalFrames.CurrentFocus == this)
+            {
+                GlobalFrames.CurrentFocus = this;
+            }
         }
 
         public string GetText()
@@ -110,12 +115,16 @@
 
         public void Insert(string text)
         {
-            throw new NotImplementedException();
+            var a = this.text.Substring(0, this.cursorPosition);
+            var b = this.text.Substring(this.cursorPosition, this.text.Length - this.cursorPosition);
+            this.text = a + text + b;
+            this.cursorPosition = this.cursorPosition + text.Length;
+            this.scriptHandler.ExecuteScript(EditBoxHandler.OnTextChanged, this.text, null, null, null);
         }
 
         public void SetFocus()
         {
-            throw new NotImplementedException();
+            GlobalFrames.CurrentFocus = this;
         }
 
         public void SetMultiLine(bool state)
@@ -135,7 +144,7 @@
 
         public int GetCursorPosition()
         {
-            throw new NotImplementedException();
+            return this.cursorPosition;
         }
 
         public int GetHistoryLines()
@@ -185,7 +194,7 @@
 
         public void HighlightText(double startPos, double endPos)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool IsAutoFocus()
@@ -225,7 +234,7 @@
 
         public void SetCursorPosition(int position)
         {
-            throw new NotImplementedException();
+            this.cursorPosition = position;
         }
 
         public bool SetHistoryLines()

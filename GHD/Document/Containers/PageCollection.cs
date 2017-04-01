@@ -1,6 +1,8 @@
 ﻿
 namespace GHD.Document.Containers
 {
+    using BlizzardApi.Global;
+    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
 
@@ -9,14 +11,19 @@ namespace GHD.Document.Containers
 
     public class PageCollection : ContainerBase, IPageCollection
     {
-        
+        private readonly IFrame frame;
+
         public PageCollection(IFlags flags, IElementFactory elementFactory) : base(elementFactory.CreatePage(flags))
         {
+            this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPageCollection"));
         }
 
         public override IRegion Region
         {
-            get { throw new System.NotImplementedException(); }
+            get
+            {
+                return this.frame;
+            }
         }
 
         public override double GetWidth()

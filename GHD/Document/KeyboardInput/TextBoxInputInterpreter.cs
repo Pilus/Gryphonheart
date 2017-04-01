@@ -92,7 +92,7 @@ namespace GHD.Document.KeyboardInput
             {
                 this.callback(EditInputType.Delete, null);
             }
-            else if (len > (TestTextHalfLen * 2) && Strings.strsub(text, 0, TestTextHalfLen) == "xxxx" && Strings.strsub(text, len - (TestTextHalfLen - 1)) == "yyyy")
+            else if (len > (TestTextHalfLen * 2) && Strings.strsub(text, 0, TestTextHalfLen) == "xxxx" && Strings.strsub(text, len - (TestTextHalfLen)) == "yyyy")
             {
                 var input = Strings.strsub(text, TestTextHalfLen + 1, len - TestTextHalfLen);
                 this.callback(EditInputType.Input, input);

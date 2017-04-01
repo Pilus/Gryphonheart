@@ -9,5 +9,7 @@
         public IFrame UIParent { get; set; }
 
         public IGameTooltip GameTooltip { get; set; }
+
+        public static IEditBox CurrentFocus { get; set; }
     }
 }
