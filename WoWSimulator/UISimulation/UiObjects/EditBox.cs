@@ -234,7 +234,11 @@
 
         public void SetCursorPosition(int position)
         {
-            this.cursorPosition = position;
+            if (this.cursorPosition != position)
+            {
+                this.cursorPosition = position;
+                this.scriptHandler.ExecuteScript(EditBoxHandler.OnCursorChanged, this.cursorPosition, null, null, null);
+            }
         }
 
         public bool SetHistoryLines()

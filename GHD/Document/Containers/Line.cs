@@ -67,6 +67,17 @@ namespace GHD.Document.Containers
                     this.CurrentCursorChild = this.CurrentCursorChild.Next;
                     this.CurrentCursorChild.SetCursor(false, this.Cursor);
                     return true;
+                case NavigationType.End:
+                    if (this.CurrentCursorChild != this.LastChild)
+                    {
+                        this.CurrentCursorChild.ClearCursor();
+                    }
+
+                    this.LastChild.SetCursor(true, this.Cursor);
+
+                    return true;
+                case NavigationType.Home:
+                    throw new NotImplementedException();
             }
 
             throw new Exception("Unknown navigation event for line: " + type);

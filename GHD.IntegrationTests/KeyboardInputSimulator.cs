@@ -22,12 +22,18 @@
             }
         }
 
-        public void MoveLeft(int times = 1)
+        public void PressLeftArrow(int times = 1)
         {
             for (int i = 0; i < times; i++)
             {
                 this.editBox.GetScript(EditBoxHandler.OnArrowPressed)(this.editBox, "LEFT", null, null, null);
             }
+        }
+
+        public void PressEnd()
+        {
+            var len = this.editBox.GetText().Length;
+            this.editBox.SetCursorPosition(len);
         }
     }
 }

@@ -129,8 +129,12 @@ namespace GHD.Document.Buffer
                     return null;
                 }
 
-                var formattedText = (IFormattedText)elementFactory.Create(first.Flags);
-                formattedText.SetText(text);
+                var formattedText = (IFormattedText)this.elementFactory.Create(first.Flags, true);
+                if (text != " ") // Ignore space, when causing a line break.
+                {
+                    formattedText.SetText(text);
+                }
+                
                 return formattedText;
             }
 

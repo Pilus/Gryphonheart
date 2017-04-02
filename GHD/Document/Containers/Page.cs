@@ -76,6 +76,7 @@ namespace GHD.Document.Containers
             switch (type)
             {
                 case NavigationType.Left:
+                case NavigationType.Home:
                     if (this.CurrentCursorChild.NavigateCursor(type))
                     {
                         return true;
@@ -91,6 +92,7 @@ namespace GHD.Document.Containers
                     this.CurrentCursorChild.SetCursor(true, this.Cursor);
                     return true;
                 case NavigationType.Right:
+                case NavigationType.End:
                     if (this.CurrentCursorChild.NavigateCursor(type))
                     {
                         return true;

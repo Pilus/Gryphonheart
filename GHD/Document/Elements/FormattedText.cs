@@ -186,6 +186,11 @@ namespace GHD.Document.Elements
             };
 
             var addedText = documentBuffer.Take(availableDimension, this.GetCurrentFlags());
+            if (addedText == String.Empty)
+            {
+                return;
+            }
+
             var addedTextSize = Strings.strlenutf8(addedText);
 
             if (this.cursorPos < this.GetLength()) // The cursor is not and the end. The inserted text is thus put in at the cursor position

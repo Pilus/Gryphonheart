@@ -16,50 +16,59 @@ namespace GHD.IntegrationTests
     [TestClass]
     public class SimpleDocumentTest
     {
+        private IFontString[] initialFontStrings;
+
+        private ISession session;
+
         [TestMethod]
         public void RenderPageWithSeveralLines()
         {
-            var frameProviderMock = new MockFrameProvider();
-
-            var session = new SessionBuilder()
+            this.session = new SessionBuilder()
                 .WithGH()
                 .WithAddOn(new GHDAddOn())
                 .WithIgnoredXmlTemplate("GHM_ScrollFrameTemplate")
                 .WithFrameWrapper("GHM_ScrollFrameTemplate", GHM_ScrollFrameTemplateWrapper.Init)
                 .Build();
 
-            session.RunStartup();
+            this.session.RunStartup();
 
-            var ghTestable = new GHAddOnTestable(session);
+            var ghTestable = new GHAddOnTestable(this.session);
 
             ghTestable.MouseOverMainButton();
-            var initialFontStrings = session.Util.GetVisibleLayeredRegions().OfType<IFontString>().ToArray();
+            this.initialFontStrings = this.session.Util.GetVisibleLayeredRegions().OfType<IFontString>().ToArray();
             ghTestable.ClickSubButton("Interface\\Icons\\INV_Misc_Book_08");
 
-            var fontStrings = GetFontStrings(session, initialFontStrings);
-            Assert.AreEqual(1, fontStrings.Length, "Expected 1 initial font string");
-            Assert.AreEqual("", fontStrings.Single().GetText());
+            this.ExpectStrings("");
 
             var editBox = GlobalFrames.CurrentFocus;
             Assert.IsNotNull(editBox);
+
             var input = new KeyboardInputSimulator();
 
             input.TypeString("A");
-            fontStrings = GetFontStrings(session, initialFontStrings);
-            Assert.AreEqual(1, fontStrings.Length, "Expected 1 font string");
-            Assert.AreEqual("A", fontStrings.Single().GetText());
+            this.ExpectStrings("A");
 
             input.TypeString(" test");
-            fontStrings = GetFontStrings(session, initialFontStrings);
-            Assert.AreEqual(1, fontStrings.Length, "Expected 1 font string");
-            Assert.AreEqual("A test", fontStrings.Single().GetText());
+            this.ExpectStrings("A test");
 
-            input.MoveLeft(4);
+            input.PressLeftArrow(4);
             input.TypeString("short ");
+            this.ExpectStrings("A short test");
 
-            fontStrings = GetFontStrings(session, initialFontStrings);
-            Assert.AreEqual(1, fontStrings.Length, "Expected 1 font string");
-            Assert.AreEqual("A short test", fontStrings.Single().GetText());
+            input.PressEnd();
+            input.TypeString(". Adding a long sentance with the purpose of spilling over into the next line of text.");
+            this.ExpectStrings("A short test. Adding a long sentance with the purpose of spilling", "over into the next line of text.");
+        }
+
+        private void ExpectStrings(params string[] strings)
+        {
+            var fontStrings = GetFontStrings(this.session, this.initialFontStrings);
+            Assert.AreEqual(strings.Length, fontStrings.Length, "Unexpected amount of font strings currently visible");
+
+            for (int i = 0; i < strings.Length; i++)
+            {
+                Assert.AreEqual(strings[i], fontStrings[i].GetText(), "String " + (i + 1));
+            }
         }
 
         private static IFontString[] GetFontStrings(ISession session, IFontString[] initialFontStrings)
