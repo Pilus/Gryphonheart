@@ -50,5 +50,10 @@ namespace GHD.Document.Containers
         {
             throw new System.NotImplementedException();
         }
+
+        public override Position GetCursorPosition()
+        {
+            return this.CurrentCursorChild.GetCursorPosition();
+        }
     }
 }

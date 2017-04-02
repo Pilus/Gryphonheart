@@ -212,5 +212,9 @@ namespace GHD.Document.Containers
             }
             return prefix + i;
         }
+
+        public abstract Position GetCursorPosition();
+
+        public abstract void SetCursorPosition(Position position);
     }
 }

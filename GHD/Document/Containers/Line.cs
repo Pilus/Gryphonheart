@@ -77,7 +77,14 @@ namespace GHD.Document.Containers
 
                     return true;
                 case NavigationType.Home:
-                    throw new NotImplementedException();
+                    if (this.CurrentCursorChild != this.FirstChild)
+                    {
+                        this.CurrentCursorChild.ClearCursor();
+                    }
+
+                    this.FirstChild.SetCursor(false, this.Cursor);
+
+                    return true;
             }
 
             throw new Exception("Unknown navigation event for line: " + type);
@@ -127,6 +134,34 @@ namespace GHD.Document.Containers
         public override void Delete(IDocumentDeleter documentDeleter)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override Position GetCursorPosition()
+        {
+            var element = this.FirstChild;
+            double x = 0;
+
+            while (element != this.CurrentCursorChild)
+            {
+                x += element.GetWidth();
+            }
+
+            var pos = this.CurrentCursorChild.GetCursorPosition();
+            pos.X += x;
+            return pos;
+        }
+
+        public override void SetCursorPosition(Position position)
+        {
+            var element = this.FirstChild;
+            double x = 0;
+
+            while (element != null && x < position.X)
+            {
+                x += element.GetWidth();
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

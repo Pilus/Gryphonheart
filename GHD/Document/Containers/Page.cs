@@ -107,9 +107,35 @@ namespace GHD.Document.Containers
                     this.CurrentCursorChild = this.CurrentCursorChild.Next;
                     this.CurrentCursorChild.SetCursor(false, this.Cursor);
                     return true;
+                case NavigationType.Up:
+                    if (this.CurrentCursorChild == this.FirstChild)
+                    {
+                        return false;
+                    }
+
+                    var cursorPos = this.CurrentCursorChild.GetCursorPosition();
+
+                    throw new NotImplementedException("Vertical navigation not implemented.");
+                case NavigationType.Down:
+                    throw new NotImplementedException("Vertical navigation not implemented.");
             }
 
             throw new Exception("Unknown navigation event for page: " + type);
+        }
+
+        public override Position GetCursorPosition()
+        {
+            var child = this.FirstChild;
+            double y = 0;
+
+            while (child != this.CurrentCursorChild)
+            {
+                y += child.GetHeight();
+            }
+
+            var pos = this.CurrentCursorChild.GetCursorPosition();
+            pos.Y += y;
+            return pos;
         }
     }
 }

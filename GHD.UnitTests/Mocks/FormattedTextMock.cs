@@ -88,5 +88,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public Position GetCursorPosition()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

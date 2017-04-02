@@ -249,5 +249,19 @@ namespace GHD.Document.Elements
         {
             
         }
+
+        public Position GetCursorPosition()
+        {
+            var textBeforeCursor = Strings.strsubutf8(this.text, 0, this.cursorPos);
+            var x = this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, textBeforeCursor);
+            return new Position(x, 0);
+        }
+
+        public void SetCursorPosition(Position position)
+        {
+            var textBeforePosition = this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text);
+            this.cursorPos = Strings.strlenutf8(textBeforePosition);
+            this.CursorChanged();
+        }
     }
 }

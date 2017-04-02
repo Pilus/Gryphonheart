@@ -4,6 +4,7 @@
     using BlizzardApi.WidgetInterfaces;
 
     using WoWSimulator.UISimulation;
+    using WoWSimulator.UISimulation.XMLHandler;
 
     public class KeyboardInputSimulator
     {
@@ -24,9 +25,29 @@
 
         public void PressLeftArrow(int times = 1)
         {
+            this.PressArrow("LEFT", times);
+        }
+
+        public void PressRightArrow(int times = 1)
+        {
+            this.PressArrow("RIGHT", times);
+        }
+
+        public void PressUpArrow(int times = 1)
+        {
+            this.PressArrow("UP", times);
+        }
+
+        public void PressDownArrow(int times = 1)
+        {
+            this.PressArrow("DOWN", times);
+        }
+
+        private void PressArrow(string arrow, int times)
+        {
             for (int i = 0; i < times; i++)
             {
-                this.editBox.GetScript(EditBoxHandler.OnArrowPressed)(this.editBox, "LEFT", null, null, null);
+                this.editBox.GetScript(EditBoxHandler.OnArrowPressed)(this.editBox, arrow, null, null, null);
             }
         }
 

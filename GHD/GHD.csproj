@@ -79,6 +79,7 @@
     <Compile Include="Document\Elements\IElementFrame.cs" />
     <Compile Include="Document\Elements\IElementFrameFactory.cs" />
     <Compile Include="Document\Elements\IFormattedText.cs" />
+    <Compile Include="Document\Elements\Position.cs" />
     <Compile Include="Document\Flags\Flags.cs" />
     <Compile Include="Document\Flags\FlagsManager.cs" />
     <Compile Include="Document\ITextScoper.cs" />

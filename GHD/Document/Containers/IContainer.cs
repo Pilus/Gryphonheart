@@ -35,6 +35,18 @@ namespace GHD.Document.Containers
         bool NavigateCursor(NavigationType type);
 
         /// <summary>
+        /// Gets the cursors position relative to the top left corner of the element.
+        /// </summary>
+        /// <returns></returns>
+        Position GetCursorPosition();
+
+        /// <summary>
+        /// Sets the cursor as close to the given position within the element as possible.
+        /// </summary>
+        /// <param name="position"></param>
+        void SetCursorPosition(Position position);
+
+        /// <summary>
         /// Gets the length of the contained elements. Could be a value calculated every time insert or delete is called.
         /// </summary>
         /// <returns>The length</returns>
