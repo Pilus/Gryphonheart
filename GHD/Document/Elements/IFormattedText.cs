@@ -5,7 +5,7 @@ using GHD.Document.Flags;
 
 namespace GHD.Document.Elements
 {
-    public interface IFormattedText : ILinkedElement<IContainer>, IElement
+    public interface IFormattedText : IElement
     {
         bool AllowZeroPosition { get; set; }
         void SetText(string newText);

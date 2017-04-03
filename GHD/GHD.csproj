@@ -57,11 +57,11 @@
     <Compile Include="Document\Containers\ContainerBase.cs" />
     <Compile Include="Document\Containers\DimensionConstraint.cs" />
     <Compile Include="Document\Containers\ILine.cs" />
-    <Compile Include="Document\Containers\ILinkedElement.cs" />
+    <Compile Include="Document\Containers\ILinkedObject.cs" />
     <Compile Include="Document\Containers\IPage.cs" />
     <Compile Include="Document\Containers\IPageCollection.cs" />
     <Compile Include="Document\Containers\Line.cs" />
-    <Compile Include="Document\Containers\LinkedElement.cs" />
+    <Compile Include="Document\Containers\LinkedObject.cs" />
     <Compile Include="Document\Containers\NavigationType.cs" />
     <Compile Include="Document\Containers\Page.cs" />
     <Compile Include="Document\Containers\PageCollection.cs" />

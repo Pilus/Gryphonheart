@@ -9,7 +9,7 @@ namespace GHD.Document.Containers
     using GHD.Document.Elements;
     using GHD.Document.Flags;
 
-    public class PageCollection : ContainerBase, IPageCollection
+    public class PageCollection : ContainerBase<IPage>, IPageCollection
     {
         private readonly IFrame frame;
 
@@ -41,7 +41,12 @@ namespace GHD.Document.Containers
             return originalConstraint;
         }
 
-        protected override double GetDimension(IContainer child)
+        protected override double GetDimension(IPage child)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override IPage ProduceChild(IElement element)
         {
             throw new System.NotImplementedException();
         }
@@ -53,7 +58,7 @@ namespace GHD.Document.Containers
 
         public override Position GetCursorPosition()
         {
-            return this.CurrentCursorChild.GetCursorPosition();
+            return this.CurrentCursorChild.Object.GetCursorPosition();
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ namespace GHD.Document.Elements
     using GHD.Document.Flags;
     using Lua;
 
-    public class FormattedText : LinkedElement<IContainer>, IElement, IFormattedText
+    public class FormattedText : IFormattedText
     {
         private readonly IElementFrame frame;
         private readonly IFlags flags;

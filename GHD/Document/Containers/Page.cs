@@ -10,7 +10,7 @@ namespace GHD.Document.Containers
     using Buffer;
     using BlizzardApi.Global;
 
-    public class Page : ContainerBase, IContainer, IPage
+    public class Page : ContainerBase<ILine>, IPage
     {
         private readonly IFrame frame;
         private readonly IPageProperties properties;
@@ -29,7 +29,7 @@ namespace GHD.Document.Containers
             texture.SetAllPoints(this.frame);
             texture.SetTexture(0.1, 0.1, 0.1);
 
-            this.FirstChild.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
+            this.FirstChild.Object.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
         }
 
         public override IRegion Region
@@ -56,9 +56,14 @@ namespace GHD.Document.Containers
             };
         }
 
-        protected override double GetDimension(IContainer child)
+        protected override double GetDimension(ILine child)
         {
             return child.GetHeight();
+        }
+
+        protected override ILine ProduceChild(IElement element)
+        {
+            throw new NotImplementedException();
         }
 
         public override void Delete(IDocumentDeleter documentDeleter)
@@ -77,7 +82,7 @@ namespace GHD.Document.Containers
             {
                 case NavigationType.Left:
                 case NavigationType.Home:
-                    if (this.CurrentCursorChild.NavigateCursor(type))
+                    if (this.CurrentCursorChild.Object.NavigateCursor(type))
                     {
                         return true;
                     }
@@ -87,13 +92,13 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    this.CurrentCursorChild.ClearCursor();
+                    this.CurrentCursorChild.Object.ClearCursor();
                     this.CurrentCursorChild = this.CurrentCursorChild.Prev;
-                    this.CurrentCursorChild.SetCursor(true, this.Cursor);
+                    this.CurrentCursorChild.Object.SetCursor(true, this.Cursor);
                     return true;
                 case NavigationType.Right:
                 case NavigationType.End:
-                    if (this.CurrentCursorChild.NavigateCursor(type))
+                    if (this.CurrentCursorChild.Object.NavigateCursor(type))
                     {
                         return true;
                     }
@@ -103,9 +108,9 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    this.CurrentCursorChild.ClearCursor();
+                    this.CurrentCursorChild.Object.ClearCursor();
                     this.CurrentCursorChild = this.CurrentCursorChild.Next;
-                    this.CurrentCursorChild.SetCursor(false, this.Cursor);
+                    this.CurrentCursorChild.Object.SetCursor(false, this.Cursor);
                     return true;
                 case NavigationType.Up:
                     if (this.CurrentCursorChild == this.FirstChild)
@@ -113,11 +118,11 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    var cursorPos = this.CurrentCursorChild.GetCursorPosition();
-                    this.CurrentCursorChild.ClearCursor();
+                    var cursorPos = this.CurrentCursorChild.Object.GetCursorPosition();
+                    this.CurrentCursorChild.Object.ClearCursor();
 
                     this.CurrentCursorChild = this.CurrentCursorChild.Prev;
-                    this.CurrentCursorChild.SetCursorPosition(this.Cursor, cursorPos);
+                    this.CurrentCursorChild.Object.SetCursorPosition(this.Cursor, cursorPos);
                     return true;
                 case NavigationType.Down:
                     throw new NotImplementedException("Vertical navigation not implemented.");
@@ -133,10 +138,10 @@ namespace GHD.Document.Containers
 
             while (child != this.CurrentCursorChild)
             {
-                y += child.GetHeight();
+                y += child.Object.GetHeight();
             }
 
-            var pos = this.CurrentCursorChild.GetCursorPosition();
+            var pos = this.CurrentCursorChild.Object.GetCursorPosition();
             pos.Y += y;
             return pos;
         }
