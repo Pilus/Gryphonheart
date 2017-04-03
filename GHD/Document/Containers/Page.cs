@@ -16,11 +16,14 @@ namespace GHD.Document.Containers
         private readonly IPageProperties properties;
         private readonly IFlags flags;
 
+        private readonly IElementFactory elementFactory;
+
         public Page(IFlags flags, IPageProperties properties, IElementFactory elementFactory)
             : base(new Line(flags, elementFactory))
         {
             this.flags = flags;
             this.properties = properties;
+            this.elementFactory = elementFactory;
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPage"));
             this.frame.SetWidth(this.properties.Width);
             this.frame.SetHeight(this.properties.Height);
@@ -63,7 +66,9 @@ namespace GHD.Document.Containers
 
         protected override ILine ProduceChild(IElement element)
         {
-            throw new NotImplementedException();
+            var line = this.elementFactory.CreateLine(this.flags);
+            // TODO: Add the element to the line?
+            return line;
         }
 
         public override void Delete(IDocumentDeleter documentDeleter)

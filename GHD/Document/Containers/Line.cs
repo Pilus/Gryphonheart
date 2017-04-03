@@ -19,17 +19,16 @@ namespace GHD.Document.Containers
             get { return this.frame; }
         }
 
-        public Line(IFlags flags, IElementFactory elementFactory) : this(flags, elementFactory, elementFactory.Create(flags, true))
+        public Line(IFlags flags, IElementFactory elementFactory) : this(elementFactory.Create(flags, true))
         {
             
         }
-        public Line(IFlags flags, IElementFactory elementFactory, IElement firstChild) : base(firstChild)
+        public Line(IElement firstChild) : base(firstChild)
         {
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
 
-            var firstText = (FormattedText)this.FirstChild;
-            firstText.Region.SetParent(this.frame);
-            firstText.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
+            this.FirstChild.Object.Region.SetParent(this.frame);
+            this.FirstChild.Object.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
         }
 
         public override bool NavigateCursor(NavigationType type)
