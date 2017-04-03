@@ -114,8 +114,11 @@ namespace GHD.Document.Containers
                     }
 
                     var cursorPos = this.CurrentCursorChild.GetCursorPosition();
+                    this.CurrentCursorChild.ClearCursor();
 
-                    throw new NotImplementedException("Vertical navigation not implemented.");
+                    this.CurrentCursorChild = this.CurrentCursorChild.Prev;
+                    this.CurrentCursorChild.SetCursorPosition(this.Cursor, cursorPos);
+                    return true;
                 case NavigationType.Down:
                     throw new NotImplementedException("Vertical navigation not implemented.");
             }
@@ -136,6 +139,16 @@ namespace GHD.Document.Containers
             var pos = this.CurrentCursorChild.GetCursorPosition();
             pos.Y += y;
             return pos;
+        }
+
+        /// <summary>
+        /// Sets the cursor as close to the given position within the element as possible.
+        /// </summary>
+        /// <param name="position"></param>
+        public override void SetCursorPosition(ICursor cursor, Position position)
+        {
+            this.Cursor = cursor;
+            throw new NotImplementedException();
         }
     }
 }

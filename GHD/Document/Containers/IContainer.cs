@@ -44,7 +44,7 @@ namespace GHD.Document.Containers
         /// Sets the cursor as close to the given position within the element as possible.
         /// </summary>
         /// <param name="position"></param>
-        void SetCursorPosition(Position position);
+        void SetCursorPosition(ICursor cursor, Position position);
 
         /// <summary>
         /// Gets the length of the contained elements. Could be a value calculated every time insert or delete is called.

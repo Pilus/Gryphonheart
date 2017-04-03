@@ -55,5 +55,14 @@ namespace GHD.Document.Containers
         {
             return this.CurrentCursorChild.GetCursorPosition();
         }
+
+        /// <summary>
+        /// Sets the cursor as close to the given position within the element as possible.
+        /// </summary>
+        /// <param name="position"></param>
+        public override void SetCursorPosition(ICursor cursor, Position position)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

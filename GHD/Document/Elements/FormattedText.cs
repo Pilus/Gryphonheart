@@ -66,6 +66,7 @@ namespace GHD.Document.Elements
                 throw new CursorException("Cursor have already been cleared or not been set");
             }
             this.cursor = null;
+            this.cursorPos = 0;
             this.CursorChanged();
         }
 
@@ -179,9 +180,11 @@ namespace GHD.Document.Elements
                 throw new Exception("The formatted text object must be given a width constraint on insert.");
             }
 
+            var textBeforeCursor = Strings.strsubutf8(this.text, 0, this.cursorPos);
+            var xBeforeCursor = this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, textBeforeCursor);
             var availableDimension = new DimensionConstraint()
             {
-                MaxWidth = (double) dimensionConstraint.MaxWidth - this.GetWidth(),
+                MaxWidth = (double) dimensionConstraint.MaxWidth - xBeforeCursor,
                 MaxHeight = dimensionConstraint.MaxHeight,
             };
 
@@ -214,8 +217,11 @@ namespace GHD.Document.Elements
                 }
             }
 
-            this.cursorPos += addedTextSize;
-            this.CursorChanged();
+            if (this.cursor != null)
+            {
+                this.cursorPos += addedTextSize;
+                this.CursorChanged();
+            }
 
             this.text += addedText;
             this.TextChanged();
@@ -257,9 +263,10 @@ namespace GHD.Document.Elements
             return new Position(x, 0);
         }
 
-        public void SetCursorPosition(Position position)
+        public void SetCursorPosition(ICursor cursor, Position position)
         {
-            var textBeforePosition = this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text);
+            this.cursor = cursor;
+            var textBeforePosition = this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text, position.X);
             this.cursorPos = Strings.strlenutf8(textBeforePosition);
             this.CursorChanged();
         }

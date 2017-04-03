@@ -151,8 +151,9 @@ namespace GHD.Document.Containers
             return pos;
         }
 
-        public override void SetCursorPosition(Position position)
+        public override void SetCursorPosition(ICursor cursor, Position position)
         {
+            this.Cursor = cursor;
             var element = this.FirstChild;
             double x = 0;
 
@@ -161,7 +162,19 @@ namespace GHD.Document.Containers
                 x += element.GetWidth();
             }
 
-            throw new NotImplementedException();
+            
+            if (element == null)
+            {
+                element = this.LastChild;
+                position.X = this.LastChild.GetWidth();
+            }
+            else
+            {
+                position.X -= x - this.LastChild.GetWidth();
+            }
+
+            element.SetCursorPosition(cursor, position);
+            this.CurrentCursorChild = element;
         }
     }
 }

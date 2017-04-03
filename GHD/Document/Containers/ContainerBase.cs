@@ -144,7 +144,7 @@ namespace GHD.Document.Containers
                 c = c.Next;
             }
 
-            var objectConstraint = GetConstraint(dimensionConstraint, dimensionConsumed);
+            var objectConstraint = this.GetConstraint(dimensionConstraint, dimensionConsumed);
 
             while (this.CurrentCursorChild != null)
             {
@@ -157,7 +157,7 @@ namespace GHD.Document.Containers
                 }
 
                 dimensionConsumed += this.GetDimension(this.CurrentCursorChild);
-                objectConstraint = GetConstraint(dimensionConstraint, dimensionConsumed);
+                objectConstraint = this.GetConstraint(dimensionConstraint, dimensionConsumed);
 
                 if (this.CurrentCursorChild.Next != null)
                 {
@@ -177,7 +177,7 @@ namespace GHD.Document.Containers
             {
                 this.AppendChild(newElement);
                 dimensionConsumed += this.GetDimension(newElement);
-                objectConstraint = GetConstraint(dimensionConstraint, dimensionConsumed);
+                objectConstraint = this.GetConstraint(dimensionConstraint, dimensionConsumed);
 
                 if (documentBuffer.EndOfBuffer())
                 {
@@ -215,6 +215,6 @@ namespace GHD.Document.Containers
 
         public abstract Position GetCursorPosition();
 
-        public abstract void SetCursorPosition(Position position);
+        public abstract void SetCursorPosition(ICursor cursor, Position position);
     }
 }
