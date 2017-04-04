@@ -13,8 +13,9 @@ namespace GHD.Document.Containers
     {
         private readonly IFrame frame;
 
-        public PageCollection(IFlags flags, IElementFactory elementFactory) : base(elementFactory.CreatePage(flags))
+        public PageCollection(IFlags flags, IElementFactory elementFactory) : base(flags)
         {
+            this.AppendChild(elementFactory.CreatePage(flags));
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPageCollection"));
         }
 
@@ -46,7 +47,7 @@ namespace GHD.Document.Containers
             throw new System.NotImplementedException();
         }
 
-        protected override IPage ProduceChild(IElement element)
+        protected override IPage ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint)
         {
             throw new System.NotImplementedException();
         }

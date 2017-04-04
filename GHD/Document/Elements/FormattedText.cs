@@ -170,11 +170,6 @@ namespace GHD.Document.Elements
         /// <param name="dimensionConstraint">The constraining dimensions.</param>
         public void Insert(IDocumentBuffer documentBuffer, IDimensionConstraint dimensionConstraint)
         {
-            if (this.cursor == null)
-            {
-                throw new CursorException("The element does not have the cursor.");
-            }
-
             if (dimensionConstraint.MaxWidth == null)
             {
                 throw new Exception("The formatted text object must be given a width constraint on insert.");

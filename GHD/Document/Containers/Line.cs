@@ -13,22 +13,20 @@ namespace GHD.Document.Containers
     public class Line : ContainerBase<IElement>, ILine
     {
         private readonly IFrame frame;
+        
 
         public override IRegion Region
         {
             get { return this.frame; }
         }
 
-        public Line(IFlags flags, IElementFactory elementFactory) : this(elementFactory.Create(flags, true))
-        {
-            
-        }
-        public Line(IElement firstChild) : base(firstChild)
+        public Line(IFlags flags, IElementFactory elementFactory) : base(flags)
         {
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
 
-            this.FirstChild.Object.Region.SetParent(this.frame);
-            this.FirstChild.Object.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
+            // TODO: Identify where to anchor children
+            //this.FirstChild.Object.Region.SetParent(this.frame);
+            //this.FirstChild.Object.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
         }
 
         public override bool NavigateCursor(NavigationType type)
@@ -134,9 +132,10 @@ namespace GHD.Document.Containers
             this.frame.SetHeight(height);
         }
 
-        protected override IElement ProduceChild(IElement element)
+
+        protected override IElement ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint)
         {
-            return element;
+            return documentBuffer.Take(childConstraint);
         }
 
         public override void Delete(IDocumentDeleter documentDeleter)

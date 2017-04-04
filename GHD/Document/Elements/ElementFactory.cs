@@ -20,9 +20,9 @@
             this.pageProperties = pageProperties;
         }
 
-        public IElement Create(IFlags flags, bool AllowZeroPosition = false)
+        public IElement Create(IFlags flags)
         {
-            return new FormattedText(flags, this.elementFrameFactory, this.textScoper) { AllowZeroPosition = AllowZeroPosition };
+            return new FormattedText(flags, this.elementFrameFactory, this.textScoper);
         }
 
         public ILine CreateLine(IFlags flags)

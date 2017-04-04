@@ -38,7 +38,7 @@ namespace GHD.IntegrationTests
             this.initialFontStrings = this.session.Util.GetVisibleLayeredRegions().OfType<IFontString>().ToArray();
             ghTestable.ClickSubButton("Interface\\Icons\\INV_Misc_Book_08");
 
-            this.ExpectStrings("");
+            this.ExpectStrings();
 
             var editBox = GlobalFrames.CurrentFocus;
             Assert.IsNotNull(editBox);
@@ -67,7 +67,7 @@ namespace GHD.IntegrationTests
         private void ExpectStrings(params string[] strings)
         {
             var fontStrings = GetFontStrings(this.session, this.initialFontStrings);
-            Assert.AreEqual(strings.Length, fontStrings.Length, "Unexpected amount of font strings currently visible");
+            Assert.AreEqual(strings.Length, fontStrings.Length, "Unexpected amount of font strings currently visible. Got:" + string.Join("", fontStrings.Select((fs,i) =>"\n" + i + ": "+ fs.GetText())));
 
             for (int i = 0; i < strings.Length; i++)
             {

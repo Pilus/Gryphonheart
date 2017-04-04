@@ -5,7 +5,7 @@
 
     public interface IElementFactory
     {
-        IElement Create(IFlags flags, bool AllowZeroPosition = false);
+        IElement Create(IFlags flags);
 
         ILine CreateLine(IFlags flags);
 

@@ -22,7 +22,7 @@ namespace GHD.UnitTests
         {
             this.textScoperMock = new Mock<ITextScoper>();
             var elementFactoryMock = new Mock<IElementFactory>();
-            elementFactoryMock.Setup(fac => fac.Create(It.IsAny<Flags>(), It.IsAny<bool>())).Returns<Flags, bool>((f, allowZeroPosition) => new FormattedTextMock() { Flags = f, AllowZeroPosition = allowZeroPosition });
+            elementFactoryMock.Setup(fac => fac.Create(It.IsAny<Flags>())).Returns<Flags>((f) => new FormattedTextMock() { Flags = f });
             this.bufferUnderTest = new DocumentBuffer(elementFactoryMock.Object, textScoperMock.Object);
         }
 

@@ -18,8 +18,7 @@ namespace GHD.Document.Containers
 
         private readonly IElementFactory elementFactory;
 
-        public Page(IFlags flags, IPageProperties properties, IElementFactory elementFactory)
-            : base(new Line(flags, elementFactory))
+        public Page(IFlags flags, IPageProperties properties, IElementFactory elementFactory) : base(flags)
         {
             this.flags = flags;
             this.properties = properties;
@@ -32,6 +31,7 @@ namespace GHD.Document.Containers
             texture.SetAllPoints(this.frame);
             texture.SetTexture(0.1, 0.1, 0.1);
 
+            this.AppendChild(elementFactory.CreateLine(flags));
             this.FirstChild.Object.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
         }
 
@@ -63,11 +63,11 @@ namespace GHD.Document.Containers
         {
             return child.GetHeight();
         }
-
-        protected override ILine ProduceChild(IElement element)
+        
+        protected override ILine ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint)
         {
             var line = this.elementFactory.CreateLine(this.flags);
-            // TODO: Add the element to the line?
+            line.Insert(documentBuffer, childConstraint);
             return line;
         }
 
