@@ -1,12 +1,11 @@
-﻿namespace GHD.Document.Buffer
+﻿namespace GHD.Document.Elements
 {
     using GHD.Document.Containers;
-    using GHD.Document.Elements;
     using GHD.Document.Flags;
 
     public interface IElementFactory
     {
-        IElement Create(IFlags flags, bool AllowZeroPosition = false);
+        IElement Create(IFlags flags);
 
         ILine CreateLine(IFlags flags);
 

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8E16CBA7-81AC-4B92-BCDE-EE72E5687BAD}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GHD</RootNamespace>
     <AssemblyName>GHD</AssemblyName>
@@ -31,7 +31,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsLuaFramework, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CsLuaConverter\CsLuaProjects\CsLuaConverter\CsLuaFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Lua">
       <HintPath>..\CsLuaConverter\Lua.dll</HintPath>
     </Reference>
@@ -46,15 +53,15 @@
   <ItemGroup>
     <Compile Include="Document\Buffer\BufferElement.cs" />
     <Compile Include="Document\Buffer\DocumentBuffer.cs" />
-    <Compile Include="Document\Buffer\IElementFactory.cs" />
+    <Compile Include="Document\Elements\IElementFactory.cs" />
     <Compile Include="Document\Containers\ContainerBase.cs" />
     <Compile Include="Document\Containers\DimensionConstraint.cs" />
     <Compile Include="Document\Containers\ILine.cs" />
-    <Compile Include="Document\Containers\ILinkedElement.cs" />
+    <Compile Include="Document\Containers\ILinkedObject.cs" />
     <Compile Include="Document\Containers\IPage.cs" />
     <Compile Include="Document\Containers\IPageCollection.cs" />
     <Compile Include="Document\Containers\Line.cs" />
-    <Compile Include="Document\Containers\LinkedElement.cs" />
+    <Compile Include="Document\Containers\LinkedObject.cs" />
     <Compile Include="Document\Containers\NavigationType.cs" />
     <Compile Include="Document\Containers\Page.cs" />
     <Compile Include="Document\Containers\PageCollection.cs" />
@@ -72,14 +79,17 @@
     <Compile Include="Document\Elements\IElementFrame.cs" />
     <Compile Include="Document\Elements\IElementFrameFactory.cs" />
     <Compile Include="Document\Elements\IFormattedText.cs" />
+    <Compile Include="Document\Elements\Position.cs" />
     <Compile Include="Document\Flags\Flags.cs" />
     <Compile Include="Document\Flags\FlagsManager.cs" />
     <Compile Include="Document\ITextScoper.cs" />
     <Compile Include="Document\KeyboardInput\IKeyboardInputProvider.cs" />
     <Compile Include="Model\IModelProvider.cs" />
     <Compile Include="Model\ModelProvider.cs" />
+    <Compile Include="Document\Elements\ElementFactory.cs" />
+    <Compile Include="Document\Elements\ElementFrameFactory.cs" />
     <Compile Include="Presenter\Presenter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="GHDAddOn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

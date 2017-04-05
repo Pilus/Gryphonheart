@@ -27,6 +27,7 @@ namespace GHD.View.DocumentMenu
             {
                 new PageProfile()
                 {
+                    /*
                     new LineProfile()
                     {
                         new MultiPageToolbarProfile()
@@ -36,7 +37,7 @@ namespace GHD.View.DocumentMenu
                                 this.metaCatagory.GenerateMenuProfile(),
                             }
                         },
-                    },
+                    }, */
                     new LineProfile()
                     {
                         new DummyProfile()

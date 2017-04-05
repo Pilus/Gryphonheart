@@ -10,17 +10,19 @@ namespace GHD.Document.Containers
     using Buffer;
     using BlizzardApi.Global;
 
-    public class Page : ContainerBase, IContainer, IPage
+    public class Page : ContainerBase<ILine>, IPage
     {
         private readonly IFrame frame;
         private readonly IPageProperties properties;
         private readonly IFlags flags;
 
-        public Page(IFlags flags, IPageProperties properties, IElementFactory elementFactory)
-            : base(new Line(flags, elementFactory))
+        private readonly IElementFactory elementFactory;
+
+        public Page(IFlags flags, IPageProperties properties, IElementFactory elementFactory) : base(flags)
         {
             this.flags = flags;
             this.properties = properties;
+            this.elementFactory = elementFactory;
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPage"));
             this.frame.SetWidth(this.properties.Width);
             this.frame.SetHeight(this.properties.Height);
@@ -29,7 +31,8 @@ namespace GHD.Document.Containers
             texture.SetAllPoints(this.frame);
             texture.SetTexture(0.1, 0.1, 0.1);
 
-            this.FirstChild.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
+            this.AppendChild(elementFactory.CreateLine(flags));
+            this.FirstChild.Object.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, this.properties.EdgeLeft, -this.properties.EdgeTop);
         }
 
         public override IRegion Region
@@ -56,9 +59,16 @@ namespace GHD.Document.Containers
             };
         }
 
-        protected override double GetDimension(IContainer child)
+        protected override double GetDimension(ILine child)
         {
             return child.GetHeight();
+        }
+        
+        protected override ILine ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint)
+        {
+            var line = this.elementFactory.CreateLine(this.flags);
+            line.Insert(documentBuffer, childConstraint);
+            return line;
         }
 
         public override void Delete(IDocumentDeleter documentDeleter)
@@ -76,7 +86,8 @@ namespace GHD.Document.Containers
             switch (type)
             {
                 case NavigationType.Left:
-                    if (this.CurrentCursorChild.NavigateCursor(type))
+                case NavigationType.Home:
+                    if (this.CurrentCursorChild.Object.NavigateCursor(type))
                     {
                         return true;
                     }
@@ -86,12 +97,13 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    this.CurrentCursorChild.ClearCursor();
+                    this.CurrentCursorChild.Object.ClearCursor();
                     this.CurrentCursorChild = this.CurrentCursorChild.Prev;
-                    this.CurrentCursorChild.SetCursor(true, this.Cursor);
+                    this.CurrentCursorChild.Object.SetCursor(true, this.Cursor);
                     return true;
                 case NavigationType.Right:
-                    if (this.CurrentCursorChild.NavigateCursor(type))
+                case NavigationType.End:
+                    if (this.CurrentCursorChild.Object.NavigateCursor(type))
                     {
                         return true;
                     }
@@ -101,13 +113,52 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    this.CurrentCursorChild.ClearCursor();
+                    this.CurrentCursorChild.Object.ClearCursor();
                     this.CurrentCursorChild = this.CurrentCursorChild.Next;
-                    this.CurrentCursorChild.SetCursor(false, this.Cursor);
+                    this.CurrentCursorChild.Object.SetCursor(false, this.Cursor);
                     return true;
+                case NavigationType.Up:
+                    if (this.CurrentCursorChild == this.FirstChild)
+                    {
+                        return false;
+                    }
+
+                    var cursorPos = this.CurrentCursorChild.Object.GetCursorPosition();
+                    this.CurrentCursorChild.Object.ClearCursor();
+
+                    this.CurrentCursorChild = this.CurrentCursorChild.Prev;
+                    this.CurrentCursorChild.Object.SetCursorPosition(this.Cursor, cursorPos);
+                    return true;
+                case NavigationType.Down:
+                    throw new NotImplementedException("Vertical navigation not implemented.");
             }
 
             throw new Exception("Unknown navigation event for page: " + type);
+        }
+
+        public override Position GetCursorPosition()
+        {
+            var child = this.FirstChild;
+            double y = 0;
+
+            while (child != this.CurrentCursorChild)
+            {
+                y += child.Object.GetHeight();
+            }
+
+            var pos = this.CurrentCursorChild.Object.GetCursorPosition();
+            pos.Y += y;
+            return pos;
+        }
+
+        /// <summary>
+        /// Sets the cursor as close to the given position within the element as possible.
+        /// </summary>
+        /// <param name="position"></param>
+        public override void SetCursorPosition(ICursor cursor, Position position)
+        {
+            this.Cursor = cursor;
+            throw new NotImplementedException();
         }
     }
 }

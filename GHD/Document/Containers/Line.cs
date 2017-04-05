@@ -10,22 +10,23 @@ namespace GHD.Document.Containers
     using GHD.Document.Flags;
     using Lua;
 
-    public class Line : ContainerBase, ILine
+    public class Line : ContainerBase<IElement>, ILine
     {
         private readonly IFrame frame;
+        
 
         public override IRegion Region
         {
             get { return this.frame; }
         }
 
-        public Line(IFlags flags, IElementFactory elementFactory) : base(elementFactory.Create(flags, true))
+        public Line(IFlags flags, IElementFactory elementFactory) : base(flags)
         {
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentLine"));
 
-            var firstText = (FormattedText)this.FirstChild;
-            firstText.Region.SetParent(this.frame);
-            firstText.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
+            // TODO: Identify where to anchor children
+            //this.FirstChild.Object.Region.SetParent(this.frame);
+            //this.FirstChild.Object.Region.SetPoint(FramePoint.BOTTOMLEFT, this.frame, FramePoint.BOTTOMLEFT);
         }
 
         public override bool NavigateCursor(NavigationType type)
@@ -38,7 +39,7 @@ namespace GHD.Document.Containers
             switch (type)
             {
                 case NavigationType.Left:
-                    if (this.CurrentCursorChild.NavigateCursor(type))
+                    if (this.CurrentCursorChild.Object.NavigateCursor(type))
                     {
                         return true;
                     }
@@ -48,12 +49,12 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    this.CurrentCursorChild.ClearCursor();
+                    this.CurrentCursorChild.Object.ClearCursor();
                     this.CurrentCursorChild = this.CurrentCursorChild.Prev;
-                    this.CurrentCursorChild.SetCursor(true, this.Cursor);
+                    this.CurrentCursorChild.Object.SetCursor(true, this.Cursor);
                     return true;
                 case NavigationType.Right:
-                    if (this.CurrentCursorChild.NavigateCursor(type))
+                    if (this.CurrentCursorChild.Object.NavigateCursor(type))
                     {
                         return true;
                     }
@@ -63,9 +64,27 @@ namespace GHD.Document.Containers
                         return false;
                     }
 
-                    this.CurrentCursorChild.ClearCursor();
+                    this.CurrentCursorChild.Object.ClearCursor();
                     this.CurrentCursorChild = this.CurrentCursorChild.Next;
-                    this.CurrentCursorChild.SetCursor(false, this.Cursor);
+                    this.CurrentCursorChild.Object.SetCursor(false, this.Cursor);
+                    return true;
+                case NavigationType.End:
+                    if (this.CurrentCursorChild != this.LastChild)
+                    {
+                        this.CurrentCursorChild.Object.ClearCursor();
+                    }
+
+                    this.LastChild.Object.SetCursor(true, this.Cursor);
+
+                    return true;
+                case NavigationType.Home:
+                    if (this.CurrentCursorChild != this.FirstChild)
+                    {
+                        this.CurrentCursorChild.Object.ClearCursor();
+                    }
+
+                    this.FirstChild.Object.SetCursor(false, this.Cursor);
+
                     return true;
             }
 
@@ -91,7 +110,7 @@ namespace GHD.Document.Containers
             };
         }
 
-        protected override double GetDimension(IContainer child)
+        protected override double GetDimension(IElement child)
         {
             return child.GetWidth();
         }
@@ -104,8 +123,8 @@ namespace GHD.Document.Containers
 
             while (obj != null)
             {
-                width += obj.GetWidth();
-                height = LuaMath.max(height, obj.GetHeight());
+                width += obj.Object.GetWidth();
+                height = LuaMath.max(height, obj.Object.GetHeight());
                 obj = obj.Next;
             }
 
@@ -113,9 +132,57 @@ namespace GHD.Document.Containers
             this.frame.SetHeight(height);
         }
 
+
+        protected override IElement ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint)
+        {
+            return documentBuffer.Take(childConstraint);
+        }
+
         public override void Delete(IDocumentDeleter documentDeleter)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override Position GetCursorPosition()
+        {
+            var element = this.FirstChild;
+            double x = 0;
+
+            while (element != this.CurrentCursorChild)
+            {
+                x += element.Object.GetWidth();
+                element = element.Next;
+            }
+
+            var pos = this.CurrentCursorChild.Object.GetCursorPosition();
+            pos.X += x;
+            return pos;
+        }
+
+        public override void SetCursorPosition(ICursor cursor, Position position)
+        {
+            this.Cursor = cursor;
+            var element = this.FirstChild;
+            double x = 0;
+
+            while (element != null && x < position.X)
+            {
+                x += element.Object.GetWidth();
+            }
+
+            
+            if (element == null)
+            {
+                element = this.LastChild;
+                position.X = this.LastChild.Object.GetWidth();
+            }
+            else
+            {
+                position.X -= x - this.LastChild.Object.GetWidth();
+            }
+
+            element.Object.SetCursorPosition(cursor, position);
+            this.CurrentCursorChild = element;
         }
     }
 }

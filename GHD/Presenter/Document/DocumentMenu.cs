@@ -9,6 +9,7 @@ namespace GHD.Presenter.Document
     using GH.Menu.Containers.Menus;
     using GHD.Document;
     using GHD.Document.Buffer;
+    using GHD.Document.Data;
     using GHD.Document.Elements;
     using GHD.Document.KeyboardInput;
     using View.DocumentMenu;
@@ -26,17 +27,20 @@ namespace GHD.Presenter.Document
         private readonly ITextScoper textScoper;
         private readonly IElementFactory elementFactory;
 
-        public DocumentMenu()
+        public DocumentMenu(IMenuHandler menuHandler)
         {
             var metaCatagory = new MetaCatagoryProfileGenerator(this.Undo, this.Redo, this.Revert, this.Save);
             var profileGenerator = new DocumentMenuProfileGenerator(metaCatagory);
+            this.textScoper = new TextScoper();
+            var elementFrameFactory = new ElementFrameFactory();
+            var pageProperties = new PageProperties() { Width = 550, Height = 750, };
+            this.elementFactory = new ElementFactory(textScoper, elementFrameFactory, pageProperties);
 
             //this.elementFactory = new ElementFactory() // TODO
-            this.textScoper = new TextScoper();
             this.inputProvider = new TextBoxInputInterpreter();
             this.cursor = new Cursor();
 
-            //this.menu = BaseMenu.CreateMenu(profileGenerator.GenerateMenuProfile());
+            this.menu = menuHandler.CreateMenu(profileGenerator.GenerateMenuProfile());
             this.SetupDocumentArea(this.menu.GetFrameById(DocumentMenuLabels.DocumentArea) as IFrame);
         }
 

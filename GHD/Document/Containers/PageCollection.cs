@@ -1,20 +1,30 @@
 ﻿
 namespace GHD.Document.Containers
 {
+    using BlizzardApi.Global;
+    using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
     using Buffer;
+
+    using GHD.Document.Elements;
     using GHD.Document.Flags;
 
-    public class PageCollection : ContainerBase, IPageCollection
+    public class PageCollection : ContainerBase<IPage>, IPageCollection
     {
-        
-        public PageCollection(IFlags flags, IElementFactory elementFactory) : base(elementFactory.CreatePage(flags))
+        private readonly IFrame frame;
+
+        public PageCollection(IFlags flags, IElementFactory elementFactory) : base(flags)
         {
+            this.AppendChild(elementFactory.CreatePage(flags));
+            this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, GenerateFrameName("GHD_DocumentPageCollection"));
         }
 
         public override IRegion Region
         {
-            get { throw new System.NotImplementedException(); }
+            get
+            {
+                return this.frame;
+            }
         }
 
         public override double GetWidth()
@@ -29,15 +39,34 @@ namespace GHD.Document.Containers
 
         protected override IDimensionConstraint GetConstraint(IDimensionConstraint originalConstraint, double consumed)
         {
+            return originalConstraint;
+        }
+
+        protected override double GetDimension(IPage child)
+        {
             throw new System.NotImplementedException();
         }
 
-        protected override double GetDimension(IContainer child)
+        protected override IPage ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint)
         {
             throw new System.NotImplementedException();
         }
 
         public override void Delete(IDocumentDeleter documentDeleter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override Position GetCursorPosition()
+        {
+            return this.CurrentCursorChild.Object.GetCursorPosition();
+        }
+
+        /// <summary>
+        /// Sets the cursor as close to the given position within the element as possible.
+        /// </summary>
+        /// <param name="position"></param>
+        public override void SetCursorPosition(ICursor cursor, Position position)
         {
             throw new System.NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace GHD.Document.Elements
     using GHD.Document.Flags;
     using Lua;
 
-    public class FormattedText : LinkedElement<IContainer>, IElement, IFormattedText
+    public class FormattedText : IFormattedText
     {
         private readonly IElementFrame frame;
         private readonly IFlags flags;
@@ -66,6 +66,7 @@ namespace GHD.Document.Elements
                 throw new CursorException("Cursor have already been cleared or not been set");
             }
             this.cursor = null;
+            this.cursorPos = 0;
             this.CursorChanged();
         }
 
@@ -169,34 +170,53 @@ namespace GHD.Document.Elements
         /// <param name="dimensionConstraint">The constraining dimensions.</param>
         public void Insert(IDocumentBuffer documentBuffer, IDimensionConstraint dimensionConstraint)
         {
-            if (this.cursor == null)
-            {
-                throw new CursorException("The element does not have the cursor.");
-            }
-
             if (dimensionConstraint.MaxWidth == null)
             {
                 throw new Exception("The formatted text object must be given a width constraint on insert.");
             }
 
+            var textBeforeCursor = Strings.strsubutf8(this.text, 0, this.cursorPos);
+            var xBeforeCursor = this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, textBeforeCursor);
             var availableDimension = new DimensionConstraint()
             {
-                MaxWidth = (double) dimensionConstraint.MaxWidth - this.GetWidth(),
+                MaxWidth = (double) dimensionConstraint.MaxWidth - xBeforeCursor,
                 MaxHeight = dimensionConstraint.MaxHeight,
             };
 
             var addedText = documentBuffer.Take(availableDimension, this.GetCurrentFlags());
-            var addedTextSize = Strings.strlenutf8(addedText);
-
-            if (this.cursorPos < this.GetLength())
+            if (addedText == String.Empty)
             {
-                var textAfterCursor = Strings.strsubutf8(this.text, cursorPos);
-                this.text = Strings.strsubutf8(this.text, 0, cursorPos);
-                documentBuffer.Append(textAfterCursor, this.GetCurrentFlags());
+                return;
             }
 
-            this.cursorPos += addedTextSize;
-            this.CursorChanged();
+            var addedTextSize = Strings.strlenutf8(addedText);
+
+            if (this.cursorPos < this.GetLength()) // The cursor is not and the end. The inserted text is thus put in at the cursor position
+            {
+                var textAfterCursor = Strings.strsubutf8(this.text, this.cursorPos);
+                this.text = Strings.strsubutf8(this.text, 0, this.cursorPos);
+
+                var bufferEmpty = documentBuffer.EndOfBuffer();
+
+                documentBuffer.Append(textAfterCursor, this.GetCurrentFlags());
+
+                if (bufferEmpty)
+                {
+                    availableDimension = new DimensionConstraint()
+                    {
+                        MaxWidth = (double)dimensionConstraint.MaxWidth - this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, this.text + addedText),
+                        MaxHeight = dimensionConstraint.MaxHeight,
+                    };
+
+                    addedText += documentBuffer.Take(availableDimension, this.GetCurrentFlags());
+                }
+            }
+
+            if (this.cursor != null)
+            {
+                this.cursorPos += addedTextSize;
+                this.CursorChanged();
+            }
 
             this.text += addedText;
             this.TextChanged();
@@ -229,6 +249,21 @@ namespace GHD.Document.Elements
         private void CursorChanged()
         {
             
+        }
+
+        public Position GetCursorPosition()
+        {
+            var textBeforeCursor = Strings.strsubutf8(this.text, 0, this.cursorPos);
+            var x = this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, textBeforeCursor);
+            return new Position(x, 0);
+        }
+
+        public void SetCursorPosition(ICursor cursor, Position position)
+        {
+            this.cursor = cursor;
+            var textBeforePosition = this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text, position.X);
+            this.cursorPos = Strings.strlenutf8(textBeforePosition);
+            this.CursorChanged();
         }
     }
 }

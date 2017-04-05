@@ -16,6 +16,7 @@
         private readonly Dictionary<string, FontType> fontTemplates; 
         private readonly Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>> wrappers;
         private readonly List<IFrame> frames;
+        private readonly List<ILayeredRegion> layeredRegions;
         private readonly List<string> ignoredTemplates = new List<string>();
 
         public UiInitUtil()
@@ -25,6 +26,7 @@
             this.namedObjects = new Dictionary<string, IUIObject>();
             this.wrappers = new Dictionary<string, Func<UiInitUtil, LayoutFrameType, IRegion, IUIObject>>();
             this.frames = new List<IFrame>();
+            this.layeredRegions = new List<ILayeredRegion>();
         }
 
         public object GetTemplate(string name)
@@ -112,6 +114,8 @@
             }
             else if (obj is ILayeredRegion)
             {
+                this.layeredRegions.Add(obj as ILayeredRegion);
+
                 if (parent is Frame)
                 {
                     (parent as Frame).Regions.Add(obj as ILayeredRegion);
@@ -207,6 +211,11 @@
         public IEnumerable<IFrame> GetVisibleFrames()
         {
             return this.frames.Where(f => f.IsVisible());
+        }
+
+        public IEnumerable<ILayeredRegion> GetVisibleLayeredRegions()
+        {
+            return this.layeredRegions.Where(r => r.IsVisible());
         }
     }
 }

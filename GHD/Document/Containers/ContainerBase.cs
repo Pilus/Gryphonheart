@@ -7,35 +7,63 @@ namespace GHD.Document.Containers
     using Elements;
     using Flags;
 
-    public abstract class ContainerBase : LinkedElement<IContainer>, IContainer
+    public abstract class ContainerBase<T> : IContainer where T : class, IElement
     {
-        protected ContainerBase(IContainer child)
+        private IFlags defaultFlags;
+
+        protected ContainerBase(IFlags flags)
         {
-            this.FirstChild = child;
-            this.LastChild = FirstChild;
+            this.defaultFlags = flags;
         }
 
         public abstract IRegion Region { get; }
 
-        protected IContainer FirstChild { get; set; }
+        protected ILinkedObject<T> FirstChild { get; set; }
 
-        protected IContainer LastChild { get; set; }
+        protected ILinkedObject<T> LastChild { get; set; }
 
-        protected void AppendChild(IContainer child)
+        protected void PrependChild(T child) // TODO: Exstract the chain logic to a separate class.
         {
-            this.LastChild.Next = child;
-            child.Prev = this.LastChild;
-            this.LastChild = child;
+            var linkedChild = new LinkedObject<T>(child);
+            if (this.FirstChild != null)
+            {
+                linkedChild.Next = this.FirstChild;
+                this.FirstChild.Prev = linkedChild;
+            }
+
+            this.FirstChild = linkedChild;
+
+            if (this.LastChild == null)
+            {
+                this.LastChild = this.FirstChild;
+            }
+        }
+
+        protected void AppendChild(T child)
+        {
+            var linkedChild = new LinkedObject<T>(child);
+            if (this.LastChild != null)
+            {
+                linkedChild.Prev = this.LastChild;
+                this.LastChild.Next = linkedChild;
+            }
+
+            this.LastChild = linkedChild;
+
+            if (this.FirstChild == null)
+            {
+                this.FirstChild = this.LastChild;
+            }
         }
 
         protected ICursor Cursor { get; set; }
-        protected IContainer CurrentCursorChild { get; set; }
+        protected ILinkedObject<T> CurrentCursorChild { get; set; }
 
         public void SetCursor(bool inEnd, ICursor cursor)
         {
             if (this.Cursor != null)
             {
-                this.CurrentCursorChild.ClearCursor();
+                this.CurrentCursorChild.Object.ClearCursor();
             }
 
             this.Cursor = cursor;
@@ -47,7 +75,15 @@ namespace GHD.Document.Containers
             {
                 this.CurrentCursorChild = this.FirstChild;
             }
-            this.CurrentCursorChild.SetCursor(inEnd, cursor);
+
+            if (this.CurrentCursorChild == null)
+            {
+                // Todo: No children. Render the cursor
+            }
+            else
+            {
+                this.CurrentCursorChild.Object.SetCursor(inEnd, cursor);
+            }
         }
 
         public void ClearCursor()
@@ -57,7 +93,7 @@ namespace GHD.Document.Containers
                 throw new CursorException("Cursor have already been cleared or not been set");
             }
 
-            this.CurrentCursorChild.ClearCursor();
+            this.CurrentCursorChild.Object.ClearCursor();
             this.CurrentCursorChild = null;
             this.Cursor = null;
         }
@@ -74,18 +110,18 @@ namespace GHD.Document.Containers
                 throw new CursorException("The container does not have the cursor");
             }
 
-            return this.CurrentCursorChild.NavigateCursor(type);
+            return this.CurrentCursorChild.Object.NavigateCursor(type);
         }
 
         public int GetLength()
         {
-            var obj = this.FirstChild;
+            var child = this.FirstChild;
             var len = 0;
 
-            while (obj != null)
+            while (child != null)
             {
-                len += obj.GetLength();
-                obj = obj.Next;
+                len += child.Object.GetLength();
+                child = child.Next;
             }
 
             return len;
@@ -108,11 +144,17 @@ namespace GHD.Document.Containers
 
         public IFlags GetCurrentFlags()
         {
-            if (this.CurrentCursorChild == null)
+            if (this.Cursor == null)
             {
                 throw new CursorException("The container does not have the cursor");
             }
-            return this.CurrentCursorChild.GetCurrentFlags();
+
+            if (this.CurrentCursorChild == null)
+            {
+                return this.defaultFlags;
+            }
+
+            return this.CurrentCursorChild.Object.GetCurrentFlags();
         }
 
         public IElement GetCurrentElement()
@@ -127,28 +169,23 @@ namespace GHD.Document.Containers
             
         }
 
-        protected abstract double GetDimension(IContainer child);
+        protected abstract double GetDimension(T child);
 
         public void Insert(IDocumentBuffer documentBuffer, IDimensionConstraint dimensionConstraint)
         {
-            if (this.CurrentCursorChild == null)
-            {
-                throw new CursorException("The container does not have the cursor");
-            }
-
             double dimensionConsumed = 0;
-            var c = this.FirstChild;
-            while (c != this.CurrentCursorChild)
+            var child = this.FirstChild;
+            while (this.CurrentCursorChild != null && child != this.CurrentCursorChild)
             {
-                dimensionConsumed += this.GetDimension(c);
-                c = c.Next;
+                dimensionConsumed += this.GetDimension(child.Object);
+                child = child.Next;
             }
 
-            var objectConstraint = GetConstraint(dimensionConstraint, dimensionConsumed);
+            var objectConstraint = this.GetConstraint(dimensionConstraint, dimensionConsumed);
 
-            while (this.CurrentCursorChild != null)
+            while (child != null)
             {
-                this.CurrentCursorChild.Insert(documentBuffer, objectConstraint);
+                child.Object.Insert(documentBuffer, objectConstraint);
 
                 if (documentBuffer.EndOfBuffer())
                 {
@@ -156,14 +193,20 @@ namespace GHD.Document.Containers
                     return;
                 }
 
-                dimensionConsumed += this.GetDimension(this.CurrentCursorChild);
-                objectConstraint = GetConstraint(dimensionConstraint, dimensionConsumed);
+                dimensionConsumed += this.GetDimension(child.Object);
+                objectConstraint = this.GetConstraint(dimensionConstraint, dimensionConsumed);
 
-                if (this.CurrentCursorChild.Next != null)
+                if (child.Next != null)
                 {
-                    this.CurrentCursorChild.ClearCursor();
-                    this.CurrentCursorChild = this.CurrentCursorChild.Next;
-                    this.CurrentCursorChild.SetCursor(false, this.Cursor);
+                    child = child.Next;
+
+                    if (this.CurrentCursorChild != null)
+                    {
+                        this.CurrentCursorChild.Object.ClearCursor();
+                        this.CurrentCursorChild = child;
+                        this.CurrentCursorChild.Object.SetCursor(false, this.Cursor);
+                    }
+                    
                 }
                 else
                 {
@@ -171,37 +214,34 @@ namespace GHD.Document.Containers
                 }
             }
 
-            var newElement = documentBuffer.Take(objectConstraint);
+            var newElement = this.ProduceChild(documentBuffer, objectConstraint);
 
             while (newElement != null)
             {
                 this.AppendChild(newElement);
                 dimensionConsumed += this.GetDimension(newElement);
-                objectConstraint = GetConstraint(dimensionConstraint, dimensionConsumed);
+                objectConstraint = this.GetConstraint(dimensionConstraint, dimensionConsumed);
 
                 if (documentBuffer.EndOfBuffer())
                 {
                     break;
                 }
-                newElement = documentBuffer.Take(objectConstraint);
+                newElement = this.ProduceChild(documentBuffer, objectConstraint);
             }
 
-            if (this.CurrentCursorChild != this.LastChild)
+            if (this.Cursor != null)
             {
-                this.CurrentCursorChild.ClearCursor();
+                this.CurrentCursorChild?.Object.ClearCursor();
                 this.CurrentCursorChild = this.LastChild;
-                this.CurrentCursorChild.SetCursor(true, this.Cursor);
+                this.CurrentCursorChild.Object.SetCursor(true, this.Cursor);
             }
 
             this.SizeChanged();
         }
 
-        public abstract void Delete(IDocumentDeleter documentDeleter);
+        protected abstract T ProduceChild(IDocumentBuffer documentBuffer, IDimensionConstraint childConstraint);
 
-        public void UpdateLayout(int position, IDocumentBuffer documentBuffer)
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Delete(IDocumentDeleter documentDeleter);
 
         protected static string GenerateFrameName(string prefix)
         {
@@ -212,5 +252,9 @@ namespace GHD.Document.Containers
             }
             return prefix + i;
         }
+
+        public abstract Position GetCursorPosition();
+
+        public abstract void SetCursorPosition(ICursor cursor, Position position);
     }
 }

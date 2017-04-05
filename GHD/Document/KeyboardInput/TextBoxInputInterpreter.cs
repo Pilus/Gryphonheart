@@ -20,9 +20,9 @@ namespace GHD.Document.KeyboardInput
                 OnArrowPressed = this.OnArrowPressed,
                 OnTextChanged = this.OnTextChanged,
                 OnCursorChanged = this.OnCursorChanged,
-                OnEnterPressed = this.InvokeEvent(EditInputType.Enter),
-                OnTabPressed = this.InvokeEvent(EditInputType.Tab),
-                OnEscapePressed = this.InvokeEvent(EditInputType.Escape),
+                OnEnterPressed = this.OnEnterPressed,
+                OnTabPressed = this.OnTabPressed,
+                OnEscapePressed = this.OnEscapePressed,
                 OnMarkAll = this.OnMarkAll,
             };
         }
@@ -92,7 +92,7 @@ namespace GHD.Document.KeyboardInput
             {
                 this.callback(EditInputType.Delete, null);
             }
-            else if (len > (TestTextHalfLen * 2) && Strings.strsub(text, 0, TestTextHalfLen) == "xxxx" && Strings.strsub(text, len - (TestTextHalfLen - 1)) == "yyyy")
+            else if (len > (TestTextHalfLen * 2) && Strings.strsub(text, 0, TestTextHalfLen) == "xxxx" && Strings.strsub(text, len - (TestTextHalfLen)) == "yyyy")
             {
                 var input = Strings.strsub(text, TestTextHalfLen + 1, len - TestTextHalfLen);
                 this.callback(EditInputType.Input, input);
@@ -121,6 +121,21 @@ namespace GHD.Document.KeyboardInput
             }
         }
 
+        private void OnEnterPressed()
+        {
+            this.callback(EditInputType.Enter, null);
+        }
+
+        private void OnTabPressed()
+        {
+            this.callback(EditInputType.Tab, null);
+        }
+
+        private void OnEscapePressed()
+        {
+            this.callback(EditInputType.Escape, null);
+        }
+
         private void OnMarkAll()
         {
             this.ResetCursor();
@@ -137,14 +152,6 @@ namespace GHD.Document.KeyboardInput
         {
             this.textBox.SetCursorPosition(TestTextHalfLen);
             this.textBox.HighlightText(0, 0);
-        }
-
-        private Action InvokeEvent(EditInputType type)
-        {
-            return delegate
-            {
-                this.callback(type, null);
-            };
         }
     }
 }

@@ -9,14 +9,11 @@ namespace GHD.Document.Elements
 
     public class FormattedTextFrame : IElementFrame
     {
-        private static int frameCount;
-
         private readonly IFrame frame;
         private readonly IFontString label;
 
         public FormattedTextFrame(IFlags flags)
         {
-            frameCount++;
             var name = GenerateFrameName();
             this.frame = (IFrame)Global.FrameProvider.CreateFrame(FrameType.Frame, name);
             this.label = this.frame.CreateFontString(name + "Label", Layer.BORDER);

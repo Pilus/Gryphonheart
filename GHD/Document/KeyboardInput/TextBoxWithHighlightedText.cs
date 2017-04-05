@@ -47,7 +47,7 @@ namespace GHD.Document.KeyboardInput
 
         private void UpdateCursor()
         {
-            var lenHighlight = Strings.strlen(this.highlightedText);
+            var lenHighlight = Strings.strlen(this.highlightedText ?? string.Empty);
             base.SetCursorPosition(this.currentPos);
             base.HighlightText(this.currentPos, this.currentPos + lenHighlight);
         }
@@ -55,7 +55,7 @@ namespace GHD.Document.KeyboardInput
         private void UpdateText()
         {
             var strA = Strings.strsub(this.currentText, 0, this.currentPos);
-            var strB = Strings.strsub(this.currentText, this.currentPos + 1);
+            var strB = Strings.strsub(this.currentText, this.currentPos);
 
             this.lastCombinedText = strA + this.highlightedText + strB;
             base.SetText(this.lastCombinedText);

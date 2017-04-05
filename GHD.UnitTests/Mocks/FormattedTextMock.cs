@@ -14,7 +14,7 @@
 
         public string Text { get; private set; }
 
-        public IRegion Region => throw new NotImplementedException();
+        public IRegion Region { get; set; }
 
         public IContainer Prev { get; set; }
         public IContainer Next { get; set; }
@@ -45,6 +45,15 @@
         }
 
         public double GetHeight()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Sets the cursor as close to the given position within the element as possible.
+        /// </summary>
+        /// <param name="position"></param>
+        public void SetCursorPosition(ICursor cursor, Position position)
         {
             throw new NotImplementedException();
         }
@@ -85,6 +94,11 @@
         }
 
         public void UpdateLayout(int position, IDocumentBuffer documentBuffer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Position GetCursorPosition()
         {
             throw new NotImplementedException();
         }

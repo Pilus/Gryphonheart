@@ -55,7 +55,6 @@
 
         public void SetScrollChild(IRegion child)
         {
-            throw new NotImplementedException();
         }
 
         public void SetVerticalScroll(double offset)
