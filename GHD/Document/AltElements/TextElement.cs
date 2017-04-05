@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
+    using GHD.Document.Containers;
     using GHD.Document.Elements;
     using GHD.Document.Flags;
     using Lua;
@@ -35,6 +36,33 @@
             {
                 this.InsertTextAtInsertPosition(newText);
             }
+        }
+
+        public void ResetInsertPosition(bool inEnd = false)
+        {
+            this.insertPosition = inEnd ? 0 : Strings.strlenutf8(this.text);
+        }
+
+        public bool Navigate(NavigationType navigationType)
+        {
+            if (navigationType == NavigationType.Right)
+            {
+                if (this.insertPosition < Strings.strlenutf8(this.text))
+                {
+                    this.insertPosition++;
+                    return true;
+                }
+            }
+            else if (navigationType == NavigationType.Left)
+            {
+                if (this.insertPosition > 0)
+                {
+                    this.insertPosition--;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void InsertTextAtInsertPosition(string newText)
