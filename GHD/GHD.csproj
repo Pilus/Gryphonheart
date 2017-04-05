@@ -51,6 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Document\AltElements\HorizontalGroup.cs" />
+    <Compile Include="Document\AltElements\IElement.cs" />
+    <Compile Include="Document\AltElements\TextElement.cs" />
+    <Compile Include="Document\AltElements\VerticalGroup.cs" />
     <Compile Include="Document\Buffer\BufferElement.cs" />
     <Compile Include="Document\Buffer\DocumentBuffer.cs" />
     <Compile Include="Document\Elements\IElementFactory.cs" />
@@ -72,7 +76,7 @@
     <Compile Include="Document\Data\Default\Defaults.cs" />
     <Compile Include="Document\Data\IRangedData.cs" />
     <Compile Include="Document\Data\IRangedFlagData.cs" />
-    <Compile Include="Document\Elements\Cursor.cs" />
+    <Compile Include="Document\Cursor.cs" />
     <Compile Include="Document\Elements\CursorException.cs" />
     <Compile Include="Document\Elements\FormattedText.cs" />
     <Compile Include="Document\Elements\FormattedTextFrame.cs" />
@@ -106,7 +110,7 @@
     <Compile Include="Document\Data\IElementData.cs" />
     <Compile Include="Document\Data\IFlagData.cs" />
     <Compile Include="Document\Document.cs" />
-    <Compile Include="Document\Elements\ICursor.cs" />
+    <Compile Include="Document\ICursor.cs" />
     <Compile Include="Document\Elements\IElement.cs" />
     <Compile Include="Document\Flags\Alignment.cs" />
     <Compile Include="Document\Flags\IFlags.cs" />

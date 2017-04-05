@@ -13,6 +13,7 @@ namespace GHD.Document
     using GHD.Document.Flags;
     using KeyboardInput;
     using BlizzardApi.Global;
+    using GHD.Document.AltElements;
 
     public class Document
     {
@@ -25,6 +26,7 @@ namespace GHD.Document
         private readonly ITextScoper textScoper;
         private IPageCollection pageCollection;
 
+        
         public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper)
             : this(keyboardInput, cursor, elementFactory, textScoper, null)
         {
@@ -59,17 +61,20 @@ namespace GHD.Document
         private void New()
         {
             var flags = FlagsManager.LoadFlags(Defaults.DocumentWideFlags);
+            this.cursor.CurrentElement = new TextElement(flags, String.Empty);
+            
+            /*
             this.pageCollection = this.elementFactory.CreatePageCollection(flags); // TODO: Set back to page collection
             this.pageCollection.Region.SetParent(this.frame);
             this.pageCollection.Region.SetPoint(FramePoint.TOPLEFT, this.frame, FramePoint.TOPLEFT, 20, -20);
-            this.pageCollection.SetCursor(false, this.cursor);
+            this.pageCollection.SetCursor(false, this.cursor); */
         }
 
         private void Load(IDocumentData data)
         {
             var flags = FlagsManager.LoadFlags(DefaultMerger.AddDefaults(data.DocumentWideFlags));
-            this.pageCollection = this.elementFactory.CreatePageCollection(flags);
-            this.pageCollection.SetCursor(false, this.cursor);
+            /*this.pageCollection = this.elementFactory.CreatePageCollection(flags);
+            this.pageCollection.SetCursor(false, this.cursor);*/
         }
 
         private static readonly Dictionary<EditInputType, NavigationType> NavigationTypeMap = new Dictionary<EditInputType, NavigationType>()
@@ -86,7 +91,7 @@ namespace GHD.Document
         {
             if (NavigationTypeMap.ContainsKey(type))
             {
-                this.pageCollection.NavigateCursor(NavigationTypeMap[type]);
+                //this.pageCollection.NavigateCursor(NavigationTypeMap[type]);
                 return;
             }
 
@@ -98,9 +103,12 @@ namespace GHD.Document
 
             if (type == EditInputType.Input)
             {
-                var buffer = new DocumentBuffer(this.elementFactory, this.textScoper);
-                buffer.Append(detail, this.pageCollection.GetCurrentFlags());
-                this.pageCollection.Insert(buffer, null);
+                //var buffer = new DocumentBuffer(this.elementFactory, this.textScoper);
+                //buffer.Append(detail, this.pageCollection.GetCurrentFlags());
+                //this.pageCollection.Insert(buffer, null);
+
+                this.cursor.CurrentElement.Insert(this.cursor.CurrentFlags, detail);
+
                 return;
             }
 

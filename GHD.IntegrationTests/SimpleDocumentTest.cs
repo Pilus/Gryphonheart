@@ -38,7 +38,7 @@ namespace GHD.IntegrationTests
             this.initialFontStrings = this.session.Util.GetVisibleLayeredRegions().OfType<IFontString>().ToArray();
             ghTestable.ClickSubButton("Interface\\Icons\\INV_Misc_Book_08");
 
-            this.ExpectStrings();
+            this.ExpectStrings("");
 
             var editBox = GlobalFrames.CurrentFocus;
             Assert.IsNotNull(editBox);

@@ -6,6 +6,7 @@
     using GHD.Document.Containers;
     using GHD.Document.Flags;
     using BlizzardApi.WidgetInterfaces;
+    using GHD.Document;
 
     class FormattedTextMock : IFormattedText
     {
