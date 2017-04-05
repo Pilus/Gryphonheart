@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Document\AltElements\DistinctList.cs" />
     <Compile Include="Document\AltElements\HorizontalGroup.cs" />
     <Compile Include="Document\AltElements\IElement.cs" />
+    <Compile Include="Document\AltElements\IGroup.cs" />
     <Compile Include="Document\AltElements\TextElement.cs" />
     <Compile Include="Document\AltElements\VerticalGroup.cs" />
     <Compile Include="Document\Buffer\BufferElement.cs" />

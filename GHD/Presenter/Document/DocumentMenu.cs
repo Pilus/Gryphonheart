@@ -27,13 +27,15 @@ namespace GHD.Presenter.Document
         private readonly ITextScoper textScoper;
         private readonly IElementFactory elementFactory;
 
+        private readonly IPageProperties pageProperties;
+
         public DocumentMenu(IMenuHandler menuHandler)
         {
             var metaCatagory = new MetaCatagoryProfileGenerator(this.Undo, this.Redo, this.Revert, this.Save);
             var profileGenerator = new DocumentMenuProfileGenerator(metaCatagory);
             this.textScoper = new TextScoper();
             var elementFrameFactory = new ElementFrameFactory();
-            var pageProperties = new PageProperties() { Width = 550, Height = 750, };
+            this.pageProperties = new PageProperties() { Width = 550, Height = 750, };
             this.elementFactory = new ElementFactory(textScoper, elementFrameFactory, pageProperties);
 
             //this.elementFactory = new ElementFactory() // TODO
@@ -47,7 +49,7 @@ namespace GHD.Presenter.Document
         public void Test()
         {
             this.menu.AnimatedShow();
-            this.document = new Document(this.inputProvider, this.cursor, this.elementFactory, this.textScoper);
+            this.document = new Document(this.inputProvider, this.cursor, this.elementFactory, this.textScoper, this.pageProperties);
             this.document.Region.SetParent(this.documentContainer);
             this.document.Region.SetAllPoints(this.documentContainer);
             this.inputProvider.Start();

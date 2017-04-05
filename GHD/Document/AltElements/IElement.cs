@@ -5,7 +5,13 @@
 
     public interface IElement
     {
-        void Insert(IFlags newFlags, string newText);
+        /// <summary>
+        /// Inserts a text in the element.
+        /// </summary>
+        /// <param name="newFlags"></param>
+        /// <param name="newText"></param>
+        /// <returns>List of groups that is need of update.</returns>
+        DistinctList<IGroup> Insert(IFlags newFlags, string newText);
 
         void ResetInsertPosition(bool inEnd = false);
 
@@ -20,7 +26,7 @@
 
         IElement Next { get; set; }
 
-        HorizontalGroup Group { get; set; }
+        IGroup Group { get; set; }
 
         IFlags Flags { get; }
     }

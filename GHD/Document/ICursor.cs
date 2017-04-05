@@ -2,6 +2,7 @@
 namespace GHD.Document
 {
     using GHD.Document.AltElements;
+    using GHD.Document.Containers;
     using GHD.Document.Flags;
 
     public interface ICursor
@@ -9,5 +10,7 @@ namespace GHD.Document
         IElement CurrentElement { get; set; }
 
         IFlags CurrentFlags { get; set; }
+
+        void Navigate(NavigationType navigationType);
     }
 }

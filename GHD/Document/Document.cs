@@ -24,15 +24,17 @@ namespace GHD.Document
         private readonly ICursor cursor;
         private readonly IElementFactory elementFactory;
         private readonly ITextScoper textScoper;
+
+        private readonly IPageProperties pageProperties;
         private IPageCollection pageCollection;
 
         
-        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper)
-            : this(keyboardInput, cursor, elementFactory, textScoper, null)
+        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper, IPageProperties pageProperties)
+            : this(keyboardInput, cursor, elementFactory, textScoper, null, pageProperties)
         {
         }
 
-        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper, IDocumentData data)
+        public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper, IDocumentData data, IPageProperties pageProperties)
         {
             documentCount++;
             this.keyboardInput = keyboardInput;
@@ -40,6 +42,7 @@ namespace GHD.Document
             this.cursor = cursor;
             this.elementFactory = elementFactory;
             this.textScoper = textScoper;
+            this.pageProperties = pageProperties;
 
             this.frame = (IButton)Global.FrameProvider.CreateFrame(FrameType.Button, "GHD_Document" + documentCount);
 
@@ -61,8 +64,10 @@ namespace GHD.Document
         private void New()
         {
             var flags = FlagsManager.LoadFlags(Defaults.DocumentWideFlags);
-            this.cursor.CurrentElement = new TextElement(flags, String.Empty);
-            
+            var initialText = new TextElement(flags, String.Empty);
+
+            initialText.Group = new HorizontalGroup(this.pageProperties.Width);
+            this.cursor.CurrentElement = initialText;
             /*
             this.pageCollection = this.elementFactory.CreatePageCollection(flags); // TODO: Set back to page collection
             this.pageCollection.Region.SetParent(this.frame);
@@ -92,6 +97,7 @@ namespace GHD.Document
             if (NavigationTypeMap.ContainsKey(type))
             {
                 //this.pageCollection.NavigateCursor(NavigationTypeMap[type]);
+                this.cursor.Navigate(NavigationTypeMap[type]);
                 return;
             }
 

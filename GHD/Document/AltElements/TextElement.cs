@@ -26,8 +26,11 @@
             this.frame.Region.Show();
         }
 
-        public void Insert(IFlags newFlags, string newText)
+        public DistinctList<IGroup> Insert(IFlags newFlags, string newText)
         {
+            var effectedGroups = new DistinctList<IGroup>();
+            effectedGroups.Add(this.Group);
+
             if (!this.flags.Equals(newFlags))
             {
                 this.InsertNewTextElement(newFlags, newText);
@@ -36,6 +39,8 @@
             {
                 this.InsertTextAtInsertPosition(newText);
             }
+
+            return effectedGroups;
         }
 
         public void ResetInsertPosition(bool inEnd = false)
@@ -131,7 +136,7 @@
 
         public IElement Next { get; set; }
 
-        public HorizontalGroup Group { get; set; }
+        public IGroup Group { get; set; }
 
         public IFlags Flags => this.flags;
     }
