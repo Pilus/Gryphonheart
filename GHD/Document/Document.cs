@@ -64,7 +64,7 @@ namespace GHD.Document
         private void New()
         {
             var flags = FlagsManager.LoadFlags(Defaults.DocumentWideFlags);
-            var initialText = new TextElement(flags, String.Empty);
+            var initialText = new TextElement(this.textScoper, flags, String.Empty);
 
             initialText.Group = new HorizontalGroup(this.pageProperties.Width);
             this.cursor.CurrentElement = initialText;

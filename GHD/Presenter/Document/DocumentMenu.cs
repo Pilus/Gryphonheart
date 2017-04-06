@@ -40,7 +40,7 @@ namespace GHD.Presenter.Document
 
             //this.elementFactory = new ElementFactory() // TODO
             this.inputProvider = new TextBoxInputInterpreter();
-            this.cursor = new Cursor();
+            this.cursor = new Cursor(this.textScoper);
 
             this.menu = menuHandler.CreateMenu(profileGenerator.GenerateMenuProfile());
             this.SetupDocumentArea(this.menu.GetFrameById(DocumentMenuLabels.DocumentArea) as IFrame);

@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Document\AltElements\BaseElement.cs" />
     <Compile Include="Document\AltElements\DistinctList.cs" />
     <Compile Include="Document\AltElements\HorizontalGroup.cs" />
     <Compile Include="Document\AltElements\IElement.cs" />

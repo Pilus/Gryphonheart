@@ -10,8 +10,7 @@
         /// </summary>
         /// <param name="newFlags"></param>
         /// <param name="newText"></param>
-        /// <returns>List of groups that is need of update.</returns>
-        DistinctList<IGroup> Insert(IFlags newFlags, string newText);
+        void Insert(IFlags newFlags, string newText);
 
         void ResetInsertPosition(bool inEnd = false);
 

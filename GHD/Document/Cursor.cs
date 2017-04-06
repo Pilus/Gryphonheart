@@ -8,7 +8,13 @@ namespace GHD.Document
 
     public class Cursor : ICursor
     {
+        private readonly ITextScoper textScoper;
         private IFlags currentFlags;
+
+        public Cursor(ITextScoper textScoper)
+        {
+            this.textScoper = textScoper;
+        }
 
         public IElement CurrentElement { get; set; }
 
@@ -32,11 +38,11 @@ namespace GHD.Document
                     }
                     break;
                 case NavigationType.End:
-                    this.CurrentElement = GetLastElementInSameGroup(this.CurrentElement);
+                    this.CurrentElement = HorizontalGroup.GetLastElementInSameGroup(this.CurrentElement);
                     (this.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
                     break;
                 case NavigationType.Home:
-                    this.CurrentElement = GetFirstElementInSameGroup(this.CurrentElement);
+                    this.CurrentElement = HorizontalGroup.GetFirstElementInSameGroup(this.CurrentElement);
                     (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
                     break;
                 default:
@@ -44,29 +50,7 @@ namespace GHD.Document
             }
         }
 
-        private static IElement GetLastElementInSameGroup(IElement element)
-        {
-            var horizontalGroup = element.Group;
 
-            while (element.Group == horizontalGroup && element.Next != null)
-            {
-                element = element.Next;
-            }
-
-            return element;
-        }
-
-        private static IElement GetFirstElementInSameGroup(IElement element)
-        {
-            var horizontalGroup = element.Group;
-
-            while (element.Group == horizontalGroup && element.Prev != null)
-            {
-                element = element.Prev;
-            }
-
-            return element;
-        }
 
         public void Insert(IFlags flags, string text)
         {
@@ -77,28 +61,15 @@ namespace GHD.Document
             }
             else
             {
-                var newTextElement = new TextElement(flags, text)
-                {
-                    Prev = this.CurrentElement.Prev,
-                    Next = this.CurrentElement,
-                    Group = this.CurrentElement.Group,
-                };
-
-                if (this.CurrentElement.Prev != null)
-                {
-                    this.CurrentElement.Prev.Next = newTextElement;
-                }
-                
-                this.CurrentElement.Prev = newTextElement;
-                this.CurrentElement = newTextElement;
+                this.CurrentElement.InsertElementBefore(new TextElement(this.textScoper, flags, text));
             }
+
+            this.UpdateLayoutOnGroupOfCurrentElement();
         }
 
         private void UpdateLayoutOnGroupOfCurrentElement()
-        {
-            var first = GetFirstElementInSameGroup(this.CurrentElement);
-            var last = GetLastElementInSameGroup(this.CurrentElement);
-
+        { 
+            this.CurrentElement.Group.UpdateLayout(this.CurrentElement);
         }
     }
 }
