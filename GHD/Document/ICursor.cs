@@ -12,5 +12,7 @@ namespace GHD.Document
         IFlags CurrentFlags { get; set; }
 
         void Navigate(NavigationType navigationType);
+
+        void Insert(IFlags flags, string text);
     }
 }

@@ -10,5 +10,9 @@
         }
 
         public VerticalGroup Group { get; set; }
+        public void UpdateLayout(IElement first, IElement last)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

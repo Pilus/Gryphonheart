@@ -9,7 +9,7 @@
     using GHD.Document.Flags;
     using Lua;
 
-    public class TextElement : IElement
+    public class TextElement : INavigableElement
     {
         private readonly IFlags flags;
         private string text;

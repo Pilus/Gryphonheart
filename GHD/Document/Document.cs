@@ -113,7 +113,7 @@ namespace GHD.Document
                 //buffer.Append(detail, this.pageCollection.GetCurrentFlags());
                 //this.pageCollection.Insert(buffer, null);
 
-                this.cursor.CurrentElement.Insert(this.cursor.CurrentFlags, detail);
+                this.cursor.Insert(this.cursor.CurrentFlags, detail);
 
                 return;
             }

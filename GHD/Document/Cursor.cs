@@ -1,6 +1,7 @@
 ﻿
 namespace GHD.Document
 {
+    using System;
     using GHD.Document.AltElements;
     using GHD.Document.Containers;
     using GHD.Document.Flags;
@@ -19,30 +20,85 @@ namespace GHD.Document
 
         public void Navigate(NavigationType navigationType)
         {
-            bool success;
             switch (navigationType)
             {
                 case NavigationType.Left:
-                    success = this.CurrentElement.Navigate(navigationType);
-                    while (!success && this.CurrentElement.Prev != null)
+                    bool internalNavigationSuccessful = (this.CurrentElement as INavigableElement)?.Navigate(navigationType) ?? false;
+
+                    if (!internalNavigationSuccessful && this.CurrentElement.Prev != null)
                     {
                         this.CurrentElement = this.CurrentElement.Prev;
-                        this.CurrentElement.ResetInsertPosition(true);
-                        success = this.CurrentElement.Navigate(navigationType);
+                        (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
                     }
                     break;
-                case NavigationType.Right:
-                    success = this.CurrentElement.Navigate(navigationType);
-                    while (!success && this.CurrentElement.Next != null)
-                    {
-                        this.CurrentElement = this.CurrentElement.Next;
-                        this.CurrentElement.ResetInsertPosition(false);
-                        success = this.CurrentElement.Navigate(navigationType);
-                    }
+                case NavigationType.End:
+                    this.CurrentElement = GetLastElementInSameGroup(this.CurrentElement);
+                    (this.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
+                    break;
+                case NavigationType.Home:
+                    this.CurrentElement = GetFirstElementInSameGroup(this.CurrentElement);
+                    (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
                     break;
                 default:
-                    break;
+                    throw new NotImplementedException("Cursor handling of " + navigationType);
             }
+        }
+
+        private static IElement GetLastElementInSameGroup(IElement element)
+        {
+            var horizontalGroup = element.Group;
+
+            while (element.Group == horizontalGroup && element.Next != null)
+            {
+                element = element.Next;
+            }
+
+            return element;
+        }
+
+        private static IElement GetFirstElementInSameGroup(IElement element)
+        {
+            var horizontalGroup = element.Group;
+
+            while (element.Group == horizontalGroup && element.Prev != null)
+            {
+                element = element.Prev;
+            }
+
+            return element;
+        }
+
+        public void Insert(IFlags flags, string text)
+        {
+            var currentElementAsNavigable = this.CurrentElement as INavigableElement;
+            if (currentElementAsNavigable != null)
+            {
+                currentElementAsNavigable.Insert(flags, text);
+            }
+            else
+            {
+                var newTextElement = new TextElement(flags, text)
+                {
+                    Prev = this.CurrentElement.Prev,
+                    Next = this.CurrentElement,
+                    Group = this.CurrentElement.Group,
+                };
+
+                if (this.CurrentElement.Prev != null)
+                {
+                    this.CurrentElement.Prev.Next = newTextElement;
+                }
+                
+                this.CurrentElement.Prev = newTextElement;
+                this.CurrentElement = newTextElement;
+            }
+        }
+
+        private void UpdateLayoutOnGroupOfCurrentElement()
+        {
+            var first = GetFirstElementInSameGroup(this.CurrentElement);
+            var last = GetLastElementInSameGroup(this.CurrentElement);
+
         }
     }
 }
