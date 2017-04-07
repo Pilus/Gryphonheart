@@ -11,7 +11,7 @@
     using GHD.Document.Flags;
     using Lua;
 
-    public class TextElement : BaseElement, INavigableElement
+    public class TextElement : BaseElement, INavigableElement, ISplitableElement
     {
         private readonly ITextScoper textScoper;
 
@@ -117,17 +117,40 @@
 
         public override double GetWidth()
         {
-            throw new NotImplementedException();
+            return this.width;
         }
 
         public override double GetHeight()
         {
-            throw new NotImplementedException();
+            return this.height;
         }
 
         public override void SetPoint(double xOff, double yOff, IRegion parent)
         {
             this.frame.Region.SetPoint(FramePoint.BOTTOMLEFT, parent, FramePoint.BOTTOMLEFT, xOff, yOff);
+        }
+
+        public ISplitableElement SplitFromFront(double width)
+        {
+            if (this.GetWidth() <= width)
+            {
+                return this;
+            }
+
+            var newText = this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text, width);
+            if (newText == String.Empty)
+            {
+                return null;
+            }
+
+            var newElement = new TextElement(this.textScoper, this.flags, newText);
+            this.InsertElementBefore(newElement);
+            return newElement;
+        }
+
+        public ISplitableElement SplitFromEnd(double width)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -57,6 +57,7 @@
     <Compile Include="Document\AltElements\IElement.cs" />
     <Compile Include="Document\AltElements\IGroup.cs" />
     <Compile Include="Document\AltElements\INavigableElement.cs" />
+    <Compile Include="Document\AltElements\ISplitableElement.cs" />
     <Compile Include="Document\AltElements\TextElement.cs" />
     <Compile Include="Document\AltElements\VerticalGroup.cs" />
     <Compile Include="Document\Buffer\BufferElement.cs" />

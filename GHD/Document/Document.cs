@@ -66,7 +66,7 @@ namespace GHD.Document
             var flags = FlagsManager.LoadFlags(Defaults.DocumentWideFlags);
             var initialText = new TextElement(this.textScoper, flags, String.Empty);
 
-            initialText.Group = new HorizontalGroup(this.pageProperties.Width);
+            initialText.Group = new HorizontalGroup(this.pageProperties.Width, this.pageProperties.Height);
             this.cursor.CurrentElement = initialText;
             /*
             this.pageCollection = this.elementFactory.CreatePageCollection(flags); // TODO: Set back to page collection

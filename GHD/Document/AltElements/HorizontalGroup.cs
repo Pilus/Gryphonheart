@@ -20,17 +20,12 @@
             var first = GetFirstElementInSameGroup(elementInGroup);
             var last = GetLastElementInSameGroup(elementInGroup);
 
-            if (first.Prev != null && first.Prev.SizeChanged)
+            first = this.UpdatePrevGroupIfRelevantAndGetNewFirst(elementInGroup, last, first);
+
+            if (first == null)
             {
-                first.Prev.Group.UpdateLayout(first.Prev);
-
-                if (last.Group != this)
-                {
-                    // All elements of this group have been moved into the previous group
-                    return;
-                }
-
-                first = GetFirstElementInSameGroup(elementInGroup);
+                // The group is now empty
+                return;
             }
 
             double widthConsumed = 0;
@@ -45,8 +40,9 @@
                 }
                 else
                 {
-                    element.SetPoint(widthConsumed, 0, Global.Frames.UIParent); // TODO: set to group parent. Change offset to provided group offset.
+                    element.SetPoint(widthConsumed, 0, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
                     widthConsumed += element.GetWidth();
+                    element.SizeChanged = false;
                     element = element.Next;
 
                     if (element == null || element.Group != this)
@@ -57,8 +53,44 @@
                 }
             }
 
-            // TODO: Try and split the first element that is too wide
+            if (element is ISplitableElement)
+            {
+                // Try and split the first element that is too wide
+                var newElement = ((ISplitableElement) element).SplitFromFront(this.widthConstraint - widthConsumed);
+                newElement.SetPoint(widthConsumed, 0, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
+                newElement.SizeChanged = false;
+            }
+            
             // TODO: Place elements into next group.
+            IGroup group;
+            if (element.Next != null)
+            {
+                group = element.Group;
+            }
+            else
+            {
+                group = new HorizontalGroup(this.widthConstraint, this.heightConstraint); // TODO: do this in the vertical group
+            }
+            element.Group = group;
+            element.SizeChanged = false;
+            group.UpdateLayout(element);
+        }
+
+        private IElement UpdatePrevGroupIfRelevantAndGetNewFirst(IElement elementInGroup, IElement last, IElement first)
+        {
+            if (first.Prev != null && first.Prev.SizeChanged)
+            {
+                first.Prev.Group.UpdateLayout(first.Prev);
+
+                if (last.Group != this)
+                {
+                    // All elements of this group have been moved into the previous group
+                    return null;
+                }
+
+                first = GetFirstElementInSameGroup(elementInGroup);
+            }
+            return first;
         }
 
         public static IElement GetLastElementInSameGroup(IElement element)

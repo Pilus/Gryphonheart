@@ -16,22 +16,32 @@
 
         public void InsertElementAfter(IElement element)
         {
+            element.Group = this.Group;
+
+            var next = this.Next;
+
             element.Prev = this;
-            element.Next = this.Prev;
-            element.Group = this.Group;
-            this.Prev.Next = element;
-            this.Prev = element;
-            element.Group = this.Group;
+            element.Next = next;
+            this.Next = element;
+            if (next != null)
+            {
+                next.Prev = element;
+            }
         }
 
         public void InsertElementBefore(IElement element)
         {
+            element.Group = this.Group;
+
+            var prev = this.Prev;
+
             element.Next = this;
-            element.Prev = this.Next;
-            element.Group = this.Group;
-            this.Next.Prev = element;
-            this.Next = element;
-            element.Group = this.Group;
+            element.Prev = prev;
+            this.Prev = element;
+            if (prev != null)
+            {
+                prev.Next = element;
+            }
         }
 
         public abstract double GetWidth();
