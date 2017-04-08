@@ -1772,7 +1772,7 @@
 		<Scripts>
 			<OnLoad>
 				GameTooltip_OnLoad(self);
-				self:SetPadding(0);
+				self:SetPadding(0, 0);
 				self.UpdateTooltip = function(self)
 
 				end

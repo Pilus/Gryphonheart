@@ -248,6 +248,8 @@ function GHM_IconPicker()
 			menuFrame.window:SetFrameLevel(100);
 		end
 
+        local okButton = menuFrame.GetLabelFrame("ok");
+        okButton:SetFrameLevel(okButton:GetFrameLevel() + 5);
 		menuFrame:Show();
 		inUse = true;
 	end
