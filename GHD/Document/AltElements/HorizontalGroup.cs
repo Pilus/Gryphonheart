@@ -53,12 +53,19 @@
                 }
             }
 
+            IElement newCurrentElement = null;
+
             if (element is ISplitableElement)
             {
                 // Try and split the first element that is too wide
                 var newElement = ((ISplitableElement) element).SplitFromFront(this.widthConstraint - widthConsumed);
                 newElement.SetPoint(widthConsumed, 0, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
                 newElement.SizeChanged = false;
+
+                if (element == elementInGroup)
+                {
+                    // The element might be the current cursor element
+                }
             }
             
             // TODO: Place elements into next group.
@@ -97,7 +104,7 @@
         {
             var horizontalGroup = element.Group;
 
-            while (element.Group == horizontalGroup && element.Next != null)
+            while (element.Next != null && element.Next.Group == horizontalGroup)
             {
                 element = element.Next;
             }
@@ -109,7 +116,7 @@
         {
             var horizontalGroup = element.Group;
 
-            while (element.Group == horizontalGroup && element.Prev != null)
+            while (element.Prev != null && element.Prev.Group == horizontalGroup)
             {
                 element = element.Prev;
             }

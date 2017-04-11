@@ -11,6 +11,8 @@ namespace GHD.Document
         private readonly ITextScoper textScoper;
         private IFlags currentFlags;
 
+        private IElement currentElement;
+
         public Cursor(ITextScoper textScoper)
         {
             this.textScoper = textScoper;
@@ -70,6 +72,42 @@ namespace GHD.Document
         private void UpdateLayoutOnGroupOfCurrentElement()
         { 
             this.CurrentElement.Group.UpdateLayout(this.CurrentElement);
+
+            this.SeekUpdatedCurrentElement();
+        }
+
+        private void SeekUpdatedCurrentElement()
+        {
+            if (this.CurrentElement.HasCursor())
+            {
+                return;
+            }
+
+            var backwards = this.CurrentElement.Prev;
+            var forwards = this.CurrentElement.Next;
+
+            while (backwards != null || forwards != null)
+            {
+                if (backwards != null)
+                {
+                    if (backwards.HasCursor())
+                    {
+                        this.currentElement = backwards;
+                        return;
+                    }
+                    backwards = backwards.Prev;
+                }
+
+                if (forwards != null)
+                {
+                    if (forwards.HasCursor())
+                    {
+                        this.currentElement = forwards;
+                        return;
+                    }
+                    forwards = forwards.Next;
+                }
+            }
         }
     }
 }

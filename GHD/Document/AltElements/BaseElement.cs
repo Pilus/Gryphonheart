@@ -51,5 +51,26 @@
         public bool SizeChanged { get; set; }
 
         public abstract void SetPoint(double xOff, double yOff, IRegion parent);
+
+
+        protected ICursor Cursor;
+        public virtual void GainCursor(ICursor cursor)
+        {
+            this.Cursor = cursor;
+            this.Cursor.CurrentElement = this;
+        }
+
+        public virtual ICursor LooseCursor()
+        {
+            var cursor = this.Cursor;
+            this.Cursor = null;
+            this.Cursor.CurrentElement = null;
+            return cursor;
+        }
+
+        public virtual bool HasCursor()
+        {
+            return this.Cursor != null;
+        }
     }
 }

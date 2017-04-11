@@ -23,13 +23,13 @@
         private double width;
         private double height;
 
-        public TextElement(ITextScoper textScoper, IFlags flags, string text)
+        public TextElement(ITextScoper textScoper, IFlags flags, string text, int insertPosition = 0)
         {
             this.textScoper = textScoper;
             this.flags = flags;
             this.height = flags.FontSize;
             this.text = text;
-            this.insertPosition = 0;
+            this.insertPosition = insertPosition;
             this.frame = new FormattedTextFrame(flags);
             this.TextChanged();
             this.frame.Region.Show();
@@ -143,8 +143,25 @@
                 return null;
             }
 
-            var newElement = new TextElement(this.textScoper, this.flags, newText);
+            var newPosition = 0;
+            if (this.insertPosition < newText.Length)
+            {
+                newPosition = this.insertPosition;
+                this.insertPosition = 0;
+            }
+            else
+            {
+                this.insertPosition = this.insertPosition - newText.Length;
+            }
+
+            var newElement = new TextElement(this.textScoper, this.flags, newText, newPosition);
             this.InsertElementBefore(newElement);
+
+            
+
+            this.text = this.text.Substring(newText.Length);
+            this.TextChanged();
+
             return newElement;
         }
 
