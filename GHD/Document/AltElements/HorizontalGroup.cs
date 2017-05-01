@@ -4,14 +4,17 @@
 
     public class HorizontalGroup : IGroup
     {
-        private double widthConstraint;
+        private readonly double widthConstraint;
 
-        private double heightConstraint;
+        private readonly double heightConstraint;
 
-        public HorizontalGroup(double widthConstraint, double heightConstraint)
+        private readonly double offset;
+
+        public HorizontalGroup(double widthConstraint, double heightConstraint, double offset)
         {
             this.widthConstraint = widthConstraint;
             this.heightConstraint = heightConstraint;
+            this.offset = offset;
         }
 
         public VerticalGroup Group { get; set; }
@@ -40,26 +43,24 @@
                 }
                 else
                 {
-                    element.SetPoint(widthConsumed, 0, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
+                    element.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
                     widthConsumed += element.GetWidth();
                     element.SizeChanged = false;
                     element = element.Next;
 
                     if (element == null || element.Group != this)
                     {
-                        // TODO: Find out how to know when to trigger update layout of group of last.next. Maybe just check if the first element would fit in.
+                        // TODO: Find out how to know when to trigger update layout of the group of last.next. Maybe just check if the first element would fit in.
                         return;
                     }
                 }
             }
 
-            IElement newCurrentElement = null;
-
             if (element is ISplitableElement)
             {
                 // Try and split the first element that is too wide
                 var newElement = ((ISplitableElement) element).SplitFromFront(this.widthConstraint - widthConsumed);
-                newElement.SetPoint(widthConsumed, 0, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
+                newElement.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
                 newElement.SizeChanged = false;
 
                 if (element == elementInGroup)
@@ -76,7 +77,7 @@
             }
             else
             {
-                group = new HorizontalGroup(this.widthConstraint, this.heightConstraint); // TODO: do this in the vertical group
+                group = new HorizontalGroup(this.widthConstraint, this.heightConstraint, this.offset + 15); // TODO: do this in the vertical group
             }
             element.Group = group;
             element.SizeChanged = false;

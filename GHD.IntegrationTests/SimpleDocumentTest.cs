@@ -66,7 +66,7 @@ namespace GHD.IntegrationTests
 
         private void ExpectStrings(params string[] strings)
         {
-            var fontStrings = GetFontStrings(this.session, this.initialFontStrings);
+            var fontStrings = GetFontStrings(this.session, this.initialFontStrings).OrderBy(fs => fs.GetTop()).ToArray();
             Assert.AreEqual(strings.Length, fontStrings.Length, "Unexpected amount of font strings currently visible. Got:" + string.Join("", fontStrings.Select((fs,i) =>"\n" + i + ": "+ fs.GetText())));
 
             for (int i = 0; i < strings.Length; i++)

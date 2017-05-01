@@ -49,7 +49,20 @@
 
         public void ResetInsertPosition(bool inEnd = false)
         {
-            this.insertPosition = inEnd ? 0 : Strings.strlenutf8(this.text);
+            this.insertPosition = !inEnd ? 0 : Strings.strlenutf8(this.text);
+        }
+
+        public void SetInsertPosition(double xOffset, double yOffset)
+        {
+            this.insertPosition =
+                Strings.strlenutf8(this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text,
+                    xOffset));
+        }
+
+        public double GetInsertXOffset()
+        {
+            return this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize,
+                Strings.strsubutf8(this.text, this.insertPosition));
         }
 
         public bool Navigate(NavigationType navigationType)
@@ -160,6 +173,12 @@
             
 
             this.text = this.text.Substring(newText.Length);
+            if (this.text.StartsWith(" "))
+            {
+                this.text = this.text.Substring(1);
+                this.insertPosition--;
+            }
+
             this.TextChanged();
 
             return newElement;

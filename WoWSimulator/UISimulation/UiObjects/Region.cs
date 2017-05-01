@@ -186,8 +186,64 @@
             throw new NotImplementedException();
         }
 
+        private static bool PointIsTop(FramePoint point)
+        {
+            return point == FramePoint.TOP || point == FramePoint.TOPLEFT || point == FramePoint.TOPRIGHT;
+        }
+
+        private static bool PointIsBottom(FramePoint point)
+        {
+            return point == FramePoint.BOTTOM || point == FramePoint.BOTTOMLEFT || point == FramePoint.BOTTOMRIGHT;
+        }
+
         public double GetTop()
         {
+            if (!this.points.Any())
+            {
+                if (this.allPointsRegion != null)
+                {
+                    return this.allPointsRegion.GetTop();
+                }
+
+                return 0;
+            }
+
+            var topPoint = this.points.FirstOrDefault(point => PointIsTop(point.Key)).Value;
+            if (topPoint != null)
+            {
+                var off = topPoint.YOfs ?? 0;
+                if (topPoint.RelativeFrame != null && topPoint.RelativePoint != null)
+                {
+                    var relativeTopPoint = (FramePoint) topPoint.RelativePoint;
+                    if (PointIsTop(relativeTopPoint))
+                    {
+                        return off + topPoint.RelativeFrame.GetTop();
+                    }
+                }
+                else
+                {
+                    return off;
+                }
+            }
+
+            var bottomPoint = this.points.FirstOrDefault(point => PointIsBottom(point.Key)).Value;
+            if (bottomPoint != null)
+            {
+                var off = bottomPoint.YOfs ?? 0;
+                if (bottomPoint.RelativeFrame != null && bottomPoint.RelativePoint != null)
+                {
+                    var relativeBottomPoint = (FramePoint)bottomPoint.RelativePoint;
+                    if (PointIsBottom(relativeBottomPoint))
+                    {
+                        return off + bottomPoint.RelativeFrame.GetTop() + bottomPoint.RelativeFrame.GetHeight();
+                    }
+                }
+                else
+                {
+                    return off;
+                }
+            }
+
             throw new NotImplementedException();
         }
 
@@ -227,9 +283,11 @@
             return this.IsShown() && (parent == null || parent.IsShown());
         }
 
+        private IRegion allPointsRegion;
         public void SetAllPoints(IRegion frame)
         {
-            //throw new System.NotImplementedException();
+            this.points.Clear();
+            this.allPointsRegion = frame;
         }
 
         public void SetAllPoints(string frameName)

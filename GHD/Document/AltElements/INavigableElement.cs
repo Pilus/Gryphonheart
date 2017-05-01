@@ -14,6 +14,10 @@
 
         void ResetInsertPosition(bool inEnd = false);
 
+        void SetInsertPosition(double xOffset, double yOffset);
+
+        double GetInsertXOffset();
+
         /// <summary>
         /// Perform cursor navigation event on the element.
         /// </summary>

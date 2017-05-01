@@ -47,6 +47,8 @@ namespace GHD.Document
                     this.CurrentElement = HorizontalGroup.GetFirstElementInSameGroup(this.CurrentElement);
                     (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
                     break;
+                case NavigationType.Up:
+                    throw new NotImplementedException("Cursor handling of " + navigationType);
                 default:
                     throw new NotImplementedException("Cursor handling of " + navigationType);
             }
