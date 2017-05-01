@@ -48,6 +48,32 @@ namespace GHD.Document
                     (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
                     break;
                 case NavigationType.Up:
+                    double offset = (this.CurrentElement as INavigableElement) ?.GetInsertXOffset() ?? 0;
+                    var element = this.currentElement.Prev;
+                    while (element.Group == this.currentElement.Group)
+                    {
+                        offset += element.GetWidth();
+                        element = element.Prev;
+                    }
+
+                    var prevGroup = element.Group;
+                    var firstInPrevGroup = HorizontalGroup.GetFirstElementInSameGroup(element);
+
+                    double prevOffset = 0;
+                    element = firstInPrevGroup;
+
+                    while (element.Group == prevGroup && prevOffset + element.GetWidth() <= offset)
+                    {
+                        prevOffset += element.GetWidth();
+                        element = element.Next;
+                    }
+
+                    if (element.Group != prevGroup)
+                    {
+                        this.currentElement = element;
+                        (this.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
+                    }
+
                     throw new NotImplementedException("Cursor handling of " + navigationType);
                 default:
                     throw new NotImplementedException("Cursor handling of " + navigationType);
