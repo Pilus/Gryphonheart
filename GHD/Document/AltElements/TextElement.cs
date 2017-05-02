@@ -62,7 +62,7 @@
         public double GetInsertXOffset()
         {
             return this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize,
-                Strings.strsubutf8(this.text, this.insertPosition));
+                Strings.strsubutf8(this.text, 0, this.insertPosition));
         }
 
         public bool Navigate(NavigationType navigationType)

@@ -61,12 +61,12 @@ namespace GHD.IntegrationTests
 
             input.PressUpArrow();
             input.TypeString("1");
-            this.ExpectStrings("A short test. Adding a long1 sentance with the purpose of", "spilling over into the next line of text.");
+            this.ExpectStrings("A short test. Adding a long1 sentance with the purpose of", "spilling", "over into the next line of text.");
         }
 
         private void ExpectStrings(params string[] strings)
         {
-            var fontStrings = GetFontStrings(this.session, this.initialFontStrings).OrderBy(fs => fs.GetTop()).ToArray();
+            var fontStrings = GetFontStrings(this.session, this.initialFontStrings).OrderBy(fs => fs.GetTop()).ThenBy(fs => fs.GetLeft()).ToArray();
             Assert.AreEqual(strings.Length, fontStrings.Length, "Unexpected amount of font strings currently visible. Got:" + string.Join("", fontStrings.Select((fs,i) =>"\n" + i + ": "+ fs.GetText())));
 
             for (int i = 0; i < strings.Length; i++)

@@ -157,6 +157,52 @@
 
         public double GetLeft()
         {
+            if (!this.points.Any())
+            {
+                if (this.allPointsRegion != null)
+                {
+                    return this.allPointsRegion.GetLeft();
+                }
+
+                return 0;
+            }
+
+            var leftPoint = this.points.FirstOrDefault(point => PointIsLeft(point.Key)).Value;
+            if (leftPoint != null)
+            {
+                var off = leftPoint.XOfs ?? 0;
+                if (leftPoint.RelativeFrame != null && leftPoint.RelativePoint != null)
+                {
+                    var relativeTopPoint = (FramePoint)leftPoint.RelativePoint;
+                    if (PointIsLeft(relativeTopPoint))
+                    {
+                        return off + leftPoint.RelativeFrame.GetLeft();
+                    }
+                }
+                else
+                {
+                    return off;
+                }
+            }
+
+            var rightPoint = this.points.FirstOrDefault(point => PointIsRight(point.Key)).Value;
+            if (rightPoint != null)
+            {
+                var off = rightPoint.XOfs ?? 0;
+                if (rightPoint.RelativeFrame != null && rightPoint.RelativePoint != null)
+                {
+                    var relativeBottomPoint = (FramePoint)rightPoint.RelativePoint;
+                    if (PointIsBottom(relativeBottomPoint))
+                    {
+                        return off + rightPoint.RelativeFrame.GetLeft() + rightPoint.RelativeFrame.GetWidth();
+                    }
+                }
+                else
+                {
+                    return off;
+                }
+            }
+
             throw new NotImplementedException();
         }
 
@@ -194,6 +240,16 @@
         private static bool PointIsBottom(FramePoint point)
         {
             return point == FramePoint.BOTTOM || point == FramePoint.BOTTOMLEFT || point == FramePoint.BOTTOMRIGHT;
+        }
+
+        private static bool PointIsLeft(FramePoint point)
+        {
+            return point == FramePoint.LEFT || point == FramePoint.BOTTOMLEFT || point == FramePoint.TOPLEFT;
+        }
+
+        private static bool PointIsRight(FramePoint point)
+        {
+            return point == FramePoint.RIGHT || point == FramePoint.TOPRIGHT || point == FramePoint.BOTTOMRIGHT;
         }
 
         public double GetTop()

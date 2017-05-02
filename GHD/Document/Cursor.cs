@@ -10,7 +10,6 @@ namespace GHD.Document
     {
         private readonly ITextScoper textScoper;
         private IFlags currentFlags;
-
         private IElement currentElement;
 
         public Cursor(ITextScoper textScoper)
@@ -18,7 +17,18 @@ namespace GHD.Document
             this.textScoper = textScoper;
         }
 
-        public IElement CurrentElement { get; set; }
+        public IElement CurrentElement
+        {
+            get { return this.currentElement; }
+            set
+            {
+                if (this.currentElement == value) return;
+
+                this.currentElement?.LooseCursor();
+                this.currentElement = value;
+                this.currentElement?.GainCursor(this);
+            }
+        }
 
         public IFlags CurrentFlags
         {
@@ -28,6 +38,11 @@ namespace GHD.Document
 
         public void Navigate(NavigationType navigationType)
         {
+            if (this.CurrentElement == null)
+            {
+                throw new Exception("Can not navigate without cursor focus.");
+            }
+
             switch (navigationType)
             {
                 case NavigationType.Left:
@@ -49,8 +64,8 @@ namespace GHD.Document
                     break;
                 case NavigationType.Up:
                     double offset = (this.CurrentElement as INavigableElement) ?.GetInsertXOffset() ?? 0;
-                    var element = this.currentElement.Prev;
-                    while (element.Group == this.currentElement.Group)
+                    var element = this.CurrentElement.Prev;
+                    while (element.Group == this.CurrentElement.Group)
                     {
                         offset += element.GetWidth();
                         element = element.Prev;
@@ -70,13 +85,23 @@ namespace GHD.Document
 
                     if (element.Group != prevGroup)
                     {
-                        this.currentElement = element;
+                        this.CurrentElement = element.Prev;
                         (this.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
                     }
+                    else
+                    {
+                        this.CurrentElement = element;
+                        (this.CurrentElement as INavigableElement)?.SetInsertPosition(offset - prevOffset, 0);
+                    }
 
-                    throw new NotImplementedException("Cursor handling of " + navigationType);
+                    break;
                 default:
                     throw new NotImplementedException("Cursor handling of " + navigationType);
+            }
+
+            if (this.CurrentElement == null)
+            {
+                throw new Exception("Focus lost unexpectedly.");
             }
         }
 
@@ -120,7 +145,7 @@ namespace GHD.Document
                 {
                     if (backwards.HasCursor())
                     {
-                        this.currentElement = backwards;
+                        this.CurrentElement = backwards;
                         return;
                     }
                     backwards = backwards.Prev;
@@ -130,7 +155,7 @@ namespace GHD.Document
                 {
                     if (forwards.HasCursor())
                     {
-                        this.currentElement = forwards;
+                        this.CurrentElement = forwards;
                         return;
                     }
                     forwards = forwards.Next;

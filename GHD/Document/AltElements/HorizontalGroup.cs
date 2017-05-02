@@ -73,7 +73,7 @@
             IGroup group;
             if (element.Next != null)
             {
-                group = element.Group;
+                group = element.Next.Group;
             }
             else
             {

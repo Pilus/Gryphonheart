@@ -57,14 +57,12 @@
         public virtual void GainCursor(ICursor cursor)
         {
             this.Cursor = cursor;
-            this.Cursor.CurrentElement = this;
         }
 
         public virtual ICursor LooseCursor()
         {
             var cursor = this.Cursor;
             this.Cursor = null;
-            this.Cursor.CurrentElement = null;
             return cursor;
         }
 
