@@ -1,9 +1,9 @@
 ﻿
 namespace GHD.Document
 {
-    using GHD.Document.AltElements;
-    using GHD.Document.Containers;
+    using GHD.Document.Elements;
     using GHD.Document.Flags;
+    using GHD.Document.Navigation;
 
     public interface ICursor
     {

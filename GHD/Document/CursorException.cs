@@ -1,5 +1,5 @@
 ﻿
-namespace GHD.Document.Elements
+namespace GHD.Document
 {
     using System;
 

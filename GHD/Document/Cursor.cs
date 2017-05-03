@@ -2,9 +2,10 @@
 namespace GHD.Document
 {
     using System;
-    using GHD.Document.AltElements;
-    using GHD.Document.Containers;
+    using GHD.Document.Elements;
     using GHD.Document.Flags;
+    using GHD.Document.Groups;
+    using GHD.Document.Navigation;
 
     public class Cursor : ICursor
     {

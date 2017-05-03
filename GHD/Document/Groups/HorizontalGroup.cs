@@ -1,6 +1,7 @@
-﻿namespace GHD.Document.AltElements
+﻿namespace GHD.Document.Groups
 {
     using BlizzardApi.Global;
+    using GHD.Document.Elements;
 
     public class HorizontalGroup : IGroup
     {

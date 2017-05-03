@@ -7,9 +7,6 @@ namespace Tests.GHDTests
     using BlizzardApi.WidgetInterfaces;
 
     using CsLuaFramework.Wrapping;
-
-    using GHD.Document.Buffer;
-    using GHD.Document.Containers;
     using GHD.Document.Elements;
     using GHD.Document.Flags;
 

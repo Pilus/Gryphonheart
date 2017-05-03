@@ -5,15 +5,14 @@ namespace GHD.Document
     using System.Collections.Generic;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-    using Buffer;
-    using Containers;
     using Data;
     using GHD.Document.Data.Default;
     using GHD.Document.Elements;
     using GHD.Document.Flags;
     using KeyboardInput;
     using BlizzardApi.Global;
-    using GHD.Document.AltElements;
+    using GHD.Document.Groups;
+    using GHD.Document.Navigation;
 
     public class Document
     {
@@ -26,7 +25,6 @@ namespace GHD.Document
         private readonly ITextScoper textScoper;
 
         private readonly IPageProperties pageProperties;
-        private IPageCollection pageCollection;
 
         
         public Document(IKeyboardInputProvider keyboardInput, ICursor cursor, IElementFactory elementFactory, ITextScoper textScoper, IPageProperties pageProperties)

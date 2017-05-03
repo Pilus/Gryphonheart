@@ -1,8 +1,8 @@
-﻿namespace GHD.Document.AltElements
+﻿namespace GHD.Document.Elements
 {
     using BlizzardApi.WidgetInterfaces;
-
     using GHD.Document.Flags;
+    using GHD.Document.Groups;
 
     public abstract class BaseElement : IElement
     {

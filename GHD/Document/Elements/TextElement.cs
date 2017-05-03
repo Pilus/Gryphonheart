@@ -1,14 +1,10 @@
-﻿namespace GHD.Document.AltElements
+﻿namespace GHD.Document.Elements
 {
     using System;
-    using System.Collections.Generic;
-    using BlizzardApi.Global;
     using BlizzardApi.WidgetEnums;
     using BlizzardApi.WidgetInterfaces;
-
-    using GHD.Document.Containers;
-    using GHD.Document.Elements;
     using GHD.Document.Flags;
+    using GHD.Document.Navigation;
     using Lua;
 
     public class TextElement : BaseElement, INavigableElement, ISplitableElement

@@ -8,7 +8,6 @@ namespace GHD.Presenter.Document
     using GH.Menu;
     using GH.Menu.Containers.Menus;
     using GHD.Document;
-    using GHD.Document.Buffer;
     using GHD.Document.Data;
     using GHD.Document.Elements;
     using GHD.Document.KeyboardInput;

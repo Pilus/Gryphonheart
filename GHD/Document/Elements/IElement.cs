@@ -1,91 +1,35 @@
-﻿
-
-namespace GHD.Document.Elements
+﻿namespace GHD.Document.Elements
 {
     using BlizzardApi.WidgetInterfaces;
-    using Containers;
-    using GHD.Document.Buffer;
     using GHD.Document.Flags;
+    using GHD.Document.Groups;
 
     public interface IElement
     {
+        IElement Prev { get; set; }
 
-        IRegion Region { get; }
+        IElement Next { get; set; }
 
-        /// <summary>
-        /// Provides the cursor to the container.
-        /// </summary>
-        /// <param name="inEnd">Weather the cursor should be placed in the end or in the beginning.</param>
-        /// <param name="cursor">The cursor object</param>
-        void SetCursor(bool inEnd, ICursor cursor);
+        IGroup Group { get; set; }
 
-        /// <summary>
-        /// Clears the cursor from the container.
-        /// </summary>
-        void ClearCursor();
+        IFlags Flags { get; }
 
-        /// <summary>
-        /// Navigates the cursor on the container.
-        /// </summary>
-        /// <param name="type">The type of navigation</param>
-        /// <returns>Weather the navigation was successful</returns>
-        bool NavigateCursor(NavigationType type);
-
-        /// <summary>
-        /// Gets the cursors position relative to the top left corner of the element.
-        /// </summary>
-        /// <returns></returns>
-        Position GetCursorPosition();
-
-        /// <summary>
-        /// Sets the cursor as close to the given position within the element as possible.
-        /// </summary>
-        /// <param name="position"></param>
-        void SetCursorPosition(ICursor cursor, Position position);
-
-        /// <summary>
-        /// Gets the length of the contained elements. Could be a value calculated every time insert or delete is called.
-        /// </summary>
-        /// <returns>The length</returns>
-        int GetLength();
-
-        /// <summary>
-        /// Get the current preferred width of the container.
-        /// </summary>
-        /// <returns>The width</returns>
         double GetWidth();
 
         double GetHeight();
 
-        /// <summary>
-        /// Activate the highlight within a given interval.
-        /// </summary>
-        /// <param name="hightLightStart">The local start interval for the highlight.</param>
-        /// <param name="highLightEnd">The local end interval for the highlight.</param>
-        void SetHightLight(int hightLightStart, int highLightEnd);
+        void InsertElementAfter(IElement element);
 
-        /// <summary>
-        /// Clear all highlights.
-        /// </summary>
-        void ClearHightLight();
+        void InsertElementBefore(IElement element);
 
-        /// <summary>
-        /// Get the <see cref="IFlags"/> applied at the cursor position.
-        /// </summary>
-        /// <returns></returns>
-        IFlags GetCurrentFlags();
+        bool SizeChanged { get; set; }
 
-        /// <summary>
-        /// Inserts the content of the document buffer into itself and sub containers.
-        /// </summary>
-        /// <param name="documentBuffer">The document buffer.</param>
-        /// <param name="dimensionConstraint">The constraining dimensions.</param>
-        void Insert(IDocumentBuffer documentBuffer, IDimensionConstraint dimensionConstraint);
+        void SetPoint(double xOff, double yOff, IRegion parent);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="documentDeleter"></param>
-        void Delete(IDocumentDeleter documentDeleter);
+        void GainCursor(ICursor cursor);
+
+        ICursor LooseCursor();
+
+        bool HasCursor();
     }
 }

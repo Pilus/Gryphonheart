@@ -1,4 +1,4 @@
-﻿namespace GHD.Document.AltElements
+﻿namespace GHD.Document.Elements
 {
     public interface ISplitableElement : IElement
     {

@@ -1,7 +1,7 @@
-﻿namespace GHD.Document.AltElements
+﻿namespace GHD.Document.Elements
 {
-    using GHD.Document.Containers;
     using GHD.Document.Flags;
+    using GHD.Document.Navigation;
 
     public interface INavigableElement : IElement
     {

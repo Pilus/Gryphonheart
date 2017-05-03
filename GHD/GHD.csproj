@@ -51,29 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Document\AltElements\BaseElement.cs" />
-    <Compile Include="Document\AltElements\DistinctList.cs" />
-    <Compile Include="Document\AltElements\HorizontalGroup.cs" />
-    <Compile Include="Document\AltElements\IElement.cs" />
-    <Compile Include="Document\AltElements\IGroup.cs" />
-    <Compile Include="Document\AltElements\INavigableElement.cs" />
-    <Compile Include="Document\AltElements\ISplitableElement.cs" />
-    <Compile Include="Document\AltElements\TextElement.cs" />
-    <Compile Include="Document\AltElements\VerticalGroup.cs" />
-    <Compile Include="Document\Buffer\BufferElement.cs" />
-    <Compile Include="Document\Buffer\DocumentBuffer.cs" />
+    <Compile Include="Document\Elements\BaseElement.cs" />
+    <Compile Include="Document\Groups\HorizontalGroup.cs" />
+    <Compile Include="Document\Elements\IElement.cs" />
+    <Compile Include="Document\Groups\IGroup.cs" />
+    <Compile Include="Document\Elements\INavigableElement.cs" />
+    <Compile Include="Document\Elements\ISplitableElement.cs" />
+    <Compile Include="Document\Elements\TextElement.cs" />
+    <Compile Include="Document\Groups\VerticalGroup.cs" />
     <Compile Include="Document\Elements\IElementFactory.cs" />
-    <Compile Include="Document\Containers\ContainerBase.cs" />
-    <Compile Include="Document\Containers\DimensionConstraint.cs" />
-    <Compile Include="Document\Containers\ILine.cs" />
-    <Compile Include="Document\Containers\ILinkedObject.cs" />
-    <Compile Include="Document\Containers\IPage.cs" />
-    <Compile Include="Document\Containers\IPageCollection.cs" />
-    <Compile Include="Document\Containers\Line.cs" />
-    <Compile Include="Document\Containers\LinkedObject.cs" />
-    <Compile Include="Document\Containers\NavigationType.cs" />
-    <Compile Include="Document\Containers\Page.cs" />
-    <Compile Include="Document\Containers\PageCollection.cs" />
+    <Compile Include="Document\Navigation\NavigationType.cs" />
     <Compile Include="Document\Data\IPageProperties.cs" />
     <Compile Include="Document\Data\PageProperties.cs" />
     <Compile Include="Document\Data\Default\DefaultFlag.cs" />
@@ -82,13 +69,10 @@
     <Compile Include="Document\Data\IRangedData.cs" />
     <Compile Include="Document\Data\IRangedFlagData.cs" />
     <Compile Include="Document\Cursor.cs" />
-    <Compile Include="Document\Elements\CursorException.cs" />
-    <Compile Include="Document\Elements\FormattedText.cs" />
+    <Compile Include="Document\CursorException.cs" />
     <Compile Include="Document\Elements\FormattedTextFrame.cs" />
     <Compile Include="Document\Elements\IElementFrame.cs" />
     <Compile Include="Document\Elements\IElementFrameFactory.cs" />
-    <Compile Include="Document\Elements\IFormattedText.cs" />
-    <Compile Include="Document\Elements\Position.cs" />
     <Compile Include="Document\Flags\Flags.cs" />
     <Compile Include="Document\Flags\FlagsManager.cs" />
     <Compile Include="Document\ITextScoper.cs" />
@@ -105,10 +89,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Document\Buffer\IDocumentBuffer.cs" />
-    <Compile Include="Document\Buffer\IDocumentDeleter.cs" />
-    <Compile Include="Document\Containers\IContainer.cs" />
-    <Compile Include="Document\Containers\IDimensionConstraint.cs" />
     <Compile Include="Document\Data\ElementType.cs" />
     <Compile Include="Document\Data\FlagType.cs" />
     <Compile Include="Document\Data\IDocumentData.cs" />
@@ -116,7 +96,6 @@
     <Compile Include="Document\Data\IFlagData.cs" />
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\ICursor.cs" />
-    <Compile Include="Document\Elements\IElement.cs" />
     <Compile Include="Document\Flags\Alignment.cs" />
     <Compile Include="Document\Flags\IFlags.cs" />
     <Compile Include="Document\TextScoper.cs" />
