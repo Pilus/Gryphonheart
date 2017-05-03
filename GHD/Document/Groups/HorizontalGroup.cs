@@ -19,7 +19,7 @@
         }
 
         public VerticalGroup Group { get; set; }
-        public void UpdateLayout(IElement elementInGroup)
+        public void UpdateLayout()
         {
             this.UpdatePrevGroupIfRelevant();
 
@@ -46,45 +46,46 @@
                 {
                     break;
                 }
-                else
-                {
-                    element.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent);
-                        // TODO: set to group parent. Change y offset to provided group offset.
-                    widthConsumed += element.GetWidth();
-                    element.SizeChanged = false;
-                    element = element.Next;
 
-                    if (element == null || element.Group != this)
-                    {
-                        // TODO: Find out how to know when to trigger update layout of the group of last.next. Maybe just check if the first element would fit in.
-                        return;
-                    }
+                element.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent);
+                widthConsumed += element.GetWidth();
+                element.SizeChanged = false;
+                element = element.Next;
+
+                if (element == null || element.Group != this)
+                {
+                    // TODO: Find out how to know when to trigger update layout of the group of last.next. Maybe just check if the first element would fit in.
+                    return;
                 }
             }
 
-            if (element is ISplitableElement)
+            this.UpdateOverflow(element, widthConsumed);
+        }
+
+        private void UpdateOverflow(IElement firstElementOverflowing, double widthConsumed)
+        {
+            if (firstElementOverflowing is ISplitableElement)
             {
                 // Try and split the first element that is too wide
-                var newElement = ((ISplitableElement) element).SplitFromFront(this.widthConstraint - widthConsumed);
+                var newElement =
+                    ((ISplitableElement) firstElementOverflowing).SplitFromFront(this.widthConstraint - widthConsumed);
                 newElement.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent);
-                    // TODO: set to group parent. Change y offset to provided group offset.
                 newElement.SizeChanged = false;
             }
 
-            // TODO: Place elements into next group.
-            IGroup group;
-            if (element.Next != null)
+            // Place elements into next group.
+            IGroup nextGroup;
+            if (firstElementOverflowing.Next != null)
             {
-                group = element.Next.Group;
+                nextGroup = firstElementOverflowing.Next.Group;
             }
             else
             {
-                group = new HorizontalGroup(this.widthConstraint, this.heightConstraint, this.offset + 15);
-                    // TODO: do this in the vertical group
+                nextGroup = new HorizontalGroup(this.widthConstraint, this.heightConstraint, this.offset + 15);
             }
-            element.Group = group;
-            element.SizeChanged = false;
-            (group as HorizontalGroup)?.UpdateLayoutForwardOnly();
+            firstElementOverflowing.Group = nextGroup;
+            firstElementOverflowing.SizeChanged = false;
+            (nextGroup as HorizontalGroup)?.UpdateLayoutForwardOnly();
         }
 
         private void UpdatePrevGroupIfRelevant()
@@ -92,7 +93,7 @@
             var first = this.FirstElement;
             if (first.Prev != null && first.Prev.SizeChanged)
             {
-                first.Prev.Group.UpdateLayout(first.Prev);
+                first.Prev.Group.UpdateLayout();
             }
         }
     }

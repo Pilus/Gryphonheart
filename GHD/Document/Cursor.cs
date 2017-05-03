@@ -60,7 +60,7 @@ namespace GHD.Document
 
         private void UpdateLayoutOnGroupOfCurrentElement()
         { 
-            this.CurrentElement.Group.UpdateLayout(this.CurrentElement);
+            this.CurrentElement.Group.UpdateLayout();
         }
     }
 }
