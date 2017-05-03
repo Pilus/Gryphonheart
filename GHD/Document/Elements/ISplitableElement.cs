@@ -5,5 +5,7 @@
         ISplitableElement SplitFromFront(double width);
 
         ISplitableElement SplitFromEnd(double width);
+
+        bool TryMergeIntoFront();
     }
 }

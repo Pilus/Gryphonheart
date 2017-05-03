@@ -184,5 +184,21 @@
         {
             throw new NotImplementedException();
         }
+
+        public bool TryMergeIntoFront()
+        {
+            if (this.Next == null || !(this.Next is TextElement))
+            {
+                return false;
+            }
+
+            var nextElement = this.Next as TextElement;
+            if (nextElement.Flags.Equals(this.flags))
+            {
+                
+            }
+
+            return true;
+        }
     }
 }
