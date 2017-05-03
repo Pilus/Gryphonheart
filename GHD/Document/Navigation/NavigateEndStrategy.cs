@@ -11,7 +11,7 @@
 
         public override void Navigate(ICursor cursor)
         {
-            cursor.CurrentElement = HorizontalGroup.GetLastElementInSameGroup(cursor.CurrentElement);
+            cursor.CurrentElement = cursor.CurrentElement.Group.LastElement;
             (cursor.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
         }
     }

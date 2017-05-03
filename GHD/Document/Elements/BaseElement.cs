@@ -1,23 +1,57 @@
 ﻿namespace GHD.Document.Elements
 {
+    using System;
     using BlizzardApi.WidgetInterfaces;
     using GHD.Document.Flags;
     using GHD.Document.Groups;
 
     public abstract class BaseElement : IElement
     {
+        private IGroup group;
         public IElement Prev { get; set; }
 
         public IElement Next { get; set; }
 
-        public IGroup Group { get; set; }
+        public IGroup Group
+        {
+            get { return this.group; }
+            set
+            {
+                if (this.group == value)
+                {
+                    return;
+                }
+
+                if (this.group != null && this.group.FirstElement == this)
+                {
+                    // Find the new first.
+                    this.group.FirstElement = this.Next?.Group == this.group ? this.Next : null;
+                }
+
+                if (this.group != null && this.group.LastElement == this)
+                {
+                    // Find the new last.
+                    this.group.LastElement = this.Prev?.Group == this.group ? this.Prev : null;
+                }
+
+                this.group = value;
+
+                if (this.group.FirstElement == null || this.group.FirstElement == this.Next)
+                {
+                    this.group.FirstElement = this;
+                }
+
+                if (this.group.LastElement == null || this.group.LastElement == this.Prev)
+                {
+                    this.group.LastElement = this;
+                }
+            }
+        }
 
         public abstract IFlags Flags { get; }
 
         public void InsertElementAfter(IElement element)
         {
-            element.Group = this.Group;
-
             var next = this.Next;
 
             element.Prev = this;
@@ -27,12 +61,12 @@
             {
                 next.Prev = element;
             }
+
+            element.Group = this.Group;
         }
 
         public void InsertElementBefore(IElement element)
         {
-            element.Group = this.Group;
-
             var prev = this.Prev;
 
             element.Next = this;
@@ -42,6 +76,8 @@
             {
                 prev.Next = element;
             }
+
+            element.Group = this.Group;
         }
 
         public abstract double GetWidth();
@@ -51,24 +87,5 @@
         public bool SizeChanged { get; set; }
 
         public abstract void SetPoint(double xOff, double yOff, IRegion parent);
-
-
-        protected ICursor Cursor;
-        public virtual void GainCursor(ICursor cursor)
-        {
-            this.Cursor = cursor;
-        }
-
-        public virtual ICursor LooseCursor()
-        {
-            var cursor = this.Cursor;
-            this.Cursor = null;
-            return cursor;
-        }
-
-        public virtual bool HasCursor()
-        {
-            return this.Cursor != null;
-        }
     }
 }

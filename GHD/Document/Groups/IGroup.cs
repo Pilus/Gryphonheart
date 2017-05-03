@@ -5,5 +5,8 @@
     public interface IGroup
     {
         void UpdateLayout(IElement element);
+
+        IElement FirstElement { get; set; }
+        IElement LastElement { get; set; }
     }
 }

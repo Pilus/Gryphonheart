@@ -21,7 +21,7 @@ namespace GHD.Document.Navigation
 
             var elementInOtherGroup = this.GetElementInOtherGroup(cursor);
             var otherGroup = elementInOtherGroup.Group;
-            var firstInOtherGroup = HorizontalGroup.GetFirstElementInSameGroup(elementInOtherGroup);
+            var firstInOtherGroup = elementInOtherGroup.Group.FirstElement;
 
             double prevOffset = 0;
             element = firstInOtherGroup;

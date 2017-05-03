@@ -11,7 +11,6 @@ namespace GHD.Document
     {
         private readonly ITextScoper textScoper;
         private IFlags currentFlags;
-        private IElement currentElement;
         private readonly Navigator navigator;
 
         public Cursor(ITextScoper textScoper, Navigator navigator)
@@ -20,18 +19,7 @@ namespace GHD.Document
             this.navigator = navigator;
         }
 
-        public IElement CurrentElement
-        {
-            get { return this.currentElement; }
-            set
-            {
-                if (this.currentElement == value) return;
-
-                this.currentElement?.LooseCursor();
-                this.currentElement = value;
-                this.currentElement?.GainCursor(this);
-            }
-        }
+        public IElement CurrentElement { get; set; }
 
         public IFlags CurrentFlags
         {
@@ -73,42 +61,6 @@ namespace GHD.Document
         private void UpdateLayoutOnGroupOfCurrentElement()
         { 
             this.CurrentElement.Group.UpdateLayout(this.CurrentElement);
-
-            this.SeekUpdatedCurrentElement();
-        }
-
-        private void SeekUpdatedCurrentElement()
-        {
-            if (this.CurrentElement.HasCursor())
-            {
-                return;
-            }
-
-            var backwards = this.CurrentElement.Prev;
-            var forwards = this.CurrentElement.Next;
-
-            while (backwards != null || forwards != null)
-            {
-                if (backwards != null)
-                {
-                    if (backwards.HasCursor())
-                    {
-                        this.CurrentElement = backwards;
-                        return;
-                    }
-                    backwards = backwards.Prev;
-                }
-
-                if (forwards != null)
-                {
-                    if (forwards.HasCursor())
-                    {
-                        this.CurrentElement = forwards;
-                        return;
-                    }
-                    forwards = forwards.Next;
-                }
-            }
         }
     }
 }

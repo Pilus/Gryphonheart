@@ -11,7 +11,7 @@
 
         protected override IElement GetElementInOtherGroup(ICursor cursor)
         {
-            var lastElement = HorizontalGroup.GetLastElementInSameGroup(cursor.CurrentElement);
+            var lastElement = cursor.CurrentElement.Group.LastElement;
             return lastElement.Next;
         }
     }

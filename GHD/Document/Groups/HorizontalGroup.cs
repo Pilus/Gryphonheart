@@ -21,20 +21,24 @@
         public VerticalGroup Group { get; set; }
         public void UpdateLayout(IElement elementInGroup)
         {
-            var first = GetFirstElementInSameGroup(elementInGroup);
-            var last = GetLastElementInSameGroup(elementInGroup);
+            this.UpdatePrevGroupIfRelevant();
 
-            first = this.UpdatePrevGroupIfRelevantAndGetNewFirst(elementInGroup, last, first);
-
-            if (first == null)
+            if (this.FirstElement == null)
             {
                 // The group is now empty
                 return;
             }
 
-            double widthConsumed = 0;
+            this.UpdateLayoutForwardOnly();
+        }
 
-            var element = first;
+        public IElement FirstElement { get; set; }
+        public IElement LastElement { get; set; }
+
+        public void UpdateLayoutForwardOnly()
+        {
+            var element = this.FirstElement;
+            double widthConsumed = 0;
 
             while (true)
             {
@@ -44,7 +48,8 @@
                 }
                 else
                 {
-                    element.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
+                    element.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent);
+                        // TODO: set to group parent. Change y offset to provided group offset.
                     widthConsumed += element.GetWidth();
                     element.SizeChanged = false;
                     element = element.Next;
@@ -61,15 +66,11 @@
             {
                 // Try and split the first element that is too wide
                 var newElement = ((ISplitableElement) element).SplitFromFront(this.widthConstraint - widthConsumed);
-                newElement.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent); // TODO: set to group parent. Change y offset to provided group offset.
+                newElement.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent);
+                    // TODO: set to group parent. Change y offset to provided group offset.
                 newElement.SizeChanged = false;
-
-                if (element == elementInGroup)
-                {
-                    // The element might be the current cursor element
-                }
             }
-            
+
             // TODO: Place elements into next group.
             IGroup group;
             if (element.Next != null)
@@ -78,52 +79,21 @@
             }
             else
             {
-                group = new HorizontalGroup(this.widthConstraint, this.heightConstraint, this.offset + 15); // TODO: do this in the vertical group
+                group = new HorizontalGroup(this.widthConstraint, this.heightConstraint, this.offset + 15);
+                    // TODO: do this in the vertical group
             }
             element.Group = group;
             element.SizeChanged = false;
-            group.UpdateLayout(element);
+            (group as HorizontalGroup)?.UpdateLayoutForwardOnly();
         }
 
-        private IElement UpdatePrevGroupIfRelevantAndGetNewFirst(IElement elementInGroup, IElement last, IElement first)
+        private void UpdatePrevGroupIfRelevant()
         {
+            var first = this.FirstElement;
             if (first.Prev != null && first.Prev.SizeChanged)
             {
                 first.Prev.Group.UpdateLayout(first.Prev);
-
-                if (last.Group != this)
-                {
-                    // All elements of this group have been moved into the previous group
-                    return null;
-                }
-
-                first = GetFirstElementInSameGroup(elementInGroup);
             }
-            return first;
-        }
-
-        public static IElement GetLastElementInSameGroup(IElement element)
-        {
-            var horizontalGroup = element.Group;
-
-            while (element.Next != null && element.Next.Group == horizontalGroup)
-            {
-                element = element.Next;
-            }
-
-            return element;
-        }
-
-        public static IElement GetFirstElementInSameGroup(IElement element)
-        {
-            var horizontalGroup = element.Group;
-
-            while (element.Prev != null && element.Prev.Group == horizontalGroup)
-            {
-                element = element.Prev;
-            }
-
-            return element;
         }
     }
 }

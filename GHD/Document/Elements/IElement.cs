@@ -25,11 +25,5 @@
         bool SizeChanged { get; set; }
 
         void SetPoint(double xOff, double yOff, IRegion parent);
-
-        void GainCursor(ICursor cursor);
-
-        ICursor LooseCursor();
-
-        bool HasCursor();
     }
 }
