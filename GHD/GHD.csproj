@@ -60,6 +60,19 @@
     <Compile Include="Document\Elements\TextElement.cs" />
     <Compile Include="Document\Groups\VerticalGroup.cs" />
     <Compile Include="Document\Elements\IElementFactory.cs" />
+    <Compile Include="Document\Navigation\INavigationStrategyFactory.cs" />
+    <Compile Include="Document\Navigation\INavigator.cs" />
+    <Compile Include="Document\Navigation\NavigateDownStrategy.cs" />
+    <Compile Include="Document\Navigation\NavigateEndStrategy.cs" />
+    <Compile Include="Document\Navigation\NavigateHomeStrategy.cs" />
+    <Compile Include="Document\Navigation\NavigateHorizontalArrowStrategyBase.cs" />
+    <Compile Include="Document\Navigation\NavigateLeftStrategy.cs" />
+    <Compile Include="Document\Navigation\INavigationStrategy.cs" />
+    <Compile Include="Document\Navigation\NavigateRightStrategy.cs" />
+    <Compile Include="Document\Navigation\NavigateStrategyBase.cs" />
+    <Compile Include="Document\Navigation\NavigateUpStrategy.cs" />
+    <Compile Include="Document\Navigation\NavigateVerticalArrowStrategyBase.cs" />
+    <Compile Include="Document\Navigation\NavigationStrategyFactory.cs" />
     <Compile Include="Document\Navigation\NavigationType.cs" />
     <Compile Include="Document\Data\IPageProperties.cs" />
     <Compile Include="Document\Data\PageProperties.cs" />
@@ -77,6 +90,7 @@
     <Compile Include="Document\Flags\FlagsManager.cs" />
     <Compile Include="Document\ITextScoper.cs" />
     <Compile Include="Document\KeyboardInput\IKeyboardInputProvider.cs" />
+    <Compile Include="Document\Navigation\Navigator.cs" />
     <Compile Include="Model\IModelProvider.cs" />
     <Compile Include="Model\ModelProvider.cs" />
     <Compile Include="Document\Elements\ElementFactory.cs" />

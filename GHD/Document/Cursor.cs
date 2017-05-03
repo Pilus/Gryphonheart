@@ -12,10 +12,12 @@ namespace GHD.Document
         private readonly ITextScoper textScoper;
         private IFlags currentFlags;
         private IElement currentElement;
+        private readonly Navigator navigator;
 
-        public Cursor(ITextScoper textScoper)
+        public Cursor(ITextScoper textScoper, Navigator navigator)
         {
             this.textScoper = textScoper;
+            this.navigator = navigator;
         }
 
         public IElement CurrentElement
@@ -44,68 +46,13 @@ namespace GHD.Document
                 throw new Exception("Can not navigate without cursor focus.");
             }
 
-            switch (navigationType)
-            {
-                case NavigationType.Left:
-                    bool internalNavigationSuccessful = (this.CurrentElement as INavigableElement)?.Navigate(navigationType) ?? false;
-
-                    if (!internalNavigationSuccessful && this.CurrentElement.Prev != null)
-                    {
-                        this.CurrentElement = this.CurrentElement.Prev;
-                        (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
-                    }
-                    break;
-                case NavigationType.End:
-                    this.CurrentElement = HorizontalGroup.GetLastElementInSameGroup(this.CurrentElement);
-                    (this.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
-                    break;
-                case NavigationType.Home:
-                    this.CurrentElement = HorizontalGroup.GetFirstElementInSameGroup(this.CurrentElement);
-                    (this.CurrentElement as INavigableElement)?.ResetInsertPosition(false);
-                    break;
-                case NavigationType.Up:
-                    double offset = (this.CurrentElement as INavigableElement) ?.GetInsertXOffset() ?? 0;
-                    var element = this.CurrentElement.Prev;
-                    while (element.Group == this.CurrentElement.Group)
-                    {
-                        offset += element.GetWidth();
-                        element = element.Prev;
-                    }
-
-                    var prevGroup = element.Group;
-                    var firstInPrevGroup = HorizontalGroup.GetFirstElementInSameGroup(element);
-
-                    double prevOffset = 0;
-                    element = firstInPrevGroup;
-
-                    while (element.Group == prevGroup && prevOffset + element.GetWidth() <= offset)
-                    {
-                        prevOffset += element.GetWidth();
-                        element = element.Next;
-                    }
-
-                    if (element.Group != prevGroup)
-                    {
-                        this.CurrentElement = element.Prev;
-                        (this.CurrentElement as INavigableElement)?.ResetInsertPosition(true);
-                    }
-                    else
-                    {
-                        this.CurrentElement = element;
-                        (this.CurrentElement as INavigableElement)?.SetInsertPosition(offset - prevOffset, 0);
-                    }
-
-                    break;
-                default:
-                    throw new NotImplementedException("Cursor handling of " + navigationType);
-            }
+            this.navigator.Navigate(this, navigationType);
 
             if (this.CurrentElement == null)
             {
                 throw new Exception("Focus lost unexpectedly.");
             }
         }
-
 
 
         public void Insert(IFlags flags, string text)
