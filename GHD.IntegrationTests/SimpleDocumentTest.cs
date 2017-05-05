@@ -61,7 +61,7 @@ namespace GHD.IntegrationTests
 
             input.PressUpArrow();
             input.TypeString("1");
-            this.ExpectStrings("A short test. Adding a long1 sentance with the purpose of", "spilling", "over into the next line of text.");
+            this.ExpectStrings("A short test. Adding a long1 sentance with the purpose of", "spilling over into the next line of text.");
         }
 
         private void ExpectStrings(params string[] strings)

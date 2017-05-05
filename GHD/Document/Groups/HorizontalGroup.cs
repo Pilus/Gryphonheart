@@ -67,6 +67,13 @@
             if (firstElementOverflowing is ISplitableElement)
             {
                 // Try and split the first element that is too wide
+                var mergeSuccessful = ((ISplitableElement)firstElementOverflowing).TryMergeSpilloverIntoNext(this.widthConstraint - widthConsumed);
+                if (mergeSuccessful)
+                {
+                    (firstElementOverflowing.Next.Group as HorizontalGroup).UpdateLayoutForwardOnly();
+                    return;
+                }
+
                 var newElement =
                     ((ISplitableElement) firstElementOverflowing).SplitFromFront(this.widthConstraint - widthConsumed);
                 newElement.SetPoint(widthConsumed, this.offset, Global.Frames.UIParent);

@@ -168,7 +168,7 @@
 
             
 
-            this.text = this.text.Substring(newText.Length);
+            this.text = Strings.strsubutf8(this.text, Strings.strlenutf8(newText));
             if (this.text.StartsWith(" "))
             {
                 this.text = this.text.Substring(1);
@@ -185,7 +185,7 @@
             throw new NotImplementedException();
         }
 
-        public bool TryMergeIntoFront()
+        public bool TryMergeSpilloverIntoNext(double widthBeforeSpillover)
         {
             if (this.Next == null || !(this.Next is TextElement))
             {
@@ -193,10 +193,32 @@
             }
 
             var nextElement = this.Next as TextElement;
-            if (nextElement.Flags.Equals(this.flags))
+            if (!nextElement.Flags.Equals(this.flags))
             {
-                
+                return false;
             }
+
+            var remainingText = this.textScoper.GetFittingText(this.flags.Font, this.flags.FontSize, this.text, widthBeforeSpillover);
+            if (remainingText == String.Empty)
+            {
+                // Nothing would remain
+                return false;
+            }
+
+            var originalText = this.text;
+
+            this.text = remainingText;
+            // TODO: Update the cursor as needed
+            this.TextChanged();
+
+            var overflowText = Strings.strsubutf8(originalText, Strings.strlenutf8(remainingText));
+            if (overflowText.StartsWith(" "))
+            {
+                overflowText = overflowText.Substring(1);
+            }
+
+            nextElement.text = overflowText + " " + nextElement.text;
+            nextElement.TextChanged();
 
             return true;
         }

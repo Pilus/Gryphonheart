@@ -6,6 +6,6 @@
 
         ISplitableElement SplitFromEnd(double width);
 
-        bool TryMergeIntoFront();
+        bool TryMergeSpilloverIntoNext(double widthBeforeSpillover);
     }
 }
