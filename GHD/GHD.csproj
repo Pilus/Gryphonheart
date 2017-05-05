@@ -58,6 +58,11 @@
     <Compile Include="Document\Elements\INavigableElement.cs" />
     <Compile Include="Document\Elements\ISplitableElement.cs" />
     <Compile Include="Document\Elements\TextElement.cs" />
+    <Compile Include="Document\Groups\LayoutStrategies\BackflowLayoutUpdateStrategy.cs" />
+    <Compile Include="Document\Groups\LayoutStrategies\ForwardLayoutUpdateStrategy.cs" />
+    <Compile Include="Document\Groups\LayoutStrategies\ILayoutUpdateStrategy.cs" />
+    <Compile Include="Document\Groups\LayoutStrategies\LayoutUpdater.cs" />
+    <Compile Include="Document\Groups\LayoutStrategies\OverflowLayoutUpdateStrategy.cs" />
     <Compile Include="Document\Groups\VerticalGroup.cs" />
     <Compile Include="Document\Elements\IElementFactory.cs" />
     <Compile Include="Document\Navigation\INavigationStrategyFactory.cs" />

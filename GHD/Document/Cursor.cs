@@ -5,6 +5,7 @@ namespace GHD.Document
     using GHD.Document.Elements;
     using GHD.Document.Flags;
     using GHD.Document.Groups;
+    using GHD.Document.Groups.LayoutStrategies;
     using GHD.Document.Navigation;
 
     public class Cursor : ICursor
@@ -13,10 +14,13 @@ namespace GHD.Document
         private IFlags currentFlags;
         private readonly Navigator navigator;
 
+        private readonly LayoutUpdater layoutUpdater;
+
         public Cursor(ITextScoper textScoper, Navigator navigator)
         {
             this.textScoper = textScoper;
             this.navigator = navigator;
+            this.layoutUpdater = new LayoutUpdater();
         }
 
         public IElement CurrentElement { get; set; }
@@ -60,7 +64,7 @@ namespace GHD.Document
 
         private void UpdateLayoutOnGroupOfCurrentElement()
         { 
-            this.CurrentElement.Group.UpdateLayout();
+            this.layoutUpdater.UpdateLayout(this.CurrentElement.Group);
         }
     }
 }

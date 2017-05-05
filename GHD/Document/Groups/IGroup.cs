@@ -4,9 +4,14 @@
 
     public interface IGroup
     {
-        void UpdateLayout();
+        //void UpdateLayout();
 
         IElement FirstElement { get; set; }
         IElement LastElement { get; set; }
+
+        double WidthConstraint { get; }
+        double HeightConstraint { get; }
+
+        double Offset { get; }
     }
 }
