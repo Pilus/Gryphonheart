@@ -10,6 +10,7 @@ namespace GHD.Presenter.Document
     using GHD.Document;
     using GHD.Document.Data;
     using GHD.Document.Elements;
+    using GHD.Document.Groups.LayoutStrategies;
     using GHD.Document.KeyboardInput;
     using GHD.Document.Navigation;
     using View.DocumentMenu;
@@ -40,7 +41,9 @@ namespace GHD.Presenter.Document
 
             //this.elementFactory = new ElementFactory() // TODO
             this.inputProvider = new TextBoxInputInterpreter();
-            this.cursor = new Cursor(this.textScoper, new Navigator(new NavigationStrategyFactory()));
+            var layoutUpdater = new LayoutUpdater();
+            var navigator = new Navigator(new NavigationStrategyFactory());
+            this.cursor = new Cursor(this.textScoper, navigator, layoutUpdater);
 
             this.menu = menuHandler.CreateMenu(profileGenerator.GenerateMenuProfile());
             this.SetupDocumentArea(this.menu.GetFrameById(DocumentMenuLabels.DocumentArea) as IFrame);

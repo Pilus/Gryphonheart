@@ -120,6 +120,7 @@
         {
             this.width = this.textScoper.GetWidth(this.flags.Font, this.flags.FontSize, this.text);
             this.frame.SetText(this.text, this.width);
+            this.SizeChanged = true;
         }
 
         public override IFlags Flags => this.flags;

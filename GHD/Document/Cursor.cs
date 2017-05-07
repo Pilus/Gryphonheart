@@ -16,11 +16,11 @@ namespace GHD.Document
 
         private readonly LayoutUpdater layoutUpdater;
 
-        public Cursor(ITextScoper textScoper, Navigator navigator)
+        public Cursor(ITextScoper textScoper, Navigator navigator, LayoutUpdater layoutUpdater)
         {
             this.textScoper = textScoper;
             this.navigator = navigator;
-            this.layoutUpdater = new LayoutUpdater();
+            this.layoutUpdater = layoutUpdater;
         }
 
         public IElement CurrentElement { get; set; }
