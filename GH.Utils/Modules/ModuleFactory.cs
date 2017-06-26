@@ -44,7 +44,12 @@ namespace GH.Utils.Modules
         {
             get
             {
-                return moduleFactory ?? (moduleFactory = new ModuleFactory());
+                if (moduleFactory == null)
+                {
+                    moduleFactory = new ModuleFactory();
+                }
+
+                return moduleFactory;
             }
             set
             {

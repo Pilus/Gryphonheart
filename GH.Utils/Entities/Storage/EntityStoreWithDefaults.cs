@@ -173,7 +173,11 @@ namespace GH.Utils.Entities.Storage
             }
 
             this.savedDataHandler.SetVar(entity.Id, info);
-            this.entityUpdateSubscriptionCenter?.TriggerSubscriptionUpdate(entity);
+
+            if (this.entityUpdateSubscriptionCenter != null)
+            {
+                this.entityUpdateSubscriptionCenter.TriggerSubscriptionUpdate(entity);
+            }
         }
 
         /// <summary>

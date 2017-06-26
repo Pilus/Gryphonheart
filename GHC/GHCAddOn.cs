@@ -15,7 +15,7 @@ namespace GHC
     using Lua;
     using Modules.AbilityActionBar;
 
-    [CsLuaAddOn("GHC", "Gryphonheart Crime", 70000, Author = "The Gryphonheart Team", Dependencies = new []{"GH"})]
+    [CsLuaAddOn("GHC", "Gryphonheart Crime", 70200, Author = "The Gryphonheart Team", Dependencies = new []{"GH"})]
     public class GHCAddOn : ICsLuaAddOn
     {
         private readonly IWrapper wrapper;
