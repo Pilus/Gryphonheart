@@ -56,7 +56,7 @@ function GHI_ButtonUI()
 	icon:SetTexCoord(.075, .925, .075, .925)
 	roundButton.icon = icon;
 
-	roundButton:SetScript("PreClick", function() PlaySound("igMainMenuOptionCheckBoxOn") end);
+	roundButton:SetScript("PreClick", function() PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856) end);
 
 	roundButton:SetFrameStrata("MEDIUM");
 	roundButton:SetFrameLevel(8);

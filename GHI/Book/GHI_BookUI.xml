@@ -235,7 +235,7 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>PlaySound("igMainMenuOptionCheckBoxOn");</OnClick>
+					<OnClick>PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up" />
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down" />
@@ -311,7 +311,7 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>PlaySound("igMainMenuOptionCheckBoxOn");</OnClick>
+					<OnClick>PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up" />
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down" />

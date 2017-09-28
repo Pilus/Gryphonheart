@@ -1,6 +1,6 @@
-## Interface: 70200
+## Interface: 70300
 ## Title: Gryphonheart Items
-## Version: 2.1.23
+## Version: 2.1.24
 ## Notes: Platform for creation of simple items / props for RolePlaying, such as books.
 ## X-CodeTool: true
 ## X-DevVersion: false

@@ -657,7 +657,7 @@ function GHI_ToggleBackpack()
 end
 
 function GHI_ContainerFrame_OnShow(self)
-	PlaySound("igBackPackOpen");
+	PlaySound(PlaySoundKitID and "igBackPackOpen"  or 862);
 	GHI_UpdateContainerFrameAnchors();
 	GHI_ContainerFrame_Update(self)
 end

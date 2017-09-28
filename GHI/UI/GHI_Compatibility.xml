@@ -320,7 +320,7 @@
 						local parent = self:GetParent();
 						local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
 						parent:SetValue(parent:GetValue() - scrollStep);
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -333,7 +333,7 @@
 						local parent = self:GetParent();
 						local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
 						parent:SetValue(parent:GetValue() + scrollStep);
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -406,7 +406,7 @@
 						local parent = self:GetParent();
 						local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
 						parent:SetValue(parent:GetValue() - scrollStep);
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -419,7 +419,7 @@
 						local parent = self:GetParent();
 						local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
 						parent:SetValue(parent:GetValue() + scrollStep);
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -449,7 +449,7 @@
 					<OnClick>
 						local parent = self:GetParent();
 						parent:SetValue(parent:GetValue() - (parent:GetHeight() / 2));
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -461,7 +461,7 @@
 					<OnClick>
 						local parent = self:GetParent();
 						parent:SetValue(parent:GetValue() + (parent:GetHeight() / 2));
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -532,7 +532,7 @@
 						local parent = self:GetParent();
 						local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
 						parent:SetValue(parent:GetValue() - scrollStep);
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -545,7 +545,7 @@
 						local parent = self:GetParent();
 						local scrollStep = self:GetParent().scrollStep or (parent:GetHeight() / 2);
 						parent:SetValue(parent:GetValue() + scrollStep);
-						PlaySound("UChatScrollButton");
+						PlaySound("PlaySoundKitID and "UChatScrollButton" or 1115");
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -845,7 +845,7 @@
 						self.texture:SetPoint("TOPLEFT", 0, 0);
 					</OnMouseUp>
 					<OnClick>
-						PlaySound("igMainMenuOptionCheckBoxOn");
+						PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
 						local editBox = self:GetParent();
 						if editBox.clearFunc then
 							editBox.clearFunc(editBox);
@@ -3646,7 +3646,7 @@
 				self.I:SetPoint("CENTER", 1, -1);
 			</OnMouseDown>
 			<OnMouseUp>
-				PlaySound("igMainMenuOptionCheckBoxOn");
+				PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
 				self.I:SetPoint("CENTER", 0, 0);
 			</OnMouseUp>
 			<OnHide function="Main_HelpPlate_Button_OnLeave"/>
