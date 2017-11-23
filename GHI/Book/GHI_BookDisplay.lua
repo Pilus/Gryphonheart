@@ -66,7 +66,7 @@ function GHI_BookDisplay(materials)
 	fs:SetPoint("LEFT", prevButton, "RIGHT");
 	fs:SetText(PREV);
 	prevButton:SetScript("OnClick",function()
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+		PlaySound(856);
 		class.PrevPage();
 	end)
 
@@ -82,7 +82,7 @@ function GHI_BookDisplay(materials)
 	fs:SetPoint("RIGHT", nextButton, "LEFT");
 	fs:SetText(NEXT);
 	nextButton:SetScript("OnClick",function()
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+		PlaySound(856);
 		class.NextPage();
 	end)
 

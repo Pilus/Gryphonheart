@@ -735,7 +735,7 @@ GHM_DropDownMenu = function()
 		end
 
 		if ( playSound ) then
-			PlaySound("UChatScrollButton");
+			PlaySound(1115);
 		end
 	end
 

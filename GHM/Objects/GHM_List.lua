@@ -84,7 +84,7 @@ function GHM_List(profile, parent, settings)
 			end
 
 			header:SetScript("OnClick", function()
-				PlaySound("igMainMenuOptionCheckBoxOn");
+				PlaySound(856);
 				local f = header:GetParent();
 				if f.sortFilter == header.label then
 					f.sortDir = mod(f.sortDir + 1, 2);

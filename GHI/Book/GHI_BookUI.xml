@@ -235,7 +235,7 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);</OnClick>
+					<OnClick>PlaySound(856);</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up" />
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down" />
@@ -311,7 +311,7 @@
 					</Layer>
 				</Layers>
 				<Scripts>
-					<OnClick>PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);</OnClick>
+					<OnClick>PlaySound(856);</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up" />
 				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down" />
@@ -376,11 +376,11 @@
 					bg:SetHeight(355);
 					bg:SetDrawLayer("BORDER");
 				end</OnLoad>
-			<OnShow>PlaySound("igMainMenuOpen");
+			<OnShow>PlaySound(850);
 				GHI_Event().TriggerEvent("GHI_BOOK_OPEN", self.GUID)</OnShow>
 			<OnHide>--Close$parent();
 				GHI_Event().TriggerEvent("GHI_BOOK_CLOSE", self.GUID)
-				PlaySound("igMainMenuClose");</OnHide>
+				PlaySound(851);</OnHide>
 		</Scripts>
 	</Frame>
 	<Frame name="GHI_LogoTemplate" setAllPoints="false" virtual="true">

@@ -686,7 +686,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 
 	-- Widget Scripts
 	nextButton:SetScript("OnClick", function(self)
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+		PlaySound(856);
 		markFrame:Hide()
 		textDisplay:Show()
 		if frame.currentPage == #frame.pages then
@@ -698,7 +698,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 	end)
 	
 	prevButton:SetScript("OnClick", function(self)
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+		PlaySound(856);
 		markFrame:Hide()
 		textDisplay:Show()
 		if frame.currentPage == 1 then
@@ -721,7 +721,7 @@ function GHI_ShowBook(itemContainerGuid, itemSlotGuid, title, pages, edit, mater
 
 	markButton.tooltip = "Mark Text"
 	markButton:SetScript("OnClick", function(self)
-		PlaySound(PlaySoundKitID and "igMainMenuOptionCheckBoxOn" or 856);
+		PlaySound(856);
 		if not(markFrame:IsShown()) then
 			markFrame:Show()
 			textDisplay:Hide()

@@ -346,7 +346,7 @@
 					<OnClick>
 						local dropDownMenu = GHM_DropDownMenu()
 						dropDownMenu.ToggleDropDownMenu(nil, nil, self:GetParent());
-						PlaySound("igMainMenuOptionCheckBoxOn");
+						PlaySound(856);
 					</OnClick>
 				</Scripts>
 				<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">

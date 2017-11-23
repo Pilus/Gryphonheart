@@ -444,7 +444,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 	end)
 	
 	nextButt:SetScript("OnClick", function(self)
-		PlaySound("igMainMenuOptionCheckBoxOn");
+		PlaySound(856);
 		SavePage()
 		if frame.currentPage == #frame.pages then
 			return
@@ -456,7 +456,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 	end)
 	
 	prevButt:SetScript("OnClick", function(self)
-		PlaySound("igMainMenuOptionCheckBoxOn");
+		PlaySound(856);
 		SavePage()
 		if frame.currentPage == 1 then
 			return
@@ -468,7 +468,7 @@ function GHM_MultiPageEditField(profile, parent, settings)
 	end)
 	
 	delButt:SetScript("OnClick", function(self)
-		PlaySound("igMainMenuOptionCheckBoxOn");
+		PlaySound(856);
 		deleteMenuFrame:Show()
 	end)
 	
